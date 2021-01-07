@@ -1,7 +1,8 @@
 import { Config } from '@stencil/core';
-
+import { less } from '@stencil/less';
 export const config: Config = {
   namespace: 'glue-components',
+  plugins: [less()],
   outputTargets: [
     {
       type: 'dist',

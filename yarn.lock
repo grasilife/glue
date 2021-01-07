@@ -1950,6 +1950,13 @@
   resolved "https://registry.npm.taobao.org/@stencil/core/download/@stencil/core-2.3.0.tgz#9190df3a0064537730be1546545e13531d701da8"
   integrity sha1-kZDfOgBkU3cwvhVGVF4TUx1wHag=
 
+"@stencil/less@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/@stencil/less/download/@stencil/less-1.0.0.tgz#ee4a7a92517d669b0514cc40f050e6abbeb36f60"
+  integrity sha1-7kp6klF9ZpsFFMxA8FDmq76zb2A=
+  dependencies:
+    less "^3.9.0"
+
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.npm.taobao.org/@types/anymatch/download/@types/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
@@ -7676,7 +7683,7 @@ less-loader@^5.0.0:
     loader-utils "^1.1.0"
     pify "^4.0.1"
 
-less@^3.0.4:
+less@^3.0.4, less@^3.9.0:
   version "3.13.1"
   resolved "https://registry.npm.taobao.org/less/download/less-3.13.1.tgz?cache=0&sync_timestamp=1608313018294&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fless%2Fdownload%2Fless-3.13.1.tgz#0ebc91d2a0e9c0c6735b83d496b0ab0583077909"
   integrity sha1-DryR0qDpwMZzW4PUlrCrBYMHeQk=
