@@ -1,7 +1,7 @@
 {
   "name": "doc",
   "version": "0.0.1-alpha.0",
-  "private": false,
+  "private": true,
   "scripts": {
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -28,5 +28,6 @@
     "less-loader": "^5.0.0",
     "prettier": "^1.19.1",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+  "gitHead": "092134cf700bfbc7245a6bbc576d5cee3d1b8145"
 }

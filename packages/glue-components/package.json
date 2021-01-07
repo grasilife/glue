@@ -25,5 +25,6 @@
   "dependencies": {
     "@stencil/core": "^2.0.1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "092134cf700bfbc7245a6bbc576d5cee3d1b8145"
 }
