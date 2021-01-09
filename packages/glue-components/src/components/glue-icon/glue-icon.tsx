@@ -1,5 +1,6 @@
 import { Component, Prop, h } from '@stencil/core';
-// const [bem] = createNamespace('button');
+import { addUnit } from '../../utils/format/unit';
+import classNames from 'classnames';
 @Component({
   tag: 'glue-icon',
   styleUrl: 'glue-icon.less',
@@ -15,8 +16,30 @@ export class GlueIcon {
   @Prop() color: string;
   @Prop() tag: string;
   @Prop() classPrefix: string;
-
+  isImage(name?: string) {
+    return name ? name.indexOf('/') !== -1 : false;
+  }
+  //TODO:字体文件不生效
   render() {
-    return <div>Hello, World! I'm </div>;
+    const { tag, dot, name, size, badge, color, classPrefix } = this;
+    const isImageIcon = this.isImage(name);
+    return (
+      <glue-badge
+        dot={dot}
+        tag={tag}
+        content={badge}
+        style={{
+          color,
+          fontSize: addUnit(size),
+        }}
+      >
+        <i
+          class={classNames('van-icon', {
+            [`van-icon-${name}`]: true,
+          })}
+        ></i>
+        {isImageIcon && <img class="glue-icon__image" src={name} />}
+      </glue-badge>
+    );
   }
 }

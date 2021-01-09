@@ -10,15 +10,17 @@
   </head>
   <body>
     <glue-badge dot>
-      <div class="badgeChild" />
+      <div class="badgeChild">111</div>
     </glue-badge>
     <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
     <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
     <glue-action-bar>111</glue-action-bar>
     <glue-action-bar-button></glue-action-bar-button>
     <glue-badge content="5">
-      <div class="badgeChild" />
+      <div class="badgeChild"></div>
     </glue-badge>
+    <glue-icon name="chat-o" dot class="iconClass" color="#1989fa"></glue-icon>
+    <glue-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" dot class="iconClass" color="#1989fa"></glue-icon>
   </body>
 </html>
 <style>
@@ -27,5 +29,8 @@
     height: 40px;
     background: #f2f3f5;
     border-radius: 4px;
+  }
+  .iconClass {
+    font-size: 32px;
   }
 </style>
