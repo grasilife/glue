@@ -1,11 +1,11 @@
 import { Component, Prop, h, Host } from '@stencil/core';
 // import { createNamespace } from '../../utils/create/index';
 @Component({
-  tag: 'action-bar',
-  styleUrl: 'action-bar.less',
+  tag: 'glue-action-bar',
+  styleUrl: 'glue-action-bar.less',
   shadow: false,
 })
-export class ActionBar {
+export class GlueActionBar {
   @Prop() safeAreaInsetBottom: true;
 
   render() {

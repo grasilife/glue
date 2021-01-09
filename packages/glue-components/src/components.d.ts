@@ -6,10 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface ActionBar {
+    interface GlueActionBar {
         "safeAreaInsetBottom": true;
     }
-    interface MyComponent {
+    interface GlueActionBarButton {
         /**
           * The first name
          */
@@ -23,13 +23,79 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface GlueBadge {
+        "color": string;
+        "content": number | string;
+        "dot": boolean;
+        "max": number | string;
+        "tag": string;
+    }
+    interface GlueButton {
+        "block": boolean;
+        "color": string;
+        "disabled": boolean;
+        "hairline": boolean;
+        "icon": string;
+        "iconPosition": string;
+        "iconPrefix": string;
+        "loading": boolean;
+        "loadingSize": string;
+        "loadingText": string;
+        "loadingType": string;
+        "nativeType": string;
+        "plain": boolean;
+        "round": boolean;
+        "size": string;
+        "square": boolean;
+        "tag": string;
+        "text": string;
+        "type": string;
+    }
+    interface GlueIcon {
+        "badge": number | string;
+        "classPrefix": string;
+        "color": string;
+        "dot": boolean;
+        "name": string;
+        "size": number | string;
+        "tag": string;
+    }
+    interface MyComponent {
+        "first": string;
+        "last": string;
+        "middle": string;
+    }
 }
 declare global {
-    interface HTMLActionBarElement extends Components.ActionBar, HTMLStencilElement {
+    interface HTMLGlueActionBarElement extends Components.GlueActionBar, HTMLStencilElement {
     }
-    var HTMLActionBarElement: {
-        prototype: HTMLActionBarElement;
-        new (): HTMLActionBarElement;
+    var HTMLGlueActionBarElement: {
+        prototype: HTMLGlueActionBarElement;
+        new (): HTMLGlueActionBarElement;
+    };
+    interface HTMLGlueActionBarButtonElement extends Components.GlueActionBarButton, HTMLStencilElement {
+    }
+    var HTMLGlueActionBarButtonElement: {
+        prototype: HTMLGlueActionBarButtonElement;
+        new (): HTMLGlueActionBarButtonElement;
+    };
+    interface HTMLGlueBadgeElement extends Components.GlueBadge, HTMLStencilElement {
+    }
+    var HTMLGlueBadgeElement: {
+        prototype: HTMLGlueBadgeElement;
+        new (): HTMLGlueBadgeElement;
+    };
+    interface HTMLGlueButtonElement extends Components.GlueButton, HTMLStencilElement {
+    }
+    var HTMLGlueButtonElement: {
+        prototype: HTMLGlueButtonElement;
+        new (): HTMLGlueButtonElement;
+    };
+    interface HTMLGlueIconElement extends Components.GlueIcon, HTMLStencilElement {
+    }
+    var HTMLGlueIconElement: {
+        prototype: HTMLGlueIconElement;
+        new (): HTMLGlueIconElement;
     };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
@@ -38,15 +104,19 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "action-bar": HTMLActionBarElement;
+        "glue-action-bar": HTMLGlueActionBarElement;
+        "glue-action-bar-button": HTMLGlueActionBarButtonElement;
+        "glue-badge": HTMLGlueBadgeElement;
+        "glue-button": HTMLGlueButtonElement;
+        "glue-icon": HTMLGlueIconElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
-    interface ActionBar {
+    interface GlueActionBar {
         "safeAreaInsetBottom"?: true;
     }
-    interface MyComponent {
+    interface GlueActionBarButton {
         /**
           * The first name
          */
@@ -60,8 +130,55 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface GlueBadge {
+        "color"?: string;
+        "content"?: number | string;
+        "dot"?: boolean;
+        "max"?: number | string;
+        "tag"?: string;
+    }
+    interface GlueButton {
+        "block"?: boolean;
+        "color"?: string;
+        "disabled"?: boolean;
+        "hairline"?: boolean;
+        "icon"?: string;
+        "iconPosition"?: string;
+        "iconPrefix"?: string;
+        "loading"?: boolean;
+        "loadingSize"?: string;
+        "loadingText"?: string;
+        "loadingType"?: string;
+        "nativeType"?: string;
+        "onCheckboxchange"?: (event: CustomEvent<any>) => void;
+        "plain"?: boolean;
+        "round"?: boolean;
+        "size"?: string;
+        "square"?: boolean;
+        "tag"?: string;
+        "text"?: string;
+        "type"?: string;
+    }
+    interface GlueIcon {
+        "badge"?: number | string;
+        "classPrefix"?: string;
+        "color"?: string;
+        "dot"?: boolean;
+        "name"?: string;
+        "size"?: number | string;
+        "tag"?: string;
+    }
+    interface MyComponent {
+        "first"?: string;
+        "last"?: string;
+        "middle"?: string;
+    }
     interface IntrinsicElements {
-        "action-bar": ActionBar;
+        "glue-action-bar": GlueActionBar;
+        "glue-action-bar-button": GlueActionBarButton;
+        "glue-badge": GlueBadge;
+        "glue-button": GlueButton;
+        "glue-icon": GlueIcon;
         "my-component": MyComponent;
     }
 }
@@ -69,7 +186,11 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "action-bar": LocalJSX.ActionBar & JSXBase.HTMLAttributes<HTMLActionBarElement>;
+            "glue-action-bar": LocalJSX.GlueActionBar & JSXBase.HTMLAttributes<HTMLGlueActionBarElement>;
+            "glue-action-bar-button": LocalJSX.GlueActionBarButton & JSXBase.HTMLAttributes<HTMLGlueActionBarButtonElement>;
+            "glue-badge": LocalJSX.GlueBadge & JSXBase.HTMLAttributes<HTMLGlueBadgeElement>;
+            "glue-button": LocalJSX.GlueButton & JSXBase.HTMLAttributes<HTMLGlueButtonElement>;
+            "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

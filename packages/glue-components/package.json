@@ -28,6 +28,7 @@
   "license": "MIT",
   "gitHead": "092134cf700bfbc7245a6bbc576d5cee3d1b8145",
   "devDependencies": {
-    "@stencil/less": "^1.0.0"
+    "@stencil/less": "^1.0.0",
+    "classnames": "^2.2.6"
   }
 }
