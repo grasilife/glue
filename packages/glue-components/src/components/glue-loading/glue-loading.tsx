@@ -3,21 +3,6 @@ import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 import { getSizeStyle, addUnit } from '../../utils/format/unit';
 const [bem] = createNamespace('glue-loading');
-const SpinIcon = [];
-for (let i = 0; i < 12; i++) {
-  SpinIcon.push(<i />);
-}
-
-const CircularIcon = (
-  <svg
-    class={classNames({
-      'glue-loading__circular': true,
-    })}
-    viewBox="25 25 50 50"
-  >
-    <circle cx="50" cy="50" r="20" fill="none" />
-  </svg>
-);
 
 export type LoadingType = 'circular' | 'spinner';
 @Component({
@@ -41,6 +26,25 @@ export class GlueLoading {
       ...getSizeStyle(this.size),
     };
   }
+  spinIcon = () => {
+    const SpinIcon = [];
+    for (let i = 0; i < 12; i++) {
+      SpinIcon.push(<i />);
+    }
+    return SpinIcon;
+  };
+  circularIcon = () => {
+    return (
+      <svg
+        class={classNames({
+          'glue-loading__circular': true,
+        })}
+        viewBox="25 25 50 50"
+      >
+        <circle cx="50" cy="50" r="20" fill="none" />
+      </svg>
+    );
+  };
   renderText = () => {
     return (
       <span
@@ -58,6 +62,7 @@ export class GlueLoading {
   };
   //TODO:type==spinner时没动画效果
   render() {
+    console.log(this.circularIcon, 'this.circularIcon');
     return (
       <Host
         class={classNames(
@@ -75,7 +80,7 @@ export class GlueLoading {
             'glue-loading__spinner--circular': this.type == 'circular',
           })}
         >
-          {this.type === 'spinner' ? SpinIcon : CircularIcon}
+          {this.type === 'spinner' ? this.spinIcon() : this.circularIcon()}
         </span>
         {this.renderText()}
       </Host>

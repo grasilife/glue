@@ -38,9 +38,23 @@
     <glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
       渐变色按钮
     </glue-button>
+    <glue-button square type="primary">方形按钮</glue-button>
+    <glue-button round type="primary">圆形按钮</glue-button>
     <glue-button loading type="primary"></glue-button>
     <glue-button loading type="primary" loading-type="spinner"></glue-button>
     <glue-button loading type="primary" loading-text="加载中..."></glue-button>
+    <!-- <glue-action-bar>
+      <glue-action-bar-icon icon="chat-o" text="客服" @click="onClickIcon">客服</glue-action-bar-icon>
+      <glue-action-bar-icon icon="cart-o" text="购物车" @click="onClickIcon">购物车</glue-action-bar-icon>
+      <glue-action-bar-icon icon="shop-o" text="店铺" @click="onClickIcon">店铺</glue-action-bar-icon>
+      <glue-action-bar-button type="danger" @click="onClickButton">立即购买</glue-action-bar-button>
+    </glue-action-bar> -->
+    <glue-action-bar>
+      <glue-action-bar-icon icon="chat-o" text="客服" @click="onClickIcon" dot>客服</glue-action-bar-icon>
+      <glue-action-bar-icon icon="cart-o" text="购物车" @click="onClickIcon" badge="5">购物车</glue-action-bar-icon>
+      <glue-action-bar-icon icon="shop-o" text="店铺" @click="onClickIcon">店铺</glue-action-bar-icon>
+      <glue-action-bar-button type="danger" @click="onClickButton">立即购买</glue-action-bar-button>
+    </glue-action-bar>
   </body>
 </html>
 <style>
@@ -54,3 +68,11 @@
     font-size: 32px;
   }
 </style>
+<script>
+  function onClickIcon(e) {
+    console.log(e);
+  }
+  function onClickButton(e) {
+    console.log(e);
+  }
+</script>

@@ -10,18 +10,20 @@ export namespace Components {
         "safeAreaInsetBottom": true;
     }
     interface GlueActionBarButton {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+        "color": string;
+        "disabled": boolean;
+        "icon": string;
+        "loading": boolean;
+        "text": string;
+        "type": string;
+    }
+    interface GlueActionBarIcon {
+        "badge": string | number;
+        "color": string;
+        "dot": boolean;
+        "icon": string;
+        "iconClass": null;
+        "text": string;
     }
     interface GlueBadge {
         "color": string;
@@ -87,6 +89,12 @@ declare global {
         prototype: HTMLGlueActionBarButtonElement;
         new (): HTMLGlueActionBarButtonElement;
     };
+    interface HTMLGlueActionBarIconElement extends Components.GlueActionBarIcon, HTMLStencilElement {
+    }
+    var HTMLGlueActionBarIconElement: {
+        prototype: HTMLGlueActionBarIconElement;
+        new (): HTMLGlueActionBarIconElement;
+    };
     interface HTMLGlueBadgeElement extends Components.GlueBadge, HTMLStencilElement {
     }
     var HTMLGlueBadgeElement: {
@@ -120,6 +128,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "glue-action-bar": HTMLGlueActionBarElement;
         "glue-action-bar-button": HTMLGlueActionBarButtonElement;
+        "glue-action-bar-icon": HTMLGlueActionBarIconElement;
         "glue-badge": HTMLGlueBadgeElement;
         "glue-button": HTMLGlueButtonElement;
         "glue-icon": HTMLGlueIconElement;
@@ -132,18 +141,22 @@ declare namespace LocalJSX {
         "safeAreaInsetBottom"?: true;
     }
     interface GlueActionBarButton {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+        "color"?: string;
+        "disabled"?: boolean;
+        "icon"?: string;
+        "loading"?: boolean;
+        "onChange"?: (event: CustomEvent<any>) => void;
+        "text"?: string;
+        "type"?: string;
+    }
+    interface GlueActionBarIcon {
+        "badge"?: string | number;
+        "color"?: string;
+        "dot"?: boolean;
+        "icon"?: string;
+        "iconClass"?: null;
+        "onChange"?: (event: CustomEvent<any>) => void;
+        "text"?: string;
     }
     interface GlueBadge {
         "color"?: string;
@@ -199,6 +212,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "glue-action-bar": GlueActionBar;
         "glue-action-bar-button": GlueActionBarButton;
+        "glue-action-bar-icon": GlueActionBarIcon;
         "glue-badge": GlueBadge;
         "glue-button": GlueButton;
         "glue-icon": GlueIcon;
@@ -212,6 +226,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "glue-action-bar": LocalJSX.GlueActionBar & JSXBase.HTMLAttributes<HTMLGlueActionBarElement>;
             "glue-action-bar-button": LocalJSX.GlueActionBarButton & JSXBase.HTMLAttributes<HTMLGlueActionBarButtonElement>;
+            "glue-action-bar-icon": LocalJSX.GlueActionBarIcon & JSXBase.HTMLAttributes<HTMLGlueActionBarIconElement>;
             "glue-badge": LocalJSX.GlueBadge & JSXBase.HTMLAttributes<HTMLGlueBadgeElement>;
             "glue-button": LocalJSX.GlueButton & JSXBase.HTMLAttributes<HTMLGlueButtonElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
