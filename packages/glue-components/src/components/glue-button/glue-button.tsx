@@ -1,12 +1,12 @@
 import { Component, Prop, h, EventEmitter, Event, Host } from '@stencil/core';
 import classNames from 'classnames';
-import { BORDER_SURROUND } from '../../global/constant/constant';
+// import { BORDER_SURROUND } from '../../global/constant/constant';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-button');
 @Component({
   tag: 'glue-button',
   styleUrl: 'glue-button.less',
-  shadow: true,
+  shadow: false,
 })
 export class GlueButton {
   @Prop() text: string;
@@ -68,14 +68,10 @@ export class GlueButton {
     }
   };
   renderLoadingIcon = () => {
-    if (this.loading) {
-      // return this.loading();
-    }
-
     return (
       <glue-loading
         class={classNames({
-          'glue-loading__loading': true,
+          'glue-button__loading': true,
         })}
         size={this.loadingSize}
         type={this.loadingType}
@@ -89,35 +85,60 @@ export class GlueButton {
     }
 
     if (this.icon) {
-      return <glue-icon name={this.icon} class={bem('icon')} classPrefix={this.iconPrefix} />;
+      return (
+        <glue-icon
+          name={this.icon}
+          class={classNames({
+            'glue-button__icon': true,
+          })}
+          classPrefix={this.iconPrefix}
+        />
+      );
     }
   };
 
   renderText = () => {
-    let text;
+    console.log(this.loading, 'texttext');
     if (this.loading) {
-      text = this.loadingText;
-    } else {
-      text = this.text;
-    }
-
-    if (text) {
       return (
         <span
           class={classNames({
             'glue-button__text': true,
           })}
         >
-          {text}
+          {this.loadingText}
+        </span>
+      );
+    } else {
+      return (
+        <span
+          class={classNames({
+            'glue-button__text': true,
+          })}
+        >
+          <slot></slot>
         </span>
       );
     }
   };
   render() {
-    const { type, size, block, round, plain, square, loading, disabled, hairline, nativeType, iconPosition } = this;
-    const classes = [classNames(bem([type, size, plain, block, round, square, loading, disabled, hairline]))];
+    const { type, size, block, round, plain, square, loading, disabled, hairline, iconPosition } = this;
+    console.log(bem([type, size]), type, block, 'ahuhauhauhu');
+    const classes = [classNames(bem([type, size]))];
     return (
-      <Host class={classNames(classes)} onClick={this.handleClick} type={nativeType} style={this.getStyle()}>
+      <Host
+        class={classNames('glue-button', classes, {
+          'glue-button--block': block,
+          'glue-button--round': round,
+          'glue-button--plain': plain,
+          'glue-button--square': square,
+          'glue-button--loading': loading,
+          'glue-button--disabled': disabled,
+          'glue-button--hairline': hairline,
+        })}
+        onClick={this.handleClick}
+        style={this.getStyle()}
+      >
         <div
           class={classNames({
             'glue-button__content': true,

@@ -1,6 +1,6 @@
 @import '../../global/styles/var';
 
-glue-button {
+.glue-button {
   position: relative;
   display: inline-block;
   box-sizing: border-box;
@@ -74,19 +74,19 @@ glue-button {
   &--plain {
     background-color: @button-plain-background-color;
 
-    &.van-button--primary {
+    &.glue-button--primary {
       color: @button-primary-background-color;
     }
 
-    &.van-button--success {
+    &.glue-button--success {
       color: @button-success-background-color;
     }
 
-    &.van-button--danger {
+    &.glue-button--danger {
       color: @button-danger-background-color;
     }
 
-    &.van-button--warning {
+    &.glue-button--warning {
       color: @button-warning-background-color;
     }
   }
@@ -117,7 +117,7 @@ glue-button {
     padding: 0 @padding-base;
     font-size: @button-mini-font-size;
 
-    & + .van-button--mini {
+    & + .glue-button--mini {
       margin-left: @padding-base;
     }
   }
@@ -153,7 +153,7 @@ glue-button {
     height: 100%;
 
     // fix icon vertical align
-    // see: https://github.com/youzan/vant/issues/7617
+    // see: https://github.com/youzan/gluet/issues/7617
     &::before {
       content: ' ';
     }
@@ -179,11 +179,11 @@ glue-button {
       border-radius: @button-border-radius * 2;
     }
 
-    &.van-button--round::after {
+    &.glue-button--round::after {
       border-radius: @button-round-border-radius;
     }
 
-    &.van-button--square::after {
+    &.glue-button--square::after {
       border-radius: 0;
     }
   }
