@@ -19,13 +19,6 @@ export class GlueLoading {
   @Prop() textSize: string | number;
   @Prop() textColor: string;
   @Prop() type = 'circular';
-  @State() spinnerStyle = {};
-  componentDidLoad() {
-    this.spinnerStyle = {
-      color: this.color,
-      ...getSizeStyle(this.size),
-    };
-  }
   spinIcon = () => {
     const SpinIcon = [];
     for (let i = 0; i < 12; i++) {
