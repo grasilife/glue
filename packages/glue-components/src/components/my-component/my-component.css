@@ -1,3 +1,4 @@
+/* @import '../../global/styles/var'; */
 :host {
   display: block;
   color: red;

@@ -19,7 +19,6 @@ export class GlueIcon {
   isImage(name?: string) {
     return name ? name.indexOf('/') !== -1 : false;
   }
-  //TODO:字体文件不生效
   render() {
     const { tag, dot, name, size, badge, color, classPrefix } = this;
     const isImageIcon = this.isImage(name);

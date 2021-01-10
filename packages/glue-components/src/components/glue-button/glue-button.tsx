@@ -1,8 +1,8 @@
-import { Component, Prop, h, EventEmitter, Event } from '@stencil/core';
+import { Component, Prop, h, EventEmitter, Event, Host } from '@stencil/core';
 import classNames from 'classnames';
-import { createNamespace } from '../../utils/create/index';
 import { BORDER_SURROUND } from '../../global/constant/constant';
-const [bem] = createNamespace('button');
+import { createNamespace } from '../../utils/create/index';
+const [bem] = createNamespace('glue-button');
 @Component({
   tag: 'glue-button',
   styleUrl: 'glue-button.less',
@@ -40,13 +40,13 @@ export class GlueButton {
       this.onClick.emit(event);
     }
   };
-  private getStyle = () => {
+  getStyle = () => {
     const { color, plain } = this;
     if (color) {
       const style = {
         color: '',
         background: '',
-        border: 0,
+        border: '0px',
         borderColor: '',
       };
 
@@ -59,7 +59,7 @@ export class GlueButton {
 
       // hide border when color is linear-gradient
       if (color.indexOf('gradient') !== -1) {
-        style.border = 0;
+        style.border = '0px';
       } else {
         style.borderColor = color;
       }
@@ -68,11 +68,20 @@ export class GlueButton {
     }
   };
   renderLoadingIcon = () => {
-    // if (slots.loading) {
-    //   return slots.loading();
-    // }
+    if (this.loading) {
+      // return this.loading();
+    }
 
-    return <div />;
+    return (
+      <glue-loading
+        class={classNames({
+          'glue-loading__loading': true,
+        })}
+        size={this.loadingSize}
+        type={this.loadingType}
+        color="currentColor"
+      />
+    );
   };
   renderIcon = () => {
     if (this.loading) {
@@ -80,20 +89,45 @@ export class GlueButton {
     }
 
     if (this.icon) {
-      return <div></div>;
+      return <glue-icon name={this.icon} class={bem('icon')} classPrefix={this.iconPrefix} />;
+    }
+  };
+
+  renderText = () => {
+    let text;
+    if (this.loading) {
+      text = this.loadingText;
+    } else {
+      text = this.text;
+    }
+
+    if (text) {
+      return (
+        <span
+          class={classNames({
+            'glue-button__text': true,
+          })}
+        >
+          {text}
+        </span>
+      );
     }
   };
   render() {
-    const { tag, type, size, block, round, plain, square, loading, disabled, hairline, nativeType, iconPosition } = this;
-    const classes = [classNames(bem([type, size, { plain, block, round, square, loading, disabled, hairline }])), { [BORDER_SURROUND]: this.hairline }];
+    const { type, size, block, round, plain, square, loading, disabled, hairline, nativeType, iconPosition } = this;
+    const classes = [classNames(bem([type, size, plain, block, round, square, loading, disabled, hairline]))];
     return (
-      <div class={classNames(classes)} onClick={this.handleClick}>
-        {/* <div class={classNames(bem('content'))}>
-          {iconPosition === 'left' && renderIcon()}
+      <Host class={classNames(classes)} onClick={this.handleClick} type={nativeType} style={this.getStyle()}>
+        <div
+          class={classNames({
+            'glue-button__content': true,
+          })}
+        >
+          {iconPosition === 'left' && this.renderIcon()}
           {this.renderText()}
-          {iconPosition === 'right' && renderIcon()}
-        </div> */}
-      </div>
+          {iconPosition === 'right' && this.renderIcon()}
+        </div>
+      </Host>
     );
   }
 }

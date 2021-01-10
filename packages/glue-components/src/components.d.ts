@@ -60,6 +60,14 @@ export namespace Components {
         "size": number | string;
         "tag": string;
     }
+    interface GlueLoading {
+        "color": string;
+        "size": string | number;
+        "textColor": string;
+        "textSize": string | number;
+        "type": string;
+        "vertical": boolean;
+    }
     interface MyComponent {
         "first": string;
         "last": string;
@@ -97,6 +105,12 @@ declare global {
         prototype: HTMLGlueIconElement;
         new (): HTMLGlueIconElement;
     };
+    interface HTMLGlueLoadingElement extends Components.GlueLoading, HTMLStencilElement {
+    }
+    var HTMLGlueLoadingElement: {
+        prototype: HTMLGlueLoadingElement;
+        new (): HTMLGlueLoadingElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -109,6 +123,7 @@ declare global {
         "glue-badge": HTMLGlueBadgeElement;
         "glue-button": HTMLGlueButtonElement;
         "glue-icon": HTMLGlueIconElement;
+        "glue-loading": HTMLGlueLoadingElement;
         "my-component": HTMLMyComponentElement;
     }
 }
@@ -168,6 +183,14 @@ declare namespace LocalJSX {
         "size"?: number | string;
         "tag"?: string;
     }
+    interface GlueLoading {
+        "color"?: string;
+        "size"?: string | number;
+        "textColor"?: string;
+        "textSize"?: string | number;
+        "type"?: string;
+        "vertical"?: boolean;
+    }
     interface MyComponent {
         "first"?: string;
         "last"?: string;
@@ -179,6 +202,7 @@ declare namespace LocalJSX {
         "glue-badge": GlueBadge;
         "glue-button": GlueButton;
         "glue-icon": GlueIcon;
+        "glue-loading": GlueLoading;
         "my-component": MyComponent;
     }
 }
@@ -191,6 +215,7 @@ declare module "@stencil/core" {
             "glue-badge": LocalJSX.GlueBadge & JSXBase.HTMLAttributes<HTMLGlueBadgeElement>;
             "glue-button": LocalJSX.GlueButton & JSXBase.HTMLAttributes<HTMLGlueButtonElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
+            "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
