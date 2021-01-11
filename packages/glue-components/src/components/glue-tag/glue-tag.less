@@ -1,0 +1,97 @@
+@import '../../global/styles/var';
+
+.glue-tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: @tag-padding;
+  color: @tag-text-color;
+  font-size: @tag-font-size;
+  line-height: @tag-line-height;
+  border-radius: @tag-border-radius;
+
+  &--default {
+    background-color: @tag-default-color;
+
+    &.glue-tag--plain {
+      color: @tag-default-color;
+    }
+  }
+
+  &--danger {
+    background-color: @tag-danger-color;
+
+    &.glue-tag--plain {
+      color: @tag-danger-color;
+    }
+  }
+
+  &--primary {
+    background-color: @tag-primary-color;
+
+    &.glue-tag--plain {
+      color: @tag-primary-color;
+    }
+  }
+
+  &--success {
+    background-color: @tag-success-color;
+
+    &.glue-tag--plain {
+      color: @tag-success-color;
+    }
+  }
+
+  &--warning {
+    background-color: @tag-warning-color;
+
+    &.glue-tag--plain {
+      color: @tag-warning-color;
+    }
+  }
+
+  &--plain {
+    background-color: @tag-plain-background-color;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border: 1px solid currentColor;
+      border-radius: inherit;
+      content: '';
+      pointer-events: none;
+    }
+  }
+
+  &--medium {
+    padding: @tag-medium-padding;
+  }
+
+  &--large {
+    padding: @tag-large-padding;
+    font-size: @tag-large-font-size;
+    border-radius: @tag-large-border-radius;
+  }
+
+  &--mark {
+    border-radius: 0 @tag-round-border-radius @tag-round-border-radius 0;
+
+    &::after {
+      display: block;
+      width: 2px;
+      content: '';
+    }
+  }
+
+  &--round {
+    border-radius: @tag-round-border-radius;
+  }
+
+  &__close {
+    margin-left: 2px;
+    cursor: pointer;
+  }
+}

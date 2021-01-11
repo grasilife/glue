@@ -25,6 +25,11 @@ export namespace Components {
         "iconClass": null;
         "text": string;
     }
+    interface GlueActionSheet {
+        "first": string;
+        "last": string;
+        "middle": string;
+    }
     interface GlueBadge {
         "color": string;
         "content": number | string;
@@ -53,6 +58,19 @@ export namespace Components {
         "text": string;
         "type": string;
     }
+    interface GlueCard {
+        "centered": boolean;
+        "currency": string;
+        "desc": string;
+        "lazyLoad": boolean;
+        "num": string | number;
+        "originPrice": string | number;
+        "price": string | number;
+        "tag": string;
+        "thumb": string;
+        "thumbLink": string;
+        "title": string;
+    }
     interface GlueIcon {
         "badge": number | string;
         "classPrefix": string;
@@ -69,6 +87,18 @@ export namespace Components {
         "textSize": string | number;
         "type": string;
         "vertical": boolean;
+    }
+    interface GlueTag {
+        "closeable": boolean;
+        "color": string;
+        "first": string;
+        "mark": boolean;
+        "plain": boolean;
+        "round": boolean;
+        "show": boolean;
+        "size": string;
+        "textColor": string;
+        "type": string;
     }
     interface MyComponent {
         "first": string;
@@ -95,6 +125,12 @@ declare global {
         prototype: HTMLGlueActionBarIconElement;
         new (): HTMLGlueActionBarIconElement;
     };
+    interface HTMLGlueActionSheetElement extends Components.GlueActionSheet, HTMLStencilElement {
+    }
+    var HTMLGlueActionSheetElement: {
+        prototype: HTMLGlueActionSheetElement;
+        new (): HTMLGlueActionSheetElement;
+    };
     interface HTMLGlueBadgeElement extends Components.GlueBadge, HTMLStencilElement {
     }
     var HTMLGlueBadgeElement: {
@@ -106,6 +142,12 @@ declare global {
     var HTMLGlueButtonElement: {
         prototype: HTMLGlueButtonElement;
         new (): HTMLGlueButtonElement;
+    };
+    interface HTMLGlueCardElement extends Components.GlueCard, HTMLStencilElement {
+    }
+    var HTMLGlueCardElement: {
+        prototype: HTMLGlueCardElement;
+        new (): HTMLGlueCardElement;
     };
     interface HTMLGlueIconElement extends Components.GlueIcon, HTMLStencilElement {
     }
@@ -119,6 +161,12 @@ declare global {
         prototype: HTMLGlueLoadingElement;
         new (): HTMLGlueLoadingElement;
     };
+    interface HTMLGlueTagElement extends Components.GlueTag, HTMLStencilElement {
+    }
+    var HTMLGlueTagElement: {
+        prototype: HTMLGlueTagElement;
+        new (): HTMLGlueTagElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -129,10 +177,13 @@ declare global {
         "glue-action-bar": HTMLGlueActionBarElement;
         "glue-action-bar-button": HTMLGlueActionBarButtonElement;
         "glue-action-bar-icon": HTMLGlueActionBarIconElement;
+        "glue-action-sheet": HTMLGlueActionSheetElement;
         "glue-badge": HTMLGlueBadgeElement;
         "glue-button": HTMLGlueButtonElement;
+        "glue-card": HTMLGlueCardElement;
         "glue-icon": HTMLGlueIconElement;
         "glue-loading": HTMLGlueLoadingElement;
+        "glue-tag": HTMLGlueTagElement;
         "my-component": HTMLMyComponentElement;
     }
 }
@@ -157,6 +208,11 @@ declare namespace LocalJSX {
         "iconClass"?: null;
         "onChange"?: (event: CustomEvent<any>) => void;
         "text"?: string;
+    }
+    interface GlueActionSheet {
+        "first"?: string;
+        "last"?: string;
+        "middle"?: string;
     }
     interface GlueBadge {
         "color"?: string;
@@ -187,6 +243,20 @@ declare namespace LocalJSX {
         "text"?: string;
         "type"?: string;
     }
+    interface GlueCard {
+        "centered"?: boolean;
+        "currency"?: string;
+        "desc"?: string;
+        "lazyLoad"?: boolean;
+        "num"?: string | number;
+        "onCheckboxchange"?: (event: CustomEvent<any>) => void;
+        "originPrice"?: string | number;
+        "price"?: string | number;
+        "tag"?: string;
+        "thumb"?: string;
+        "thumbLink"?: string;
+        "title"?: string;
+    }
     interface GlueIcon {
         "badge"?: number | string;
         "classPrefix"?: string;
@@ -204,6 +274,19 @@ declare namespace LocalJSX {
         "type"?: string;
         "vertical"?: boolean;
     }
+    interface GlueTag {
+        "closeable"?: boolean;
+        "color"?: string;
+        "first"?: string;
+        "mark"?: boolean;
+        "onClose"?: (event: CustomEvent<any>) => void;
+        "plain"?: boolean;
+        "round"?: boolean;
+        "show"?: boolean;
+        "size"?: string;
+        "textColor"?: string;
+        "type"?: string;
+    }
     interface MyComponent {
         "first"?: string;
         "last"?: string;
@@ -213,10 +296,13 @@ declare namespace LocalJSX {
         "glue-action-bar": GlueActionBar;
         "glue-action-bar-button": GlueActionBarButton;
         "glue-action-bar-icon": GlueActionBarIcon;
+        "glue-action-sheet": GlueActionSheet;
         "glue-badge": GlueBadge;
         "glue-button": GlueButton;
+        "glue-card": GlueCard;
         "glue-icon": GlueIcon;
         "glue-loading": GlueLoading;
+        "glue-tag": GlueTag;
         "my-component": MyComponent;
     }
 }
@@ -227,10 +313,13 @@ declare module "@stencil/core" {
             "glue-action-bar": LocalJSX.GlueActionBar & JSXBase.HTMLAttributes<HTMLGlueActionBarElement>;
             "glue-action-bar-button": LocalJSX.GlueActionBarButton & JSXBase.HTMLAttributes<HTMLGlueActionBarButtonElement>;
             "glue-action-bar-icon": LocalJSX.GlueActionBarIcon & JSXBase.HTMLAttributes<HTMLGlueActionBarIconElement>;
+            "glue-action-sheet": LocalJSX.GlueActionSheet & JSXBase.HTMLAttributes<HTMLGlueActionSheetElement>;
             "glue-badge": LocalJSX.GlueBadge & JSXBase.HTMLAttributes<HTMLGlueBadgeElement>;
             "glue-button": LocalJSX.GlueButton & JSXBase.HTMLAttributes<HTMLGlueButtonElement>;
+            "glue-card": LocalJSX.GlueCard & JSXBase.HTMLAttributes<HTMLGlueCardElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
+            "glue-tag": LocalJSX.GlueTag & JSXBase.HTMLAttributes<HTMLGlueTagElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
