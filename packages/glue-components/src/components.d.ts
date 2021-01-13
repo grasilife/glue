@@ -71,6 +71,28 @@ export namespace Components {
         "thumbLink": string;
         "title": string;
     }
+    interface GlueCell {
+        "arrowDirection": string;
+        "border": boolean;
+        "center": boolean;
+        "clickable": boolean;
+        "icon": string;
+        "iconPrefix": string;
+        "isLink": boolean;
+        "label": string | number;
+        "required": boolean;
+        "size": string;
+        "tilabelClasstle": any;
+        "title": string;
+        "titleClass": any;
+        "titleStyle": any;
+        "value": string | number;
+        "valueClass": any;
+    }
+    interface GlueCellGroup {
+        "border": boolean;
+        "title": string;
+    }
     interface GlueIcon {
         "badge": number | string;
         "classPrefix": string;
@@ -149,6 +171,18 @@ declare global {
         prototype: HTMLGlueCardElement;
         new (): HTMLGlueCardElement;
     };
+    interface HTMLGlueCellElement extends Components.GlueCell, HTMLStencilElement {
+    }
+    var HTMLGlueCellElement: {
+        prototype: HTMLGlueCellElement;
+        new (): HTMLGlueCellElement;
+    };
+    interface HTMLGlueCellGroupElement extends Components.GlueCellGroup, HTMLStencilElement {
+    }
+    var HTMLGlueCellGroupElement: {
+        prototype: HTMLGlueCellGroupElement;
+        new (): HTMLGlueCellGroupElement;
+    };
     interface HTMLGlueIconElement extends Components.GlueIcon, HTMLStencilElement {
     }
     var HTMLGlueIconElement: {
@@ -181,6 +215,8 @@ declare global {
         "glue-badge": HTMLGlueBadgeElement;
         "glue-button": HTMLGlueButtonElement;
         "glue-card": HTMLGlueCardElement;
+        "glue-cell": HTMLGlueCellElement;
+        "glue-cell-group": HTMLGlueCellGroupElement;
         "glue-icon": HTMLGlueIconElement;
         "glue-loading": HTMLGlueLoadingElement;
         "glue-tag": HTMLGlueTagElement;
@@ -257,6 +293,29 @@ declare namespace LocalJSX {
         "thumbLink"?: string;
         "title"?: string;
     }
+    interface GlueCell {
+        "arrowDirection"?: string;
+        "border"?: boolean;
+        "center"?: boolean;
+        "clickable"?: boolean;
+        "icon"?: string;
+        "iconPrefix"?: string;
+        "isLink"?: boolean;
+        "label"?: string | number;
+        "onCheckboxchange"?: (event: CustomEvent<any>) => void;
+        "required"?: boolean;
+        "size"?: string;
+        "tilabelClasstle"?: any;
+        "title"?: string;
+        "titleClass"?: any;
+        "titleStyle"?: any;
+        "value"?: string | number;
+        "valueClass"?: any;
+    }
+    interface GlueCellGroup {
+        "border"?: boolean;
+        "title"?: string;
+    }
     interface GlueIcon {
         "badge"?: number | string;
         "classPrefix"?: string;
@@ -300,6 +359,8 @@ declare namespace LocalJSX {
         "glue-badge": GlueBadge;
         "glue-button": GlueButton;
         "glue-card": GlueCard;
+        "glue-cell": GlueCell;
+        "glue-cell-group": GlueCellGroup;
         "glue-icon": GlueIcon;
         "glue-loading": GlueLoading;
         "glue-tag": GlueTag;
@@ -317,6 +378,8 @@ declare module "@stencil/core" {
             "glue-badge": LocalJSX.GlueBadge & JSXBase.HTMLAttributes<HTMLGlueBadgeElement>;
             "glue-button": LocalJSX.GlueButton & JSXBase.HTMLAttributes<HTMLGlueButtonElement>;
             "glue-card": LocalJSX.GlueCard & JSXBase.HTMLAttributes<HTMLGlueCardElement>;
+            "glue-cell": LocalJSX.GlueCell & JSXBase.HTMLAttributes<HTMLGlueCellElement>;
+            "glue-cell-group": LocalJSX.GlueCellGroup & JSXBase.HTMLAttributes<HTMLGlueCellGroupElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
             "glue-tag": LocalJSX.GlueTag & JSXBase.HTMLAttributes<HTMLGlueTagElement>;

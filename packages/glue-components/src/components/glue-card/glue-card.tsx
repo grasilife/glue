@@ -35,9 +35,15 @@ export class GlueCard {
 
   renderThumbTag = () => {
     if (this.tag) {
-      return <div class={classNames('glue-card__tag')}>{/* <Tag mark type="danger">
-            {this.tag}
-          </Tag> */}</div>;
+      return (
+        <div class={classNames('glue-card__tag')}>
+          {
+            <glue-tag mark type="danger">
+              {this.tag}
+            </glue-tag>
+          }
+        </div>
+      );
     }
   };
 
