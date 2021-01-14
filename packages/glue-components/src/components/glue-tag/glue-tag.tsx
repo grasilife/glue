@@ -40,6 +40,7 @@ export class GlueTag {
   };
   render() {
     const { show, type, mark, plain, round, size, closeable } = this;
+    console.log(show);
     const classes = { mark, plain, round };
     if (size) {
       classes[size] = size;

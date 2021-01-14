@@ -62,10 +62,12 @@ export class GlueImage {
   };
 
   imageOnLoad = (event?: Event) => {
+    console.log(event);
     this.loading = false;
     // this.onLoad.emit('load', event);
   };
   imageOnError = (event?: Event) => {
+    console.log(event);
     this.error = true;
     this.loading = false;
     // this.onError.emit('error', event);

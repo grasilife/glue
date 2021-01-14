@@ -21,6 +21,7 @@ export class GlueIcon {
   }
   render() {
     const { tag, dot, name, size, badge, color, classPrefix } = this;
+    console.log(classPrefix);
     const isImageIcon = this.isImage(name);
     return (
       <glue-badge

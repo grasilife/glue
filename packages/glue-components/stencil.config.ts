@@ -19,7 +19,7 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
-  buildEs5: false,
+  buildEs5: true,
   enableCache: true,
   minifyJs: true,
   minifyCss: true,

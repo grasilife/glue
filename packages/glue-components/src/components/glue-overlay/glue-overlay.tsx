@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, State } from '@stencil/core';
+import { Component, Prop, h, Host } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef, noop } from '../../utils/base';
 import { preventDefault } from '../../utils/dom/event';

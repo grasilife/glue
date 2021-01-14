@@ -9,21 +9,21 @@
 export type Mod = string | { [key: string]: any };
 export type Mods = Mod | Mod[];
 
-function gen(name: string, mods?: Mods): string {
-  if (!mods) {
-    return '';
-  }
+// function gen(name: string, mods?: Mods): string {
+//   if (!mods) {
+//     return '';
+//   }
 
-  if (typeof mods === 'string') {
-    return ` ${name}--${mods}`;
-  }
-  console.log(mods, Object.keys(mods), 'modsmods');
-  if (Array.isArray(mods)) {
-    return mods.reduce<string>((ret, item) => ret + gen(name, item), '');
-  }
+//   if (typeof mods === 'string') {
+//     return ` ${name}--${mods}`;
+//   }
+//   console.log(mods, Object.keys(mods), 'modsmods');
+//   if (Array.isArray(mods)) {
+//     return mods.reduce<string>((ret, item) => ret + gen(name, item), '');
+//   }
 
-  return Object.keys(mods).reduce((ret, key) => ret + (mods[key] ? gen(name, key) : ''), '');
-}
+//   return Object.keys(mods).reduce((ret, key) => ret + (mods[key] ? gen(name, key) : ''), '');
+// }
 
 // export function createBEM(name: string) {
 //   return function(el?: Mods, mods?: Mods): Mods {

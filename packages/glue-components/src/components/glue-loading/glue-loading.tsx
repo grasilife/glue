@@ -1,7 +1,7 @@
-import { Component, Prop, h, State, Host } from '@stencil/core';
+import { Component, Prop, h, Host } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
-import { getSizeStyle, addUnit } from '../../utils/format/unit';
+import { addUnit } from '../../utils/format/unit';
 const [bem] = createNamespace('glue-loading');
 
 export type LoadingType = 'circular' | 'spinner';

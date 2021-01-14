@@ -24,7 +24,7 @@ export class GlueActionBarIcon {
   };
   renderIcon = () => {
     const { dot, badge, icon, color, iconClass } = this;
-
+    console.log(iconClass);
     // return <glue-badge dot={dot} content={badge} class={classNames('glue-action-bar-icon__icon')}></glue-badge>;
 
     return <glue-icon tag="div" dot={dot} name={icon} badge={badge} color={color} class={classNames('glue-action-bar-icon__icon')} />;

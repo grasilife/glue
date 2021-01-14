@@ -5,7 +5,7 @@ import router from "./router";
 import store from "./store";
 import { defineCustomElements as glueComponents } from "glue-components/loader";
 Vue.config.productionTip = false;
-Vue.config.ignoredElements = [/my-\w*/];
+Vue.config.ignoredElements = [/glue-\w*/];
 glueComponents(window);
 new Vue({
   router,
