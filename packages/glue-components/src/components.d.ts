@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ImageFit } from "./components/glue-image/glue-image";
 export namespace Components {
     interface GlueActionBar {
         "safeAreaInsetBottom": true;
@@ -102,6 +103,21 @@ export namespace Components {
         "size": number | string;
         "tag": string;
     }
+    interface GlueImage {
+        "alt": string;
+        "errorIcon": string;
+        "fit": ImageFit;
+        "height": string | number;
+        "iconPrefix": string;
+        "lazyLoad": boolean;
+        "loadingIcon": string;
+        "radius": string | number;
+        "round": boolean;
+        "showError": boolean;
+        "showLoading": boolean;
+        "src": string;
+        "width": string | number;
+    }
     interface GlueLoading {
         "color": string;
         "size": string | number;
@@ -189,6 +205,12 @@ declare global {
         prototype: HTMLGlueIconElement;
         new (): HTMLGlueIconElement;
     };
+    interface HTMLGlueImageElement extends Components.GlueImage, HTMLStencilElement {
+    }
+    var HTMLGlueImageElement: {
+        prototype: HTMLGlueImageElement;
+        new (): HTMLGlueImageElement;
+    };
     interface HTMLGlueLoadingElement extends Components.GlueLoading, HTMLStencilElement {
     }
     var HTMLGlueLoadingElement: {
@@ -218,6 +240,7 @@ declare global {
         "glue-cell": HTMLGlueCellElement;
         "glue-cell-group": HTMLGlueCellGroupElement;
         "glue-icon": HTMLGlueIconElement;
+        "glue-image": HTMLGlueImageElement;
         "glue-loading": HTMLGlueLoadingElement;
         "glue-tag": HTMLGlueTagElement;
         "my-component": HTMLMyComponentElement;
@@ -325,6 +348,23 @@ declare namespace LocalJSX {
         "size"?: number | string;
         "tag"?: string;
     }
+    interface GlueImage {
+        "alt"?: string;
+        "errorIcon"?: string;
+        "fit"?: ImageFit;
+        "height"?: string | number;
+        "iconPrefix"?: string;
+        "lazyLoad"?: boolean;
+        "loadingIcon"?: string;
+        "onError"?: (event: CustomEvent<any>) => void;
+        "onLoad"?: (event: CustomEvent<any>) => void;
+        "radius"?: string | number;
+        "round"?: boolean;
+        "showError"?: boolean;
+        "showLoading"?: boolean;
+        "src"?: string;
+        "width"?: string | number;
+    }
     interface GlueLoading {
         "color"?: string;
         "size"?: string | number;
@@ -362,6 +402,7 @@ declare namespace LocalJSX {
         "glue-cell": GlueCell;
         "glue-cell-group": GlueCellGroup;
         "glue-icon": GlueIcon;
+        "glue-image": GlueImage;
         "glue-loading": GlueLoading;
         "glue-tag": GlueTag;
         "my-component": MyComponent;
@@ -381,6 +422,7 @@ declare module "@stencil/core" {
             "glue-cell": LocalJSX.GlueCell & JSXBase.HTMLAttributes<HTMLGlueCellElement>;
             "glue-cell-group": LocalJSX.GlueCellGroup & JSXBase.HTMLAttributes<HTMLGlueCellGroupElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
+            "glue-image": LocalJSX.GlueImage & JSXBase.HTMLAttributes<HTMLGlueImageElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
             "glue-tag": LocalJSX.GlueTag & JSXBase.HTMLAttributes<HTMLGlueTagElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
