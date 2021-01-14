@@ -20,7 +20,6 @@ export const config: Config = {
     },
   ],
   buildEs5: true,
-  enableCache: true,
   minifyJs: true,
   minifyCss: true,
 };

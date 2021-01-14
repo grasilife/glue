@@ -94,6 +94,11 @@ export namespace Components {
         "border": boolean;
         "title": string;
     }
+    interface GlueComponent {
+        "first": string;
+        "last": string;
+        "middle": string;
+    }
     interface GlueIcon {
         "badge": number | string;
         "classPrefix": string;
@@ -149,11 +154,6 @@ export namespace Components {
         "size": string;
         "textColor": string;
         "type": string;
-    }
-    interface MyComponent {
-        "first": string;
-        "last": string;
-        "middle": string;
     }
 }
 declare global {
@@ -211,6 +211,12 @@ declare global {
         prototype: HTMLGlueCellGroupElement;
         new (): HTMLGlueCellGroupElement;
     };
+    interface HTMLGlueComponentElement extends Components.GlueComponent, HTMLStencilElement {
+    }
+    var HTMLGlueComponentElement: {
+        prototype: HTMLGlueComponentElement;
+        new (): HTMLGlueComponentElement;
+    };
     interface HTMLGlueIconElement extends Components.GlueIcon, HTMLStencilElement {
     }
     var HTMLGlueIconElement: {
@@ -247,12 +253,6 @@ declare global {
         prototype: HTMLGlueTagElement;
         new (): HTMLGlueTagElement;
     };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLElementTagNameMap {
         "glue-action-bar": HTMLGlueActionBarElement;
         "glue-action-bar-button": HTMLGlueActionBarButtonElement;
@@ -263,13 +263,13 @@ declare global {
         "glue-card": HTMLGlueCardElement;
         "glue-cell": HTMLGlueCellElement;
         "glue-cell-group": HTMLGlueCellGroupElement;
+        "glue-component": HTMLGlueComponentElement;
         "glue-icon": HTMLGlueIconElement;
         "glue-image": HTMLGlueImageElement;
         "glue-loading": HTMLGlueLoadingElement;
         "glue-overlay": HTMLGlueOverlayElement;
         "glue-popup": HTMLGluePopupElement;
         "glue-tag": HTMLGlueTagElement;
-        "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -365,6 +365,11 @@ declare namespace LocalJSX {
         "border"?: boolean;
         "title"?: string;
     }
+    interface GlueComponent {
+        "first"?: string;
+        "last"?: string;
+        "middle"?: string;
+    }
     interface GlueIcon {
         "badge"?: number | string;
         "classPrefix"?: string;
@@ -424,11 +429,6 @@ declare namespace LocalJSX {
         "textColor"?: string;
         "type"?: string;
     }
-    interface MyComponent {
-        "first"?: string;
-        "last"?: string;
-        "middle"?: string;
-    }
     interface IntrinsicElements {
         "glue-action-bar": GlueActionBar;
         "glue-action-bar-button": GlueActionBarButton;
@@ -439,13 +439,13 @@ declare namespace LocalJSX {
         "glue-card": GlueCard;
         "glue-cell": GlueCell;
         "glue-cell-group": GlueCellGroup;
+        "glue-component": GlueComponent;
         "glue-icon": GlueIcon;
         "glue-image": GlueImage;
         "glue-loading": GlueLoading;
         "glue-overlay": GlueOverlay;
         "glue-popup": GluePopup;
         "glue-tag": GlueTag;
-        "my-component": MyComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -461,13 +461,13 @@ declare module "@stencil/core" {
             "glue-card": LocalJSX.GlueCard & JSXBase.HTMLAttributes<HTMLGlueCardElement>;
             "glue-cell": LocalJSX.GlueCell & JSXBase.HTMLAttributes<HTMLGlueCellElement>;
             "glue-cell-group": LocalJSX.GlueCellGroup & JSXBase.HTMLAttributes<HTMLGlueCellGroupElement>;
+            "glue-component": LocalJSX.GlueComponent & JSXBase.HTMLAttributes<HTMLGlueComponentElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
             "glue-image": LocalJSX.GlueImage & JSXBase.HTMLAttributes<HTMLGlueImageElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
             "glue-overlay": LocalJSX.GlueOverlay & JSXBase.HTMLAttributes<HTMLGlueOverlayElement>;
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
             "glue-tag": LocalJSX.GlueTag & JSXBase.HTMLAttributes<HTMLGlueTagElement>;
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
 }
