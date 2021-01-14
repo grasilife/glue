@@ -126,6 +126,18 @@ export namespace Components {
         "type": string;
         "vertical": boolean;
     }
+    interface GlueOverlay {
+        "customStyle": object;
+        "duration": string | number;
+        "lockScroll": boolean;
+        "show": boolean;
+        "zIndex": string;
+    }
+    interface GluePopup {
+        "first": string;
+        "last": string;
+        "middle": string;
+    }
     interface GlueTag {
         "closeable": boolean;
         "color": string;
@@ -217,6 +229,18 @@ declare global {
         prototype: HTMLGlueLoadingElement;
         new (): HTMLGlueLoadingElement;
     };
+    interface HTMLGlueOverlayElement extends Components.GlueOverlay, HTMLStencilElement {
+    }
+    var HTMLGlueOverlayElement: {
+        prototype: HTMLGlueOverlayElement;
+        new (): HTMLGlueOverlayElement;
+    };
+    interface HTMLGluePopupElement extends Components.GluePopup, HTMLStencilElement {
+    }
+    var HTMLGluePopupElement: {
+        prototype: HTMLGluePopupElement;
+        new (): HTMLGluePopupElement;
+    };
     interface HTMLGlueTagElement extends Components.GlueTag, HTMLStencilElement {
     }
     var HTMLGlueTagElement: {
@@ -242,6 +266,8 @@ declare global {
         "glue-icon": HTMLGlueIconElement;
         "glue-image": HTMLGlueImageElement;
         "glue-loading": HTMLGlueLoadingElement;
+        "glue-overlay": HTMLGlueOverlayElement;
+        "glue-popup": HTMLGluePopupElement;
         "glue-tag": HTMLGlueTagElement;
         "my-component": HTMLMyComponentElement;
     }
@@ -373,6 +399,18 @@ declare namespace LocalJSX {
         "type"?: string;
         "vertical"?: boolean;
     }
+    interface GlueOverlay {
+        "customStyle"?: object;
+        "duration"?: string | number;
+        "lockScroll"?: boolean;
+        "show"?: boolean;
+        "zIndex"?: string;
+    }
+    interface GluePopup {
+        "first"?: string;
+        "last"?: string;
+        "middle"?: string;
+    }
     interface GlueTag {
         "closeable"?: boolean;
         "color"?: string;
@@ -404,6 +442,8 @@ declare namespace LocalJSX {
         "glue-icon": GlueIcon;
         "glue-image": GlueImage;
         "glue-loading": GlueLoading;
+        "glue-overlay": GlueOverlay;
+        "glue-popup": GluePopup;
         "glue-tag": GlueTag;
         "my-component": MyComponent;
     }
@@ -424,6 +464,8 @@ declare module "@stencil/core" {
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
             "glue-image": LocalJSX.GlueImage & JSXBase.HTMLAttributes<HTMLGlueImageElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
+            "glue-overlay": LocalJSX.GlueOverlay & JSXBase.HTMLAttributes<HTMLGlueOverlayElement>;
+            "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
             "glue-tag": LocalJSX.GlueTag & JSXBase.HTMLAttributes<HTMLGlueTagElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }

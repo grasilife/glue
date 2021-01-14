@@ -76,6 +76,8 @@
     <glue-image width="10rem" height="10rem" fit="contain" src="https://img.yzcdn.cn/vant/cat.jpeg"></glue-image>
     <glue-image round width="10rem" height="10rem" src="https://img.yzcdn.cn/vant/cat.jpeg"></glue-image>
     <glue-image width="100" height="100" lazy-load src="https://img.yzcdn.cn/vant/cat.jpeg"></glue-image>
+    <glue-button type="primary" text="显示遮罩层" @click="show = true" />
+    <glue-overlay :show="show" @click="show = false" />
   </body>
 </html>
 <style>
