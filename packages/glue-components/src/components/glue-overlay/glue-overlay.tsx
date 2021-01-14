@@ -36,7 +36,7 @@ export class GlueOverlay {
         v-show={this.show}
         style={style}
         class={classNames({
-          'glue-image': true,
+          'glue-overlay': true,
           // 'glue-image--className': this.className,
         })}
         onTouchMove={this.lockScroll ? el => this.preventTouchMove(el) : noop}
