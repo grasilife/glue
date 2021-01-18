@@ -3,10 +3,12 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
-import { defineCustomElements as glueComponents } from "glue-components/loader";
+import { applyPolyfills, defineCustomElements } from "glue-components/loader";
 Vue.config.productionTip = false;
-Vue.config.ignoredElements = [/glue-\w*/];
-glueComponents(window);
+Vue.config.ignoredElements = [/^glue-/];
+applyPolyfills().then(() => {
+  defineCustomElements();
+});
 new Vue({
   router,
   store,
