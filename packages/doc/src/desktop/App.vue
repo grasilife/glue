@@ -26,7 +26,7 @@ export default {
     const path = location.pathname.replace(/\/index(\.html)?/, "/");
 
     return {
-      simulator: `${path}mobile.html${location.hash}`,
+      simulator: `mobile.html${location.hash}`,
     };
   },
 

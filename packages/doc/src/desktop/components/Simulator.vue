@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'VanDocSimulator',
+  name: "VanDocSimulator",
 
   props: {
     src: String,
@@ -27,24 +27,24 @@ export default {
     simulatorStyle() {
       const height = Math.min(640, this.windowHeight - 90);
       return {
-        height: height + 'px',
+        height: height + "px",
       };
     },
   },
 
   mounted() {
-    window.addEventListener('scroll', () => {
+    window.addEventListener("scroll", () => {
       this.scrollTop = window.scrollY;
     });
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       this.windowHeight = window.innerHeight;
     });
   },
 };
 </script>
 
-<style lang="less">
-@import '../../common/style/var';
+<style lang="less" rel="stylesheet/less" scoped>
+@import "../../common/style/var";
 
 .van-doc-simulator {
   position: absolute;

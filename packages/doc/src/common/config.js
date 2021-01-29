@@ -1,5 +1,5 @@
 export default {
-  name: "vant",
+  name: "Glue",
   build: {
     srcDir: "src",
     skipInstall: ["lazyload"],
@@ -29,7 +29,7 @@ export default {
     },
     locales: {
       "zh-CN": {
-        title: "Vant",
+        title: "Glue",
         description: "轻量、可靠的移动端 Vue 组件库",
         logo: "https://img.yzcdn.cn/vant/logo.png",
         langLabel: "中",

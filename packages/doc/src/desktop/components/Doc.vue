@@ -8,12 +8,12 @@
       @switch-version="$emit('switch-version', $event)"
     />
     <doc-nav :lang="lang" :nav-config="config.nav" />
-    <!-- <doc-container :has-simulator="!!simulator">
+    <doc-container :has-simulator="!!simulator">
       <doc-content>
         <slot />
       </doc-content>
-    </doc-container> -->
-    <!-- <doc-simulator v-if="simulator" :src="simulator" /> -->
+    </doc-container>
+    <doc-simulator v-if="simulator" :src="simulator" />
   </div>
 </template>
 
