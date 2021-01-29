@@ -2,6 +2,110 @@
 # yarn lockfile v1
 
 
+"@algolia/cache-browser-local-storage@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/cache-browser-local-storage/download/@algolia/cache-browser-local-storage-4.8.3.tgz#79cc502892c83f378b8f1a87f78020268806f5c3"
+  integrity sha1-ecxQKJLIPzeLjxqH94AgJogG9cM=
+  dependencies:
+    "@algolia/cache-common" "4.8.3"
+
+"@algolia/cache-common@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/cache-common/download/@algolia/cache-common-4.8.3.tgz#7aca2644159ec791921dc8b296817e5b532b3464"
+  integrity sha1-esomRBWex5GSHciyloF+W1MrNGQ=
+
+"@algolia/cache-in-memory@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/cache-in-memory/download/@algolia/cache-in-memory-4.8.3.tgz#3d2692b895e9b8da47249b2b8dc638f53d6328ee"
+  integrity sha1-PSaSuJXpuNpHJJsrjcY49T1jKO4=
+  dependencies:
+    "@algolia/cache-common" "4.8.3"
+
+"@algolia/client-account@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/client-account/download/@algolia/client-account-4.8.3.tgz#4abc270dbd136644e69cc6b1ca1d0d14c9822aaf"
+  integrity sha1-SrwnDb0TZkTmnMaxyh0NFMmCKq8=
+  dependencies:
+    "@algolia/client-common" "4.8.3"
+    "@algolia/client-search" "4.8.3"
+    "@algolia/transporter" "4.8.3"
+
+"@algolia/client-analytics@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/client-analytics/download/@algolia/client-analytics-4.8.3.tgz#578b6e6fa33818a0417298438066642e584e1de9"
+  integrity sha1-V4tub6M4GKBBcphDgGZkLlhOHek=
+  dependencies:
+    "@algolia/client-common" "4.8.3"
+    "@algolia/client-search" "4.8.3"
+    "@algolia/requester-common" "4.8.3"
+    "@algolia/transporter" "4.8.3"
+
+"@algolia/client-common@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/client-common/download/@algolia/client-common-4.8.3.tgz?cache=0&sync_timestamp=1606991069745&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40algolia%2Fclient-common%2Fdownload%2F%40algolia%2Fclient-common-4.8.3.tgz#d8ea3368a5b98ce907e4be0eed804c3301cd91de"
+  integrity sha1-2OozaKW5jOkH5L4O7YBMMwHNkd4=
+  dependencies:
+    "@algolia/requester-common" "4.8.3"
+    "@algolia/transporter" "4.8.3"
+
+"@algolia/client-recommendation@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/client-recommendation/download/@algolia/client-recommendation-4.8.3.tgz#fc15688bf9d0fc0111a6c56d247e33dc3fcf8190"
+  integrity sha1-/BVoi/nQ/AERpsVtJH4z3D/PgZA=
+  dependencies:
+    "@algolia/client-common" "4.8.3"
+    "@algolia/requester-common" "4.8.3"
+    "@algolia/transporter" "4.8.3"
+
+"@algolia/client-search@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/client-search/download/@algolia/client-search-4.8.3.tgz?cache=0&sync_timestamp=1606991069508&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40algolia%2Fclient-search%2Fdownload%2F%40algolia%2Fclient-search-4.8.3.tgz#c70e09935e2cf25da356d59794e6a5a95f9a4cc8"
+  integrity sha1-xw4Jk14s8l2jVtWXlOalqV+aTMg=
+  dependencies:
+    "@algolia/client-common" "4.8.3"
+    "@algolia/requester-common" "4.8.3"
+    "@algolia/transporter" "4.8.3"
+
+"@algolia/logger-common@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/logger-common/download/@algolia/logger-common-4.8.3.tgz#449e8767863466528de7d18017417b319e4782d3"
+  integrity sha1-RJ6HZ4Y0ZlKN59GAF0F7MZ5HgtM=
+
+"@algolia/logger-console@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/logger-console/download/@algolia/logger-console-4.8.3.tgz#e4bcda8ac6477ecf143a1d536be2b747b84b7047"
+  integrity sha1-5LzaisZHfs8UOh1Ta+K3R7hLcEc=
+  dependencies:
+    "@algolia/logger-common" "4.8.3"
+
+"@algolia/requester-browser-xhr@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/requester-browser-xhr/download/@algolia/requester-browser-xhr-4.8.3.tgz#f2fe880d261e33bce1c6d613be074fd87af9f7e6"
+  integrity sha1-8v6IDSYeM7zhxtYTvgdP2Hr59+Y=
+  dependencies:
+    "@algolia/requester-common" "4.8.3"
+
+"@algolia/requester-common@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/requester-common/download/@algolia/requester-common-4.8.3.tgz#633b6782ae3fcf1743507c0ef207db5c62737443"
+  integrity sha1-Yztngq4/zxdDUHwO8gfbXGJzdEM=
+
+"@algolia/requester-node-http@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/requester-node-http/download/@algolia/requester-node-http-4.8.3.tgz?cache=0&sync_timestamp=1606991070798&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40algolia%2Frequester-node-http%2Fdownload%2F%40algolia%2Frequester-node-http-4.8.3.tgz#81c8e5d02f16a57cebfa2309a931fad6de84eb6d"
+  integrity sha1-gcjl0C8WpXzr+iMJqTH61t6E620=
+  dependencies:
+    "@algolia/requester-common" "4.8.3"
+
+"@algolia/transporter@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/@algolia/transporter/download/@algolia/transporter-4.8.3.tgz#6ad10b4be16653d667bb4727df27478931631fe8"
+  integrity sha1-atELS+FmU9Znu0cn3ydHiTFjH+g=
+  dependencies:
+    "@algolia/cache-common" "4.8.3"
+    "@algolia/logger-common" "4.8.3"
+    "@algolia/requester-common" "4.8.3"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.11":
   version "7.12.11"
   resolved "https://registry.npm.taobao.org/@babel/code-frame/download/@babel/code-frame-7.12.11.tgz?cache=0&sync_timestamp=1608076799939&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fcode-frame%2Fdownload%2F%40babel%2Fcode-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
@@ -854,6 +958,34 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@docsearch/css@^1.0.0-alpha.22":
+  version "1.0.0-alpha.22"
+  resolved "https://registry.npm.taobao.org/@docsearch/css/download/@docsearch/css-1.0.0-alpha.22.tgz#1a3e2cc3b4ff3ced500211c8009201a6cdecca89"
+  integrity sha1-Gj4sw7T/PO1QAhHIAJIBps3syok=
+
+"@docsearch/css@^1.0.0-alpha.28":
+  version "1.0.0-alpha.28"
+  resolved "https://registry.npm.taobao.org/@docsearch/css/download/@docsearch/css-1.0.0-alpha.28.tgz#c8a2cd8c1bb3a6855c51892e9dbdab5d42fe6e23"
+  integrity sha1-yKLNjBuzpoVcUYkunb2rXUL+biM=
+
+"@docsearch/js@^1.0.0-alpha.22":
+  version "1.0.0-alpha.22"
+  resolved "https://registry.npm.taobao.org/@docsearch/js/download/@docsearch/js-1.0.0-alpha.22.tgz#79ed687995e5389ab5b93376d6c73c05a57f3f43"
+  integrity sha1-ee1oeZXlOJq1uTN21sc8BaV/P0M=
+  dependencies:
+    "@docsearch/react" "^1.0.0-alpha.22"
+    preact "^10.0.0"
+
+"@docsearch/react@^1.0.0-alpha.22":
+  version "1.0.0-alpha.28"
+  resolved "https://registry.npm.taobao.org/@docsearch/react/download/@docsearch/react-1.0.0-alpha.28.tgz#4f039ed79f8b3332b19a57677b219aebc5010e9d"
+  integrity sha1-TwOe15+LMzKxmldneyGa68UBDp0=
+  dependencies:
+    "@docsearch/css" "^1.0.0-alpha.28"
+    "@francoischalifour/autocomplete-core" "^1.0.0-alpha.28"
+    "@francoischalifour/autocomplete-preset-algolia" "^1.0.0-alpha.28"
+    algoliasearch "^4.0.0"
+
 "@evocateur/libnpmaccess@^3.1.2":
   version "3.1.2"
   resolved "https://registry.npm.taobao.org/@evocateur/libnpmaccess/download/@evocateur/libnpmaccess-3.1.2.tgz#ecf7f6ce6b004e9f942b098d92200be4a4b1c845"
@@ -927,6 +1059,16 @@
     tar "^4.4.10"
     unique-filename "^1.1.1"
     which "^1.3.1"
+
+"@francoischalifour/autocomplete-core@^1.0.0-alpha.28":
+  version "1.0.0-alpha.28"
+  resolved "https://registry.npm.taobao.org/@francoischalifour/autocomplete-core/download/@francoischalifour/autocomplete-core-1.0.0-alpha.28.tgz#6b9d8491288e77f831e9b345d461623b0d3f5005"
+  integrity sha1-a52EkSiOd/gx6bNF1GFiOw0/UAU=
+
+"@francoischalifour/autocomplete-preset-algolia@^1.0.0-alpha.28":
+  version "1.0.0-alpha.28"
+  resolved "https://registry.npm.taobao.org/@francoischalifour/autocomplete-preset-algolia/download/@francoischalifour/autocomplete-preset-algolia-1.0.0-alpha.28.tgz#a5ad7996f42e43e4acbb4e0010d663746d0e9997"
+  integrity sha1-pa15lvQuQ+Ssu04AENZjdG0OmZc=
 
 "@hapi/address@2.x.x":
   version "2.1.4"
@@ -2782,6 +2924,26 @@ ajv@^6.1.0, ajv@^6.10.2, ajv@^6.12.3, ajv@^6.12.4:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
+
+algoliasearch@^4.0.0:
+  version "4.8.3"
+  resolved "https://registry.npm.taobao.org/algoliasearch/download/algoliasearch-4.8.3.tgz?cache=0&sync_timestamp=1606990781270&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Falgoliasearch%2Fdownload%2Falgoliasearch-4.8.3.tgz#f76b824423e4264506fb6ba6a6709feb08ab9954"
+  integrity sha1-92uCRCPkJkUG+2umpnCf6wirmVQ=
+  dependencies:
+    "@algolia/cache-browser-local-storage" "4.8.3"
+    "@algolia/cache-common" "4.8.3"
+    "@algolia/cache-in-memory" "4.8.3"
+    "@algolia/client-account" "4.8.3"
+    "@algolia/client-analytics" "4.8.3"
+    "@algolia/client-common" "4.8.3"
+    "@algolia/client-recommendation" "4.8.3"
+    "@algolia/client-search" "4.8.3"
+    "@algolia/logger-common" "4.8.3"
+    "@algolia/logger-console" "4.8.3"
+    "@algolia/requester-browser-xhr" "4.8.3"
+    "@algolia/requester-common" "4.8.3"
+    "@algolia/requester-node-http" "4.8.3"
+    "@algolia/transporter" "4.8.3"
 
 alphanum-sort@^1.0.0:
   version "1.0.2"
@@ -9654,6 +9816,11 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.27, postcss@^7.0.3
     chalk "^2.4.2"
     source-map "^0.6.1"
     supports-color "^6.1.0"
+
+preact@^10.0.0:
+  version "10.5.10"
+  resolved "https://registry.npm.taobao.org/preact/download/preact-10.5.10.tgz#8de7bf669e965a51fc9e45a6fd1e97a47af383e6"
+  integrity sha1-jee/Zp6WWlH8nkWm/R6XpHrzg+Y=
 
 prelude-ls@~1.1.2:
   version "1.1.2"
