@@ -1,5 +1,8 @@
 <template>
-  <div class="page-popup">1111</div>
+  <div class="page-popup">
+    111
+    <router-view />
+  </div>
 </template>
 
 <script>
@@ -22,7 +25,9 @@ export default {
 
   created() {},
 
-  mounted() {},
+  mounted() {
+    console.log(this.$route, "huahuahu");
+  },
 
   destroyed() {},
 

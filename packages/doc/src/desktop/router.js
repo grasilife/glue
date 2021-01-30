@@ -8,31 +8,34 @@ if (isMobile) {
   location.replace("mobile.html" + location.hash);
 }
 Vue.use(VueRouter);
-// const routes = [
-//   {
-//     path: "/",
-//     name: "Home",
-//     component: () => import("./views/Home.vue"),
-//   },
-// ];
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: "/desktop",
   routes: getRoutes(),
 });
 function getRoutes() {
-  const routes = [];
+  const routes = [
+    // {
+    //   path: "/home1",
+    //   name: "Home",
+    //   component: () => import("./views/home.vue"),
+    // },
+  ];
   Object.keys(locales).forEach((key) => {
     console.log(key, locales[key]);
     locales[key].nav.forEach((element) => {
       if (element.items) {
         element.items.forEach((element2) => {
-          console.log(`@/${key}/${element2.path}`, "路径");
+          console.log(
+            "./views/" + key + "/" + element2.path,
+            `/${key}/${element2.path}`,
+            "路径"
+          );
           routes.push({
             name: element2.title,
             path: `/${key}/${element2.path}`,
-            component: () => import(`@/${key}/${element2.path}`),
+            component: () => import("./views/" + key + "/" + element2.path),
           });
         });
       }

@@ -30,7 +30,9 @@
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "prettier": "^1.19.1",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "@vant/markdown-loader": "^3.0.2",
+    "@vant/markdown-vetur": "^2.0.2"
   },
   "gitHead": "092134cf700bfbc7245a6bbc576d5cee3d1b8145"
 }

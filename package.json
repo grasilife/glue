@@ -3,7 +3,9 @@
   "private": true,
   "workspaces": [
     "packages/doc",
-    "packages/glue-components"
+    "packages/glue-components",
+    "packages/vant-markdown-loader",
+    "packages/vant-markdown-vetur"
   ],
   "scripts": {
     "clear-all": "lerna clean && yarn workspaces run clean",
