@@ -1,78 +1,386 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Calendar 日历
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+日历组件用于选择日期或日期区间。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Calendar } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Calendar);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 选择单个日期
 
-### 贡献代码
+下面演示了结合单元格来使用日历组件的用法，日期选择完成后会触发 `confirm` 事件。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-cell title="选择单个日期" :value="date" @click="show = true" />
+<van-calendar v-model:show="show" @confirm="onConfirm" />
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```js
+import { ref } from 'vue';
 
-### 浏览器支持
+export default {
+  setup() {
+    const date = ref('');
+    const show = ref(false);
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+    const formatDate = (date) => `${date.getMonth() + 1}/${date.getDate()}`;
+    const onConfirm = (value) => {
+      show.value = false;
+      date.value = formatDate(value);
+    };
 
-### 加入我们
+    return {
+      date,
+      show,
+      onConfirm,
+    };
+  },
+};
+```
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+### 选择多个日期
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+设置 `type` 为 `multiple` 后可以选择多个日期，此时 `confirm` 事件返回的 date 为数组结构，数组包含若干个选中的日期。
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+```html
+<van-cell title="选择多个日期" :value="text" @click="show = true" />
+<van-calendar v-model:show="show" type="multiple" @confirm="onConfirm" />
+```
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+```js
+import { ref } from 'vue';
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+export default {
+  setup() {
+    const text = ref('');
+    const show = ref(false);
 
-### 生态
+    const onConfirm = (dates) => {
+      show.value = false;
+      text.value = `选择了 ${dates.length} 个日期`;
+    };
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+    return {
+      text,
+      show,
+      onConfirm,
+    };
+  },
+};
+```
 
-### 链接
+### 选择日期区间
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+设置 `type` 为 `range` 后可以选择日期区间，此时 `confirm` 事件返回的 date 为数组结构，数组第一项为开始时间，第二项为结束时间。
 
-### 开源协议
+```html
+<van-cell title="选择日期区间" :value="date" @click="show = true" />
+<van-calendar v-model:show="show" type="range" @confirm="onConfirm" />
+```
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const date = ref('');
+    const show = ref(false);
+
+    const formatDate = (date) => `${date.getMonth() + 1}/${date.getDate()}`;
+    const onConfirm = (values) => {
+      const [start, end] = values;
+      show.value = false;
+      date.value = `${formatDate(start)} - ${formatDate(end)}`;
+    };
+
+    return {
+      date,
+      show,
+      onConfirm,
+    };
+  },
+};
+```
+
+> Tips: 默认情况下，日期区间的起止时间不能为同一天，可以通过设置 allow-same-day 属性来允许选择同一天。
+
+### 快捷选择
+
+将 `show-confirm` 设置为 `false` 可以隐藏确认按钮，这种情况下选择完成后会立即触发 `confirm` 事件。
+
+```html
+<van-calendar v-model:show="show" :show-confirm="false" />
+```
+
+### 自定义颜色
+
+通过 `color` 属性可以自定义日历的颜色，对选中日期和底部按钮生效。
+
+```html
+<van-calendar v-model:show="show" color="#1989fa" />
+```
+
+### 自定义日期范围
+
+通过 `min-date` 和 `max-date` 定义日历的范围。
+
+```html
+<van-calendar v-model:show="show" :min-date="minDate" :max-date="maxDate" />
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const show = ref(false);
+
+    return {
+      show,
+      minDate: new Date(2010, 0, 1),
+      maxDate: new Date(2010, 0, 31),
+    };
+  },
+};
+```
+
+### 自定义按钮文字
+
+通过 `confirm-text` 设置按钮文字，通过 `confirm-disabled-text` 设置按钮禁用时的文字。
+
+```html
+<van-calendar
+  v-model:show="show"
+  type="range"
+  confirm-text="完成"
+  confirm-disabled-text="请选择结束时间"
+/>
+```
+
+### 自定义日期文案
+
+通过传入 `formatter` 函数来对日历上每一格的内容进行格式化。
+
+```html
+<van-calendar v-model:show="show" type="range" :formatter="formatter" />
+```
+
+```js
+export default {
+  setup() {
+    const formatter = (day) => {
+      const month = day.date.getMonth() + 1;
+      const date = day.date.getDate();
+
+      if (month === 5) {
+        if (date === 1) {
+          day.topInfo = '劳动节';
+        } else if (date === 4) {
+          day.topInfo = '青年节';
+        } else if (date === 11) {
+          day.text = '今天';
+        }
+      }
+
+      if (day.type === 'start') {
+        day.bottomInfo = '入住';
+      } else if (day.type === 'end') {
+        day.bottomInfo = '离店';
+      }
+
+      return day;
+    };
+
+    return {
+      formatter,
+    };
+  },
+};
+```
+
+### 自定义弹出位置
+
+通过 `position` 属性自定义弹出层的弹出位置，可选值为 `top`、`left`、`right`。
+
+```html
+<van-calendar v-model:show="show" :round="false" position="right" />
+```
+
+### 日期区间最大范围
+
+选择日期区间时，可以通过 `max-range` 属性来指定最多可选天数，选择的范围超过最多可选天数时，会弹出相应的提示文案。
+
+```html
+<van-calendar type="range" :max-range="3" :style="{ height: '500px' }" />
+```
+
+### 自定义周起始日
+
+通过 `first-day-of-week` 属性设置一周从哪天开始。
+
+```html
+<van-calendar first-day-of-week="1" />
+```
+
+### 平铺展示
+
+将 `poppable` 设置为 `false`，日历会直接展示在页面内，而不是以弹层的形式出现。
+
+```html
+<van-calendar
+  title="日历"
+  :poppable="false"
+  :show-confirm="false"
+  :style="{ height: '500px' }"
+/>
+```
+
+## API
+
+### Props
+
+| 参数                  | 说明                                                                                             | 类型                     | 默认值             |
+|-----------------------|------------------------------------------------------------------------------------------------|--------------------------|--------------------|
+| type                  | 选择类型:<br>`single`表示选择单个日期，<br>`multiple`表示选择多个日期，<br>`range`表示选择日期区间 | _string_                 | `single`           |
+| title                 | 日历标题                                                                                         | _string_                 | `日期选择`         |
+| color                 | 主题色，对底部按钮和选中日期生效                                                                  | _string_                 | `#ee0a24`          |
+| min-date              | 可选择的最小日期                                                                                 | _Date_                   | 当前日期           |
+| max-date              | 可选择的最大日期                                                                                 | _Date_                   | 当前日期的六个月后 |
+| default-date          | 默认选中的日期，`type` 为 `multiple` 或 `range` 时为数组，传入 `null` 表示默认不选择               | _Date \| Date[] \| null_ | 今天               |
+| row-height            | 日期行高                                                                                         | _number \| string_       | `64`               |
+| formatter             | 日期格式化函数                                                                                   | _(day: Day) => Day_      | -                  |
+| poppable              | 是否以弹层的形式展示日历                                                                         | _boolean_                | `true`             |
+| lazy-render           | 是否只渲染可视区域的内容                                                                         | _boolean_                | `true`             |
+| show-mark             | 是否显示月份背景水印                                                                             | _boolean_                | `true`             |
+| show-title            | 是否展示日历标题                                                                                 | _boolean_                | `true`             |
+| show-subtitle         | 是否展示日历副标题（年月）                                                                         | _boolean_                | `true`             |
+| show-confirm          | 是否展示确认按钮                                                                                 | _boolean_                | `true`             |
+| readonly              | 是否为只读状态，只读状态下不能选择日期                                                            | _boolean_                | `false`            |
+| confirm-text          | 确认按钮的文字                                                                                   | _string_                 | `确定`             |
+| confirm-disabled-text | 确认按钮处于禁用状态时的文字                                                                     | _string_                 | `确定`             |
+| first-day-of-week     | 设置周起始日                                                                                     | _0-6_                    | `0`                |
+
+### Poppable Props
+
+当 Canlendar 的 `poppable` 为 `true` 时，支持以下 props:
+
+| 参数                   | 说明                                                                      | 类型                | 默认值   |
+|------------------------|-------------------------------------------------------------------------|---------------------|----------|
+| v-model:show           | 是否显示日历弹窗                                                          | _boolean_           | `false`  |
+| position               | 弹出位置，可选值为 `top` `right` `left`                                    | _string_            | `bottom` |
+| round                  | 是否显示圆角弹窗                                                          | _boolean_           | `true`   |
+| close-on-popstate      | 是否在页面回退时自动关闭                                                  | _boolean_           | `true`   |
+| close-on-click-overlay | 是否在点击遮罩层后关闭                                                    | _boolean_           | `true`   |
+| safe-area-inset-bottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_           | `true`   |
+| teleport               | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi)         | _string \| Element_ | -        |
+
+### Range Props
+
+当 Canlendar 的 `type` 为 `range` 时，支持以下 props:
+
+| 参数           | 说明                                 | 类型               | 默认值                   |
+|----------------|------------------------------------|--------------------|--------------------------|
+| max-range      | 日期区间最多可选天数                 | _number \| string_ | 无限制                   |
+| range-prompt   | 范围选择超过最多可选天数时的提示文案 | _string_           | `选择天数不能超过 xx 天` |
+| allow-same-day | 是否允许日期范围的起止时间为同一天   | _boolean_          | `false`                  |
+
+### Multiple Props
+
+当 Canlendar 的 `type` 为 `multiple` 时，支持以下 props:
+
+| 参数         | 说明                             | 类型               | 默认值                   |
+|--------------|--------------------------------|--------------------|-----------------------|
+| max-range    | 日期最多可选天数                 | _number \| string_ | 无限制                   |
+| range-prompt | 选择超过最多可选天数时的提示文案 | _string_           | `选择天数不能超过 xx 天` |
+
+### Day 数据结构
+
+日历中的每个日期都对应一个 Day 对象，通过`formatter`属性可以自定义 Day 对象的内容
+
+| 键名       | 说明                                                           | 类型     |
+|------------|--------------------------------------------------------------|----------|
+| date       | 日期对应的 Date 对象                                           | _Date_   |
+| type       | 日期类型，可选值为 `selected`、`start`、`middle`、`end`、`disabled` | _string_ |
+| text       | 中间显示的文字                                                 | _string_ |
+| topInfo    | 上方的提示信息                                                 | _string_ |
+| bottomInfo | 下方的提示信息                                                 | _string_ |
+| className  | 额外类名                                                       | _string_ |
+
+### Events
+
+| 事件名     | 说明                                                                | 回调参数                        |
+|------------|-------------------------------------------------------------------|---------------------------------|
+| select     | 点击并选中任意日期时触发                                            | _value: Date \| Date[]_         |
+| confirm    | 日期选择完成后触发，若 `show-confirm` 为 `true`，则点击确认按钮后触发 | _value: Date \| Date[]_         |
+| open       | 打开弹出层时触发                                                    | -                               |
+| close      | 关闭弹出层时触发                                                    | -                               |
+| opened     | 打开弹出层且动画结束后触发                                          | -                               |
+| closed     | 关闭弹出层且动画结束后触发                                          | -                               |
+| unselect   | 当日历组件的 `type` 为 `multiple` 时，取消选中日期时触发             | _value: Date_                   |
+| month-show | 当某个月份进入可视区域时触发                                        | _{ date: Date, title: string }_ |
+
+### Slots
+
+| 名称   | 说明               |
+|--------|------------------|
+| title  | 自定义标题         |
+| footer | 自定义底部区域内容 |
+
+### 方法
+
+通过 ref 可以获取到 Calendar 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名       | 说明                                                | 参数                    | 返回值 |
+|--------------|---------------------------------------------------|-------------------------|--------|
+| reset        | 将选中的日期重置到指定日期，未传参时会重置到默认日期 | _date?: Date \| Date[]_ | -      |
+| scrollToDate | 滚动到某个日期                                      | _date: Date_            | -      |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                                      | 默认值                                 | 描述 |
+|-------------------------------------------|----------------------------------------|------|
+| @calendar-background-color                | `@white`                               | -    |
+| @calendar-popup-height                    | `80%`                                  | -    |
+| @calendar-header-box-shadow               | `0 2px 10px rgba(125, 126, 128, 0.16)` | -    |
+| @calendar-header-title-height             | `44px`                                 | -    |
+| @calendar-header-title-font-size          | `@font-size-lg`                        | -    |
+| @calendar-header-subtitle-font-size       | `@font-size-md`                        | -    |
+| @calendar-weekdays-height                 | `30px`                                 | -    |
+| @calendar-weekdays-font-size              | `@font-size-sm`                        | -    |
+| @calendar-month-title-font-size           | `@font-size-md`                        | -    |
+| @calendar-month-mark-color                | `fade(@gray-2, 80%)`                   | -    |
+| @calendar-month-mark-font-size            | `160px`                                | -    |
+| @calendar-day-height                      | `64px`                                 | -    |
+| @calendar-day-font-size                   | `@font-size-lg`                        | -    |
+| @calendar-range-edge-color                | `@white`                               | -    |
+| @calendar-range-edge-background-color     | `@red`                                 | -    |
+| @calendar-range-middle-color              | `@red`                                 | -    |
+| @calendar-range-middle-background-opacity | `0.1`                                  | -    |
+| @calendar-selected-day-size               | `54px`                                 | -    |
+| @calendar-selected-day-color              | `@white`                               | -    |
+| @calendar-info-font-size                  | `@font-size-xs`                        | -    |
+| @calendar-info-line-height                | `@line-height-xs`                      | -    |
+| @calendar-selected-day-background-color   | `@red`                                 | -    |
+| @calendar-day-disabled-color              | `@gray-5`                              | -    |
+| @calendar-confirm-button-height           | `36px`                                 | -    |
+| @calendar-confirm-button-margin           | `7px 0`                                | -    |
+
+## 常见问题
+
+### 在 iOS 系统上初始化组件失败？
+
+如果你遇到了在 iOS 上无法渲染组件的问题，请确认在创建 Date 对象时没有使用`new Date('2020-01-01')`这样的写法，iOS 不支持以中划线分隔的日期格式，正确写法是`new Date('2020/01/01')`。
+
+对此问题的详细解释：[stackoverflow](https://stackoverflow.com/questions/13363673/javascript-date-is-invalid-on-ios)。

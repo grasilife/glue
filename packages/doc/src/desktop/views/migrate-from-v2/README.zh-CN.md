@@ -1,78 +1,241 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# 从 v2 升级
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+本文档提供了从 Vant 2 到 Vant 3 的升级指南。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 升级步骤
 
-### 特性
+#### 1. 升级 Vue 3
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+Vant 3 是基于 Vue 3 开发的，在使用 Vant 3 前，请将项目中的 Vue 升级到 3.0 以上版本。
 
-### 快速上手
+#### 2. 处理不兼容更新
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+Vant 2 到 Vant 3 存在一些不兼容更新，请仔细阅读下方的不兼容更新内容，并依次处理。
 
-### 贡献代码
+## 不兼容更新
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+### 组件命名调整
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+GoodsAction 商品导航组件重命名为 **ActionBar 行动栏**。
 
-### 浏览器支持
+```html
+<!-- Vant 2 -->
+<van-goods-action>
+  <van-goods-action-icon text="图标" />
+  <van-goods-action-button text="按钮" />
+</van-goods-action>
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+<!-- Vant 3 -->
+<van-action-bar>
+  <van-action-bar-icon text="图标" />
+  <van-action-bar-button text="按钮" />
+</van-action-bar>
+```
 
-### 加入我们
+### 废弃组件
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+移除 SwitchCell 组件，可以直接使用 Cell 和 Switch 组件代替。
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+```html
+<!-- Vant 2 -->
+<van-switch-cell title="标题" v-model="checked" />
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+<!-- Vant 3 -->
+<van-cell center title="标题">
+  <template #right-icon>
+    <van-switch v-model="checked" size="24" />
+  </template>
+</van-cell>
+```
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+### 弹窗型组件 v-model 变更
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+为了适配 Vue 3 的 v-model API 用法变更，所有提供 v-model 属性的组件在用法上有一定调整。以下弹窗类组件的 `v-model` 被重命名为 `v-model:show`：
 
-### 生态
+- ActionSheet
+- Calendar
+- Dialog
+- ImagePreview
+- Notify
+- Popover
+- Popup
+- ShareSheet
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+```html
+<!-- Vant 2 -->
+<van-popup v-model="show" />
 
-### 链接
+<!-- Vant 3 -->
+<van-popup v-model:show="show" />
+```
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### 表单型组件 v-model 内部值变更
 
-### 开源协议
+以下表单型组件 v-model 对应的 prop 重命名为 `modelValue`，event 重命名为 `update:modelValue`：
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+- Checkbox
+- CheckboxGroup
+- DatetimePicker
+- DropdownItem
+- Field
+- Radio
+- RadioGroup
+- Search
+- Stepper
+- Switch
+- Sidebar
+- Uploader
+
+```html
+<!-- Vant 2 -->
+<van-field :value="value" @input="onInput" />
+
+<!-- Vant 3 -->
+<van-field :model-value="value" @update:model-value="onInput" />
+```
+
+### 其他 v-model 调整
+
+- Circle: `v-model` 重命名为 `v-model:currentRate`
+- CouponList: `v-model` 重命名为 `v-model:code`
+- List: `v-model` 重命名为 `v-model:loading`，`error.sync` 重命名为 `v-model:error`
+- Tabs: `v-model` 重命名为 `v-model:active`
+- TreeSelect: `active-id.sync` 重命名为 `v-model:active-id`
+- TreeSelect: `main-active-index.sync` 重命名为 `v-model:main-active-index`
+
+### 徽标属性命名调整
+
+在之前的版本中，我们通过 info 属性来展示图标右上角的徽标信息，为了更符合社区的命名习惯，我们将这个属性重命名为 badge，影响以下组件：
+
+- Tab
+- Icon
+- GridItem
+- TreeSelect
+- TabbarItem
+- SidebarItem
+- GoodsActionIcon
+
+同时内部使用的 Info 组件也会重命名为 Badge。
+
+```html
+<!-- Vant 2 -->
+<van-icon info="5" />
+
+<!-- Vant 3 -->
+<van-icon badge="5" />
+```
+
+### 重命名 get-container 属性
+
+Vue 3.0 中增加了 `Teleport` 组件，提供将组件渲染到任意 DOM 位置的能力，Vant 2 也通过 `get-container` 属性提供了类似的能力。为了与官方的 API 保持一致，Vant 中的 `get-container` 属性将重命名为 `teleport`。
+
+```html
+<!-- Vant 2 -->
+<template>
+  <van-popup get-container="body" />
+  <van-popup :get-container="getContainer" />
+</template>
+<script>
+  export default {
+    methods: {
+      getContainer() {
+        return document.querySelector('#container');
+      },
+    },
+  };
+</script>
+
+<!-- Vant 3 -->
+<template>
+  <van-popup teleport="body" />
+  <van-popup :teleport="container" />
+</template>
+<script>
+  export default {
+    beforeCreate() {
+      this.container = document.querySelector('#container');
+    },
+  };
+</script>
+```
+
+### API 调整
+
+#### Area
+
+- `change` 事件参数不再传入组件实例
+
+#### Button
+
+- 蓝色按钮对应的类型由 `info` 调整为 `primary`
+- 绿色按钮对应的类型由 `primary` 调整为 `success`
+- `native-type` 的默认值由 `submit` 调整为 `button`
+
+#### Checkbox
+
+- 在 Cell 内部使用时，现在需要手动添加 `@click.stop` 来阻止事件冒泡
+
+#### Dialog
+
+- 默认关闭 `allow-html` 属性
+- `before-close` 属性用法调整，不再传入 done 函数，而是通过返回 Promise 来控制
+
+#### DatetimePicker
+
+- `change` 事件参数不再传入组件实例
+
+#### ImagePreview
+
+- 移除 `async-close` 属性，可以使用新增的 `before-close` 属性代替
+
+#### Picker
+
+- `change` 事件参数不再传入组件实例
+- 默认关闭 `allow-html` 属性
+- 默认开启 `show-toolbar` 属性
+- 级联选择下，`confirm`、`change` 事件返回的回调参数将包含为完整的选项对象。
+
+#### Popover
+
+- `trigger` 属性的默认值调整为 `click`
+
+#### Stepper
+
+- `async-change` 属性重命名为 `before-change`，并调整使用方法
+
+#### SwipeCell
+
+- `open` 事件的 `detail` 参数重命名为 `name`
+- `on-close` 属性重命名为 `before-close`，并调整参数结构
+- `before-close` 属性不再传入组件实例
+
+#### Toast
+
+- `mask` 属性重命名为 `overlay`
+
+#### TreeSelect
+
+- `navclick` 事件重命名为 `click-nav`
+- `itemclick` 事件重命名为 `click-item`
+
+### 注册全局方法
+
+Vant 2 中默认提供了 `$toast`、`$dialog` 等全局方法，但 Vue 3.0 不再支持直接在 Vue 的原型链上挂载方法，因此从 Vant 3.0 开始，使用全局方法前必须先通过 `app.use` 将组件注册到对应的 app 上。
+
+```js
+import { Toast, Dialog, Notify } from 'vant';
+
+// 将 Toast 等组件注册到 app 上
+app.use(Toast);
+app.use(Dialog);
+app.use(Notify);
+
+// app 内的子组件可以直接调用 $toast 等方法
+export default {
+  mounted() {
+    this.$toast('提示文案');
+  },
+};
+```

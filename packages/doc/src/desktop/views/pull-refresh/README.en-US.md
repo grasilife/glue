@@ -1,55 +1,140 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# PullRefresh
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { PullRefresh } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(PullRefresh);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+The `refresh` event will be Emitted when pull refresh, you should set `v-model` to `false` to reset loading status after process refresh event.
 
-### Browser Support
+```html
+<van-pull-refresh v-model="state.loading" @refresh="onRefresh">
+  <p>Refresh Count: {{ state.count }}</p>
+</van-pull-refresh>
+```
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+```js
+import { reactive } from 'vue';
+import { Toast } from 'vant';
 
-### Ecosystem
+export default {
+  setup() {
+    const state = reactive({
+      count: 0,
+      loading: false,
+    });
+    const onRefresh = () => {
+      setTimeout(() => {
+        Toast('Refresh Success');
+        state.loading = false;
+        state.count++;
+      }, 1000);
+    };
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+    return {
+      state,
+      onRefresh,
+    };
+  },
+};
+```
 
-### Links
+### Success Tip
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+Use `success-text` to set the success prompt after the refresh is successful
 
-### LICENSE
+```html
+<van-pull-refresh
+  v-model="isLoading"
+  success-text="Refresh success"
+  @refresh="onRefresh"
+>
+  <p>Refresh Count: {{ count }}</p>
+</van-pull-refresh>
+```
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+### Custom Tips
+
+Use slots to custom tips.
+
+```html
+<van-pull-refresh v-model="isLoading" :head-height="80" @refresh="onRefresh">
+  <template #pulling="props">
+    <img
+      class="doge"
+      src="https://img01.yzcdn.cn/vant/doge.png"
+      :style="{ transform: `scale(${props.distance / 80})` }"
+    />
+  </template>
+
+  <template #loosing>
+    <img class="doge" src="https://img01.yzcdn.cn/vant/doge.png" />
+  </template>
+
+  <template #loading>
+    <img class="doge" src="https://img01.yzcdn.cn/vant/doge-fire.jpg" />
+  </template>
+  <p>Refresh Count: {{ count }}</p>
+</van-pull-refresh>
+
+<style>
+  .doge {
+    width: 140px;
+    height: 72px;
+    margin-top: 8px;
+    border-radius: 4px;
+  }
+</style>
+```
+
+## API
+
+### Props
+
+| Attribute          | Description                       | Type               | Default               |
+|--------------------|-----------------------------------|--------------------|-----------------------|
+| v-model            | Loading status                    | _boolean_          | -                     |
+| pulling-text       | Text to show when pulling         | _string_           | `Pull to refresh...`  |
+| loosing-text       | Text to show when loosing         | _string_           | `Loose to refresh...` |
+| loading-text       | Text to show when loading         | _string_           | `Loading...`          |
+| success-text       | Text to show when loading success | _string_           | -                     |
+| success-duration   | Success text display duration(ms) | _number \| string_ | `500`                 |
+| animation-duration | Animation duration                | _number \| string_ | `300`                 |
+| head-height        | Height of head                    | _number \| string_ | `50`                  |
+| disabled           | Whether to disable pull refresh   | _boolean_          | `false`               |
+
+### Events
+
+| Event   | Description                   | Parameters |
+|---------|-------------------------------|------------|
+| refresh | Emitted after pulling refresh | -          |
+
+### Slots
+
+| Name    | Description                           | SlotProps    |
+|---------|---------------------------------------|--------------|
+| default | Default slot                          | -            |
+| normal  | Content of head when at normal status | -            |
+| pulling | Content of head when at pulling       | { distance } |
+| loosing | Content of head when at loosing       | { distance } |
+| loading | Content of head when at loading       | { distance } |
+| success | Content of head when succeed          | -            |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                          | Default Value   | Description |
+|-------------------------------|-----------------|-------------|
+| @pull-refresh-head-height     | `50px`          | -           |
+| @pull-refresh-head-font-size  | `@font-size-md` | -           |
+| @pull-refresh-head-text-color | `@gray-6`       | -           |

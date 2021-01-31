@@ -1,55 +1,186 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# CountDown
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { CountDown } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(CountDown);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-count-down :time="time" />
+```
 
-### Browser Support
+```js
+import { ref } from 'vue';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const time = ref(30 * 60 * 60 * 1000);
+    return { time };
+  },
+};
+```
 
-### Ecosystem
+### Custom Format
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+```html
+<van-count-down :time="time" format="DD Day, HH:mm:ss" />
+```
 
-### Links
+### Millisecond
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-count-down millisecond :time="time" format="HH:mm:ss:SS" />
+```
 
-### LICENSE
+### Custom Style
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+```html
+<van-count-down :time="time">
+  <template #default="timeData">
+    <span class="block">{{ timeData.hours }}</span>
+    <span class="colon">:</span>
+    <span class="block">{{ timeData.minutes }}</span>
+    <span class="colon">:</span>
+    <span class="block">{{ timeData.seconds }}</span>
+  </template>
+</van-count-down>
+
+<style>
+  .colon {
+    display: inline-block;
+    margin: 0 4px;
+    color: #ee0a24;
+  }
+  .block {
+    display: inline-block;
+    width: 22px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    background-color: #ee0a24;
+  }
+</style>
+```
+
+### Manual Control
+
+```html
+<van-count-down
+  ref="countDown"
+  millisecond
+  :time="3000"
+  :auto-start="false"
+  format="ss:SSS"
+  @finish="onFinish"
+/>
+<van-grid clickable :column-num="3">
+  <van-grid-item text="Start" icon="play-circle-o" @click="start" />
+  <van-grid-item text="Pause" icon="pause-circle-o" @click="pause" />
+  <van-grid-item text="Reset" icon="replay" @click="reset" />
+</van-grid>
+```
+
+```js
+import { Toast } from 'vant';
+
+export default {
+  setup() {
+    const countDown = ref(null);
+
+    const start = () => {
+      countDown.value.start();
+    };
+    const pause = () => {
+      countDown.value.pause();
+    };
+    const reset = () => {
+      countDown.value.reset();
+    };
+    const onFinish = () => Toast('Finished');
+
+    return {
+      start,
+      pause,
+      reset,
+      onFinish,
+      countDown,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| Attribute   | Description                          | Type               | Default    |
+|-------------|--------------------------------------|--------------------|------------|
+| time        | Total time                           | _number \| string_ | `0`        |
+| format      | Time format                          | _string_           | `HH:mm:ss` |
+| auto-start  | Whether to auto start count down     | _boolean_          | `true`     |
+| millisecond | Whether to enable millisecond render | _boolean_          | `false`    |
+
+### Available formats
+
+| Format | Description           |
+|--------|-----------------------|
+| DD     | Day                   |
+| HH     | Hour                  |
+| mm     | Minute                |
+| ss     | Second                |
+| S      | Millisecond, 1-digit  |
+| SS     | Millisecond, 2-digits |
+| SSS    | Millisecond, 3-digits |
+
+### Events
+
+| Event  | Description                      | Arguments                  |
+|--------|----------------------------------|----------------------------|
+| finish | Emitted when count down finished | -                          |
+| change | Emitted when count down changed  | _currentTime: CurrentTime_ |
+
+### Slots
+
+| Name    | Description    | SlotProps                  |
+|---------|----------------|----------------------------|
+| default | Custom Content | _currentTime: CurrentTime_ |
+
+### TimeData Structure
+
+| Name         | Description                   | Type     |
+|--------------|-------------------------------|----------|
+| total        | Total time, unit milliseconds | _number_ |
+| days         | Remain days                   | _number_ |
+| hours        | Remain hours                  | _number_ |
+| minutes      | Remain minutes                | _number_ |
+| seconds      | Remain seconds                | _number_ |
+| milliseconds | Remain milliseconds           | _number_ |
+
+### Methods
+
+Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get CountDown instance and call instance methods.
+
+| Name  | Description      | Attribute | Return value |
+|-------|------------------|-----------|--------------|
+| start | Start count down | -         | -            |
+| pause | Pause count down | -         | -            |
+| reset | Reset count down | -         | -            |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                    | Default Value     | Description |
+|-------------------------|-------------------|-------------|
+| @count-down-text-color  | `@text-color`     | -           |
+| @count-down-font-size   | `@font-size-md`   | -           |
+| @count-down-line-height | `@line-height-md` | -           |

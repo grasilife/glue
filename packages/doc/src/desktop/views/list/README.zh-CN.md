@@ -1,78 +1,276 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# List 列表
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+瀑布流滚动加载，用于展示长列表，当列表即将滚动到底部时，会触发事件并加载更多列表项。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { List } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(List);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+List 组件通过 `loading` 和 `finished` 两个变量控制加载状态，当组件滚动到底部时，会触发 `load` 事件并将 `loading` 设置成 `true`。此时可以发起异步操作并更新数据，数据更新完毕后，将 `loading` 设置成 `false` 即可。若数据已全部加载完毕，则直接将 `finished` 设置成 `true` 即可。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-list
+  v-model:loading="state.loading"
+  :finished="state.finished"
+  finished-text="没有更多了"
+  @load="onLoad"
+>
+  <van-cell v-for="item in state.list" :key="item" :title="item" />
+</van-list>
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```js
+import { reactive } from 'vue';
 
-### 浏览器支持
+export default {
+  setup() {
+    const state = reactive({
+      list: [],
+      loading: false,
+      finished: false,
+    });
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+    const onLoad = () => {
+      // 异步更新数据
+      // setTimeout 仅做示例，真实场景中一般为 ajax 请求
+      setTimeout(() => {
+        for (let i = 0; i < 10; i++) {
+          state.list.push(state.list.length + 1);
+        }
 
-### 加入我们
+        // 加载状态结束
+        state.loading = false;
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+        // 数据全部加载完成
+        if (state.list.length >= 40) {
+          state.finished = true;
+        }
+      }, 1000);
+    };
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+    return {
+      state,
+      onLoad,
+    };
+  },
+};
+```
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+### 错误提示
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+若列表数据加载失败，将 `error` 设置成 `true` 即可显示错误提示，用户点击错误提示后会重新触发 load 事件。
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+```html
+<van-list
+  v-model:loading="state.loading"
+  v-model:error="state.error"
+  error-text="请求失败，点击重新加载"
+  @load="onLoad"
+>
+  <van-cell v-for="item in state.list" :key="item" :title="item" />
+</van-list>
+```
 
-### 生态
+```js
+import { reactive } from 'vue';
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+export default {
+  setup() {
+    const state = reactive({
+      list: [],
+      error: false,
+      loading: false,
+    });
 
-### 链接
+    const onLoad = () => {
+      fetchSomeThing().catch(() => {
+        state.error = true;
+      });
+    };
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+    return {
+      state,
+      onLoad,
+    };
+  },
+};
+```
 
-### 开源协议
+### 下拉刷新
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+List 组件可以与 [PullRefresh](#/zh-CN/pull-refresh) 组件结合使用，实现下拉刷新的效果。
+
+```html
+<van-pull-refresh v-model="state.refreshing" @refresh="onRefresh">
+  <van-list
+    v-model:loading="state.loading"
+    :finished="state.finished"
+    finished-text="没有更多了"
+    @load="onLoad"
+  >
+    <van-cell v-for="item in state.list" :key="item" :title="item" />
+  </van-list>
+</van-pull-refresh>
+```
+
+```js
+import { reactive } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({
+      list: [],
+      loading: false,
+      finished: false,
+      refreshing: false,
+    });
+
+    const onLoad = () => {
+      setTimeout(() => {
+        if (state.refreshing) {
+          state.list = [];
+          state.refreshing = false;
+        }
+
+        for (let i = 0; i < 10; i++) {
+          state.list.push(state.list.length + 1);
+        }
+        state.loading = false;
+
+        if (state.list.length >= 40) {
+          state.finished = true;
+        }
+      }, 1000);
+    };
+
+    const onRefresh = () => {
+      // 清空列表数据
+      state.finished = false;
+
+      // 重新加载数据
+      // 将 loading 设置为 true，表示处于加载状态
+      state.loading = true;
+      onLoad();
+    };
+
+    return {
+      state,
+      onLoad,
+      onRefresh,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| 参数            | 说明                                                                               | 类型               | 默认值      |
+|-----------------|----------------------------------------------------------------------------------|--------------------|-------------|
+| v-model:loading | 是否处于加载状态，加载过程中不触发`load`事件                                        | _boolean_          | `false`     |
+| finished        | 是否已加载完成，加载完成后不再触发`load`事件                                        | _boolean_          | `false`     |
+| error           | 是否加载失败，加载失败后点击错误提示可以重新<br>触发`load`事件，必须使用`sync`修饰符 | _boolean_          | `false`     |
+| offset          | 滚动条与底部距离小于 offset 时触发`load`事件                                       | _number \| string_ | `300`       |
+| loading-text    | 加载过程中的提示文案                                                               | _string_           | `加载中...` |
+| finished-text   | 加载完成后的提示文案                                                               | _string_           | -           |
+| error-text      | 加载失败后的提示文案                                                               | _string_           | -           |
+| immediate-check | 是否在初始化时立即执行滚动位置检查                                                 | _boolean_          | `true`      |
+| direction       | 滚动触发加载的方向，可选值为`up`                                                    | _string_           | `down`      |
+
+### Events
+
+| 事件名 | 说明                               | 回调参数 |
+|--------|----------------------------------|----------|
+| load   | 滚动条与底部距离小于 offset 时触发 | -        |
+
+### 方法
+
+通过 ref 可以获取到 List 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明                                                 | 参数 | 返回值 |
+|--------|----------------------------------------------------|------|--------|
+| check  | 检查当前的滚动位置，若已滚动至底部，则会触发 load 事件 | -    | -      |
+
+### Slots
+
+| 名称     | 说明                       |
+|----------|--------------------------|
+| default  | 列表内容                   |
+| loading  | 自定义底部加载中提示       |
+| finished | 自定义加载完成后的提示文案 |
+| error    | 自定义加载失败后的提示文案 |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                    | 默认值          | 描述 |
+|-------------------------|-----------------|------|
+| @list-icon-margin-right | `5px`           | -    |
+| @list-text-color        | `@gray-6`       | -    |
+| @list-text-font-size    | `@font-size-md` | -    |
+| @list-text-line-height  | `50px`          | -    |
+
+## 常见问题
+
+### List 的运行机制是什么？
+
+List 会监听浏览器的滚动事件并计算列表的位置，当列表底部与可视区域的距离小于`offset`时，List 会触发一次 load 事件。
+
+### 为什么 List 初始化后会立即触发 load 事件？
+
+List 初始化后会触发一次 load 事件，用于加载第一屏的数据，这个特性可以通过`immediate-check`属性关闭。
+
+### 为什么会连续触发 load 事件？
+
+如果一次请求加载的数据条数较少，导致列表内容无法铺满当前屏幕，List 会继续触发 load 事件，直到内容铺满屏幕或数据全部加载完成。因此你需要调整每次获取的数据条数，理想情况下每次请求获取的数据条数应能够填满一屏高度。
+
+### loading 和 finished 分别是什么含义？
+
+`List`有以下三种状态，理解这些状态有助于你正确地使用`List`组件：
+
+- 非加载中，`loading`为`false`，此时会根据列表滚动位置判断是否触发`load`事件（列表内容不足一屏幕时，会直接触发）
+- 加载中，`loading`为`true`，表示正在发送异步请求，此时不会触发`load`事件
+- 加载完成，`finished`为`true`，此时不会触发`load`事件
+
+在每次请求完毕后，需要手动将`loading`设置为`false`，表示加载结束
+
+### 使用 float 布局后一直触发加载？
+
+若 List 的内容使用了 float 布局，可以在容器上添加`van-clearfix`类名来清除浮动，使得 List 能正确判断元素位置
+
+```html
+<van-list>
+  <div class="van-clearfix">
+    <div class="float-item" />
+    <div class="float-item" />
+    <div class="float-item" />
+  </div>
+</van-list>
+```
+
+### 在 html、body 上设置 overflow 后一直触发加载？
+
+如果在 html 和 body 标签上设置了`overflow-x: hidden`样式，会导致 List 一直触发加载。
+
+```css
+html,
+body {
+  overflow-x: hidden;
+}
+```
+
+这个问题的原因是当元素设置了`overflow-x: hidden`样式时，该元素的`overflow-y`会被浏览器设置为`auto`，而不是默认值`visible`，导致 List 无法正确地判断滚动容器。解决方法是去除该样式，或者在 html 和 body 标签上添加`height: 100%`样式。

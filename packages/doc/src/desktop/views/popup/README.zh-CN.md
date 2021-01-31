@@ -1,78 +1,173 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Popup 弹出层
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+弹出层容器，用于展示弹窗、信息提示等内容，支持多个弹出层叠加展示。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Popup } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Popup);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+通过 `v-model:show` 控制弹出层是否展示。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-cell is-link @click="showPopup">展示弹出层</van-cell>
+<van-popup v-model:show="show">内容</van-popup>
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```js
+import { ref } from 'vue';
 
-### 浏览器支持
+export default {
+  setup() {
+    const show = ref(false);
+    const showPopup = () => {
+      show.value = true;
+    };
+    return {
+      show,
+      showPopup,
+    };
+  },
+};
+```
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+### 弹出位置
 
-### 加入我们
+通过 `position` 属性设置弹出位置，默认居中弹出，可以设置为 `top`、`bottom`、`left`、`right`。
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+```html
+<van-popup v-model:show="show" position="top" :style="{ height: '30%' }" />
+```
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+### 关闭图标
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+设置 `closeable` 属性后，会在弹出层的右上角显示关闭图标，并且可以通过 `close-icon` 属性自定义图标，使用 `close-icon-position` 属性可以自定义图标位置。
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+```html
+<van-popup
+  v-model:show="show"
+  closeable
+  position="bottom"
+  :style="{ height: '30%' }"
+/>
+<!-- 自定义图标 -->
+<van-popup
+  v-model:show="show"
+  closeable
+  close-icon="close"
+  position="bottom"
+  :style="{ height: '30%' }"
+/>
+<!-- 图标位置 -->
+<van-popup
+  v-model:show="show"
+  closeable
+  close-icon-position="top-left"
+  position="bottom"
+  :style="{ height: '30%' }"
+/>
+```
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+### 圆角弹窗
 
-### 生态
+设置 `round` 属性后，弹窗会根据弹出位置添加不同的圆角样式。
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+```html
+<van-popup
+  v-model:show="show"
+  round
+  position="bottom"
+  :style="{ height: '30%' }"
+/>
+```
 
-### 链接
+### 指定挂载位置
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+弹出层默认挂载到组件标签所在位置，可以通过 `teleport` 属性指定挂载位置。
 
-### 开源协议
+```html
+<!-- 挂载到 body 节点下 -->
+<van-popup v-model:show="show" teleport="body" />
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+<!-- 挂载到 #app 节点下 -->
+<van-popup v-model:show="show" teleport="#app" />
+
+<!-- 挂载到指定的元素下 -->
+<van-popup v-model:show="show" :teleport="myContainer" />
+```
+
+```js
+export default {
+  setup() {
+    const myContainer = document.querySelector('.my-container');
+    return {
+      myContainer,
+    };
+  },
+};
+```
+
+> 注意：使用 teleport 属性的组件不能为根节点
+
+## API
+
+### Props
+
+| 参数                   | 说明                                                                                                      | 类型                        | 默认值      |
+|------------------------|---------------------------------------------------------------------------------------------------------|-----------------------------|-------------|
+| v-model:show           | 是否显示弹出层                                                                                            | _boolean_                   | `false`     |
+| overlay                | 是否显示遮罩层                                                                                            | _boolean_                   | `true`      |
+| position               | 弹出位置，可选值为 `top` `bottom` `right` `left`                                                           | _string_                    | `center`    |
+| overlay-class          | 自定义遮罩层类名                                                                                          | _string \| Array \| object_ | -           |
+| overlay-style          | 自定义遮罩层样式                                                                                          | _object_                    | -           |
+| duration               | 动画时长，单位秒                                                                                           | _number \| string_          | `0.3`       |
+| round                  | 是否显示圆角                                                                                              | _boolean_                   | `false`     |
+| lock-scroll            | 是否锁定背景滚动                                                                                          | _boolean_                   | `true`      |
+| lazy-render            | 是否在显示弹层时才渲染节点                                                                                | _boolean_                   | `true`      |
+| close-on-popstate      | 是否在页面回退时自动关闭                                                                                  | _boolean_                   | `false`     |
+| close-on-click-overlay | 是否在点击遮罩层后关闭                                                                                    | _boolean_                   | `true`      |
+| closeable              | 是否显示关闭图标                                                                                          | _boolean_                   | `false`     |
+| close-icon             | 关闭图标名称或图片链接                                                                                    | _string_                    | `cross`     |
+| close-icon-position    | 关闭图标位置，可选值为`top-left`<br>`bottom-left` `bottom-right`                                           | _string_                    | `top-right` |
+| transition             | 动画类名，等价于 [transtion](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的`name`属性 | _string_                    | -           |
+| transition-appear      | 是否在初始渲染时启用过渡动画                                                                              | _boolean_                   | `false`     |
+| teleport               | 指定挂载的节点                                                                                            | _string \| Element_         | -           |
+| safe-area-inset-bottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei)                                 | _boolean_                   | `false`     |
+
+### Events
+
+| 事件名           | 说明                       | 回调参数       |
+|------------------|--------------------------|----------------|
+| click            | 点击弹出层时触发           | _event: Event_ |
+| click-overlay    | 点击遮罩层时触发           | -              |
+| click-close-icon | 点击关闭图标时触发         | _event: Event_ |
+| open             | 打开弹出层时触发           | -              |
+| close            | 关闭弹出层时触发           | -              |
+| opened           | 打开弹出层且动画结束后触发 | -              |
+| closed           | 关闭弹出层且动画结束后触发 | -              |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                           | 默认值                               | 描述 |
+|--------------------------------|--------------------------------------|------|
+| @popup-background-color        | `@white`                             | -    |
+| @popup-transition              | `transform @animation-duration-base` | -    |
+| @popup-round-border-radius     | `16px`                               | -    |
+| @popup-close-icon-size         | `22px`                               | -    |
+| @popup-close-icon-color        | `@gray-5`                            | -    |
+| @popup-close-icon-active-color | `@gray-6`                            | -    |
+| @popup-close-icon-margin       | `16px`                               | -    |
+| @popup-close-icon-z-index      | `1`                                  | -    |

@@ -1,78 +1,204 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Toast 轻提示
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+在页面中间弹出黑色半透明提示，用于消息通知、加载提示、操作结果提示等场景。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Toast } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Toast);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 文字提示
 
-### 贡献代码
+```js
+Toast('提示内容');
+```
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+### 加载提示
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+使用 `Toast.loading` 方法展示加载提示，通过 `forbidClick` 属性可以禁用背景点击。
 
-### 浏览器支持
+```js
+Toast.loading({
+  message: '加载中...',
+  forbidClick: true,
+});
+```
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+### 成功/失败提示
 
-### 加入我们
+使用 `Toast.success` 方法展示成功提示，使用 `Toast.fail` 方法展示失败提示。
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+```js
+Toast.success('成功文案');
+Toast.fail('失败文案');
+```
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+### 自定义图标
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+通过 `icon` 选项可以自定义图标，支持传入[图标名称](#/zh-CN/icon)或图片链接，通过`loadingType` 属性可以自定义加载图标类型。
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+```js
+Toast({
+  message: '自定义图标',
+  icon: 'like-o',
+});
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+Toast({
+  message: '自定义图片',
+  icon: 'https://img01.yzcdn.cn/vant/logo.png',
+});
 
-### 生态
+Toast.loading({
+  message: '加载中...',
+  forbidClick: true,
+  loadingType: 'spinner',
+});
+```
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+### 自定义位置
 
-### 链接
+Toast 默认渲染在屏幕正中位置，通过 `position` 属性可以控制 Toast 展示的位置。
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```js
+Toast({
+  message: '顶部展示',
+  position: 'top',
+});
 
-### 开源协议
+Toast({
+  message: '底部展示',
+  position: 'bottom',
+});
+```
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+### 动态更新提示
+
+执行 Toast 方法时会返回对应的 Toast 实例，通过修改实例上的 `message` 属性可以实现动态更新提示的效果。
+
+```js
+const toast = Toast.loading({
+  duration: 0,
+  forbidClick: true,
+  message: '倒计时 3 秒',
+});
+
+let second = 3;
+const timer = setInterval(() => {
+  second--;
+  if (second) {
+    toast.message = `倒计时 ${second} 秒`;
+  } else {
+    clearInterval(timer);
+    Toast.clear();
+  }
+}, 1000);
+```
+
+### 全局方法
+
+通过 `app.use` 注册 Toast 组件后，会自动在 app 的所有子组件上挂载 `$toast` 方法，便于在组件内调用。
+
+```js
+export default {
+  mounted() {
+    this.$toast('提示文案');
+  },
+};
+```
+
+### 单例模式
+
+Toast 默认采用单例模式，即同一时间只会存在一个 Toast，如果需要在同一时间弹出多个 Toast，可以参考下面的示例：
+
+```js
+Toast.allowMultiple();
+
+const toast1 = Toast('第一个 Toast');
+const toast2 = Toast.success('第二个 Toast');
+
+toast1.clear();
+toast2.clear();
+```
+
+### 修改默认配置
+
+通过 `Toast.setDefaultOptions` 函数可以全局修改 Toast 的默认配置。
+
+```js
+Toast.setDefaultOptions({ duration: 2000 });
+
+Toast.setDefaultOptions('loading', { forbidClick: true });
+
+Toast.resetDefaultOptions();
+
+Toast.resetDefaultOptions('loading');
+```
+
+## API
+
+### 方法
+
+| 方法名                    | 说明                                                                    | 参数                 | 返回值     |
+|---------------------------|-----------------------------------------------------------------------|----------------------|------------|
+| Toast                     | 展示提示                                                                | `options \| message` | toast 实例 |
+| Toast.loading             | 展示加载提示                                                            | `options \| message` | toast 实例 |
+| Toast.success             | 展示成功提示                                                            | `options \| message` | toast 实例 |
+| Toast.fail                | 展示失败提示                                                            | `options \| message` | toast 实例 |
+| Toast.clear               | 关闭提示                                                                | `clearAll: boolean`  | `void`     |
+| Toast.allowMultiple       | 允许同时存在多个 Toast                                                  | -                    | `void`     |
+| Toast.setDefaultOptions   | 修改默认配置，对所有 Toast 生效。<br>传入 type 可以修改指定类型的默认配置 | `type \| options`    | `void`     |
+| Toast.resetDefaultOptions | 重置默认配置，对所有 Toast 生效。<br>传入 type 可以重置指定类型的默认配置 | `type`               | `void`     |
+
+### Options
+
+| 参数     | 说明                                                   | 类型     | 默认值   |
+|----------|------------------------------------------------------|----------|----------|
+| type     | 提示类型，可选值为 `loading` `success`<br>`fail` `html` | _string_ | `text`   |
+| position | 位置，可选值为 `top` `bottom`                           | _string_ | `middle` |
+| message | 文本内容，支持通过`\n`换行 | _string_ | `''` | - |
+| icon | 自定义图标，支持传入[图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
+| iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
+| overlay | 是否显示背景遮罩层 | _boolean_ | `false` |
+| forbidClick | 是否禁止背景点击 | _boolean_ | `false` |
+| closeOnClick | 是否在点击后关闭 | _boolean_ | `false` |
+| closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `false` |
+| loadingType | [加载图标类型](#/zh-CN/loading), 可选值为 `spinner` | _string_ | `circular` |
+| duration | 展示时长(ms)，值为 0 时，toast 不会消失 | _number_ | `2000` |
+| className | 自定义类名 | _string \| Array \| object_ | - |
+| overlayClass `v3.0.4` | 自定义遮罩层类名 | _string \| Array \| object_ | - |
+| overlayStyle `v3.0.4` | 自定义遮罩层样式 | _object_ | - |
+| onOpened | 完全展示后的回调函数 | _Function_ | - |
+| onClose | 关闭时的回调函数 | _Function_ | - |
+| transition | 动画类名，等价于 [transtion](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的`name`属性 | _string_ | `van-fade` |
+| teleport | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi) | _string \| Element_ | `body` |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                            | 默认值                    | 描述 |
+|---------------------------------|---------------------------|------|
+| @toast-max-width                | `70%`                     | -    |
+| @toast-font-size                | `@font-size-md`           | -    |
+| @toast-text-color               | `@white`                  | -    |
+| @toast-loading-icon-color       | `@white`                  | -    |
+| @toast-line-height              | `@line-height-md`         | -    |
+| @toast-border-radius            | `@border-radius-lg`       | -    |
+| @toast-background-color         | `fade(@black, 70%)`       | -    |
+| @toast-icon-size                | `36px`                    | -    |
+| @toast-text-min-width           | `96px`                    | -    |
+| @toast-text-padding             | `@padding-xs @padding-sm` | -    |
+| @toast-default-padding          | `@padding-md`             | -    |
+| @toast-default-width            | `88px`                    | -    |
+| @toast-default-min-height       | `88px`                    | -    |
+| @toast-position-top-distance    | `20%`                     | -    |
+| @toast-position-bottom-distance | `20%`                     | -    |

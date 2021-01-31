@@ -1,55 +1,140 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Sidebar
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Sidebar, SidebarItem } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Sidebar);
+app.use(SidebarItem);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-sidebar v-model="active">
+  <van-sidebar-item title="Title" />
+  <van-sidebar-item title="Title" />
+  <van-sidebar-item title="Title" />
+</van-sidebar>
+```
 
-### Browser Support
+```js
+import { ref } from 'vue';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const active = ref(0);
+    return { active };
+  },
+};
+```
 
-### Ecosystem
+### Show Badge
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+```html
+<van-sidebar v-model="active">
+  <van-sidebar-item title="Title" dot />
+  <van-sidebar-item title="Title" badge="5" />
+  <van-sidebar-item title="Title" badge="20" />
+</van-sidebar>
+```
 
-### Links
+### Disabled
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-sidebar v-model="active">
+  <van-sidebar-item title="Title" />
+  <van-sidebar-item title="Title" disabled />
+  <van-sidebar-item title="Title" />
+</van-sidebar>
+```
 
-### LICENSE
+### Change Event
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+```html
+<van-sidebar v-model="active" @change="onChange">
+  <van-sidebar-item title="Title 1" />
+  <van-sidebar-item title="Title 2" />
+  <van-sidebar-item title="Title 3" />
+</van-sidebar>
+```
+
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
+
+export default {
+  setup() {
+    const active = ref(0);
+    const onChange = (index) => Toast(`Title ${index + 1}`);
+    return {
+      active,
+      onChange,
+    };
+  },
+};
+```
+
+## API
+
+### Sidebar Props
+
+| Attribute | Description          | Type               | Default |
+|-----------|----------------------|--------------------|---------|
+| v-model   | Index of chosen item | _number \| string_ | `0`     |
+
+### Sidebar Events
+
+| Event  | Description                      | Arguments                    |
+|--------|----------------------------------|------------------------------|
+| change | Emitted when chosen item changed | index: index of current item |
+
+### SidebarItem Props
+
+| Attribute | Description                                             | Type               | Default |
+|-----------|---------------------------------------------------------|--------------------|---------|
+| title     | Content                                                 | _string_           | `''`    |
+| dot       | Whether to show red dot                                 | _boolean_          | `false` |
+| badge     | Content of the badge                                    | _number \| string_ | `''`    |
+| disabled  | Whether to be disabled                                  | _boolean_          | `false` |
+| url       | Link                                                    | _string_           | -       |
+| to        | Target route of the link, same as to of vue-router      | _string \| object_ | -       |
+| replace   | If true, the navigation will not leave a history record | _boolean_          | `false` |
+
+### SidebarItem Events
+
+| Event | Description                     | Arguments                    |
+|-------|---------------------------------|------------------------------|
+| click | Emitted when an item is clicked | index: index of current item |
+
+### SidebarItem Slots
+
+| Name  | Description       |
+|-------|-------------------|
+| title | Custom item title |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                               | Default Value       | Description |
+|------------------------------------|---------------------|-------------|
+| @sidebar-width                     | `80px`              | -           |
+| @sidebar-font-size                 | `@font-size-md`     | -           |
+| @sidebar-line-height               | `@line-height-md`   | -           |
+| @sidebar-text-color                | `@text-color`       | -           |
+| @sidebar-disabled-text-color       | `@gray-5`           | -           |
+| @sidebar-padding                   | `20px @padding-sm`  | -           |
+| @sidebar-active-color              | `@active-color`     | -           |
+| @sidebar-background-color          | `@background-color` | -           |
+| @sidebar-selected-font-weight      | `@font-weight-bold` | -           |
+| @sidebar-selected-text-color       | `@text-color`       | -           |
+| @sidebar-selected-border-width     | `4px`               | -           |
+| @sidebar-selected-border-height    | `16px`              | -           |
+| @sidebar-selected-border-color     | `@red`              | -           |
+| @sidebar-selected-background-color | `@white`            | -           |

@@ -1,55 +1,210 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Radio
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { RadioGroup, Radio } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Radio);
+app.use(RadioGroup);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+Use `v-model` to bind the name of checked radio.
 
-### Browser Support
+```html
+<van-radio-group v-model="checked">
+  <van-radio name="1">Radio 1</van-radio>
+  <van-radio name="2">Radio 2</van-radio>
+</van-radio-group>
+```
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+```js
+import { ref } from 'vue';
 
-### Ecosystem
+export default {
+  setup() {
+    const checked = ref('1');
+    return { checked };
+  },
+};
+```
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+### Horizontal
 
-### Links
+```html
+<van-radio-group v-model="checked" direction="horizontal">
+  <van-radio name="1">Radio 1</van-radio>
+  <van-radio name="2">Radio 2</van-radio>
+</van-radio-group>
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### Disabled
 
-### LICENSE
+```html
+<van-radio-group v-model="checked" disabled>
+  <van-radio name="1">Radio 1</van-radio>
+  <van-radio name="2">Radio 2</van-radio>
+</van-radio-group>
+```
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+### Custom Shape
+
+```html
+<van-radio-group v-model="checked">
+  <van-radio name="1" shape="square">Radio 1</van-radio>
+  <van-radio name="2" shape="square">Radio 2</van-radio>
+</van-radio-group>
+```
+
+### Custom Color
+
+```html
+<van-radio-group v-model="checked">
+  <van-radio name="1" checked-color="#ee0a24">Radio 1</van-radio>
+  <van-radio name="2" checked-color="#ee0a24">Radio 2</van-radio>
+</van-radio-group>
+```
+
+### Custom Icon Size
+
+```html
+<van-radio-group v-model="checked">
+  <van-radio name="1" icon-size="24px">Radio 1</van-radio>
+  <van-radio name="2" icon-size="24px">Radio 2</van-radio>
+</van-radio-group>
+```
+
+### Custom Icon
+
+Use icon slot to custom icon
+
+```html
+<van-radio-group v-model="checked">
+  <van-radio name="1">
+    Radio 1
+    <template #icon="props">
+      <img class="img-icon" :src="props.checked ? activeIcon : inactiveIcon" />
+    </template>
+  </van-radio>
+  <van-radio name="2">
+    Radio 2
+    <template #icon="props">
+      <img class="img-icon" :src="props.checked ? activeIcon : inactiveIcon" />
+    </template>
+  </van-radio>
+</van-radio-group>
+
+<style>
+  .img-icon {
+    height: 20px;
+  }
+</style>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref('1');
+    return {
+      checked,
+      activeIcon: 'https://img01.yzcdn.cn/vant/user-active.png',
+      inactiveIcon: 'https://img01.yzcdn.cn/vant/user-inactive.png',
+    };
+  },
+};
+```
+
+### Disable Label Click
+
+```html
+<van-radio-group v-model="checked">
+  <van-radio name="1" label-disabled>Radio 1</van-radio>
+  <van-radio name="2" label-disabled>Radio 2</van-radio>
+</van-radio-group>
+```
+
+### Inside a Cell
+
+```html
+<van-radio-group v-model="checked">
+  <van-cell-group>
+    <van-cell title="Radio 1" clickable @click="checked = '1'">
+      <template #right-icon>
+        <van-radio name="1" />
+      </template>
+    </van-cell>
+    <van-cell title="Radio 2" clickable @click="checked = '2'">
+      <template #right-icon>
+        <van-radio name="2" />
+      </template>
+    </van-cell>
+  </van-cell-group>
+</van-radio-group>
+```
+
+## API
+
+### Radio Props
+
+| Attribute      | Description                    | Type               | Default |
+|----------------|--------------------------------|--------------------|---------|
+| name           | Radio name                     | _any_              | -       |
+| shape          | Can be set to `square`         | _string_           | `round` |
+| disabled       | Whether to disable radio       | _boolean_          | `false` |
+| label-disabled | Whether to disable label click | _boolean_          | `false` |
+| label-position | Can be set to `left`           | _string_           | `right` |
+| icon-size      | Icon size                      | _number \| string_ | `20px`  |
+| checked-color | Checked color | _string_ | `#1989fa` | - |
+
+### RadioGroup Props
+
+| Attribute | Description                           | Type               | Default    |
+|-----------|---------------------------------------|--------------------|------------|
+| v-model   | Name of checked radio                 | _any_              | -          |
+| disabled  | Disable all radios                    | _boolean_          | `false`    |
+| direction | Direction, can be set to `horizontal` | _string_           | `vertical` |
+| icon-size | Icon size of all radios               | _number \| string_ | `20px`     |
+| checked-color | Checked color of all radios | _string_ | `#1989fa` | - |
+
+### Radio Events
+
+| Event | Description                   | Parameters     |
+|-------|-------------------------------|----------------|
+| click | Emitted when radio is clicked | _event: Event_ |
+
+### RadioGroup Events
+
+| Event  | Description                | Parameters     |
+|--------|----------------------------|----------------|
+| change | Emitted when value changed | _name: string_ |
+
+### Radio Slots
+
+| Name    | Description  | SlotProps          |
+|---------|--------------|--------------------|
+| default | Custom label | -                  |
+| icon    | Custom icon  | _checked: boolean_ |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                             | Default Value              | Description |
+|----------------------------------|----------------------------|-------------|
+| @radio-size                      | `20px`                     | -           |
+| @radio-border-color              | `@gray-5`                  | -           |
+| @radio-transition-duration       | `@animation-duration-fast` | -           |
+| @radio-label-margin              | `@padding-xs`              | -           |
+| @radio-label-color               | `@text-color`              | -           |
+| @radio-checked-icon-color        | `@blue`                    | -           |
+| @radio-disabled-icon-color       | `@gray-5`                  | -           |
+| @radio-disabled-label-color      | `@gray-5`                  | -           |
+| @radio-disabled-background-color | `@border-color`            | -           |

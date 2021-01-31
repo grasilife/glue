@@ -1,55 +1,159 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# AddressEdit
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { AddressEdit } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(AddressEdit);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-address-edit
+  :area-list="areaList"
+  show-postal
+  show-delete
+  show-set-default
+  show-search-result
+  :search-result="searchResult"
+  :area-columns-placeholder="['Choose', 'Choose', 'Choose']"
+  @save="onSave"
+  @delete="onDelete"
+  @change-detail="onChangeDetail"
+/>
+```
 
-### Browser Support
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const searchResult = ref([]);
 
-### Ecosystem
+    const onSave = () => Toast('save');
+    const onDelete = () => Toast('delete');
+    const onChangeDetail = (val) => {
+      if (val) {
+        searchResult.value = [
+          {
+            name: 'Name1',
+            address: 'Address',
+          },
+        ];
+      } else {
+        searchResult.value = [];
+      }
+    };
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+    return {
+      onSave,
+      onDelete,
+      areaList,
+      searchResult,
+      onChangeDetail,
+    };
+  },
+};
+```
 
-### Links
+## API
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### Props
 
-### LICENSE
+| Attribute                | Description                                  | Type                       | Default  |
+|--------------------------|----------------------------------------------|----------------------------|----------|
+| area-list                | Area List                                    | _object_                   | -        |
+| area-columns-placeholder | placeholder of area columns                  | _string[]_                 | `[]`     |
+| area-placeholder         | placeholder of area input field              | _string_                   | `Area`   |
+| address-info             | Address Info                                 | _AddressInfo_              | `{}`     |
+| search-result            | Address search result                        | _SearchResult[]_           | `[]`     |
+| show-postal              | Whether to show postal field                 | _boolean_                  | `false`  |
+| show-delete              | Whether to show delete button                | _boolean_                  | `false`  |
+| show-set-default         | Whether to show default address switch       | _boolean_                  | `false`  |
+| show-search-result       | Whether to show address search result        | _boolean_                  | `false`  |
+| show-area                | Whether to show area cell                    | _boolean_                  | `true`   |
+| show-detail              | Whether to show detail field                 | _boolean_                  | `true`   |
+| disable-area             | Whether to disable area select               | _boolean_                  | `false`  |
+| save-button-text         | Save button text                             | _string_                   | `Save`   |
+| delete-button-text       | Delete button text                           | _string_                   | `Delete` |
+| detail-rows              | Detail input rows                            | _number \| string_         | `1`      |
+| detail-maxlength         | Detail maxlength                             | _number \| string_         | `200`    |
+| is-saving                | Whether to show save button loading status   | _boolean_                  | `false`  |
+| is-deleting              | Whether to show delete button loading status | _boolean_                  | `false`  |
+| tel-validator            | The method to validate tel                   | _(tel: string) => boolean_ | -        |
+| tel-maxlength            | Tel maxlength                                | _number \| string_         | -        |
+| postal-validator         | The method to validate postal                | _(tel: string) => boolean_ | -        |
+| validator                | Custom validator                             | _(key, val) => string_     | -        |
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+### Events
+
+| Event          | Description                              | Arguments             |
+|----------------|------------------------------------------|-----------------------|
+| save           | Emitted when the save button is clicked  | content：form content  |
+| focus          | Emitted when field is focused            | key: field name       |
+| delete         | Emitted when confirming delete           | content：form content  |
+| cancel-delete  | Emitted when canceling delete            | content：form content  |
+| select-search  | Emitted when a search result is selected | value: search content |
+| click-area     | Emitted when the area field is clicked   | -                     |
+| change-area    | Emitted when area changed                | values: area values   |
+| change-detail  | Emitted when address detail changed      | value: address detail |
+| change-default | Emitted when switching default address   | value: checked        |
+
+### Slots
+
+| Name    | Description                 |
+|---------|-----------------------------|
+| default | Custom content below postal |
+
+### Methods
+
+Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get AddressEdit instance and call instance methods.
+
+| Name             | Description        | Attribute             | Return value |
+|------------------|--------------------|-----------------------|--------------|
+| setAddressDetail | Set address detail | addressDetail: string | -            |
+
+### AddressInfo Data Structure
+
+| key           | Description        | Type               |
+|---------------|--------------------|--------------------|
+| id            | Address Id         | _number \| string_ |
+| name          | Name               | _string_           |
+| tel           | Phone              | _string_           |
+| province      | Province           | _string_           |
+| city          | City               | _string_           |
+| county        | County             | _string_           |
+| addressDetail | Detailed Address   | _string_           |
+| areaCode      | Area code          | _string_           |
+| postalCode    | Postal code        | _string_           |
+| isDefault     | Is default address | _boolean_          |
+
+### SearchResult Data Structure
+
+| key     | Description | Type     |
+|---------|-------------|----------|
+| name    | Name        | _string_ |
+| address | Address     | _string_ |
+
+### Area Data Structure
+
+Please refer to [Area](#/en-US/area) component。
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                                  | Default Value               | Description |
+|---------------------------------------|-----------------------------|-------------|
+| @address-edit-padding                 | `@padding-sm`               | -           |
+| @address-edit-buttons-padding         | `@padding-xl @padding-base` | -           |
+| @address-edit-button-margin-bottom    | `@padding-sm`               | -           |
+| @address-edit-detail-finish-color     | `@blue`                     | -           |
+| @address-edit-detail-finish-font-size | `@font-size-sm`             | -           |

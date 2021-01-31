@@ -1,55 +1,107 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Pagination
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Pagination } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Pagination);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-pagination v-model="currentPage" :total-items="24" :items-per-page="5" />
+```
 
-### Browser Support
+```js
+import { ref } from 'vue';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const currentPage = ref(1);
+    return { currentPage };
+  },
+};
+```
 
-### Ecosystem
+### Simple mode
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+```html
+<van-pagination v-model="currentPage" :page-count="12" mode="simple" />
+```
 
-### Links
+### Show ellipses
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-pagination
+  v-model="currentPage"
+  :total-items="125"
+  :show-page-size="3"
+  force-ellipses
+/>
+```
 
-### LICENSE
+### Custom Button
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+```html
+<van-pagination v-model="currentPage" :total-items="50" :show-page-size="5">
+  <template #prev-text>
+    <van-icon name="arrow-left" />
+  </template>
+  <template #next-text>
+    <van-icon name="arrow" />
+  </template>
+  <template #page="{ text }">{{ text }}</template>
+</van-pagination>
+```
+
+## API
+
+### Props
+
+| Attribute      | Description                                                                                           | Type               | Default    |
+|----------------|-------------------------------------------------------------------------------------------------------|--------------------|------------|
+| v-model        | Current page number                                                                                   | _number_           | -          |
+| mode           | Mode, can be set to `simple` `multi`                                                                  | _string_           | `multi`    |
+| prev-text      | Previous text                                                                                         | _string_           | `Previous` |
+| next-text      | Next text                                                                                             | _string_           | `Next`     |
+| total-items    | Total items                                                                                           | _number \| string_ | `0`        |
+| items-per-page | Item number per page                                                                                  | _number \| string_ | `10`       |
+| page-count     | The total number of pages, if not set, will be calculated based on `total-items` and `items-per-page` | _number \| string_ | `-`        |
+| show-page-size | Count of page size to show                                                                            | _number \| string_ | `5`        |
+| force-ellipses | Whether to show ellipses                                                                              | _boolean_          | `false`    |
+
+### Events
+
+| Event  | Description                       | Arguments |
+|--------|-----------------------------------|-----------|
+| change | Emitted when current page changed | -         |
+
+### Slots
+
+| Name      | Description            | SlotProps                                           |
+|-----------|------------------------|-----------------------------------------------------|
+| page      | Custom pagination item | _{ number: number, text: string, active: boolean }_ |
+| prev-text | Custom prev text       | `-`                                                 |
+| next-text | Custom next text       | `-`                                                 |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                                       | Default Value       | Description |
+|--------------------------------------------|---------------------|-------------|
+| @pagination-height                         | `40px`              | -           |
+| @pagination-font-size                      | `@font-size-md`     | -           |
+| @pagination-item-width                     | `36px`              | -           |
+| @pagination-item-default-color             | `@blue`             | -           |
+| @pagination-item-disabled-color            | `@gray-7`           | -           |
+| @pagination-item-disabled-background-color | `@background-color` | -           |
+| @pagination-background-color               | `@white`            | -           |
+| @pagination-desc-color                     | `@gray-7`           | -           |
+| @pagination-disabled-opacity               | `@disabled-opacity` | -           |

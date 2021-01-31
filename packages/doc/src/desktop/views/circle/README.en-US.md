@@ -1,55 +1,152 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Circle
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Circle } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Circle);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-circle
+  v-model:current-rate="currentRate"
+  :rate="30"
+  :speed="100"
+  :text="text"
+/>
+```
 
-### Browser Support
+```js
+import { ref, computed } from 'vue';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const currentRate = ref(0);
+    const text = computed(() => currentRate.value.toFixed(0) + '%');
 
-### Ecosystem
+    return {
+      text,
+      currentRate,
+    };
+  },
+};
+```
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+### Custom Width
 
-### Links
+```html
+<van-circle
+  v-model:current-rate="currentRate"
+  :rate="rate"
+  :stroke-width="60"
+  text="Custom Width"
+/>
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### Custom Color
 
-### LICENSE
+```html
+<van-circle
+  v-model:current-rate="currentRate"
+  :rate="rate"
+  layer-color="#ebedf0"
+  text="Custom Color"
+/>
+```
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+### Gradient
+
+```html
+<van-circle
+  v-model:current-rate="currentRate"
+  :rate="rate"
+  :color="gradientColor"
+  text="Gradient"
+/>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const currentRate = ref(0);
+    const gradientColor = {
+      '0%': '#3fecff',
+      '100%': '#6149f6',
+    };
+
+    return {
+      currentRate,
+      gradientColor,
+    };
+  },
+};
+```
+
+### Counter Clockwise
+
+```html
+<van-circle
+  v-model:current-rate="currentRate"
+  :rate="rate"
+  :clockwise="false"
+  text="Counter Clockwise"
+/>
+```
+
+### Custom Size
+
+```html
+<van-circle
+  v-model:current-rate="currentRate"
+  :rate="rate"
+  size="120px"
+  text="Custom Size"
+/>
+```
+
+## API
+
+### Props
+
+| Attribute            | Description                                       | Type               | Default   |
+|----------------------|---------------------------------------------------|--------------------|-----------|
+| v-model:current-rate | Current rate                                      | _number_           | -         |
+| rate                 | Target rate                                       | _number \| string_ | `100`     |
+| size                 | Circle size                                       | _number \| string_ | `100px`   |
+| color                | Progress color, passing object to render gradient | _string \| object_ | `#1989fa` |
+| layer-color          | Layer color                                       | _string_           | `white`   |
+| fill                 | Fill color                                        | _string_           | `none`    |
+| speed                | Animate speed（rate/s）                             | _number \| string_ | `0`       |
+| text                 | Text                                              | _string_           | -         |
+| stroke-width         | Stroke width                                      | _number \| string_ | `40`      |
+| stroke-linecap       | Stroke linecap，can be set to `sqaure` `butt`      | _string_           | `round`   |
+| clockwise            | Whether to be clockwise                           | _boolean_          | `true`    |
+
+### Slots
+
+| Name    | Description         |
+|---------|---------------------|
+| default | custom text content |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                     | Default Value       | Description |
+|--------------------------|---------------------|-------------|
+| @circle-size             | `100px`             | -           |
+| @circle-color            | `@blue`             | -           |
+| @circle-layer-color      | `@white`            | -           |
+| @circle-text-color       | `@text-color`       | -           |
+| @circle-text-font-weight | `@font-weight-bold` | -           |
+| @circle-text-font-size   | `@font-size-md`     | -           |
+| @circle-text-line-height | `@line-height-md`   | -           |

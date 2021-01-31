@@ -1,78 +1,195 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Slider 滑块
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+滑动输入条，用于在给定的范围内选择一个值。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Slider } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Slider);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+```html
+<van-slider v-model="value" @change="onChange" />
+```
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+export default {
+  setup() {
+    const value = ref(50);
+    const onChange = (value) => Toast('当前值：' + value);
+    return {
+      value,
+      onChange,
+    };
+  },
+};
+```
 
-### 浏览器支持
+### 双滑块
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+添加 `range` 属性就可以开启双滑块模式，确保 `value` 的值是一个数组。
 
-### 加入我们
+```html
+<van-slider v-model="value" range @change="onChange" />
+```
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+export default {
+  setup() {
+    // 双滑块模式时，值必须是数组
+    const value = ref([10, 50]);
+    const onChange = (value) => Toast('当前值：' + value);
+    return {
+      value,
+      onChange,
+    };
+  },
+};
+```
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+### 指定选择范围
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+```html
+<van-slider v-model="value" :min="-50" :max="50" />
+```
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+### 禁用
 
-### 生态
+```html
+<van-slider v-model="value" disabled />
+```
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+### 指定步长
 
-### 链接
+```html
+<van-slider v-model="value" :step="10" />
+```
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### 自定义样式
 
-### 开源协议
+```html
+<van-slider v-model="value" bar-height="4px" active-color="#ee0a24" />
+```
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+### 自定义按钮
+
+```html
+<van-slider v-model="value" active-color="#ee0a24">
+  <template #button>
+    <div class="custom-button">{{ value }}</div>
+  </template>
+</van-slider>
+
+<style>
+  .custom-button {
+    width: 26px;
+    color: #fff;
+    font-size: 10px;
+    line-height: 18px;
+    text-align: center;
+    background-color: #ee0a24;
+    border-radius: 100px;
+  }
+</style>
+```
+
+### 垂直方向
+
+设置 `vertical` 属性后，滑块会垂直展示，且高度为 100% 父元素高度。
+
+```html
+<div :style="{ height: '150px' }">
+  <van-slider v-model="value" vertical @change="onChange" />
+  <van-slider
+    v-model="value2"
+    range
+    vertical
+    style="margin-left: 100px;"
+    @change="onChange"
+  />
+</div>
+```
+
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
+
+export default {
+  setup() {
+    const value = ref(50);
+    const value2 = ref([10, 50]);
+    const onChange = (value) => Toast('当前值：' + value);
+    return {
+      value,
+      value2,
+      onChange,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| 参数              | 说明                                      | 类型                 | 默认值    |
+|-------------------|-----------------------------------------|----------------------|-----------|
+| v-model           | 当前进度百分比                            | _number \| number[]_ | `0`       |
+| max               | 最大值                                    | _number \| string_   | `100`     |
+| min               | 最小值                                    | _number \| string_   | `0`       |
+| step              | 步长                                      | _number \| string_   | `1`       |
+| bar-height        | 进度条高度，默认单位为`px`                 | _number \| string_   | `2px`     |
+| button-size       | 滑块按钮大小，默认单位为`px`               | _number \| string_   | `24px`    |
+| active-color      | 进度条激活态颜色                          | _string_             | `#1989fa` |
+| inactive-color    | 进度条非激活态颜色                        | _string_             | `#e5e5e5` |
+| range             | 是否开启双滑块模式                        | _boolean_            | `false`   |
+| disabled          | 是否禁用滑块                              | _boolean_            | `false`   |
+| readonly `v3.0.5` | 是否为只读状态，只读状态下无法修改滑块的值 | _boolean_            | `false`   |
+| vertical          | 是否垂直展示                              | _boolean_            | `false`   |
+
+### Events
+
+| 事件名             | 说明                     | 回调参数        |
+|--------------------|------------------------|-----------------|
+| update:model-value | 进度变化时实时触发       | value: 当前进度 |
+| change             | 进度变化且结束拖动后触发 | value: 当前进度 |
+| drag-start         | 开始拖动时触发           | -               |
+| drag-end           | 结束拖动时触发           | -               |
+
+### Slots
+
+| 名称   | 说明           |
+|--------|--------------|
+| button | 自定义滑动按钮 |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                              | 默认值                         | 描述 |
+|-----------------------------------|--------------------------------|------|
+| @slider-active-background-color   | `@blue`                        | -    |
+| @slider-inactive-background-color | `@gray-3`                      | -    |
+| @slider-disabled-opacity          | `@disabled-opacity`            | -    |
+| @slider-bar-height                | `2px`                          | -    |
+| @slider-button-width              | `24px`                         | -    |
+| @slider-button-height             | `24px`                         | -    |
+| @slider-button-border-radius      | `50%`                          | -    |
+| @slider-button-background-color   | `@white`                       | -    |
+| @slider-button-box-shadow         | `0 1px 2px rgba(0, 0, 0, 0.5)` | -    |

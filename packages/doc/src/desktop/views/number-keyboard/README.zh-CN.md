@@ -1,78 +1,241 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# NumberKeyboard 数字键盘
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+虚拟数字键盘，可以配合[密码输入框组件](#/zh-CN/password-input)或自定义的输入框组件使用。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { NumberKeyboard } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(NumberKeyboard);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 默认样式
 
-### 贡献代码
+数字键盘提供了 `input`、`delete`、`blur` 事件，分别对应输入内容、删除内容和失去焦点的动作。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-cell @touchstart.stop="show = true">弹出默认键盘</van-cell>
+<van-number-keyboard
+  :show="show"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-### 浏览器支持
+export default {
+  setup() {
+    const show = ref(true);
+    const onInput = (value) => Toast(value);
+    const onDelete = () => Toast('删除');
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+    return {
+      show,
+      onInput,
+      onDelete,
+    };
+  },
+};
+```
 
-### 加入我们
+> 点击键盘以外的区域时，键盘会自动收起，通过阻止元素上的 touchstart 事件冒泡可以避免键盘收起。
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+### 带右侧栏的键盘
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+将 theme 属性设置为 `custom` 来展示键盘的右侧栏，常用于输入金额的场景。
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+```html
+<van-number-keyboard
+  :show="show"
+  theme="custom"
+  extra-key="."
+  close-button-text="完成"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
+```
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+### 身份证号键盘
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+通过 `extra-key` 属性可以设置左下角按键内容，比如需要输入身份证号时，可以将 `extra-key` 设置为 `X`。
 
-### 生态
+```html
+<van-cell plain type="primary" @touchstart.stop="show = true">
+  弹出身份证号键盘
+</van-cell>
+<van-number-keyboard
+  :show="show"
+  extra-key="X"
+  close-button-text="完成"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
+```
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+### 键盘标题
 
-### 链接
+通过 `title` 属性可以设置键盘标题。
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-cell plain type="primary" @touchstart.stop="show = true">
+  弹出带标题的键盘
+</van-cell>
+<van-number-keyboard
+  :show="show"
+  title="键盘标题"
+  extra-key="."
+  close-button-text="完成"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
+```
 
-### 开源协议
+### 配置多个按键
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+当 theme 为 `custom` 时，支持以数组的形式配置两个 `extra-key`。
+
+```html
+<van-cell plain type="primary" @touchstart.stop="show = true">
+  弹出配置多个按键的键盘
+</van-cell>
+<van-number-keyboard
+  :show="show"
+  :extra-key="['00', '.']"
+  close-button-text="完成"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
+```
+
+### 随机数字键盘
+
+通过 `random-key-order` 属性可以随机排序数字键盘，常用于安全等级较高的场景。
+
+```html
+<van-cell @touchstart.stop="show = true"> 弹出配置随机数字的键盘 </van-cell>
+<van-number-keyboard
+  :show="show"
+  random-key-order
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
+```
+
+### 双向绑定
+
+可以通过 `v-model` 绑定键盘当前输入值。
+
+```html
+<van-field v-model="value" readonly clickable @touchstart.stop="show = true" />
+<van-number-keyboard
+  v-model="value"
+  :show="show"
+  :maxlength="6"
+  @blur="show = false"
+/>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const show = ref(true);
+    const value = ref('');
+    return {
+      show,
+      value,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| 参数                   | 说明                                                                      | 类型                 | 默认值    |
+|------------------------|-------------------------------------------------------------------------|----------------------|-----------|
+| v-model                | 当前输入值                                                                | _string_             | -         |
+| show                   | 是否显示键盘                                                              | _boolean_            | -         |
+| title                  | 键盘标题                                                                  | _string_             | -         |
+| theme                  | 样式风格，可选值为 `custom`                                                | _string_             | `default` |
+| maxlength              | 输入值最大长度                                                            | _number \| string_   | -         |
+| transition             | 是否开启过场动画                                                          | _boolean_            | `true`    |
+| z-index                | 键盘 z-index 层级                                                         | _number \| string_   | `100`     |
+| extra-key              | 底部额外按键的内容                                                        | _string \| string[]_ | `''`      |
+| close-button-text      | 关闭按钮文字，空则不展示                                                   | _string_             | -         |
+| delete-button-text     | 删除按钮文字，空则展示删除图标                                             | _string_             | -         |
+| close-button-loading   | 是否将关闭按钮设置为加载中状态，仅在 `theme="custom"` 时有效               | _boolean_            | `false`   |
+| show-delete-key        | 是否展示删除图标                                                          | _boolean_            | `true`    |
+| blur-on-close `v3.0.6` | 是否在点击关闭按钮时触发 blur 事件                                        | _boolean_            | `true`    |
+| hide-on-click-outside  | 是否在点击外部时收起键盘                                                  | _boolean_            | `true`    |
+| teleport               | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi)         | _string \| Element_  | -         |
+| safe-area-inset-bottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_            | `true`    |
+| random-key-order       | 是否将通过随机顺序展示按键                                                | _boolean_            | `false`   |
+
+### Events
+
+| 事件名 | 说明                           | 回调参数      |
+|--------|------------------------------|---------------|
+| input  | 点击按键时触发                 | key: 按键内容 |
+| delete | 点击删除键时触发               | -             |
+| close  | 点击关闭按钮时触发             | -             |
+| blur   | 点击关闭按钮或非键盘区域时触发 | -             |
+| show   | 键盘完全弹出时触发             | -             |
+| hide   | 键盘完全收起时触发             | -             |
+
+### Slots
+
+| 名称       | 说明                 |
+|------------|--------------------|
+| delete     | 自定义删除按键内容   |
+| extra-key  | 自定义左下角按键内容 |
+| title-left | 自定义标题栏左侧内容 |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                                       | 默认值             | 描述 |
+|--------------------------------------------|--------------------|------|
+| @number-keyboard-background-color          | `@gray-2`          | -    |
+| @number-keyboard-key-height                | `48px`             | -    |
+| @number-keyboard-key-font-size             | `28px`             | -    |
+| @number-keyboard-key-active-color          | `@gray-3`          | -    |
+| @number-keyboard-delete-font-size          | `@font-size-lg`    | -    |
+| @number-keyboard-title-color               | `@gray-7`          | -    |
+| @number-keyboard-title-height              | `34px`             | -    |
+| @number-keyboard-title-font-size           | `@font-size-lg`    | -    |
+| @number-keyboard-close-padding             | `0 @padding-md`    | -    |
+| @number-keyboard-close-color               | `@text-link-color` | -    |
+| @number-keyboard-close-font-size           | `@font-size-md`    | -    |
+| @number-keyboard-button-text-color         | `@white`           | -    |
+| @number-keyboard-button-background-color   | `@blue`            | -    |
+| @number-keyboard-cursor-color              | `@text-color`      | -    |
+| @number-keyboard-cursor-width              | `1px`              | -    |
+| @number-keyboard-cursor-height             | `40%`              | -    |
+| @number-keyboard-cursor-animation-duration | `1s`               | -    |
+| @number-keyboard-z-index                   | `100`              | -    |
+
+## 常见问题
+
+### 在桌面端无法操作组件？
+
+参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。

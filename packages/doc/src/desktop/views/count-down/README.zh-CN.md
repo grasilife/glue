@@ -1,78 +1,208 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# CountDown 倒计时
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+用于实时展示倒计时数值，支持毫秒精度。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { CountDown } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(CountDown);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+`time` 属性表示倒计时总时长，单位为毫秒。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-count-down :time="time" />
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```js
+import { ref } from 'vue';
 
-### 浏览器支持
+export default {
+  setup() {
+    const time = ref(30 * 60 * 60 * 1000);
+    return { time };
+  },
+};
+```
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+### 自定义格式
 
-### 加入我们
+通过 `format` 属性设置倒计时文本的内容。
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+```html
+<van-count-down :time="time" format="DD 天 HH 时 mm 分 ss 秒" />
+```
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+### 毫秒级渲染
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+倒计时默认每秒渲染一次，设置 `millisecond` 属性可以开启毫秒级渲染。
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+```html
+<van-count-down millisecond :time="time" format="HH:mm:ss:SS" />
+```
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+### 自定义样式
 
-### 生态
+通过插槽自定义倒计时的样式，`timeData` 对象格式见下方表格。
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+```html
+<van-count-down :time="time">
+  <template #default="timeData">
+    <span class="block">{{ timeData.hours }}</span>
+    <span class="colon">:</span>
+    <span class="block">{{ timeData.minutes }}</span>
+    <span class="colon">:</span>
+    <span class="block">{{ timeData.seconds }}</span>
+  </template>
+</van-count-down>
 
-### 链接
+<style>
+  .colon {
+    display: inline-block;
+    margin: 0 4px;
+    color: #ee0a24;
+  }
+  .block {
+    display: inline-block;
+    width: 22px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    background-color: #ee0a24;
+  }
+</style>
+```
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### 手动控制
 
-### 开源协议
+通过 ref 获取到组件实例后，可以调用 `start`、`pause`、`reset` 方法。
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+```html
+<van-count-down
+  ref="countDown"
+  millisecond
+  :time="3000"
+  :auto-start="false"
+  format="ss:SSS"
+  @finish="onFinish"
+/>
+<van-grid clickable>
+  <van-grid-item text="开始" icon="play-circle-o" @click="start" />
+  <van-grid-item text="暂停" icon="pause-circle-o" @click="pause" />
+  <van-grid-item text="重置" icon="replay" @click="reset" />
+</van-grid>
+```
+
+```js
+import { Toast } from 'vant';
+
+export default {
+  setup() {
+    const countDown = ref(null);
+
+    const start = () => {
+      countDown.value.start();
+    };
+    const pause = () => {
+      countDown.value.pause();
+    };
+    const reset = () => {
+      countDown.value.reset();
+    };
+    const onFinish = () => Toast('倒计时结束');
+
+    return {
+      start,
+      pause,
+      reset,
+      onFinish,
+      countDown,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| 参数        | 说明                | 类型               | 默认值     |
+|-------------|-------------------|--------------------|------------|
+| time        | 倒计时时长，单位毫秒 | _number \| string_ | `0`        |
+| format      | 时间格式            | _string_           | `HH:mm:ss` |
+| auto-start  | 是否自动开始倒计时  | _boolean_          | `true`     |
+| millisecond | 是否开启毫秒级渲染  | _boolean_          | `false`    |
+
+### format 格式
+
+| 格式 | 说明       |
+|------|----------|
+| DD   | 天数       |
+| HH   | 小时       |
+| mm   | 分钟       |
+| ss   | 秒数       |
+| S    | 毫秒（1 位） |
+| SS   | 毫秒（2 位） |
+| SSS  | 毫秒（3 位） |
+
+### Events
+
+| 事件名 | 说明             | 回调参数                   |
+|--------|----------------|----------------------------|
+| finish | 倒计时结束时触发 | -                          |
+| change | 倒计时变化时触发 | _currentTime: CurrentTime_ |
+
+### Slots
+
+| 名称    | 说明       | 参数                       |
+|---------|----------|----------------------------|
+| default | 自定义内容 | _currentTime: CurrentTime_ |
+
+### CurrentTime 格式
+
+| 名称         | 说明                 | 类型     |
+|--------------|--------------------|----------|
+| total        | 剩余总时间（单位毫秒） | _number_ |
+| days         | 剩余天数             | _number_ |
+| hours        | 剩余小时             | _number_ |
+| minutes      | 剩余分钟             | _number_ |
+| seconds      | 剩余秒数             | _number_ |
+| milliseconds | 剩余毫秒             | _number_ |
+
+### 方法
+
+通过 ref 可以获取到 CountDown 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明                                                        | 参数 | 返回值 |
+|--------|-----------------------------------------------------------|------|--------|
+| start  | 开始倒计时                                                  | -    | -      |
+| pause  | 暂停倒计时                                                  | -    | -      |
+| reset  | 重设倒计时，若 `auto-start` 为 `true`，重设后会自动开始倒计时 | -    | -      |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                    | 默认值            | 描述 |
+|-------------------------|-------------------|------|
+| @count-down-text-color  | `@text-color`     | -    |
+| @count-down-font-size   | `@font-size-md`   | -    |
+| @count-down-line-height | `@line-height-md` | -    |
+
+## 常见问题
+
+### 在 iOS 系统上倒计时不生效？
+
+如果你遇到了在 iOS 上倒计时不生效的问题，请确认在创建 Date 对象时没有使用`new Date('2020-01-01')`这样的写法，iOS 不支持以中划线分隔的日期格式，正确写法是`new Date('2020/01/01')`。
+
+对此问题的详细解释：[stackoverflow](https://stackoverflow.com/questions/13363673/javascript-date-is-invalid-on-ios)。

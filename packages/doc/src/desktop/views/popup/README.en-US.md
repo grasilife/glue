@@ -1,55 +1,163 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Popup
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Popup } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Popup);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-cell is-link @click="showPopup">Show Popup</van-cell>
+<van-popup v-model:show="show">Content</van-popup>
+```
 
-### Browser Support
+```js
+import { ref } from 'vue';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const show = ref(false);
+    const showPopup = () => {
+      show.value = true;
+    };
+    return {
+      show,
+      showPopup,
+    };
+  },
+};
+```
 
-### Ecosystem
+### Position
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+Use `position` prop to set popup display position.
 
-### Links
+```html
+<van-popup v-model:show="show" position="top" :style="{ height: '30%' }" />
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### Close Icon
 
-### LICENSE
+```html
+<van-popup
+  v-model:show="show"
+  closeable
+  position="bottom"
+  :style="{ height: '30%' }"
+/>
+<!-- Custom Icon -->
+<van-popup
+  v-model:show="show"
+  closeable
+  close-icon="close"
+  position="bottom"
+  :style="{ height: '30%' }"
+/>
+<!-- Icon Position -->
+<van-popup
+  v-model:show="show"
+  closeable
+  close-icon-position="top-left"
+  position="bottom"
+  :style="{ height: '30%' }"
+/>
+```
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+### Round Corner
+
+```html
+<van-popup
+  v-model:show="show"
+  round
+  position="bottom"
+  :style="{ height: '30%' }"
+/>
+```
+
+### Get Container
+
+Use `teleport` prop to specify mount location.
+
+```html
+<!-- teleport to body -->
+<van-popup v-model:show="show" teleport="body" />
+
+<!-- teleport to #app -->
+<van-popup v-model:show="show" teleport="#app" />
+
+<!-- teleport to Element -->
+<van-popup v-model:show="show" :teleport="myContainer" />
+```
+
+```js
+export default {
+  setup() {
+    const myContainer = document.querySelector('.my-container');
+    return {
+      myContainer,
+    };
+  },
+};
+```
+
+> Tips: The teleport prop cannot be used on the root node
+
+## API
+
+### Props
+
+| Attribute              | Description                                                                                                        | Type                        | Default     |
+|------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------|-------------|
+| v-model:show           | Whether to show popup                                                                                              | _boolean_                   | `false`     |
+| overlay                | Whether to show overlay                                                                                            | _boolean_                   | `true`      |
+| position               | Can be set to `top` `bottom` `right` `left`                                                                        | _string_                    | `center`    |
+| overlay-class          | Custom overlay class                                                                                               | _string \| Array \| object_ | -           |
+| overlay-style          | Custom overlay style                                                                                               | _object_                    | -           |
+| duration               | Transition duration, unit second                                                                                   | _number \| string_          | `0.3`       |
+| round                  | Whether to show round corner                                                                                       | _boolean_                   | `false`     |
+| lock-scroll            | Whether to lock background scroll                                                                                  | _boolean_                   | `true`      |
+| lazy-render            | Whether to lazy render util appeared                                                                               | _boolean_                   | `true`      |
+| close-on-popstate      | Whether to close when popstate                                                                                     | _boolean_                   | `false`     |
+| close-on-click-overlay | Whether to close when overlay is clicked                                                                           | _boolean_                   | `true`      |
+| closeable              | Whether to show close icon                                                                                         | _boolean_                   | `false`     |
+| close-icon             | Close icon name                                                                                                    | _string_                    | `cross`     |
+| close-icon-position    | Close Icon Position，can be set to `top-left` `bottom-left` `bottom-right`                                          | _string_                    | `top-right` |
+| transition             | Transition, equivalent to `name` prop of [transtion](https://v3.vuejs.org/api/built-in-components.html#transition) | _string_                    | -           |
+| transition-appear      | Whether to apply transition on initial render                                                                      | _boolean_                   | `false`     |
+| teleport               | Return the mount node for Popup                                                                                    | _string \| Element_         | -           |
+| safe-area-inset-bottom | Whether to enable bottom safe area adaptation                                                                      | _boolean_                   | `false`     |
+
+### Events
+
+| Event            | Description                        | Arguments      |
+|------------------|------------------------------------|----------------|
+| click            | Emitted when Popup is clicked      | _event: Event_ |
+| click-overlay    | Emitted when overlay is clicked    | -              |
+| click-close-icon | Emitted when close icon is clicked | _event: Event_ |
+| open             | Emitted when opening Popup         | -              |
+| close            | Emitted when closing Popup         | -              |
+| opened           | Emitted when Popup is opened       | -              |
+| closed           | Emitted when Popup is closed       | -              |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                           | Default Value                        | Description |
+|--------------------------------|--------------------------------------|-------------|
+| @popup-background-color        | `@white`                             | -           |
+| @popup-transition              | `transform @animation-duration-base` | -           |
+| @popup-round-border-radius     | `16px`                               | -           |
+| @popup-close-icon-size         | `22px`                               | -           |
+| @popup-close-icon-color        | `@gray-5`                            | -           |
+| @popup-close-icon-active-color | `@gray-6`                            | -           |
+| @popup-close-icon-margin       | `16px`                               | -           |
+| @popup-close-icon-z-index      | `1`                                  | -           |

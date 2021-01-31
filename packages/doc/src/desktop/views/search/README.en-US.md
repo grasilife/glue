@@ -1,55 +1,178 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Search
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Search } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Search);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-search v-model="value" placeholder="Placeholder" />
+```
 
-### Browser Support
+```js
+import { ref } from 'vue';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const value = ref('');
+    return { value };
+  },
+};
+```
 
-### Ecosystem
+### Listen to Events
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+`search` event will be Emitted when click the search button on the keyboard, `cancel` event will be Emitted when click the cancel button.
 
-### Links
+```html
+<form action="/">
+  <van-search
+    v-model="value"
+    show-action
+    placeholder="Placeholder"
+    @search="onSearch"
+    @cancel="onCancel"
+  />
+</form>
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-### LICENSE
+export default {
+  setup() {
+    const value = ref('');
+    const onSearch = (val) => Toast(val);
+    const onCancel = () => Toast('Cancel');
+    return {
+      value,
+      onSearch,
+      onCancel,
+    };
+  },
+};
+```
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+> Tips: There will be a search button on the keyboard when Search is inside a form in iOS.
+
+### Input Align
+
+```html
+<van-search v-model="value" input-align="center" placeholder="Placeholder" />
+```
+
+### Disabled
+
+```html
+<van-search v-model="value" disabled placeholder="Placeholder" />
+```
+
+### Custom Background Color
+
+```html
+<van-search
+  v-model="value"
+  shape="round"
+  background="#4fc08d"
+  placeholder="Placeholder"
+/>
+```
+
+### Custom Action Button
+
+Use `action` slot to custom right button, `cancel` event will no longer be Emitted when use this slot.
+
+```html
+<van-search
+  v-model="value"
+  show-action
+  label="Address"
+  placeholder="Placeholder"
+  @search="onSearch"
+>
+  <template #action>
+    <div @click="onSearch">Search</div>
+  </template>
+</van-search>
+```
+
+## API
+
+### Props
+
+| Attribute     | Description                                                                                                                                         | Type               | Default   |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-----------|
+| label         | Left side label                                                                                                                                     | _string_           | -         |
+| shape         | Shape of field, can be set to `round`                                                                                                               | _string_           | `square`  |
+| background    | Background color of field                                                                                                                           | _string_           | `#f2f2f2` |
+| maxlength     | Max length of value                                                                                                                                 | _number \| string_ | -         |
+| placeholder   | Placeholder                                                                                                                                         | _string_           | -         |
+| clearable     | Whether to be clearable                                                                                                                             | _boolean_          | `true`    |
+| clear-trigger | When to display the clear icon, `always` means to display the icon when value is not empty, `focus` means to display the icon when input is focused | _string_           | `focus`   |
+| autofocus     | Whether to auto focus, unsupported in iOS                                                                                                           | _boolean_          | `false`   |
+| show-action   | Whether to show right action button                                                                                                                 | _boolean_          | `false`   |
+| action-text   | Text of action button                                                                                                                               | _boolean_          | `Cancel`  |
+| disabled      | Whether to disable field                                                                                                                            | _boolean_          | `false`   |
+| readonly      | Whether to be readonly                                                                                                                              | _boolean_          | `false`   |
+| error         | Whether to show error info                                                                                                                          | _boolean_          | `false`   |
+| input-align   | Text align of field, can be set to `center` `right`                                                                                                 | _string_           | `left`    |
+| left-icon     | Left icon name                                                                                                                                      | _string_           | `search`  |
+| right-icon    | Right icon name                                                                                                                                     | _string_           | -         |
+
+### Events
+
+| Event              | Description                               | Arguments       |
+|--------------------|-------------------------------------------|-----------------|
+| search             | Emitted when confirming search            | _value: string_ |
+| update:model-value | Emitted when input value changed          | _value: string_ |
+| focus              | Emitted when input is focused             | _event: Event_  |
+| blur               | Emitted when input is blured              | _event: Event_  |
+| clear              | Emitted when the clear icon is clicked    | _event: Event_  |
+| cancel             | Emitted when the cancel button is clicked | -               |
+
+### Methods
+
+Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get Search instance and call instance methods.
+
+| Name  | Description         | Attribute | Return value |
+|-------|---------------------|-----------|--------------|
+| focus | Trigger input focus | -         | -            |
+| blur  | Trigger input blur  | -         | -            |
+
+### Slots
+
+| Name       | Description                                                 |
+|------------|-------------------------------------------------------------|
+| left       | Custom left side content                                    |
+| action     | Custom right button, displayed when `show-action` is `true` |
+| label      | Custom Search label                                         |
+| left-icon  | Custom left icon                                            |
+| right-icon | Custom right icon                                           |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                             | Default Value      | Description |
+|----------------------------------|--------------------|-------------|
+| @search-padding                  | `10px @padding-sm` | -           |
+| @search-background-color         | `@white`           | -           |
+| @search-content-background-color | `@gray-1`          | -           |
+| @search-input-height             | `34px`             | -           |
+| @search-label-padding            | `0 5px`            | -           |
+| @search-label-color              | `@text-color`      | -           |
+| @search-label-font-size          | `@font-size-md`    | -           |
+| @search-left-icon-color          | `@gray-6`          | -           |
+| @search-action-padding           | `0 @padding-xs`    | -           |
+| @search-action-text-color        | `@text-color`      | -           |
+| @search-action-font-size         | `@font-size-md`    | -           |

@@ -1,78 +1,132 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Card 卡片
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+商品卡片，用于展示商品的图片、价格等信息。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Card } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Card);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+```html
+<van-card
+  num="2"
+  price="2.00"
+  desc="描述信息"
+  title="商品标题"
+  thumb="https://img01.yzcdn.cn/vant/ipad.jpeg"
+/>
+```
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+### 营销信息
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+通过 `origin-price` 设置商品原价，通过 `tag` 设置商品左上角标签。
 
-### 浏览器支持
+```html
+<van-card
+  num="2"
+  tag="标签"
+  price="2.00"
+  desc="描述信息"
+  title="商品标题"
+  thumb="https://img01.yzcdn.cn/vant/ipad.jpeg"
+  origin-price="10.00"
+/>
+```
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+### 自定义内容
 
-### 加入我们
+`Card` 组件提供了多个插槽，可以灵活地自定义内容。
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+```html
+<van-card
+  num="2"
+  price="2.00"
+  desc="描述信息"
+  title="商品标题"
+  thumb="https://img01.yzcdn.cn/vant/ipad.jpeg"
+>
+  <template #tags>
+    <van-tag plain type="danger">标签</van-tag>
+    <van-tag plain type="danger">标签</van-tag>
+  </template>
+  <template #footer>
+    <van-button size="mini">按钮</van-button>
+    <van-button size="mini">按钮</van-button>
+  </template>
+</van-card>
+```
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+## API
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+### Props
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+| 参数         | 说明                                                            | 类型               | 默认值  |
+|--------------|---------------------------------------------------------------|--------------------|---------|
+| thumb        | 左侧图片 URL                                                    | _string_           | -       |
+| title        | 标题                                                            | _string_           | -       |
+| desc         | 描述                                                            | _string_           | -       |
+| tag          | 图片角标                                                        | _string_           | -       |
+| num          | 商品数量                                                        | _number \| string_ | -       |
+| price        | 商品价格                                                        | _number \| string_ | -       |
+| origin-price | 商品划线原价                                                    | _number \| string_ | -       |
+| centered     | 内容是否垂直居中                                                | _boolean_          | `false` |
+| currency     | 货币符号                                                        | _string_           | `¥`     |
+| thumb-link   | 点击左侧图片后跳转的链接地址                                    | _string_           | -       |
+| lazy-load    | 是否开启图片懒加载，须配合 [Lazyload](#/zh-CN/lazyload) 组件使用 | _boolean_          | `false` |
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+### Events
 
-### 生态
+| 事件名      | 说明                 | 回调参数       |
+|-------------|--------------------|----------------|
+| click       | 点击时触发           | _event: Event_ |
+| click-thumb | 点击自定义图片时触发 | _event: Event_ |
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+### Slots
 
-### 链接
+| 名称         | 说明                   |
+|--------------|----------------------|
+| title        | 自定义标题             |
+| desc         | 自定义描述             |
+| num          | 自定义数量             |
+| price        | 自定义价格             |
+| origin-price | 自定义商品原价         |
+| price-top    | 自定义价格上方区域     |
+| bottom       | 自定义价格下方区域     |
+| thumb        | 自定义图片             |
+| tag          | 自定义图片角标         |
+| tags         | 自定义描述下方标签区域 |
+| footer       | 自定义右下角内容       |
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### 样式变量
 
-### 开源协议
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+| 名称                          | 默认值                       | 描述 |
+|-------------------------------|------------------------------|------|
+| @card-padding                 | `@padding-xs @padding-md`    | -    |
+| @card-font-size               | `@font-size-sm`              | -    |
+| @card-text-color              | `@text-color`                | -    |
+| @card-background-color        | `@background-color-light`    | -    |
+| @card-thumb-size              | `88px`                       | -    |
+| @card-thumb-border-radius     | `@border-radius-lg`          | -    |
+| @card-title-line-height       | `16px`                       | -    |
+| @card-desc-color              | `@gray-7`                    | -    |
+| @card-desc-line-height        | `@line-height-md`            | -    |
+| @card-price-color             | `@gray-8`                    | -    |
+| @card-origin-price-color      | `@gray-6`                    | -    |
+| @card-num-color               | `@gray-6`                    | -    |
+| @card-origin-price-font-size  | `@font-size-xs`              | -    |
+| @card-price-font-size         | `@font-size-sm`              | -    |
+| @card-price-integer-font-size | `@font-size-lg`              | -    |
+| @card-price-font-family       | `@price-integer-font-family` | -    |

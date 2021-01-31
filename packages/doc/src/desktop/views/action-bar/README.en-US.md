@@ -1,55 +1,146 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# ActionBar
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { ActionBar, ActionBarIcon, ActionBarButton } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(ActionBar);
+app.use(ActionBarIcon);
+app.use(ActionBarButton);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-action-bar>
+  <van-action-bar-icon icon="chat-o" text="Icon1" @click="onClickIcon" />
+  <van-action-bar-icon icon="cart-o" text="Icon2" @click="onClickIcon" />
+  <van-action-bar-icon icon="shop-o" text="Icon3" @click="onClickIcon" />
+  <van-action-bar-button type="danger" text="Button" @click="onClickButton" />
+</van-action-bar>
+```
 
-### Browser Support
+```js
+import { Toast } from 'vant';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const onClickIcon = () => Toast('Click Icon');
+    const onClickButton = () => Toast('Click Button');
+    return {
+      onClickIcon,
+      onClickButton,
+    };
+  },
+};
+```
 
-### Ecosystem
+### Icon Badge
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+Use `badge` prop to show badge in icon.
 
-### Links
+```html
+<van-action-bar>
+  <van-action-bar-icon icon="chat-o" text="Icon1" dot />
+  <van-action-bar-icon icon="cart-o" text="Icon2" badge="5" />
+  <van-action-bar-icon icon="shop-o" text="Icon3" badge="12" />
+  <van-action-bar-button type="warning" text="Button" />
+  <van-action-bar-button type="danger" text="Button" />
+</van-action-bar>
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### Custom Icon Color
 
-### LICENSE
+```html
+<van-action-bar>
+  <van-action-bar-icon icon="chat-o" text="Icon1" color="#ee0a24" />
+  <van-action-bar-icon icon="cart-o" text="Icon2" />
+  <van-action-bar-icon icon="star" text="Collected" color="#ff5000" />
+  <van-action-bar-button type="warning" text="Button" />
+  <van-action-bar-button type="danger" text="Button" />
+</van-action-bar>
+```
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+### Custom Button Color
+
+```html
+<van-action-bar>
+  <van-action-bar-icon icon="chat-o" text="Icon1" />
+  <van-action-bar-icon icon="shop-o" text="Icon2" />
+  <van-action-bar-button color="#be99ff" type="warning" text="Button" />
+  <van-action-bar-button color="#7232dd" type="danger" text="Button" />
+</van-action-bar>
+```
+
+## API
+
+### ActionBar Props
+
+| Attribute              | Description                                   | Type      | Default |
+|------------------------|-----------------------------------------------|-----------|---------|
+| safe-area-inset-bottom | Whether to enable bottom safe area adaptation | _boolean_ | `true`  |
+
+### ActionBarIcon Props
+
+| Attribute     | Description                                             | Type                        | Default   |
+|---------------|---------------------------------------------------------|-----------------------------|-----------|
+| text          | Button text                                             | _string_                    | -         |
+| icon          | Icon                                                    | _string_                    | -         |
+| color         | Icon color                                              | _string_                    | `#323233` |
+| icon-class    | Icon class name                                         | _string \| Array \| object_ | `''`      |
+| dot `2.5.5`   | Whether to show red dot                                 | _boolean_                   | -         |
+| badge `2.5.6` | Content of the badge                                    | _number \| string_          | -         |
+| url           | Link                                                    | _string_                    | -         |
+| to            | Target route of the link, same as to of vue-router      | _string \| object_          | -         |
+| replace       | If true, the navigation will not leave a history record | _boolean_                   | `false`   |
+
+### ActionBarButton Props
+
+| Attribute | Description                                                    | Type               | Default   |
+|-----------|----------------------------------------------------------------|--------------------|-----------|
+| text      | Button text                                                    | _string_           | -         |
+| type      | Button type, Can be set to `primary` `info` `warning` `danger` | _string_           | `default` |
+| color     | Button color, support linear-gradient                          | _string_           | -         |
+| icon      | Left Icon                                                      | _string_           | -         |
+| disabled  | Whether to disable button                                      | _boolean_          | `false`   |
+| loading   | Whether show loading status                                    | _boolean_          | `false`   |
+| url       | Link                                                           | _string_           | -         |
+| to        | Target route of the link, same as to of vue-router             | _string \| object_ | -         |
+| replace   | If true, the navigation will not leave a history record        | _boolean_          | `false`   |
+
+### ActionBarIcon Slots
+
+| Name    | Description |
+|---------|-------------|
+| default | Text        |
+| icon    | Custom icon |
+
+### ActionBarButton Slots
+
+| Name    | Description    |
+|---------|----------------|
+| default | Button content |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                             | Default Value      | Description |
+|----------------------------------|--------------------|-------------|
+| @action-bar-background-color     | `@white`           | -           |
+| @action-bar-height               | `50px`             | -           |
+| @action-bar-icon-width           | `48px`             | -           |
+| @action-bar-icon-height          | `100%`             | -           |
+| @action-bar-icon-color           | `@text-color`      | -           |
+| @action-bar-icon-size            | `18px`             | -           |
+| @action-bar-icon-font-size       | `@font-size-xs`    | -           |
+| @action-bar-icon-active-color    | `@active-color`    | -           |
+| @action-bar-icon-text-color      | `@gray-7`          | -           |
+| @action-bar-button-height        | `40px`             | -           |
+| @action-bar-button-warning-color | `@gradient-orange` | -           |
+| @action-bar-button-danger-color  | `@gradient-red`    | -           |

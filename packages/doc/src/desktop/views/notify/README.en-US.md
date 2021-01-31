@@ -1,55 +1,127 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Notify
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Notify } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Notify);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```js
+Notify('Notify Message');
+```
 
-### Browser Support
+### Notify Type
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+```js
+Notify({ type: 'primary', message: 'Notify Message' });
+Notify({ type: 'success', message: 'Notify Message' });
+Notify({ type: 'danger', message: 'Notify Message' });
+Notify({ type: 'warning', message: 'Notify Message' });
+```
 
-### Ecosystem
+### Custom Notify
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+```js
+Notify({
+  message: 'Custom Color',
+  color: '#ad0000',
+  background: '#ffe1e1',
+});
 
-### Links
+Notify({
+  message: 'Custom Duration',
+  duration: 1000,
+});
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### Global Method
 
-### LICENSE
+After registering the Notify component through `app.use`, the `$notify` method will be automatically mounted on all subcomponents of the app.
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+```js
+export default {
+  mounted() {
+    this.$notify('Notify Message');
+  },
+};
+```
+
+### Component Call
+
+```html
+<van-button type="primary" text="Component Call" @click="showNotify" />
+<van-notify v-model:show="show" type="success">
+  <van-icon name="bell" style="margin-right: 4px;" />
+  <span>Content</span>
+</van-notify>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const show = ref(false);
+
+    const showNotify = () => {
+      show.value = true;
+      setTimeout(() => {
+        show.value = false;
+      }, 2000);
+    };
+
+    return {
+      show,
+      showNotify,
+    };
+  },
+};
+```
+
+## API
+
+### Methods
+
+| Methods                    | Attribute           | Return value    | Description                           |
+|----------------------------|---------------------|-----------------|---------------------------------------|
+| Notify                     | `options | message` | notify instance | Show notify                           |
+| Notify.clear               | -                   | `void`          | Close notify                          |
+| Notify.setDefaultOptions   | `options`           | `void`          | Set default options of all notifies   |
+| Notify.resetDefaultOptions | -                   | `void`          | Reset default options of all notifies |
+
+### Options
+
+| Attribute | Description                                 | Type               | Default  |
+|-----------|---------------------------------------------|--------------------|----------|
+| type      | Can be set to `primary` `success` `warning` | _string_           | `danger` |
+| message   | Message                                     | _string_           | -        |
+| duration  | Duration(ms), won't disappear if value is 0 | _number \| string_ | `3000`   |
+| color | Message color | _string_ | `white` |  |
+| background | Background color | _string_ | - |
+| className | Custom className | _string \| Array \| object_ | - |
+| onClick | Callback function after click | _Function_ | - |
+| onOpened | Callback function after opened | _Function_ | - |
+| onClose | Callback function after close | _Function_ | - |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                             | Default Value             | Description |
+|----------------------------------|---------------------------|-------------|
+| @notify-text-color               | `@white`                  | -           |
+| @notify-padding                  | `@padding-xs @padding-md` | -           |
+| @notify-font-size                | `@font-size-md`           | -           |
+| @notify-line-height              | `@line-height-md`         | -           |
+| @notify-primary-background-color | `@blue`                   | -           |
+| @notify-success-background-color | `@green`                  | -           |
+| @notify-danger-background-color  | `@red`                    | -           |
+| @notify-warning-background-color | `@orange`                 | -           |

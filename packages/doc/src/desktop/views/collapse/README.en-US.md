@@ -1,55 +1,168 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Collapse
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Collapse, CollapseItem } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Collapse);
+app.use(CollapseItem);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+Use `v-model` to control the name of active panels.
 
-### Browser Support
+```html
+<van-collapse v-model="activeNames">
+  <van-collapse-item title="Title1" name="1">Content</van-collapse-item>
+  <van-collapse-item title="Title2" name="2">Content</van-collapse-item>
+  <van-collapse-item title="Title3" name="3">Content</van-collapse-item>
+</van-collapse>
+```
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+```js
+import { ref } from 'vue';
 
-### Ecosystem
+export default {
+  setup() {
+    const activeNames = ref(['1']);
+    return { activeNames };
+  },
+};
+```
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+### Accordion
 
-### Links
+In accordion mode, only one panel can be expanded at the same time.
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-collapse v-model="activeName" accordion>
+  <van-collapse-item title="Title1" name="1">Content</van-collapse-item>
+  <van-collapse-item title="Title2" name="2">Content</van-collapse-item>
+  <van-collapse-item title="Title3" name="3">Content</van-collapse-item>
+</van-collapse>
+```
 
-### LICENSE
+```js
+import { ref } from 'vue';
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+export default {
+  setup() {
+    const activeName = ref('1');
+    return { activeName };
+  },
+};
+```
+
+### Disabled
+
+Use the `disabled` prop to disable CollaseItem.
+
+```html
+<van-collapse v-model="activeNames">
+  <van-collapse-item title="Title1" name="1">Content</van-collapse-item>
+  <van-collapse-item title="Title2" name="2" disabled>
+    Content
+  </van-collapse-item>
+  <van-collapse-item title="Title3" name="3" disabled>
+    Content
+  </van-collapse-item>
+</van-collapse>
+```
+
+### Custom title
+
+```html
+<van-collapse v-model="activeNames">
+  <van-collapse-item name="1">
+    <template #title>
+      <div>Title1 <van-icon name="question-o" /></div>
+    </template>
+    Content
+  </van-collapse-item>
+  <van-collapse-item title="Title2" name="2" icon="shop-o">
+    Content
+  </van-collapse-item>
+</van-collapse>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const activeNames = ref(['1']);
+    return { activeNames };
+  },
+};
+```
+
+## API
+
+### Collapse Props
+
+| Attribute | Description                    | Type                                                                            | Default |
+|-----------|--------------------------------|---------------------------------------------------------------------------------|---------|
+| v-model   | Names of current active panels | accordion mode： _number \| string_<br>non-accordion mode：_(number \| string)[]_ | -       |
+| accordion | Whether to be accordion mode   | _boolean_                                                                       | `false` |
+| border    | Whether to show outer border   | _boolean_                                                                       | `true`  |
+
+### Collapse Events
+
+| Event  | Description                  | Arguments   |
+|--------|------------------------------|-------------|
+| change | Emitted when switching panel | activeNames |
+
+### CollapseItem Props
+
+| Attribute   | Description                      | Type               | Default |
+|-------------|----------------------------------|--------------------|---------|
+| name        | Name                             | _number \| string_ | `index` |
+| icon        | Left Icon                        | _string_           | -       |
+| size        | Title size，can be set to `large` | _string_           | -       |
+| title       | Title                            | _number \| string_ | -       |
+| value       | Right text                       | _number \| string_ | -       |
+| label       | Description below the title      | _string_           | -       |
+| border      | Whether to show inner border     | _boolean_          | `true`  |
+| disabled    | Whether to disabled collapse     | _boolean_          | `false` |
+| is-link     | Whether to show link icon        | _boolean_          | `true`  |
+| title-class | Title className                  | _string_           | -       |
+| value-class | Value className                  | _string_           | -       |
+| label-class | Label className                  | _string_           | -       |
+
+### CollapseItem Slots
+
+| Name       | Description       |
+|------------|-------------------|
+| default    | Content           |
+| value      | Custom value      |
+| icon       | Custom icon       |
+| title      | Custom title      |
+| right-icon | Custom right icon |
+
+### CollapseItem Methods
+
+Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get CollapseItem instance and call instance methods.
+
+| Name   | Description            | Attribute           | Return value |
+|--------|------------------------|---------------------|--------------|
+| toggle | Toggle expanded status | _expanded: boolean_ | -            |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                                    | Default Value              | Description |
+|-----------------------------------------|----------------------------|-------------|
+| @collapse-item-transition-duration      | `@animation-duration-base` | -           |
+| @collapse-item-content-padding          | `@padding-sm @padding-md`  | -           |
+| @collapse-item-content-font-size        | `@font-size-md`            | -           |
+| @collapse-item-content-line-height      | `1.5`                      | -           |
+| @collapse-item-content-text-color       | `@gray-6`                  | -           |
+| @collapse-item-content-background-color | `@white`                   | -           |
+| @collapse-item-title-disabled-color     | `@gray-5`                  | -           |

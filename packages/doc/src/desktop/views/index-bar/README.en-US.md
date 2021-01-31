@@ -1,55 +1,119 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# IndexBar
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { IndexBar } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(IndexBar);
+app.use(IndexAnchor);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-index-bar>
+  <van-index-anchor index="A" />
+  <van-cell title="Text" />
+  <van-cell title="Text" />
+  <van-cell title="Text" />
 
-### Browser Support
+  <van-index-anchor index="B" />
+  <van-cell title="Text" />
+  <van-cell title="Text" />
+  <van-cell title="Text" />
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+  ...
+</van-index-bar>
+```
 
-### Ecosystem
+### Custom Index List
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+```html
+<van-index-bar :index-list="indexList">
+  <van-index-anchor index="1">Title 1</van-index-anchor>
+  <van-cell title="Text" />
+  <van-cell title="Text" />
+  <van-cell title="Text" />
 
-### Links
+  <van-index-anchor index="2">Title 2</van-index-anchor>
+  <van-cell title="Text" />
+  <van-cell title="Text" />
+  <van-cell title="Text" />
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+  ...
+</van-index-bar>
+```
 
-### LICENSE
+```js
+export default {
+  setup() {
+    return {
+      indexList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    };
+  },
+};
+```
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+## API
+
+### IndexBar Props
+
+| Attribute         | Description                         | Type                   | Default |
+|-------------------|-------------------------------------|------------------------|---------|
+| index-list        | Index List                          | _string[] \| number[]_ | `A-Z`   |
+| z-index           | z-index                             | _number \| string_     | `1`     |
+| sticky            | Whether to enable anchor sticky top | _boolean_              | `true`  |
+| sticky-offset-top | Anchor offset top when sticky       | _number_               | `0`     |
+| highlight-color | Index character highlight color | _string_ | `#ee0a24` | - |
+
+### IndexAnchor Props
+
+| Attribute | Description | Type               | Default |
+|-----------|-------------|--------------------|---------|
+| index     | Index       | _number \| string_ | -       |
+
+### IndexBar Events
+
+| Event  | Description                       | Arguments                 |
+|--------|-----------------------------------|---------------------------|
+| select | Emitted when an index is selected | _index: number \| string_ |
+| change | Emitted when active index changed | _index: number \| string_ |
+
+### IndexAnchor Slots
+
+| Name    | Description                           |
+|---------|---------------------------------------|
+| default | Anchor content, show index by default |
+
+### Methods
+
+Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get IndexBar instance and call instance methods.
+
+| Name     | Description              | Attribute                 | Return value |
+|----------|--------------------------|---------------------------|--------------|
+| scrollTo | scroll to target element | _index: number \| string_ | -            |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                                  | Default Value       | Description |
+|---------------------------------------|---------------------|-------------|
+| @index-bar-sidebar-z-index            | `2`                 | -           |
+| @index-bar-index-font-size            | `@font-size-xs`     | -           |
+| @index-bar-index-line-height          | `@line-height-xs`   | -           |
+| @index-bar-index-active-color         | `@red`              | -           |
+| @index-anchor-z-index                 | `1`                 | -           |
+| @index-anchor-padding                 | `0 @padding-md`     | -           |
+| @index-anchor-text-color              | `@text-color`       | -           |
+| @index-anchor-font-weight             | `@font-weight-bold` | -           |
+| @index-anchor-font-size               | `@font-size-md`     | -           |
+| @index-anchor-line-height             | `32px`              | -           |
+| @index-anchor-background-color        | `transparent`       | -           |
+| @index-anchor-sticky-text-color       | `@red`              | -           |
+| @index-anchor-sticky-background-color | `@white`            | -           |

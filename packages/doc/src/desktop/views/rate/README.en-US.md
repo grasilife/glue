@@ -1,55 +1,144 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Rate
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Rate } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Rate);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-rate v-model="value" />
+```
 
-### Browser Support
+```js
+import { ref } from 'vue';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const value = ref(3);
+    return { value };
+  },
+};
+```
 
-### Ecosystem
+### Custom Icon
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+```html
+<van-rate v-model="value" icon="like" void-icon="like-o" />
+```
 
-### Links
+### Custom Style
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-rate
+  v-model="value"
+  :size="25"
+  color="#ffd21e"
+  void-icon="star"
+  void-color="#eee"
+/>
+```
 
-### LICENSE
+### Half Star
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+```html
+<van-rate v-model="value" allow-half void-icon="star" void-color="#eee" />
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const value = ref(2.5);
+    return { value };
+  },
+};
+```
+
+### Custom Count
+
+```html
+<van-rate v-model="value" :count="6" />
+```
+
+### Disabled
+
+```html
+<van-rate v-model="value" disabled />
+```
+
+### Readonly
+
+```html
+<van-rate v-model="value" readonly />
+```
+
+### Change Event
+
+```html
+<van-rate v-model="value" @change="onChange" />
+```
+
+```javascript
+import { ref } from 'vue';
+import { Toast } from 'vant';
+
+export default {
+  setup() {
+    const value = ref(3);
+    const onChange = (value) => Toast('current value:' + value);
+    return {
+      value,
+      onChange,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| Attribute      | Description                                   | Type               | Default    |
+|----------------|-----------------------------------------------|--------------------|------------|
+| v-model        | Current rate                                  | _number_           | -          |
+| count          | Count                                         | _number \| string_ | `5`        |
+| size           | Icon size                                     | _number \| string_ | `20px`     |
+| gutter         | Icon gutter                                   | _number \| string_ | `4px`      |
+| color          | Selected color                                | _string_           | `#ee0a24`  |
+| void-color     | Void color                                    | _string_           | `#c8c9cc`  |
+| disabled-color | Disabled color                                | _string_           | `#c8c9cc`  |
+| icon           | Selected icon                                 | _string_           | `star`     |
+| void-icon      | Void icon                                     | _string_           | `star-o`   |
+| icon-prefix    | Icon className prefix                         | _string_           | `van-icon` |
+| allow-half     | Whether to allow half star                    | _boolean_          | `false`    |
+| readonly       | Whether to be readonly                        | _boolean_          | `false`    |
+| disabled       | Whether to disable rate                       | _boolean_          | `false`    |
+| touchable      | Whether to allow select rate by touch gesture | _boolean_          | `true`     |
+
+### Events
+
+| Event  | Description               | Parameters   |
+|--------|---------------------------|--------------|
+| change | Emitted when rate changed | current rate |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                      | Default Value   | Description |
+|---------------------------|-----------------|-------------|
+| @rate-icon-size           | `20px`          | -           |
+| @rate-icon-gutter         | `@padding-base` | -           |
+| @rate-icon-void-color     | `@gray-5`       | -           |
+| @rate-icon-full-color     | `@red`          | -           |
+| @rate-icon-disabled-color | `@gray-5`       | -           |

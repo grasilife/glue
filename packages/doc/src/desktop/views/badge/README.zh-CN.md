@@ -1,78 +1,156 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Badge 徽标
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+在右上角展示徽标数字或小红点。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Badge } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Badge);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+设置 `content` 属性后，Badge 会在子元素的右上角显示对应的徽标，也可以通过 `dot` 来显示小红点。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-badge :content="5">
+  <div class="child" />
+</van-badge>
+<van-badge :content="10">
+  <div class="child" />
+</van-badge>
+<van-badge content="Hot">
+  <div class="child" />
+</van-badge>
+<van-badge dot>
+  <div class="child" />
+</van-badge>
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+<style>
+  .child {
+    width: 40px;
+    height: 40px;
+    background: #f2f3f5;
+    border-radius: 4px;
+  }
+</style>
+```
 
-### 浏览器支持
+### 最大值
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+设置 `max` 属性后，当 `content` 的数值超过最大值时，会自动显示为 `{max}+`。
 
-### 加入我们
+```html
+<van-badge :content="20" max="9">
+  <div class="child" />
+</van-badge>
+<van-badge :content="50" max="20">
+  <div class="child" />
+</van-badge>
+<van-badge :content="200" max="99">
+  <div class="child" />
+</van-badge>
+```
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+### 自定义颜色
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+通过 `color` 属性来设置徽标的颜色。
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+```html
+<van-badge :content="5" color="#1989fa">
+  <div class="child" />
+</van-badge>
+<van-badge :content="10" color="#1989fa">
+  <div class="child" />
+</van-badge>
+<van-badge dot color="#1989fa">
+  <div class="child" />
+</van-badge>
+```
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+### 自定义徽标内容
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+通过 `content` 插槽可以自定义徽标的内容，比如插入一个图标。
 
-### 生态
+```html
+<van-badge>
+  <div class="child" />
+  <template #content>
+    <van-icon name="success" class="badge-icon" />
+  </template>
+</van-badge>
+<van-badge>
+  <div class="child" />
+  <template #content>
+    <van-icon name="cross" class="badge-icon" />
+  </template>
+</van-badge>
+<van-badge>
+  <div class="child" />
+  <template #content>
+    <van-icon name="down" class="badge-icon" />
+  </template>
+</van-badge>
+```
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+```css
+.badge-icon {
+  display: block;
+  font-size: 10px;
+  line-height: 16px;
+}
+```
 
-### 链接
+### 独立展示
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+当 Badge 没有子元素时，会作为一个独立的元素进行展示。
 
-### 开源协议
+```html
+<van-badge :content="20" />
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+<van-badge :content="200" max="99" />
+```
+
+## API
+
+### Props
+
+| 参数            | 说明                                                       | 类型               | 默认值    |
+|-----------------|----------------------------------------------------------|--------------------|-----------|
+| content         | 徽标内容                                                   | _number \| string_ | -         |
+| color           | 徽标背景颜色                                               | _string_           | `#ee0a24` |
+| dot             | 是否展示为小红点                                           | _boolean_          | `false`   |
+| max             | 最大值，超过最大值会显示 `{max}+`，仅当 content 为数字时有效 | _number \| string_ | -         |
+| offset `v3.0.5` | 设置徽标的偏移量，数组的两项分别对应水平和垂直方向的偏移量  | _[number, number]_ | -         |
+
+### Slots
+
+| 名称    | 说明             |
+|---------|----------------|
+| default | 徽标包裹的子元素 |
+| content | 自定义徽标内容   |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                    | 默认值                                                  | 描述 |
+|-------------------------|---------------------------------------------------------|------|
+| @badge-size             | `16px`                                                  | -    |
+| @badge-color            | `@white`                                                | -    |
+| @badge-padding          | `0 3px`                                                 | -    |
+| @badge-font-size        | `@font-size-sm`                                         | -    |
+| @badge-font-weight      | `@font-weight-bold`                                     | -    |
+| @badge-border-width     | `@border-width-base`                                    | -    |
+| @badge-background-color | `@red`                                                  | -    |
+| @badge-dot-color        | `@red`                                                  | -    |
+| @badge-dot-size         | `8px`                                                   | -    |
+| @badge-font-family      | `-apple-system-font, Helvetica Neue, Arial, sans-serif` | -    |

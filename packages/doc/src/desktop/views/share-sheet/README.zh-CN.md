@@ -1,78 +1,259 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# ShareSheet 分享面板
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+底部弹起的分享面板，用于展示各分享渠道对应的操作按钮，不含具体的分享逻辑。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { ShareSheet } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(ShareSheet);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+分享面板通过 `options` 属性来定义分享选项，数组的每一项是一个对象，对象格式见文档下方表格。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-cell title="显示分享面板" @click="showShare = true" />
+<van-share-sheet
+  v-model:show="showShare"
+  title="立即分享给好友"
+  :options="options"
+  @select="onSelect"
+/>
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-### 浏览器支持
+export default {
+  setup() {
+    const showShare = ref(false);
+    const options = [
+      { name: '微信', icon: 'wechat' },
+      { name: '微博', icon: 'weibo' },
+      { name: '复制链接', icon: 'link' },
+      { name: '分享海报', icon: 'poster' },
+      { name: '二维码', icon: 'qrcode' },
+    ];
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+    const onSelect = (option) => {
+      Toast(option.name);
+      showShare.value = false;
+    };
 
-### 加入我们
+    return {
+      options,
+      onSelect,
+      showShare,
+    };
+  },
+};
+```
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+### 展示多行选项
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+当分享选项的数量较多时，可以将 `options` 定义为数组嵌套的格式，每个子数组会作为一行选项展示。
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+```html
+<van-share-sheet
+  v-model:show="showShare"
+  title="立即分享给好友"
+  :options="options"
+/>
+```
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+```js
+import { ref } from 'vue';
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+export default {
+  setup() {
+    const showShare = ref(false);
+    const options = [
+      [
+        { name: '微信', icon: 'wechat' },
+        { name: '朋友圈', icon: 'wechat-moments' },
+        { name: '微博', icon: 'weibo' },
+        { name: 'QQ', icon: 'qq' },
+      ],
+      [
+        { name: '复制链接', icon: 'link' },
+        { name: '分享海报', icon: 'poster' },
+        { name: '二维码', icon: 'qrcode' },
+        { name: '小程序码', icon: 'weapp-qrcode' },
+      ],
+    ];
 
-### 生态
+    return {
+      options,
+      showShare,
+    };
+  },
+};
+```
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+### 自定义图标
 
-### 链接
+除了使用内置的几种图标外，可以直接在 `icon` 中传入图片 URL 来使用自定义的图标。
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-share-sheet v-model:show="showShare" :options="options" />
+```
 
-### 开源协议
+```js
+import { ref } from 'vue';
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+export default {
+  setup() {
+    const showShare = ref(false);
+    const options = [
+      {
+        name: '名称',
+        icon: 'https://img01.yzcdn.cn/vant/custom-icon-fire.png',
+      },
+      {
+        name: '名称',
+        icon: 'https://img01.yzcdn.cn/vant/custom-icon-light.png',
+      },
+      {
+        name: '名称',
+        icon: 'https://img01.yzcdn.cn/vant/custom-icon-water.png',
+      },
+    ];
+
+    return {
+      options,
+      showShare,
+    };
+  },
+};
+```
+
+### 展示描述信息
+
+通过 `description` 属性可以设置标题下方的描述文字, 在 `options` 内设置 `description` 属性可以添加分享选项描述。
+
+```html
+<van-share-sheet
+  v-model:show="showShare"
+  :options="options"
+  title="立即分享给好友"
+  description="描述信息"
+/>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const showShare = ref(false);
+    const options = [
+      { name: '微信', icon: 'wechat' },
+      { name: '微博', icon: 'weibo' },
+      { name: '复制链接', icon: 'link', description: '描述信息' },
+      { name: '分享海报', icon: 'poster' },
+      { name: '二维码', icon: 'qrcode' },
+    ];
+
+    return {
+      options,
+      showShare,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| 参数                   | 说明                                                                      | 类型                | 默认值   |
+|------------------------|-------------------------------------------------------------------------|---------------------|----------|
+| v-model:show           | 是否显示分享面板                                                          | _boolean_           | `false`  |
+| options                | 分享选项                                                                  | _Option[]_          | `[]`     |
+| title                  | 顶部标题                                                                  | _string_            | -        |
+| cancel-text            | 取消按钮文字，传入空字符串可以隐藏按钮                                     | _string_            | `'取消'` |
+| description            | 标题下方的辅助描述文字                                                    | _string_            | -        |
+| duration               | 动画时长，单位秒                                                           | _number \| string_  | `0.3`    |
+| overlay                | 是否显示遮罩层                                                            | _boolean_           | `true`   |
+| lock-scroll            | 是否锁定背景滚动                                                          | _boolean_           | `true`   |
+| lazy-render            | 是否在显示弹层时才渲染内容                                                | _boolean_           | `true`   |
+| close-on-popstate      | 是否在页面回退时自动关闭                                                  | _boolean_           | `true`   |
+| close-on-click-overlay | 是否在点击遮罩层后关闭                                                    | _boolean_           | `true`   |
+| safe-area-inset-bottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_           | `true`   |
+| teleport               | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi)         | _string \| Element_ | -        |
+
+### Option 数据结构
+
+`options`属性为一个对象数组，数组中的每个对象配置一列，对象可以包含以下值：
+
+| 键名        | 说明                                                                                                          | 类型     |
+|-------------|-------------------------------------------------------------------------------------------------------------|----------|
+| name        | 分享渠道名称                                                                                                  | _string_ |
+| description | 分享选项描述                                                                                                  | _string_ |
+| icon        | 图标，可选值为 `wechat` `weibo` `qq` `link` `qrcode` `poster` `weapp-qrcode` `wechat-moments`，支持传入图片 URL | _string_ |
+| className   | 分享选项类名                                                                                                  | _string_ |
+
+### Events
+
+| 事件名        | 说明               | 回调参数                        |
+|---------------|------------------|---------------------------------|
+| select        | 点击分享选项时触发 | _option: Option, index: number_ |
+| cancel        | 点击取消按钮时触发 | -                               |
+| click-overlay | 点击遮罩层时触发   | -                               |
+
+### Slots
+
+| 名称        | 说明           |
+|-------------|--------------|
+| title       | 自定义顶部标题 |
+| description | 自定义描述文字 |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                                      | 默认值                                  | 描述 |
+|-------------------------------------------|-----------------------------------------|------|
+| @share-sheet-header-padding               | `@padding-sm @padding-md @padding-base` | -    |
+| @share-sheet-title-color                  | `@text-color`                           | -    |
+| @share-sheet-title-font-size              | `@font-size-md`                         | -    |
+| @share-sheet-title-line-height            | `@line-height-md`                       | -    |
+| @share-sheet-description-color            | `@gray-6`                               | -    |
+| @share-sheet-description-font-size        | `@font-size-sm`                         | -    |
+| @share-sheet-description-line-height      | `16px`                                  | -    |
+| @share-sheet-icon-size                    | `48px`                                  | -    |
+| @share-sheet-option-name-color            | `@gray-7`                               | -    |
+| @share-sheet-option-name-font-size        | `@font-size-sm`                         | -    |
+| @share-sheet-option-description-color     | `@gray-5`                               | -    |
+| @share-sheet-option-description-font-size | `@font-size-sm`                         | -    |
+| @share-sheet-cancel-button-font-size      | `@font-size-lg`                         | -    |
+| @share-sheet-cancel-button-height         | `48px`                                  | -    |
+| @share-sheet-cancel-button-background     | `@white`                                | -    |
+
+## 常见问题
+
+### 如何实现分享逻辑？
+
+在不同的 App 或浏览器中，存在各式各样的分享接口或分享方式，因此 ShareSheet 组件不提供具体的分享逻辑，需要开发者根据业务场景自行实现。
+
+#### 微信内分享
+
+由于微信未提供分享相关的 API，需要引导用户点击右上角进行分享。
+
+#### App 内分享
+
+可以通过 JSBridge 调用原生应用的 SDK 进行分享。
+
+#### 分享海报或二维码
+
+可以通过 [Popup](#/zh-CN/popup) 组件以弹层的形式展示图片，然后引导用户保存图片进行分享。

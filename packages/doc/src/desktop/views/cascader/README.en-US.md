@@ -1,55 +1,239 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Cascader
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Cascader } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Cascader);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-field
+  v-model="state.fieldValue"
+  is-link
+  readonly
+  label="Area"
+  placeholder="Select Area"
+  @click="state.show = true"
+/>
+<van-popup v-model="state.show" round position="bottom">
+  <van-cascader
+    v-model="state.cascaderValue"
+    title="Select Area"
+    :options="options"
+    @close="state.show = false"
+    @finish="onFinish"
+  />
+</van-popup>
+```
 
-### Browser Support
+```js
+import { reactive } from 'vue';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const state = reactive({
+      show: false,
+      fieldValue: '',
+      cascaderValue: '',
+    });
+    const options = [
+      {
+        text: 'Zhejiang',
+        value: '330000',
+        children: [{ text: 'Hangzhou', value: '330100' }],
+      },
+      {
+        text: 'Jiangsu',
+        value: '320000',
+        children: [{ text: 'Nanjing', value: '320100' }],
+      },
+    ];
+    const onFinish = ({ selectedOptions }) => {
+      state.show = false;
+      state.fieldValue = selectedOptions.map((option) => option.text).join('/');
+    };
 
-### Ecosystem
+    return {
+      state,
+      options,
+      onFinish,
+    };
+  },
+};
+```
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+### Custom Color
 
-### Links
+```html
+<van-cascader
+  v-model="state.cascaderValue"
+  title="Select Area"
+  :options="options"
+  active-color="#1989fa"
+  @close="state.show = false"
+  @finish="onFinish"
+/>
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### Async Options
 
-### LICENSE
+```html
+<van-field
+  v-model="state.fieldValue"
+  is-link
+  readonly
+  label="Area"
+  placeholder="Select Area"
+  @click="state.show = true"
+/>
+<van-popup v-model="state.show" round position="bottom">
+  <van-cascader
+    v-model="state.cascaderValue"
+    title="Select Area"
+    :options="state.options"
+    @close="state.show = false"
+    @change="onChange"
+    @finish="onFinish"
+  />
+</van-popup>
+```
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+```js
+import { reactive } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({
+      show: false,
+      fieldValue: '',
+      cascaderValue: '',
+      options: [
+        {
+          text: 'Zhejiang',
+          value: '330000',
+          children: [],
+        },
+      ],
+    });
+    const onChange = ({ value }) => {
+      if (value === state.options[0].value) {
+        setTimeout(() => {
+          state.options[0].children = [
+            { text: 'Hangzhou', value: '330100' },
+            { text: 'Ningbo', value: '330200' },
+          ];
+        }, 500);
+      }
+    };
+    const onFinish = ({ selectedOptions }) => {
+      state.show = false;
+      state.fieldValue = selectedOptions.map((option) => option.text).join('/');
+    };
+
+    return {
+      state,
+      onChange,
+      onFinish,
+    };
+  },
+};
+```
+
+### Custom Field Names
+
+```html
+<van-cascader
+  v-model="code"
+  title="Select Area"
+  :options="options"
+  :field-names="fieldNames"
+/>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const code = ref('');
+    const fieldNames = {
+      text: 'name',
+      value: 'code',
+      children: 'items',
+    };
+    const options = [
+      {
+        name: 'Zhejiang',
+        code: '330000',
+        items: [{ name: 'Hangzhou', code: '330100' }],
+      },
+      {
+        name: 'Jiangsu',
+        code: '320000',
+        items: [{ name: 'Nanjing', code: '320100' }],
+      },
+    ];
+
+    return {
+      code,
+      options,
+      fieldNames,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| Attribute            | Description                   | Type               | Default                                                  |
+|----------------------|-------------------------------|--------------------|----------------------------------------------------------|
+| title                | Title                         | _string_           | -                                                        |
+| value                | Value of selected option      | _string \| number_ | -                                                        |
+| options              | Options                       | _Option[]_         | `[]`                                                     |
+| placeholder          | Placeholder of unselected tab | _string_           | `Select`                                                 |
+| active-color         | Active color                  | _string_           | `#ee0a24`                                                |
+| closeable            | Whether to show close icon    | _boolean_          | `true`                                                   |
+| field-names `v3.0.4` | Custom the fields of options  | _object_           | `{ text: 'text', value: 'value', children: 'children' }` |
+
+### Events
+
+| Event  | Description                             | Arguments                              |
+|--------|-----------------------------------------|----------------------------------------|
+| change | Emitted when active option changed      | `{ value, selectedOptions, tabIndex }` |
+| finish | Emitted when all options is selected    | `{ value, selectedOptions, tabIndex }` |
+| close  | Emmitted when the close icon is clicked | -                                      |
+
+### Slots
+
+| Name  | Description  |
+|-------|--------------|
+| title | Custom title |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                              | Default Value   | Description |
+|-----------------------------------|-----------------|-------------|
+| @cascader-header-height           | `48px`          | -           |
+| @cascader-title-font-size         | `@font-size-lg` | -           |
+| @cascader-title-line-height       | `20px`          | -           |
+| @cascader-close-icon-size         | `22px`          | -           |
+| @cascader-close-icon-color        | `@gray-5`       | -           |
+| @cascader-close-icon-active-color | `@gray-6`       | -           |
+| @cascader-selected-icon-size      | `18px`          | -           |
+| @cascader-tabs-height             | `48px`          | -           |
+| @cascader-active-color            | `@red`          | -           |
+| @cascader-options-height          | `384px`         | -           |
+| @cascader-tab-color               | `@text-color`   | -           |
+| @cascader-unselected-tab-color    | `@gray-6`       | -           |

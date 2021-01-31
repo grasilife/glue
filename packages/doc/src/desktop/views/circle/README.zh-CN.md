@@ -1,78 +1,168 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Circle 环形进度条
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+圆环形的进度条组件，支持进度渐变动画。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Circle } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Circle);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+`rate` 属性表示进度条的目标进度，`v-model:current-rate` 表示动画过程中的实时进度。当 `rate` 发生变化时，`v-model:current-rate` 会以 `speed` 的速度变化，直至达到 `rate` 设定的值。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-circle
+  v-model:current-rate="currentRate"
+  :rate="30"
+  :speed="100"
+  :text="text"
+/>
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```js
+import { ref, computed } from 'vue';
 
-### 浏览器支持
+export default {
+  setup() {
+    const currentRate = ref(0);
+    const text = computed(() => currentRate.value.toFixed(0) + '%');
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+    return {
+      text,
+      currentRate,
+    };
+  },
+};
+```
 
-### 加入我们
+### 宽度定制
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+通过 `stroke-width` 属性来控制进度条宽度。
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+```html
+<van-circle
+  v-model:current-rate="currentRate"
+  :rate="rate"
+  :stroke-width="60"
+  text="宽度定制"
+/>
+```
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+### 颜色定制
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+通过 `color` 属性来控制进度条颜色，`layer-color` 属性来控制轨道颜色。
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+```html
+<van-circle
+  v-model:current-rate="currentRate"
+  :rate="rate"
+  layer-color="#ebedf0"
+  text="颜色定制"
+/>
+```
 
-### 生态
+### 渐变色
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+`color` 属性支持传入对象格式来定义渐变色。
 
-### 链接
+```html
+<van-circle
+  v-model:current-rate="currentRate"
+  :rate="rate"
+  :color="gradientColor"
+  text="渐变色"
+/>
+```
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```js
+import { ref } from 'vue';
 
-### 开源协议
+export default {
+  setup() {
+    const currentRate = ref(0);
+    const gradientColor = {
+      '0%': '#3fecff',
+      '100%': '#6149f6',
+    };
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+    return {
+      currentRate,
+      gradientColor,
+    };
+  },
+};
+```
+
+### 逆时针方向
+
+将 `clockwise` 设置为 `false`，进度会从逆时针方向开始。
+
+```html
+<van-circle
+  v-model:current-rate="currentRate"
+  :rate="rate"
+  :clockwise="false"
+  text="逆时针方向"
+/>
+```
+
+### 大小定制
+
+通过 `size` 属性设置圆环直径。
+
+```html
+<van-circle
+  v-model:current-rate="currentRate"
+  :rate="rate"
+  size="120px"
+  text="大小定制"
+/>
+```
+
+## API
+
+### Props
+
+| 参数                 | 说明                                      | 类型               | 默认值    |
+|----------------------|-----------------------------------------|--------------------|-----------|
+| v-model:current-rate | 当前进度                                  | _number_           | -         |
+| rate                 | 目标进度                                  | _number \| string_ | `100`     |
+| size                 | 圆环直径，默认单位为 `px`                  | _number \| string_ | `100px`   |
+| color                | 进度条颜色，传入对象格式可以定义渐变色     | _string \| object_ | `#1989fa` |
+| layer-color          | 轨道颜色                                  | _string_           | `white`   |
+| fill                 | 填充颜色                                  | _string_           | `none`    |
+| speed                | 动画速度（单位为 rate/s）                   | _number \| string_ | `0`       |
+| text                 | 文字                                      | _string_           | -         |
+| stroke-width         | 进度条宽度                                | _number \| string_ | `40`      |
+| stroke-linecap       | 进度条端点的形状，可选值为 `sqaure` `butt` | _string_           | `round`   |
+| clockwise            | 是否顺时针增加                            | _boolean_          | `true`    |
+
+### Slots
+
+| 名称    | 说明           |
+|---------|--------------|
+| default | 自定义文字内容 |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                     | 默认值              | 描述 |
+|--------------------------|---------------------|------|
+| @circle-size             | `100px`             | -    |
+| @circle-color            | `@blue`             | -    |
+| @circle-layer-color      | `@white`            | -    |
+| @circle-text-color       | `@text-color`       | -    |
+| @circle-text-font-weight | `@font-weight-bold` | -    |
+| @circle-text-font-size   | `@font-size-md`     | -    |
+| @circle-text-line-height | `@line-height-md`   | -    |

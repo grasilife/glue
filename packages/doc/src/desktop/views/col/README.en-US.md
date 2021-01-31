@@ -1,55 +1,111 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Layout
 
-### Features
+### Intro
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+Quickly and easily create layouts with `van-row` and `van-col`.
 
-### Quickstart
+### Install
 
-See in [Quickstart](#/en-US/quickstart).
+```js
+import { createApp } from 'vue';
+import { Col, Row } from 'vant';
 
-### Contribution
+const app = createApp();
+app.use(Col);
+app.use(Row);
+```
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+## Usage
 
-### Browser Support
+### Basic Usage
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+Layout are based on 24-column. The attribute `span` in `Col` means the number of column the grid spans. Of course, You can use `offset` attribute to set number of spacing on the left side of the grid.
 
-### Ecosystem
+```html
+<van-row>
+  <van-col span="8">span: 8</van-col>
+  <van-col span="8">span: 8</van-col>
+  <van-col span="8">span: 8</van-col>
+</van-row>
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+<van-row>
+  <van-col span="4">span: 4</van-col>
+  <van-col span="10" offset="4">offset: 4, span: 10</van-col>
+  <van-col span="6">span: 6</van-col>
+</van-row>
 
-### Links
+<van-row>
+  <van-col offset="12" span="12">offset: 12, span: 12</van-col>
+</van-row>
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### Column Spacing
 
-### LICENSE
+Set grid spacing using `gutter` attribute. The default value is 0.
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+```html
+<van-row gutter="20">
+  <van-col span="8">span: 8</van-col>
+  <van-col span="8">span: 8</van-col>
+  <van-col span="8">span: 8</van-col>
+</van-row>
+```
+
+### Justify Content
+
+```html
+<van-row justify="center">
+  <van-col span="6">span: 6</van-col>
+  <van-col span="6">span: 6</van-col>
+  <van-col span="6">span: 6</van-col>
+</van-row>
+
+<van-row justify="end">
+  <van-col span="6">span: 6</van-col>
+  <van-col span="6">span: 6</van-col>
+  <van-col span="6">span: 6</van-col>
+</van-row>
+
+<van-row justify="space-between">
+  <van-col span="6">span: 6</van-col>
+  <van-col span="6">span: 6</van-col>
+  <van-col span="6">span: 6</van-col>
+</van-row>
+
+<van-row justify="space-around">
+  <van-col span="6">span: 6</van-col>
+  <van-col span="6">span: 6</van-col>
+  <van-col span="6">span: 6</van-col>
+</van-row>
+```
+
+## API
+
+### Row Props
+
+| Attribute | Description                                                        | Type               | Default |
+|-----------|--------------------------------------------------------------------|--------------------|---------|
+| gutter    | Grid spacing（px）                                                   | _number \| string_ | -       |
+| tag       | Custom element tag                                                 | _string_           | `div`   |
+| justify   | Flex main axis，can be set to end/center/space-around/space-between | _string_           | `start` |
+| align     | Flex cross axis, be set to center/bottom                           | _string_           | `top`   |
+
+### Col Props
+
+| Attribute | Description                                    | Type               | Default |
+|-----------|------------------------------------------------|--------------------|---------|
+| span      | number of column the grid spans                | _number \| string_ | -       |
+| offset    | number of spacing on the left side of the grid | _number \| string_ | -       |
+| tag       | Custom element tag                             | _string_           | `div`   |
+
+### Row Events
+
+| Event | Description                     | Arguments      |
+|-------|---------------------------------|----------------|
+| click | Emitted when the row is clicked | _event: Event_ |
+
+### Col Events
+
+| Event | Description                     | Arguments      |
+|-------|---------------------------------|----------------|
+| click | Emitted when the col is clicked | _event: Event_ |

@@ -1,55 +1,214 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# DropdownMenu
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { DropdownMenu, DropdownItem } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(DropdownMenu);
+app.use(DropdownItem);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-dropdown-menu>
+  <van-dropdown-item v-model="state.value1" :options="option1" />
+  <van-dropdown-item v-model="state.value2" :options="option2" />
+</van-dropdown-menu>
+```
 
-### Browser Support
+```js
+import { reactive } from 'vue';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const state = reactive({
+      value1: 0,
+      value2: 'a',
+    });
+    const option1 = [
+      { text: 'Option1', value: 0 },
+      { text: 'Option2', value: 1 },
+      { text: 'Option3', value: 2 },
+    ];
+    const option2 = [
+      { text: 'Option A', value: 'a' },
+      { text: 'Option B', value: 'b' },
+      { text: 'Option C', value: 'c' },
+    ];
 
-### Ecosystem
+    return {
+      state,
+      option1,
+      option2,
+    };
+  },
+};
+```
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+### Custom Content
 
-### Links
+```html
+<van-dropdown-menu>
+  <van-dropdown-item v-model="state.value" :options="option" />
+  <van-dropdown-item title="Title" ref="item">
+    <van-cell center title="Title">
+      <template #right-icon>
+        <van-switch v-model="state.switch1" size="24" active-color="#ee0a24" />
+      </template>
+    </van-cell>
+    <van-cell center title="Title">
+      <template #right-icon>
+        <van-switch v-model="state.switch2" size="24" active-color="#ee0a24" />
+      </template>
+    </van-cell>
+    <div style="padding: 5px 16px;">
+      <van-button type="danger" block round @click="onConfirm">
+        Confirm
+      </van-button>
+    </div>
+  </van-dropdown-item>
+</van-dropdown-menu>
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```js
+import { ref, reactive } from 'vue';
 
-### LICENSE
+export default {
+  setup() {
+    const item = ref(null);
+    const state = reactive({
+      value: 0,
+      switch1: false,
+      switch2: false,
+    });
+    const options = [
+      { text: 'Option1', value: 0 },
+      { text: 'Option2', value: 1 },
+      { text: 'Option3', value: 2 },
+    ];
+    const onConfirm = () => {
+      item.value.toggle();
+    };
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+    return {
+      item,
+      state,
+      option,
+      onConfirm,
+    };
+  },
+};
+```
+
+### Custom Active Color
+
+Use `active-color` prop to custom active color of the title and options.
+
+```html
+<van-dropdown-menu active-color="#1989fa">
+  <van-dropdown-item v-model="value1" :options="option1" />
+  <van-dropdown-item v-model="value2" :options="option2" />
+</van-dropdown-menu>
+```
+
+### Expand Direction
+
+```html
+<van-dropdown-menu direction="up">
+  <van-dropdown-item v-model="value1" :options="option1" />
+  <van-dropdown-item v-model="value2" :options="option2" />
+</van-dropdown-menu>
+```
+
+### Disabled
+
+```html
+<van-dropdown-menu>
+  <van-dropdown-item v-model="value1" disabled :options="option1" />
+  <van-dropdown-item v-model="value2" disabled :options="option2" />
+</van-dropdown-menu>
+```
+
+## API
+
+### DropdownMenu Props
+
+| Attribute              | Description                              | Type               | Default   |
+|------------------------|------------------------------------------|--------------------|-----------|
+| active-color           | Active color of title and option         | _string_           | `#ee0a24` |
+| direction              | Expand direction, can be set to `up`     | _string_           | `down`    |
+| z-index                | z-index of menu item                     | _number \| string_ | `10`      |
+| duration               | Transition duration, unit second         | _number \| string_ | `0.2`     |
+| overlay                | Whether to show overlay                  | _boolean_          | `true`    |
+| close-on-click-overlay | Whether to close when overlay is clicked | _boolean_          | `true`    |
+| close-on-click-outside | Whether to close when outside is clicked | _boolean_          | `true`    |
+
+### DropdownItem Props
+
+| Attribute   | Description                               | Type                        | Default                 |
+|-------------|-------------------------------------------|-----------------------------|-------------------------|
+| value       | Value of current option，can use `v-model` | _number \| string_          | -                       |
+| title       | Item title                                | _string_                    | Text of selected option |
+| options     | Options                                   | _Option[]_                  | `[]`                    |
+| disabled    | Whether to disable dropdown item          | _boolean_                   | `false`                 |
+| lazy-render | Whether to lazy render util opened        | _boolean_                   | `true`                  |
+| title-class | Title class                               | _string \| Array \| object_ | -                       |
+| teleport    | Return the mount node for menu            | _string \| Element_         | -                       |
+
+### DropdownItem Events
+
+| Event  | Description                             | Arguments |
+|--------|-----------------------------------------|-----------|
+| change | Emitted select option and value changed | value     |
+| open   | Emitted when opening menu               | -         |
+| close  | Emitted when closing menu               | -         |
+| opened | Emitted when menu is opened             | -         |
+| closed | Emitted when menu is closed             | -         |
+
+### DropdownItem Slots
+
+| Name    | Description  |
+|---------|--------------|
+| default | Content      |
+| title   | Custom title |
+
+### DropdownItem Methods
+
+Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get DropdownItem instance and call instance methods.
+
+| Name   | Description    | Attribute       | Return value |
+|--------|----------------|-----------------|--------------|
+| toggle | Toggle display | _show: boolean_ | -            |
+
+### Data Structure of Option
+
+| Key   | Description | Type               |
+|-------|-------------|--------------------|
+| text  | Text        | _string_           |
+| value | Value       | _number \| string_ |
+| icon  | Left icon   | _string_           |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                                     | Default Value                  | Description |
+|------------------------------------------|--------------------------------|-------------|
+| @dropdown-menu-height                    | `48px`                         | -           |
+| @dropdown-menu-background-color          | `@white`                       | -           |
+| @dropdown-menu-box-shadow                | `0 2px 12px fade(@gray-7, 12)` | -           |
+| @dropdown-menu-title-font-size           | `15px`                         | -           |
+| @dropdown-menu-title-text-color          | `@text-color`                  | -           |
+| @dropdown-menu-title-active-text-color   | `@red`                         | -           |
+| @dropdown-menu-title-disabled-text-color | `@gray-6`                      | -           |
+| @dropdown-menu-title-padding             | `0 @padding-xs`                | -           |
+| @dropdown-menu-title-line-height         | `@line-height-lg`              | -           |
+| @dropdown-menu-option-active-color       | `@red`                         | -           |
+| @dropdown-menu-content-max-height        | `80%`                          | -           |
+| @dropdown-item-z-index                   | `10`                           | -           |

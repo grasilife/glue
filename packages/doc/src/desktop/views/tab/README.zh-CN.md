@@ -1,78 +1,350 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Tab 标签页
 
-### 介绍
+### 引入
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+```js
+import { createApp } from 'vue';
+import { Tab, Tabs } from 'vant';
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+const app = createApp();
+app.use(Tab);
+app.use(Tabs);
+```
 
-### 特性
+## 代码演示
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+### 基础用法
 
-### 快速上手
+通过 `v-model:active` 绑定当前激活标签对应的索引值，默认情况下启用第一个标签。
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+```html
+<van-tabs v-model:active="active">
+  <van-tab title="标签 1">内容 1</van-tab>
+  <van-tab title="标签 2">内容 2</van-tab>
+  <van-tab title="标签 3">内容 3</van-tab>
+  <van-tab title="标签 4">内容 4</van-tab>
+</van-tabs>
+```
 
-### 贡献代码
+```js
+import { ref } from 'vue';
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+export default {
+  setup() {
+    const active = ref(2);
+    return { active };
+  },
+};
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+### 通过名称匹配
 
-### 浏览器支持
+在标签指定 `name` 属性的情况下，`v-model:active` 的值为当前标签的 `name`（此时无法通过索引值来匹配标签）。
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+```html
+<van-tabs v-model:active="activeName">
+  <van-tab title="标签 1" name="a">内容 1</van-tab>
+  <van-tab title="标签 2" name="b">内容 2</van-tab>
+  <van-tab title="标签 3" name="c">内容 3</van-tab>
+</van-tabs>
+```
 
-### 加入我们
+```js
+import { ref } from 'vue';
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+export default {
+  setup() {
+    const activeName = ref('a');
+    return { activeName };
+  },
+};
+```
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+### 标签栏滚动
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+标签数量超过 5 个时，标签栏可以在水平方向上滚动，切换时会自动将当前标签居中。
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+```html
+<van-tabs>
+  <van-tab v-for="index in 8" :title="'标签 ' + index">
+    内容 {{ index }}
+  </van-tab>
+</van-tabs>
+```
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+### 禁用标签
 
-### 生态
+设置 `disabled` 属性即可禁用标签，如果需要监听禁用标签的点击事件，可以在 `van-tabs` 上监听`disabled` 事件。
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+```html
+<van-tabs @disabled="onClickDisabled">
+  <van-tab title="标签 1">内容 1</van-tab>
+  <van-tab title="标签 2" disabled>内容 2</van-tab>
+  <van-tab title="标签 3">内容 3</van-tab>
+</van-tabs>
+```
 
-### 链接
+```js
+import { Toast } from 'vant';
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+export default {
+  setup() {
+    const onClickDisabled = (name, title) => Toast(`${name}已被禁用`);
+    return {
+      onClickDisabled,
+    };
+  },
+};
+```
 
-### 开源协议
+### 样式风格
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+`Tab` 支持两种样式风格：`line` 和`card`，默认为 `line` 样式，可以通过 `type` 属性切换样式风格。
+
+```html
+<van-tabs type="card">
+  <van-tab title="标签 1">内容 1</van-tab>
+  <van-tab title="标签 2">内容 2</van-tab>
+  <van-tab title="标签 3">内容 3</van-tab>
+</van-tabs>
+```
+
+### 点击事件
+
+可以在 `van-tabs` 上绑定 `click` 事件，事件传参为标签对应的标识符和标题。
+
+```html
+<van-tabs @click="onClick">
+  <van-tab title="标签 1">内容 1</van-tab>
+  <van-tab title="标签 2">内容 2</van-tab>
+</van-tabs>
+```
+
+```js
+import { Toast } from 'vant';
+
+export default {
+  setup() {
+    const onClick = (name, title) => Toast(title);
+    return {
+      onClick,
+    };
+  },
+};
+```
+
+### 粘性布局
+
+通过 `sticky` 属性可以开启粘性布局，粘性布局下，标签页滚动到顶部时会自动吸顶。
+
+```html
+<van-tabs v-model:active="active" sticky>
+  <van-tab v-for="index in 4" :title="'选项 ' + index">
+    内容 {{ index }}
+  </van-tab>
+</van-tabs>
+```
+
+### 自定义标签
+
+通过 `title` 插槽可以自定义标签内容。
+
+```html
+<van-tabs v-model:active="active">
+  <van-tab v-for="index in 2" :key="index">
+    <template #title> <van-icon name="more-o" />选项 </template>
+    内容 {{ index }}
+  </van-tab>
+</van-tabs>
+```
+
+### 切换动画
+
+通过 `animated` 属性可以开启切换标签内容时的转场动画。
+
+```html
+<van-tabs v-model:active="active" animated>
+  <van-tab v-for="index in 4" :title="'选项 ' + index">
+    内容 {{ index }}
+  </van-tab>
+</van-tabs>
+```
+
+### 滑动切换
+
+通过 `swipeable` 属性可以开启滑动切换标签页。
+
+```html
+<van-tabs v-model:active="active" swipeable>
+  <van-tab v-for="index in 4" :title="'选项 ' + index">
+    内容 {{ index }}
+  </van-tab>
+</van-tabs>
+```
+
+### 滚动导航
+
+通过 `scrollspy` 属性可以开启滚动导航模式，该模式下，内容将会平铺展示。
+
+```html
+<van-tabs v-model:active="active" scrollspy sticky>
+  <van-tab v-for="index in 8" :title="'选项 ' + index">
+    内容 {{ index }}
+  </van-tab>
+</van-tabs>
+```
+
+### 异步切换
+
+通过 `before-change` 属性可以在切换标签前执行特定的逻辑。
+
+```html
+<van-tabs :before-change="beforeChange">
+  <van-tab v-for="index in 4" :title="'选项 ' + index">
+    内容 {{ index }}
+  </van-tab>
+</van-tabs>
+```
+
+```js
+export default {
+  setup() {
+    const beforeChange = (index) => {
+      // 返回 false 表示阻止此次切换
+      if (index === 1) {
+        return false;
+      }
+
+      // 返回 Promise 来执行异步逻辑
+      return new Promise((resolve) => {
+        // 在 resolve 函数中返回 true 或 false
+        resolve(index !== 3);
+      });
+    };
+
+    return {
+      beforeChange,
+    };
+  },
+};
+```
+
+## API
+
+### Tabs Props
+
+| 参数                 | 说明                                                                    | 类型                           | 默认值    |
+|----------------------|-----------------------------------------------------------------------|--------------------------------|-----------|
+| v-model:active       | 绑定当前选中标签的标识符                                                | _number \| string_             | `0`       |
+| type                 | 样式风格类型，可选值为 `card`                                            | _string_                       | `line`    |
+| color                | 标签主题色                                                              | _string_                       | `#ee0a24` |
+| background           | 标签栏背景色                                                            | _string_                       | `white`   |
+| duration             | 动画时间，单位秒                                                         | _number \| string_             | `0.3`     |
+| line-width           | 底部条宽度，默认单位 `px`                                                | _number \| string_             | `40px`    |
+| line-height          | 底部条高度，默认单位 `px`                                                | _number \| string_             | `3px`     |
+| animated             | 是否开启切换标签内容时的转场动画                                        | _boolean_                      | `false`   |
+| border               | 是否显示标签栏外边框，仅在 `type="line"` 时有效                          | _boolean_                      | `false`   |
+| ellipsis             | 是否省略过长的标题文字                                                  | _boolean_                      | `true`    |
+| sticky               | 是否使用粘性定位布局                                                    | _boolean_                      | `false`   |
+| swipeable            | 是否开启手势滑动切换                                                    | _boolean_                      | `false`   |
+| lazy-render          | 是否开启延迟渲染（首次切换到标签时才触发内容渲染）                        | _boolean_                      | `true`    |
+| scrollspy            | 是否开启滚动导航                                                        | _boolean_                      | `false`   |
+| offset-top           | 粘性定位布局下与顶部的最小距离，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_             | `0`       |
+| swipe-threshold      | 滚动阈值，标签数量超过阈值且总宽度超过标签栏宽度时开始横向滚动           | _number \| string_             | `5`       |
+| title-active-color   | 标题选中态颜色                                                          | _string_                       | -         |
+| title-inactive-color | 标题默认态颜色                                                          | _string_                       | -         |
+| before-change        | 切换标签前的回调函数，返回 `false` 可阻止切换，支持返回 Promise           | _(name) => boolean \| Promise_ | -         |
+
+### Tab Props
+
+| 参数        | 说明                                                                                     | 类型                        | 默认值       |
+|-------------|----------------------------------------------------------------------------------------|-----------------------------|--------------|
+| title       | 标题                                                                                     | _string_                    | -            |
+| disabled    | 是否禁用标签                                                                             | _boolean_                   | `false`      |
+| dot         | 是否在标题右上角显示小红点                                                               | _boolean_                   | `false`      |
+| badge       | 图标右上角徽标的内容                                                                     | _number \| string_          | -            |
+| name        | 标签名称，作为匹配的标识符                                                                | _number \| string_          | 标签的索引值 |
+| url         | 点击后跳转的链接地址                                                                     | _string_                    | -            |
+| to          | 点击后跳转的目标路由对象，同 vue-router 的 [to 属性](https://router.vuejs.org/zh/api/#to) | _string \| object_          | -            |
+| replace     | 是否在跳转时替换当前页面历史                                                             | _boolean_                   | `false`      |
+| title-style | 自定义标题样式                                                                           | _string \| Array \| object_ | -            |
+| title-class | 自定义标题类名                                                                           | _string \| Array \| object_ | -            |
+
+### Tabs Events
+
+| 事件名   | 说明                                           | 回调参数                                       |
+|----------|----------------------------------------------|--------------------------------------------|
+| click    | 点击标签时触发                                 | name：标识符，title：标题                         |
+| change   | 当前激活的标签改变时触发                       | name：标识符，title：标题                         |
+| disabled | 点击被禁用的标签时触发                         | name：标识符，title：标题                         |
+| rendered | 标签内容首次渲染时触发（仅在开启延迟渲染后触发） | name：标识符，title：标题                         |
+| scroll   | 滚动时触发，仅在 sticky 模式下生效              | { scrollTop: 距离顶部位置, isFixed: 是否吸顶 } |
+
+### Tabs 方法
+
+通过 ref 可以获取到 Tabs 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名   | 说明                                                      | 参数         | 返回值 |
+|----------|---------------------------------------------------------|--------------|--------|
+| resize   | 外层元素大小或组件显示状态变化时，可以调用此方法来触发重绘 | -            | -      |
+| scrollTo | 滚动到指定的标签页，在滚动导航模式下可用                   | name: 标识符 | -      |
+
+### Tabs Slots
+
+| 名称      | 说明         |
+|-----------|------------|
+| nav-left  | 标题左侧内容 |
+| nav-right | 标题右侧内容 |
+
+### Tab Slots
+
+| 名称    | 说明       |
+|---------|----------|
+| default | 标签页内容 |
+| title   | 自定义标题 |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                       | 默认值                | 描述 |
+|----------------------------|-----------------------|------|
+| @tab-text-color            | `@gray-7`             | -    |
+| @tab-active-text-color     | `@text-color`         | -    |
+| @tab-disabled-text-color   | `@gray-5`             | -    |
+| @tab-font-size             | `@font-size-md`       | -    |
+| @tab-line-height           | `@line-height-md`     | -    |
+| @tabs-default-color        | `@red`                | -    |
+| @tabs-line-height          | `44px`                | -    |
+| @tabs-card-height          | `30px`                | -    |
+| @tabs-nav-background-color | `@white`              | -    |
+| @tabs-bottom-bar-width     | `40px`                | -    |
+| @tabs-bottom-bar-height    | `3px`                 | -    |
+| @tabs-bottom-bar-color     | `@tabs-default-color` | -    |
+
+## 常见问题
+
+### 组件从隐藏状态切换到显示状态时，底部条位置错误？
+
+Tabs 组件在挂载时，会获取自身的宽度，并计算出底部条的位置。如果组件一开始处于隐藏状态，则获取到的宽度永远为 0，因此无法展示底部条位置。
+
+#### 解决方法
+
+方法一，如果是使用 `v-show` 来控制组件展示的，则替换为 `v-if` 即可解决此问题：
+
+```html
+<!-- Before -->
+<van-tabs v-show="show" />
+<!-- After -->
+<van-tabs v-if="show" />
+```
+
+方法二，调用组件的 resize 方法来主动触发重绘：
+
+```html
+<van-tabs v-show="show" ref="tabs" />
+```
+
+```js
+this.$refs.tabs.resize();
+```

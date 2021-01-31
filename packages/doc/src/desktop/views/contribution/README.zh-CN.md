@@ -1,78 +1,97 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# 开发指南
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+感谢你使用 Vant。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+以下是关于向 Vant 提交反馈或代码的指南。在向 Vant 提交 issue 或者 PR 之前，请先花几分钟时间阅读以下文字。
 
-### 特性
+### Issue 规范
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+- 遇到问题时，请先确认这个问题是否已经在 issue 中有记录或者已被修复
+- 提 issue 时，请用简短的语言描述遇到的问题，并添加出现问题时的环境和复现步骤
 
-### 快速上手
+## 参与开发
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 本地开发
 
-### 贡献代码
+按照下面的步骤操作，即可在本地开发 Vant 组件。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```bash
+# 克隆仓库
+# 默认为 dev 分支，包含 Vant 3 的代码
+# 如果需要在 Vant 2 上进行更改，请基于 2.x 分支进行开发
+git clone git@github.com:youzan/vant.git
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+# 安装依赖
+cd vant && yarn
 
-### 浏览器支持
+# 进入开发模式，浏览器访问 http://localhost:8080
+npm run dev
+```
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+### 目录结构
 
-### 加入我们
+- 仓库的组件代码位于 src 下，每个组件一个文件夹
+- docs 目录下是文档网站的代码，本地开发时可以在目录下运行 npm run dev 开启文档网站
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+项目主要目录如下：
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+```
+vant
+├─ build     # 构建
+├─ docs      # 文档
+├─ src       # 组件
+├─ packages  # 子包
+├─ test      # 单测
+└─ types     # 类型
+```
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+### 添加新组件
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+添加新组件时，请按照下面的目录结构组织文件，并在 `vant.config.js` 中配置组件名称。
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+```
+src
+└─ button
+   ├─ demo             # 示例代码
+   ├─ test             # 单元测试
+   ├─ index.js         # 组件入口
+   ├─ index.less       # 组件样式
+   ├─ README.md        # 英文文档
+   └─ README.zh-CN.md  # 中文文档
+```
 
-### 生态
+## 提交 PR
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+### Pull Request 规范
 
-### 链接
+- 如果遇到问题，建议保持你的 PR 足够小。保证一个 PR 只解决一个问题或只添加一个功能
+- 当新增组件或者修改原有组件时，记得增加或者修改测试代码，保证代码的稳定
+- 在 PR 中请添加合适的描述，并关联相关的 Issue
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### Pull Request 流程
 
-### 开源协议
+1. fork 主仓库，如果已经 fork 过，请同步主仓库的最新代码
+2. 基于 fork 后仓库的 dev 分支新建一个分支，比如`feature/button_color`
+3. 在新分支上进行开发，开发完成后，提 Pull Request 到主仓库的 dev 分支
+4. Pull Request 会在 Review 通过后被合并到主仓库
+5. 等待 Vant 发布版本，一般是每周一次
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+### 同步最新代码
+
+提 Pull Request 前，请依照下面的流程同步主仓库的最新代码：
+
+```bash
+# 添加主仓库到 remote，作为 fork 后仓库的上游仓库
+git remote add upstream https://github.com/youzan/vant.git
+
+# 拉取主仓库最新代码
+git fetch upstream
+
+# 切换至 dev 分支
+git checkout dev
+
+# 合并主仓库代码
+git merge upstream/dev
+```

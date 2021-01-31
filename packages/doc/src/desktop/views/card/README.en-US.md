@@ -1,55 +1,126 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Card
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Card } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Card);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-card
+  num="2"
+  price="2.00"
+  title="Title"
+  desc="Description"
+  thumb="https://img01.yzcdn.cn/vant/ipad.jpeg"
+/>
+```
 
-### Browser Support
+### Discount Info
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+```html
+<van-card
+  num="2"
+  tag="Tag"
+  price="2.00"
+  title="Title"
+  desc="Description"
+  origin-price="10.00"
+  thumb="https://img01.yzcdn.cn/vant/ipad.jpeg"
+/>
+```
 
-### Ecosystem
+### Custom Content
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+Use slot to custom content.
 
-### Links
+```html
+<van-card
+  num="2"
+  title="Title"
+  desc="Description"
+  price="2.00"
+  thumb="https://img01.yzcdn.cn/vant/ipad.jpeg"
+>
+  <template #tags>
+    <van-tag plain type="danger">Tag</van-tag>
+    <van-tag plain type="danger">Tag</van-tag>
+  </template>
+  <template #footer>
+    <van-button size="mini">Button</van-button>
+    <van-button size="mini">Button</van-button>
+  </template>
+</van-card>
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+## API
 
-### LICENSE
+### Props
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+| Attribute    | Description                                                                              | Type               | Default |
+|--------------|------------------------------------------------------------------------------------------|--------------------|---------|
+| thumb        | Left thumb image URL                                                                     | _string_           | -       |
+| title        | Title                                                                                    | _string_           | -       |
+| desc         | Description                                                                              | _string_           | -       |
+| tag          | Tag                                                                                      | _string_           | -       |
+| num          | number                                                                                   | _number \| string_ | -       |
+| price        | Price                                                                                    | _number \| string_ | -       |
+| origin-price | Origin price                                                                             | _number \| string_ | -       |
+| centered     | Whether content vertical centered                                                        | _boolean_          | `false` |
+| currency     | Currency symbol                                                                          | _string_           | `¥`     |
+| thumb-link   | Thumb link URL                                                                           | _string_           | -       |
+| lazy-load    | Whether to enable thumb lazy load，should register [Lazyload](#/en-US/lazyload) component | _boolean_          | `false` |
+
+### Events
+
+| Event       | Description                       | Arguments      |
+|-------------|-----------------------------------|----------------|
+| click       | Emitted when component is clicked | _event: Event_ |
+| click-thumb | Emitted when thumb is clicked     | _event: Event_ |
+
+### Slots
+
+| Name         | Description         |
+|--------------|---------------------|
+| title        | Custom title        |
+| desc         | Custom description  |
+| num          | Custom num          |
+| price        | Custom price        |
+| origin-price | Custom origin price |
+| price-top    | Custom price top    |
+| bottom       | Custom price bottom |
+| thumb        | Custom thumb        |
+| tag          | Custom thumb tag    |
+| tags         | Custom tags         |
+| footer       | Custom footer       |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                          | Default Value                | Description |
+|-------------------------------|------------------------------|-------------|
+| @card-padding                 | `@padding-xs @padding-md`    | -           |
+| @card-font-size               | `@font-size-sm`              | -           |
+| @card-text-color              | `@text-color`                | -           |
+| @card-background-color        | `@background-color-light`    | -           |
+| @card-thumb-size              | `88px`                       | -           |
+| @card-thumb-border-radius     | `@border-radius-lg`          | -           |
+| @card-title-line-height       | `16px`                       | -           |
+| @card-desc-color              | `@gray-7`                    | -           |
+| @card-desc-line-height        | `@line-height-md`            | -           |
+| @card-price-color             | `@gray-8`                    | -           |
+| @card-origin-price-color      | `@gray-6`                    | -           |
+| @card-num-color               | `@gray-6`                    | -           |
+| @card-origin-price-font-size  | `@font-size-xs`              | -           |
+| @card-price-font-size         | `@font-size-sm`              | -           |
+| @card-price-integer-font-size | `@font-size-lg`              | -           |
+| @card-price-font-family       | `@price-integer-font-family` | -           |

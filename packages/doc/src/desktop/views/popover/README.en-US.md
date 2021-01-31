@@ -1,55 +1,262 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Popover
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Popover } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Popover);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-popover v-model:show="showPopover" :actions="actions" @select="onSelect">
+  <template #reference>
+    <van-button type="primary">Light Theme</van-button>
+  </template>
+</van-popover>
+```
 
-### Browser Support
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const showPopover = ref(false);
+    const actions = [
+      { text: 'Option 1' },
+      { text: 'Option 2' },
+      { text: 'Option 3' },
+    ];
+    const onSelect = (action) => Toast(action.text);
 
-### Ecosystem
+    return {
+      actions,
+      onSelect,
+      showPopover,
+    };
+  },
+};
+```
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+### Dark theme
 
-### Links
+Using the `theme` prop to change the style of Popover.
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-popover v-model:show="showPopover" theme="dark" :actions="actions">
+  <template #reference>
+    <van-button type="primary">Dark Theme</van-button>
+  </template>
+</van-popover>
+```
 
-### LICENSE
+```js
+import { ref } from 'vue';
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+export default {
+  setup() {
+    const showPopover = ref(false);
+    const actions = [
+      { text: 'Option 1' },
+      { text: 'Option 2' },
+      { text: 'Option 3' },
+    ];
+
+    return {
+      actions,
+      showPopover,
+    };
+  },
+};
+```
+
+### Placement
+
+```html
+<van-popover placement="top" />
+```
+
+`placement` supports the following values:
+
+```bash
+top           # Top middle
+top-start     # Top left
+top-end       # Top right
+left          # Left middle
+left-start    # Left top
+left-end      # Left bottom
+right         # Right middle
+right-start   # Right top
+right-end     # Right bottom
+bottom        # Bottom middle
+bottom-start  # Bottom left
+bottom-end    # Bottom right
+```
+
+### Show Icon
+
+```html
+<van-popover v-model:show="showPopover" :actions="actions">
+  <template #reference>
+    <van-button type="primary">Show Icon</van-button>
+  </template>
+</van-popover>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const showPopover = ref(false);
+    const actions = [
+      { text: 'Option 1', icon: 'add-o' },
+      { text: 'Option 2', icon: 'music-o' },
+      { text: 'Option 3', icon: 'more-o' },
+    ];
+
+    return {
+      actions,
+      showPopover,
+    };
+  },
+};
+```
+
+### Disable Action
+
+Using the `disabled` option to disable an action.
+
+```html
+<van-popover v-model:show="showPopover" :actions="actions">
+  <template #reference>
+    <van-button type="primary">Disable Action</van-button>
+  </template>
+</van-popover>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const showPopover = ref(false);
+    const actions = [
+      { text: 'Option 1', disabled: true },
+      { text: 'Option 2', disabled: true },
+      { text: 'Option 3' },
+    ];
+
+    return {
+      actions,
+      showPopover,
+    };
+  },
+};
+```
+
+### Custom Content
+
+```html
+<van-popover v-model:show="showPopover">
+  <van-grid
+    square
+    clickable
+    :border="false"
+    column-num="3"
+    style="width: 240px;"
+  >
+    <van-grid-item
+      v-for="i in 6"
+      :key="i"
+      text="Option"
+      icon="photo-o"
+      @click="showPopover = false"
+    />
+  </van-grid>
+  <template #reference>
+    <van-button type="primary">Custom Content</van-button>
+  </template>
+</van-popover>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const showPopover = ref(false);
+    return { showPopover };
+  },
+};
+```
+
+## API
+
+### Props
+
+| Attribute    | Description                | Type       | Default  |
+|--------------|----------------------------|------------|----------|
+| v-model:show | Whether to show Popover    | _boolean_  | `false`  |
+| actions      | Actions                    | _Action[]_ | `[]`     |
+| placement    | Placement                  | _string_   | `bottom` |
+| theme        | Theme，can be set to `dark` | _string_   | `light`  |
+| trigger | Trigger mode，can be set to `manual` | `click` |
+| offset | Distance to reference | _[number, number]_ | `[0, 8]` |
+| overlay | Whether to show overlay | _boolean_ | `false` |
+| close-on-click-action | Whether to close when clicking action | _boolean_ | `true` |
+| close-on-click-outside | Whether to close when clicking outside | _boolean_ | `true` |
+| teleport | Return the mount node for Popover | _string \| Element_ | `body` |
+
+### Data Structure of Action
+
+| Key       | Description             | Type                        |
+|-----------|-------------------------|-----------------------------|
+| text      | Action Text             | _string_                    |
+| icon      | Icon                    | _string_                    |
+| disabled  | Whether to be disabled  | _boolean_                   |
+| className | className of the option | _string \| Array \| object_ |
+
+### Events
+
+| Event  | Description                       | Arguments                       |
+|--------|-----------------------------------|---------------------------------|
+| select | Emitted when an action is clicked | _action: Action, index: number_ |
+| open   | Emitted when opening Popover      | -                               |
+| close  | Emitted when closing Popover      | -                               |
+| opened | Emitted when Popover is opened    | -                               |
+| closed | Emitted when Popover is closed    | -                               |
+
+### Slots
+
+| Name      | Description       |
+|-----------|-------------------|
+| default   | Custom content    |
+| reference | Reference Element |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                                      | Default Value       | Description |
+|-------------------------------------------|---------------------|-------------|
+| @popover-arrow-size                       | `6px`               | -           |
+| @popover-border-radius                    | `@border-radius-lg` | -           |
+| @popover-action-width                     | `128px`             | -           |
+| @popover-action-height                    | `44px`              | -           |
+| @popover-action-font-size                 | `@font-size-md`     | -           |
+| @popover-action-line-height               | `@line-height-md`   | -           |
+| @popover-action-icon-size                 | `20px`              | -           |
+| @popover-light-text-color                 | `@text-color`       | -           |
+| @popover-light-background-color           | `@white`            | -           |
+| @popover-light-action-disabled-text-color | `@gray-5`           | -           |
+| @popover-dark-text-color                  | `@white`            | -           |
+| @popover-dark-background-color            | `#4a4a4a`           | -           |
+| @popover-dark-action-disabled-text-color  | `@gray-6`           | -           |

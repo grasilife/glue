@@ -1,55 +1,92 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Loading
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Loading } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Loading);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Type
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-loading />
 
-### Browser Support
+<van-loading type="spinner" />
+```
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+### Color
 
-### Ecosystem
+```html
+<van-loading color="#1989fa" />
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+<van-loading type="spinner" color="#1989fa" />
+```
 
-### Links
+### Size
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-loading size="24" />
 
-### LICENSE
+<van-loading type="spinner" size="24px" />
+```
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+### Text
+
+```html
+<van-loading size="24px">Loading...</van-loading>
+```
+
+### Vertical
+
+```html
+<van-loading size="24px" vertical>Loading...</van-loading>
+```
+
+### Text Color
+
+use `color` or `text-color` to change text color.
+
+```html
+<!-- the color of text and icon will be changed -->
+<van-loading color="#0094ff" />
+
+<!-- only change text color -->
+<van-loading text-color="#0094ff" />
+```
+
+## API
+
+### Props
+
+| Attribute  | Description                                          | Type               | Default    |
+|------------|------------------------------------------------------|--------------------|------------|
+| color      | Loading color                                        | _string_           | `#c9c9c9`  |
+| type       | Can be set to `spinner`                              | _string_           | `circular` |
+| size       | Icon size                                            | _number \| string_ | `30px`     |
+| text-size  | Text font size                                       | _number \| string_ | `14px`     |
+| text-color | Text color                                           | _string_           | `#c9c9c9`  |
+| vertical   | Whether to arrange icons and text content vertically | _boolean_          | `false`    |
+
+### Slots
+
+| Name    | Description  |
+|---------|--------------|
+| default | Loading text |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                                | Default Value   | Description |
+|-------------------------------------|-----------------|-------------|
+| @loading-text-color                 | `@gray-6`       | -           |
+| @loading-text-font-size             | `@font-size-md` | -           |
+| @loading-spinner-color              | `@gray-5`       | -           |
+| @loading-spinner-size               | `30px`          | -           |
+| @loading-spinner-animation-duration | `0.8s`          | -           |

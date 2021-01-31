@@ -1,55 +1,191 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Toast
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Toast } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Toast);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Text
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```js
+Toast('Some messages');
+```
 
-### Browser Support
+### Loading
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+```js
+Toast.loading({
+  message: 'Loading...',
+  forbidClick: true,
+});
+```
 
-### Ecosystem
+### Success/Fail
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+```js
+Toast.success('Success');
+Toast.fail('Fail');
+```
 
-### Links
+### Custom Icon
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```js
+Toast({
+  message: 'Custom Icon',
+  icon: 'like-o',
+});
 
-### LICENSE
+Toast({
+  message: 'Custom Image',
+  icon: 'https://img01.yzcdn.cn/vant/logo.png',
+});
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+Toast.loading({
+  message: 'Loading...',
+  forbidClick: true,
+  loadingType: 'spinner',
+});
+```
+
+### Custom Position
+
+```js
+Toast({
+  message: 'Top',
+  position: 'top',
+});
+
+Toast({
+  message: 'Bottom',
+  position: 'bottom',
+});
+```
+
+### Update Message
+
+```js
+const toast = Toast.loading({
+  duration: 0,
+  forbidClick: true,
+  loadingType: 'spinner',
+  message: '3 seconds',
+});
+
+let second = 3;
+const timer = setInterval(() => {
+  second--;
+  if (second) {
+    toast.message = `${second} seconds`;
+  } else {
+    clearInterval(timer);
+    Toast.clear();
+  }
+}, 1000);
+```
+
+### Global Method
+
+After registering the Toast component through `app.use`, the `$toast` method will be automatically mounted on all subcomponents of the app.
+
+```js
+export default {
+  mounted() {
+    this.$toast('Some messages');
+  },
+};
+```
+
+### Singleton
+
+Toast use singleton mode by default, if you need to pop multiple Toast at the same time, you can refer to the following example:
+
+```js
+Toast.allowMultiple();
+
+const toast1 = Toast('First Toast');
+const toast2 = Toast.success('Second Toast');
+
+toast1.clear();
+toast2.clear();
+```
+
+### Set Default Options
+
+The Toast default configuration can be globally modified with the `Toast.setDefaultOptions` function.
+
+```js
+Toast.setDefaultOptions({ duration: 2000 });
+
+Toast.setDefaultOptions('loading', { forbidClick: true });
+
+Toast.resetDefaultOptions();
+
+Toast.resetDefaultOptions('loading');
+```
+
+## API
+
+### Methods
+
+| Methods                   | Attribute            | Return value   | Description                           |
+|---------------------------|----------------------|----------------|---------------------------------------|
+| Toast                     | `options \| message` | toast instance | Show toast                            |
+| Toast.loading             | `options \| message` | toast instance | Show loading toast                    |
+| Toast.success             | `options \| message` | toast instance | Show success toast                    |
+| Toast.fail                | `options \| message` | toast instance | Show fail toast                       |
+| Toast.clear               | `clearAll: boolean`  | `void`         | Close toast                           |
+| Toast.allowMultiple       | -                    | `void`         | Allow multlple toast at the same time |
+| Toast.setDefaultOptions   | `type \| options`    | `void`         | Set default options of all toasts     |
+| Toast.resetDefaultOptions | `type`               | `void`         | Reset default options of all toasts   |
+
+### Options
+
+| Attribute             | Description                                                                                                        | Type                        | Default    |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------|------------|
+| type                  | Can be set to `loading` `success` `fail` `html`                                                                    | _string_                    | `text`     |
+| position              | Can be set to `top` `middle` `bottom`                                                                              | _string_                    | `middle`   |
+| message               | Message                                                                                                            | _string_                    | `''`       |
+| icon                  | Custom icon                                                                                                        | _string_                    | -          |
+| iconPrefix            | Icon className prefix                                                                                              | _string_                    | `van-icon` |
+| overlay               | Whether to show overlay                                                                                            | _boolean_                   | `false`    |
+| forbidClick           | Whether to forbid click background                                                                                 | _boolean_                   | `false`    |
+| closeOnClick          | Whether to close after clicked                                                                                     | _boolean_                   | `false`    |
+| closeOnClickOverlay   | Whether to close when overlay is clicked                                                                           | _boolean_                   | `false`    |
+| loadingType           | Loading icon type, can be set to `spinner`                                                                         | _string_                    | `circular` |
+| duration              | Toast duration(ms), won't disappear if value is 0                                                                  | _number_                    | `2000`     |
+| className             | Custom className                                                                                                   | _string \| Array \| object_ | -          |
+| overlayClass `v3.0.4` | Custom overlay class                                                                                               | _string \| Array \| object_ | -          |
+| overlayStyle `v3.0.4` | Custom overlay style                                                                                               | _object_                    | -          |
+| onOpened              | Callback function after opened                                                                                     | _Function_                  | -          |
+| onClose               | Callback function after close                                                                                      | _Function_                  | -          |
+| transition            | Transition, equivalent to `name` prop of [transtion](https://v3.vuejs.org/api/built-in-components.html#transition) | _string_                    | `van-fade` |
+| teleport              | Return the mount node for Toast                                                                                    | _string \| Element_         | `body`     |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                            | Default Value             | Description |
+|---------------------------------|---------------------------|-------------|
+| @toast-max-width                | `70%`                     | -           |
+| @toast-font-size                | `@font-size-md`           | -           |
+| @toast-text-color               | `@white`                  | -           |
+| @toast-loading-icon-color       | `@white`                  | -           |
+| @toast-line-height              | `@line-height-md`         | -           |
+| @toast-border-radius            | `@border-radius-lg`       | -           |
+| @toast-background-color         | `fade(@black, 70%)`       | -           |
+| @toast-icon-size                | `36px`                    | -           |
+| @toast-text-min-width           | `96px`                    | -           |
+| @toast-text-padding             | `@padding-xs @padding-sm` | -           |
+| @toast-default-padding          | `@padding-md`             | -           |
+| @toast-default-width            | `88px`                    | -           |
+| @toast-default-min-height       | `88px`                    | -           |
+| @toast-position-top-distance    | `20%`                     | -           |
+| @toast-position-bottom-distance | `20%`                     | -           |

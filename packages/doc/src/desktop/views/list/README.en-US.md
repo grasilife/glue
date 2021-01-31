@@ -1,55 +1,210 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# List
 
-### Features
+### Intro
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+A list component to show items and control loading status.
 
-### Quickstart
+### Install
 
-See in [Quickstart](#/en-US/quickstart).
+```js
+import { createApp } from 'vue';
+import { List } from 'vant';
 
-### Contribution
+const app = createApp();
+app.use(List);
+```
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+## Usage
 
-### Browser Support
+### Basic Usage
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+```html
+<van-list
+  v-model:loading="state.loading"
+  :finished="state.finished"
+  finished-text="Finished"
+  @load="onLoad"
+>
+  <van-cell v-for="item in state.list" :key="item" :title="item" />
+</van-list>
+```
 
-### Ecosystem
+```js
+import { reactive } from 'vue';
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+export default {
+  setup() {
+    const state = reactive({
+      list: [],
+      loading: false,
+      finished: false,
+    });
 
-### Links
+    const onLoad = () => {
+      setTimeout(() => {
+        for (let i = 0; i < 10; i++) {
+          state.list.push(state.list.length + 1);
+        }
+        state.loading = false;
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+        if (state.list.length >= 40) {
+          state.finished = true;
+        }
+      }, 1000);
+    };
 
-### LICENSE
+    return {
+      state,
+      onLoad,
+    };
+  },
+};
+```
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+### Error Info
+
+```html
+<van-list
+  v-model:loading="state.loading"
+  v-model:error="state.error"
+  error-text="Request failed. Click to reload"
+  @load="onLoad"
+>
+  <van-cell v-for="item in state.list" :key="item" :title="item" />
+</van-list>
+```
+
+```js
+import { reactive } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({
+      list: [],
+      error: false,
+      loading: false,
+    });
+
+    const onLoad = () => {
+      fetchSomeThing().catch(() => {
+        state.error = true;
+      });
+    };
+
+    return {
+      state,
+      onLoad,
+    };
+  },
+};
+```
+
+### PullRefresh
+
+```html
+<van-pull-refresh v-model="state.refreshing" @refresh="onRefresh">
+  <van-list
+    v-model:loading="state.loading"
+    :finished="state.finished"
+    finished-text="Finished"
+    @load="onLoad"
+  >
+    <van-cell v-for="item in state.list" :key="item" :title="item" />
+  </van-list>
+</van-pull-refresh>
+```
+
+```js
+import { reactive } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({
+      list: [],
+      loading: false,
+      finished: false,
+      refreshing: false,
+    });
+
+    const onLoad = () => {
+      setTimeout(() => {
+        if (state.refreshing) {
+          state.list = [];
+          state.refreshing = false;
+        }
+
+        for (let i = 0; i < 10; i++) {
+          state.list.push(state.list.length + 1);
+        }
+        state.loading = false;
+
+        if (state.list.length >= 40) {
+          state.finished = true;
+        }
+      }, 1000);
+    };
+
+    const onRefresh = () => {
+      state.finished = false;
+      state.loading = true;
+      onLoad();
+    };
+
+    return {
+      state,
+      onLoad,
+      onRefresh,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| Attribute       | Description                                                                                                           | Type               | Default      |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------|--------------------|--------------|
+| v-model:loading | Whether to show loading info，the `load` event will not be Emitted when loading                                        | _boolean_          | `false`      |
+| finished        | Whether loading is finished，the `load` event will not be Emitted when finished                                        | _boolean_          | `false`      |
+| error           | Whether loading is error，the `load` event will be Emitted only when error text clicked, the `sync` modifier is needed | _boolean_          | `false`      |
+| offset          | The load event will be Emitted when the distance between the scrollbar and the bottom is less than offset             | _number \| string_ | `300`        |
+| loading-text    | Loading text                                                                                                          | _string_           | `Loading...` |
+| finished-text   | Finished text                                                                                                         | _string_           | -            |
+| error-text      | Error loaded text                                                                                                     | _string_           | -            |
+| immediate-check | Whether to check loading position immediately after mounted                                                           | _boolean_          | `true`       |
+| direction       | Scroll direction，can be set to `up`                                                                                   | _string_           | `down`       |
+
+### Events
+
+| Event | Description                                                                        | Arguments |
+|-------|------------------------------------------------------------------------------------|-----------|
+| load  | Emitted when the distance between the scrollbar and the bottom is less than offset | -         |
+
+### Methods
+
+Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get List instance and call instance methods.
+
+| Name  | Description           | Attribute | Return value |
+|-------|-----------------------|-----------|--------------|
+| check | Check scroll position | -         | -            |
+
+### Slots
+
+| Name     | Description          |
+|----------|----------------------|
+| default  | List content         |
+| loading  | Custom loading tips  |
+| finished | Custom finished tips |
+| error    | Custom error tips    |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                    | Default Value   | Description |
+|-------------------------|-----------------|-------------|
+| @list-icon-margin-right | `5px`           | -           |
+| @list-text-color        | `@gray-6`       | -           |
+| @list-text-font-size    | `@font-size-md` | -           |
+| @list-text-line-height  | `50px`          | -           |

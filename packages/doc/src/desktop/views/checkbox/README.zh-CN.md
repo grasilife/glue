@@ -1,78 +1,360 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Checkbox 复选框
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+用于在选中和非选中状态之间进行切换。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Checkbox, CheckboxGroup } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Checkbox);
+app.use(CheckboxGroup);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+通过 `v-model` 绑定复选框的勾选状态。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-checkbox v-model="checked">复选框</van-checkbox>
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```js
+import { ref } from 'vue';
 
-### 浏览器支持
+export default {
+  setup() {
+    const checked = ref(true);
+    return { checked };
+  },
+};
+```
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+### 禁用状态
 
-### 加入我们
+通过设置 `disabled` 属性可以禁用复选框。
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+```html
+<van-checkbox v-model="checked" disabled>复选框</van-checkbox>
+```
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+### 自定义形状
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+将 `shape` 属性设置为 `square`，复选框的形状会变成方形。
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+```html
+<van-checkbox v-model="checked" shape="square">复选框</van-checkbox>
+```
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+### 自定义颜色
 
-### 生态
+通过 `checked-color` 属性设置选中状态的图标颜色。
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+```html
+<van-checkbox v-model="checked" checked-color="#ee0a24">复选框</van-checkbox>
+```
 
-### 链接
+### 自定义大小
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+通过 `icon-size` 属性可以自定义图标的大小。
 
-### 开源协议
+```html
+<van-checkbox v-model="checked" icon-size="24px">复选框</van-checkbox>
+```
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+### 自定义图标
+
+通过 `icon` 插槽自定义图标，可以通过 `slotProps` 判断是否为选中状态.
+
+```html
+<van-checkbox v-model="checked">
+  自定义图标
+  <template #icon="props">
+    <img class="img-icon" :src="props.checked ? activeIcon : inactiveIcon" />
+  </template>
+</van-checkbox>
+
+<style>
+  .img-icon {
+    height: 20px;
+  }
+</style>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref(true);
+    return {
+      checked,
+      activeIcon: 'https://img01.yzcdn.cn/vant/user-active.png',
+      inactiveIcon: 'https://img01.yzcdn.cn/vant/user-inactive.png',
+    };
+  },
+};
+```
+
+### 禁用文本点击
+
+设置 `label-disabled` 属性后，点击图标以外的内容不会触发复选框切换。
+
+```html
+<van-checkbox v-model="checked" label-disabled>复选框</van-checkbox>
+```
+
+### 复选框组
+
+复选框可以与复选框组一起使用，复选框组通过 `v-model` 数组绑定复选框的勾选状态。
+
+```html
+<van-checkbox-group v-model="checked">
+  <van-checkbox name="a">复选框 a</van-checkbox>
+  <van-checkbox name="b">复选框 b</van-checkbox>
+</van-checkbox-group>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref(['a', 'b']);
+    return { checked };
+  },
+};
+```
+
+### 水平排列
+
+将 `direction` 属性设置为 `horizontal` 后，复选框组会变成水平排列。
+
+```html
+<van-checkbox-group v-model="checked" direction="horizontal">
+  <van-checkbox name="a">复选框 a</van-checkbox>
+  <van-checkbox name="b">复选框 b</van-checkbox>
+</van-checkbox-group>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref([]);
+    return { checked };
+  },
+};
+```
+
+### 限制最大可选数
+
+通过 `max` 属性可以限制复选框组的最大可选数。
+
+```html
+<van-checkbox-group v-model="result" :max="2">
+  <van-checkbox name="a">复选框 a</van-checkbox>
+  <van-checkbox name="b">复选框 b</van-checkbox>
+  <van-checkbox name="c">复选框 c</van-checkbox>
+</van-checkbox-group>
+```
+
+### 全选与反选
+
+通过 `CheckboxGroup` 实例上的 `toggleAll` 方法可以实现全选与反选。
+
+```html
+<van-checkbox-group v-model="result" ref="checkboxGroup">
+  <van-checkbox name="a">复选框 a</van-checkbox>
+  <van-checkbox name="b">复选框 b</van-checkbox>
+  <van-checkbox name="c">复选框 c</van-checkbox>
+</van-checkbox-group>
+
+<van-button type="primary" @click="checkAll">全选</van-button>
+<van-button type="primary" @click="toggleAll">反选</van-button>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref([]);
+    const checkboxGroup = ref(null);
+
+    const checkAll = () => {
+      checkboxGroup.value.toggleAll(true);
+    }
+    const toggleAll = () => {
+      checkboxGroup.value.toggleAll();
+    },
+
+    return {
+      checked,
+      checkAll,
+      toggleAll,
+      checkboxGroup,
+    };
+  },
+};
+```
+
+### 搭配单元格组件使用
+
+此时你需要再引入 `Cell` 和 `CellGroup` 组件，并通过 `Checkbox` 实例上的 toggle 方法触发切换。
+
+```html
+<van-checkbox-group v-model="checked">
+  <van-cell-group>
+    <van-cell
+      v-for="(item, index) in list"
+      clickable
+      :key="item"
+      :title="`复选框 ${item}`"
+      @click="toggle(index)"
+    >
+      <template #right-icon>
+        <van-checkbox
+          :name="item"
+          :ref="el => checkboxRefs[index] = el"
+          @click.stop
+        />
+      </template>
+    </van-cell>
+  </van-cell-group>
+</van-checkbox-group>
+```
+
+```js
+import { ref, onBeforeUpdate } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref([]);
+    const checkboxRefs = ref([]);
+    const toggle = (index) => {
+      checkboxRefs.value[index].toggle();
+    };
+
+    onBeforeUpdate(() => {
+      checkboxRefs.value = [];
+    });
+
+    return {
+      list: ['a', 'b'],
+      toggle,
+      checked,
+      checkboxRefs,
+    };
+  },
+};
+```
+
+## API
+
+### Checkbox Props
+
+| 参数           | 说明                     | 类型               | 默认值    |
+|----------------|------------------------|--------------------|-----------|
+| v-model        | 是否为选中状态           | _boolean_          | `false`   |
+| name           | 标识符                   | _any_              | -         |
+| shape          | 形状，可选值为 `square`   | _string_           | `round`   |
+| disabled       | 是否禁用复选框           | _boolean_          | `false`   |
+| label-disabled | 是否禁用复选框文本点击   | _boolean_          | `false`   |
+| label-position | 文本位置，可选值为 `left` | _string_           | `right`   |
+| icon-size      | 图标大小，默认单位为 `px` | _number \| string_ | `20px`    |
+| checked-color  | 选中状态颜色             | _string_           | `#1989fa` |
+| bind-group     | 是否与复选框组绑定       | _boolean_          | `true`    |
+
+### CheckboxGroup Props
+
+| 参数          | 说明                                 | 类型               | 默认值     |
+|---------------|------------------------------------|--------------------|------------|
+| v-model       | 所有选中项的标识符                   | _any[]_            | -          |
+| disabled      | 是否禁用所有复选框                   | _boolean_          | `false`    |
+| max           | 最大可选数，`0`为无限制               | _number \| string_ | `0`        |
+| direction     | 排列方向，可选值为 `horizontal`       | _string_           | `vertical` |
+| icon-size     | 所有复选框的图标大小，默认单位为 `px` | _number \| string_ | `20px`     |
+| checked-color | 所有复选框的选中状态颜色             | _string_           | `#1989fa`  |
+
+### Checkbox Events
+
+| 事件名 | 说明                     | 回调参数           |
+|--------|------------------------|--------------------|
+| change | 当绑定值变化时触发的事件 | _checked: boolean_ |
+| click  | 点击复选框时触发         | _event: Event_     |
+
+### CheckboxGroup Events
+
+| 事件名 | 说明                     | 回调参数       |
+|--------|------------------------|----------------|
+| change | 当绑定值变化时触发的事件 | _names: any[]_ |
+
+### Checkbox Slots
+
+| 名称    | 说明       | 参数               |
+|---------|----------|--------------------|
+| default | 自定义文本 | -                  |
+| icon    | 自定义图标 | _checked: boolean_ |
+
+### CheckboxGroup 方法
+
+通过 ref 可以获取到 CheckboxGroup 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名    | 说明                                                            | 参数                          | 返回值 |
+|-----------|---------------------------------------------------------------|-------------------------------|--------|
+| toggleAll | 切换所有复选框，传 `true` 为选中，`false` 为取消选中，不传参为取反 | _options?: boolean \| object_ | -      |
+
+### toggleAll 方法示例
+
+```js
+const { checkboxGroup } = this.$refs;
+
+// 全部反选
+checkboxGroup.toggleAll();
+// 全部选中
+checkboxGroup.toggleAll(true);
+// 全部取消
+checkboxGroup.toggleAll(false);
+
+// 全部反选，并跳过禁用的复选框
+checkboxGroup.toggleAll({
+  skipDisabled: true,
+});
+// 全部选中，并跳过禁用的复选框
+checkboxGroup.toggleAll({
+  checked: true,
+  skipDisabled: true,
+});
+```
+
+### Checkbox 方法
+
+通过 ref 可以获取到 Checkbox 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明                                                          | 参数                | 返回值 |
+|--------|-------------------------------------------------------------|---------------------|--------|
+| toggle | 切换选中状态，传 `true` 为选中，`false` 为取消选中，不传参为取反 | _checked?: boolean_ | -      |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                                | 默认值                     | 描述 |
+|-------------------------------------|----------------------------|------|
+| @checkbox-size                      | `20px`                     | -    |
+| @checkbox-border-color              | `@gray-5`                  | -    |
+| @checkbox-transition-duration       | `@animation-duration-fast` | -    |
+| @checkbox-label-margin              | `@padding-xs`              | -    |
+| @checkbox-label-color               | `@text-color`              | -    |
+| @checkbox-checked-icon-color        | `@blue`                    | -    |
+| @checkbox-disabled-icon-color       | `@gray-5`                  | -    |
+| @checkbox-disabled-label-color      | `@gray-5`                  | -    |
+| @checkbox-disabled-background-color | `@border-color`            | -    |

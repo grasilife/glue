@@ -1,55 +1,338 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Checkbox
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Checkbox, CheckboxGroup } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Checkbox);
+app.use(CheckboxGroup);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-checkbox v-model="checked">Checkbox</van-checkbox>
+```
 
-### Browser Support
+```js
+import { ref } from 'vue';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const checked = ref(true);
+    return {
+      checked,
+    };
+  },
+};
+```
 
-### Ecosystem
+### Disabled
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+```html
+<van-checkbox v-model="checked" disabled>Checkbox</van-checkbox>
+```
 
-### Links
+### Custom Shape
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-checkbox v-model="checked" shape="square">Checkbox</van-checkbox>
+```
 
-### LICENSE
+### Custom Color
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+```html
+<van-checkbox v-model="checked" checked-color="#ee0a24">Checkbox</van-checkbox>
+```
+
+### Custom Icon Size
+
+```html
+<van-checkbox v-model="checked" icon-size="24px">Checkbox</van-checkbox>
+```
+
+### Custom Icon
+
+Use icon slot to custom icon.
+
+```html
+<van-checkbox v-model="checked">
+  customize icon
+  <template #icon="props">
+    <img class="img-icon" :src="props.checked ? activeIcon : inactiveIcon" />
+  </template>
+</van-checkbox>
+
+<style>
+  .img-icon {
+    height: 20px;
+  }
+</style>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref(true);
+    return {
+      checked,
+      activeIcon: 'https://img01.yzcdn.cn/vant/user-active.png',
+      inactiveIcon: 'https://img01.yzcdn.cn/vant/user-inactive.png',
+    };
+  },
+};
+```
+
+### Disable Label Click
+
+```html
+<van-checkbox v-model="checked" label-disabled>Checkbox</van-checkbox>
+```
+
+### Checkbox Group
+
+When Checkboxes are inside a CheckboxGroup, the checked checkboxes's name is an array and bound with CheckboxGroup by v-model.
+
+```html
+<van-checkbox-group v-model="checked">
+  <van-checkbox name="a">Checkbox a</van-checkbox>
+  <van-checkbox name="b">Checkbox b</van-checkbox>
+</van-checkbox-group>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref(['a', 'b']);
+    return { checked };
+  },
+};
+```
+
+### Horizontal
+
+```html
+<van-checkbox-group v-model="checked" direction="horizontal">
+  <van-checkbox name="a">Checkbox a</van-checkbox>
+  <van-checkbox name="b">Checkbox b</van-checkbox>
+</van-checkbox-group>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref([]);
+    return { checked };
+  },
+};
+```
+
+### Maximum amount of checked options
+
+```html
+<van-checkbox-group v-model="result" :max="2">
+  <van-checkbox name="a">Checkbox a</van-checkbox>
+  <van-checkbox name="b">Checkbox b</van-checkbox>
+  <van-checkbox name="c">Checkbox c</van-checkbox>
+</van-checkbox-group>
+```
+
+### Toggle All
+
+```html
+<van-checkbox-group v-model="checked" ref="checkboxGroup">
+  <van-checkbox name="a">Checkbox a</van-checkbox>
+  <van-checkbox name="b">Checkbox b</van-checkbox>
+  <van-checkbox name="c">Checkbox c</van-checkbox>
+</van-checkbox-group>
+
+<van-button type="primary" @click="checkAll">Check All</van-button>
+<van-button type="primary" @click="toggleAll">Toggle All</van-button>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref([]);
+    const checkboxGroup = ref(null);
+
+    const checkAll = () => {
+      checkboxGroup.value.toggleAll(true);
+    }
+    const toggleAll = () => {
+      checkboxGroup.value.toggleAll();
+    },
+
+    return {
+      checked,
+      checkAll,
+      toggleAll,
+      checkboxGroup,
+    };
+  },
+};
+```
+
+### Inside a Cell
+
+```html
+<van-checkbox-group v-model="checked">
+  <van-cell-group>
+    <van-cell
+      v-for="(item, index) in list"
+      clickable
+      :key="item"
+      :title="`Checkbox ${item}`"
+      @click="toggle(index)"
+    >
+      <template #right-icon>
+        <van-checkbox
+          :name="item"
+          :ref="el => checkboxRefs[index] = el"
+          @click.stop
+        />
+      </template>
+    </van-cell>
+  </van-cell-group>
+</van-checkbox-group>
+```
+
+```js
+import { ref, onBeforeUpdate } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref([]);
+    const checkboxRefs = ref([]);
+    const toggle = (index) => {
+      checkboxRefs.value[index].toggle();
+    };
+
+    onBeforeUpdate(() => {
+      checkboxRefs.value = [];
+    });
+
+    return {
+      list: ['a', 'b'],
+      toggle,
+      checked,
+      checkboxRefs,
+    };
+  },
+};
+```
+
+## API
+
+### Checkbox Props
+
+| Attribute      | Description                    | Type               | Default |
+|----------------|--------------------------------|--------------------|---------|
+| v-model        | Check status                   | _boolean_          | `false` |
+| name           | Checkbox name                  | _any_              | -       |
+| shape          | Can be set to `square`         | _string_           | `round` |
+| disabled       | Disable checkbox               | _boolean_          | `false` |
+| label-disabled | Whether to disable label click | _boolean_          | `false` |
+| label-position | Can be set to `left`           | _string_           | `right` |
+| icon-size      | Icon size                      | _number \| string_ | `20px`  |
+| checked-color | Checked color | _string_ | `#1989fa` | - |
+| bind-group | Whether to bind with CheckboxGroup | _boolean_ | `true` |
+
+### CheckboxGroup Props
+
+| Attribute | Description                           | Type               | Default        |
+|-----------|---------------------------------------|--------------------|----------------|
+| v-model   | Names of all checked checkboxes       | _any[]_            | -              |
+| disabled  | Whether to disable all checkboxes     | _boolean_          | `false`        |
+| max       | Maximum amount of checked options     | _number \| string_ | `0`(Unlimited) |
+| direction | Direction, can be set to `horizontal` | _string_           | `vertical`     |
+| icon-size | Icon size of all checkboxes           | _number \| string_ | `20px`         |
+| checked-color | Checked color of all checkboxes | _string_ | `#1989fa` | - |
+
+### Checkbox Events
+
+| Event  | Description                          | Parameters         |
+|--------|--------------------------------------|--------------------|
+| change | Emitted when value changed           | _checked: boolean_ |
+| click  | Emitted when the checkbox is clicked | _event: Event_     |
+
+### CheckboxGroup Events
+
+| Event  | Description                | Parameters     |
+|--------|----------------------------|----------------|
+| change | Emitted when value changed | _names: any[]_ |
+
+### Checkbox Slots
+
+| Name    | Description  | SlotProps          |
+|---------|--------------|--------------------|
+| default | Custom label | -                  |
+| icon    | Custom icon  | _checked: boolean_ |
+
+### CheckboxGroup Methods
+
+Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get CheckboxGroup instance and call instance methods.
+
+| Name      | Description                           | Attribute                     | Return value |
+|-----------|---------------------------------------|-------------------------------|--------------|
+| toggleAll | Toggle check status of all checkboxes | _options?: boolean \| object_ | -            |
+
+### toggleAll Usage
+
+```js
+const { checkboxGroup } = this.$refs;
+
+// Toggle all
+checkboxGroup.toggleAll();
+// Select all
+checkboxGroup.toggleAll(true);
+// Unselect all
+checkboxGroup.toggleAll(false);
+
+// Toggle all, skip disabled
+checkboxGroup.toggleAll({
+  skipDisabled: true,
+});
+// Select all, skip disabled
+checkboxGroup.toggleAll({
+  checked: true,
+  skipDisabled: true,
+});
+```
+
+### Checkbox Methods
+
+Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get Checkbox instance and call instance methods.
+
+| Name   | Description         | Attribute           | Return value |
+|--------|---------------------|---------------------|--------------|
+| toggle | Toggle check status | _checked?: boolean_ | -            |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                                | Default Value              | Description |
+|-------------------------------------|----------------------------|-------------|
+| @checkbox-size                      | `20px`                     | -           |
+| @checkbox-border-color              | `@gray-5`                  | -           |
+| @checkbox-transition-duration       | `@animation-duration-fast` | -           |
+| @checkbox-label-margin              | `@padding-xs`              | -           |
+| @checkbox-label-color               | `@text-color`              | -           |
+| @checkbox-checked-icon-color        | `@blue`                    | -           |
+| @checkbox-disabled-icon-color       | `@gray-5`                  | -           |
+| @checkbox-disabled-label-color      | `@gray-5`                  | -           |
+| @checkbox-disabled-background-color | `@border-color`            | -           |

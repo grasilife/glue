@@ -1,78 +1,163 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Area 省市区选择
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+省市区三级联动选择，通常与[弹出层](#/zh-CN/popup)组件配合使用。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Area } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Area);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+要初始化一个 `Area` 组件，你需要传入一个 `area-list` 属性，数据格式具体可看下面数据格式章节。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-area title="标题" :area-list="areaList" />
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+### 选中省市区
 
-### 浏览器支持
+如果想选中某个省市区，需要传入一个 `value` 属性，绑定对应的省市区 `code`。
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+```html
+<van-area title="标题" :area-list="areaList" value="110101" />
+```
 
-### 加入我们
+### 配置显示列
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+可以通过 `columns-num` 属性配置省市区显示的列数，默认情况下会显示省市区，当你设置为 `2`，则只会显示省市选择。
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+```html
+<van-area title="标题" :area-list="areaList" :columns-num="2" />
+```
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+### 配置列占位提示文字
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+可以通过 `columns-placeholder` 属性配置每一列的占位提示文字。
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+```html
+<van-area
+  title="标题"
+  :area-list="areaList"
+  :columns-placeholder="['请选择', '请选择', '请选择']"
+/>
+```
 
-### 生态
+## API
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+### Props
 
-### 链接
+| 参数                | 说明                                              | 类型               | 默认值  |
+|---------------------|-------------------------------------------------|--------------------|---------|
+| value               | 当前选中的省市区`code`                            | _string_           | -       |
+| title               | 顶部栏标题                                        | _string_           | -       |
+| confirm-button-text | 确认按钮文字                                      | _string_           | `确认`  |
+| cancel-button-text  | 取消按钮文字                                      | _string_           | `取消`  |
+| area-list           | 省市区数据，格式见下方                             | _object_           | -       |
+| columns-placeholder | 列占位提示文字                                    | _string[]_         | `[]`    |
+| loading             | 是否显示加载状态                                  | _boolean_          | `false` |
+| readonly            | 是否为只读状态，只读状态下无法切换选项             | _boolean_          | `false` |
+| item-height         | 选项高度，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `44`    |
+| columns-num         | 显示列数，3-省市区，2-省市，1-省                     | _number \| string_ | `3`     |
+| visible-item-count  | 可见的选项个数                                    | _number \| string_ | `6`     |
+| swipe-duration      | 快速滑动时惯性滚动的时长，单位`ms`                 | _number \| string_ | `1000`  |
+| is-oversea-code     | 根据`code`校验海外地址，海外地址会划分至单独的分类 | _() => boolean_    | -       |
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### Events
 
-### 开源协议
+| 事件    | 说明               | 回调参数                                |
+|---------|------------------|-----------------------------------------|
+| confirm | 点击右上方完成按钮 | 一个数组参数，具体格式看下方数据格式章节 |
+| cancel  | 点击取消按钮时     | -                                       |
+| change  | 选项改变时触发     | 所有列选中值，当前列对应的索引           |
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+### Slots
+
+| 名称           | 说明               |
+|----------------|------------------|
+| title          | 自定义标题内容     |
+| columns-top    | 自定义选项上方内容 |
+| columns-bottom | 自定义选项下方内容 |
+
+### 方法
+
+通过 ref 可以获取到 Area 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明                                              | 参数          | 返回值 |
+|--------|-------------------------------------------------|---------------|--------|
+| reset  | 根据 code 重置所有选项，若不传 code，则重置到第一项 | code?: string | -      |
+
+### 省市区列表数据格式
+
+整体是一个 object，包含 `province_list`, `city_list`, `county_list` 三个 key。
+
+每项以省市区编码作为 key，省市区名字作为 value。编码为 6 位数字，前两位代表省份，中间两位代表城市，后两位代表区县，以 0 补足 6 位。如北京编码为 `11`，以零补足 6 位，为 `110000`。
+
+`AreaList`具体格式如下：
+
+```js
+{
+  province_list: {
+    110000: '北京市',
+    120000: '天津市'
+  },
+  city_list: {
+    110100: '北京市',
+    110200: '县',
+    120100: '天津市',
+    120200: '县'
+  },
+  county_list: {
+    110101: '东城区',
+    110102: '西城区',
+    110105: '朝阳区',
+    110106: '丰台区'
+    120101: '和平区',
+    120102: '河东区',
+    120103: '河西区',
+    120104: '南开区',
+    120105: '河北区',
+    // ....
+  }
+}
+```
+
+完整数据见 [Area.json](https://github.com/youzan/vant/blob/dev/src/area/demo/area.js)
+
+### 点击完成时返回的数据格式
+
+返回的数据整体为一个数组，数组内包含 `columnsNum` 个数据， 每个数据对应一列选项中被选中的数据。
+
+`code` 代表被选中的地区编码， `name` 代表被选中的地区名称
+
+```js
+[
+  {
+    code: '110000',
+    name: '北京市',
+  },
+  {
+    code: '110100',
+    name: '北京市',
+  },
+  {
+    code: '110101',
+    name: '东城区',
+  },
+];
+```
+
+## 常见问题
+
+### 在桌面端无法操作组件？
+
+参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。

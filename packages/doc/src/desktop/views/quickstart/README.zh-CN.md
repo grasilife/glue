@@ -1,78 +1,183 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# 快速上手
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+通过本章节你可以了解到 Vant 的安装方法和基本使用姿势。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+## 安装
 
-### 特性
+### 通过 npm 安装
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+在现有项目中使用 Vant 时，可以通过 `npm` 或 `yarn` 进行安装：
 
-### 快速上手
+```bash
+# Vue 2 项目，安装 Vant 2：
+npm i vant -S
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+# Vue 3 项目，安装 Vant 3：
+npm i vant@next -S
+```
 
-### 贡献代码
+### 通过 CDN 安装
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+使用 Vant 最简单的方法是直接在 html 文件中引入 CDN 链接，之后你可以通过全局变量 `vant` 访问到所有组件。
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```html
+<!-- 引入样式文件 -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/vant@next/lib/index.css"
+/>
 
-### 浏览器支持
+<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@next/lib/vant.min.js"></script>
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+<script>
+  // 在 #app 标签下渲染一个按钮组件
+  const app = Vue.createApp({
+    template: `<van-button>按钮</van-button>`,
+  });
+  app.use(vant);
 
-### 加入我们
+  // 通过 CDN 引入时不会自动注册 Lazyload 组件
+  // 可以通过下面的方式手动注册
+  app.use(vant.Lazyload);
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+  // 调用函数组件，弹出一个 Toast
+  vant.Toast('提示');
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+  app.mount('#app');
+</script>
+```
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+### 通过脚手架安装
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+在新项目中使用 Vant 时，推荐使用 Vue 官方提供的脚手架 [Vue Cli](https://cli.vuejs.org/zh/) 创建项目并安装 Vant。
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+```bash
+# 安装 Vue Cli
+npm install -g @vue/cli
 
-### 生态
+# 创建一个项目
+vue create hello-world
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+# 创建完成后，可以通过命令打开图形化界面，如下图所示
+vue ui
+```
 
-### 链接
+![](https://img01.yzcdn.cn/vant/vue-cli-demo-201809032000.png)
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+在图形化界面中，点击 `依赖` -> `安装依赖`，然后将 `vant` 添加到依赖中即可。
 
-### 开源协议
+## 示例
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+### 示例工程
+
+我们提供了丰富的[示例工程](https://github.com/youzan/vant-demo)，通过示例工程你可以了解如下内容：
+
+- 基于 Vue Cli 和 Vant 搭建应用
+- 基于 Nuxt 和 Vant 搭建应用
+- 配置按需引入组件
+- 配置基于 Rem 的适配方案
+- 配置基于 Viewport 的适配方案
+- 配置基于 TypeScript 的工程
+- 配置自定义主题色方案
+
+## 引入组件
+
+### 方式一. 自动按需引入组件 (推荐)
+
+[babel-plugin-import](https://github.com/ant-design/babel-plugin-import) 是一款 babel 插件，它会在编译过程中将 import 的写法自动转换为按需引入的方式。
+
+```bash
+# 安装插件
+npm i babel-plugin-import -D
+```
+
+```js
+// 在.babelrc 中添加配置
+// 注意：webpack 1 无需设置 libraryDirectory
+{
+  "plugins": [
+    ["import", {
+      "libraryName": "vant",
+      "libraryDirectory": "es",
+      "style": true
+    }]
+  ]
+}
+
+// 对于使用 babel7 的用户，可以在 babel.config.js 中配置
+module.exports = {
+  plugins: [
+    ['import', {
+      libraryName: 'vant',
+      libraryDirectory: 'es',
+      style: true
+    }, 'vant']
+  ]
+};
+```
+
+```js
+// 接着你可以在代码中直接引入 Vant 组件
+// 插件会自动将代码转化为方式二中的按需引入形式
+import { Button } from 'vant';
+```
+
+> Tips: 如果你在使用 TypeScript，可以使用 [ts-import-plugin](https://github.com/Brooooooklyn/ts-import-plugin) 实现按需引入。
+
+### 方式二. 手动按需引入组件
+
+在不使用插件的情况下，可以手动引入需要的组件。
+
+```js
+import Button from 'vant/lib/button';
+import 'vant/lib/button/style';
+```
+
+### 方式三. 导入所有组件
+
+Vant 支持一次性导入所有组件，引入所有组件会增加代码包体积，因此不推荐这种做法。
+
+```js
+import { createApp } from 'vue';
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+const app = createApp();
+app.use(Vant);
+```
+
+> Tips: 配置按需引入后，将不允许直接导入所有组件。
+
+## 常见问题
+
+### 在 Vite 中如何按需引入组件？
+
+在 Vite 中无须考虑按需引入的问题。Vite 在构建代码时，会自动通过 Tree Shaking 移除未使用的 ESM 模块。而 Vant 3.0 内部所有模块都是基于 ESM 编写的，天然具备按需引入的能力。
+
+现阶段遗留的问题是，未使用的组件样式无法被 Tree Shaking 识别并移除，后续我们会考虑通过 Vite 插件的方式进行支持。
+
+### 在 HTML 中无法正确渲染组件？
+
+在 HTML 中使用 Vant 组件时，你可能会碰到部分示例代码无法正确渲染的情况，比如下面的用法：
+
+```html
+<van-cell-group>
+  <van-cell title="单元格" value="内容" />
+  <van-cell title="单元格" value="内容" />
+</van-cell-group>
+```
+
+这是因为 HTML 并不支持自闭合的自定义元素，也就是说 `<van-cell />` 这样的语法是不被识别的，使用完整的闭合标签可以避免这个问题：
+
+```html
+<van-cell-group>
+  <van-cell title="单元格" value="内容"></van-cell>
+  <van-cell title="单元格" value="内容"></van-cell>
+</van-cell-group>
+```
+
+在单文件组件、字符串模板和 JSX 中可以使用自闭合的自定义元素，因此不会出现这个问题。

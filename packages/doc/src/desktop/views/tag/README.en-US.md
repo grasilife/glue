@@ -1,55 +1,134 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Tag
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Tag } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Tag);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-tag type="primary">Tag</van-tag>
+<van-tag type="success">Tag</van-tag>
+<van-tag type="danger">Tag</van-tag>
+<van-tag type="warning">Tag</van-tag>
+```
 
-### Browser Support
+### Plain style
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+```html
+<van-tag plain type="primary">Tag</van-tag>
+```
 
-### Ecosystem
+### Round style
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+```html
+<van-tag round type="primary">Tag</van-tag>
+```
 
-### Links
+### Mark style
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-tag mark type="primary">Tag</van-tag>
+```
 
-### LICENSE
+### Closeable
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+```html
+<van-tag :show="show" closeable size="medium" type="primary" @close="close">
+  Tag
+</van-tag>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const show = ref(true);
+    const close = () => {
+      show.value = false;
+    };
+
+    return {
+      show,
+      close,
+    };
+  },
+};
+```
+
+### Custom Size
+
+```html
+<van-tag type="primary">Tag</van-tag>
+<van-tag type="primary" size="medium">Tag</van-tag>
+<van-tag type="primary" size="large">Tag</van-tag>
+```
+
+### Custom Color
+
+```html
+<van-tag color="#7232dd">Tag</van-tag>
+<van-tag color="#ffe1e1" text-color="#ad0000">Tag</van-tag>
+<van-tag color="#7232dd" plain>Tag</van-tag>
+```
+
+## API
+
+### Props
+
+| Attribute  | Description                                                | Type      | Default   |
+|------------|------------------------------------------------------------|-----------|-----------|
+| type       | Type, can be set to `primary` `success` `danger` `warning` | _string_  | `default` |
+| size       | Size, can be set to `large` `medium`                       | _string_  | -         |
+| color      | Custom color                                               | _string_  | -         |
+| show       | Whether to show tag                                        | _boolean_ | `true`    |
+| plain      | Whether to be plain style                                  | _boolean_ | `false`   |
+| round      | Whether to be round style                                  | _boolean_ | `false`   |
+| mark       | Whether to be mark style                                   | _boolean_ | `false`   |
+| text-color | Text color                                                 | _string_  | `white`   |
+| closeable  | Whether to be closeable                                    | _boolean_ | `false`   |
+
+### Slots
+
+| Name    | Description  |
+|---------|--------------|
+| default | Default slot |
+
+### Events
+
+| Event | Description                        | Arguments      |
+|-------|------------------------------------|----------------|
+| click | Emitted when component is clicked  | _event: Event_ |
+| close | Emitted when close icon is clicked | -              |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                        | Default Value               | Description |
+|-----------------------------|-----------------------------|-------------|
+| @tag-padding                | `0 @padding-base`           | -           |
+| @tag-text-color             | `@white`                    | -           |
+| @tag-font-size              | `@font-size-sm`             | -           |
+| @tag-border-radius          | `2px`                       | -           |
+| @tag-line-height            | `16px`                      | -           |
+| @tag-medium-padding         | `2px 6px`                   | -           |
+| @tag-large-padding          | `@padding-base @padding-xs` | -           |
+| @tag-large-border-radius    | `@border-radius-md`         | -           |
+| @tag-large-font-size        | `@font-size-md`             | -           |
+| @tag-round-border-radius    | `@border-radius-max`        | -           |
+| @tag-danger-color           | `@red`                      | -           |
+| @tag-primary-color          | `@blue`                     | -           |
+| @tag-success-color          | `@green`                    | -           |
+| @tag-warning-color          | `@orange`                   | -           |
+| @tag-default-color          | `@gray-6`                   | -           |
+| @tag-plain-background-color | `@white`                    | -           |

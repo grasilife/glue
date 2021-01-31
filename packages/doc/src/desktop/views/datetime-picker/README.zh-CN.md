@@ -1,78 +1,371 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# DatetimePicker 时间选择
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+时间选择器，支持日期、年月、时分等维度，通常与[弹出层](#/zh-CN/popup)组件配合使用。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { DatetimePicker } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(DatetimePicker);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 选择年月日
 
-### 贡献代码
+DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为 `date` 表示选择年月日。通过 min-date 和 max-date 属性可以确定可选的时间范围。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-datetime-picker
+  v-model="currentDate"
+  type="date"
+  title="选择年月日"
+  :min-date="minDate"
+  :max-date="maxDate"
+/>
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```js
+import { ref } from 'vue';
 
-### 浏览器支持
+export default {
+  setup() {
+    const currentDate = ref(new Date());
+    return {
+      minDate: new Date(2020, 0, 1),
+      maxDate: new Date(2025, 10, 1),
+      currentDate,
+    };
+  },
+};
+```
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+### 选择年月
 
-### 加入我们
+将 type 设置为 `year-month` 即可选择年份和月份。通过传入 `formatter` 函数，可以对选项文字进行格式化处理。
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+```html
+<van-datetime-picker
+  v-model="currentDate"
+  type="year-month"
+  title="选择年月"
+  :min-date="minDate"
+  :max-date="maxDate"
+  :formatter="formatter"
+/>
+```
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+```js
+import { ref } from 'vue';
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+export default {
+  setup() {
+    const currentDate = ref(new Date());
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+    const formatter = (type, val) => {
+      if (type === 'year') {
+        return `${val}年`;
+      } else if (type === 'month') {
+        return `${val}月`;
+      }
+      return val;
+    };
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+    return {
+      minDate: new Date(2020, 0, 1),
+      maxDate: new Date(2025, 10, 1),
+      formatter,
+      currentDate,
+    };
+  },
+};
+```
 
-### 生态
+### 选择月日
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+将 type 设置为 `month-day` 即可选择月份和日期。
 
-### 链接
+```html
+<van-datetime-picker
+  v-model="currentDate"
+  type="month-day"
+  title="选择月日"
+  :min-date="minDate"
+  :max-date="maxDate"
+  :formatter="formatter"
+/>
+```
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```js
+import { ref } from 'vue';
 
-### 开源协议
+export default {
+  setup() {
+    const currentDate = ref(new Date());
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+    const formatter = (type, val) => {
+      if (type === 'month') {
+        return `${val}月`;
+      } else if (type === 'day') {
+        return `${val}日`;
+      }
+      return val;
+    };
+
+    return {
+      minDate: new Date(2020, 0, 1),
+      maxDate: new Date(2025, 10, 1),
+      formatter,
+      currentDate,
+    };
+  },
+};
+```
+
+### 选择时间
+
+将 type 设置为 `time` 即可选择时间（小时和分钟）。
+
+```html
+<van-datetime-picker
+  v-model="currentTime"
+  type="time"
+  title="选择时间"
+  :min-hour="10"
+  :max-hour="20"
+/>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const currentTime = ref('12:00');
+    return { currentTime };
+  },
+};
+```
+
+### 选择完整时间
+
+将 type 设置为 `datetime` 即可选择完整时间，包括年月日和小时、分钟。
+
+```html
+<van-datetime-picker
+  v-model="currentDate"
+  type="datetime"
+  title="选择完整时间"
+  :min-date="minDate"
+  :max-date="maxDate"
+/>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const currentDate = ref(new Date());
+    return {
+      minDate: new Date(2020, 0, 1),
+      maxDate: new Date(2025, 10, 1),
+      currentDate,
+    };
+  },
+};
+```
+
+### 选择年月日小时
+
+将 type 设置为 `datehour` 即可选择日期和小时，包括年月日和小时。
+
+```html
+<van-datetime-picker
+  v-model="currentDate"
+  type="datehour"
+  title="选择年月日小时"
+  :min-date="minDate"
+  :max-date="maxDate"
+/>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const currentDate = ref(new Date());
+    return {
+      minDate: new Date(2020, 0, 1),
+      maxDate: new Date(2025, 10, 1),
+      currentDate,
+    };
+  },
+};
+```
+
+### 选项过滤器
+
+通过传入 `filter` 函数，可以对选项数组进行过滤，实现自定义时间间隔。
+
+```html
+<van-datetime-picker v-model="currentTime" type="time" :filter="filter" />
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const currentTime = ref('12:00');
+
+    const filter = (type, options) => {
+      if (type === 'minute') {
+        return options.filter((option) => Number(option) % 5 === 0);
+      }
+      return options;
+    };
+
+    return {
+      filter,
+      currentTime,
+    };
+  },
+};
+```
+
+### 自定义列排序
+
+```html
+<van-datetime-picker
+  v-model="currentDate"
+  type="date"
+  title="自定义列排序"
+  :columns-order="['month', 'day', 'year']"
+  :formatter="formatter"
+/>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const currentDate = ref(new Date());
+
+    const formatter = (type, val) => {
+      if (type === 'year') {
+        return val + '年';
+      }
+      if (type === 'month') {
+        return val + '月';
+      }
+      if (type === 'day') {
+        return val + '日';
+      }
+      return val;
+    };
+
+    return {
+      formatter,
+      currentDate,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| 参数                | 说明                                                                     | 类型                   | 默认值     |
+|---------------------|------------------------------------------------------------------------|------------------------|------------|
+| type                | 时间类型，可选值为 `date` `time` <br> `year-month` `month-day` `datehour` | _string_               | `datetime` |
+| title               | 顶部栏标题                                                               | _string_               | `''`       |
+| confirm-button-text | 确认按钮文字                                                             | _string_               | `确认`     |
+| cancel-button-text  | 取消按钮文字                                                             | _string_               | `取消`     |
+| show-toolbar        | 是否显示顶部栏                                                           | _boolean_              | `true`     |
+| loading             | 是否显示加载状态                                                         | _boolean_              | `false`    |
+| readonly            | 是否为只读状态，只读状态下无法切换选项                                    | _boolean_              | `false`    |
+| filter              | 选项过滤函数                                                             | _(type, vals) => vals_ | -          |
+| formatter           | 选项格式化函数                                                           | _(type, val) => val_   | -          |
+| columns-order       | 自定义列排序数组, 子项可选值为<br> `year`、`month`、`day`、`hour`、`minute`  | _string[]_             | -          |
+| item-height         | 选项高度，支持 `px` `vw` `vh` `rem` 单位，默认 `px`                        | _number \| string_     | `44`       |
+| visible-item-count  | 可见的选项个数                                                           | _number \| string_     | `6`        |
+| swipe-duration      | 快速滑动时惯性滚动的时长，单位`ms`                                        | _number \| string_     | `1000`     |
+
+### DatePicker Props
+
+当时间选择器类型为 date 或 datetime 时，支持以下 props:
+
+| 参数     | 说明                      | 类型   | 默认值 |
+|----------|-------------------------|--------|-----|
+| min-date | 可选的最小时间，精确到分钟 | _Date_ | 十年前 |
+| max-date | 可选的最大时间，精确到分钟 | _Date_ | 十年后 |
+
+### TimePicker Props
+
+当时间选择器类型为 time 时，支持以下 props:
+
+| 参数       | 说明           | 类型               | 默认值 |
+|------------|--------------|--------------------|--------|
+| min-hour   | 可选的最小小时 | _number \| string_ | `0`    |
+| max-hour   | 可选的最大小时 | _number \| string_ | `23`   |
+| min-minute | 可选的最小分钟 | _number \| string_ | `0`    |
+| max-minute | 可选的最大分钟 | _number \| string_ | `59`   |
+
+### Events
+
+| 事件名  | 说明                     | 回调参数              |
+|---------|------------------------|-----------------------|
+| change  | 当值变化时触发的事件     | value: 当前选中的时间 |
+| confirm | 点击完成按钮时触发的事件 | value: 当前选中的时间 |
+| cancel  | 点击取消按钮时触发的事件 | -                     |
+
+### Slots
+
+| 名称           | 说明                   | 参数                       |
+|----------------|----------------------|----------------------------|
+| default        | 自定义整个顶部栏的内容 | -                          |
+| title          | 自定义标题内容         | -                          |
+| confirm        | 自定义确认按钮内容     | -                          |
+| cancel         | 自定义取消按钮内容     | -                          |
+| option         | 自定义选项内容         | _option: string \| object_ |
+| columns-top    | 自定义选项上方内容     | -                          |
+| columns-bottom | 自定义选项下方内容     | -                          |
+
+### 方法
+
+通过 ref 可以获取到 DatetimePicker 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名    | 说明                                                                  | 参数 | 返回值 |
+|-----------|---------------------------------------------------------------------|------|--------|
+| getPicker | 获取 Picker 实例，用于调用 Picker 的[实例方法](#/zh-CN/picker#fang-fa) | -    | -      |
+
+## 常见问题
+
+### 设置 min-date 或 max-date 后出现页面卡死的情况？
+
+请注意不要在模板中直接使用类似`min-date="new Date()"`的写法，这样会导致每次渲染组件时传入一个新的 Date 对象，而传入新的数据会触发下一次渲染，从而陷入死循环。
+
+正确的做法是将`min-date`作为一个数据定义在`data`函数中。
+
+### 在 iOS 系统上初始化组件失败？
+
+如果你遇到了在 iOS 上无法渲染组件的问题，请确认在创建 Date 对象时没有使用`new Date('2020-01-01')`这样的写法，iOS 不支持以中划线分隔的日期格式，正确写法是`new Date('2020/01/01')`。
+
+对此问题的详细解释：[stackoverflow](https://stackoverflow.com/questions/13363673/javascript-date-is-invalid-on-ios)。
+
+### 在桌面端无法操作组件？
+
+参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。
+
+### 是否有年份或月份选择器？
+
+如果仅需要选择年份或者月份，建议直接使用 [Picker](#/zh-CN/picker) 组件。

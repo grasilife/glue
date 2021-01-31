@@ -1,55 +1,150 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Area
 
-### Features
+### Intro
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+The Picker component is usually used with [Popup](#/en-US/popup) Component.
 
-### Quickstart
+### Install
 
-See in [Quickstart](#/en-US/quickstart).
+```js
+import { createApp } from 'vue';
+import { Area } from 'vant';
 
-### Contribution
+const app = createApp();
+app.use(Area);
+```
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+## Usage
 
-### Browser Support
+### Basic Usage
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+To initailize `Area` component, `area-list` property is required. Data structure will be introduced later.
 
-### Ecosystem
+```html
+<van-area title="Title" :area-list="areaList" />
+```
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+### Initial Value
 
-### Links
+To have a selected value，simply pass the `code` of target area to `value` property.
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-area title="Title" :area-list="areaList" value="110101" />
+```
 
-### LICENSE
+### Columns Number
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+`columns-num` property is used to config number of columns to be displayed. This component has 3 columns corresponding to a 3 level picker by default. Set `columns-num` with 2, you'll have a 2 level picker.
+
+```html
+<van-area title="Title" :area-list="areaList" :columns-num="2" />
+```
+
+### Columns Placeholder
+
+`columns-placeholder` property is used to config placeholder of columns.
+
+```html
+<van-area
+  title="Title"
+  :area-list="areaList"
+  :columns-placeholder="['Choose', 'Choose', 'Choose']"
+/>
+```
+
+## API
+
+### Props
+
+| Attribute           | Description                                                     | Type               | Default   |
+|---------------------|-----------------------------------------------------------------|--------------------|-----------|
+| value               | the `code` of selected area                                     | _string_           | -         |
+| title               | Toolbar title                                                   | _string_           | -         |
+| confirm-button-text | Text of confirm button                                          | _string_           | `Confirm` |
+| cancel-button-text  | Text of cancel button                                           | _string_           | `Cancel`  |
+| area-list           | Area list data                                                  | _object_           | -         |
+| columns-placeholder | Placeholder of columns                                          | _string[]_         | `[]`      |
+| loading             | Whether to show loading prompt                                  | _boolean_          | `false`   |
+| readonly            | Whether to be readonly                                          | _boolean_          | `false`   |
+| item-height         | Option height, supports `px` `vw` `vh` `rem` unit, default `px` | _number \| string_ | `44`      |
+| columns-num         | Level of picker                                                 | _number \| string_ | `3`       |
+| visible-item-count  | Count of visible columns                                        | _number \| string_ | `6`       |
+| swipe-duration      | Duration of the momentum animation，unit `ms`                    | _number \| string_ | `1000`    |
+| is-oversea-code     | The method to validate oversea code                             | _() => boolean_    | -         |
+
+### Events
+
+| Event   | Description                                | Arguments                   |
+|---------|--------------------------------------------|-----------------------------|
+| confirm | Emitted when the confirm button is clicked | selected areas              |
+| cancel  | Emitted when the cancel button is clicked  | -                           |
+| change  | Emitted when current option changed        | current values，column index |
+
+### Slots
+
+| Name           | Description                  |
+|----------------|------------------------------|
+| title          | Custom title                 |
+| columns-top    | Custom content above columns |
+| columns-bottom | Custom content below columns |
+
+### Methods
+
+Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get Area instance and call instance methods.
+
+| Name  | Description               | Attribute     | Return value |
+|-------|---------------------------|---------------|--------------|
+| reset | Reset all options by code | code?: string | -            |
+
+### areaList Data Structure
+
+An object contains three properties: `province_list`, `city_list` and `county_list`. Each property is a simple key-value object, key is a 6-bit code of the area of which first two bits stand for the province or state, middle two bits are used as city code and the last two are district code, value is the name of the area. If the code stands for an area that has sub-areas, lower bits of it will be filled with 0.
+
+Example of `AreaList`
+
+```js
+{
+  province_list: {
+    110000: 'Beijing',
+    330000: 'Zhejiang Province'
+  },
+  city_list: {
+    110100: 'Beijing City',
+    330100: 'Hangzhou',
+  },
+  county_list: {
+    110101: 'Dongcheng District',
+    110102: 'Xicheng District',
+    110105: 'Chaoyang District',
+    110106: 'Fengtai District'
+    330105: 'Gongshu District',
+    330106: 'Xihu District',
+    // ....
+  }
+}
+```
+
+All code of China: [Area.json](https://github.com/youzan/vant/blob/dev/src/area/demo/area-en.js)
+
+### argument of callback function confirm
+
+An array contains selected area objects.
+
+`code` - code of selected area, `name` - name of selected area
+
+```js
+[
+  {
+    code: '330000',
+    name: 'Zhejiang Province',
+  },
+  {
+    code: '330100',
+    name: 'Hangzhou',
+  },
+  {
+    code: '330105',
+    name: 'Xihu District',
+  },
+];
+```

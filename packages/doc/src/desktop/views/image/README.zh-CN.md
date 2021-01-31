@@ -1,78 +1,196 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Image 图片
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+增强版的 img 标签，提供多种图片填充模式，支持图片懒加载、加载中提示、加载失败提示。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Image as VanImage } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(VanImage);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+基础用法与原生 `img` 标签一致，可以设置 `src`、`width`、`height`、`alt` 等原生属性。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-image
+  width="100"
+  height="100"
+  src="https://img01.yzcdn.cn/vant/cat.jpeg"
+/>
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+### 填充模式
 
-### 浏览器支持
+通过 `fit` 属性可以设置图片填充模式，可选值见下方表格。
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+```html
+<van-image
+  width="10rem"
+  height="10rem"
+  fit="contain"
+  src="https://img01.yzcdn.cn/vant/cat.jpeg"
+/>
+```
 
-### 加入我们
+### 圆形图片
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+通过 `round` 属性可以设置图片变圆，注意当图片宽高不相等且 `fit` 为 `contain` 或 `scale-down` 时，将无法填充一个完整的圆形。
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+```html
+<van-image
+  round
+  width="10rem"
+  height="10rem"
+  src="https://img01.yzcdn.cn/vant/cat.jpeg"
+/>
+```
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+### 图片懒加载
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+设置 `lazy-load` 属性来开启图片懒加载，需要搭配 [Lazyload](#/zh-CN/lazyload) 组件使用。
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+```html
+<van-image
+  width="100"
+  height="100"
+  lazy-load
+  src="https://img01.yzcdn.cn/vant/cat.jpeg"
+/>
+```
 
-### 生态
+```js
+import { createApp } from 'vue';
+import { Lazyload } from 'vant';
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+const app = createApp();
+app.use(Lazyload);
+```
 
-### 链接
+### 加载中提示
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+`Image` 组件提供了默认的加载中提示，支持通过 `loading` 插槽自定义内容。
 
-### 开源协议
+```html
+<van-image src="https://img01.yzcdn.cn/vant/cat.jpeg">
+  <template v-slot:loading>
+    <van-loading type="spinner" size="20" />
+  </template>
+</van-image>
+```
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+### 加载失败提示
+
+`Image` 组件提供了默认的加载失败提示，支持通过 `error` 插槽自定义内容。
+
+```html
+<van-image src="https://img01.yzcdn.cn/vant/cat.jpeg">
+  <template v-slot:error>加载失败</template>
+</van-image>
+```
+
+## API
+
+### Props
+
+| 参数         | 说明                                                                | 类型               | 默认值       |
+|--------------|-------------------------------------------------------------------|--------------------|--------------|
+| src          | 图片链接                                                            | _string_           | -            |
+| fit          | 图片填充模式                                                        | _string_           | `fill`       |
+| alt          | 替代文本                                                            | _string_           | -            |
+| width        | 宽度，默认单位为`px`                                                 | _number \| string_ | -            |
+| height       | 高度，默认单位为`px`                                                 | _number \| string_ | -            |
+| radius       | 圆角大小，默认单位为`px`                                             | _number \| string_ | `0`          |
+| round        | 是否显示为圆形                                                      | _boolean_          | `false`      |
+| lazy-load    | 是否开启图片懒加载，须配合 [Lazyload](#/zh-CN/lazyload) 组件使用     | _boolean_          | `false`      |
+| show-error   | 是否展示图片加载失败提示                                            | _boolean_          | `true`       |
+| show-loading | 是否展示图片加载中提示                                              | _boolean_          | `true`       |
+| error-icon   | 失败时提示的[图标名称](#/zh-CN/icon)或图片链接                      | _string_           | `photo-fail` |
+| loading-icon | 加载时提示的[图标名称](#/zh-CN/icon)或图片链接                      | _string_           | `photo`      |
+| icon-prefix  | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_           | `van-icon`   |
+
+### 图片填充模式 
+
+| 名称       | 含义                                                 |
+|------------|----------------------------------------------------|
+| contain    | 保持宽高缩放图片，使图片的长边能完全显示出来          |
+| cover      | 保持宽高缩放图片，使图片的短边能完全显示出来，裁剪长边 |
+| fill       | 拉伸图片，使图片填满元素                              |
+| none       | 保持图片原有尺寸                                     |
+| scale-down | 取 `none` 或 `contain` 中较小的一个                  |
+
+### Events
+
+| 事件名 | 说明               | 回调参数       |
+|--------|------------------|----------------|
+| click  | 点击图片时触发     | _event: Event_ |
+| load   | 图片加载完毕时触发 | -              |
+| error  | 图片加载失败时触发 | -              |
+
+### Slots
+
+| 名称    | 说明                       |
+|---------|--------------------------|
+| default | 自定义图片下方的内容       |
+| loading | 自定义加载中的提示内容     |
+| error   | 自定义加载失败时的提示内容 |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                                | 默认值              | 描述 |
+|-------------------------------------|---------------------|------|
+| @image-placeholder-text-color       | `@gray-6`           | -    |
+| @image-placeholder-font-size        | `@font-size-md`     | -    |
+| @image-placeholder-background-color | `@background-color` | -    |
+| @image-loading-icon-size            | `32px`              | -    |
+| @image-loading-icon-color           | `@gray-4`           | -    |
+| @image-error-icon-size              | `32px`              | -    |
+| @image-error-icon-color             | `@gray-4`           | -    |
+
+## 常见问题
+
+### 如何引用本地图片？
+
+在 .vue 文件中通过相对路径引用本地图片时，需要在图片的链接外包上一层 `require()`，将图片 URL 转换为 webpack 模块请求，并结合 [file-loader](https://github.com/webpack-contrib/file-loader) 或者 [url-loader](https://github.com/webpack-contrib/url-loader) 进行处理。
+
+```html
+<!-- 错误写法 -->
+<van-image src="./image.png" />
+
+<!-- 正确写法 -->
+<van-image :src="require('./image.png')" />
+```
+
+> 对此更详细的解释可以参考 vue-loader 的[处理资源路径](https://vue-loader.vuejs.org/zh/guide/asset-url.html)章节。
+
+### 使用 image 标签无法渲染？
+
+使用 Image 组件时，可能会遇到将 \<image> 作为标签名时无法渲染的问题，比如下面的写法：
+
+```html
+<template>
+  <image src="xxx" />
+</template>
+
+<script>
+import { Image } from 'vant';
+
+export default {
+  components: {
+    Image,
+  },
+};
+<script>
+```
+
+这是因为 \<image> 标签是原生的 SVG 标签，Vue 不允许将原生标签名注册为组件名，使用 \<van-image> 即可规避这个问题。

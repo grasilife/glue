@@ -1,55 +1,529 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
+# Form
+
+### Install
+
+```js
+import { createApp } from 'vue';
+import { Form } from 'vant';
+
+const app = createApp();
+app.use(Form);
+```
+
+## Usage
+
+### Basic Usage
+
+```html
+<van-form @submit="onSubmit">
+  <van-field
+    v-model="state.username"
+    name="Username"
+    label="Username"
+    placeholder="Username"
+    :rules="[{ required: true, message: 'Username is required' }]"
+  />
+  <van-field
+    v-model="state.password"
+    type="password"
+    name="Password"
+    label="Password"
+    placeholder="Password"
+    :rules="[{ required: true, message: 'Password is required' }]"
+  />
+  <div style="margin: 16px;">
+    <van-button round block type="primary" native-type="submit">
+      Submit
+    </van-button>
   </div>
-</div>
+</van-form>
+```
 
-### Features
+```js
+import { reactive } from 'vue';
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+export default {
+  setup() {
+    const state = reactive({
+      username: '',
+      password: '',
+    });
+    const onSubmit = (values) => {
+      console.log('submit', values);
+    };
 
-### Quickstart
+    return {
+      state,
+      onSubmit,
+    };
+  },
+};
+```
 
-See in [Quickstart](#/en-US/quickstart).
+### Validate Rules
 
-### Contribution
+```html
+<van-form validate-first @failed="onFailed">
+  <van-field
+    v-model="state.value1"
+    name="pattern"
+    placeholder="USe pattern"
+    :rules="[{ pattern, message: 'Error message' }]"
+  />
+  <van-field
+    v-model="state.value2"
+    name="validator"
+    placeholder="Use validator"
+    :rules="[{ validator, message: 'Error message' }]"
+  />
+  <van-field
+    v-model="state.value3"
+    name="asyncValidator"
+    placeholder="Use async validator"
+    :rules="[{ validator: asyncValidator, message: 'Error message' }]"
+  />
+  <div style="margin: 16px;">
+    <van-button round block type="primary" native-type="submit">
+      Submit
+    </van-button>
+  </div>
+</van-form>
+```
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```js
+import { reactive } from 'vue';
+import { Toast } from 'vant';
 
-### Browser Support
+export default {
+  setup() {
+    const state = reactive({
+      value1: '',
+      value2: '',
+      value3: '',
+    });
+    const pattern = /\d{6}/;
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+    const validator = (val) => /1\d{10}/.test(val);
 
-### Ecosystem
+    const asyncValidator = (val) =>
+      new Promise((resolve) => {
+        Toast.loading('Validating...');
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+        setTimeout(() => {
+          Toast.clear();
+          resolve(/\d{6}/.test(val));
+        }, 1000);
+      });
 
-### Links
+    const onFailed = (errorInfo) => {
+      console.log('failed', errorInfo);
+    };
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+    return {
+      state,
+      pattern,
+      onFailed,
+      validator,
+      asyncValidator,
+    };
+  },
+};
+```
 
-### LICENSE
+### Field Type - Switch
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+```html
+<van-field name="switch" label="Switch">
+  <template #input>
+    <van-switch v-model="checked" size="20" />
+  </template>
+</van-field>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref(false);
+    return { checked };
+  },
+};
+```
+
+### Field Type - Checkbox
+
+```html
+<van-field name="checkbox" label="Checkbox">
+  <template #input>
+    <van-checkbox v-model="checked" shape="square" />
+  </template>
+</van-field>
+<van-field name="checkboxGroup" label="CheckboxGroup">
+  <template #input>
+    <van-checkbox-group v-model="groupChecked" direction="horizontal">
+      <van-checkbox name="1" shape="square">Checkbox 1</van-checkbox>
+      <van-checkbox name="2" shape="square">Checkbox 2</van-checkbox>
+    </van-checkbox-group>
+  </template>
+</van-field>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref(false);
+    const groupChecked = ref([]);
+    return {
+      checked,
+      groupChecked,
+    };
+  },
+};
+```
+
+### Field Type - Radio
+
+```html
+<van-field name="radio" label="Radio">
+  <template #input>
+    <van-radio-group v-model="checked" direction="horizontal">
+      <van-radio name="1">Radio 1</van-radio>
+      <van-radio name="2">Radio 2</van-radio>
+    </van-radio-group>
+  </template>
+</van-field>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref('1');
+    return { checked };
+  },
+};
+```
+
+### Field Type - Stepper
+
+```html
+<van-field name="stepper" label="Stepper">
+  <template #input>
+    <van-stepper v-model="value" />
+  </template>
+</van-field>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const value = ref(1);
+    return { value };
+  },
+};
+```
+
+### Field Type - Rate
+
+```html
+<van-field name="rate" label="Rate">
+  <template #input>
+    <van-rate v-model="value" />
+  </template>
+</van-field>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const value = ref(3);
+    return { value };
+  },
+};
+```
+
+### Field Type - Slider
+
+```html
+<van-field name="slider" label="Slider">
+  <template #input>
+    <van-slider v-model="value" />
+  </template>
+</van-field>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const value = ref(50);
+    return { value };
+  },
+};
+```
+
+### Field Type - Uploader
+
+```html
+<van-field name="uploader" label="Uploader">
+  <template #input>
+    <van-uploader v-model="value" />
+  </template>
+</van-field>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const value = ref([{ url: 'https://img01.yzcdn.cn/vant/leaf.jpg' }]);
+    return { value };
+  },
+};
+```
+
+### Field Type - Picker
+
+```html
+<van-field
+  v-model="state.value"
+  readonly
+  clickable
+  name="picker"
+  label="Picker"
+  placeholder="Select city"
+  @click="state.showPicker = true"
+/>
+<van-popup v-model:show="state.showPicker" position="bottom">
+  <van-picker
+    :columns="columns"
+    @confirm="onConfirm"
+    @cancel="state.showPicker = false"
+  />
+</van-popup>
+```
+
+```js
+import { reactive } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({
+      value: '',
+      showPicker: false,
+    });
+    const columns = ['Delaware', 'Florida', 'Georqia', 'Indiana', 'Maine'];
+
+    const onConfirm = (value) => {
+      state.value = value;
+      state.showPicker = false;
+    };
+
+    return {
+      state,
+      columns,
+      onConfirm,
+    };
+  },
+};
+```
+
+### Field Type - DatetimePicker
+
+```html
+<van-field
+  v-model="state.value"
+  readonly
+  clickable
+  name="datetimePicker"
+  label="Datetime Picker"
+  placeholder="Select time"
+  @click="state.showPicker = true"
+/>
+<van-popup v-model:show="state.showPicker" position="bottom">
+  <van-datetime-picker
+    type="time"
+    @confirm="onConfirm"
+    @cancel="state.showPicker = false"
+  />
+</van-popup>
+```
+
+```js
+import { reactive } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({
+      value: '',
+      showPicker: false,
+    });
+    const onConfirm = (value) => {
+      state.value = value;
+      state.showPicker = false;
+    };
+
+    return {
+      state,
+      onConfirm,
+    };
+  },
+};
+```
+
+### Field Type - Area
+
+```html
+<van-field
+  v-model="state.value"
+  readonly
+  clickable
+  name="area"
+  label="Area Picker"
+  placeholder="Select area"
+  @click="state.showArea = true"
+/>
+<van-popup v-model:show="state.showArea" position="bottom">
+  <van-area
+    :area-list="areaList"
+    @confirm="onConfirm"
+    @cancel="state.showArea = false"
+  />
+</van-popup>
+```
+
+```js
+import { reactive } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({
+      value: '',
+      showArea: false,
+    });
+    const onConfirm = (value) => {
+      state.showArea = false;
+      state.value = values
+        .filter((item) => !!item)
+        .map((item) => item.name)
+        .join('/');
+    };
+
+    return {
+      state,
+      areaList: {},
+      onConfirm,
+    };
+  },
+};
+```
+
+### Field Type - Calendar
+
+```html
+<van-field
+  v-model="state.value"
+  readonly
+  clickable
+  name="calendar"
+  label="Calendar"
+  placeholder="Select date"
+  @click="state.showCalendar = true"
+/>
+<van-calendar v-model:show="state.showCalendar" @confirm="onConfirm" />
+```
+
+```js
+import { reactive } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({
+      value: '',
+      showCalendar: false,
+    });
+    const onConfirm = (date) => {
+      state.value = `${date.getMonth() + 1}/${date.getDate()}`;
+      state.showCalendar = false;
+    };
+
+    return {
+      state,
+      onConfirm,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| Attribute           | Description                                                   | Type               | Default  |
+|---------------------|---------------------------------------------------------------|--------------------|----------|
+| label-width         | Field label width                                             | _number \| string_ | `6.2em`  |
+| label-align         | Field label align, can be set to `center` `right`            | _string_           | `left`   |
+| input-align         | Field input align, can be set to `center` `right`             | _string_           | `left`   |
+| error-message-align | Error message align, can be set to `center` `right`           | _string_           | `left`   |
+| validate-trigger    | When to validate the form，can be set to `onChange`、`onSubmit` | _string_           | `onBlur` |
+| colon               | Whether to display colon after label                          | _boolean_          | `false`  |
+| disabled            | Whether to disable form                                       | _boolean_          | `false`  |
+| readonly            | Whether to be readonly                                        | _boolean_          | `false`  |
+| validate-first      | Whether to stop the validation when a rule fails              | _boolean_          | `false`  |
+| scroll-to-error     | Whether to scroll to the error field when validation failed   | _boolean_          | `false`  |
+| show-error          | Whether to highlight input when validation failed             | _boolean_          | `false`  |
+| show-error-message  | Whether to show error message when validation failed          | _boolean_          | `true`   |
+| submit-on-enter     | Whether to submit form on enter                               | _boolean_          | `true`   |
+
+### Data Structure of Rule
+
+| Key       | Description                                                 | Type                                  |
+|-----------|-------------------------------------------------------------|---------------------------------------|
+| required  | Whether to be a required field                              | _boolean_                             |
+| message   | Error message                                               | _string \| (value, rule) => string_   |
+| validator | Custom validator                                            | _(value, rule) => boolean \| Promise_ |
+| pattern   | Regex pattern                                               | _RegExp_                              |
+| trigger   | When to validate the form，can be set to `onChange`、`onBlur` | _string_                              |
+| formatter | Format value before validate                                | _(value, rule) => any_                |
+
+### validate-trigger
+
+| Value    | Description                                                     |
+|----------|-----------------------------------------------------------------|
+| onSubmit | Trigger validation after submiting form                         |
+| onBlur   | Trigger validation after submiting form or bluring input        |
+| onChange | Trigger validation after submiting form or changing input value |
+
+### Events
+
+| Event  | Description                                             | Arguments                                         |
+|--------|---------------------------------------------------------|---------------------------------------------------|
+| submit | Emitted after submitting the form and validation passed | _values: object_                                  |
+| failed | Emitted after submitting the form and validation failed | _errorInfo: { values: object, errors: object[] }_ |
+
+### Methods
+
+Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get Form instance and call instance methods.
+
+| Name            | Description      | Attribute                           | Return value |
+|-----------------|------------------|-------------------------------------|--------------|
+| submit          | Submit form      | -                                   | -            |
+| validate        | Validate form    | _name?: string \| string[]_         | _Promise_    |
+| resetValidation | Reset validation | _name?: string \| string[]_         | -            |
+| scrollToField   | Scroll to field  | _name: string, alignToTop: boolean_ | -            |
+
+### Slots
+
+| Name    | Description  |
+|---------|--------------|
+| default | Form content |

@@ -1,55 +1,126 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# NoticeBar
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { NoticeBar } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(NoticeBar);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-notice-bar text="Notice Content" left-icon="volume-o" />
+```
 
-### Browser Support
+### Scrollable
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+```html
+<!-- Enable scroll when text is short -->
+<van-notice-bar scrollable text="Notice Content" />
 
-### Ecosystem
+<!-- Disable scroll when text is long -->
+<van-notice-bar
+  :scrollable="false"
+  text="Technology is the common soul of the people who developed it."
+/>
+```
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+### Wrapable
 
-### Links
+```html
+<van-notice-bar wrapable :scrollable="false">Notice Content</van-notice-bar>
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### Mode
 
-### LICENSE
+```html
+<van-notice-bar mode="closeable">Notice Content</van-notice-bar>
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+<van-notice-bar mode="link">Notice Content</van-notice-bar>
+```
+
+### Custom Style
+
+```html
+<van-notice-bar color="#1989fa" background="#ecf9ff" left-icon="info-o">
+  Notice Content
+</van-notice-bar>
+```
+
+### Vertical Scroll
+
+```html
+<van-notice-bar left-icon="volume-o" :scrollable="false">
+  <van-swipe
+    vertical
+    class="notice-swipe"
+    :autoplay="3000"
+    :show-indicators="false"
+  >
+    <van-swipe-item>Content 1</van-swipe-item>
+    <van-swipe-item>Content 2</van-swipe-item>
+    <van-swipe-item>Content 3</van-swipe-item>
+  </van-swipe>
+</van-notice-bar>
+
+<style>
+  .notice-swipe {
+    height: 40px;
+    line-height: 40px;
+  }
+</style>
+```
+
+## API
+
+### Props
+
+| Attribute | Description                            | Type     | Default |
+|-----------|----------------------------------------|----------|---------|
+| mode      | Mode, can be set to `closeable` `link` | _string_ | `''`    |
+| text | Notice text content | _string_ | `''` | - |
+| color | Text color | _string_ | `#f60` |
+| background | Background color | _string_ | `#fff7cc` |
+| left-icon | Left Icon | _string_ | - |
+| delay | Animation delay (s) | _number \| string_ | `1` |
+| speed | Scroll speed (px/s) | _number \| string_ | `50` |
+| scrollable | Whether to scroll content | _boolean_ | - |
+| wrapable | Whether to enable text wrap | _boolean_ | `false` | - |
+
+### Events
+
+| Event  | Description                        | Arguments      |
+|--------|------------------------------------|----------------|
+| click  | Emitted when NoticeBar is clicked  | _event: Event_ |
+| close  | Emitted when NoticeBar is closed   | _event: Event_ |
+| replay | Emitted when NoticeBar is replayed | -              |
+
+### Slots
+
+| Name       | Description         |
+|------------|---------------------|
+| default    | Notice text content |
+| left-icon  | Custom left icon    |
+| right-icon | Custom right icon   |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                         | Default Value             | Description |
+|------------------------------|---------------------------|-------------|
+| @notice-bar-height           | `40px`                    | -           |
+| @notice-bar-padding          | `0 @padding-md`           | -           |
+| @notice-bar-wrapable-padding | `@padding-xs @padding-md` | -           |
+| @notice-bar-text-color       | `@orange-dark`            | -           |
+| @notice-bar-font-size        | `@font-size-md`           | -           |
+| @notice-bar-line-height      | `24px`                    | -           |
+| @notice-bar-background-color | `@orange-light`           | -           |
+| @notice-bar-icon-size        | `16px`                    | -           |
+| @notice-bar-icon-min-width   | `24px`                    | -           |

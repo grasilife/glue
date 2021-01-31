@@ -1,78 +1,170 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Collapse 折叠面板
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+将一组内容放置在多个折叠面板中，点击面板的标题可以展开或收缩其内容。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Collapse, CollapseItem } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Collapse);
+app.use(CollapseItem);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+通过 `v-model` 控制展开的面板列表，`activeNames` 为数组格式。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-collapse v-model="activeNames">
+  <van-collapse-item title="标题1" name="1">内容</van-collapse-item>
+  <van-collapse-item title="标题2" name="2">内容</van-collapse-item>
+  <van-collapse-item title="标题3" name="3">内容</van-collapse-item>
+</van-collapse>
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```js
+import { ref } from 'vue';
 
-### 浏览器支持
+export default {
+  setup() {
+    const activeNames = ref(['1']);
+    return { activeNames };
+  },
+};
+```
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+### 手风琴
 
-### 加入我们
+通过 `accordion` 可以设置为手风琴模式，最多展开一个面板，此时 `activeName` 为字符串格式。
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+```html
+<van-collapse v-model="activeName" accordion>
+  <van-collapse-item title="标题1" name="1">内容</van-collapse-item>
+  <van-collapse-item title="标题2" name="2">内容</van-collapse-item>
+  <van-collapse-item title="标题3" name="3">内容</van-collapse-item>
+</van-collapse>
+```
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+```js
+import { ref } from 'vue';
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+export default {
+  setup() {
+    const activeName = ref('1');
+    return { activeName };
+  },
+};
+```
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+### 禁用状态
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+通过 `disabled` 属性来禁用单个面板。
 
-### 生态
+```html
+<van-collapse v-model="activeNames">
+  <van-collapse-item title="标题1" name="1">内容</van-collapse-item>
+  <van-collapse-item title="标题2" name="2" disabled>内容</van-collapse-item>
+  <van-collapse-item title="标题3" name="3" disabled>内容</van-collapse-item>
+</van-collapse>
+```
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+### 自定义标题内容
 
-### 链接
+通过 `title` 插槽可以自定义标题栏的内容。
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-collapse v-model="activeNames">
+  <van-collapse-item name="1">
+    <template #title>
+      <div>标题1 <van-icon name="question-o" /></div>
+    </template>
+    内容
+  </van-collapse-item>
+  <van-collapse-item title="标题2" name="2" icon="shop-o">
+    内容
+  </van-collapse-item>
+</van-collapse>
+```
 
-### 开源协议
+```js
+import { ref } from 'vue';
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+export default {
+  setup() {
+    const activeNames = ref(['1']);
+    return { activeNames };
+  },
+};
+```
+
+## API
+
+### Collapse Props
+
+| 参数      | 说明                | 类型                                                                 | 默认值  |
+|-----------|-------------------|----------------------------------------------------------------------|---------|
+| v-model   | 当前展开面板的 name | 手风琴模式：_number \| string_<br>非手风琴模式：_(number \| string)[]_ | -       |
+| accordion | 是否开启手风琴模式  | _boolean_                                                            | `false` |
+| border    | 是否显示外边框      | _boolean_                                                            | `true`  |
+
+### Collapse Events
+
+| 事件名 | 说明           | 回调参数                                 |
+|--------|--------------|--------------------------------------|
+| change | 切换面板时触发 | activeNames: 类型与 v-model 绑定的值一致 |
+
+### CollapseItem Props
+
+| 参数        | 说明                                         | 类型               | 默认值  |
+|-------------|--------------------------------------------|--------------------|---------|
+| name        | 唯一标识符，默认为索引值                      | _number \| string_ | `index` |
+| icon        | 标题栏左侧[图标名称](#/zh-CN/icon)或图片链接 | _string_           | -       |
+| size        | 标题栏大小，可选值为 `large`                  | _string_           | -       |
+| title       | 标题栏左侧内容                               | _number \| string_ | -       |
+| value       | 标题栏右侧内容                               | _number \| string_ | -       |
+| label       | 标题栏描述信息                               | _number \| string_ | -       |
+| border      | 是否显示内边框                               | _boolean_          | `true`  |
+| is-link     | 是否展示标题栏右侧箭头并开启点击反馈         | _boolean_          | `true`  |
+| disabled    | 是否禁用面板                                 | _boolean_          | `false` |
+| title-class | 左侧标题额外类名                             | _string_           | -       |
+| value-class | 右侧内容额外类名                             | _string_           | -       |
+| label-class | 描述信息额外类名                             | _string_           | -       |
+
+### CollapseItem Slots
+
+| 名称       | 说明                          |
+|------------|-----------------------------|
+| default    | 面板内容                      |
+| value      | 自定义显示内容                |
+| icon       | 自定义 `icon`                 |
+| title      | 自定义 `title`                |
+| right-icon | 自定义右侧按钮，默认是 `arrow` |
+
+### CollapseItem 方法
+
+通过 ref 可以获取到 CollapseItem 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明                                                          | 参数               | 返回值 |
+|--------|-------------------------------------------------------------|--------------------|--------|
+| toggle | 切换面试展开状态，传 `true` 为展开，`false` 为收起，不传参为切换 | _expand?: boolean_ | -      |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                                    | 默认值                     | 描述 |
+|-----------------------------------------|----------------------------|------|
+| @collapse-item-transition-duration      | `@animation-duration-base` | -    |
+| @collapse-item-content-padding          | `@padding-sm @padding-md`  | -    |
+| @collapse-item-content-font-size        | `@font-size-md`            | -    |
+| @collapse-item-content-line-height      | `1.5`                      | -    |
+| @collapse-item-content-text-color       | `@gray-6`                  | -    |
+| @collapse-item-content-background-color | `@white`                   | -    |
+| @collapse-item-title-disabled-color     | `@gray-5`                  | -    |

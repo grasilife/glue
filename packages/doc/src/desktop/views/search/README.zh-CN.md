@@ -1,78 +1,200 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Search 搜索
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+用于搜索场景的输入框组件。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Search } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Search);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+`v-model` 用于控制搜索框中的文字，`background` 可以自定义搜索框外部背景色。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-search v-model="value" placeholder="请输入搜索关键词" />
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```js
+import { ref } from 'vue';
 
-### 浏览器支持
+export default {
+  setup() {
+    const value = ref('');
+    return { value };
+  },
+};
+```
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+### 事件监听
 
-### 加入我们
+Search 组件提供了 `search` 和 `cancel` 事件，`search` 事件在点击键盘上的搜索/回车按钮后触发，`cancel` 事件在点击搜索框右侧取消按钮时触发。
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+```html
+<form action="/">
+  <van-search
+    v-model="value"
+    show-action
+    placeholder="请输入搜索关键词"
+    @search="onSearch"
+    @cancel="onCancel"
+  />
+</form>
+```
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+export default {
+  setup() {
+    const value = ref('');
+    const onSearch = (val) => Toast(val);
+    const onCancel = () => Toast('取消');
+    return {
+      value,
+      onSearch,
+      onCancel,
+    };
+  },
+};
+```
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+> Tips: 在 van-search 外层增加 form 标签，且 action 不为空，即可在 iOS 输入法中显示搜索按钮。
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+### 搜索框内容对齐
 
-### 生态
+通过 `input-align` 属性设置搜索框内容的对齐方式，可选值为 `center`、`right`。
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+```html
+<van-search
+  v-model="value"
+  placeholder="请输入搜索关键词"
+  input-align="center"
+/>
+```
 
-### 链接
+### 禁用搜索框
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+通过 `disabled` 属性禁用搜索框。
 
-### 开源协议
+```html
+<van-search v-model="value" disabled placeholder="请输入搜索关键词" />
+```
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+### 自定义背景色
+
+通过 `background` 属性可以设置搜索框外部的背景色，通过 `shape` 属性设置搜索框的形状，可选值为 `round`。
+
+```html
+<van-search
+  v-model="value"
+  shape="round"
+  background="#4fc08d"
+  placeholder="请输入搜索关键词"
+/>
+```
+
+### 自定义按钮
+
+使用 `action` 插槽可以自定义右侧按钮的内容。使用插槽后，`cancel` 事件将不再触发。
+
+```html
+<van-search
+  v-model="value"
+  show-action
+  label="地址"
+  placeholder="请输入搜索关键词"
+  @search="onSearch"
+>
+  <template #action>
+    <div @click="onSearch">搜索</div>
+  </template>
+</van-search>
+```
+
+## API
+
+### Props
+
+| 参数          | 说明                                                                                        | 类型               | 默认值    |
+|---------------|-------------------------------------------------------------------------------------------|--------------------|-----------|
+| label         | 搜索框左侧文本                                                                              | _string_           | -         |
+| shape         | 搜索框形状，可选值为 `round`                                                                 | _string_           | `square`  |
+| background    | 搜索框外部背景色                                                                            | _string_           | `#f2f2f2` |
+| maxlength     | 输入的最大字符数                                                                            | _number \| string_ | -         |
+| placeholder   | 占位提示文字                                                                                | _string_           | -         |
+| clearable     | 是否启用清除图标，点击清除图标后会清空输入框                                                 | _boolean_          | `true`    |
+| clear-trigger | 显示清除图标的时机，`always` 表示输入框不为空时展示，<br>`focus` 表示输入框聚焦且不为空时展示 | _string_           | `focus`   |
+| autofocus     | 是否自动聚焦，iOS 系统不支持该属性                                                           | _boolean_          | `false`   |
+| show-action   | 是否在搜索框右侧显示取消按钮                                                                | _boolean_          | `false`   |
+| action-text   | 取消按钮文字                                                                                | _boolean_          | `取消`    |
+| disabled      | 是否禁用输入框                                                                              | _boolean_          | `false`   |
+| readonly      | 是否将输入框设为只读状态，只读状态下无法输入内容                                             | _boolean_          | `false`   |
+| error         | 是否将输入内容标红                                                                          | _boolean_          | `false`   |
+| input-align   | 输入框内容对齐方式，可选值为 `center` `right`                                                | _string_           | `left`    |
+| left-icon     | 输入框左侧[图标名称](#/zh-CN/icon)或图片链接                                                | _string_           | `search`  |
+| right-icon    | 输入框右侧[图标名称](#/zh-CN/icon)或图片链接                                                | _string_           | -         |
+
+### Events
+
+| 事件名             | 说明                 | 回调参数                       |
+|--------------------|--------------------|--------------------------------|
+| search             | 确定搜索时触发       | _value: string (当前输入的值)_ |
+| update:model-value | 输入框内容变化时触发 | _value: string (当前输入的值)_ |
+| focus              | 输入框获得焦点时触发 | _event: Event_                 |
+| blur               | 输入框失去焦点时触发 | _event: Event_                 |
+| clear              | 点击清除按钮后触发   | _event: Event_                 |
+| cancel             | 点击取消按钮时触发   | -                              |
+
+### 方法
+
+通过 ref 可以获取到 Search 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明           | 参数 | 返回值 |
+|--------|--------------|------|--------|
+| focus  | 获取输入框焦点 | -    | -      |
+| blur   | 取消输入框焦点 | -    | -      |
+
+### Slots
+
+| 名称       | 说明                                                 |
+|------------|----------------------------------------------------|
+| left       | 自定义左侧内容（搜索框外）                             |
+| action     | 自定义右侧内容（搜索框外），设置`show-action`属性后展示 |
+| label      | 自定义左侧文本（搜索框内）                             |
+| left-icon  | 自定义左侧图标（搜索框内）                             |
+| right-icon | 自定义右侧图标（搜索框内）                             |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                             | 默认值             | 描述 |
+|----------------------------------|--------------------|------|
+| @search-padding                  | `10px @padding-sm` | -    |
+| @search-background-color         | `@white`           | -    |
+| @search-content-background-color | `@gray-1`          | -    |
+| @search-input-height             | `34px`             | -    |
+| @search-label-padding            | `0 5px`            | -    |
+| @search-label-color              | `@text-color`      | -    |
+| @search-label-font-size          | `@font-size-md`    | -    |
+| @search-left-icon-color          | `@gray-6`          | -    |
+| @search-action-padding           | `0 @padding-xs`    | -    |
+| @search-action-text-color        | `@text-color`      | -    |
+| @search-action-font-size         | `@font-size-md`    | -    |
+
+## 常见问题
+
+### 在桌面端点击清除按钮无效？
+
+清除按钮监听是的移动端 Touch 事件，参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。

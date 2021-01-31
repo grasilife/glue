@@ -1,78 +1,209 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Stepper 步进器
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+步进器由增加按钮、减少按钮和输入框组成，用于在一定范围内输入、调整数字。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Stepper } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Stepper);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+通过 `v-model` 绑定输入值，可以通过 `change` 事件监听到输入值的变化。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-stepper v-model="value" />
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```js
+import { ref } from 'vue';
 
-### 浏览器支持
+export default {
+  setup() {
+    const value = ref(1);
+    return { value };
+  },
+};
+```
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+### 步长设置
 
-### 加入我们
+通过 `step` 属性设置每次点击增加或减少按钮时变化的值，默认为 `1`。
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+```html
+<van-stepper v-model="value" step="2" />
+```
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+### 限制输入范围
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+通过 `min` 和 `max` 属性限制输入值的范围。
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+```html
+<van-stepper v-model="value" min="5" max="8" />
+```
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+### 限制输入整数
 
-### 生态
+设置 `integer` 属性后，输入框将限制只能输入整数。
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+```html
+<van-stepper v-model="value" integer />
+```
 
-### 链接
+### 禁用状态
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+通过设置 `disabled` 属性来禁用步进器，禁用状态下无法点击按钮或修改输入框。
 
-### 开源协议
+```html
+<van-stepper v-model="value" disabled />
+```
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+### 禁用输入框
+
+通过设置 `disable-input` 属性来禁用输入框，此时按钮仍然可以点击。
+
+```html
+<van-stepper v-model="value" disable-input />
+```
+
+### 固定小数位数
+
+通过设置 `decimal-length` 属性可以保留固定的小数位数。
+
+```html
+<van-stepper v-model="value" step="0.2" :decimal-length="1" />
+```
+
+### 自定义大小
+
+通过 `input-width` 属性设置输入框宽度，通过 `button-size` 属性设置按钮大小和输入框高度。
+
+```html
+<van-stepper v-model="value" input-width="40px" button-size="32px" />
+```
+
+### 异步变更
+
+通过 `before-change` 属性可以在
+
+```html
+<van-stepper v-model="value" :before-change="beforeChange" />
+```
+
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
+
+export default {
+  setup() {
+    const value = ref(1);
+
+    const beforeChange = (value) => {
+      Toast.loading({ forbidClick: true });
+
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          Toast.clear();
+          // 在 resolve 函数中返回 true 或 false
+          resolve(true);
+        }, 500);
+      });
+    };
+
+    return {
+      value,
+      beforeChange,
+    };
+  },
+};
+```
+
+### 圆角风格
+
+将 `theme` 设置为 `round` 来展示圆角风格的步进器。
+
+```html
+<van-stepper v-model="value" theme="round" button-size="22" disable-input />
+```
+
+## API
+
+### Props
+
+| 参数           | 说明                                                            | 类型                            | 默认值  |
+|----------------|---------------------------------------------------------------|---------------------------------|---------|
+| v-model        | 当前输入的值                                                    | _number \| string_              | -       |
+| min            | 最小值                                                          | _number \| string_              | `1`     |
+| max            | 最大值                                                          | _number \| string_              | -       |
+| default-value  | 初始值，当 v-model 为空时生效                                    | _number \| string_              | `1`     |
+| step           | 步长，每次点击时改变的值                                         | _number \| string_              | `1`     |
+| name           | 标识符，可以在 `change` 事件回调参数中获取                       | _number \| string_              | -       |
+| input-width    | 输入框宽度，默认单位为 `px`                                      | _number \| string_              | `32px`  |
+| button-size    | 按钮大小以及输入框高度，默认单位为 `px`                          | _number \| string_              | `28px`  |
+| decimal-length | 固定显示的小数位数                                              | _number \| string_              | -       |
+| theme          | 样式风格，可选值为 `round`                                       | _string_                        | -       |
+| placeholder    | 输入框占位提示文字                                              | _string_                        | -       |
+| integer        | 是否只允许输入整数                                              | _boolean_                       | `false` |
+| disabled       | 是否禁用步进器                                                  | _boolean_                       | `false` |
+| disable-plus   | 是否禁用增加按钮                                                | _boolean_                       | `false` |
+| disable-minus  | 是否禁用减少按钮                                                | _boolean_                       | `false` |
+| disable-input  | 是否禁用输入框                                                  | _boolean_                       | `false` |
+| before-change  | 输入值变化前的回调函数，返回 `false` 可阻止输入，支持返回 Promise | _(value) => boolean \| Promise_ | `false` |
+| show-plus      | 是否显示增加按钮                                                | _boolean_                       | `true`  |
+| show-minus     | 是否显示减少按钮                                                | _boolean_                       | `true`  |
+| show-input     | 是否显示输入框                                                  | _boolean_                       | `true`  |
+| long-press     | 是否开启长按手势                                                | _boolean_                       | `true`  |
+| allow-empty    | 是否允许输入的值为空                                            | _boolean_                       | `false` |
+
+### Events
+
+| 事件名    | 说明                     | 回调参数                                  |
+|-----------|------------------------|-------------------------------------------|
+| change    | 当绑定值变化时触发的事件 | _value: string, detail: { name: string }_ |
+| overlimit | 点击不可用的按钮时触发   | -                                         |
+| plus      | 点击增加按钮时触发       | -                                         |
+| minus     | 点击减少按钮时触发       | -                                         |
+| focus     | 输入框聚焦时触发         | _event: Event_                            |
+| blur      | 输入框失焦时触发         | _event: Event_                            |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                                     | 默认值              | 描述 |
+|------------------------------------------|---------------------|------|
+| @stepper-active-color                    | `#e8e8e8`           | -    |
+| @stepper-background-color                | `@active-color`     | -    |
+| @stepper-button-icon-color               | `@text-color`       | -    |
+| @stepper-button-disabled-color           | `@background-color` | -    |
+| @stepper-button-disabled-icon-color      | `@gray-5`           | -    |
+| @stepper-button-round-theme-color        | `@red`              | -    |
+| @stepper-input-width                     | `32px`              | -    |
+| @stepper-input-height                    | `28px`              | -    |
+| @stepper-input-font-size                 | `@font-size-md`     | -    |
+| @stepper-input-line-height               | `normal`            | -    |
+| @stepper-input-text-color                | `@text-color`       | -    |
+| @stepper-input-disabled-text-color       | `@gray-5`           | -    |
+| @stepper-input-disabled-background-color | `@active-color`     | -    |
+| @stepper-border-radius                   | `@border-radius-md` | -    |
+
+## 常见问题
+
+### 为什么 value 有时候会变成 string 类型？
+
+这是因为用户输入过程中可能出现小数点或空值，比如 `1.`，这种情况下组件会抛出字符串类型。
+
+如果希望 value 保持 number 类型，可以在 v-model 上添加 `number` 修饰符：
+
+```html
+<van-stepper v-model.number="value" />
+```

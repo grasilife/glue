@@ -1,55 +1,62 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# 设计资源
 
-### Features
+### 介绍
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+Vant 是基于有赞 [Zan Design System](https://design.youzan.com/) 视觉规范实现的组件库，在这里可以下载 Vant 的设计资源。
 
-### Quickstart
+## 设计稿
 
-See in [Quickstart](#/en-US/quickstart).
+### 组件设计稿（Sketch）
 
-### Contribution
+包含 Sketch 格式的色彩规范、字体规范、组件设计规范。
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+#### 色彩规范
 
-### Browser Support
+<img src="https://img01.yzcdn.cn/vant/color_202009101415.png" style="width: 80%; box-shadow: 0 1px 2px rgba(0,0,0,.2)">
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+#### 字体规范
 
-### Ecosystem
+<img src="https://img01.yzcdn.cn/vant/words_202009101415.png" style="width: 80%; box-shadow: 0 1px 2px rgba(0,0,0,.2)">
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+#### 组件规范
 
-### Links
+<img src="https://img01.yzcdn.cn/vant/tab_202009101415.png" style="width: 80%; box-shadow: 0 1px 2px rgba(0,0,0,.2)">
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+<a class="design-download" href="https://github.com/youzan/vant/blob/dev/docs/assets/design.sketch?raw=true">下载</a>
 
-### LICENSE
+### 图标设计稿（Sketch）
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+包含 Sketch 格式的图标库资源。
+
+<img src="https://img01.yzcdn.cn/vant/design-icons-0321.png" style="width: 80%; box-shadow: 0 1px 2px rgba(0,0,0,.2)">
+
+<a class="design-download" href="https://github.com/youzan/vant/blob/dev/packages/vant-icons/assets/icons.sketch?raw=true">下载</a>
+
+### Axure 元件库
+
+Axure 元件库，由社区的 [@axure-tczy](https://github.com/axure-tczy) 同学贡献。
+
+<img src="https://img01.yzcdn.cn/vant/vant-axure-0905.png" style="width: 80%; box-shadow: 0 1px 2px rgba(0,0,0,.2)">
+
+<a class="design-download" href="https://b.yzcdn.cn/vant/vant-axure-20200905.zip">下载</a>
+
+<style>
+a.design-download {
+  display: inline-block;
+  width: 100px;
+  color: #fff;
+  line-height: 40px;
+  text-align: center;
+  background-color: #38f;
+  border-radius: 3px;
+}
+
+a.design-download:hover {
+  color: #fff;
+  opacity: .9;
+}
+
+a.design-download:active {
+  opacity: .7;
+}
+</style>

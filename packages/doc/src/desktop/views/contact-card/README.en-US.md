@@ -1,55 +1,102 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# ContactCard
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { ContactCard } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(ContactCard);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Add Contact
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-contact-card type="add" @click="onAdd" />
+```
 
-### Browser Support
+```js
+import { Toast } from 'vant';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const onAdd = () => Toast('add');
+    return {
+      onAdd,
+    };
+  },
+};
+```
 
-### Ecosystem
+### Edit Contact
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+```html
+<van-contact-card
+  type="edit"
+  :name="currentContact.name"
+  :tel="currentContact.tel"
+  @click="onEdit"
+/>
+```
 
-### Links
+```js
+import { reactive } from 'vue';
+import { Toast } from 'vant';
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+export default {
+  setup() {
+    const currentContact = reactive({
+      name: 'John Snow',
+      tel: '13000000000',
+    });
+    const onEdit = () => Toast('edit');
 
-### LICENSE
+    return {
+      onEdit,
+      currentContact,
+    };
+  },
+};
+```
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+### Uneditable
+
+```html
+<van-contact-card
+  type="edit"
+  name="John Snow"
+  tel="13000000000"
+  :editable="false"
+/>
+```
+
+## API
+
+### Props
+
+| Attribute | Description          | Type     | Default            |
+|-----------|----------------------|----------|--------------------|
+| type      | Can be set to `edit` | _string_ | `add`              |
+| name      | Name                 | _string_ | -                  |
+| tel       | Phone                | _string_ | -                  |
+| add-text  | Add card text        | _string_ | `Add contact info` |
+
+### Events
+
+| Event | Description                       | Arguments      |
+|-------|-----------------------------------|----------------|
+| click | Emitted when component is clicked | _event: Event_ |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                            | Default Value     | Description |
+|---------------------------------|-------------------|-------------|
+| @contact-card-padding           | `@padding-md`     | -           |
+| @contact-card-add-icon-size     | `40px`            | -           |
+| @contact-card-add-icon-color    | `@blue`           | -           |
+| @contact-card-value-line-height | `@line-height-md` | -           |

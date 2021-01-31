@@ -1,78 +1,164 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Notify 消息提示
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+在页面顶部展示消息提示，支持函数调用和组件调用两种方式。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 函数调用
 
-### 特性
+Notify 是一个函数，调用后会直接在页面中弹出相应的消息提示。
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+```js
+import { Notify } from 'vant';
 
-### 快速上手
+Notify('通知内容');
+```
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 组件调用
 
-### 贡献代码
+通过组件调用 Notify 时，可以通过下面的方式进行注册：
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```js
+import { createApp } from 'vue';
+import { Notify } from 'vant';
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+// 全局注册
+const app = createApp();
+app.use(Notify);
 
-### 浏览器支持
+// 局部注册
+export default {
+  components: {
+    [Notify.Component.name]: Notify.Component,
+  },
+};
+```
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+## 代码演示
 
-### 加入我们
+### 基础用法
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+```js
+Notify('通知内容');
+```
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+### 通知类型
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+支持 `primary`、`success`、`warning`、`danger` 四种通知类型，默认为 `danger`。
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+```js
+// 主要通知
+Notify({ type: 'primary', message: '通知内容' });
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+// 成功通知
+Notify({ type: 'success', message: '通知内容' });
 
-### 生态
+// 危险通知
+Notify({ type: 'danger', message: '通知内容' });
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+// 警告通知
+Notify({ type: 'warning', message: '通知内容' });
+```
 
-### 链接
+### 自定义通知
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+自定义消息通知的颜色和展示时长。
 
-### 开源协议
+```js
+Notify({
+  message: '自定义颜色',
+  color: '#ad0000',
+  background: '#ffe1e1',
+});
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+Notify({
+  message: '自定义时长',
+  duration: 1000,
+});
+```
+
+### 全局方法
+
+通过 `app.use` 注册 Notify 组件后，会自动在 app 的所有子组件上挂载 `$notify` 方法，便于在组件内调用。
+
+```js
+export default {
+  mounted() {
+    this.$notify('提示文案');
+  },
+};
+```
+
+### 组件调用
+
+如果需要在 Notify 内嵌入组件或其他自定义内容，可以使用组件调用的方式。
+
+```html
+<van-button type="primary" text="组件调用" @click="showNotify" />
+<van-notify v-model:show="show" type="success">
+  <van-icon name="bell" style="margin-right: 4px;" />
+  <span>通知内容</span>
+</van-notify>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const show = ref(false);
+
+    const showNotify = () => {
+      show.value = true;
+      setTimeout(() => {
+        show.value = false;
+      }, 2000);
+    };
+
+    return {
+      show,
+      showNotify,
+    };
+  },
+};
+```
+
+## API
+
+### 方法
+
+| 方法名                     | 说明                            | 参数                | 返回值      |
+|----------------------------|-------------------------------|---------------------|-------------|
+| Notify                     | 展示提示                        | `options | message` | notify 实例 |
+| Notify.clear               | 关闭提示                        | -                   | `void`      |
+| Notify.setDefaultOptions   | 修改默认配置，对所有 Notify 生效 | `options`           | `void`      |
+| Notify.resetDefaultOptions | 重置默认配置，对所有 Notify 生效 | -                   | `void`      |
+
+### Options
+
+| 参数       | 说明                                        | 类型                        | 默认值   |
+|------------|-------------------------------------------|-----------------------------|----------|
+| type       | 类型，可选值为 `primary` `success` `warning` | _string_                    | `danger` |
+| message    | 展示文案，支持通过`\n`换行                   | _string_                    | -        |
+| duration   | 展示时长(ms)，值为 0 时，notify 不会消失      | _number \| string_          | `3000`   |
+| color      | 字体颜色                                    | _string_                    | `white`  |
+| background | 背景颜色                                    | _string_                    | -        |
+| className  | 自定义类名                                  | _string \| Array \| object_ | -        |
+| onClick    | 点击时的回调函数                            | _Function_                  | -        |
+| onOpened   | 完全展示后的回调函数                        | _Function_                  | -        |
+| onClose    | 关闭时的回调函数                            | _Function_                  | -        |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                             | 默认值                    | 描述 |
+|----------------------------------|---------------------------|------|
+| @notify-text-color               | `@white`                  | -    |
+| @notify-padding                  | `@padding-xs @padding-md` | -    |
+| @notify-font-size                | `@font-size-md`           | -    |
+| @notify-line-height              | `@line-height-md`         | -    |
+| @notify-primary-background-color | `@blue`                   | -    |
+| @notify-success-background-color | `@green`                  | -    |
+| @notify-danger-background-color  | `@red`                    | -    |
+| @notify-warning-background-color | `@orange`                 | -    |

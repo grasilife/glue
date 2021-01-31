@@ -1,55 +1,90 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
+# Overlay
+
+### Install
+
+```js
+import { createApp } from 'vue';
+import { Overlay } from 'vant';
+
+const app = createApp();
+app.use(Overlay);
+```
+
+## Usage
+
+### Basic Usage
+
+```html
+<van-button type="primary" text="Show Overlay" @click="show = true" />
+<van-overlay :show="show" @click="show = false" />
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const show = ref(false);
+    return { show };
+  },
+};
+```
+
+### Embedded Content
+
+```html
+<van-overlay :show="show" @click="show = false">
+  <div class="wrapper" @click.stop>
+    <div class="block" />
   </div>
-</div>
+</van-overlay>
 
-### Features
+<style>
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+  .block {
+    width: 120px;
+    height: 120px;
+    background-color: #fff;
+  }
+</style>
+```
 
-### Quickstart
+## API
 
-See in [Quickstart](#/en-US/quickstart).
+### Props
 
-### Contribution
+| Attribute    | Description                       | Type               | Default |
+|--------------|-----------------------------------|--------------------|---------|
+| show         | Whether to show overlay           | _boolean_          | `false` |
+| z-index      | z-index                           | _number \| string_ | `1`     |
+| duration     | Animation duration                | _number \| string_ | `0.3`   |
+| class-name   | ClassName                         | _string_           | -       |
+| custom-class | Custom style                      | _object_           | -       |
+| lock-scroll  | Whether to lock background scroll | _boolean_          | `true`  |
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+### Events
 
-### Browser Support
+| Event | Description                       | Arguments      |
+|-------|-----------------------------------|----------------|
+| click | Emitted when component is clicked | _event: Event_ |
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+### Slots
 
-### Ecosystem
+| Name    | Description  |
+|---------|--------------|
+| default | Default slot |
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+### Less Variables
 
-### Links
+How to use: [Custom Theme](#/en-US/theme).
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
-
-### LICENSE
-
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+| Name                      | Default Value        | Description |
+|---------------------------|----------------------|-------------|
+| @overlay-z-index          | `1`                  | -           |
+| @overlay-background-color | `rgba(0, 0, 0, 0.7)` | -           |

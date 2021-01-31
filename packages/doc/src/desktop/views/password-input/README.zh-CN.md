@@ -1,78 +1,174 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# PasswordInput 密码输入框
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+带网格的输入框组件，可以用于输入密码、短信验证码等场景，通常与[数字键盘](#/zh-CN/number-keyboard)组件配合使用。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { PasswordInput, NumberKeyboard } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(PasswordInput);
+app.use(NumberKeyboard);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+搭配数字键盘组件来实现密码输入功能。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<!-- 密码输入框 -->
+<van-password-input
+  :value="value"
+  :focused="showKeyboard"
+  @focus="showKeyboard = true"
+/>
+<!-- 数字键盘 -->
+<van-number-keyboard
+  v-model="value"
+  :show="showKeyboard"
+  @blur="showKeyboard = false"
+/>
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+```js
+import { ref } from 'vue';
 
-### 浏览器支持
+export default {
+  setup() {
+    const value = ref('123');
+    const showKeyboard = ref(true);
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+    return {
+      value,
+      showKeyboard,
+    };
+  },
+};
+```
 
-### 加入我们
+### 自定义长度
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+通过 `length` 属性来设置密码长度。
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+```html
+<van-password-input
+  :value="value"
+  :length="4"
+  :focused="showKeyboard"
+  @focus="showKeyboard = true"
+/>
+```
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+### 格子间距
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+通过 `gutter` 属性来设置格子之间的间距。
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+```html
+<van-password-input
+  :value="value"
+  :gutter="10"
+  :focused="showKeyboard"
+  @focus="showKeyboard = true"
+/>
+```
 
-### 生态
+### 明文展示
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+将 `mask` 设置为 `false` 可以明文展示输入的内容，适用于短信验证码等场景。
 
-### 链接
+```html
+<van-password-input
+  :value="value"
+  :mask="false"
+  :focused="showKeyboard"
+  @focus="showKeyboard = true"
+/>
+```
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### 提示信息
 
-### 开源协议
+通过 `info` 属性设置提示信息，通过 `error-info` 属性设置错误提示，例如当输入六位时提示密码错误。
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+```html
+<van-password-input
+  :value="value"
+  info="密码为 6 位数字"
+  :error-info="errorInfo"
+  :focused="showKeyboard"
+  @focus="showKeyboard = true"
+/>
+<van-number-keyboard
+  v-model="value"
+  :show="showKeyboard"
+  @blur="showKeyboard = false"
+/>
+```
+
+```js
+import { ref, watch } from 'vue';
+
+export default {
+  setup() {
+    const value = ref('123');
+    const errorInfo = ref('');
+    const showKeyboard = ref(true);
+
+    watch(value, (newVal) => {
+      if (newVal.length === 6 && newVal !== '123456') {
+        errorInfo.value = '密码错误';
+      } else {
+        errorInfo.value = '';
+      }
+    });
+
+    return {
+      value,
+      errorInfo,
+      showKeyboard,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| 参数       | 说明                                                | 类型               | 默认值  |
+|------------|---------------------------------------------------|--------------------|---------|
+| value      | 密码值                                              | _string_           | `''`    |
+| info       | 输入框下方文字提示                                  | _string_           | -       |
+| error-info | 输入框下方错误提示                                  | _string_           | -       |
+| length     | 密码最大长度                                        | _number \| string_ | `6`     |
+| gutter     | 输入框格子之间的间距，如 `20px` `2em`，默认单位为`px` | _number \| string_ | `0`     |
+| mask       | 是否隐藏密码内容                                    | _boolean_          | `true`  |
+| focused    | 是否已聚焦，聚焦时会显示光标                         | _boolean_          | `false` |
+
+### Events
+
+| 事件名 | 说明             | 回调参数 |
+|--------|----------------|----------|
+| focus  | 输入框聚焦时触发 | -        |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                             | 默认值          | 描述 |
+|----------------------------------|-----------------|------|
+| @password-input-height           | `50px`          | -    |
+| @password-input-margin           | `0 @padding-md` | -    |
+| @password-input-font-size        | `20px`          | -    |
+| @password-input-border-radius    | `6px`           | -    |
+| @password-input-background-color | `@white`        | -    |
+| @password-input-info-color       | `@gray-6`       | -    |
+| @password-input-info-font-size   | `@font-size-md` | -    |
+| @password-input-error-info-color | `@red`          | -    |
+| @password-input-dot-size         | `10px`          | -    |
+| @password-input-dot-color        | `@black`        | -    |

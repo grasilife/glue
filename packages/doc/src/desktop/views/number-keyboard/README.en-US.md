@@ -1,55 +1,224 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# NumberKeyboard
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { NumberKeyboard } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(NumberKeyboard);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Default Keyboard
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-cell @touchstart.stop="show = true">Show Keyboard</van-cell>
+<van-number-keyboard
+  :show="show"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
+```
 
-### Browser Support
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const show = ref(true);
+    const onInput = (value) => Toast(value);
+    const onDelete = () => Toast('delete');
 
-### Ecosystem
+    return {
+      show,
+      onInput,
+      onDelete,
+    };
+  },
+};
+```
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+### Keyboard With Sidebar
 
-### Links
+```html
+<van-number-keyboard
+  :show="show"
+  theme="custom"
+  extra-key="."
+  close-button-text="Close"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### IdNumber Keyboard
 
-### LICENSE
+Use `extra-key` prop to set the content of bottom left button.
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+```html
+<van-cell plain type="primary" @touchstart.stop="show = true">
+  Show IdNumber Keyboard
+</van-cell>
+
+<van-number-keyboard
+  :show="show"
+  extra-key="X"
+  close-button-text="Close"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
+```
+
+### Keyboard With Title
+
+Use `title` prop to set keyboard title.
+
+```html
+<van-cell plain type="primary" @touchstart.stop="show = true">
+  Show Keyboard With Title
+</van-cell>
+<van-number-keyboard
+  :show="show"
+  title="Keyboard Title"
+  extra-key="."
+  close-button-text="Close"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
+```
+
+### Multiple ExtraKey
+
+```html
+<van-cell plain type="primary" @touchstart.stop="show = true">
+  Show Keyboard With Multiple ExtraKey
+</van-cell>
+<van-number-keyboard
+  :show="show"
+  :extra-key="['00', '.']"
+  close-button-text="Close"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
+```
+
+### Random Key Order
+
+Use `random-key-order` prop to shuffle the order of keys.
+
+```html
+<van-cell @touchstart.stop="show = true">
+  Show Keyboard With Random Key Order
+</van-cell>
+<van-number-keyboard
+  :show="show"
+  random-key-order
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
+```
+
+### Bind Value
+
+```html
+<van-field v-model="value" readonly clickable @touchstart.stop="show = true" />
+<van-number-keyboard
+  v-model="value"
+  :show="show"
+  :maxlength="6"
+  @blur="show = false"
+/>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const show = ref(true);
+    const value = ref('');
+    return {
+      show,
+      value,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| Attribute              | Description                                           | Type                 | Default     |
+|------------------------|-------------------------------------------------------|----------------------|-------------|
+| v-model                | Current value                                         | _string_             | -           |
+| show                   | Whether to show keyboard                              | _boolean_            | -           |
+| title                  | Keyboard title                                        | _string_             | -           |
+| theme                  | Keyboard theme，can be set to `custom`                 | _string_             | `default`   |
+| maxlength              | Value maxlength                                       | _number \| string_   | -           |
+| transition             | Whether to show transition animation                  | _boolean_            | `true`      |
+| z-index                | Keyboard z-index                                      | _number \| string_   | `100`       |
+| extra-key              | Content of bottom left key                            | _string \| string[]_ | `''`        |
+| close-button-text      | Close button text                                     | _string_             | -           |
+| delete-button-text     | Delete button text                                    | _string_             | Delete Icon |
+| close-button-loading   | Whether to show loading close button in custom theme  | _boolean_            | `false`     |
+| show-delete-key        | Whether to show delete button                         | _boolean_            | `true`      |
+| blur-on-close `v3.0.6` | Whether to emit blur event when clicking close button | _boolean_            | `true`      |
+| hide-on-click-outside  | Whether to hide keyboard when outside is clicked      | _boolean_            | `true`      |
+| teleport               | Return the mount node for NumberKeyboard              | _string \| Element_  | -           |
+| safe-area-inset-bottom | Whether to enable bottom safe area adaptation         | _boolean_            | `true`      |
+| random-key-order       | Whether to shuffle the order of keys                  | _boolean_            | `false`     |
+
+### Events
+
+| Event  | Description                                                        | Arguments               |
+|--------|--------------------------------------------------------------------|-------------------------|
+| input  | Emitted when keydown                                               | key: Content of the key |
+| delete | Emitted when the delete key is pressed                             | -                       |
+| close  | Emitted when the close button is clicked                           | -                       |
+| blur   | Emitted when the close button is clicked or the keyboard is blured | -                       |
+| show   | Emitted when keyboard is fully displayed                           | -                       |
+| hide   | Emitted when keyboard is fully hidden                              | -                       |
+
+### Slots
+
+| Name       | Description               |
+|------------|---------------------------|
+| delete     | Custom delete key content |
+| extra-key  | Custom extra key content  |
+| title-left | Custom title left content |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                                       | Default Value      | Description |
+|--------------------------------------------|--------------------|-------------|
+| @number-keyboard-background-color          | `@gray-2`          | -           |
+| @number-keyboard-key-height                | `48px`             | -           |
+| @number-keyboard-key-font-size             | `28px`             | -           |
+| @number-keyboard-key-active-color          | `@gray-3`          | -           |
+| @number-keyboard-delete-font-size          | `@font-size-lg`    | -           |
+| @number-keyboard-title-color               | `@gray-7`          | -           |
+| @number-keyboard-title-height              | `34px`             | -           |
+| @number-keyboard-title-font-size           | `@font-size-lg`    | -           |
+| @number-keyboard-close-padding             | `0 @padding-md`    | -           |
+| @number-keyboard-close-color               | `@text-link-color` | -           |
+| @number-keyboard-close-font-size           | `@font-size-md`    | -           |
+| @number-keyboard-button-text-color         | `@white`           | -           |
+| @number-keyboard-button-background-color   | `@blue`            | -           |
+| @number-keyboard-cursor-color              | `@text-color`      | -           |
+| @number-keyboard-cursor-width              | `1px`              | -           |
+| @number-keyboard-cursor-height             | `40%`              | -           |
+| @number-keyboard-cursor-animation-duration | `1s`               | -           |
+| @number-keyboard-z-index                   | `100`              | -           |

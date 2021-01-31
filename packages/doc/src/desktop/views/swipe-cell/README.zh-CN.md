@@ -1,78 +1,171 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# SwipeCell 滑动单元格
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+可以左右滑动来展示操作按钮的单元格组件。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { SwipeCell } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(SwipeCell);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+`SwipeCell` 组件提供了 `left` 和 `right` 两个插槽，用于定义两侧滑动区域的内容。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-swipe-cell>
+  <template #left>
+    <van-button square type="primary" text="选择" />
+  </template>
+  <van-cell :border="false" title="单元格" value="内容" />
+  <template #right>
+    <van-button square type="danger" text="删除" />
+    <van-button square type="primary" text="收藏" />
+  </template>
+</van-swipe-cell>
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+### 自定义内容
 
-### 浏览器支持
+`SwipeCell` 可以嵌套任意内容，比如嵌套一个商品卡片。
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+```html
+<van-swipe-cell>
+  <van-card
+    num="2"
+    price="2.00"
+    desc="描述信息"
+    title="商品标题"
+    class="goods-card"
+    thumb="https://img01.yzcdn.cn/vant/cat.jpeg"
+  />
+  <template #right>
+    <van-button square text="删除" type="danger" class="delete-button" />
+  </template>
+</van-swipe-cell>
 
-### 加入我们
+<style>
+  .goods-card {
+    margin: 0;
+    background-color: @white;
+  }
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+  .delete-button {
+    height: 100%;
+  }
+</style>
+```
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+### 异步关闭
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+通过传入 `before-close` 回调函数，可以自定义两侧滑动内容关闭时的行为。
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+```html
+<van-swipe-cell :before-close="beforeClose">
+  <template #left>
+    <van-button square type="primary" text="选择" />
+  </template>
+  <van-cell :border="false" title="单元格" value="内容" />
+  <template #right>
+    <van-button square type="danger" text="删除" />
+  </template>
+</van-swipe-cell>
+```
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+```js
+import { Dialog } from 'vant';
 
-### 生态
+export default {
+  setup() {
+    // position 为关闭时点击的位置
+    const beforeClose = ({ position }) => {
+      switch (position) {
+        case 'left':
+        case 'cell':
+        case 'outside':
+          return true;
+        case 'right':
+          return new Promise((resolve) => {
+            Dialog.confirm({
+              title: '确定删除吗？',
+            }).then(resolve);
+          });
+      }
+    };
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+    return { beforeClose };
+  },
+};
+```
 
-### 链接
+## API
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### Props
 
-### 开源协议
+| 参数             | 说明                                                      | 类型                           | 默认值  |
+|------------------|---------------------------------------------------------|--------------------------------|---------|
+| name             | 标识符，可以在事件参数中获取到                             | _number \| string_             | -       |
+| left-width       | 指定左侧滑动区域宽度，单位为 `px`                          | _number \| string_             | `auto`  |
+| right-width      | 指定右侧滑动区域宽度，单位为 `px`                          | _number \| string_             | `auto`  |
+| before-close     | 关闭前的回调函数，返回 `false` 可阻止关闭，支持返回 Promise | _(args) => boolean \| Promise_ | -       |
+| disabled         | 是否禁用滑动                                              | _boolean_                      | `false` |
+| stop-propagation | 是否阻止滑动事件冒泡                                      | _boolean_                      | `false` |
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+### Slots
+
+| 名称    | 说明           |
+|---------|--------------|
+| default | 自定义显示内容 |
+| left    | 左侧滑动内容   |
+| right   | 右侧滑动内容   |
+
+### Events
+
+| 事件名 | 说明       | 回调参数                                           |
+|--------|----------|----------------------------------------------------|
+| click  | 点击时触发 | 关闭时的点击位置 (`left` `right` `cell` `outside`) |
+| open   | 打开时触发 | { position: 'left' \| 'right' , name: string }     |
+| close  | 关闭时触发 | { position: string , name: string }                |
+
+### beforeClose 参数
+
+beforeClose 的第一个参数为对象，对象中包含以下属性：
+
+| 参数名   | 说明                                               | 类型     |
+|----------|--------------------------------------------------|----------|
+| name     | 标识符                                             | _string_ |
+| position | 关闭时的点击位置 (`left` `right` `cell` `outside`) | _string_ |
+
+### 方法
+
+通过 ref 可以获取到 SwipeCell 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明             | 参数                      | 返回值 |
+|--------|----------------|---------------------------|--------|
+| open   | 打开单元格侧边栏 | position: `left \| right` | -      |
+| close  | 收起单元格侧边栏 | -                         | -      |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                              | 默认值                               | 描述 |
+|-----------------------------------|--------------------------------------|------|
+| @switch-cell-padding-top          | `@cell-vertical-padding - 1px`       | -    |
+| @switch-cell-padding-bottom       | `@cell-vertical-padding - 1px`       | -    |
+| @switch-cell-large-padding-top    | `@cell-large-vertical-padding - 1px` | -    |
+| @switch-cell-large-padding-bottom | `@cell-large-vertical-padding - 1px` | -    |
+
+## 常见问题
+
+### 在桌面端无法操作组件？
+
+参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。

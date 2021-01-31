@@ -1,55 +1,134 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Switch
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Switch } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Switch);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-switch v-model="checked" />
+```
 
-### Browser Support
+```js
+import { ref } from 'vue';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+export default {
+  setup() {
+    const checked = ref(true);
+    return { checked };
+  },
+};
+```
 
-### Ecosystem
+### Disabled
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+```html
+<van-switch v-model="checked" disabled />
+```
 
-### Links
+### Loading
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-switch v-model="checked" loading />
+```
 
-### LICENSE
+### Custom Size
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+```html
+<van-switch v-model="checked" size="24px" />
+```
+
+### Custom Color
+
+```html
+<van-switch v-model="checked" active-color="#ee0a24" inactive-color="#dcdee0" />
+```
+
+### Async Control
+
+```html
+<van-switch :model-value="checked" @update:model-value="onUpdateValue" />
+```
+
+```js
+import { ref } from 'vue';
+import { Dialog } from 'vant';
+
+export default {
+  setup() {
+    const checked = ref(true);
+    const onUpdateValue = (newValue) => {
+      Dialog.confirm({
+        title: 'Confirm',
+        message: 'Are you sure to toggle switch?',
+      }).then(() => {
+        checked.value = newValue;
+      });
+    };
+
+    return {
+      checked,
+      onUpdateValue,
+    };
+  },
+};
+```
+
+### Inside a Cell
+
+```html
+<van-cell center title="Title">
+  <template #right-icon>
+    <van-switch v-model="checked" size="24" />
+  </template>
+</van-cell>
+```
+
+## API
+
+### Props
+
+| Attribute      | Description                    | Type                           | Default   |
+|----------------|--------------------------------|--------------------------------|-----------|
+| v-model        | Check status of Switch         | _ActiveValue \| InactiveValue_ | `false`   |
+| loading        | Whether to show loading icon   | _boolean_                      | `false`   |
+| disabled       | Whether to disable switch      | _boolean_                      | `false`   |
+| size           | Size of switch                 | _number \| string_             | `30px`    |
+| active-color   | Background color when active   | _string_                       | `#1989fa` |
+| inactive-color | Background color when inactive | _string_                       | `white`   |
+| active-value   | Value when active              | _any_                          | `true`    |
+| inactive-value | Value when inactive            | _any_                          | `false`   |
+
+### Events
+
+| Event  | Description                       | Parameters     |
+|--------|-----------------------------------|----------------|
+| change | Emitted when check status changed | _value: any_   |
+| click  | Emitted when component is clicked | _event: Event_ |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                          | Default Value                                 | Description |
+|-------------------------------|-----------------------------------------------|-------------|
+| @switch-size                  | `30px`                                        | -           |
+| @switch-width                 | `2em`                                         | -           |
+| @switch-height                | `1em`                                         | -           |
+| @switch-node-size             | `1em`                                         | -           |
+| @switch-node-background-color | `@white`                                      | -           |
+| @switch-node-box-shadow       | `0 3px 1px 0 rgba(0, 0, 0, 0.05)`             | -           |
+| @switch-background-color      | `@white`                                      | -           |
+| @switch-on-background-color   | `@blue`                                       | -           |
+| @switch-transition-duration   | `@animation-duration-base`                    | -           |
+| @switch-disabled-opacity      | `@disabled-opacity`                           | -           |
+| @switch-border                | `@border-width-base solid rgba(0, 0, 0, 0.1)` | -           |

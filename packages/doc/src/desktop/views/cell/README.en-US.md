@@ -1,55 +1,208 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Cell
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { Cell, CellGroup } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(Cell);
+app.use(CellGroup);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-cell-group>
+  <van-cell title="Cell title" value="Content" />
+  <van-cell title="Cell title" value="Content" label="Description" />
+</van-cell-group>
+```
 
-### Browser Support
+### Size
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+```html
+<van-cell-group>
+  <van-cell title="Cell title" value="Content" size="large" />
+  <van-cell
+    title="Cell title"
+    value="Content"
+    size="large"
+    label="Description"
+  />
+</van-cell-group>
+```
 
-### Ecosystem
+### Left Icon
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+```html
+<van-cell-group>
+  <van-cell title="Cell title" icon="location-o" />
+</van-cell-group>
+```
 
-### Links
+### Value only
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-cell-group>
+  <van-cell value="Content" />
+</van-cell-group>
+```
 
-### LICENSE
+### Link
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+```html
+<van-cell-group>
+  <van-cell title="Cell title" is-link />
+  <van-cell title="Cell title" is-link value="Content" />
+  <van-cell title="Cell title" is-link arrow-direction="down" value="Content" />
+</van-cell-group>
+```
+
+### Router
+
+```html
+<van-cell-group>
+  <van-cell title="URL" is-link url="/vant/mobile.html" />
+  <van-cell title="Vue Router" is-link to="index" />
+</van-cell-group>
+```
+
+### Group Title
+
+```html
+<van-cell-group title="Group 1">
+  <van-cell title="Cell title" value="Content" />
+</van-cell-group>
+<van-cell-group title="Group 2">
+  <van-cell title="Cell title" value="Content" />
+</van-cell-group>
+```
+
+### Use Slots
+
+```html
+<van-cell value="Content" is-link>
+  <!-- Use the title slot to customize the title -->
+  <template #title>
+    <span class="custom-title">Title</span>
+    <van-tag type="danger">Tag</van-tag>
+  </template>
+</van-cell>
+
+<van-cell title="Title" icon="shop-o">
+  <!-- Use the right-icon slot to customize the right icon -->
+  <template #right-icon>
+    <van-icon name="search" class="search-icon" />
+  </template>
+</van-cell>
+
+<style>
+  .custom-title {
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  .search-icon {
+    font-size: 16px;
+    line-height: inherit;
+  }
+</style>
+```
+
+### Vertical Center
+
+```html
+<van-cell center title="Cell title" value="Content" label="Description" />
+```
+
+## API
+
+### CellGroup Props
+
+| Attribute | Description                  | Type      | Default |
+|-----------|------------------------------|-----------|---------|
+| title     | Group title                  | _string_  | -       |
+| border    | Whether to show outer border | _boolean_ | `true`  |
+
+### Cell Props
+
+| Attribute       | Description                                             | Type                        | Default    |
+|-----------------|---------------------------------------------------------|-----------------------------|------------|
+| title           | Title                                                   | _number \| string_          | -          |
+| value           | Right text                                              | _number \| string_          | -          |
+| label           | Description below the title                             | _string_                    | -          |
+| size            | Size，can be set to `large`                              | _string_                    | -          |
+| icon            | Left Icon                                               | _string_                    | -          |
+| icon-prefix     | Icon className prefix                                   | _string_                    | `van-icon` |
+| border          | Whether to show inner border                            | _boolean_                   | `true`     |
+| center          | Whether to center content vertically                    | _boolean_                   | `true`     |
+| url             | Link URL                                                | _string_                    | -          |
+| to              | Target route of the link, same as to of vue-router      | _string \| object_          | -          |
+| replace         | If true, the navigation will not leave a history record | _boolean_                   | `false`    |
+| clickable       | Whether to show click feedback when clicked             | _boolean_                   | `null`     |
+| is-link         | Whether to show link icon                               | _boolean_                   | `false`    |
+| required        | Whether to show required mark                           | _boolean_                   | `false`    |
+| arrow-direction | Can be set to `left` `up` `down`                        | _string_                    | `right`    |
+| title-style     | Title style                                             | _string \| Array \| object_ | -          |
+| title-class     | Title className                                         | _string \| Array \| object_ | -          |
+| value-class     | Value className                                         | _string \| Array \| object_ | -          |
+| label-class     | Label className                                         | _string \| Array \| object_ | -          |
+
+### Cell Events
+
+| Event | Description                  | Arguments      |
+|-------|------------------------------|----------------|
+| click | Emitted when cell is clicked | _event: Event_ |
+
+### CellGroup Slots
+
+| Name    | Description  |
+|---------|--------------|
+| default | Default slot |
+| title   | Custom title |
+
+### Cell Slots
+
+| Name       | Description                       |
+|------------|-----------------------------------|
+| default    | Custom value                      |
+| icon       | Custom icon                       |
+| title      | Custom title                      |
+| label      | Custom label                      |
+| right-icon | Custom right icon                 |
+| extra      | Custom extra content on the right |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                          | Default Value                         | Description |
+|-------------------------------|---------------------------------------|-------------|
+| @cell-font-size               | `@font-size-md`                       | -           |
+| @cell-line-height             | `24px`                                | -           |
+| @cell-vertical-padding        | `10px`                                | -           |
+| @cell-horizontal-padding      | `@padding-md`                         | -           |
+| @cell-text-color              | `@text-color`                         | -           |
+| @cell-background-color        | `@white`                              | -           |
+| @cell-border-color            | `@border-color`                       | -           |
+| @cell-active-color            | `@active-color`                       | -           |
+| @cell-required-color          | `@red`                                | -           |
+| @cell-label-color             | `@gray-6`                             | -           |
+| @cell-label-font-size         | `@font-size-sm`                       | -           |
+| @cell-label-line-height       | `@line-height-sm`                     | -           |
+| @cell-label-margin-top        | `@padding-base`                       | -           |
+| @cell-value-color             | `@gray-6`                             | -           |
+| @cell-icon-size               | `16px`                                | -           |
+| @cell-right-icon-color        | `@gray-6`                             | -           |
+| @cell-large-vertical-padding  | `@padding-sm`                         | -           |
+| @cell-large-title-font-size   | `@font-size-lg`                       | -           |
+| @cell-large-label-font-size   | `@font-size-md`                       | -           |
+| @cell-group-background-color  | `@white`                              | -           |
+| @cell-group-title-color       | `@gray-6`                             | -           |
+| @cell-group-title-padding     | `@padding-md @padding-md @padding-xs` | -           |
+| @cell-group-title-font-size   | `@font-size-md`                       | -           |
+| @cell-group-title-line-height | `16px`                                | -           |

@@ -1,55 +1,168 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# Coupon
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { CouponCell, CouponList } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(CouponCell);
+app.use(CouponList);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<!-- Coupon Cell -->
+<van-coupon-cell
+  :coupons="state.coupons"
+  :chosen-coupon="state.chosenCoupon"
+  @click="state.showList = true"
+/>
+<!-- Coupon List -->
+<van-popup
+  v-model="state.showList"
+  round
+  position="bottom"
+  style="height: 90%; padding-top: 4px;"
+>
+  <van-coupon-list
+    :coupons="state.coupons"
+    :chosen-coupon="state.chosenCoupon"
+    :disabled-coupons="disabledCoupons"
+    @change="onChange"
+    @exchange="onExchange"
+  />
+</van-popup>
+```
 
-### Browser Support
+```js
+import { reactive } from 'vue';
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+const coupon = {
+  available: 1,
+  originCondition: 0,
+  reason: '',
+  value: 150,
+  name: 'Coupon name',
+  startAt: 1489104000,
+  endAt: 1514592000,
+  valueDesc: '1.5',
+  unitDesc: '元',
+};
 
-### Ecosystem
+export default {
+  setup() {
+    const state = reactive({
+      coupons: [coupon],
+      showList: false,
+      chosenCoupon: -1,
+    });
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+    const onChange = (index) => {
+      state.showList = false;
+      state.chosenCoupon = index;
+    };
+    const onExchange = (code) => {
+      state.coupons.push(coupon);
+    };
 
-### Links
+    return {
+      state,
+      onChange,
+      onExchange,
+      disabledCoupons: [coupon],
+    };
+  },
+};
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+## API
 
-### LICENSE
+### CouponCell Props
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+| Attribute     | Description                   | Type               | Default  |
+|---------------|-------------------------------|--------------------|----------|
+| title         | Cell title                    | _string_           | `Coupon` |
+| chosen-coupon | Index of chosen coupon        | _number \| string_ | `-1`     |
+| coupons       | Coupon list                   | _Coupon[]_         | `[]`     |
+| editable      | Cell editable                 | _boolean_          | `true`   |
+| border        | Whether to show innner border | _boolean_          | `true`   |
+| currency      | Currency symbol               | _string_           | `¥`      |
+
+### CouponList Props
+
+| Attribute        | Description            | Type       | Default |
+|------------------|------------------------|------------|---------|
+| v-model          | Current exchange code  | _string_   | -       |
+| chosen-coupon    | Index of chosen coupon | _number_   | `-1`    |
+| coupons          | Coupon list            | _Coupon[]_ | `[]`    |
+| disabled-coupons | Disabled coupon list   | _Coupon[]_ | `[]`    |
+| enabled-title | Title of coupon list | _string_ | `Available` | - |
+| disabled-title | Title of disabled coupon list | _string_ | `Unavailable` | - |
+| exchange-button-text | Exchange button text | _string_ | `Exchange` |
+| exchange-button-loading | Whether to show loading in exchange button | _boolean_ | `false` |
+| exchange-button-disabled | Whether to disable exchange button | _boolean_ | `false` |
+| exchange-min-length | Min length to enable exchange button | _number_ | `1` |
+| displayed-coupon-index | Index of displayed coupon | _number_ | - |
+| close-button-text | Close button text | _string_ | `Close` |
+| input-placeholder | Input placeholder | _string_ | `Coupon code` |
+| currency | Currency symbol | _string_ | `¥` |
+| empty-image | Placeholder image when list is empty | _string_ | `https://img01.yzcdn.cn/vant/coupon-empty.png` |
+| show-count | Whether to show coupon count in tab title | _boolean_ | `true` |
+
+### CouponList Events
+
+| Event    | Description                        | Arguments                     |
+|----------|------------------------------------|-------------------------------|
+| change   | Emitted when chosen coupon changed | index: index of chosen coupon |
+| exchange | Emitted when exchanging coupon     | code: exchange code           |
+
+### Data Structure of Coupon
+
+| Key         | Description                         | Type     |
+|-------------|-------------------------------------|----------|
+| id          | Id                                  | _string_ |
+| name        | Name                                | _string_ |
+| condition   | Condition                           | _string_ |
+| startAt     | Start time (Timestmap, unit second) | _number_ |
+| endAt       | End time (Timestmap, unit second)   | _number_ |
+| description | Description                         | _string_ |
+| reason      | Unavailable reason                  | _string_ |
+| value       | Value                               | _number_ |
+| valueDesc   | Value Text                          | _string_ |
+| unitDesc    | Unit Text                           | _string_ |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                                | Default Value                | Description |
+|-------------------------------------|------------------------------|-------------|
+| @coupon-margin                      | `0 @padding-sm @padding-sm`  | -           |
+| @coupon-content-height              | `84px`                       | -           |
+| @coupon-content-padding             | `14px 0`                     | -           |
+| @coupon-background-color            | `@white`                     | -           |
+| @coupon-active-background-color     | `@active-color`              | -           |
+| @coupon-border-radius               | `@border-radius-lg`          | -           |
+| @coupon-box-shadow                  | `0 0 4px rgba(0, 0, 0, 0.1)` | -           |
+| @coupon-head-width                  | `96px`                       | -           |
+| @coupon-amount-color                | `@red`                       | -           |
+| @coupon-amount-font-size            | `30px`                       | -           |
+| @coupon-currency-font-size          | `40%`                        | -           |
+| @coupon-name-font-size              | `@font-size-md`              | -           |
+| @coupon-disabled-text-color         | `@gray-6`                    | -           |
+| @coupon-description-padding         | `@padding-xs @padding-md`    | -           |
+| @coupon-description-border-color    | `@border-color`              | -           |
+| @coupon-list-background-color       | `@background-color`          | -           |
+| @coupon-list-field-padding          | `5px 0 5px @padding-md`      | -           |
+| @coupon-list-exchange-button-height | `32px`                       | -           |
+| @coupon-list-close-button-height    | `40px`                       | -           |
+| @coupon-list-empty-image-size       | `200px`                      | -           |
+| @coupon-list-empty-tip-color        | `@gray-6`                    | -           |
+| @coupon-list-empty-tip-font-size    | `@font-size-md`              | -           |
+| @coupon-list-empty-tip-line-height  | `@line-height-md`            | -           |
+| @coupon-cell-selected-text-color    | `@text-color`                | -           |

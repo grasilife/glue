@@ -1,55 +1,153 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# SwipeCell
 
-### Features
+### Install
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+```js
+import { createApp } from 'vue';
+import { SwipeCell } from 'vant';
 
-### Quickstart
+const app = createApp();
+app.use(SwipeCell);
+```
 
-See in [Quickstart](#/en-US/quickstart).
+## Usage
 
-### Contribution
+### Basic Usage
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+```html
+<van-swipe-cell>
+  <template #left>
+    <van-button square type="primary" text="Select" />
+  </template>
+  <van-cell :border="false" title="Cell" value="Cell Content" />
+  <template #right>
+    <van-button square type="danger" text="Delete" />
+    <van-button square type="primary" text="Collect" />
+  </template>
+</van-swipe-cell>
+```
 
-### Browser Support
+### Custom Content
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+```html
+<van-swipe-cell>
+  <van-card
+    num="2"
+    price="2.00"
+    desc="Description"
+    title="Title"
+    class="goods-card"
+    thumb="https://img01.yzcdn.cn/vant/cat.jpeg"
+  />
+  <template #right>
+    <van-button square text="Delete" type="danger" class="delete-button" />
+  </template>
+</van-swipe-cell>
 
-### Ecosystem
+<style>
+  .goods-card {
+    margin: 0;
+    background-color: @white;
+  }
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+  .delete-button {
+    height: 100%;
+  }
+</style>
+```
 
-### Links
+### Before Close
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-swipe-cell :before-close="beforeClose">
+  <template #left>
+    <van-button square type="primary" text="Select" />
+  </template>
+  <van-cell :border="false" title="Cell" value="Cell Content" />
+  <template #right>
+    <van-button square type="danger" text="Delete" />
+  </template>
+</van-swipe-cell>
+```
 
-### LICENSE
+```js
+import { Dialog } from 'vant';
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+export default {
+  setup() {
+    const beforeClose = ({ position }) => {
+      switch (position) {
+        case 'left':
+        case 'cell':
+        case 'outside':
+          return true;
+        case 'right':
+          return new Promise((resolve) => {
+            Dialog.confirm({
+              title: 'Are you sure to delete?',
+            }).then(resolve);
+          });
+      }
+    };
+
+    return { beforeClose };
+  },
+};
+```
+
+## API
+
+### Props
+
+| Attribute        | Description                                 | Type                           | Default |
+|------------------|---------------------------------------------|--------------------------------|---------|
+| name             | Identifier of SwipeCell                     | _number \| string_             | -       |
+| left-width       | Width of the left swipe area                | _number \| string_             | `auto`  |
+| right-width      | Width of the right swipe area               | _number \| string_             | `auto`  |
+| before-close     | Callback function before close              | _(args) => boolean \| Promise_ | -       |
+| disabled         | Whether to disabled swipe                   | _boolean_                      | `false` |
+| stop-propagation | Whether to stop touchmove event propagation | _boolean_                      | `false` |
+
+### Slots
+
+| Name    | Description                     |
+|---------|---------------------------------|
+| default | custom content                  |
+| left    | content of left scrollable area |
+| right   | content of right scrollabe area |
+
+### Events
+
+| Event | Description                       | Arguments                                       |
+|-------|-----------------------------------|-------------------------------------------------|
+| click | Emitted when SwipeCell is clicked | Click positon (`left` `right` `cell` `outside`) |
+| open  | Emitted when SwipeCell is opened  | { position: 'left' \| 'right' , name: string }  |
+| close | Emitted when SwipeCell is closed  | { position: string , name: string }             |
+
+### beforeClose Params
+
+| Attribute | Description                                     | Type        |
+|-----------|-------------------------------------------------|-------------|
+| name      | Name                                            | _string_    |
+| position  | Click positon (`left` `right` `cell` `outside`) | _string_    |
+| instance  | SwipeCell instance                              | _SwipeCell_ |
+
+### Methods
+
+Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get SwipeCell instance and call instance methods.
+
+| Name  | Description     | Attribute                 | Return value |
+|-------|-----------------|---------------------------|--------------|
+| open  | open SwipeCell  | position: `left \| right` | -            |
+| close | close SwipeCell | -                         | -            |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                              | Default Value                        | Description |
+|-----------------------------------|--------------------------------------|-------------|
+| @switch-cell-padding-top          | `@cell-vertical-padding - 1px`       | -           |
+| @switch-cell-padding-bottom       | `@cell-vertical-padding - 1px`       | -           |
+| @switch-cell-large-padding-top    | `@cell-large-vertical-padding - 1px` | -           |
+| @switch-cell-large-padding-bottom | `@cell-large-vertical-padding - 1px` | -           |

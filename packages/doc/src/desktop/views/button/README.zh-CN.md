@@ -1,78 +1,206 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Button 按钮
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+按钮用于触发一个操作，如提交表单。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Button } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Button);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 按钮类型
 
-### 贡献代码
+按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+```html
+<van-button type="primary">主要按钮</van-button>
+<van-button type="success">成功按钮</van-button>
+<van-button type="default">默认按钮</van-button>
+<van-button type="warning">警告按钮</van-button>
+<van-button type="danger">危险按钮</van-button>
+```
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+### 朴素按钮
 
-### 浏览器支持
+通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+```html
+<van-button plain type="primary">朴素按钮</van-button>
+<van-button plain type="primary">朴素按钮</van-button>
+```
 
-### 加入我们
+### 细边框
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+设置 `hairline` 属性可以展示 0.5px 的细边框。
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+```html
+<van-button plain hairline type="primary">细边框按钮</van-button>
+<van-button plain hairline type="primary">细边框按钮</van-button>
+```
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+### 禁用状态
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+```html
+<van-button disabled type="primary">禁用状态</van-button>
+<van-button disabled type="primary">禁用状态</van-button>
+```
 
-### 生态
+### 加载状态
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
 
-### 链接
+```html
+<van-button loading type="primary" />
+<van-button loading type="primary" loading-type="spinner" />
+<van-button loading type="primary" loading-text="加载中..." />
+```
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### 按钮形状
 
-### 开源协议
+通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+```html
+<van-button square type="primary">方形按钮</van-button>
+<van-button round type="primary">圆形按钮</van-button>
+```
+
+### 图标按钮
+
+通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+
+```html
+<van-button icon="plus" type="primary" />
+<van-button icon="plus" type="primary">按钮</van-button>
+<van-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
+  按钮
+</van-button>
+```
+
+### 按钮尺寸
+
+支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
+
+```html
+<van-button type="primary" size="large">大号按钮</van-button>
+<van-button type="primary" size="normal">普通按钮</van-button>
+<van-button type="primary" size="small">小型按钮</van-button>
+<van-button type="primary" size="mini">迷你按钮</van-button>
+```
+
+### 块级元素
+
+按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
+
+```html
+<van-button type="primary" block>块级元素</van-button>
+```
+
+### 页面导航
+
+可以通过 `url` 属性进行 URL 跳转，或通过 `to` 属性进行路由跳转。
+
+```html
+<van-button type="primary" url="/vant/mobile.html">URL 跳转</van-button>
+<van-button type="primary" to="index">路由跳转</van-button>
+```
+
+### 自定义颜色
+
+通过 `color` 属性可以自定义按钮的颜色。
+
+```html
+<van-button color="#7232dd">单色按钮</van-button>
+<van-button color="#7232dd" plain>单色按钮</van-button>
+<van-button color="linear-gradient(to right, #ff6034, #ee0a24)">
+  渐变色按钮
+</van-button>
+```
+
+## API
+
+### Props
+
+| 参数          | 说明                                                                                     | 类型               | 默认值     |
+|---------------|----------------------------------------------------------------------------------------|--------------------|------------|
+| type          | 类型，可选值为 `primary` `success` `warning` `danger`                                     | _string_           | `default`  |
+| size          | 尺寸，可选值为 `large` `small` `mini`                                                     | _string_           | `normal`   |
+| text          | 按钮文字                                                                                 | _string_           | -          |
+| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                                               | _string_           | -          |
+| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                                                   | _string_           | -          |
+| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props)                      | _string_           | `van-icon` |
+| icon-position | 图标展示位置，可选值为 `right`                                                            | _string_           | `left`     |
+| tag           | 按钮根节点的 HTML 标签                                                                   | _string_           | `button`   |
+| native-type   | 原生 button 标签的 type 属性                                                             | _string_           | `button`   |
+| block         | 是否为块级元素                                                                           | _boolean_          | `false`    |
+| plain         | 是否为朴素按钮                                                                           | _boolean_          | `false`    |
+| square        | 是否为方形按钮                                                                           | _boolean_          | `false`    |
+| round         | 是否为圆形按钮                                                                           | _boolean_          | `false`    |
+| disabled      | 是否禁用按钮                                                                             | _boolean_          | `false`    |
+| hairline      | 是否使用 0.5px 边框                                                                      | _boolean_          | `false`    |
+| loading       | 是否显示为加载状态                                                                       | _boolean_          | `false`    |
+| loading-text  | 加载状态提示文字                                                                         | _string_           | -          |
+| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                                       | _string_           | `circular` |
+| loading-size  | 加载图标大小                                                                             | _string_           | `20px`     |
+| url           | 点击后跳转的链接地址                                                                     | _string_           | -          |
+| to            | 点击后跳转的目标路由对象，同 vue-router 的 [to 属性](https://router.vuejs.org/zh/api/#to) | _string \| object_ | -          |
+| replace       | 是否在跳转时替换当前页面历史                                                             | _boolean_          | `false`    |
+
+### Events
+
+| 事件名     | 说明                                    | 回调参数            |
+|------------|---------------------------------------|---------------------|
+| click      | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_      |
+| touchstart | 开始触摸按钮时触发                      | _event: TouchEvent_ |
+
+### Slots
+
+| 名称    | 说明           |
+|---------|--------------|
+| default | 按钮内容       |
+| loading | 自定义加载图标 |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                             | 默认值               | 描述 |
+|----------------------------------|----------------------|------|
+| @button-mini-height              | `24px`               | -    |
+| @button-mini-font-size           | `@font-size-xs`      | -    |
+| @button-small-height             | `32px`               | -    |
+| @button-small-font-size          | `@font-size-sm`      | -    |
+| @button-normal-font-size         | `@font-size-md`      | -    |
+| @button-large-height             | `50px`               | -    |
+| @button-default-height           | `44px`               | -    |
+| @button-default-line-height      | `1.2`                | -    |
+| @button-default-font-size        | `@font-size-lg`      | -    |
+| @button-default-color            | `@text-color`        | -    |
+| @button-default-background-color | `@white`             | -    |
+| @button-default-border-color     | `@border-color`      | -    |
+| @button-primary-color            | `@white`             | -    |
+| @button-primary-background-color | `@blue`              | -    |
+| @button-primary-border-color     | `@blue`              | -    |
+| @button-success-color            | `@white`             | -    |
+| @button-success-background-color | `@green`             | -    |
+| @button-success-border-color     | `@green`             | -    |
+| @button-danger-color             | `@white`             | -    |
+| @button-danger-background-color  | `@red`               | -    |
+| @button-danger-border-color      | `@red`               | -    |
+| @button-warning-color            | `@white`             | -    |
+| @button-warning-background-color | `@orange`            | -    |
+| @button-warning-border-color     | `@orange`            | -    |
+| @button-border-width             | `@border-width-base` | -    |
+| @button-border-radius            | `@border-radius-sm`  | -    |
+| @button-round-border-radius      | `@border-radius-max` | -    |
+| @button-plain-background-color   | `@white`             | -    |
+| @button-disabled-opacity         | `@disabled-opacity`  | -    |

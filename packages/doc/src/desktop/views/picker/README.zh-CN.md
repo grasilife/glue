@@ -1,78 +1,435 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>轻量、可靠的移动端 Vue 组件库</p>
-  </div>
-</div>
+# Picker 选择器
 
 ### 介绍
 
-Glue 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。 <br><br>
+提供多个选项集合供用户选择，支持单列选择和多列级联，通常与[弹出层](#/zh-CN/popup)组件配合使用。
 
-目前 Glue 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Glue-Aliapp)。
+### 引入
 
-### 特性
+```js
+import { createApp } from 'vue';
+import { Picker } from 'vant';
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 单元测试覆盖率 90%+，提供稳定性保障
-- 完善的中英文文档和示例
-- 支持 Vue 2 & Vue 3
-- 支持按需引入
-- 支持主题定制
-- 支持国际化
-- 支持 TypeScript
-- 支持 SSR
+const app = createApp();
+app.use(Picker);
+```
 
-### 快速上手
+## 代码演示
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+### 基础用法
 
-### 贡献代码
+#### 选项配置
 
-修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
+Picker 组件通过 `columns` 属性配置选项数据，`columns` 是一个包含字符串或对象的数组。
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+#### 顶部栏
 
-### 浏览器支持
+顶部栏包含标题、确认按钮和取消按钮，点击确认按钮触发 `confirm` 事件，点击取消按钮触发 `cancel` 事件。
 
-现代浏览器以及 Android 4.0+, iOS 8.0+。
+```html
+<van-picker
+  title="标题"
+  :columns="columns"
+  @confirm="onConfirm"
+  @cancel="onCancel"
+  @change="onChange"
+/>
+```
 
-### 加入我们
+```js
+import { Toast } from 'vant';
 
-**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、有赞云、赋能平台、增长中心等业务线。
+export default {
+  setup() {
+    const columns = ['杭州', '宁波', '温州', '绍兴', '湖州', '嘉兴', '金华'];
 
-我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
+    const onConfirm = (value, index) => {
+      Toast(`当前值: ${value}, 当前索引: ${index}`);
+    };
+    const onChange = (value, index) => {
+      Toast(`当前值: ${value}, 当前索引: ${index}`);
+    };
+    const onCancel = () => Toast('取消');
 
-<img src="https://img01.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" style="width: 320px; height: 303px;">
+    return {
+      columns,
+      onChange,
+      onCancel,
+      onConfirm,
+    };
+  },
+};
+```
 
-我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
+### 默认选中项
 
-- <a target="_blank" href="https://app.mokahr.com/apply/youzan/3750#/jobs/?keyword=%E5%89%8D%E7%AB%AF&_k=tueqds">职位详情</a>（Base: 杭州/深圳）
-- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
-- <a target="_blank" href="https://github.com/youzan">开源项目</a>
+单列选择时，可以通过 `default-index` 属性设置初始选中项的索引。
 
-### 生态
+```html
+<van-picker title="标题" :columns="columns" :default-index="2" />
+```
 
-| 项目                                                                                        | 描述                            |
-|---------------------------------------------------------------------------------------------|-------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | Glue 微信小程序版               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Glue 支付宝小程序版（由社区维护） |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React 版（由社区维护）       |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Glue Composition API 合集       |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Glue 官方示例合集               |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | 开箱即用的组件库搭建工具        |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue 图标库                     |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Glue 的辅助库      |
+### 多列选择
 
-### 链接
+`columns` 属性可以通过对象数组的形式配置多列选择，对象中可以配置选项数据、初始选中项等，详细格式见[下方表格](#/zh-CN/picker#column-shu-ju-jie-gou)。
 
-- [意见反馈](https://github.com/youzan/vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+```html
+<van-picker title="标题" :columns="columns" />
+```
 
-### 开源协议
+```js
+export default {
+  setup() {
+    const columns = [
+      // 第一列
+      {
+        values: ['周一', '周二', '周三', '周四', '周五'],
+        defaultIndex: 2,
+      },
+      // 第二列
+      {
+        values: ['上午', '下午', '晚上'],
+        defaultIndex: 1,
+      },
+    ];
 
-本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
+    return { columns };
+  },
+};
+```
+
+### 级联选择
+
+使用 `columns` 的 `children` 字段可以实现选项级联的效果。如果级联层级较多，推荐使用 [Cascader 级联选项组件](#/zh-CN/cascader)。
+
+```html
+<van-picker title="标题" :columns="columns" />
+```
+
+```js
+export default {
+  setup() {
+    const columns = [
+      {
+        text: '浙江',
+        children: [
+          {
+            text: '杭州',
+            children: [{ text: '西湖区' }, { text: '余杭区' }],
+          },
+          {
+            text: '温州',
+            children: [{ text: '鹿城区' }, { text: '瓯海区' }],
+          },
+        ],
+      },
+      {
+        text: '福建',
+        children: [
+          {
+            text: '福州',
+            children: [{ text: '鼓楼区' }, { text: '台江区' }],
+          },
+          {
+            text: '厦门',
+            children: [{ text: '思明区' }, { text: '海沧区' }],
+          },
+        ],
+      },
+    ];
+
+    return { columns };
+  },
+};
+```
+
+> 级联选择的数据嵌套深度需要保持一致，如果部分选项没有子选项，可以使用空字符串进行占位。
+
+### 禁用选项
+
+选项可以为对象结构，通过设置 `disabled` 来禁用该选项。
+
+```html
+<van-picker :columns="columns" />
+```
+
+```js
+export default {
+  setup() {
+    const columns = [
+      { text: '杭州', disabled: true },
+      { text: '宁波' },
+      { text: '温州' },
+    ];
+
+    return { columns };
+  },
+};
+```
+
+### 动态设置选项
+
+通过 Picker 上的实例方法可以更灵活地控制选择器，比如使用 `setColumnValues` 方法实现多列联动。
+
+```html
+<van-picker ref="picker" :columns="columns" @change="onChange" />
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const picker = ref(null);
+
+    const cities = {
+      浙江: ['杭州', '宁波', '温州', '嘉兴', '湖州'],
+      福建: ['福州', '厦门', '莆田', '三明', '泉州'],
+    };
+    const columns = [
+      { values: Object.keys(cities) },
+      { values: cities['浙江'] },
+    ];
+
+    const onChange = (values) => {
+      picker.value.setColumnValues(1, cities[values[0]]);
+    };
+
+    return {
+      picker,
+      columns,
+      onChange,
+    };
+  },
+};
+```
+
+### 加载状态
+
+若选择器数据是异步获取的，可以通过 `loading` 属性显示加载提示。
+
+```html
+<van-picker :columns="columns" :loading="loading" />
+```
+
+```js
+import { reactive } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({
+      columns: [],
+      loading: true,
+    });
+
+    setTimeout(() => {
+      state.loading = false;
+      state.columns = ['选项'];
+    }, 1000);
+
+    return { state };
+  },
+};
+```
+
+### 搭配弹出层使用
+
+在实际场景中，Picker 通常作为用于辅助表单填写，可以搭配 Popup 和 Field 实现该效果。
+
+```html
+<van-field
+  v-model="value"
+  readonly
+  clickable
+  label="城市"
+  placeholder="选择城市"
+  @click="showPicker = true"
+/>
+<van-popup v-model:show="showPicker" round position="bottom">
+  <van-picker
+    :columns="columns"
+    @cancel="showPicker = false"
+    @confirm="onConfirm"
+  />
+</van-popup>
+```
+
+```js
+import { reactive } from 'vue';
+
+export default {
+  setup() {
+    const columns = ['杭州', '宁波', '温州', '绍兴', '湖州', '嘉兴', '金华'];
+    const state = reactive({
+      value: '',
+      showPicker: false,
+    });
+
+    const onConfirm = (value) => {
+      state.value = value;
+      state.showPicker = false;
+    };
+
+    return {
+      state,
+      columns,
+      onConfirm,
+    };
+  },
+};
+```
+
+### 自定义 Columns 的结构
+
+```html
+<van-picker
+  :title="标题"
+  :columns="columns"
+  :columns-field-names="customFieldName"
+/>
+```
+
+```js
+import { reactive } from 'vue';
+
+export default {
+  setup() {
+    const columns = [
+      {
+        cityName: '浙江',
+        cities: [
+          {
+            cityName: '杭州',
+            cities: [{ cityName: '西湖区' }, { cityName: '余杭区' }],
+          },
+          {
+            cityName: '温州',
+            cities: [{ cityName: '鹿城区' }, { cityName: '瓯海区' }],
+          },
+        ],
+      },
+      {
+        cityName: '福建',
+        cities: [
+          {
+            cityName: '福州',
+            cities: [{ cityName: '鼓楼区' }, { cityName: '台江区' }],
+          },
+          {
+            cityName: '厦门',
+            cities: [{ cityName: '思明区' }, { cityName: '海沧区' }],
+          },
+        ],
+      },
+    ];
+
+    const customFieldName = {
+      text: 'cityName',
+      children: 'cities',
+    };
+
+    return {
+      columns,
+      customFieldName,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| 参数                | 说明                                              | 类型               | 默认值                                                     |
+|---------------------|-------------------------------------------------|--------------------|------------------------------------------------------------|
+| columns             | 对象数组，配置每一列显示的数据                     | _Column[]_         | `[]`                                                       |
+| columns-field-names | 自定义`columns`结构中的字段                       | _object_           | `{ text: 'text', values: 'values', children: 'children' }` |
+| title               | 顶部栏标题                                        | _string_           | -                                                          |
+| confirm-button-text | 确认按钮文字                                      | _string_           | `确认`                                                     |
+| cancel-button-text  | 取消按钮文字                                      | _string_           | `取消`                                                     |
+| value-key           | 选项对象中，选项文字对应的键名                     | _string_           | `text`                                                     |
+| toolbar-position    | 顶部栏位置，可选值为`bottom`                       | _string_           | `top`                                                      |
+| loading             | 是否显示加载状态                                  | _boolean_          | `false`                                                    |
+| show-toolbar        | 是否显示顶部栏                                    | _boolean_          | `true`                                                     |
+| allow-html          | 是否允许选项内容中渲染 HTML                       | _boolean_          | `false`                                                    |
+| default-index       | 单列选择时，默认选中项的索引                       | _number \| string_ | `0`                                                        |
+| item-height         | 选项高度，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `44`                                                       |
+| visible-item-count  | 可见的选项个数                                    | _number \| string_ | `6`                                                        |
+| swipe-duration      | 快速滑动时惯性滚动的时长，单位 `ms`                | _number \| string_ | `1000`                                                     |
+
+### Events
+
+当选择器有多列时，事件回调参数会返回数组
+
+| 事件名  | 说明               | 回调参数                                                                 |
+|---------|------------------|----------------------------------------------------------------------|
+| confirm | 点击完成按钮时触发 | 单列：选中值，选中值对应的索引<br>多列：所有列选中值，所有列选中值对应的索引 |
+| cancel  | 点击取消按钮时触发 | 单列：选中值，选中值对应的索引<br>多列：所有列选中值，所有列选中值对应的索引 |
+| change  | 选项改变时触发     | 单列：选中值，选中值对应的索引<br>多列：所有列选中值，当前列对应的索引       |
+
+### Slots
+
+| 名称           | 说明                   | 参数                       |
+|----------------|----------------------|----------------------------|
+| default        | 自定义整个顶部栏的内容 | -                          |
+| title          | 自定义标题内容         | -                          |
+| confirm        | 自定义确认按钮内容     | -                          |
+| cancel         | 自定义取消按钮内容     | -                          |
+| option         | 自定义选项内容         | _option: string \| object_ |
+| columns-top    | 自定义选项上方内容     | -                          |
+| columns-bottom | 自定义选项下方内容     | -                          |
+
+### Column 数据结构
+
+当传入多列数据时，`columns` 为一个对象数组，数组中的每一个对象配置每一列，每一列有以下 `key`:
+
+| 键名         | 说明                      | 类型                        |
+|--------------|-------------------------|-----------------------------|
+| values       | 列中对应的备选值          | _string[]_                  |
+| defaultIndex | 初始选中项的索引，默认为 0 | _number_                    |
+| className    | 为对应列添加额外的类名    | _string \| Array \| object_ |
+| children     | 级联选项                  | _Column_                    |
+
+### 方法
+
+通过 ref 可以获取到 Picker 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名          | 说明                            | 参数                     | 返回值      |
+|-----------------|-------------------------------|--------------------------|-------------|
+| getValues       | 获取所有列选中的值              | -                        | values      |
+| setValues       | 设置所有列选中的值              | values                   | -           |
+| getIndexes      | 获取所有列选中值对应的索引      | -                        | indexes     |
+| setIndexes      | 设置所有列选中值对应的索引      | indexes                  | -           |
+| getColumnValue  | 获取对应列选中的值              | columnIndex              | value       |
+| setColumnValue  | 设置对应列选中的值              | columnIndex, value       | -           |
+| getColumnIndex  | 获取对应列选中项的索引          | columnIndex              | optionIndex |
+| setColumnIndex  | 设置对应列选中项的索引          | columnIndex, optionIndex | -           |
+| getColumnValues | 获取对应列中所有选项            | columnIndex              | values      |
+| setColumnValues | 设置对应列中所有选项            | columnIndex, values      | -           |
+| confirm         | 停止惯性滚动并触发 confirm 事件 | -                        | -           |
+
+### 样式变量
+
+组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+
+| 名称                            | 默认值                     | 描述 |
+|---------------------------------|----------------------------|------|
+| @picker-background-color        | `@white`                   | -    |
+| @picker-toolbar-height          | `44px`                     | -    |
+| @picker-title-font-size         | `@font-size-lg`            | -    |
+| @picker-title-line-height       | `@line-height-md`          | -    |
+| @picker-action-padding          | `0 @padding-md`            | -    |
+| @picker-action-font-size        | `@font-size-md`            | -    |
+| @picker-confirm-action-color    | `@text-link-color`         | -    |
+| @picker-cancel-action-color     | `@gray-6`                  | -    |
+| @picker-option-font-size        | `@font-size-lg`            | -    |
+| @picker-option-text-color       | `@black`                   | -    |
+| @picker-option-disabled-opacity | `0.3`                      | -    |
+| @picker-loading-icon-color      | `@blue`                    | -    |
+| @picker-loading-mask-color      | `rgba(255, 255, 255, 0.9)` | -    |
+
+## 常见问题
+
+### 在桌面端无法操作组件？
+
+参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。

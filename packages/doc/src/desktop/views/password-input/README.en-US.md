@@ -1,55 +1,164 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
-</div>
+# PasswordInput
 
-### Features
+### Intro
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+The PasswordInput component is usually used with [NumberKeyboard](#/en-US/number-keyboard) Component.
 
-### Quickstart
+### Install
 
-See in [Quickstart](#/en-US/quickstart).
+```js
+import { createApp } from 'vue';
+import { PasswordInput, NumberKeyboard } from 'vant';
 
-### Contribution
+const app = createApp();
+app.use(PasswordInput);
+app.use(NumberKeyboard);
+```
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+## Usage
 
-### Browser Support
+### Basic Usage
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+```html
+<van-password-input
+  :value="value"
+  :focused="showKeyboard"
+  @focus="showKeyboard = true"
+/>
+<van-number-keyboard
+  v-model="value"
+  :show="showKeyboard"
+  @blur="showKeyboard = false"
+/>
+```
 
-### Ecosystem
+```js
+import { ref } from 'vue';
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+export default {
+  setup() {
+    const value = ref('123');
+    const showKeyboard = ref(true);
 
-### Links
+    return {
+      value,
+      showKeyboard,
+    };
+  },
+};
+```
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+### Custom Length
 
-### LICENSE
+```html
+<van-password-input
+  :value="value"
+  :gutter="15"
+  :focused="showKeyboard"
+  @focus="showKeyboard = true"
+/>
+```
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+### Add Gutter
+
+```html
+<van-password-input
+  :value="value"
+  :gutter="10"
+  :focused="showKeyboard"
+  @focus="showKeyboard = true"
+/>
+```
+
+### Without Mask
+
+```html
+<van-password-input
+  :value="value"
+  :mask="false"
+  :focused="showKeyboard"
+  @focus="showKeyboard = true"
+/>
+```
+
+### Hint Error
+
+Use `info` to set info message, use `error-info` prop to set error message.
+
+```html
+<van-password-input
+  :value="value"
+  info="Some tips"
+  :error-info="errorInfo"
+  :focused="showKeyboard"
+  @focus="showKeyboard = true"
+/>
+<van-number-keyboard
+  v-model="value"
+  :show="showKeyboard"
+  @blur="showKeyboard = false"
+/>
+```
+
+```js
+import { ref, watch } from 'vue';
+
+export default {
+  setup() {
+    const value = ref('123');
+    const errorInfo = ref('');
+    const showKeyboard = ref(true);
+
+    watch(value, (newVal) => {
+      if (newVal.length === 6 && newVal !== '123456') {
+        errorInfo.value = 'Password Mistake';
+      } else {
+        errorInfo.value = '';
+      }
+    });
+
+    return {
+      value,
+      errorInfo,
+      showKeyboard,
+    };
+  },
+};
+```
+
+## API
+
+### Props
+
+| Attribute  | Description                    | Type               | Default |
+|------------|--------------------------------|--------------------|---------|
+| value      | Password value                 | _string_           | `''`    |
+| info       | Bottom info                    | _string_           | -       |
+| error-info | Bottom error info              | _string_           | -       |
+| length     | Maxlength of password          | _number \| string_ | `6`     |
+| gutter     | Gutter of input                | _number \| string_ | `0`     |
+| mask       | Whether to mask value          | _boolean_          | `true`  |
+| focused    | Whether to show focused cursor | _boolean_          | `false` |
+
+### Events
+
+| Event | Description                   | Arguments |
+|-------|-------------------------------|-----------|
+| focus | Emitted when input is focused | -         |
+
+### Less Variables
+
+How to use: [Custom Theme](#/en-US/theme).
+
+| Name                             | Default Value   | Description |
+|----------------------------------|-----------------|-------------|
+| @password-input-height           | `50px`          | -           |
+| @password-input-margin           | `0 @padding-md` | -           |
+| @password-input-font-size        | `20px`          | -           |
+| @password-input-border-radius    | `6px`           | -           |
+| @password-input-background-color | `@white`        | -           |
+| @password-input-info-color       | `@gray-6`       | -           |
+| @password-input-info-font-size   | `@font-size-md` | -           |
+| @password-input-error-info-color | `@red`          | -           |
+| @password-input-dot-size         | `10px`          | -           |
+| @password-input-dot-color        | `@black`        | -           |

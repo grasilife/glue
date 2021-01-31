@@ -1,55 +1,189 @@
-<div class="card">
-  <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img01.yzcdn.cn/vant/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
-    <p>Mobile UI Components built on Vue</p>
-  </div>
+# Slider
+
+### Install
+
+```js
+import { createApp } from 'vue';
+import { Slider } from 'vant';
+
+const app = createApp();
+app.use(Slider);
+```
+
+## Usage
+
+### Basic Usage
+
+```html
+<van-slider v-model="value" @change="onChange" />
+```
+
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
+
+export default {
+  setup() {
+    const value = ref(50);
+    const onChange = (value) => Toast('Current value: ' + value);
+    return {
+      value,
+      onChange,
+    };
+  },
+};
+```
+
+### Dual thumb
+
+Add `range` attribute to open dual thumb mode.
+
+```html
+<van-slider v-model="value" range @change="onChange" />
+```
+
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
+
+export default {
+  setup() {
+    // value must be an Array
+    const value = ref([10, 50]);
+    const onChange = (value) => Toast('Current value: ' + value);
+    return {
+      value,
+      onChange,
+    };
+  },
+};
+```
+
+### Range
+
+```html
+<van-slider v-model="value" :min="-50" :max="50" />
+```
+
+### Disabled
+
+```html
+<van-slider v-model="value" disabled />
+```
+
+### Step size
+
+```html
+<van-slider v-model="value" :step="10" />
+```
+
+### Custom style
+
+```html
+<van-slider v-model="value" bar-height="4px" active-color="#ee0a24" />
+```
+
+### Custom button
+
+```html
+<van-slider v-model="value" active-color="#ee0a24">
+  <template #button>
+    <div class="custom-button">{{ value }}</div>
+  </template>
+</van-slider>
+
+<style>
+  .custom-button {
+    width: 26px;
+    color: #fff;
+    font-size: 10px;
+    line-height: 18px;
+    text-align: center;
+    background-color: #ee0a24;
+    border-radius: 100px;
+  }
+</style>
+```
+
+### Vertical
+
+```html
+<div :style="{ height: '150px' }">
+  <van-slider v-model="value" vertical @change="onChange" />
+  <van-slider
+    v-model="value2"
+    range
+    vertical
+    style="margin-left: 100px;"
+    @change="onChange"
+  />
 </div>
+```
 
-### Features
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-- 65+ Reusable components
-- 1kb Component average size (min+gzip)
-- 90%+ Unit test coverage
-- Extensive documentation and demos
-- Support Vue 2 & Vue 3
-- Support Tree Shaking
-- Support Custom Theme
-- Support i18n
-- Support TS
-- Support SSR
+export default {
+  setup() {
+    const value = ref(50);
+    const value2 = ref([10, 50]);
+    const onChange = (value) => Toast('Current value: ' + value);
+    return {
+      value,
+      value2,
+      onChange,
+    };
+  },
+};
+```
 
-### Quickstart
+## API
 
-See in [Quickstart](#/en-US/quickstart).
+### Props
 
-### Contribution
+| Attribute         | Description                          | Type                 | Default   |
+|-------------------|--------------------------------------|----------------------|-----------|
+| v-model           | Current value                        | _number \| number[]_ | `0`       |
+| max               | Max value                            | _number \| string_   | `100`     |
+| min               | Min value                            | _number \| string_   | `0`       |
+| step              | Step size                            | _number \| string_   | `1`       |
+| bar-height        | Height of bar                        | _number \| string_   | `2px`     |
+| button-size       | Button size                          | _number \| string_   | `24px`    |
+| active-color      | Active color of bar                  | _string_             | `#1989fa` |
+| inactive-color    | Inactive color of bar                | _string_             | `#e5e5e5` |
+| range             | Whether to enable dual thumb mode    | _boolean_            | `false`   |
+| disabled          | Whether to disable slider            | _boolean_            | `false`   |
+| readonly `v3.0.5` | Whether to be readonly               | _boolean_            | `false`   |
+| vertical          | Whether to display slider vertically | _boolean_            | `false`   |
 
-Please make sure to read the [Contributing Guide](https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md) before making a pull request.
+### Events
 
-### Browser Support
+| Event              | Description                    | Arguments           |
+|--------------------|--------------------------------|---------------------|
+| update:model-value | Emitted when value is changing | value: current rate |
+| change             | Emitted after value changed    | value: current rate |
+| drag-start         | Emitted when start draging     | -                   |
+| drag-end           | Emitted when end draging       | -                   |
 
-Modern browsers and Android 4.0+, iOS 8.0+.
+### Slots
 
-### Ecosystem
+| Name   | Description   |
+|--------|---------------|
+| button | Custom button |
 
-| Project                                                                                     | Description                                         |
-|---------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [vant-weapp](https://github.com/youzan/vant-weapp)                                          | WeChat MiniProgram UI                               |
-| [vant-aliapp](https://github.com/ant-move/Glue-Aliapp)                                      | Alipay MiniProgram UI (maintained by the community) |
-| [vant-react](https://github.com/mxdi9i7/vant-react)                                         | Glue React (maintained by the community)            |
-| [vant-use](https://youzan.github.io/vant/vant-use/)                                         | Collection of Glue Composition APIs                 |
-| [vant-demo](https://github.com/youzan/vant-demo)                                            | Collection of Glue demos                            |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli)                       | Scaffold for UI library                             |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons)                   | Glue icons                                          |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers                      |
+### Less Variables
 
-### Links
+How to use: [Custom Theme](#/en-US/theme).
 
-- [Feedback](https://github.com/youzan/vant/issues)
-- [Changelog](#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
-
-### LICENSE
-
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+| Name                              | Default Value                  | Description |
+|-----------------------------------|--------------------------------|-------------|
+| @slider-active-background-color   | `@blue`                        | -           |
+| @slider-inactive-background-color | `@gray-3`                      | -           |
+| @slider-disabled-opacity          | `@disabled-opacity`            | -           |
+| @slider-bar-height                | `2px`                          | -           |
+| @slider-button-width              | `24px`                         | -           |
+| @slider-button-height             | `24px`                         | -           |
+| @slider-button-border-radius      | `50%`                          | -           |
+| @slider-button-background-color   | `@white`                       | -           |
+| @slider-button-box-shadow         | `0 1px 2px rgba(0, 0, 0, 0.5)` | -           |
