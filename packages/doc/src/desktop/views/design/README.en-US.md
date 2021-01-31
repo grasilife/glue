@@ -40,23 +40,4 @@ Axure 元件库，由社区的 [@axure-tczy](https://github.com/axure-tczy) 同�
 
 <a class="design-download" href="https://b.yzcdn.cn/vant/vant-axure-20200905.zip">下载</a>
 
-<style>
-a.design-download {
-  display: inline-block;
-  width: 100px;
-  color: #fff;
-  line-height: 40px;
-  text-align: center;
-  background-color: #38f;
-  border-radius: 3px;
-}
 
-a.design-download:hover {
-  color: #fff;
-  opacity: .9;
-}
-
-a.design-download:active {
-  opacity: .7;
-}
-</style>
