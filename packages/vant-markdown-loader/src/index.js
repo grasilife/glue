@@ -9,19 +9,29 @@ const { slugify } = require("transliteration");
 
 function wrapper(content) {
   content = cardWrapper(content);
-
+  content = escape(content);
   return `
 <template>
   <section>
-    ${content}
+    <div v-html="content"></div>
   </section>
 </template>
-export default {
-  mounted() {
-    const anchors = [].slice.call(this.$el.querySelectorAll('h2, h3, h4, h5'));
 
-    anchors.forEach(anchor => {
-      anchor.addEventListener('click', this.scrollToAnchor);
+<script>
+const content = unescape(\`${content}\`);
+export default {
+  components: {},
+
+  data() {
+    return {
+      content,
+    };
+  },
+  mounted() {
+    const anchors = [].slice.call(this.$el.querySelectorAll("h2, h3, h4, h5"));
+
+    anchors.forEach((anchor) => {
+      anchor.addEventListener("click", this.scrollToAnchor);
     });
   },
 
@@ -30,12 +40,15 @@ export default {
       if (event.target.id) {
         this.$router.push({
           name: this.$route.name,
-          hash: '#' + event.target.id
-        })
+          hash: "#" + event.target.id,
+        });
       }
-    }
+    },
   },
 };
+</script>
+
+
 `;
 }
 
