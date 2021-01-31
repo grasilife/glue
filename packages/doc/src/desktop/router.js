@@ -19,7 +19,7 @@ function getRoutes() {
     // {
     //   path: "/home1",
     //   name: "Home",
-    //   component: () => import("./views/zh-CN/README.zh-CN.md"),
+    //   component: () => import("./views/home/README.zh-CN.md"),
     // },
   ];
   Object.keys(locales).forEach((lang) => {
@@ -27,14 +27,10 @@ function getRoutes() {
     locales[lang].nav.forEach((element) => {
       if (element.items) {
         element.items.forEach((element2) => {
-          let imortPath = `./views/${lang}/${element2.path}/README.${lang}.md`;
           console.log(
-            "./views/" + lang + "/" + element2.path,
             `/${lang}/${element2.path}`,
-            imortPath,
-            "路径"
+            "./views/" + element2.path + "/" + "README." + lang + ".md"
           );
-
           routes.push({
             name: element2.title,
             path: `/${lang}/${element2.path}`,
@@ -42,14 +38,7 @@ function getRoutes() {
             // component: () => import(imortPath),
             component: () =>
               import(
-                "./views/" +
-                  lang +
-                  "/" +
-                  element2.path +
-                  "/" +
-                  "README." +
-                  lang +
-                  ".md"
+                "./views/" + element2.path + "/" + "README." + lang + ".md"
               ),
           });
         });
