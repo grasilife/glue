@@ -16,26 +16,41 @@ const router = new VueRouter({
 });
 function getRoutes() {
   const routes = [
-    {
-      path: "/home1",
-      name: "Home",
-      component: () => import("./views/zh-CN/README.zh-CN.md"),
-    },
+    // {
+    //   path: "/home1",
+    //   name: "Home",
+    //   component: () => import("./views/zh-CN/README.zh-CN.md"),
+    // },
   ];
-  Object.keys(locales).forEach((key) => {
-    console.log(key, locales[key]);
-    locales[key].nav.forEach((element) => {
+  Object.keys(locales).forEach((lang) => {
+    console.log(lang, locales[lang]);
+    locales[lang].nav.forEach((element) => {
       if (element.items) {
         element.items.forEach((element2) => {
+          let imortPath = `./views/${lang}/${element2.path}/README.${lang}.md`;
           console.log(
-            "./views/" + key + "/" + element2.path,
-            `/${key}/${element2.path}`,
+            "./views/" + lang + "/" + element2.path,
+            `/${lang}/${element2.path}`,
+            imortPath,
             "路径"
           );
+
           routes.push({
             name: element2.title,
-            path: `/${key}/${element2.path}`,
-            component: () => import("./views/" + key + "/" + element2.path),
+            path: `/${lang}/${element2.path}`,
+            //这个地方不能使用下面的方法
+            // component: () => import(imortPath),
+            component: () =>
+              import(
+                "./views/" +
+                  lang +
+                  "/" +
+                  element2.path +
+                  "/" +
+                  "README." +
+                  lang +
+                  ".md"
+              ),
           });
         });
       }
