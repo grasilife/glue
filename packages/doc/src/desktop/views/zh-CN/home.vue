@@ -1,8 +1,12 @@
 <template>
-  <div class="page-popup">1111</div>
+  <div class="page-popup">
+    1111
+    <doc></doc>
+  </div>
 </template>
 
 <script>
+import doc from "./README.zh-CN.md";
 export default {
   name: "App",
 
@@ -10,7 +14,7 @@ export default {
 
   mixins: [],
 
-  components: {},
+  components: { doc },
 
   data() {
     return {};

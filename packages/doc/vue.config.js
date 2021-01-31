@@ -1,5 +1,6 @@
 "use strict";
-
+const md = require("markdown-it")(); // 引入markdown-it
+const slugify = require("transliteration").slugify; // 引入transliteration中的slugify方法
 const path = require("path");
 module.exports = {
   publicPath: "/",
@@ -31,15 +32,11 @@ module.exports = {
   },
   chainWebpack: (config) => {
     config.resolve.alias.set("@", path.join(__dirname, "src"));
-    // config.module
-    //   .rule("md")
-    //   .test(/\.md$/)
-    //   .use("@vant/markdown-loader");
   },
   configureWebpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,
-      use: ["@vant/markdown-loader"],
+      use: [{ loader: "vue-loader" }, { loader: "@vant/markdown-loader" }],
     });
   },
   pages: {

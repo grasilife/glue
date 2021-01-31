@@ -9,13 +9,13 @@ const { slugify } = require("transliteration");
 
 function wrapper(content) {
   content = cardWrapper(content);
-  content = escape(content);
 
   return `
-import { h } from 'vue';
-
-const content = unescape(\`${content}\`);
-
+<template>
+  <section>
+    ${content}
+  </section>
+</template>
 export default {
   mounted() {
     const anchors = [].slice.call(this.$el.querySelectorAll('h2, h3, h4, h5'));
@@ -35,10 +35,6 @@ export default {
       }
     }
   },
-
-  render() {
-    return h('section', { innerHTML: content });
-  }
 };
 `;
 }
@@ -53,7 +49,6 @@ const parser = new MarkdownIt({
 
 module.exports = function(source) {
   let options = loaderUtils.getOptions(this) || {};
-  console.log(options, "options");
   this.cacheable && this.cacheable();
 
   options = {

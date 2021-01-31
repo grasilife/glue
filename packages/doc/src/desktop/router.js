@@ -16,11 +16,11 @@ const router = new VueRouter({
 });
 function getRoutes() {
   const routes = [
-    // {
-    //   path: "/home1",
-    //   name: "Home",
-    //   component: () => import("./views/home.vue"),
-    // },
+    {
+      path: "/home1",
+      name: "Home",
+      component: () => import("./views/zh-CN/README.zh-CN.md"),
+    },
   ];
   Object.keys(locales).forEach((key) => {
     console.log(key, locales[key]);

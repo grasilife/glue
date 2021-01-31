@@ -21,6 +21,8 @@
     "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
+    "@vant/markdown-loader": "^3.0.2",
+    "@vant/markdown-vetur": "^2.0.2",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-unit-jest": "~4.5.0",
@@ -30,9 +32,7 @@
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "prettier": "^1.19.1",
-    "vue-template-compiler": "^2.6.11",
-    "@vant/markdown-loader": "^3.0.2",
-    "@vant/markdown-vetur": "^2.0.2"
+    "vue-template-compiler": "^2.6.12"
   },
   "gitHead": "092134cf700bfbc7245a6bbc576d5cee3d1b8145"
 }
