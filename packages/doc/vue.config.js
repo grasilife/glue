@@ -3,7 +3,7 @@ const md = require("markdown-it")(); // 引入markdown-it
 const slugify = require("transliteration").slugify; // 引入transliteration中的slugify方法
 const path = require("path");
 module.exports = {
-  publicPath: "./",
+  publicPath: "/glue/",
   outputDir: "dist",
   lintOnSave: true,
   devServer: {
@@ -48,7 +48,7 @@ module.exports = {
     mobile: {
       entry: "src/mobile/main.js",
       template: "public/index.html",
-      filename: "mobilePreview.html",
+      filename: "mobile.html",
     },
   },
   productionSourceMap: false,
