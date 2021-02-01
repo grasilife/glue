@@ -10,16 +10,16 @@ if (isMobile) {
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   routes: getRoutes(),
 });
 function getRoutes() {
   const routes = [
-    // {
-    //   path: "/home1",
-    //   name: "Home",
-    //   component: () => import("../docs/action-bar/README.en-US.md"),
-    // },
+    {
+      path: "/",
+      name: "home",
+      redirect: `/${defaultLang}/home`,
+    },
   ];
   Object.keys(locales).forEach((lang) => {
     console.log(lang, locales[lang]);

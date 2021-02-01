@@ -11,7 +11,7 @@ if (isMobile) {
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   base: "/mobile",
   routes: getRoutes(),
 });
