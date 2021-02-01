@@ -27,7 +27,7 @@ jobs:
           yarn build
       - name: 部署
         uses: JamesIves/github-pages-deploy-action@3.7.1
-        env:
+        with:
           BRANCH: gh-pages
           FOLDER: ~/packages/doc/dist # The folder the action should deploy.
           GITHUB_TOKEN: ${{ secrets.GLUE_ACTIONS }}
