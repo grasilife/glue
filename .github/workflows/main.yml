@@ -17,8 +17,11 @@ jobs:
 
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
+      # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
       - name: 获取源码
         uses: actions/checkout@v2
+        with:
+          persist-credentials: false
 
       # Runs the Glue Actions Build and Deploy
       - name: 安装和构建
@@ -29,6 +32,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           BRANCH: gh-pages
-          FOLDER: ~/packages/doc/dist # The folder the action should deploy.
+          FOLDER: ./${FOLDER}/packages/doc/dist # The folder the action should deploy.
           GITHUB_TOKEN: ${{ secrets.GLUE_ACTIONS }}
           CLEAN: true # Automatically remove deleted files from the deploy branch
