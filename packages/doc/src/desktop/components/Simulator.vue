@@ -1,5 +1,5 @@
 <template>
-  <div :class="['van-doc-simulator']">
+  <div :class="['van-doc-simulator']" :style="simulatorStyle">
     <iframe ref="iframe" :src="src" :style="simulatorStyle" frameborder="0" />
   </div>
 </template>
@@ -47,7 +47,6 @@ export default {
   top: @van-doc-padding;
   z-index: 1;
   width: 385px;
-  height: 582px;
   float: left;
   box-sizing: border-box;
   width: @van-doc-simulator-width;

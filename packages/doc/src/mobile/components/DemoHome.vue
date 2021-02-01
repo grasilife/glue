@@ -58,9 +58,11 @@ export default {
 .demo-home {
   box-sizing: border-box;
   width: 100%;
+  height: 100%;
   min-height: 100vh;
-  padding: 46px 20px 20px;
+  padding: 46px 20px 46px 20px;
   background: #fff;
+  overflow: auto;
 
   &__title,
   &__desc {
