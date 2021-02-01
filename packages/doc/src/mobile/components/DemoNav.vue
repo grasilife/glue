@@ -20,6 +20,7 @@ export default {
   computed: {
     title() {
       const { name } = this.$route.meta || {};
+      console.log(name, "name");
       return name ? name.replace(/-/g, "") : "";
     },
   },

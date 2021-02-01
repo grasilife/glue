@@ -21,6 +21,7 @@ function getRoutes() {
       path: "/",
       name: "home",
       component: () => import("./components/DemoHome.vue"),
+      //   component: () => import("../docs/button/demo/index.vue"),
     },
   ];
   Object.keys(locales).forEach((lang) => {
@@ -30,17 +31,19 @@ function getRoutes() {
         element.items.forEach((element2) => {
           console.log(
             `/${lang}/${element2.path}`,
-            "../docs/" + element2.path + "/" + "README." + lang + ".md"
+            "../docs/" + element2.path + "/demo/index.vue",
+            "移动端路径"
           );
           routes.push({
             name: element2.title,
             path: `/${lang}/${element2.path}`,
+            meta: {
+              name: element2.title,
+            },
             //这个地方不能使用下面的方法
             // component: () => import(imortPath),
             component: () =>
-              import(
-                "../docs/" + element2.path + "/" + "README." + lang + ".md"
-              ),
+              import("../docs/" + element2.path + "/demo/index.vue"),
           });
         });
       }

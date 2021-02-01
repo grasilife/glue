@@ -3,6 +3,7 @@ import App from "./App.vue";
 import store from "./store";
 import router from "./router";
 import "./plugins/element-ui";
+import "./plugins/vant";
 import "../common/style/base.less";
 // import { applyPolyfills, defineCustomElements } from "glue-components/loader";
 Vue.config.productionTip = false;
