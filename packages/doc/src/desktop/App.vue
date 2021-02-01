@@ -26,7 +26,8 @@ export default {
     const path = location.pathname.replace(/\/index(\.html)?/, "/");
 
     return {
-      simulator: `mobile.html${location.hash}`,
+      //   simulator: `${path}mobile.html${location.hash}`,
+      simulator: "/mobile",
     };
   },
 
@@ -59,7 +60,9 @@ export default {
       return config.site.versions || null;
     },
   },
-
+  mounted() {
+    console.log(this.simulator, this.$route, "simulator");
+  },
   watch: {
     // eslint-disable-next-line
     "$route.path"() {

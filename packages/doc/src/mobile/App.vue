@@ -1,11 +1,19 @@
 <template>
-  <div class="page-popup">
-    111
-    <router-view />
+  <div class="root">
+    <DemoNav />
+    <router-view>
+      <keep-alive>
+        <demo-section>
+          <!-- <component :is="Component" /> -->
+        </demo-section>
+      </keep-alive>
+    </router-view>
   </div>
 </template>
 
 <script>
+import DemoNav from "./components/DemoNav";
+import DemoSection from "./components/DemoSection";
 export default {
   name: "App",
 
@@ -13,7 +21,7 @@ export default {
 
   mixins: [],
 
-  components: {},
+  components: { DemoNav, DemoSection },
 
   data() {
     return {};
@@ -34,4 +42,9 @@ export default {
   methods: {},
 };
 </script>
-<style lang="less" rel="stylesheet/less" scoped></style>
+<style lang="less" rel="stylesheet/less" scoped>
+.root {
+  width: 100%;
+  height: 100%;
+}
+</style>

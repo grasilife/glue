@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import { isMobile, decamelize } from "../common";
 import config from "../common/config";
 const { locales, defaultLang } = config.site;
-console.log(locales, defaultLang, "路由");
+console.log(locales, defaultLang, isMobile, "路由");
 if (isMobile) {
   location.replace("mobile.html" + location.hash);
 }
