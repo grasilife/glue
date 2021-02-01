@@ -1,0 +1,32 @@
+name: Glue Actions Build and Deploy
+
+# Run this workflow every time a new commit pushed to your repository
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  # Set the job key. The key is displayed as the job name
+  # when a job name is not provided
+  build-and-deploy:
+    # Name the Job
+    name: 构建和部署文档
+    # Set the type of machine to run on
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: 获取源码
+        uses: actions/checkout@v2
+
+      # Runs the Glue Actions Build and Deploy
+      - name: 安装和构建
+        run: |
+          yarn install
+          yarn build
+      - name: 部署
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GLUE_ACTIONS }}
