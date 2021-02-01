@@ -4,8 +4,7 @@
   "workspaces": [
     "packages/doc",
     "packages/glue-components",
-    "packages/vant-markdown-loader",
-    "packages/vant-markdown-vetur"
+    "packages/vant-markdown-loader"
   ],
   "scripts": {
     "clear-all": "lerna clean && yarn workspaces run clean",
