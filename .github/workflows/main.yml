@@ -31,5 +31,5 @@ jobs:
       - name: 部署
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./packages/doc/dist # The folder the action should deploy.
+          personal_token: ${{ secrets.PERSONAL_TOKEN  }}
+          publish_dir: ./packages/doc/dist

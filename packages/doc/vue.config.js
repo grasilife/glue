@@ -43,7 +43,7 @@ module.exports = {
     desktop: {
       entry: "src/desktop/main.js", // page 的入口
       template: "public/index.html", // 模板来源
-      filename: "desktop.html", // 在 dist/index.html 的输出
+      filename: "index.html", // 在 dist/index.html 的输出
     },
     mobile: {
       entry: "src/mobile/main.js",
