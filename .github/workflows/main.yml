@@ -33,5 +33,5 @@ jobs:
         with:
           BRANCH: gh-pages
           FOLDER: ./packages/doc/dist # The folder the action should deploy.
-          GITHUB_TOKEN: ${{ secrets.GLUE_ACTIONS }}
+          ACCESS_TOKEN: ${{ secrets.GLUE_ACTIONS }}
           CLEAN: true # Automatically remove deleted files from the deploy branch
