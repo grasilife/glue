@@ -29,4 +29,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.7.1
         env:
           DEFAULT_BRANCH: main
+          BRANCH: gh-pages
           GITHUB_TOKEN: ${{ secrets.GLUE_ACTIONS }}
