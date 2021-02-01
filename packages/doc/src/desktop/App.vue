@@ -112,7 +112,10 @@ export default {
 <style lang="less" rel="stylesheet/less" scoped>
 @import "../common/style/base";
 @import "../common/style/highlight";
-
+.app {
+  height: 100%;
+  width: 100%;
+}
 .van-doc-intro {
   padding-top: 20px;
   text-align: center;

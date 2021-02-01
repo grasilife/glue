@@ -7,13 +7,15 @@
       :lang-configs="langConfigs"
       @switch-version="$emit('switch-version', $event)"
     />
-    <doc-nav :lang="lang" :nav-config="config.nav" />
-    <doc-container :has-simulator="!!simulator">
-      <doc-content>
-        <slot />
-      </doc-content>
-    </doc-container>
-    <doc-simulator v-if="simulator" :src="simulator" />
+    <div class="van-body">
+      <doc-nav :lang="lang" :nav-config="config.nav" />
+      <doc-container :has-simulator="!!simulator">
+        <doc-content>
+          <slot />
+        </doc-content>
+      </doc-container>
+      <doc-simulator v-if="simulator" :src="simulator" />
+    </div>
   </div>
 </template>
 
@@ -124,4 +126,13 @@ export default {
 
 <style lang="less" scoped>
 @import "../../common/style/var";
+.van-doc {
+  width: 100%;
+  height: 100%;
+  .van-body {
+    width: 100%;
+    height: calc(100% - 64px);
+    float: left;
+  }
+}
 </style>

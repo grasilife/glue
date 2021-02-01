@@ -20,12 +20,10 @@ export default {
 @import "../../common/style/var";
 
 .van-doc-container {
+  width: calc(100% - 220px - 384px);
+  height: 100%;
   box-sizing: border-box;
-  padding-left: @van-doc-nav-width;
-  overflow: hidden;
-
-  &--with-simulator {
-    padding-right: @van-doc-simulator-width + @van-doc-padding;
-  }
+  overflow: auto;
+  float: left;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="van-doc-nav" :style="style">
+  <div class="van-doc-nav">
     <div
       v-for="(group, index) in navConfig"
       class="van-doc-nav__group"
@@ -38,7 +38,7 @@ export default {
 
   data() {
     return {
-      top: 64,
+      top: 0,
       bottom: 0,
     };
   },
@@ -74,20 +74,16 @@ export default {
 @import "../../common/style/var";
 
 .van-doc-nav {
-  position: fixed;
-  left: 0;
+  width: 220px;
+  height: 100%;
+  float: left;
+  position: relative;
   z-index: 1;
   min-width: @van-doc-nav-width;
   max-width: @van-doc-nav-width;
-  padding: @van-doc-padding 0;
   overflow-y: scroll;
   background-color: #fff;
   box-shadow: 0 8px 12px #ebedf0;
-
-  @media (min-width: @van-doc-row-max-width) {
-    left: 50%;
-    margin-left: -(@van-doc-row-max-width / 2);
-  }
 
   &::-webkit-scrollbar {
     width: 6px;

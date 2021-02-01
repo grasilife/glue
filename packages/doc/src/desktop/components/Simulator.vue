@@ -1,5 +1,5 @@
 <template>
-  <div :class="['van-doc-simulator', { 'van-doc-simulator-fixed': isFixed }]">
+  <div :class="['van-doc-simulator']">
     <iframe ref="iframe" :src="src" :style="simulatorStyle" frameborder="0" />
   </div>
 </template>
@@ -20,10 +20,6 @@ export default {
   },
 
   computed: {
-    isFixed() {
-      return this.scrollTop > 60;
-    },
-
     simulatorStyle() {
       const height = Math.min(640, this.windowHeight - 90);
       return {
@@ -47,10 +43,12 @@ export default {
 @import "../../common/style/var";
 
 .van-doc-simulator {
-  position: absolute;
-  top: @van-doc-padding + @van-doc-header-top-height;
-  right: @van-doc-padding;
+  position: relative;
+  top: @van-doc-padding;
   z-index: 1;
+  width: 385px;
+  height: 582px;
+  float: left;
   box-sizing: border-box;
   width: @van-doc-simulator-width;
   min-width: @van-doc-simulator-width;
@@ -58,21 +56,6 @@ export default {
   background: #fafafa;
   border-radius: @van-doc-border-radius;
   box-shadow: 0 8px 12px #ebedf0;
-
-  @media (max-width: 1100px) {
-    right: auto;
-    left: 750px;
-  }
-
-  @media (min-width: @van-doc-row-max-width) {
-    right: 50%;
-    margin-right: -(@van-doc-row-max-width / 2) + 24px;
-  }
-
-  &-fixed {
-    position: fixed;
-    top: @van-doc-padding;
-  }
 
   iframe {
     display: block;
