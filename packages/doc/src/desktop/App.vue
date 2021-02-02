@@ -27,7 +27,8 @@ export default {
 
     return {
       //   simulator: `${path}mobile.html${location.hash}`,
-      simulator: "/glue/mobile#/",
+      //   simulator: "/glue/mobile#/",
+      simulator: `${path}mobile.html${location.hash}`,
     };
   },
 
