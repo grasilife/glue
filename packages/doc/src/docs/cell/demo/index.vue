@@ -1,151 +1,101 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
+  <demo-section>
+    <demo-block :title="basicUsage">
+      <van-cell-group>
+        <van-cell :title="cell" :value="content" />
+        <van-cell :title="cell" :value="content" :label="desc" />
+      </van-cell-group>
+    </demo-block>
 
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
+    <demo-block :title="largeSize">
+      <van-cell :title="cell" :value="content" size="large" />
+      <van-cell :title="cell" :value="content" size="large" :label="desc" />
+    </demo-block>
 
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
+    <demo-block :title="showIcon">
+      <van-cell :title="cell" :value="content" icon="location-o" />
+    </demo-block>
 
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
+    <demo-block :title="valueOnly">
+      <van-cell :value="content" />
+    </demo-block>
 
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
+    <demo-block :title="showArrow">
+      <van-cell :title="cell" is-link />
+      <van-cell :title="cell" is-link :value="content" />
+      <van-cell :title="cell" is-link arrow-direction="down" :value="content" />
+    </demo-block>
 
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
+    <demo-block :title="router">
+      <van-cell :title="urlRoute" is-link url="/vant/mobile.html" />
+      <van-cell :title="vueRoute" is-link to="index" />
+    </demo-block>
 
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
-      />
-    </DemoBlock>
+    <demo-block :title="groupTitle">
+      <van-cell-group :title="`${group} 1`">
+        <van-cell :title="cell" :value="content" />
+      </van-cell-group>
+      <van-cell-group :title="`${group} 2`">
+        <van-cell :title="cell" :value="content" />
+      </van-cell-group>
+    </demo-block>
 
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
+    <demo-block :title="useSlots">
+      <van-cell :value="content" is-link>
+        <template #title>
+          <span class="custom-title">{{ cell }}</span>
+          <van-tag type="danger">{{ tag }}</van-tag>
+        </template>
+      </van-cell>
 
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
+      <van-cell icon="shop-o" :title="cell">
+        <template #right-icon>
+          <van-icon name="search" class="search-icon" />
+        </template>
+      </van-cell>
+    </demo-block>
 
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
-    </DemoBlock>
-  </DemoSection>
+    <demo-block :title="verticalCenter">
+      <van-cell center :title="cell" :value="content" :label="desc" />
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
+      content: "内容",
+      desc: "描述",
+      tag: "标签",
+      basicUsage: "基础用法",
+      cell: "单元格",
+      valueOnly: "只设置 value",
+      showIcon: "展示图标",
+      showArrow: "展示箭头",
+      largeSize: "单元格大小",
+      group: "分组",
+      groupTitle: "分组标题",
       router: "页面导航",
       urlRoute: "URL 跳转",
       vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      useSlots: "使用插槽",
+      verticalCenter: "垂直居中",
     };
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
-@import "../../../common/style/var2.less";
-
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
+<style lang="less">
+.demo-cell {
+  .custom-title {
+    margin-right: 4px;
+    vertical-align: middle;
   }
 
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
-  }
-
-  &-row {
-    margin-bottom: @padding-sm;
+  .search-icon {
+    font-size: 16px;
+    line-height: inherit;
   }
 }
 </style>
