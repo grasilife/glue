@@ -1,151 +1,217 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
-
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
-
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
-
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
+  <demo-section>
+    <demo-block card :title="basicUsage">
+      <van-field
+        v-model="base.result"
+        is-link
+        readonly
+        :label="area"
+        :placeholder="selectArea"
+        @click="base.show = true"
       />
-    </DemoBlock>
+      <van-popup
+        v-model="base.show"
+        round
+        position="bottom"
+        get-container="body"
+        safe-area-inset-bottom
+      >
+        <van-cascader
+          v-model="base.value"
+          :title="selectArea"
+          :options="options"
+          @close="base.show = false"
+          @finish="onFinish('base', $event)"
+        />
+      </van-popup>
+    </demo-block>
 
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
+    <demo-block card :title="customColorTitle">
+      <van-field
+        v-model="customColor.result"
+        is-link
+        readonly
+        :label="area"
+        :placeholder="selectArea"
+        @click="customColor.show = true"
       />
-    </DemoBlock>
-  </DemoSection>
+      <van-popup
+        v-model="customColor.show"
+        round
+        position="bottom"
+        get-container="body"
+        safe-area-inset-bottom
+      >
+        <van-cascader
+          v-model="customColor.value"
+          :title="selectArea"
+          :options="options"
+          active-color="#1989fa"
+          @close="customColor.show = false"
+          @finish="onFinish('customColor', $event)"
+        />
+      </van-popup>
+    </demo-block>
+
+    <demo-block card :title="asyncOptions">
+      <van-field
+        v-model="async.result"
+        is-link
+        readonly
+        :label="area"
+        :placeholder="selectArea"
+        @click="async.show = true"
+      />
+      <van-popup
+        v-model="async.show"
+        round
+        position="bottom"
+        get-container="body"
+        safe-area-inset-bottom
+      >
+        <van-cascader
+          v-model="async.value"
+          :title="selectArea"
+          :options="async.options"
+          @close="async.show = false"
+          @change="loadDynamicOptions"
+          @finish="onFinish('async', $event)"
+        />
+      </van-popup>
+    </demo-block>
+
+    <demo-block card :title="customFieldNamesTitle">
+      <van-field
+        v-model="customFieldNames.result"
+        is-link
+        readonly
+        :label="area"
+        :placeholder="selectArea"
+        @click="customFieldNames.show = true"
+      />
+      <van-popup
+        v-model="customFieldNames.show"
+        round
+        position="bottom"
+        get-container="body"
+        safe-area-inset-bottom
+      >
+        <van-cascader
+          v-model="customFieldNames.value"
+          :title="selectArea"
+          :options="customFieldOptions"
+          :field-names="fieldNames"
+          @close="customFieldNames.show = false"
+          @finish="onFinish('customFieldNames', $event)"
+        />
+      </van-popup>
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
+import zhCNOptions from "./area-zh-CN";
+import { deepClone } from "../../../common/utils/deep-clone";
+
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      basicUsage: "基础用法",
+      customColorTitle: "自定义颜色",
+      area: "地区",
+      options: zhCNOptions,
+      selectArea: "请选择所在地区",
+      asyncOptions: "异步加载选项",
+      asyncOptions1: [
+        {
+          text: "浙江省",
+          value: "330000",
+          children: [],
+        },
+      ],
+      asyncOptions2: [
+        { text: "杭州市", value: "330100" },
+        { text: "宁波市", value: "330200" },
+      ],
+      customFieldNamesTitle: "自定义字段名",
+      base: {
+        show: false,
+        value: "",
+        result: "",
+      },
+      customColor: {
+        show: false,
+        value: null,
+        result: "",
+      },
+      async: {
+        show: false,
+        value: null,
+        result: "",
+        options: [],
+      },
+      customFieldNames: {
+        show: false,
+        value: null,
+        result: "",
+      },
+      fieldNames: {
+        text: "name",
+        value: "code",
+        children: "items",
+      },
     };
+  },
+
+  computed: {
+    customFieldOptions() {
+      const options = deepClone(this.options);
+      const adjustFieldName = (item) => {
+        if ("text" in item) {
+          item.name = item.text;
+          delete item.text;
+        }
+        if ("value" in item) {
+          item.code = item.value;
+          delete item.value;
+        }
+        if ("children" in item) {
+          item.items = item.children;
+          delete item.children;
+          item.items.forEach(adjustFieldName);
+        }
+      };
+
+      options.forEach(adjustFieldName);
+      return options;
+    },
+  },
+
+  created() {
+    this.async.options = this.asyncOptions1;
+  },
+
+  methods: {
+    loadDynamicOptions({ value }) {
+      if (value === "330000") {
+        setTimeout(() => {
+          this.async.options[0].children = this.asyncOptions2;
+        }, 500);
+      }
+    },
+
+    onFinish(type, { value, selectedOptions }) {
+      const result = selectedOptions
+        .map((option) => option.text || option.name)
+        .join("/");
+
+      this[type] = {
+        ...this[type],
+        show: false,
+        value,
+        result,
+      };
+    },
   },
 };
 </script>
-
-<style lang="less" rel="stylesheet/less">
-@import "../../../common/style/var2.less";
-
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
-  }
-
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
-  }
-
-  &-row {
-    margin-bottom: @padding-sm;
-  }
-}
-</style>
