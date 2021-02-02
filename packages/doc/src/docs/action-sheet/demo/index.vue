@@ -1,25 +1,21 @@
 <template>
   <DemoSection>
-    <DemoBlock card :title="t('basicUsage')">
-      <van-cell is-link :title="t('basicUsage')" @click="show.basic = true" />
-      <van-cell is-link :title="t('showCancel')" @click="show.cancel = true" />
+    <DemoBlock card :title="basicUsage">
+      <van-cell is-link :title="basicUsage" @click="show.basic = true" />
+      <van-cell is-link :title="showCancel" @click="show.cancel = true" />
       <van-cell
         is-link
-        :title="t('showDescription')"
+        :title="showDescription"
         @click="show.description = true"
       />
     </DemoBlock>
 
-    <DemoBlock card :title="t('optionStatus')">
-      <van-cell
-        is-link
-        :title="t('optionStatus')"
-        @click="show.status = true"
-      />a
+    <DemoBlock card :title="optionStatus">
+      <van-cell is-link :title="optionStatus" @click="show.status = true" />
     </DemoBlock>
 
-    <DemoBlock card :title="t('customPanel')">
-      <van-cell is-link :title="t('customPanel')" @click="show.title = true" />
+    <DemoBlock card :title="customPanel">
+      <van-cell is-link :title="customPanel" @click="show.title = true" />
     </DemoBlock>
 
     <van-action-sheet
@@ -32,7 +28,7 @@
       v-model="show.cancel"
       :actions="simpleActions"
       close-on-click-action
-      :cancel-text="t('cancel')"
+      :cancel-text="cancel"
       @cancel="onCancel"
     />
 
@@ -40,29 +36,33 @@
       v-model="show.description"
       :actions="actionsWithDescription"
       close-on-click-action
-      :cancel-text="t('cancel')"
-      :description="t('description')"
+      :cancel-text="cancel"
+      :description="description"
     />
 
     <van-action-sheet
       v-model="show.status"
       close-on-click-action
       :actions="statusActions"
-      :cancel-text="t('cancel')"
+      :cancel-text="cancel"
     />
 
-    <van-action-sheet v-model="show.title" :title="t('title')">
-      <div class="demo-action-sheet-content">{{ t("content") }}</div>
+    <van-action-sheet v-model="show.title" :title="title">
+      <div class="demo-action-sheet-content">{{ content }}</div>
     </van-action-sheet>
   </DemoSection>
 </template>
 
 <script>
-import { RED } from "../../utils/constant";
+import { RED } from "../../../common/constant";
 
 export default {
-  i18n: {
-    "zh-CN": {
+  data() {
+    return {
+      basicUsage: "基础用法",
+      cancel: "取消",
+      title: "自定义面板",
+      content: "内容",
       option1: "选项一",
       option2: "选项二",
       option3: "选项三",
@@ -75,25 +75,6 @@ export default {
       coloredOption: "着色选项",
       disabledOption: "禁用选项",
       showDescription: "展示描述信息",
-    },
-    "en-US": {
-      option1: "Option 1",
-      option2: "Option 2",
-      option3: "Option 3",
-      subname: "Description",
-      showCancel: "Show Cancel Button",
-      buttonText: "Show ActionSheet",
-      customPanel: "Custom Panel",
-      description: "Description",
-      optionStatus: "Option Status",
-      coloredOption: "Colored Option",
-      disabledOption: "Disabled Option",
-      showDescription: "Show Description",
-    },
-  },
-
-  data() {
-    return {
       show: {
         basic: false,
         cancel: false,
@@ -107,24 +88,24 @@ export default {
   computed: {
     simpleActions() {
       return [
-        { name: this.t("option1") },
-        { name: this.t("option2") },
-        { name: this.t("option3") },
+        { name: this.option1 },
+        { name: this.option2 },
+        { name: this.option3 },
       ];
     },
 
     actionsWithDescription() {
       return [
-        { name: this.t("option1") },
-        { name: this.t("option2") },
-        { name: this.t("option3"), subname: this.t("subname") },
+        { name: this.option1 },
+        { name: this.option2 },
+        { name: this.option3, subname: this.subname },
       ];
     },
 
     statusActions() {
       return [
-        { name: this.t("coloredOption"), color: RED },
-        { name: this.t("disabledOption"), disabled: true },
+        { name: this.coloredOption, color: RED },
+        { name: this.disabledOption, disabled: true },
         { loading: true },
       ];
     },
@@ -137,14 +118,14 @@ export default {
     },
 
     onCancel() {
-      this.$toast(this.t("cancel"));
+      this.$toast(this.cancel);
     },
   },
 };
 </script>
 
-<style lang="less">
-@import "../../style/var";
+<style lang="less" rel="stylesheet/less">
+@import "../../../common/style/var2.less";
 
 .demo-action-sheet {
   &-content {
