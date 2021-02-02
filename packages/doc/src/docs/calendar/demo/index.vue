@@ -1,151 +1,290 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
-
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
-
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
-
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
+  <demo-section>
+    <demo-block card :title="basicUsage">
+      <van-cell
+        is-link
+        :title="selectSingle"
+        :value="formatFullDate(date.selectSingle)"
+        @click="show('single', 'selectSingle')"
       />
-    </DemoBlock>
 
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
+      <van-cell
+        is-link
+        :title="selectMultiple"
+        :value="formatMultiple(date.selectMultiple)"
+        @click="show('multiple', 'selectMultiple')"
       />
-    </DemoBlock>
-  </DemoSection>
+
+      <van-cell
+        is-link
+        :title="selectRange"
+        :value="formatRange(date.selectRange)"
+        @click="show('range', 'selectRange')"
+      />
+    </demo-block>
+
+    <demo-block card :title="quickSelect">
+      <van-cell
+        is-link
+        :title="selectSingle"
+        :value="formatFullDate(date.quickSelect1)"
+        @click="show('single', 'quickSelect1')"
+      />
+
+      <van-cell
+        is-link
+        :title="selectRange"
+        :value="formatRange(date.quickSelect2)"
+        @click="show('range', 'quickSelect2')"
+      />
+    </demo-block>
+
+    <demo-block card :title="customCalendar">
+      <van-cell
+        is-link
+        :title="customColor"
+        :value="formatRange(date.customColor)"
+        @click="show('range', 'customColor')"
+      />
+
+      <van-cell
+        is-link
+        :title="customRange"
+        :value="formatFullDate(date.customRange)"
+        @click="show('single', 'customRange')"
+      />
+
+      <van-cell
+        is-link
+        :title="customConfirm"
+        :value="formatRange(date.customConfirm)"
+        @click="show('range', 'customConfirm')"
+      />
+
+      <van-cell
+        is-link
+        :title="customDayText"
+        :value="formatRange(date.customDayText)"
+        @click="show('range', 'customDayText')"
+      />
+
+      <van-cell
+        is-link
+        :title="customPosition"
+        :value="formatFullDate(date.customPosition)"
+        @click="show('single', 'customPosition')"
+      />
+
+      <van-cell
+        is-link
+        :title="maxRangeaTitle"
+        :value="formatRange(date.maxRange)"
+        @click="show('range', 'maxRange')"
+      />
+
+      <van-cell
+        is-link
+        :title="firstDayOfWeekTitle"
+        @click="show('single', 'firstDayOfWeek')"
+      />
+    </demo-block>
+
+    <demo-block card :title="tiledDisplay">
+      <van-calendar
+        :title="calendar"
+        :poppable="false"
+        :show-confirm="false"
+        :min-date="tiledMinDate"
+        :max-date="tiledMaxDate"
+        :default-date="tiledMinDate"
+        :style="{ height: '500px' }"
+      />
+    </demo-block>
+
+    <van-calendar
+      v-model="showCalendar"
+      :type="type"
+      :color="color"
+      :round="round"
+      :position="position"
+      :min-date="minDate"
+      :max-date="maxDate"
+      :max-range="maxRange"
+      :formatter="formatter"
+      :show-confirm="showConfirm"
+      :confirm-text="confirmText"
+      :confirm-disabled-text="confirmDisabledText"
+      :first-day-of-week="firstDayOfWeek"
+      @confirm="onConfirm"
+    />
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
+      basicUsage: "基础用法",
+      in: "入店",
+      out: "离店",
+      today: "今天",
+      laborDay: "劳动节",
+      youthDay: "青年节",
+      calendar: "日历",
+      maxRangeaTitle: "日期区间最大范围",
+      selectCount: (count) => `选择了 ${count} 个日期`,
+      selectSingle: "选择单个日期",
+      selectMultiple: "选择多个日期",
+      selectRange: "选择日期区间",
+      quickSelect: "快捷选择",
+      confirmText: "完成",
       customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      customRange: "自定义日期范围",
+      customConfirm: "自定义按钮文字",
+      customDayText: "自定义日期文案",
+      customPosition: "自定义弹出位置",
+      customCalendar: "自定义日历",
+      confirmDisabledText: "请选择结束时间",
+      firstDayOfWeekTitle: "自定义周起始日",
+      tiledDisplay: "平铺展示",
+      date: {
+        maxRange: [],
+        selectSingle: null,
+        selectRange: [],
+        selectMultiple: [],
+        quickSelect1: null,
+        quickSelect2: [],
+        customColor: [],
+        customConfirm: [],
+        customRange: null,
+        customDayText: [],
+        customPosition: null,
+      },
+      type: "single",
+      round: true,
+      color: undefined,
+      minDate: undefined,
+      maxDate: undefined,
+      maxRange: undefined,
+      position: undefined,
+      formatter: undefined,
+      showConfirm: false,
+      showCalendar: false,
+      tiledMinDate: new Date(2012, 0, 10),
+      tiledMaxDate: new Date(2012, 2, 20),
+      confirmText: undefined,
+      confirmDisabledText: undefined,
+      firstDayOfWeek: 0,
     };
+  },
+
+  methods: {
+    resetSettings() {
+      this.round = true;
+      this.color = undefined;
+      this.minDate = undefined;
+      this.maxDate = undefined;
+      this.maxRange = undefined;
+      this.position = undefined;
+      this.formatter = undefined;
+      this.showConfirm = true;
+      this.confirmText = undefined;
+      this.confirmDisabledText = undefined;
+      this.firstDayOfWeek = 0;
+    },
+
+    show(type, id) {
+      this.resetSettings();
+      this.id = id;
+      this.type = type;
+      this.showCalendar = true;
+
+      switch (id) {
+        case "quickSelect1":
+        case "quickSelect2":
+          this.showConfirm = false;
+          break;
+        case "customColor":
+          this.color = "#1989fa";
+          break;
+        case "customConfirm":
+          this.confirmText = this.confirmText;
+          this.confirmDisabledText = this.confirmDisabledText;
+          break;
+        case "customRange":
+          this.minDate = new Date(2010, 0, 1);
+          this.maxDate = new Date(2010, 0, 31);
+          break;
+        case "customDayText":
+          this.minDate = new Date(2010, 4, 1);
+          this.maxDate = new Date(2010, 4, 31);
+          this.formatter = this.dayFormatter;
+          break;
+        case "customPosition":
+          this.round = false;
+          this.position = "right";
+          break;
+        case "maxRange":
+          this.maxRange = 3;
+          break;
+        case "firstDayOfWeek":
+          this.firstDayOfWeek = 1;
+          break;
+      }
+    },
+
+    dayFormatter(day) {
+      const month = day.date.getMonth() + 1;
+      const date = day.date.getDate();
+
+      if (month === 5) {
+        if (date === 1) {
+          day.topInfo = this.laborDay;
+        } else if (date === 4) {
+          day.topInfo = this.youthDay;
+        } else if (date === 11) {
+          day.text = this.today;
+        }
+      }
+
+      if (day.type === "start") {
+        day.bottomInfo = this.in;
+      } else if (day.type === "end") {
+        day.bottomInfo = this.out;
+      }
+
+      return day;
+    },
+
+    formatDate(date) {
+      if (date) {
+        return `${date.getMonth() + 1}/${date.getDate()}`;
+      }
+    },
+
+    formatFullDate(date) {
+      if (date) {
+        return `${date.getFullYear()}/${this.formatDate(date)}`;
+      }
+    },
+
+    formatMultiple(dates) {
+      if (dates.length) {
+        return this.selectCount;
+      }
+    },
+
+    formatRange(dateRange) {
+      if (dateRange.length) {
+        const [start, end] = dateRange;
+        return `${this.formatDate(start)} - ${this.formatDate(end)}`;
+      }
+    },
+
+    onConfirm(date) {
+      this.showCalendar = false;
+      this.date[this.id] = date;
+    },
   },
 };
 </script>
-
-<style lang="less" rel="stylesheet/less">
-@import "../../../common/style/var2.less";
-
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
-  }
-
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
-  }
-
-  &-row {
-    margin-bottom: @padding-sm;
-  }
-}
-</style>
