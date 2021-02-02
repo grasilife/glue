@@ -1,151 +1,192 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
+  <demo-section>
+    <demo-block :title="basicUsage">
+      <van-checkbox v-model="checkbox1">{{ checkbox }}</van-checkbox>
+    </demo-block>
+
+    <demo-block :title="disabled">
+      <van-checkbox :value="false" disabled>
+        {{ checkbox }}
+      </van-checkbox>
+      <van-checkbox :value="true" disabled>
+        {{ checkbox }}
+      </van-checkbox>
+    </demo-block>
+
+    <demo-block :title="customShape">
+      <van-checkbox v-model="checkboxShape" shape="square">
+        {{ customColor }}
+      </van-checkbox>
+    </demo-block>
+
+    <demo-block :title="customColor">
+      <van-checkbox v-model="checkbox2" checked-color="#ee0a24">
+        {{ customColor }}
+      </van-checkbox>
+    </demo-block>
+
+    <demo-block :title="customIconSize">
+      <van-checkbox v-model="checboxIcon" icon-size="24px">
+        {{ customIconSize }}
+      </van-checkbox>
+    </demo-block>
+
+    <demo-block :title="customIcon">
+      <van-checkbox v-model="checkbox3">
+        {{ customIcon }}
+        <template #icon="{ checked }">
+          <img :src="checked ? activeIcon : inactiveIcon" />
+        </template>
+      </van-checkbox>
+    </demo-block>
+
+    <demo-block :title="disableLabel">
+      <van-checkbox v-model="checkboxLabel" label-disabled>
+        {{ checkbox }}
+      </van-checkbox>
+    </demo-block>
+
+    <demo-block :title="title3">
+      <van-checkbox-group v-model="result">
+        <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
+        <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
+      </van-checkbox-group>
+    </demo-block>
+
+    <demo-block :title="horizontal">
+      <van-checkbox-group v-model="horizontalResult" direction="horizontal">
+        <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
+        <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
+      </van-checkbox-group>
+    </demo-block>
+
+    <demo-block :title="title4">
+      <van-checkbox-group v-model="result2" :max="2">
+        <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
+        <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
+        <van-checkbox name="c">{{ checkbox }} c</van-checkbox>
+      </van-checkbox-group>
+    </demo-block>
+
+    <demo-block :title="toggleAllTitle">
+      <van-checkbox-group v-model="checkAllResult" ref="group">
+        <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
+        <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
+        <van-checkbox name="c">{{ checkbox }} c</van-checkbox>
+      </van-checkbox-group>
+
+      <div class="demo-checkbox-buttons">
+        <van-button type="primary" @click="checkAll">
+          {{ checkAllTitle }}
+        </van-button>
+        <van-button type="info" @click="toggleAll">
+          {{ inverse }}
+        </van-button>
       </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
+    </demo-block>
 
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
-
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
-
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
-
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
-      />
-    </DemoBlock>
-
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
-    </DemoBlock>
-  </DemoSection>
+    <demo-block :title="title5">
+      <van-checkbox-group v-model="result3">
+        <van-cell-group>
+          <van-cell
+            v-for="(item, index) in list"
+            clickable
+            :key="index"
+            :title="`${checkbox} ${item}`"
+            @click="toggle(index)"
+          >
+            <template #right-icon>
+              <van-checkbox ref="checkboxes" :name="item" />
+            </template>
+          </van-cell>
+        </van-cell-group>
+      </van-checkbox-group>
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
       disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
+      basicUsage: "基础用法",
+      checkbox: "复选框",
+      customIcon: "自定义图标",
+      customIconSize: "自定义大小",
       customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      customShape: "自定义形状",
+      title3: "复选框组",
+      title4: "限制最大可选数",
+      title5: "搭配单元格组件使用",
+      toggleAllTitle: "全选与反选",
+      checkAllTitle: "全选",
+      inverse: "反选",
+      horizontal: "水平排列",
+      disableLabel: "禁用文本点击",
+      checkbox1: true,
+      checkbox2: true,
+      checkbox3: true,
+      checkboxShape: true,
+      checkboxLabel: true,
+      checboxIcon: true,
+      list: ["a", "b"],
+      result: ["a", "b"],
+      result2: [],
+      result3: [],
+      checkAllResult: [],
+      horizontalResult: [],
+      activeIcon: "https://img.yzcdn.cn/vant/user-active.png",
+      inactiveIcon: "https://img.yzcdn.cn/vant/user-inactive.png",
     };
+  },
+
+  methods: {
+    toggle(index) {
+      this.$refs.checkboxes[index].toggle();
+    },
+
+    checkAll() {
+      this.$refs.group.toggleAll(true);
+    },
+
+    toggleAll() {
+      this.$refs.group.toggleAll();
+    },
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less">
 @import "../../../common/style/var2.less";
 
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
+.demo-checkbox {
+  background: @white;
+
+  .van-checkbox {
+    margin: 0 0 8px 20px;
+  }
+
+  .van-cell {
+    .van-checkbox {
+      margin: 0;
     }
+  }
 
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
+  img {
+    height: 20px;
+  }
+
+  &-buttons {
+    margin-top: @padding-md;
+
+    .van-button {
+      margin-left: @padding-md;
     }
   }
 
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
-  }
-
-  &-row {
-    margin-bottom: @padding-sm;
+  .van-doc-demo-block__title {
+    margin-top: -8px;
   }
 }
 </style>
