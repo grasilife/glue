@@ -1,151 +1,154 @@
 <template>
   <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
-
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
-
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
-
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
+    <DemoBlock card :title="t('basicUsage')">
+      <van-cell is-link :title="t('basicUsage')" @click="show.basic = true" />
+      <van-cell is-link :title="t('showCancel')" @click="show.cancel = true" />
+      <van-cell
+        is-link
+        :title="t('showDescription')"
+        @click="show.description = true"
       />
     </DemoBlock>
 
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
+    <DemoBlock card :title="t('optionStatus')">
+      <van-cell
+        is-link
+        :title="t('optionStatus')"
+        @click="show.status = true"
+      />a
     </DemoBlock>
 
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
+    <DemoBlock card :title="t('customPanel')">
+      <van-cell is-link :title="t('customPanel')" @click="show.title = true" />
     </DemoBlock>
 
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
+    <van-action-sheet
+      v-model="show.basic"
+      :actions="simpleActions"
+      @select="onSelect"
+    />
 
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
-    </DemoBlock>
+    <van-action-sheet
+      v-model="show.cancel"
+      :actions="simpleActions"
+      close-on-click-action
+      :cancel-text="t('cancel')"
+      @cancel="onCancel"
+    />
+
+    <van-action-sheet
+      v-model="show.description"
+      :actions="actionsWithDescription"
+      close-on-click-action
+      :cancel-text="t('cancel')"
+      :description="t('description')"
+    />
+
+    <van-action-sheet
+      v-model="show.status"
+      close-on-click-action
+      :actions="statusActions"
+      :cancel-text="t('cancel')"
+    />
+
+    <van-action-sheet v-model="show.title" :title="t('title')">
+      <div class="demo-action-sheet-content">{{ t("content") }}</div>
+    </van-action-sheet>
   </DemoSection>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
+import { RED } from "../../utils/constant";
+
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
+  i18n: {
+    "zh-CN": {
+      option1: "选项一",
+      option2: "选项二",
+      option3: "选项三",
+      subname: "描述信息",
+      showCancel: "展示取消按钮",
+      buttonText: "弹出菜单",
+      customPanel: "自定义面板",
+      description: "这是一段描述信息",
+      optionStatus: "选项状态",
+      coloredOption: "着色选项",
+      disabledOption: "禁用选项",
+      showDescription: "展示描述信息",
+    },
+    "en-US": {
+      option1: "Option 1",
+      option2: "Option 2",
+      option3: "Option 3",
+      subname: "Description",
+      showCancel: "Show Cancel Button",
+      buttonText: "Show ActionSheet",
+      customPanel: "Custom Panel",
+      description: "Description",
+      optionStatus: "Option Status",
+      coloredOption: "Colored Option",
+      disabledOption: "Disabled Option",
+      showDescription: "Show Description",
+    },
   },
+
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      show: {
+        basic: false,
+        cancel: false,
+        title: false,
+        status: false,
+        description: false,
+      },
     };
+  },
+
+  computed: {
+    simpleActions() {
+      return [
+        { name: this.t("option1") },
+        { name: this.t("option2") },
+        { name: this.t("option3") },
+      ];
+    },
+
+    actionsWithDescription() {
+      return [
+        { name: this.t("option1") },
+        { name: this.t("option2") },
+        { name: this.t("option3"), subname: this.t("subname") },
+      ];
+    },
+
+    statusActions() {
+      return [
+        { name: this.t("coloredOption"), color: RED },
+        { name: this.t("disabledOption"), disabled: true },
+        { loading: true },
+      ];
+    },
+  },
+
+  methods: {
+    onSelect(item) {
+      this.show.basic = false;
+      this.$toast(item.name);
+    },
+
+    onCancel() {
+      this.$toast(this.t("cancel"));
+    },
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
-@import "../../../common/style/var2.less";
+<style lang="less">
+@import "../../style/var";
 
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
-  }
-
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
-  }
-
-  &-row {
-    margin-bottom: @padding-sm;
+.demo-action-sheet {
+  &-content {
+    padding: @padding-md @padding-md @padding-md * 10;
   }
 }
 </style>

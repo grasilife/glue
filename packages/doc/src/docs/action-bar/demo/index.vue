@@ -75,8 +75,6 @@
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
   components: {
     DemoBlock,
