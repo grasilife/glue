@@ -1,151 +1,107 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
+  <demo-section>
+    <demo-block :title="basicUsage">
+      <van-badge content="5">
+        <div class="child" />
+      </van-badge>
+      <van-badge content="10">
+        <div class="child" />
+      </van-badge>
+      <van-badge content="Hot">
+        <div class="child" />
+      </van-badge>
+      <van-badge dot>
+        <div class="child" />
+      </van-badge>
+    </demo-block>
 
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
+    <demo-block :title="max">
+      <van-badge content="20" max="9">
+        <div class="child" />
+      </van-badge>
+      <van-badge content="50" max="20">
+        <div class="child" />
+      </van-badge>
+      <van-badge content="200" max="99">
+        <div class="child" />
+      </van-badge>
+    </demo-block>
 
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
+    <demo-block :title="customColor">
+      <van-badge content="5" color="#1989fa">
+        <div class="child" />
+      </van-badge>
+      <van-badge content="10" color="#1989fa">
+        <div class="child" />
+      </van-badge>
+      <van-badge dot color="#1989fa">
+        <div class="child" />
+      </van-badge>
+    </demo-block>
 
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
+    <demo-block :title="customContent">
+      <van-badge>
+        <div class="child" />
+        <template #content>
+          <van-icon name="success" class="badge-icon" />
+        </template>
+      </van-badge>
+      <van-badge>
+        <div class="child" />
+        <template #content>
+          <van-icon name="cross" class="badge-icon" />
+        </template>
+      </van-badge>
+      <van-badge>
+        <div class="child" />
+        <template #content>
+          <van-icon name="down" class="badge-icon" />
+        </template>
+      </van-badge>
+    </demo-block>
 
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
-      />
-    </DemoBlock>
-
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
-    </DemoBlock>
-  </DemoSection>
+    <demo-block :title="standalone">
+      <van-badge content="20" style="margin-left: 16px;" />
+      <van-badge content="200" max="99" style="margin-left: 12px;" />
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
+      basicUsage: "基础用法",
+      max: "最大值",
+      standalone: "独立展示",
       customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      customContent: "自定义徽标内容",
     };
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less">
 @import "../../../common/style/var2.less";
 
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
+.demo-badge {
+  background-color: @white;
 
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
+  .van-badge__wrapper {
+    margin-left: @padding-md;
   }
 
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
+  .child {
+    width: 40px;
+    height: 40px;
+    background: @gray-2;
+    border-radius: 4px;
   }
 
-  &-row {
-    margin-bottom: @padding-sm;
+  .badge-icon {
+    display: block;
+    font-size: 10px;
+    line-height: 16px;
   }
 }
 </style>
