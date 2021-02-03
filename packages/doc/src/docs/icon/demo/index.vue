@@ -1,151 +1,213 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
+  <demo-section>
+    <van-tabs v-model="tab" sticky>
+      <van-tab :title="demo">
+        <demo-block :title="basicUsage">
+          <van-col span="6" @click="copy(demoIcon)">
+            <van-icon :name="demoIcon" />
+          </van-col>
+          <van-col span="6" @click="copy(demoImage)">
+            <van-icon :name="demoImage" />
+          </van-col>
+        </demo-block>
 
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
+        <demo-block :title="badge">
+          <van-col span="6" @click="copy(demoIcon, { dot: true })">
+            <van-icon :name="demoIcon" dot />
+          </van-col>
+          <van-col span="6" @click="copy(demoIcon, { badge: '9' })">
+            <van-icon :name="demoIcon" badge="9" />
+          </van-col>
+          <van-col span="6" @click="copy(demoIcon, { badge: '99+' })">
+            <van-icon :name="demoIcon" badge="99+" />
+          </van-col>
+        </demo-block>
 
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
+        <demo-block :title="color">
+          <van-col span="6" @click="copy(demoIcon, { color: '#1989fa' })">
+            <van-icon name="cart-o" color="#1989fa" />
+          </van-col>
+          <van-col span="6" @click="copy(demoIcon, { color: RED })">
+            <van-icon name="fire-o" :color="RED" />
+          </van-col>
+        </demo-block>
 
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
+        <demo-block :title="size">
+          <van-col span="6" @click="copy(demoIcon, { size: '40' })">
+            <van-icon :name="demoIcon" size="40" />
+          </van-col>
+          <van-col span="6" @click="copy(demoIcon, { size: '3rem' })">
+            <van-icon :name="demoIcon" size="3rem" />
+          </van-col>
+        </demo-block>
+      </van-tab>
 
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
+      <van-tab :title="basic">
+        <van-col
+          v-for="icon in icons.basic"
+          :key="icon"
+          span="6"
+          @click="copy(icon)"
+        >
+          <van-icon :name="icon" />
+          <span>{{ icon }}</span>
+        </van-col>
+      </van-tab>
 
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
+      <van-tab :title="outline">
+        <van-col
+          v-for="icon in icons.outline"
+          :key="icon"
+          span="6"
+          @click="copy(icon)"
+        >
+          <van-icon :name="icon" />
+          <span>{{ icon }}</span>
+        </van-col>
+      </van-tab>
 
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
-      />
-    </DemoBlock>
-
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
-    </DemoBlock>
-  </DemoSection>
+      <van-tab :title="filled">
+        <van-col
+          v-for="icon in icons.filled"
+          :key="icon"
+          span="6"
+          @click="copy(icon)"
+        >
+          <van-icon :name="icon" />
+          <span>{{ icon }}</span>
+        </van-col>
+      </van-tab>
+    </van-tabs>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
+import icons from "@vant/icons";
+import { RED } from "../../../common/utils/index";
+
+// from https://30secondsofcode.org
+function copyToClipboard(str) {
+  const el = document.createElement("textarea");
+  el.value = str;
+  el.setAttribute("readonly", "");
+  el.style.position = "absolute";
+  el.style.left = "-9999px";
+  document.body.appendChild(el);
+
+  const selected =
+    document.getSelection().rangeCount > 0
+      ? document.getSelection().getRangeAt(0)
+      : false;
+
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
+
+  if (selected) {
+    document.getSelection().removeAllRanges();
+    document.getSelection().addRange(selected);
+  }
+}
+
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
+    this.RED = RED;
+    this.icons = icons;
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      basicUsage: "基础用法",
+      title: "图标列表",
+      badge: "徽标提示",
+      basic: "基础图标",
+      copied: "复制成功",
+      outline: "线框风格",
+      filled: "实底风格",
+      demo: "用法示例",
+      color: "图标颜色",
+      size: "图标大小",
+      tab: 0,
+      demoIcon: "chat-o",
+      demoImage: "https://b.yzcdn.cn/vant/icon-demo-1126.png",
     };
+  },
+
+  methods: {
+    copy(icon, option = {}) {
+      let tag = `<van-icon name="${icon}"`;
+      if ("dot" in option) {
+        tag = `${tag} ${option.dot ? "dot" : ""}`;
+      }
+      if ("badge" in option) {
+        tag = `${tag} badge="${option.badge}"`;
+      }
+      if ("color" in option) {
+        tag = `${tag} color="${option.color}"`;
+      }
+      if ("size" in option) {
+        tag = `${tag} size="${option.size}"`;
+      }
+      tag = `${tag} />`;
+      copyToClipboard(tag);
+
+      this.$notify({
+        type: "success",
+        duration: 1500,
+        className: "demo-icon-notify",
+        message: `${this.copied}：${tag}`,
+      });
+    },
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less">
 @import "../../../common/style/var2.less";
 
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
+.demo-icon {
+  font-size: 0;
+
+  &-list {
+    box-sizing: border-box;
+    min-height: calc(100vh - 65px);
+    padding-top: 10px;
+  }
+
+  &-notify {
+    font-size: 13px;
+  }
+
+  .van-col {
+    display: inline-block;
+    float: none;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+
+    span {
+      display: block;
+      height: 36px;
+      margin: -4px 0 4px;
+      padding: 0 5px;
+      color: @gray-7;
+      font-size: 12px;
+      line-height: 18px;
     }
 
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
+    &:active {
+      background-color: @active-color;
     }
   }
 
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
+  .van-icon {
+    margin: 16px 0 16px;
+    color: @text-color;
+    font-size: 32px;
   }
 
-  &-row {
-    margin-bottom: @padding-sm;
+  .van-tab__pane {
+    width: auto;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 12px;
   }
 }
 </style>
