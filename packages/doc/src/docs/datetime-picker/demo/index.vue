@@ -1,151 +1,142 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
-
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
-
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
-
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
+  <demo-section>
+    <demo-block card :title="dateType">
+      <van-datetime-picker
+        v-model="value.date"
+        type="date"
+        :title="dateType"
+        :min-date="minDate"
+        :max-date="maxDate"
       />
-    </DemoBlock>
+    </demo-block>
 
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
+    <demo-block card :title="yearMonthType">
+      <van-datetime-picker
+        v-model="value.yearMonth"
+        type="year-month"
+        :title="yearMonthType"
+        :min-date="minDate"
+        :max-date="maxDate"
+        :formatter="formatter"
       />
-    </DemoBlock>
-  </DemoSection>
+    </demo-block>
+
+    <demo-block card :title="monthDayType">
+      <van-datetime-picker
+        v-model="value.monthDayType"
+        type="month-day"
+        :title="monthDayType"
+        :min-date="minDate"
+        :max-date="maxDate"
+        :formatter="formatter"
+      />
+    </demo-block>
+
+    <demo-block card :title="timeType">
+      <van-datetime-picker
+        v-model="value.time"
+        type="time"
+        :title="timeType"
+        :min-hour="10"
+        :max-hour="20"
+      />
+    </demo-block>
+
+    <demo-block card :title="datetimeType">
+      <van-datetime-picker
+        v-model="value.datetime"
+        type="datetime"
+        :title="datetimeType"
+        :min-date="minDate"
+        :max-date="maxDate"
+      />
+    </demo-block>
+
+    <demo-block card :title="datehourType">
+      <van-datetime-picker
+        v-model="value.datehour"
+        type="datehour"
+        :title="datehourType"
+        :min-date="minDate"
+        :max-date="maxDate"
+      />
+    </demo-block>
+
+    <demo-block card :title="optionFilter">
+      <van-datetime-picker
+        v-model="value.optionFilter"
+        type="time"
+        :title="optionFilter"
+        :filter="filter"
+      />
+    </demo-block>
+
+    <demo-block card :title="sortColumns">
+      <van-datetime-picker
+        v-model="value.sortColumnsDate"
+        type="date"
+        :title="sortColumns"
+        :columns-order="['month', 'day', 'year']"
+        :min-date="minDate"
+        :max-date="maxDate"
+        :formatter="formatter"
+      />
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      basicUsage: "基础用法",
+      day: "日",
+      year: "年",
+      month: "月",
+      timeType: "选择时间",
+      dateType: "选择年月日",
+      datetimeType: "选择完整时间",
+      datehourType: "选择年月日小时",
+      monthDayType: "选择月日",
+      yearMonthType: "选择年月",
+      optionFilter: "选项过滤器",
+      sortColumns: "自定义列排序",
+      minDate: new Date(2020, 0, 1),
+      maxDate: new Date(2025, 10, 1),
+      value: {
+        date: null,
+        time: "12:00",
+        datetime: new Date(2020, 0, 1),
+        datehour: new Date(2020, 0, 1),
+        monthDay: new Date(2020, 0, 1),
+        yearMonth: new Date(2020, 0, 1),
+        optionFilter: "12:00",
+        sortColumnsDate: new Date(2020, 0, 1),
+      },
     };
+  },
+
+  methods: {
+    formatter(type, value) {
+      if (type === "year") {
+        return value + this.year;
+      }
+      if (type === "month") {
+        return value + this.month;
+      }
+      if (type === "day") {
+        return value + this.day;
+      }
+      return value;
+    },
+
+    filter(type, values) {
+      if (type === "minute") {
+        return values.filter((value) => value % 5 === 0);
+      }
+
+      return values;
+    },
   },
 };
 </script>
-
-<style lang="less" rel="stylesheet/less">
-@import "../../../common/style/var2.less";
-
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
-  }
-
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
-  }
-
-  &-row {
-    margin-bottom: @padding-sm;
-  }
-}
-</style>
