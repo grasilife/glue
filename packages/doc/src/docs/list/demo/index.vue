@@ -1,151 +1,146 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
+  <demo-section>
+    <van-tabs>
+      <van-tab :title="basicUsage">
+        <van-list
+          v-model="list[0].loading"
+          :finished="list[0].finished"
+          :finished-text="finishedText"
+          @load="onLoad(0)"
+        >
+          <van-cell v-for="item in list[0].items" :key="item" :title="item" />
+        </van-list>
+      </van-tab>
 
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
+      <van-tab :title="errorInfo">
+        <van-list
+          v-model="list[1].loading"
+          :finished="list[1].finished"
+          :error.sync="list[1].error"
+          :error-text="errorText"
+          @load="onLoad(1)"
+        >
+          <van-cell v-for="item in list[1].items" :key="item" :title="item" />
+        </van-list>
+      </van-tab>
 
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
-
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
-
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
-      />
-    </DemoBlock>
-
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
-    </DemoBlock>
-  </DemoSection>
+      <van-tab :title="pullRefresh">
+        <van-pull-refresh v-model="list[2].refreshing" @refresh="onRefresh(2)">
+          <van-list
+            v-model="list[2].loading"
+            :finished="list[2].finished"
+            :finished-text="finishedText"
+            @load="onLoad(2)"
+          >
+            <van-cell v-for="item in list[2].items" :key="item" :title="item" />
+          </van-list>
+        </van-pull-refresh>
+      </van-tab>
+    </van-tabs>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      basicUsage: "基础用法",
+      errorInfo: "错误提示",
+      errorText: "请求失败，点击重新加载",
+      pullRefresh: "下拉刷新",
+      finishedText: "没有更多了",
+      list: [
+        {
+          items: [],
+          refreshing: false,
+          loading: false,
+          error: false,
+          finished: false,
+        },
+        {
+          items: [],
+          refreshing: false,
+          loading: false,
+          error: false,
+          finished: false,
+        },
+        {
+          items: [],
+          refreshing: false,
+          loading: false,
+          error: false,
+          finished: false,
+        },
+      ],
     };
+  },
+
+  methods: {
+    onLoad(index) {
+      const list = this.list[index];
+      list.loading = true;
+
+      setTimeout(() => {
+        if (list.refreshing) {
+          list.items = [];
+          list.refreshing = false;
+        }
+
+        for (let i = 0; i < 10; i++) {
+          const text = list.items.length + 1;
+          list.items.push(text < 10 ? "0" + text : text);
+        }
+
+        list.loading = false;
+        list.refreshing = false;
+
+        // show error info in second demo
+        if (index === 1 && list.items.length === 10 && !list.error) {
+          list.error = true;
+        } else {
+          list.error = false;
+        }
+
+        if (list.items.length >= 40) {
+          list.finished = true;
+        }
+      }, 1000);
+    },
+
+    onRefresh(index) {
+      this.list[index].finished = false;
+      this.onLoad(index);
+    },
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less">
 @import "../../../common/style/var2.less";
 
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
+.demo-list {
+  .van-cell {
+    text-align: center;
+  }
+
+  .page-desc {
+    margin: 0;
+    padding: 5px 0;
+    color: @gray-7;
+    font-size: 14px;
+    text-align: center;
+
+    &--text {
+      margin: 0;
     }
 
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
+    &--option {
+      margin: 12px;
     }
   }
 
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
-  }
-
-  &-row {
-    margin-bottom: @padding-sm;
+  .van-checkbox__label {
+    color: @gray-7;
   }
 }
 </style>
