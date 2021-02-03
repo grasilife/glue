@@ -1,151 +1,104 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
+  <demo-section>
+    <demo-block :title="basicUsage">
+      <van-row>
+        <van-image width="100" height="100" :src="image" />
+      </van-row>
+    </demo-block>
 
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
+    <demo-block :title="fitMode">
+      <van-row gutter="20">
+        <van-col v-for="fit in fits" span="8" :key="fit">
+          <van-image :fit="fit" width="100%" height="27vw" :src="image" />
+          <div class="text">{{ fit }}</div>
+        </van-col>
+      </van-row>
+    </demo-block>
 
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
+    <demo-block :title="round">
+      <van-row gutter="20">
+        <van-col v-for="fit in fits" span="8" :key="fit">
+          <van-image round :fit="fit" width="100%" height="27vw" :src="image" />
+          <div class="text">{{ fit }}</div>
+        </van-col>
+      </van-row>
+    </demo-block>
 
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
+    <demo-block :title="loading">
+      <van-row gutter="20">
+        <van-col span="8">
+          <van-image width="100%" height="27vw" />
+          <div class="text">{{ defaultTip }}</div>
+        </van-col>
 
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
+        <van-col span="8">
+          <van-image width="100%" height="27vw">
+            <template #loading>
+              <van-loading type="spinner" size="20" />
+            </template>
+          </van-image>
+          <div class="text">{{ customTip }}</div>
+        </van-col>
+      </van-row>
+    </demo-block>
 
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
+    <demo-block :title="error">
+      <van-row gutter="20">
+        <van-col span="8">
+          <van-image width="100%" height="27vw" src="x" />
+          <div class="text">{{ defaultTip }}</div>
+        </van-col>
 
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
-      />
-    </DemoBlock>
-
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
-    </DemoBlock>
-  </DemoSection>
+        <van-col span="8">
+          <van-image width="100%" height="27vw" src="x">
+            <template #error>{{ loadFail }}</template>
+          </van-image>
+          <div class="text">{{ customTip }}</div>
+        </van-col>
+      </van-row>
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      basicUsage: "基础用法",
+      fitMode: "填充模式",
+      round: "圆形图片",
+      loading: "加载中提示",
+      error: "加载失败提示",
+      defaultTip: "默认提示",
+      customTip: "自定义提示",
+      loadFail: "加载失败",
+      image: "https://img.yzcdn.cn/vant/cat.jpeg",
+      fits: ["contain", "cover", "fill", "none", "scale-down"],
     };
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less">
 @import "../../../common/style/var2.less";
 
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
+.demo-image {
+  overflow-x: hidden;
+  background-color: @white;
 
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
-  }
-
-  .van-doc-demo-block {
+  .van-row {
     padding: 0 @padding-md;
   }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
+
+  .van-col {
+    margin-bottom: 20px;
   }
 
-  &-row {
-    margin-bottom: @padding-sm;
+  .text {
+    margin-top: 5px;
+    color: @gray-7;
+    font-size: 14px;
+    text-align: center;
   }
 }
 </style>
