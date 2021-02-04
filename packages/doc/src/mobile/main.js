@@ -5,6 +5,7 @@ import router from "./router";
 import "./plugins/element-ui";
 import "./plugins/vant";
 import "../common/style/base.less";
+import "@vant/touch-emulator";
 import DemoBlock from "./components/DemoBlock.vue";
 import DemoSection from "./components/DemoSection.vue";
 Vue.component("DemoBlock", DemoBlock);

@@ -11,6 +11,7 @@
   "dependencies": {
     "@docsearch/css": "^1.0.0-alpha.22",
     "@docsearch/js": "^1.0.0-alpha.22",
+    "@vant/touch-emulator": "^1.2.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.0",
     "glue-components": "^0.0.2-alpha.0",
