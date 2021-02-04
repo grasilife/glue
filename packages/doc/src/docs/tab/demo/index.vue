@@ -1,151 +1,174 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
+  <demo-section>
+    <demo-block :title="basicUsage">
+      <van-tabs v-model="active">
+        <van-tab :title="tab + index" v-for="index in tabs" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
+      </van-tabs>
+    </demo-block>
 
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
+    <demo-block :title="matchByName">
+      <van-tabs v-model="activeName">
+        <van-tab name="a" :title="tab + 1"> {{ content }} 1 </van-tab>
+        <van-tab name="b" :title="tab + 2"> {{ content }} 2 </van-tab>
+        <van-tab name="c" :title="tab + 3"> {{ content }} 3 </van-tab>
+      </van-tabs>
+    </demo-block>
 
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
+    <demo-block :title="title2">
+      <van-tabs>
+        <van-tab v-for="index in 8" :title="tab + index" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
+      </van-tabs>
+    </demo-block>
 
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
+    <demo-block :title="title3">
+      <van-tabs @disabled="onClickDisabled">
+        <van-tab
+          v-for="index in 3"
+          :title="tab + index"
+          :disabled="index === 2"
+          :key="index"
+        >
+          {{ content }} {{ index }}
+        </van-tab>
+      </van-tabs>
+    </demo-block>
 
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
+    <demo-block :title="title4">
+      <van-tabs type="card">
+        <van-tab v-for="index in 3" :title="tab + index" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
+      </van-tabs>
+    </demo-block>
 
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
+    <demo-block :title="title5">
+      <van-tabs @click="onClick">
+        <van-tab v-for="index in 2" :title="tab + index" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
+      </van-tabs>
+    </demo-block>
 
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
-      />
-    </DemoBlock>
+    <demo-block :title="title6">
+      <van-tabs :active="active" sticky>
+        <van-tab :title="tab + index" v-for="index in tabs" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
+      </van-tabs>
+    </demo-block>
 
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
+    <demo-block :title="title7">
+      <van-tabs :active="active">
+        <van-tab v-for="index in 2" :key="index">
+          <template #title> <van-icon name="more-o" />{{ tab }} </template>
+          {{ content }} {{ index }}
+        </van-tab>
+      </van-tabs>
+    </demo-block>
 
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
+    <demo-block :title="title8">
+      <van-tabs animated>
+        <van-tab :title="tab + index" v-for="index in tabs" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
+      </van-tabs>
+    </demo-block>
 
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
+    <demo-block :title="title9">
+      <van-tabs :active="active" swipeable>
+        <van-tab :title="tab + index" v-for="index in tabs" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
+      </van-tabs>
+    </demo-block>
 
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
-    </DemoBlock>
-  </DemoSection>
+    <demo-block :title="title10">
+      <van-tabs scrollspy sticky>
+        <van-tab :title="tab + index" v-for="index in 8" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
+      </van-tabs>
+    </demo-block>
+
+    <demo-block :title="beforeChangeTitle">
+      <van-tabs :before-change="beforeChange">
+        <van-tab :title="tab + index" v-for="index in 4" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
+      </van-tabs>
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      basicUsage: "基础用法",
+      content: "内容",
+      tab: "标签 ",
+      title2: "标签栏滚动",
+      title3: "禁用标签",
+      title4: "样式风格",
+      title5: "点击事件",
+      title6: "粘性布局",
+      title7: "自定义标签",
+      title8: "切换动画",
+      title9: "滑动切换",
+      title10: "滚动导航",
+      disabled: " 已被禁用",
+      matchByName: "通过名称匹配",
+      beforeChangeTitle: "异步切换",
+      active: 2,
+      activeName: "b",
+      tabs: [1, 2, 3, 4],
     };
+  },
+
+  methods: {
+    onClickDisabled(index, title) {
+      this.$toast(title + this.disabled);
+    },
+
+    onClick(index, title) {
+      this.$toast(title);
+    },
+
+    beforeChange(name) {
+      if (name === 1) {
+        return false;
+      }
+
+      return new Promise((resolve) => {
+        resolve(name !== 3);
+      });
+    },
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less">
 @import "../../../common/style/var2.less";
 
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
+.demo-tab {
+  margin-bottom: 80vh;
 
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
+  .van-tab .van-icon {
+    margin-right: 5px;
+    vertical-align: -2px;
   }
 
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
+  .van-tab__pane {
+    padding: 24px 20px;
+    background-color: @white;
   }
 
-  &-row {
-    margin-bottom: @padding-sm;
+  .van-tabs--card .van-tab__pane {
+    background-color: transparent;
   }
 }
 </style>
