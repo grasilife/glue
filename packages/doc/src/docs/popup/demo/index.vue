@@ -9,7 +9,7 @@
 
     <demo-block card :title="position">
       <van-cell :title="buttonTop" is-link @click="showTop = true" />
-      <van-cell :title="buttonBottom)" is-link @click="showBottom = true" />
+      <van-cell :title="buttonBottom" is-link @click="showBottom = true" />
       <van-cell :title="buttonLeft" is-link @click="showLeft = true" />
       <van-cell :title="buttonRight" is-link @click="showRight = true" />
 
