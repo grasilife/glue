@@ -1,151 +1,99 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
+  <demo-section>
+    <demo-block :title="basicUsage">
+      <van-steps :active="active">
+        <van-step>{{ step1 }}</van-step>
+        <van-step>{{ step2 }}</van-step>
+        <van-step>{{ step3 }}</van-step>
+        <van-step>{{ step4 }}</van-step>
+      </van-steps>
 
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
+      <van-button @click="nextStep">{{ nextStep }}</van-button>
+    </demo-block>
 
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
+    <demo-block :title="customStyle">
+      <van-steps
+        :active="active"
+        active-icon="success"
+        inactive-icon="arrow"
+        active-color="#38f"
+      >
+        <van-step>{{ step1 }}</van-step>
+        <van-step>{{ step2 }}</van-step>
+        <van-step>{{ step3 }}</van-step>
+        <van-step>{{ step4 }}</van-step>
+      </van-steps>
+    </demo-block>
 
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
-
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
-      />
-    </DemoBlock>
-
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
-    </DemoBlock>
-  </DemoSection>
+    <demo-block :title="title3">
+      <van-steps :active="0" direction="vertical">
+        <van-step>
+          <h3>{{ status1 }}</h3>
+          <p>2016-07-12 12:40</p>
+        </van-step>
+        <van-step>
+          <h3>{{ status2 }}</h3>
+          <p>2016-07-11 10:00</p>
+        </van-step>
+        <van-step>
+          <h3>{{ status3 }}</h3>
+          <p>2016-07-10 09:30</p>
+        </van-step>
+      </van-steps>
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      basicUsage: "基础用法",
+      nextStep: "下一步",
+      step1: "买家下单",
+      step2: "商家接单",
+      step3: "买家提货",
+      step4: "交易完成",
+      title2: "描述信息",
+      title3: "竖向步骤条",
+      status1: "【城市】物流状态1",
+      status2: "【城市】物流状态",
+      status3: "快件已发货",
+      customStyle: "自定义样式",
+      active: 1,
     };
+  },
+
+  methods: {
+    nextStep() {
+      this.active = ++this.active % 4;
+    },
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less">
 @import "../../../common/style/var2.less";
 
-.van-doc-demo-section {
+.demo-steps {
+  .steps-success,
+  .van-icon-location {
+    color: @green;
+  }
+
   .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
+    margin: @padding-md 0 0 @padding-md;
   }
 
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
+  p,
+  h3 {
+    margin: 0;
+    font-weight: normal;
+    font-size: inherit;
   }
 
-  &-row {
-    margin-bottom: @padding-sm;
+  .van-steps__message + p {
+    margin-bottom: 10px;
   }
 }
 </style>
