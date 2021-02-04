@@ -1,151 +1,147 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
+  <demo-section>
+    <demo-block :title="basicUsage">
+      <van-radio-group v-model="radio1" class="demo-radio-group">
+        <van-radio name="1">{{ radio }} 1</van-radio>
+        <van-radio name="2">{{ radio }} 2</van-radio>
+      </van-radio-group>
+    </demo-block>
 
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
+    <demo-block v-if="!isWeapp" :title="horizontal">
+      <van-radio-group
+        v-model="radioHorizontal"
+        class="demo-radio-group"
+        direction="horizontal"
+      >
+        <van-radio name="1">{{ radio }} 1</van-radio>
+        <van-radio name="2">{{ radio }} 2</van-radio>
+      </van-radio-group>
+    </demo-block>
 
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
+    <demo-block :title="disabled">
+      <van-radio-group v-model="radio2" class="demo-radio-group" disabled>
+        <van-radio name="1">{{ radio }} 1</van-radio>
+        <van-radio name="2">{{ radio }} 2</van-radio>
+      </van-radio-group>
+    </demo-block>
 
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
+    <demo-block :title="customShape">
+      <van-radio-group v-model="radioShape" class="demo-radio-group">
+        <van-radio name="1" shape="square">{{ radio }} 1</van-radio>
+        <van-radio name="2" shape="square">{{ radio }} 2</van-radio>
+      </van-radio-group>
+    </demo-block>
 
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
+    <demo-block :title="customColor">
+      <van-radio-group v-model="radio3" class="demo-radio-group">
+        <van-radio name="1" checked-color="#ee0a24"> {{ radio }} 1 </van-radio>
+        <van-radio name="2" checked-color="#ee0a24"> {{ radio }} 2 </van-radio>
+      </van-radio-group>
+    </demo-block>
 
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
+    <demo-block :title="customIconSize">
+      <van-radio-group v-model="radioIconSize" class="demo-radio-group">
+        <van-radio name="1" icon-size="24px"> {{ radio }} 1 </van-radio>
+        <van-radio name="2" icon-size="24px"> {{ radio }} 2 </van-radio>
+      </van-radio-group>
+    </demo-block>
 
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
-      />
-    </DemoBlock>
+    <demo-block :title="customIcon">
+      <van-radio-group v-model="radio4" class="demo-radio-group">
+        <van-radio name="1">
+          {{ radio }} 1
+          <template #icon="{ checked }">
+            <img :src="checked ? icon.active : icon.inactive" />
+          </template>
+        </van-radio>
+        <van-radio name="2">
+          {{ radio }} 2
+          <template #icon="{ checked }">
+            <img :src="checked ? icon.active : icon.inactive" />
+          </template>
+        </van-radio>
+      </van-radio-group>
+    </demo-block>
 
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
+    <demo-block :title="disableLabel">
+      <van-radio-group v-model="radioLabel" class="demo-radio-group">
+        <van-radio name="1" label-disabled>{{ radio }} 1</van-radio>
+        <van-radio name="2" label-disabled>{{ radio }} 2</van-radio>
+      </van-radio-group>
+    </demo-block>
 
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
-    </DemoBlock>
-  </DemoSection>
+    <demo-block :title="withCell">
+      <van-radio-group v-model="radio5">
+        <van-cell-group>
+          <van-cell clickable :title="radio + 1" @click="radio5 = '1'">
+            <template #right-icon>
+              <van-radio name="1" />
+            </template>
+          </van-cell>
+          <van-cell clickable :title="radio + 2" @click="radio5 = '2'">
+            <template #right-icon>
+              <van-radio name="2" />
+            </template>
+          </van-cell>
+        </van-cell-group>
+      </van-radio-group>
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
+      basicUsage: "基础用法",
+      radio: "单选框",
+      text1: "未选中禁用",
+      text2: "选中且禁用",
+      withCell: "与 Cell 组件一起使用",
+      horizontal: "水平排列",
+      customIcon: "自定义图标",
       customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      customShape: "自定义形状",
+      customIconSize: "自定义大小",
+      disableLabel: "禁用文本点击",
+      radio1: "1",
+      radio2: "2",
+      radio3: "1",
+      radio4: "1",
+      radio5: "1",
+      radioLabel: "1",
+      radioShape: "1",
+      radioIconSize: "1",
+      radioHorizontal: "1",
+      icon: {
+        active: "https://img.yzcdn.cn/vant/user-active.png",
+        inactive: "https://img.yzcdn.cn/vant/user-inactive.png",
+      },
     };
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less">
 @import "../../../common/style/var2.less";
 
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
+.demo-radio {
+  background: @white;
+
+  &-group {
+    padding: 0 16px;
+
+    .van-radio {
+      margin-bottom: 8px;
     }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
   }
 
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
+  img {
+    height: 20px;
   }
 
-  &-row {
-    margin-bottom: @padding-sm;
+  .van-doc-demo-block__title {
+    margin-top: -8px;
   }
 }
 </style>
