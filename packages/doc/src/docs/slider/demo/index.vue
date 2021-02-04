@@ -1,151 +1,112 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
+  <demo-section>
+    <demo-block :title="title1">
+      <van-slider v-model="value1" @change="onChange" />
+    </demo-block>
+
+    <demo-block :title="title2">
+      <van-slider range v-model="value2" @change="onChange" />
+    </demo-block>
+
+    <demo-block :title="title3">
+      <van-slider v-model="value3" :min="-50" :max="50" @change="onChange" />
+    </demo-block>
+
+    <demo-block :title="title4">
+      <van-slider v-model="value4" disabled />
+    </demo-block>
+
+    <demo-block :title="title5">
+      <van-slider v-model="value5" :step="10" @change="onChange" />
+    </demo-block>
+
+    <demo-block :title="customStyle">
+      <van-slider
+        v-model="value6"
+        bar-height="4px"
+        active-color="#ee0a24"
+        @change="onChange"
+      />
+    </demo-block>
+
+    <demo-block :title="customButton">
+      <van-slider v-model="value7" active-color="#ee0a24">
+        <template #button>
+          <div class="custom-button">{{ value7 }}</div>
+        </template>
+      </van-slider>
+    </demo-block>
+
+    <demo-block v-if="!isWeapp" :title="vertical">
+      <div :style="{ height: '150px', paddingLeft: '30px' }">
+        <van-slider v-model="value8" vertical @change="onChange" />
+        <van-slider
+          v-model="value9"
+          range
+          vertical
+          style="margin-left: 100px;"
+          @change="onChange"
+        />
       </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
-
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
-
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
-
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
-      />
-    </DemoBlock>
-
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
-    </DemoBlock>
-  </DemoSection>
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      title1: "基础用法",
+      title2: "双滑块",
+      title3: "指定选择范围",
+      title4: "禁用",
+      title5: "指定步长",
+      customStyle: "自定义样式",
+      customButton: "自定义按钮",
+      text: "当前值：",
+      vertical: "垂直方向",
+      value1: 50,
+      value2: [20, 60],
+      value3: 0,
+      value4: 50,
+      value5: 50,
+      value6: 50,
+      value7: 50,
+      value8: 50,
+      value9: [20, 60],
     };
+  },
+  methods: {
+    onChange(value) {
+      this.$toast(this.text + value);
+    },
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less">
 @import "../../../common/style/var2.less";
 
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
-  }
+.demo-slider {
+  background: @white;
+  user-select: none;
 
   .van-doc-demo-block {
-    padding: 0 @padding-md;
+    padding: 0 @padding-md 20px;
   }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
+
+  .van-doc-demo-block__title {
     padding-left: 0;
   }
 
-  &-row {
-    margin-bottom: @padding-sm;
+  .custom-button {
+    width: 26px;
+    color: #fff;
+    font-size: 10px;
+    line-height: 18px;
+    text-align: center;
+    background-color: @red;
+    border-radius: 100px;
   }
 }
 </style>
