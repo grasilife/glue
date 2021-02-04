@@ -1,151 +1,188 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
+  <demo-section>
+    <demo-block :title="basicUsage">
+      <van-uploader :after-read="afterRead" />
+    </demo-block>
 
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
+    <demo-block :title="preview">
+      <van-uploader v-model="fileList" multiple accept="*" />
+    </demo-block>
 
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
+    <demo-block :title="status">
+      <van-uploader v-model="statusFileList" :after-read="afterReadFailed" />
+    </demo-block>
 
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
+    <demo-block :title="maxCount">
+      <van-uploader v-model="fileList2" multiple :max-count="2" />
+    </demo-block>
 
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
+    <demo-block :title="maxSize">
+      <van-uploader
+        v-model="fileList4"
+        multiple
+        :max-size="500 * 1024"
+        @oversize="onOversize"
       />
-    </DemoBlock>
+    </demo-block>
 
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
+    <demo-block :title="customUpload">
+      <van-uploader>
+        <van-button type="primary" icon="plus">
+          {{ upload }}
+        </van-button>
+      </van-uploader>
+    </demo-block>
 
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
+    <demo-block :title="previewCover">
+      <van-uploader v-model="previewCoverFiles">
+        <template #preview-cover="{ file }">
+          <div class="preview-cover van-ellipsis">{{ file.name }}</div>
+        </template>
+      </van-uploader>
+    </demo-block>
 
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
+    <demo-block :title="beforeReadTitle">
+      <van-uploader v-model="fileList3" :before-read="beforeRead" />
+    </demo-block>
 
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
+    <demo-block :title="disabled">
+      <van-uploader :after-read="afterRead" disabled />
+    </demo-block>
+
+    <demo-block :title="customPreviewImage">
+      <van-uploader
+        v-model="fileList5"
+        multiple
+        accept="*"
+        :deletable="false"
       />
-    </DemoBlock>
-  </DemoSection>
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      basicUsage: "基础用法",
+      status: "上传状态",
+      failed: "上传失败",
+      upload: "上传文件",
+      preview: "文件预览",
+      maxSize: "限制上传大小",
+      disabled: "禁用文件上传",
+      maxCount: "限制上传数量",
+      uploading: "上传中...",
+      imageName: "图片名称",
+      beforeReadTitle: "上传前置处理",
+      overSizeTip: "文件大小不能超过 500kb",
+      invalidType: "请上传 jpg 格式图片",
+      customUpload: "自定义上传样式",
+      previewCover: "自定义预览样式",
+      customPreviewImage: "自定义单个图片预览",
+      deleteMessage: "删除前置处理",
+      fileList: [
+        { url: "https://img.yzcdn.cn/vant/leaf.jpg" },
+        { url: "https://img.yzcdn.cn/vant/tree.jpg" },
+      ],
+      fileList2: [{ url: "https://img.yzcdn.cn/vant/sand.jpg" }],
+      fileList3: [],
+      fileList4: [{ url: "https://img.yzcdn.cn/vant/sand.jpg" }],
+      fileList5: [
+        { url: "https://img.yzcdn.cn/vant/leaf.jpg" },
+        {
+          url: "https://img.yzcdn.cn/vant/sand.jpg",
+          deletable: true,
+          beforeDelete: () => {
+            this.$toast(this.deleteMessage);
+          },
+        },
+        {
+          url: "https://img.yzcdn.cn/vant/tree.jpg",
+          deletable: true,
+          imageFit: "contain",
+          previewSize: 120,
+        },
+      ],
+      statusFileList: [],
+      previewCoverFiles: [],
     };
+  },
+
+  created() {
+    this.statusFileList.push(
+      {
+        url: "https://img.yzcdn.cn/vant/leaf.jpg",
+        status: "uploading",
+        message: this.uploading,
+      },
+      {
+        url: "https://img.yzcdn.cn/vant/tree.jpg",
+        status: "failed",
+        message: this.failed,
+      }
+    );
+
+    this.previewCoverFiles.push({
+      url: "https://img.yzcdn.cn/vant/leaf.jpg",
+      file: {
+        name: this.imageName,
+      },
+    });
+  },
+
+  methods: {
+    beforeRead(file) {
+      if (file.type !== "image/jpeg") {
+        this.$toast(this.invalidType);
+        return false;
+      }
+
+      return true;
+    },
+
+    afterRead(file, detail) {
+      console.log(file, detail);
+    },
+
+    afterReadFailed(item) {
+      item.status = "uploading";
+      item.message = this.uploading;
+
+      setTimeout(() => {
+        item.status = "failed";
+        item.message = this.failed;
+      }, 1000);
+    },
+
+    onOversize(file, detail) {
+      console.log(file, detail);
+      this.$toast(this.overSizeTip);
+    },
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less">
 @import "../../../common/style/var2.less";
 
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
+.demo-uploader {
+  background-color: @white;
 
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
+  .van-uploader {
+    margin-left: @padding-md;
   }
 
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
-  }
-
-  &-row {
-    margin-bottom: @padding-sm;
+  .preview-cover {
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 4px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
   }
 }
 </style>
