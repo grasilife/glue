@@ -1,151 +1,94 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
-
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
-
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
-
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
+  <demo-section>
+    <demo-block :title="radioMode">
+      <van-tree-select
+        :items="items"
+        :active-id.sync="activeId"
+        :main-active-index.sync="activeIndex"
       />
-    </DemoBlock>
+    </demo-block>
 
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
+    <demo-block :title="multipleMode">
+      <van-tree-select
+        :items="items"
+        :active-id.sync="activeIds"
+        :main-active-index.sync="activeIndex2"
       />
-    </DemoBlock>
-  </DemoSection>
+    </demo-block>
+
+    <demo-block :title="customContent">
+      <van-tree-select
+        height="55vw"
+        :items="simpleItems"
+        :main-active-index.sync="activeIndex3"
+      >
+        <template #content>
+          <van-image
+            v-if="activeIndex3 === 0"
+            :show-loading="false"
+            src="https://img.yzcdn.cn/vant/apple-1.jpg"
+          />
+          <van-image
+            v-if="activeIndex3 === 1"
+            :show-loading="false"
+            src="https://img.yzcdn.cn/vant/apple-2.jpg"
+          />
+        </template>
+      </van-tree-select>
+    </demo-block>
+
+    <demo-block :title="showBadge">
+      <van-tree-select
+        height="55vw"
+        :items="badgeItems"
+        :active-id.sync="activeId2"
+        :main-active-index.sync="activeIndex4"
+      />
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
+import { zhCNData } from "./data-zh";
+import { deepClone } from "../../../common/utils/deep-clone";
+
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      basicUsage: "基础用法",
+      showBadge: "徽标提示",
+      radioMode: "单选模式",
+      multipleMode: "多选模式",
+      customContent: "自定义内容",
+      data: zhCNData,
+      dataSimple: [{ text: "分组 1" }, { text: "分组 2" }],
+      activeId: 1,
+      activeId2: 1,
+      activeIds: [1, 2],
+      activeIndex: 0,
+      activeIndex2: 0,
+      activeIndex3: 0,
+      activeIndex4: 0,
     };
+  },
+
+  computed: {
+    items() {
+      return this.data;
+    },
+
+    simpleItems() {
+      return this.dataSimple;
+    },
+
+    badgeItems() {
+      const data = deepClone(this.data).slice(0, 2);
+
+      data[0].dot = true;
+      data[1].badge = 5;
+
+      return data;
+    },
   },
 };
 </script>
-
-<style lang="less" rel="stylesheet/less">
-@import "../../../common/style/var2.less";
-
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
-  }
-
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
-  }
-
-  &-row {
-    margin-bottom: @padding-sm;
-  }
-}
-</style>
