@@ -57,6 +57,7 @@
 export default {
   data() {
     return {
+      cancel: "取消",
       search: "搜索",
       basicUsage: "基础用法",
       label: "地址",
@@ -77,6 +78,8 @@ export default {
 
   methods: {
     onSearch(val) {
+      //TODO:有bug
+      console.log(val, "val");
       this.$toast(val);
     },
 
