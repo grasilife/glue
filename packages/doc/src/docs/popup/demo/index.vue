@@ -1,151 +1,136 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
+  <demo-section>
+    <demo-block card :title="basicUsage">
+      <van-cell :title="buttonBasic" is-link @click="showBasic = true" />
+      <van-popup v-model="showBasic" :style="{ padding: '30px 50px' }">
+        {{ content }}
+      </van-popup>
+    </demo-block>
 
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
+    <demo-block card :title="position">
+      <van-cell :title="buttonTop" is-link @click="showTop = true" />
+      <van-cell :title="buttonBottom)" is-link @click="showBottom = true" />
+      <van-cell :title="buttonLeft" is-link @click="showLeft = true" />
+      <van-cell :title="buttonRight" is-link @click="showRight = true" />
 
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
-
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
-
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
+      <van-popup v-model="showTop" position="top" :style="{ height: '30%' }" />
+      <van-popup
+        v-model="showBottom"
+        position="bottom"
+        :style="{ height: '30%' }"
       />
-    </DemoBlock>
-
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
+      <van-popup
+        v-model="showLeft"
+        position="left"
+        :style="{ width: '30%', height: '100%' }"
       />
-    </DemoBlock>
-  </DemoSection>
+      <van-popup
+        v-model="showRight"
+        position="right"
+        :style="{ width: '30%', height: '100%' }"
+      />
+    </demo-block>
+
+    <demo-block card :title="closeIcon">
+      <van-cell :title="closeIcon" is-link @click="showCloseIcon = true" />
+      <van-cell
+        :title="customCloseIcon"
+        is-link
+        @click="showCustomCloseIcon = true"
+      />
+      <van-cell
+        :title="customIconPosition"
+        is-link
+        @click="showCustomIconPosition = true"
+      />
+
+      <van-popup
+        v-model="showCloseIcon"
+        closeable
+        position="bottom"
+        :style="{ height: '30%' }"
+      />
+      <van-popup
+        v-model="showCustomCloseIcon"
+        closeable
+        close-icon="close"
+        position="bottom"
+        :style="{ height: '30%' }"
+      />
+      <van-popup
+        v-model="showCustomIconPosition"
+        closeable
+        close-icon-position="top-left"
+        position="bottom"
+        :style="{ height: '30%' }"
+      />
+    </demo-block>
+
+    <demo-block card :title="roundCorner">
+      <van-cell :title="roundCorner" is-link @click="showRoundCorner = true" />
+      <van-popup
+        v-model="showRoundCorner"
+        round
+        position="bottom"
+        :style="{ height: '30%' }"
+      />
+    </demo-block>
+
+    <demo-block card v-if="!isWeapp" :title="getContainer">
+      <van-cell
+        :title="getContainer"
+        is-link
+        @click="showGetContainer = true"
+      />
+      <van-popup
+        v-model="showGetContainer"
+        get-container="body"
+        :style="{ padding: '30px 50px' }"
+      />
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      position: "弹出位置",
+      buttonBasic: "展示弹出层",
+      buttonTop: "顶部弹出",
+      buttonBottom: "底部弹出",
+      buttonLeft: "左侧弹出",
+      buttonRight: "右侧弹出",
+      getContainer: "指定挂载节点",
+      roundCorner: "圆角弹窗",
+      closeIcon: "关闭图标",
+      customCloseIcon: "自定义图标",
+      customIconPosition: "图标位置",
+      showBasic: false,
+      showTop: false,
+      showBottom: false,
+      showLeft: false,
+      showRight: false,
+      showCloseIcon: false,
+      showRoundCorner: false,
+      showGetContainer: false,
+      showCustomCloseIcon: false,
+      showCustomIconPosition: false,
     };
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
-@import "../../../common/style/var2.less";
+<style lang="less">
+@import "../../style/var";
 
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
-  }
-
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
+.demo-popup {
+  .van-row {
     margin-bottom: @padding-md;
   }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
-  }
 
-  &-row {
-    margin-bottom: @padding-sm;
+  .van-button {
+    margin-left: @padding-md;
   }
 }
 </style>
