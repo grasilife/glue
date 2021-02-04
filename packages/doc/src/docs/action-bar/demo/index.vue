@@ -76,10 +76,7 @@
 
 <script>
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
+  components: {},
   data() {
     return {
       loadingStatus: "加载状态",

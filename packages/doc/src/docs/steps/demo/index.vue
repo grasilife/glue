@@ -8,7 +8,7 @@
         <van-step>{{ step4 }}</van-step>
       </van-steps>
 
-      <van-button @click="nextStep">{{ nextStep }}</van-button>
+      <van-button @click="nextStep">{{ nextStepTitle }}</van-button>
     </demo-block>
 
     <demo-block :title="customStyle">
@@ -49,7 +49,7 @@ export default {
   data() {
     return {
       basicUsage: "基础用法",
-      nextStep: "下一步",
+      nextStepTitle: "下一步",
       step1: "买家下单",
       step2: "商家接单",
       step3: "买家提货",

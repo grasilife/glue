@@ -4,7 +4,7 @@
       <van-progress :percentage="50" />
     </demo-block>
 
-    <demo-block v-if="!isWeapp" :title="strokeWidth">
+    <demo-block :title="strokeWidth">
       <van-progress :percentage="50" stroke-width="8" />
     </demo-block>
 
@@ -29,6 +29,9 @@
 export default {
   data() {
     return {
+      orange: "橘黄",
+      red: "红色",
+      purple: "紫色",
       basicUsage: "基础用法",
       title2: "置灰",
       title3: "样式定制",

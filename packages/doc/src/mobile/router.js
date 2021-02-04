@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { isMobile, decamelize } from "../common";
+import "../common/iframe-router";
 // import DemoHome from "./components/DemoHome";
 import config from "../common/config";
 const { locales, defaultLang } = config.site;
@@ -15,6 +16,11 @@ const router = new VueRouter({
   base: "/mobile",
   routes: getRoutes(),
 });
+router.afterEach(() => {
+  Vue.nextTick(() => window.syncPath());
+});
+
+window.vueRouter = router;
 function getRoutes() {
   const routes = [
     {

@@ -7,7 +7,7 @@
       </van-radio-group>
     </demo-block>
 
-    <demo-block v-if="!isWeapp" :title="horizontal">
+    <demo-block :title="horizontal">
       <van-radio-group
         v-model="radioHorizontal"
         class="demo-radio-group"
@@ -93,6 +93,7 @@
 export default {
   data() {
     return {
+      disabled: "禁用",
       basicUsage: "基础用法",
       radio: "单选框",
       text1: "未选中禁用",

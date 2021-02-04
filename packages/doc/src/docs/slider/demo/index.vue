@@ -37,7 +37,7 @@
       </van-slider>
     </demo-block>
 
-    <demo-block v-if="!isWeapp" :title="vertical">
+    <demo-block :title="vertical">
       <div :style="{ height: '150px', paddingLeft: '30px' }">
         <van-slider v-model="value8" vertical @change="onChange" />
         <van-slider

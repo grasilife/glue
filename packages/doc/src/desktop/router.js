@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import { isMobile, decamelize } from "../common";
 import config from "../common/config";
+import "../common/iframe-router";
 const { locales, defaultLang } = config.site;
 console.log(locales, defaultLang, isMobile, "路由");
 if (isMobile) {
@@ -13,6 +14,11 @@ const router = new VueRouter({
   mode: "hash",
   routes: getRoutes(),
 });
+router.afterEach(() => {
+  Vue.nextTick(() => window.syncPath());
+});
+
+window.vueRouter = router;
 function getRoutes() {
   const routes = [
     {

@@ -76,7 +76,7 @@
       />
     </demo-block>
 
-    <demo-block card v-if="!isWeapp" :title="getContainer">
+    <demo-block card :title="getContainer">
       <van-cell
         :title="getContainer"
         is-link
@@ -95,6 +95,8 @@
 export default {
   data() {
     return {
+      content: "内容",
+      basicUsage: "基础用法",
       position: "弹出位置",
       buttonBasic: "展示弹出层",
       buttonTop: "顶部弹出",
