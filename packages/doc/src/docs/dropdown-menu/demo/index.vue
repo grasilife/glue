@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { RED } from "../../../common/utils/index";
+import { RED } from "../../../common/constant";
 
 export default {
   data() {
