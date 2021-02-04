@@ -122,7 +122,7 @@ export default {
 </script>
 
 <style lang="less">
-@import "../../style/var";
+@import "../../../common/style/var2.less";
 
 .demo-popup {
   .van-row {
