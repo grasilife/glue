@@ -46,7 +46,7 @@
         @search="onSearch"
       >
         <template #action>
-          <div @click="onSearch">{{ search }}</div>
+          <div @click="onSearch(value6)">{{ search }}</div>
         </template>
       </van-search>
     </demo-block>
@@ -78,8 +78,6 @@ export default {
 
   methods: {
     onSearch(val) {
-      //TODO:有bug
-      console.log(val, "val");
       this.$toast(val);
     },
 
