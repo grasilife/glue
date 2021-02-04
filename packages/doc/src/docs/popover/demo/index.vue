@@ -1,151 +1,223 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
+  <demo-section>
+    <demo-block :title="basicUsage">
+      <van-popover
+        v-model="show.lightTheme"
+        trigger="click"
+        :actions="actions"
+        placement="bottom-start"
+        style="margin-left: 16px;"
+        @select="onSelect"
+      >
+        <template #reference>
+          <van-button type="primary">
+            {{ lightTheme }}
+          </van-button>
+        </template>
+      </van-popover>
+      <van-popover
+        v-model="show.darkTheme"
+        theme="dark"
+        trigger="click"
+        :actions="actions"
+        style="margin-left: 16px;"
+        @select="onSelect"
+      >
+        <template #reference>
+          <van-button type="primary">
+            {{ darkTheme }}
+          </van-button>
+        </template>
+      </van-popover>
+    </demo-block>
 
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
-
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
-
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
-
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
+    <demo-block :title="placement">
+      <van-field
+        is-link
+        readonly
+        name="picker"
+        :label="choosePlacement"
+        @click="showPicker = true"
       />
-    </DemoBlock>
 
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
+      <van-popup
+        v-model="showPicker"
+        round
+        position="bottom"
+        get-container="body"
+      >
+        <div class="demo-popover-box">
+          <van-popover
+            v-model="show.placement"
+            theme="dark"
+            trigger="click"
+            :actions="shortActions"
+            :placement="currentPlacement"
+            @select="onSelect"
+          >
+            <template #reference>
+              <div class="demo-popover-refer" />
+            </template>
+          </van-popover>
+        </div>
+        <van-picker :columns="placements" @change="onPickerChange" />
+      </van-popup>
+    </demo-block>
 
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
+    <demo-block :title="actionOptions">
+      <van-popover
+        v-model="show.showIcon"
+        trigger="click"
+        :actions="actionsWithIcon"
+        placement="bottom-start"
+        style="margin-left: 16px;"
+        @select="onSelect"
+      >
+        <template #reference>
+          <van-button type="primary">
+            {{ showIcon }}
+          </van-button>
+        </template>
+      </van-popover>
 
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
+      <van-popover
+        v-model="show.disableAction"
+        trigger="click"
+        :actions="actionsDisabled"
+        style="margin-left: 16px;"
+        @select="onSelect"
+      >
+        <template #reference>
+          <van-button type="primary">
+            {{ disableAction }}
+          </van-button>
+        </template>
+      </van-popover>
+    </demo-block>
 
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
-    </DemoBlock>
-  </DemoSection>
+    <demo-block :title="customContent">
+      <van-popover
+        v-model="show.customContent"
+        trigger="click"
+        placement="top-start"
+        style="margin-left: 16px;"
+        @select="onSelect"
+      >
+        <van-grid
+          square
+          clickable
+          :border="false"
+          column-num="3"
+          style="width: 240px;"
+        >
+          <van-grid-item
+            v-for="i in 6"
+            :key="i"
+            icon="photo-o"
+            :text="option"
+            @click="show.customContent = false"
+          />
+        </van-grid>
+        <template #reference>
+          <van-button type="primary">
+            {{ customContent }}
+          </van-button>
+        </template>
+      </van-popover>
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
-      disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      option: "选项",
+      basicUsage: "基础用法",
+      actions: [{ text: "选项一" }, { text: "选项二" }, { text: "选项三" }],
+      shortActions: [{ text: "选项一" }, { text: "选项二" }],
+      actionsWithIcon: [
+        { text: "选项一", icon: "add-o" },
+        { text: "选项二", icon: "music-o" },
+        { text: "选项三", icon: "more-o" },
+      ],
+      actionsDisabled: [
+        { text: "选项一", disabled: true },
+        { text: "选项二", disabled: true },
+        { text: "选项三" },
+      ],
+      showIcon: "展示图标",
+      placement: "弹出位置",
+      darkTheme: "深色风格",
+      lightTheme: "浅色风格",
+      showPopover: "点击弹出气泡",
+      actionOptions: "选项配置",
+      customContent: "自定义内容",
+      disableAction: "禁用选项",
+      choosePlacement: "选择弹出位置",
+      show: {
+        showIcon: false,
+        placement: false,
+        darkTheme: false,
+        lightTheme: false,
+        customContent: false,
+        disableAction: false,
+      },
+      showPicker: false,
+      currentPlacement: "top",
+      placements: [
+        "top",
+        "top-start",
+        "top-end",
+        "left",
+        "left-start",
+        "left-end",
+        "right",
+        "right-start",
+        "right-end",
+        "bottom",
+        "bottom-start",
+        "bottom-end",
+      ],
     };
+  },
+
+  methods: {
+    onPickerChange(picker, value) {
+      setTimeout(() => {
+        this.show.placement = true;
+        this.currentPlacement = value;
+      });
+    },
+    onSelect(action) {
+      this.$toast(action.text);
+    },
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less">
 @import "../../../common/style/var2.less";
 
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
+.demo-popover {
+  &-refer {
+    width: 60px;
+    height: 60px;
+    background-color: @blue;
+    border-radius: 8px;
   }
 
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
+  .van-field {
+    width: auto;
+    margin: 0 12px;
+    overflow: hidden;
+    border-radius: 8px;
   }
 
-  &-row {
-    margin-bottom: @padding-sm;
+  &-box {
+    display: flex;
+    justify-content: center;
+    margin: 110px 0;
   }
 }
 </style>
