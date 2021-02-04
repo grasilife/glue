@@ -1,151 +1,96 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
-    </DemoBlock>
-
-    <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
-
-    <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
-
-    <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
-
-    <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
-    </DemoBlock>
-
-    <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
+  <demo-section>
+    <demo-block :title="basicUsage">
+      <van-submit-bar
+        :price="3050"
+        :button-text="submit"
+        @submit="onClickButton"
       />
-    </DemoBlock>
+    </demo-block>
 
-    <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
-
-    <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
-
-    <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
+    <demo-block :title="disabled">
+      <van-submit-bar
+        disabled
+        :price="3050"
+        :button-text="submit"
+        :tip="tip1"
+        tip-icon="info-o"
+        @submit="onClickButton"
       />
-    </DemoBlock>
-  </DemoSection>
+    </demo-block>
+
+    <demo-block :title="loadingStatus">
+      <van-submit-bar
+        loading
+        :price="3050"
+        :button-text="submit"
+        @submit="onClickButton"
+      />
+    </demo-block>
+
+    <demo-block :title="advancedUsage">
+      <van-submit-bar
+        :price="3050"
+        :button-text="submit"
+        @submit="onClickButton"
+      >
+        <van-checkbox v-model="checked">{{ check }}</van-checkbox>
+        <template #tip>
+          {{ tip2 }}
+          <span class="edit-address" @click="onClickLink">
+            {{ tip3 }}
+          </span>
+        </template>
+      </van-submit-bar>
+    </demo-block>
+  </demo-section>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
   data() {
     return {
-      loadingStatus: "加载状态",
-      button: "按钮",
+      advancedUsage: "高级用法",
       disabled: "禁用",
-      type: "按钮类型",
-      size: "按钮尺寸",
-      icon: "图标按钮",
-      loading: "加载状态",
-      shape: "按钮形状",
-      defaultType: "默认按钮",
-      primary: "主要按钮",
-      info: "信息按钮",
-      danger: "危险按钮",
-      warning: "警告按钮",
-      large: "大号按钮",
-      normal: "普通按钮",
-      small: "小型按钮",
-      mini: "迷你按钮",
-      plain: "朴素按钮",
-      square: "方形按钮",
-      round: "圆形按钮",
-      hairline: "细边框",
-      hairlineButton: "细边框按钮",
-      loadingText: "加载中...",
-      router: "页面导航",
-      urlRoute: "URL 跳转",
-      vueRoute: "路由跳转",
-      customColor: "自定义颜色",
-      pure: "单色按钮",
-      gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      loadingStatus: "加载状态",
+      basicUsage: "基础用法",
+      submit: "提交订单",
+      tip1: "你的收货地址不支持同城送, 我们已为你推荐快递",
+      tip2: "你的收货地址不支持同城送, ",
+      tip3: "修改地址",
+      check: "全选",
+      clickButton: "点击按钮",
+      clickLink: "修改地址",
+      checked: true,
     };
+  },
+
+  methods: {
+    onClickButton() {
+      this.$toast(this.clickButton);
+    },
+    onClickLink() {
+      this.$toast(this.clickLink);
+    },
   },
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less">
 @import "../../../common/style/var2.less";
 
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
+.demo-submit-bar {
+  .van-submit-bar {
+    position: relative;
+    padding-bottom: 0;
   }
 
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
+  .edit-address {
+    color: @blue;
   }
 
-  &-row {
-    margin-bottom: @padding-sm;
+  .van-checkbox {
+    margin-right: @padding-sm;
   }
 }
 </style>
