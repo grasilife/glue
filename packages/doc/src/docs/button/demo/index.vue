@@ -1,9 +1,12 @@
 <template>
   <DemoSection>
     <DemoBlock :title="type">
-      <glue-button type="primary">{{ primary }}</glue-button>
-      <glue-button type="success">{{ success }}</glue-button>
-      <glue-button type="default">{{ defaultType }}</glue-button>
+      <div class="demo-button-row">
+        <glue-button type="primary">{{ primary }}</glue-button>
+        <glue-button type="success">{{ success }}</glue-button>
+        <glue-button type="default">{{ defaultType }}</glue-button>
+      </div>
+
       <glue-button type="warning">{{ warning }}</glue-button>
       <glue-button type="danger">{{ danger }}</glue-button>
     </DemoBlock>
@@ -11,8 +14,6 @@
     <DemoBlock :title="plain">
       <glue-button plain type="primary">{{ plain }}</glue-button>
       <glue-button plain type="success">{{ plain }}</glue-button>
-      <!-- <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" /> -->
     </DemoBlock>
 
     <DemoBlock :title="hairline">
@@ -21,47 +22,50 @@
     </DemoBlock>
 
     <DemoBlock :title="disabled">
-      <glue-button disabled type="primary" :text="disabled"></glue-button>
-      <glue-button disabled type="success" :text="disabled"></glue-button>
+      <glue-button disabled type="primary">{{ disabled }}</glue-button>
+      <glue-button disabled type="success">{{ disabled }}</glue-button>
     </DemoBlock>
 
     <DemoBlock :title="loadingStatus">
-      <van-button loading type="primary" />
-      <van-button loading type="primary" loading-type="spinner" />
-      <van-button loading :loading-text="loadingText" type="info" />
+      <glue-button loading type="primary" />
+      <glue-button loading type="primary" loading-type="spinner" />
+      <glue-button loading :loading-text="loadingText" type="info" />
     </DemoBlock>
 
     <DemoBlock :title="shape">
-      <van-button type="primary" square :text="square" />
-      <van-button type="info" round :text="round" />
+      <glue-button type="primary" square>{{ square }}</glue-button>
+      <glue-button type="info" round :text="round">{{ round }}</glue-button>
     </DemoBlock>
 
     <DemoBlock :title="icon">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="button" />
-      <van-button plain type="info" icon="https://img.yzcdn.cn/vant/user-active.png" :text="button" />
+      <glue-button type="primary" icon="plus" />
+      <glue-button type="primary" icon="plus">{{ button }}</glue-button>
+      <glue-button plain type="info" icon="https://img.yzcdn.cn/vant/user-active.png" :text="button" />
     </DemoBlock>
 
     <DemoBlock :title="size">
-      <van-button type="primary" size="large">{{ large }}</van-button>
-      <van-button type="primary" size="normal">{{ normal }}</van-button>
-      <van-button type="primary" size="small">{{ small }}</van-button>
-      <van-button type="primary" size="mini">{{ mini }}</van-button>
+      <div class="demo-button-row">
+        <glue-button type="primary" size="large">{{ large }}</glue-button>
+      </div>
+
+      <glue-button type="primary" size="normal">{{ normal }}</glue-button>
+      <glue-button type="primary" size="small">{{ small }}</glue-button>
+      <glue-button type="primary" size="mini">{{ mini }}</glue-button>
     </DemoBlock>
 
     <DemoBlock :title="blockElement">
-      <van-button type="primary" block>{{ blockElement }}</van-button>
+      <glue-button type="primary" block>{{ blockElement }}</glue-button>
     </DemoBlock>
 
     <DemoBlock :title="router">
-      <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
-      <van-button :text="vueRoute" type="primary" to="index" />
+      <glue-button type="primary" url="/vant/mobile.html">{{ urlRoute }}</glue-button>
+      <glue-button type="primary" to="index">{{ vueRoute }}</glue-button>
     </DemoBlock>
 
     <DemoBlock :title="customColor">
-      <van-button color="#7232dd" :text="pure" />
-      <van-button plain color="#7232dd" :text="pure" />
-      <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" :text="gradient" />
+      <glue-button color="#7232dd">{{ pure }}</glue-button>
+      <glue-button plain color="#7232dd">{{ pure }}</glue-button>
+      <glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">{{ gradient }}</glue-button>
     </DemoBlock>
   </DemoSection>
 </template>
@@ -114,10 +118,12 @@ export default {
 <style lang="less" rel="stylesheet/less" scoped>
 @import "../../../common/style/var2.less";
 .glue-button {
-  margin-bottom: @padding-md;
   margin-right: @padding-md;
 }
 .van-doc-demo-block {
   padding: 0 @padding-md;
+}
+.demo-button-row {
+  margin-bottom: 12px;
 }
 </style>

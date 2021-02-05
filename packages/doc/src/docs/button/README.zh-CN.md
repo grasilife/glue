@@ -34,7 +34,7 @@ app.use(Button);
 
 ```html
 <van-button plain type="primary">朴素按钮</van-button>
-<van-button plain type="primary">朴素按钮</van-button>
+<van-button plain type="success">朴素按钮</van-button>
 ```
 
 ### 细边框
@@ -43,7 +43,7 @@ app.use(Button);
 
 ```html
 <van-button plain hairline type="primary">细边框按钮</van-button>
-<van-button plain hairline type="primary">细边框按钮</van-button>
+<van-button plain hairline type="success">细边框按钮</van-button>
 ```
 
 ### 禁用状态
@@ -52,7 +52,7 @@ app.use(Button);
 
 ```html
 <van-button disabled type="primary">禁用状态</van-button>
-<van-button disabled type="primary">禁用状态</van-button>
+<van-button disabled type="success">禁用状态</van-button>
 ```
 
 ### 加载状态

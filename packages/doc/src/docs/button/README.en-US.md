@@ -33,14 +33,14 @@ app.use(Button);
 
 ```html
 <van-button plain hairline type="primary">Hairline</van-button>
-<van-button plain hairline type="primary">Hairline</van-button>
+<van-button plain hairline type="success">Hairline</van-button>
 ```
 
 ### Disabled
 
 ```html
 <van-button disabled type="primary">Diabled</van-button>
-<van-button disabled type="primary">Diabled</van-button>
+<van-button disabled type="success">Diabled</van-button>
 ```
 
 ### Loading
