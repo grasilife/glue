@@ -125,7 +125,7 @@ export default {
       beforeChangeTitle: "异步切换",
       active: 2,
       activeName: "b",
-      tabs: [1, 2, 3, 4],
+      tabs: [1, 2, 3, 4]
     };
   },
 
@@ -143,11 +143,11 @@ export default {
         return false;
       }
 
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         resolve(name !== 3);
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

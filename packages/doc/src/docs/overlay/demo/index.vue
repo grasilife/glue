@@ -36,9 +36,9 @@ export default {
       showOverlay: "显示遮罩层",
       embeddedContent: "嵌入内容",
       show: false,
-      showEmbedded: false,
+      showEmbedded: false
     };
-  },
+  }
 };
 </script>
 

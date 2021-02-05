@@ -1,6 +1,5 @@
 export const inBrowser = typeof window !== "undefined";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 export function noop() {}
 
 export function isDef(val) {
@@ -23,7 +22,7 @@ export function get(object, path) {
   const keys = path.split(".");
   let result = object;
 
-  keys.forEach((key) => {
+  keys.forEach(key => {
     result = result[key] ?? "";
   });
 

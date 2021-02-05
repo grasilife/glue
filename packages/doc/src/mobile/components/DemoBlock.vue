@@ -14,8 +14,8 @@ export default {
 
   props: {
     card: Boolean,
-    title: String,
-  },
+    title: String
+  }
 };
 </script>
 

@@ -73,14 +73,14 @@ export default {
       value6: 50,
       value7: 50,
       value8: 50,
-      value9: [20, 60],
+      value9: [20, 60]
     };
   },
   methods: {
     onChange(value) {
       this.$toast(this.text + value);
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -139,12 +139,12 @@ export default {
       actionsWithIcon: [
         { text: "选项一", icon: "add-o" },
         { text: "选项二", icon: "music-o" },
-        { text: "选项三", icon: "more-o" },
+        { text: "选项三", icon: "more-o" }
       ],
       actionsDisabled: [
         { text: "选项一", disabled: true },
         { text: "选项二", disabled: true },
-        { text: "选项三" },
+        { text: "选项三" }
       ],
       showIcon: "展示图标",
       placement: "弹出位置",
@@ -161,7 +161,7 @@ export default {
         darkTheme: false,
         lightTheme: false,
         customContent: false,
-        disableAction: false,
+        disableAction: false
       },
       showPicker: false,
       currentPlacement: "top",
@@ -177,8 +177,8 @@ export default {
         "right-end",
         "bottom",
         "bottom-start",
-        "bottom-end",
-      ],
+        "bottom-end"
+      ]
     };
   },
 
@@ -191,8 +191,8 @@ export default {
     },
     onSelect(action) {
       this.$toast(action.text);
-    },
-  },
+    }
+  }
 };
 </script>
 

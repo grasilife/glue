@@ -75,9 +75,9 @@ export default {
       max: "最大值",
       standalone: "独立展示",
       customColor: "自定义颜色",
-      customContent: "自定义徽标内容",
+      customContent: "自定义徽标内容"
     };
-  },
+  }
 };
 </script>
 

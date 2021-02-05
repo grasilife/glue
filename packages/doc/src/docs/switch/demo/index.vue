@@ -57,7 +57,7 @@ export default {
       checked3: true,
       checked4: true,
       checked5: true,
-      checked6: false,
+      checked6: false
     };
   },
 
@@ -66,13 +66,13 @@ export default {
       this.$dialog
         .confirm({
           title: this.title,
-          message: this.message,
+          message: this.message
         })
         .then(() => {
           this.checked4 = checked;
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

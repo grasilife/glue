@@ -21,7 +21,7 @@ export default {
       defaultLabel: "设为默认联系人",
       editingContact: {},
       save: "保存",
-      delete: "删除",
+      delete: "删除"
     };
   },
 
@@ -31,8 +31,8 @@ export default {
     },
     onDelete() {
       this.$toast(this.delete);
-    },
-  },
+    }
+  }
 };
 </script>
 

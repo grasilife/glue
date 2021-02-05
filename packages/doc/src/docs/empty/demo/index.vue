@@ -49,9 +49,9 @@ export default {
       description: "描述文字",
       customImage: "自定义图片",
       bottomContent: "底部内容",
-      active: "error",
+      active: "error"
     };
-  },
+  }
 };
 </script>
 

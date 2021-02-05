@@ -33,16 +33,16 @@ export default {
       edit: "编辑",
       name: "张三",
       addContact: "添加联系人",
-      editContact: "编辑联系人",
+      editContact: "编辑联系人"
     };
   },
   computed: {
     currentContact() {
       return {
         name: this.name,
-        tel: "13000000000",
+        tel: "13000000000"
       };
-    },
+    }
   },
 
   methods: {
@@ -52,7 +52,7 @@ export default {
 
     onEdit() {
       this.$toast(this.edit);
-    },
-  },
+    }
+  }
 };
 </script>

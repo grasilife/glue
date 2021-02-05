@@ -12,8 +12,8 @@ export default {
   name: "VanDocContainer",
 
   props: {
-    hasSimulator: Boolean,
-  },
+    hasSimulator: Boolean
+  }
 };
 </script>
 <style lang="less" rel="stylesheet/less" scoped>

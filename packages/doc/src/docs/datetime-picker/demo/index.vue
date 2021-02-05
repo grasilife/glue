@@ -111,8 +111,8 @@ export default {
         monthDay: new Date(2020, 0, 1),
         yearMonth: new Date(2020, 0, 1),
         optionFilter: "12:00",
-        sortColumnsDate: new Date(2020, 0, 1),
-      },
+        sortColumnsDate: new Date(2020, 0, 1)
+      }
     };
   },
 
@@ -132,11 +132,11 @@ export default {
 
     filter(type, values) {
       if (type === "minute") {
-        return values.filter((value) => value % 5 === 0);
+        return values.filter(value => value % 5 === 0);
       }
 
       return values;
-    },
-  },
+    }
+  }
 };
 </script>

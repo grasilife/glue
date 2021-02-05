@@ -35,9 +35,9 @@ export default {
       basicUsage: "基础用法",
       title2: "置灰",
       title3: "样式定制",
-      strokeWidth: "线条粗细",
+      strokeWidth: "线条粗细"
     };
-  },
+  }
 };
 </script>
 

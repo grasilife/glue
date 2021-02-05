@@ -64,7 +64,7 @@ export default {
       cardTitle: "商品标题",
       beforeCloseTitle: "异步关闭",
       customContent: "自定义内容",
-      imageURL: "https://img.yzcdn.cn/vant/ipad.jpeg",
+      imageURL: "https://img.yzcdn.cn/vant/ipad.jpeg"
     };
   },
 
@@ -79,15 +79,15 @@ export default {
         case "right":
           this.$dialog
             .confirm({
-              message: this.confirm,
+              message: this.confirm
             })
             .then(() => {
               instance.close();
             });
           break;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

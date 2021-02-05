@@ -72,9 +72,9 @@ export default {
       active1: [0],
       active2: 0,
       active3: [],
-      active4: [],
+      active4: []
     };
-  },
+  }
 };
 </script>
 

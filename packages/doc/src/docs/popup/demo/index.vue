@@ -117,9 +117,9 @@ export default {
       showRoundCorner: false,
       showGetContainer: false,
       showCustomCloseIcon: false,
-      showCustomIconPosition: false,
+      showCustomIconPosition: false
     };
-  },
+  }
 };
 </script>
 

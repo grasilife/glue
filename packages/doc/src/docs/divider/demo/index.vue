@@ -45,9 +45,9 @@ export default {
       dashed: "虚线",
       withText: "展示文本",
       contentPosition: "内容位置",
-      customStyle: "自定义样式",
+      customStyle: "自定义样式"
     };
-  },
+  }
 };
 </script>
 

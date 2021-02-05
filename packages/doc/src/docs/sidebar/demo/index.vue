@@ -53,7 +53,7 @@ export default {
       activeKey1: 0,
       activeKey2: 0,
       activeKey3: 0,
-      activeKey4: 0,
+      activeKey4: 0
     };
   },
 
@@ -61,10 +61,10 @@ export default {
     onChange(index) {
       this.$notify({
         type: "primary",
-        message: `${this.selectTip} ${this.title}${index + 1}`,
+        message: `${this.selectTip} ${this.title}${index + 1}`
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

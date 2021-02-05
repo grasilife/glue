@@ -36,8 +36,8 @@ export default {
       title3: "配置显示列",
       title4: "配置列占位提示文字",
       columnsPlaceholder: ["请选择", "请选择", "请选择"],
-      areaList: AreaList,
+      areaList: AreaList
     };
-  },
+  }
 };
 </script>

@@ -13,13 +13,13 @@ export default {
 
   props: {
     lang: String,
-    searchConfig: Object,
+    searchConfig: Object
   },
 
   watch: {
     lang() {
       this.initDocsearch();
-    },
+    }
   },
 
   mounted() {
@@ -34,8 +34,8 @@ export default {
         //   container: "#docsearch",
         // });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

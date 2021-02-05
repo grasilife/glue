@@ -37,7 +37,7 @@ export default {
       text: "提示内容",
       text2: "成功文案",
       text3: "失败文案",
-      text4: (second) => `倒计时 ${second} 秒`,
+      text4: second => `倒计时 ${second} 秒`,
       title1: "文字提示",
       title2: "加载提示",
       title3: "成功/失败提示",
@@ -48,7 +48,7 @@ export default {
       positionTop: "顶部展示",
       updateMessage: "动态更新提示",
       positionBottom: "底部展示",
-      customPosition: "自定义位置",
+      customPosition: "自定义位置"
     };
   },
   methods: {
@@ -56,7 +56,7 @@ export default {
       this.$toast.loading({
         forbidClick: true,
         message: this.loading,
-        loadingType,
+        loadingType
       });
     },
 
@@ -71,28 +71,28 @@ export default {
     showTopToast() {
       this.$toast({
         message: this.positionTop,
-        position: "top",
+        position: "top"
       });
     },
 
     showBottomToast() {
       this.$toast({
         message: this.positionBottom,
-        position: "bottom",
+        position: "bottom"
       });
     },
 
     showIconToast() {
       this.$toast({
         message: this.customIcon,
-        icon: "like-o",
+        icon: "like-o"
       });
     },
 
     showImageToast() {
       this.$toast({
         message: this.customImage,
-        icon: "https://img.yzcdn.cn/vant/logo.png",
+        icon: "https://img.yzcdn.cn/vant/logo.png"
       });
     },
 
@@ -100,7 +100,7 @@ export default {
       const toast = this.$toast.loading({
         duration: 0,
         forbidClick: true,
-        message: this.text4(3),
+        message: this.text4(3)
       });
 
       let second = 3;
@@ -113,7 +113,7 @@ export default {
           this.$toast.clear();
         }
       }, 1000);
-    },
-  },
+    }
+  }
 };
 </script>

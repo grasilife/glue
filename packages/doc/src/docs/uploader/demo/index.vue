@@ -83,7 +83,7 @@ export default {
       deleteMessage: "删除前置处理",
       fileList: [
         { url: "https://img.yzcdn.cn/vant/leaf.jpg" },
-        { url: "https://img.yzcdn.cn/vant/tree.jpg" },
+        { url: "https://img.yzcdn.cn/vant/tree.jpg" }
       ],
       fileList2: [{ url: "https://img.yzcdn.cn/vant/sand.jpg" }],
       fileList3: [],
@@ -95,17 +95,17 @@ export default {
           deletable: true,
           beforeDelete: () => {
             this.$toast(this.deleteMessage);
-          },
+          }
         },
         {
           url: "https://img.yzcdn.cn/vant/tree.jpg",
           deletable: true,
           imageFit: "contain",
-          previewSize: 120,
-        },
+          previewSize: 120
+        }
       ],
       statusFileList: [],
-      previewCoverFiles: [],
+      previewCoverFiles: []
     };
   },
 
@@ -114,20 +114,20 @@ export default {
       {
         url: "https://img.yzcdn.cn/vant/leaf.jpg",
         status: "uploading",
-        message: this.uploading,
+        message: this.uploading
       },
       {
         url: "https://img.yzcdn.cn/vant/tree.jpg",
         status: "failed",
-        message: this.failed,
+        message: this.failed
       }
     );
 
     this.previewCoverFiles.push({
       url: "https://img.yzcdn.cn/vant/leaf.jpg",
       file: {
-        name: this.imageName,
-      },
+        name: this.imageName
+      }
     });
   },
 
@@ -158,8 +158,8 @@ export default {
     onOversize(file, detail) {
       console.log(file, detail);
       this.$toast(this.overSizeTip);
-    },
-  },
+    }
+  }
 };
 </script>
 

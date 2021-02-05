@@ -56,9 +56,9 @@ export default {
       shortText: "技术是开发它的人的共同灵魂。",
       scrollable: "滚动播放",
       customStyle: "自定义样式",
-      verticalScroll: "垂直滚动",
+      verticalScroll: "垂直滚动"
     };
-  },
+  }
 };
 </script>
 

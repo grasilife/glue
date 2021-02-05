@@ -111,7 +111,7 @@ export default {
       multiExtraKey: "配置多个按键",
       randomKeyOrder: "随机数字键盘",
       value: "",
-      keyboard: "default",
+      keyboard: "default"
     };
   },
 
@@ -122,8 +122,8 @@ export default {
 
     onDelete() {
       this.$toast(this.delete);
-    },
-  },
+    }
+  }
 };
 </script>
 

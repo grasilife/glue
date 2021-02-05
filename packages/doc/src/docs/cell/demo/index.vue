@@ -80,9 +80,9 @@ export default {
       urlRoute: "URL 跳转",
       vueRoute: "路由跳转",
       useSlots: "使用插槽",
-      verticalCenter: "垂直居中",
+      verticalCenter: "垂直居中"
     };
-  },
+  }
 };
 </script>
 

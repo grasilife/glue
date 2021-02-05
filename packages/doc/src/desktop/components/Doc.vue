@@ -34,7 +34,7 @@ export default {
     DocHeader,
     DocContent,
     DocContainer,
-    DocSimulator,
+    DocSimulator
   },
 
   props: {
@@ -42,22 +42,26 @@ export default {
     versions: {
       type: Array,
       required: false,
-      default: [],
+      default: () => {
+        return [];
+      }
     },
     simulator: String,
     langConfigs: {
       type: Array,
       required: false,
-      default: [],
+      default: () => {
+        return [];
+      }
     },
     config: {
       type: Object,
-      required: false,
+      required: false
     },
     base: {
       type: String,
-      default: "",
-    },
+      default: ""
+    }
   },
 
   emits: ["switch-version"],
@@ -65,7 +69,7 @@ export default {
   watch: {
     $route() {
       this.setNav();
-    },
+    }
   },
 
   created() {
@@ -109,7 +113,7 @@ export default {
     },
 
     keyboardHandler() {
-      window.addEventListener("keyup", (event) => {
+      window.addEventListener("keyup", event => {
         switch (event.keyCode) {
           case 37: // left
             this.keyboardNav("prev");
@@ -119,8 +123,8 @@ export default {
             break;
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

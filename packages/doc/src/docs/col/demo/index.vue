@@ -69,9 +69,9 @@ export default {
     return {
       basicUsage: "基础用法",
       title2: "在列元素之间增加间距",
-      title3: "Flex 布局",
+      title3: "Flex 布局"
     };
-  },
+  }
 };
 </script>
 

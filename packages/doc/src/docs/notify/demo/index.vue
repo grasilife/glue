@@ -42,7 +42,7 @@ export default {
       customNotify: "自定义配置",
       componentCall: "组件调用",
       customDuration: "自定义时长",
-      show: false,
+      show: false
     };
   },
 
@@ -55,21 +55,21 @@ export default {
       this.$notify({
         message: this.customColor,
         color: "#ad0000",
-        background: "#ffe1e1",
+        background: "#ffe1e1"
       });
     },
 
     showCustomDuration() {
       this.$notify({
         message: this.customDuration,
-        duration: 1000,
+        duration: 1000
       });
     },
 
     showType(type) {
       this.$notify({
         message: this.content,
-        type,
+        type
       });
     },
 
@@ -78,7 +78,7 @@ export default {
       setTimeout(() => {
         this.show = false;
       }, 2000);
-    },
-  },
+    }
+  }
 };
 </script>

@@ -97,8 +97,8 @@ export default {
       activeName: "home",
       icon: {
         active: "https://img.yzcdn.cn/vant/user-active.png",
-        inactive: "https://img.yzcdn.cn/vant/user-inactive.png",
-      },
+        inactive: "https://img.yzcdn.cn/vant/user-inactive.png"
+      }
     };
   },
 
@@ -106,10 +106,10 @@ export default {
     onChange(index) {
       this.$notify({
         type: "primary",
-        message: `${this.selectTip} ${this.tab}${index + 1}`,
+        message: `${this.selectTip} ${this.tab}${index + 1}`
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

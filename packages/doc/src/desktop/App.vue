@@ -19,7 +19,7 @@ import config from "../common/config";
 console.log(config, "config");
 export default {
   components: {
-    Doc,
+    Doc
   },
 
   data() {
@@ -28,7 +28,7 @@ export default {
     return {
       //   simulator: "/glue/mobile#/",
       //刷新页面时保持路由同步
-      simulator: `${path}mobile.html${location.hash}`,
+      simulator: `${path}mobile.html${location.hash}`
     };
   },
 
@@ -41,9 +41,9 @@ export default {
 
     langConfigs() {
       const { locales = {} } = config.site;
-      return Object.keys(locales).map((key) => ({
+      return Object.keys(locales).map(key => ({
         lang: key,
-        label: locales[key].langLabel || "",
+        label: locales[key].langLabel || ""
       }));
     },
 
@@ -58,8 +58,8 @@ export default {
     },
 
     versions() {
-      return config.site.versions || null;
-    },
+      return config.site.versions;
+    }
   },
   mounted() {
     console.log(this.simulator, this.$route, "simulator");
@@ -81,8 +81,8 @@ export default {
           //   this.setTitle();
         }
       },
-      immediate: true,
-    },
+      immediate: true
+    }
   },
 
   methods: {
@@ -94,7 +94,7 @@ export default {
         []
       );
 
-      const current = navItems.find((item) => {
+      const current = navItems.find(item => {
         return item.path === this.$route.meta.name;
       });
 
@@ -105,8 +105,8 @@ export default {
       }
 
       document.title = title;
-    },
-  },
+    }
+  }
 };
 </script>
 

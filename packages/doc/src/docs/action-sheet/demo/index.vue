@@ -80,8 +80,8 @@ export default {
         cancel: false,
         title: false,
         status: false,
-        description: false,
-      },
+        description: false
+      }
     };
   },
 
@@ -90,7 +90,7 @@ export default {
       return [
         { name: this.option1 },
         { name: this.option2 },
-        { name: this.option3 },
+        { name: this.option3 }
       ];
     },
 
@@ -98,7 +98,7 @@ export default {
       return [
         { name: this.option1 },
         { name: this.option2 },
-        { name: this.option3, subname: this.subname },
+        { name: this.option3, subname: this.subname }
       ];
     },
 
@@ -106,9 +106,9 @@ export default {
       return [
         { name: this.coloredOption, color: RED },
         { name: this.disabledOption, disabled: true },
-        { loading: true },
+        { loading: true }
       ];
-    },
+    }
   },
 
   methods: {
@@ -119,8 +119,8 @@ export default {
 
     onCancel() {
       this.$toast(this.cancel);
-    },
-  },
+    }
+  }
 };
 </script>
 

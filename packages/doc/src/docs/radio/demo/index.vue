@@ -116,10 +116,10 @@ export default {
       radioHorizontal: "1",
       icon: {
         active: "https://img.yzcdn.cn/vant/user-active.png",
-        inactive: "https://img.yzcdn.cn/vant/user-inactive.png",
-      },
+        inactive: "https://img.yzcdn.cn/vant/user-inactive.png"
+      }
     };
-  },
+  }
 };
 </script>
 

@@ -106,20 +106,20 @@ export default {
         "湖州",
         "嘉兴",
         "金华",
-        "衢州",
+        "衢州"
       ],
       disabledColumns: [
         { text: "杭州", disabled: true },
         { text: "宁波" },
-        { text: "温州" },
+        { text: "温州" }
       ],
       column3: {
         浙江: ["杭州", "宁波", "温州", "嘉兴", "湖州"],
-        福建: ["福州", "厦门", "莆田", "三明", "泉州"],
+        福建: ["福州", "厦门", "莆田", "三明", "泉州"]
       },
       toastContent: (value, index) => `当前值：${value}, 当前索引：${index}`,
       showPicker: false,
-      fieldValue: "",
+      fieldValue: ""
     };
   },
 
@@ -129,15 +129,15 @@ export default {
       return [
         {
           values: Object.keys(column),
-          className: "column1",
+          className: "column1"
         },
         {
           values: column[Object.keys(column)[0]],
           className: "column2",
-          defaultIndex: 2,
-        },
+          defaultIndex: 2
+        }
       ];
-    },
+    }
   },
 
   methods: {
@@ -168,7 +168,7 @@ export default {
 
     onCancel2() {
       this.showPicker = false;
-    },
-  },
+    }
+  }
 };
 </script>

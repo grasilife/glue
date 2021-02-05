@@ -1,6 +1,6 @@
-const ZH_CN = 'zh-CN';
-const EN_US = 'en-US';
-const CACHE_KEY = 'vant-cli-lang';
+const ZH_CN = "zh-CN";
+const EN_US = "en-US";
+const CACHE_KEY = "vant-cli-lang";
 
 let currentLang = ZH_CN;
 
@@ -21,7 +21,7 @@ export function setDefaultLang(langFromConfig) {
     return;
   }
 
-  if (navigator.language && navigator.language.indexOf('zh-') !== -1) {
+  if (navigator.language && navigator.language.indexOf("zh-") !== -1) {
     currentLang = ZH_CN;
     return;
   }

@@ -44,7 +44,7 @@ export default {
       content: "代码是写出来给人看的，附带能在机器上运行",
       show: false,
       currentRate: 0,
-      image: "https://img.yzcdn.cn/vant/apple-3.jpg",
+      image: "https://img.yzcdn.cn/vant/apple-3.jpg"
     };
   },
 
@@ -52,13 +52,13 @@ export default {
     onClickAlert() {
       this.$dialog.alert({
         title: this.title,
-        message: this.content,
+        message: this.content
       });
     },
 
     onClickAlert2() {
       this.$dialog.alert({
-        message: this.content,
+        message: this.content
       });
     },
 
@@ -66,14 +66,14 @@ export default {
       this.$dialog.alert({
         theme: "round-button",
         title: this.title,
-        message: this.content,
+        message: this.content
       });
     },
 
     onClickRound2() {
       this.$dialog.alert({
         theme: "round-button",
-        message: this.content,
+        message: this.content
       });
     },
 
@@ -81,7 +81,7 @@ export default {
       this.$dialog
         .confirm({
           title: this.title,
-          message: this.content,
+          message: this.content
         })
         .catch(() => {
           // on cancel
@@ -101,13 +101,13 @@ export default {
         .confirm({
           title: this.title,
           message: this.content,
-          beforeClose,
+          beforeClose
         })
         .catch(() => {
           // on cancel
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -60,15 +60,15 @@ export default {
       status2: "【城市】物流状态",
       status3: "快件已发货",
       customStyle: "自定义样式",
-      active: 1,
+      active: 1
     };
   },
 
   methods: {
     nextStep() {
       this.active = ++this.active % 4;
-    },
-  },
+    }
+  }
 };
 </script>
 

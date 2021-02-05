@@ -11,17 +11,17 @@
 
 <script>
 export default {
-  name: 'VanDocNavLink',
+  name: "VanDocNavLink",
 
   props: {
     base: String,
-    item: Object,
+    item: Object
   },
 
   computed: {
     itemName() {
-      const name = (this.item.title || this.item.name).split(' ');
-      return `${name[0]} <span>${name.slice(1).join(' ')}</span>`;
+      const name = (this.item.title || this.item.name).split(" ");
+      return `${name[0]} <span>${name.slice(1).join(" ")}</span>`;
     },
 
     path() {
@@ -33,18 +33,18 @@ export default {
         return true;
       }
 
-      if (this.item.path === 'home') {
+      if (this.item.path === "home") {
         return this.$route.path === this.base;
       }
 
       return false;
-    },
+    }
   },
 
   watch: {
     active() {
       this.scrollIntoView();
-    },
+    }
   },
 
   mounted() {
@@ -56,7 +56,7 @@ export default {
       if (this.active && this.$el && this.$el.scrollIntoViewIfNeeded) {
         this.$el.scrollIntoViewIfNeeded();
       }
-    },
-  },
+    }
+  }
 };
 </script>

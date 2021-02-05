@@ -73,9 +73,9 @@ export default {
       customTip: "自定义提示",
       loadFail: "加载失败",
       image: "https://img.yzcdn.cn/vant/cat.jpeg",
-      fits: ["contain", "cover", "fill", "none", "scale-down"],
+      fits: ["contain", "cover", "fill", "none", "scale-down"]
     };
-  },
+  }
 };
 </script>
 

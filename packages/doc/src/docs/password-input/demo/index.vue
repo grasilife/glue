@@ -70,10 +70,9 @@ export default {
         addGutter: "123",
         basicUsage: "123",
         removeMask: "123",
-        customLength: "123",
+        customLength: "123"
       },
-      current: "basicUsage",
-      errorInfo: "",
+      current: "basicUsage"
     };
   },
 
@@ -84,7 +83,7 @@ export default {
         const { top } = el.getBoundingClientRect();
         window.scrollTo(0, window.pageYOffset + top);
       }
-    },
+    }
   },
 
   methods: {
@@ -110,8 +109,8 @@ export default {
       if (current === "showInfo") {
         this.errorInfo = "";
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

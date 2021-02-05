@@ -132,7 +132,7 @@ export default {
       youthDay: "青年节",
       calendar: "日历",
       maxRangeaTitle: "日期区间最大范围",
-      selectCount: (count) => `选择了 ${count} 个日期`,
+      selectCount: count => `选择了 ${count} 个日期`,
       selectSingle: "选择单个日期",
       selectMultiple: "选择多个日期",
       selectRange: "选择日期区间",
@@ -158,7 +158,7 @@ export default {
         customConfirm: [],
         customRange: null,
         customDayText: [],
-        customPosition: null,
+        customPosition: null
       },
       type: "single",
       round: true,
@@ -172,9 +172,7 @@ export default {
       showCalendar: false,
       tiledMinDate: new Date(2012, 0, 10),
       tiledMaxDate: new Date(2012, 2, 20),
-      confirmText: undefined,
-      confirmDisabledText: undefined,
-      firstDayOfWeek: 0,
+      firstDayOfWeek: 0
     };
   },
 
@@ -284,7 +282,7 @@ export default {
     onConfirm(date) {
       this.showCalendar = false;
       this.date[this.id] = date;
-    },
-  },
+    }
+  }
 };
 </script>

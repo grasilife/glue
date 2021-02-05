@@ -42,7 +42,7 @@ const images = [
   "https://img.yzcdn.cn/vant/apple-1.jpg",
   "https://img.yzcdn.cn/vant/apple-2.jpg",
   "https://img.yzcdn.cn/vant/apple-3.jpg",
-  "https://img.yzcdn.cn/vant/apple-4.jpg",
+  "https://img.yzcdn.cn/vant/apple-4.jpg"
 ];
 
 export default {
@@ -57,10 +57,9 @@ export default {
       customConfig: "传入配置项",
       startPosition: "指定初始位置",
       componentCallTitle: "组件调用",
-      index: (index) => `第${index + 1}页`,
+      index: index => `第${index + 1}页`,
       show: false,
-      images,
-      index: 0,
+      images
     };
   },
 
@@ -80,7 +79,7 @@ export default {
     showImagePreview(options) {
       const instance = ImagePreview({
         images,
-        ...options,
+        ...options
       });
 
       if (options.asyncClose) {
@@ -88,7 +87,7 @@ export default {
           instance.close();
         }, 2000);
       }
-    },
-  },
+    }
+  }
 };
 </script>

@@ -28,18 +28,18 @@ export default {
   name: "VanDocNav",
 
   components: {
-    [NavLink.name]: NavLink,
+    [NavLink.name]: NavLink
   },
 
   props: {
     lang: String,
-    navConfig: Array,
+    navConfig: Array
   },
 
   data() {
     return {
       top: 0,
-      bottom: 0,
+      bottom: 0
     };
   },
 
@@ -47,13 +47,13 @@ export default {
     style() {
       return {
         top: this.top + "px",
-        bottom: this.bottom + "px",
+        bottom: this.bottom + "px"
       };
     },
 
     base() {
       return this.lang ? `/${this.lang}/` : "/";
-    },
+    }
   },
 
   created() {
@@ -65,8 +65,8 @@ export default {
     onScroll() {
       const { pageYOffset: offset } = window;
       this.top = Math.max(0, 64 - offset);
-    },
-  },
+    }
+  }
 };
 </script>
 

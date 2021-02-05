@@ -48,9 +48,9 @@ export default {
       size: "自定义大小",
       color: "自定义颜色",
       vertical: "垂直排列",
-      textColor: "自定义文本颜色",
+      textColor: "自定义文本颜色"
     };
-  },
+  }
 };
 </script>
 

@@ -55,23 +55,23 @@ export default {
           refreshing: false,
           loading: false,
           error: false,
-          finished: false,
+          finished: false
         },
         {
           items: [],
           refreshing: false,
           loading: false,
           error: false,
-          finished: false,
+          finished: false
         },
         {
           items: [],
           refreshing: false,
           loading: false,
           error: false,
-          finished: false,
-        },
-      ],
+          finished: false
+        }
+      ]
     };
   },
 
@@ -110,8 +110,8 @@ export default {
     onRefresh(index) {
       this.list[index].finished = false;
       this.onLoad(index);
-    },
-  },
+    }
+  }
 };
 </script>
 

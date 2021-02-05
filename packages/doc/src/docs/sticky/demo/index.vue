@@ -35,13 +35,13 @@ export default {
       basicUsage: "基础用法",
       offsetTop: "吸顶距离",
       setContainer: "指定容器",
-      container: null,
+      container: null
     };
   },
 
   mounted() {
     this.container = this.$refs.container;
-  },
+  }
 };
 </script>
 

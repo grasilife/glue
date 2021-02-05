@@ -29,7 +29,7 @@ export default {
       title: "标题",
       basicUsage: "基础用法",
       useSlot: "使用插槽",
-      back: "返回",
+      back: "返回"
     };
   },
   methods: {
@@ -38,7 +38,7 @@ export default {
     },
     onClickRight() {
       this.$toast(this.button);
-    },
-  },
+    }
+  }
 };
 </script>

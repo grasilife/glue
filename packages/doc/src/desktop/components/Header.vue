@@ -64,26 +64,26 @@
 </template>
 
 <script>
-import SearchInput from "./SearchInput";
+// import SearchInput from "./SearchInput";
 // import { packageVersion } from "site-desktop-shared";
 export default {
   name: "VanDocHeader",
 
   components: {
-    SearchInput,
+    // SearchInput
   },
 
   props: {
     lang: String,
     config: Object,
     versions: Array,
-    langConfigs: Array,
+    langConfigs: Array
   },
 
   data() {
     return {
       packageVersion: "1.0.1",
-      showVersionPop: false,
+      showVersionPop: false
     };
   },
   mounted() {
@@ -103,7 +103,7 @@ export default {
     anotherLang() {
       console.log(this.langConfigs, this.lang, "this.langConfigs");
       //筛选默认语言配置文件
-      const items = this.langConfigs.filter((item) => item.lang == this.lang);
+      const items = this.langConfigs.filter(item => item.lang == this.lang);
       if (items.length) {
         console.log(items[0], "items[0]");
         return items[0];
@@ -114,7 +114,7 @@ export default {
 
     searchConfig() {
       return this.config.searchConfig;
-    },
+    }
   },
 
   methods: {
@@ -144,8 +144,8 @@ export default {
       if (version.link) {
         location.href = version.link;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

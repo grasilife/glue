@@ -9,13 +9,13 @@ export default {
   name: "VanDocSimulator",
 
   props: {
-    src: String,
+    src: String
   },
 
   data() {
     return {
       scrollTop: window.scrollY,
-      windowHeight: window.innerHeight,
+      windowHeight: window.innerHeight
     };
   },
 
@@ -23,9 +23,9 @@ export default {
     simulatorStyle() {
       const height = Math.min(640, this.windowHeight - 90);
       return {
-        height: height + "px",
+        height: height + "px"
       };
-    },
+    }
   },
 
   mounted() {
@@ -35,7 +35,7 @@ export default {
     window.addEventListener("resize", () => {
       this.windowHeight = window.innerHeight;
     });
-  },
+  }
 };
 </script>
 

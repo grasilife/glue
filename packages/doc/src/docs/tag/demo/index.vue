@@ -84,15 +84,15 @@ export default {
       customBgColor: "背景颜色",
       customTextColor: "文字颜色",
       customPlainColor: "空心颜色",
-      show: true,
+      show: true
     };
   },
 
   methods: {
     close() {
       this.show = false;
-    },
-  },
+    }
+  }
 };
 </script>
 

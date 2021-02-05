@@ -45,8 +45,8 @@ export default {
       customIndexListTitle: "自定义索引列表",
       activeTab: 0,
       indexList,
-      customIndexList: [1, 2, 3, 4, 5, 6, 8, 9, 10],
+      customIndexList: [1, 2, 3, 4, 5, 6, 8, 9, 10]
     };
-  },
+  }
 };
 </script>

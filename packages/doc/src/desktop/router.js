@@ -12,7 +12,7 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: "hash",
-  routes: getRoutes(),
+  routes: getRoutes()
 });
 router.afterEach(() => {
   Vue.nextTick(() => window.syncPath());
@@ -24,14 +24,14 @@ function getRoutes() {
     {
       path: "/",
       name: "home",
-      redirect: `/${defaultLang}/home`,
-    },
+      redirect: `/${defaultLang}/home`
+    }
   ];
-  Object.keys(locales).forEach((lang) => {
+  Object.keys(locales).forEach(lang => {
     console.log(lang, locales[lang]);
-    locales[lang].nav.forEach((element) => {
+    locales[lang].nav.forEach(element => {
       if (element.items) {
-        element.items.forEach((element2) => {
+        element.items.forEach(element2 => {
           console.log(
             `/${lang}/${element2.path}`,
             "../docs/" + element2.path + "/" + "README." + lang + ".md"
@@ -44,7 +44,7 @@ function getRoutes() {
             component: () =>
               import(
                 "../docs/" + element2.path + "/" + "README." + lang + ".md"
-              ),
+              )
           });
         });
       }

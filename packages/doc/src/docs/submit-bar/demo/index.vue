@@ -61,7 +61,7 @@ export default {
       check: "全选",
       clickButton: "点击按钮",
       clickLink: "修改地址",
-      checked: true,
+      checked: true
     };
   },
 
@@ -71,8 +71,8 @@ export default {
     },
     onClickLink() {
       this.$toast(this.clickLink);
-    },
-  },
+    }
+  }
 };
 </script>
 

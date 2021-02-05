@@ -68,7 +68,7 @@ export default {
       activeIndex: 0,
       activeIndex2: 0,
       activeIndex3: 0,
-      activeIndex4: 0,
+      activeIndex4: 0
     };
   },
 
@@ -88,7 +88,7 @@ export default {
       data[1].badge = 5;
 
       return data;
-    },
-  },
+    }
+  }
 };
 </script>

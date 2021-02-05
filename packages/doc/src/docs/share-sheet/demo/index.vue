@@ -66,8 +66,8 @@ export default {
         basic: false,
         withDesc: false,
         multiLine: false,
-        customIcon: false,
-      },
+        customIcon: false
+      }
     };
   },
 
@@ -78,7 +78,7 @@ export default {
         { name: this.weibo, icon: "weibo" },
         { name: this.link, icon: "link" },
         { name: this.poster, icon: "poster" },
-        { name: this.qrcode, icon: "qrcode" },
+        { name: this.qrcode, icon: "qrcode" }
       ];
     },
 
@@ -88,14 +88,14 @@ export default {
           { name: this.wechat, icon: "wechat" },
           { name: this.wechatMoments, icon: "wechat-moments" },
           { name: this.weibo, icon: "weibo" },
-          { name: this.qq, icon: "qq" },
+          { name: this.qq, icon: "qq" }
         ],
         [
           { name: this.link, icon: "link" },
           { name: this.poster, icon: "poster" },
           { name: this.qrcode, icon: "qrcode" },
-          { name: this.weappQrcode, icon: "weapp-qrcode" },
-        ],
+          { name: this.weappQrcode, icon: "weapp-qrcode" }
+        ]
       ];
     },
 
@@ -103,16 +103,16 @@ export default {
       return [
         {
           name: this.name,
-          icon: "https://img.yzcdn.cn/vant/custom-icon-fire.png",
+          icon: "https://img.yzcdn.cn/vant/custom-icon-fire.png"
         },
         {
           name: this.name,
-          icon: "https://img.yzcdn.cn/vant/custom-icon-light.png",
+          icon: "https://img.yzcdn.cn/vant/custom-icon-light.png"
         },
         {
           name: this.name,
-          icon: "https://img.yzcdn.cn/vant/custom-icon-water.png",
-        },
+          icon: "https://img.yzcdn.cn/vant/custom-icon-water.png"
+        }
       ];
     },
 
@@ -123,12 +123,12 @@ export default {
         {
           name: this.link,
           icon: "link",
-          description: this.description,
+          description: this.description
         },
         { name: this.poster, icon: "poster" },
-        { name: this.qrcode, icon: "qrcode" },
+        { name: this.qrcode, icon: "qrcode" }
       ];
-    },
+    }
   },
 
   methods: {
@@ -138,8 +138,8 @@ export default {
       this.show.withDesc = false;
       this.show.multiLine = false;
       this.show.customIcon = false;
-    },
-  },
+    }
+  }
 };
 </script>
 

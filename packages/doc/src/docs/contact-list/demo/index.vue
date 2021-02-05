@@ -25,17 +25,17 @@ export default {
           id: "1",
           name: "张三",
           tel: "13000000000",
-          isDefault: true,
+          isDefault: true
         },
         {
           id: "2",
           name: "李四",
-          tel: "1310000000",
-        },
+          tel: "1310000000"
+        }
       ],
       select: "选择",
       defaultTagText: "默认",
-      chosenContactId: "1",
+      chosenContactId: "1"
     };
   },
 
@@ -48,8 +48,8 @@ export default {
     },
     onSelect(contact) {
       this.$toast(this.select + contact.id);
-    },
-  },
+    }
+  }
 };
 </script>
 

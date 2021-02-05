@@ -72,7 +72,7 @@ export default {
       value3: "",
       value4: "",
       value5: "",
-      value6: "",
+      value6: ""
     };
   },
 
@@ -83,7 +83,7 @@ export default {
 
     onCancel() {
       this.$toast(this.cancel);
-    },
-  },
+    }
+  }
 };
 </script>

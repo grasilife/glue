@@ -25,7 +25,7 @@ import DemoHomeNav from "./DemoHomeNav";
 
 export default {
   components: {
-    DemoHomeNav,
+    DemoHomeNav
   },
 
   computed: {
@@ -47,8 +47,8 @@ export default {
 
     smallTitle() {
       return this.config.title.length >= 8;
-    },
-  },
+    }
+  }
 };
 </script>
 

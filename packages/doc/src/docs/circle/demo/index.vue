@@ -70,7 +70,7 @@
 </template>
 
 <script>
-const format = (rate) => Math.min(Math.max(rate, 0), 100);
+const format = rate => Math.min(Math.max(rate, 0), 100);
 
 export default {
   data() {
@@ -91,8 +91,8 @@ export default {
       currentRate4: 70,
       gradientColor: {
         "0%": "#3fecff",
-        "100%": "#6149f6",
-      },
+        "100%": "#6149f6"
+      }
     };
   },
 
@@ -103,8 +103,8 @@ export default {
 
     reduce() {
       this.rate = format(this.rate - 20);
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -71,7 +71,7 @@ export default {
       stepper7: 1,
       stepper8: 1,
       stepperRound: 1,
-      disabledInput: 1,
+      disabledInput: 1
     };
   },
 
@@ -84,7 +84,7 @@ export default {
         this.stepper6 = value;
         this.$toast.clear();
       }, 500);
-    },
-  },
+    }
+  }
 };
 </script>

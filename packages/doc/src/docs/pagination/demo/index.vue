@@ -63,9 +63,9 @@ export default {
       currentPage1: 1,
       currentPage2: 1,
       currentPage3: 1,
-      currentPage4: 1,
+      currentPage4: 1
     };
-  },
+  }
 };
 </script>
 

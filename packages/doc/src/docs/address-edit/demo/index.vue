@@ -28,18 +28,17 @@ export default {
       searchResult: [
         {
           name: "黄龙万科中心",
-          address: "杭州市西湖区",
+          address: "杭州市西湖区"
         },
         {
-          name: "黄龙万科中心G座",
+          name: "黄龙万科中心G座"
         },
         {
           name: "黄龙万科中心H座",
-          address: "杭州市西湖区",
-        },
+          address: "杭州市西湖区"
+        }
       ],
-      areaList,
-      searchResult: [],
+      areaList
     };
   },
 
@@ -54,8 +53,8 @@ export default {
 
     onChangeDetail(val) {
       this.searchResult = val ? this.searchResult : [];
-    },
-  },
+    }
+  }
 };
 </script>
 

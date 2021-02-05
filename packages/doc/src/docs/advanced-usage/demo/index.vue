@@ -80,7 +80,7 @@ import DemoSection from "../../../mobile//components/DemoSection";
 export default {
   components: {
     DemoBlock,
-    DemoSection,
+    DemoSection
   },
   data() {
     return {
@@ -113,9 +113,9 @@ export default {
       customColor: "自定义颜色",
       pure: "单色按钮",
       gradient: "渐变色按钮",
-      blockElement: "块级元素",
+      blockElement: "块级元素"
     };
-  },
+  }
 };
 </script>
 

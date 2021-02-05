@@ -126,7 +126,7 @@ export default {
       size: "图标大小",
       tab: 0,
       demoIcon: "chat-o",
-      demoImage: "https://b.yzcdn.cn/vant/icon-demo-1126.png",
+      demoImage: "https://b.yzcdn.cn/vant/icon-demo-1126.png"
     };
   },
 
@@ -152,10 +152,10 @@ export default {
         type: "success",
         duration: 1500,
         className: "demo-icon-notify",
-        message: `${this.copied}：${tag}`,
+        message: `${this.copied}：${tag}`
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -67,9 +67,9 @@ export default {
       title: "商品名称",
       discountInfo: "营销信息",
       customContent: "自定义内容",
-      imageURL: "https://img.yzcdn.cn/vant/ipad.jpeg",
+      imageURL: "https://img.yzcdn.cn/vant/ipad.jpeg"
     };
-  },
+  }
 };
 </script>
 

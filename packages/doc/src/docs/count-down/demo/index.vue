@@ -60,7 +60,7 @@ export default {
       pauseTitle: "暂停",
       startTitle: "开始",
       finished: "倒计时结束",
-      time: 30 * 60 * 60 * 1000,
+      time: 30 * 60 * 60 * 1000
     };
   },
 
@@ -75,8 +75,8 @@ export default {
 
     reset() {
       this.$refs.countDown.reset();
-    },
-  },
+    }
+  }
 };
 </script>
 

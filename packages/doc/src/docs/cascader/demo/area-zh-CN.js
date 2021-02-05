@@ -9,17 +9,17 @@ export default [
         children: [
           {
             text: "上城区",
-            value: "330102",
+            value: "330102"
           },
           {
             text: "下城区",
-            value: "330103",
+            value: "330103"
           },
           {
             text: "江干区",
-            value: "330104",
-          },
-        ],
+            value: "330104"
+          }
+        ]
       },
       {
         text: "宁波市",
@@ -27,17 +27,17 @@ export default [
         children: [
           {
             text: "海曙区",
-            value: "330203",
+            value: "330203"
           },
           {
             text: "江北区",
-            value: "330205",
+            value: "330205"
           },
           {
             text: "北仑区",
-            value: "330206",
-          },
-        ],
+            value: "330206"
+          }
+        ]
       },
       {
         text: "温州市",
@@ -45,19 +45,19 @@ export default [
         children: [
           {
             text: "鹿城区",
-            value: "330302",
+            value: "330302"
           },
           {
             text: "龙湾区",
-            value: "330303",
+            value: "330303"
           },
           {
             text: "瓯海区",
-            value: "330304",
-          },
-        ],
-      },
-    ],
+            value: "330304"
+          }
+        ]
+      }
+    ]
   },
   {
     text: "江苏省",
@@ -69,17 +69,17 @@ export default [
         children: [
           {
             text: "玄武区",
-            value: "320102",
+            value: "320102"
           },
           {
             text: "秦淮区",
-            value: "320104",
+            value: "320104"
           },
           {
             text: "建邺区",
-            value: "320105",
-          },
-        ],
+            value: "320105"
+          }
+        ]
       },
       {
         text: "无锡市",
@@ -87,17 +87,17 @@ export default [
         children: [
           {
             text: "锡山区",
-            value: "320205",
+            value: "320205"
           },
           {
             text: "惠山区",
-            value: "320206",
+            value: "320206"
           },
           {
             text: "滨湖区",
-            value: "320211",
-          },
-        ],
+            value: "320211"
+          }
+        ]
       },
       {
         text: "徐州市",
@@ -105,18 +105,18 @@ export default [
         children: [
           {
             text: "鼓楼区",
-            value: "320302",
+            value: "320302"
           },
           {
             text: "云龙区",
-            value: "320303",
+            value: "320303"
           },
           {
             text: "贾汪区",
-            value: "320305",
-          },
-        ],
-      },
-    ],
-  },
+            value: "320305"
+          }
+        ]
+      }
+    ]
+  }
 ];

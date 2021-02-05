@@ -54,7 +54,7 @@ export default {
       successTip: "成功提示",
       customTips: "自定义提示",
       count: 0,
-      isLoading: false,
+      isLoading: false
     };
   },
 
@@ -65,7 +65,7 @@ export default {
       }
 
       return this.try;
-    },
+    }
   },
 
   mounted() {
@@ -91,8 +91,8 @@ export default {
         this.isLoading = false;
         this.count++;
       }, 1000);
-    },
-  },
+    }
+  }
 };
 </script>
 

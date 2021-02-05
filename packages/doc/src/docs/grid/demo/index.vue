@@ -85,9 +85,9 @@ export default {
       urlRoute: "URL 跳转",
       vueRoute: "路由跳转",
       showBadge: "徽标提示",
-      horizontal: "内容横排",
+      horizontal: "内容横排"
     };
-  },
+  }
 };
 </script>
 

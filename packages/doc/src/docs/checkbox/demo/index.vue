@@ -137,7 +137,7 @@ export default {
       checkAllResult: [],
       horizontalResult: [],
       activeIcon: "https://img.yzcdn.cn/vant/user-active.png",
-      inactiveIcon: "https://img.yzcdn.cn/vant/user-inactive.png",
+      inactiveIcon: "https://img.yzcdn.cn/vant/user-inactive.png"
     };
   },
 
@@ -152,8 +152,8 @@ export default {
 
     toggleAll() {
       this.$refs.group.toggleAll();
-    },
-  },
+    }
+  }
 };
 </script>
 
