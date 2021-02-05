@@ -1,64 +1,64 @@
 <template>
   <demo-section class="demo-col">
     <demo-block :title="basicUsage">
-      <van-row>
-        <van-col span="8">span: 8</van-col>
-        <van-col span="8">span: 8</van-col>
-        <van-col span="8">span: 8</van-col>
-      </van-row>
+      <glue-row>
+        <glue-col span="8">span: 8</glue-col>
+        <glue-col span="8">span: 8</glue-col>
+        <glue-col span="8">span: 8</glue-col>
+      </glue-row>
 
-      <van-row>
-        <van-col span="4">span: 4</van-col>
-        <van-col span="10" offset="4">
+      <glue-row>
+        <glue-col span="4">span: 4</glue-col>
+        <glue-col span="10" offset="4">
           offset: 4, span: 10
-        </van-col>
-      </van-row>
+        </glue-col>
+      </glue-row>
 
-      <van-row>
-        <van-col offset="12" span="12">
+      <glue-row>
+        <glue-col offset="12" span="12">
           offset: 12, span: 12
-        </van-col>
-      </van-row>
+        </glue-col>
+      </glue-row>
     </demo-block>
 
     <demo-block :title="title2">
-      <van-row gutter="20">
-        <van-col span="8">span: 8</van-col>
-        <van-col span="8">span: 8</van-col>
-        <van-col span="8">span: 8</van-col>
-      </van-row>
+      <glue-row gutter="20">
+        <glue-col span="8">span: 8</glue-col>
+        <glue-col span="8">span: 8</glue-col>
+        <glue-col span="8">span: 8</glue-col>
+      </glue-row>
     </demo-block>
 
     <demo-block :title="title3">
-      <van-row type="flex">
-        <van-col span="6">span: 6</van-col>
-        <van-col span="6">span: 6</van-col>
-        <van-col span="6">span: 6</van-col>
-      </van-row>
+      <glue-row type="flex">
+        <glue-col span="6">span: 6</glue-col>
+        <glue-col span="6">span: 6</glue-col>
+        <glue-col span="6">span: 6</glue-col>
+      </glue-row>
 
-      <van-row type="flex" justify="center">
-        <van-col span="6">span: 6</van-col>
-        <van-col span="6">span: 6</van-col>
-        <van-col span="6">span: 6</van-col>
-      </van-row>
+      <glue-row type="flex" justify="center">
+        <glue-col span="6">span: 6</glue-col>
+        <glue-col span="6">span: 6</glue-col>
+        <glue-col span="6">span: 6</glue-col>
+      </glue-row>
 
-      <van-row type="flex" justify="end">
-        <van-col span="6">span: 6</van-col>
-        <van-col span="6">span: 6</van-col>
-        <van-col span="6">span: 6</van-col>
-      </van-row>
+      <glue-row type="flex" justify="end">
+        <glue-col span="6">span: 6</glue-col>
+        <glue-col span="6">span: 6</glue-col>
+        <glue-col span="6">span: 6</glue-col>
+      </glue-row>
 
-      <van-row type="flex" justify="space-between">
-        <van-col span="6">span: 6</van-col>
-        <van-col span="6">span: 6</van-col>
-        <van-col span="6">span: 6</van-col>
-      </van-row>
+      <glue-row type="flex" justify="space-between">
+        <glue-col span="6">span: 6</glue-col>
+        <glue-col span="6">span: 6</glue-col>
+        <glue-col span="6">span: 6</glue-col>
+      </glue-row>
 
-      <van-row type="flex" justify="space-around">
-        <van-col span="6">span: 6</van-col>
-        <van-col span="6">span: 6</van-col>
-        <van-col span="6">span: 6</van-col>
-      </van-row>
+      <glue-row type="flex" justify="space-around">
+        <glue-col span="6">span: 6</glue-col>
+        <glue-col span="6">span: 6</glue-col>
+        <glue-col span="6">span: 6</glue-col>
+      </glue-row>
     </demo-block>
   </demo-section>
 </template>
@@ -89,7 +89,7 @@ export default {
     padding-left: 0;
   }
 
-  .van-col {
+  .glue-col {
     margin-bottom: 10px;
     color: @white;
     font-size: 13px;
