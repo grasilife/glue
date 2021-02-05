@@ -8,11 +8,7 @@
         </a>
 
         <ul class="van-doc-header__top-nav">
-          <li
-            v-for="(item, index) in config.links"
-            :key="index"
-            class="van-doc-header__top-nav-item"
-          >
+          <li v-for="(item, index) in config.links" :key="index" class="van-doc-header__top-nav-item">
             <a class="van-doc-header__link" target="_blank" :href="item.url">
               <img v-if="item.logo" :src="item.logo" />
               <span v-else-if="item.text">
@@ -21,15 +17,8 @@
             </a>
           </li>
 
-          <li
-            ref="version"
-            v-if="versions"
-            class="van-doc-header__top-nav-item"
-          >
-            <span
-              class="van-doc-header__cube van-doc-header__version"
-              @click="toggleVersionPop"
-            >
+          <li ref="version" v-if="versions" class="van-doc-header__top-nav-item">
+            <span class="van-doc-header__cube van-doc-header__version" @click="toggleVersionPop">
               {{ packageVersion }}
               <transition name="van-doc-dropdown">
                 <div v-if="showVersionPop" class="van-doc-header__version-pop">

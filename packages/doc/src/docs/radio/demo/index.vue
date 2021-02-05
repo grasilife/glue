@@ -8,11 +8,7 @@
     </demo-block>
 
     <demo-block :title="horizontal">
-      <van-radio-group
-        v-model="radioHorizontal"
-        class="demo-radio-group"
-        direction="horizontal"
-      >
+      <van-radio-group v-model="radioHorizontal" class="demo-radio-group" direction="horizontal">
         <van-radio name="1">{{ radio }} 1</van-radio>
         <van-radio name="2">{{ radio }} 2</van-radio>
       </van-radio-group>

@@ -33,11 +33,7 @@
     </demo-block>
 
     <demo-block :title="title4">
-      <van-pagination
-        v-model="currentPage4"
-        :total-items="125"
-        :show-page-size="5"
-      >
+      <van-pagination v-model="currentPage4" :total-items="125" :show-page-size="5">
         <template #prev-text>
           <van-icon name="arrow-left" />
         </template>

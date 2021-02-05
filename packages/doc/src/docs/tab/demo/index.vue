@@ -2,9 +2,7 @@
   <demo-section>
     <demo-block :title="basicUsage">
       <van-tabs v-model="active">
-        <van-tab :title="tab + index" v-for="index in tabs" :key="index">
-          {{ content }} {{ index }}
-        </van-tab>
+        <van-tab :title="tab + index" v-for="index in tabs" :key="index"> {{ content }} {{ index }} </van-tab>
       </van-tabs>
     </demo-block>
 
@@ -18,20 +16,13 @@
 
     <demo-block :title="title2">
       <van-tabs>
-        <van-tab v-for="index in 8" :title="tab + index" :key="index">
-          {{ content }} {{ index }}
-        </van-tab>
+        <van-tab v-for="index in 8" :title="tab + index" :key="index"> {{ content }} {{ index }} </van-tab>
       </van-tabs>
     </demo-block>
 
     <demo-block :title="title3">
       <van-tabs @disabled="onClickDisabled">
-        <van-tab
-          v-for="index in 3"
-          :title="tab + index"
-          :disabled="index === 2"
-          :key="index"
-        >
+        <van-tab v-for="index in 3" :title="tab + index" :disabled="index === 2" :key="index">
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
@@ -39,25 +30,19 @@
 
     <demo-block :title="title4">
       <van-tabs type="card">
-        <van-tab v-for="index in 3" :title="tab + index" :key="index">
-          {{ content }} {{ index }}
-        </van-tab>
+        <van-tab v-for="index in 3" :title="tab + index" :key="index"> {{ content }} {{ index }} </van-tab>
       </van-tabs>
     </demo-block>
 
     <demo-block :title="title5">
       <van-tabs @click="onClick">
-        <van-tab v-for="index in 2" :title="tab + index" :key="index">
-          {{ content }} {{ index }}
-        </van-tab>
+        <van-tab v-for="index in 2" :title="tab + index" :key="index"> {{ content }} {{ index }} </van-tab>
       </van-tabs>
     </demo-block>
 
     <demo-block :title="title6">
       <van-tabs :active="active" sticky>
-        <van-tab :title="tab + index" v-for="index in tabs" :key="index">
-          {{ content }} {{ index }}
-        </van-tab>
+        <van-tab :title="tab + index" v-for="index in tabs" :key="index"> {{ content }} {{ index }} </van-tab>
       </van-tabs>
     </demo-block>
 
@@ -72,33 +57,25 @@
 
     <demo-block :title="title8">
       <van-tabs animated>
-        <van-tab :title="tab + index" v-for="index in tabs" :key="index">
-          {{ content }} {{ index }}
-        </van-tab>
+        <van-tab :title="tab + index" v-for="index in tabs" :key="index"> {{ content }} {{ index }} </van-tab>
       </van-tabs>
     </demo-block>
 
     <demo-block :title="title9">
       <van-tabs :active="active" swipeable>
-        <van-tab :title="tab + index" v-for="index in tabs" :key="index">
-          {{ content }} {{ index }}
-        </van-tab>
+        <van-tab :title="tab + index" v-for="index in tabs" :key="index"> {{ content }} {{ index }} </van-tab>
       </van-tabs>
     </demo-block>
 
     <demo-block :title="title10">
       <van-tabs scrollspy sticky>
-        <van-tab :title="tab + index" v-for="index in 8" :key="index">
-          {{ content }} {{ index }}
-        </van-tab>
+        <van-tab :title="tab + index" v-for="index in 8" :key="index"> {{ content }} {{ index }} </van-tab>
       </van-tabs>
     </demo-block>
 
     <demo-block :title="beforeChangeTitle">
       <van-tabs :before-change="beforeChange">
-        <van-tab :title="tab + index" v-for="index in 4" :key="index">
-          {{ content }} {{ index }}
-        </van-tab>
+        <van-tab :title="tab + index" v-for="index in 4" :key="index"> {{ content }} {{ index }} </van-tab>
       </van-tabs>
     </demo-block>
   </demo-section>

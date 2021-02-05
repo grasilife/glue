@@ -7,3 +7,4 @@ RESTFULLURL.js
 /src/vendor/vueloader2.js
 /src/assets
 *.md
+glue-components

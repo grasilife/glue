@@ -6,22 +6,12 @@
 
     <demo-block :title="listenToEvents">
       <form action="/">
-        <van-search
-          v-model="value5"
-          :placeholder="placeholder"
-          show-action
-          @search="onSearch"
-          @cancel="onCancel"
-        />
+        <van-search v-model="value5" :placeholder="placeholder" show-action @search="onSearch" @cancel="onCancel" />
       </form>
     </demo-block>
 
     <demo-block :title="inputAlign">
-      <van-search
-        v-model="value4"
-        :placeholder="placeholder"
-        input-align="center"
-      />
+      <van-search v-model="value4" :placeholder="placeholder" input-align="center" />
     </demo-block>
 
     <demo-block :title="disabled">
@@ -29,22 +19,11 @@
     </demo-block>
 
     <demo-block :title="background">
-      <van-search
-        v-model="value2"
-        :placeholder="placeholder"
-        shape="round"
-        background="#4fc08d"
-      />
+      <van-search v-model="value2" :placeholder="placeholder" shape="round" background="#4fc08d" />
     </demo-block>
 
     <demo-block :title="customButton">
-      <van-search
-        v-model="value6"
-        show-action
-        :label="label"
-        :placeholder="placeholder"
-        @search="onSearch"
-      >
+      <van-search v-model="value6" show-action :label="label" :placeholder="placeholder" @search="onSearch">
         <template #action>
           <div @click="onSearch(value6)">{{ search }}</div>
         </template>

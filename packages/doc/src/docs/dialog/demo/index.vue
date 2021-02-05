@@ -17,12 +17,7 @@
 
     <demo-block card :title="componentCall">
       <van-cell is-link :title="componentCall" @click="show = true" />
-      <van-dialog
-        v-model="show"
-        :title="title"
-        show-cancel-button
-        :lazy-render="false"
-      >
+      <van-dialog v-model="show" :title="title" show-cancel-button :lazy-render="false">
         <img :src="image" />
       </van-dialog>
     </demo-block>

@@ -32,19 +32,13 @@ function getRoutes() {
     locales[lang].nav.forEach(element => {
       if (element.items) {
         element.items.forEach(element2 => {
-          console.log(
-            `/${lang}/${element2.path}`,
-            "../docs/" + element2.path + "/" + "README." + lang + ".md"
-          );
+          console.log(`/${lang}/${element2.path}`, "../docs/" + element2.path + "/" + "README." + lang + ".md");
           routes.push({
             name: element2.title,
             path: `/${lang}/${element2.path}`,
             //这个地方不能使用下面的方法
             // component: () => import(imortPath),
-            component: () =>
-              import(
-                "../docs/" + element2.path + "/" + "README." + lang + ".md"
-              )
+            component: () => import("../docs/" + element2.path + "/" + "README." + lang + ".md")
           });
         });
       }

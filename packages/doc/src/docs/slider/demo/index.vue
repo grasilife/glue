@@ -21,12 +21,7 @@
     </demo-block>
 
     <demo-block :title="customStyle">
-      <van-slider
-        v-model="value6"
-        bar-height="4px"
-        active-color="#ee0a24"
-        @change="onChange"
-      />
+      <van-slider v-model="value6" bar-height="4px" active-color="#ee0a24" @change="onChange" />
     </demo-block>
 
     <demo-block :title="customButton">
@@ -40,13 +35,7 @@
     <demo-block :title="vertical">
       <div :style="{ height: '150px', paddingLeft: '30px' }">
         <van-slider v-model="value8" vertical @change="onChange" />
-        <van-slider
-          v-model="value9"
-          range
-          vertical
-          style="margin-left: 100px;"
-          @change="onChange"
-        />
+        <van-slider v-model="value9" range vertical style="margin-left: 100px;" @change="onChange" />
       </div>
     </demo-block>
   </demo-section>

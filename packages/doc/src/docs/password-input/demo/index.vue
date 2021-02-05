@@ -45,12 +45,7 @@
       />
     </demo-block>
 
-    <van-number-keyboard
-      :show="!!current"
-      @blur="current = ''"
-      @input="onInput"
-      @delete="onDelete"
-    />
+    <van-number-keyboard :show="!!current" @blur="current = ''" @input="onInput" @delete="onDelete" />
   </demo-section>
 </template>
 
@@ -94,11 +89,7 @@ export default {
 
       value[current] = newValue;
 
-      if (
-        current === "showInfo" &&
-        newValue.length === 6 &&
-        newValue !== "123456"
-      ) {
+      if (current === "showInfo" && newValue.length === 6 && newValue !== "123456") {
         this.errorInfo = this.errorInfo;
       }
     },

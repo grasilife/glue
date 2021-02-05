@@ -39,12 +39,7 @@
     <DemoBlock :title="icon">
       <van-button type="primary" icon="plus" />
       <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
-      />
+      <van-button plain type="info" icon="https://img.yzcdn.cn/vant/user-active.png" :text="button" />
     </DemoBlock>
 
     <DemoBlock :title="size">
@@ -66,10 +61,7 @@
     <DemoBlock :title="customColor">
       <van-button color="#7232dd" :text="pure" />
       <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
+      <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" :text="gradient" />
     </DemoBlock>
   </DemoSection>
 </template>

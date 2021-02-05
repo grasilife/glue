@@ -27,9 +27,7 @@
     </demo-block>
 
     <demo-block :title="customStyle">
-      <van-divider
-        :style="{ borderColor: '#1989fa', color: '#1989fa', padding: '0 16px' }"
-      >
+      <van-divider :style="{ borderColor: '#1989fa', color: '#1989fa', padding: '0 16px' }">
         {{ text }}
       </van-divider>
     </demo-block>

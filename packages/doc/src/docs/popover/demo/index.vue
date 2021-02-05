@@ -32,20 +32,9 @@
     </demo-block>
 
     <demo-block :title="placement">
-      <van-field
-        is-link
-        readonly
-        name="picker"
-        :label="choosePlacement"
-        @click="showPicker = true"
-      />
+      <van-field is-link readonly name="picker" :label="choosePlacement" @click="showPicker = true" />
 
-      <van-popup
-        v-model="showPicker"
-        round
-        position="bottom"
-        get-container="body"
-      >
+      <van-popup v-model="showPicker" round position="bottom" get-container="body">
         <div class="demo-popover-box">
           <van-popover
             v-model="show.placement"
@@ -103,20 +92,8 @@
         style="margin-left: 16px;"
         @select="onSelect"
       >
-        <van-grid
-          square
-          clickable
-          :border="false"
-          column-num="3"
-          style="width: 240px;"
-        >
-          <van-grid-item
-            v-for="i in 6"
-            :key="i"
-            icon="photo-o"
-            :text="option"
-            @click="show.customContent = false"
-          />
+        <van-grid square clickable :border="false" column-num="3" style="width: 240px;">
+          <van-grid-item v-for="i in 6" :key="i" icon="photo-o" :text="option" @click="show.customContent = false" />
         </van-grid>
         <template #reference>
           <van-button type="primary">
@@ -141,11 +118,7 @@ export default {
         { text: "选项二", icon: "music-o" },
         { text: "选项三", icon: "more-o" }
       ],
-      actionsDisabled: [
-        { text: "选项一", disabled: true },
-        { text: "选项二", disabled: true },
-        { text: "选项三" }
-      ],
+      actionsDisabled: [{ text: "选项一", disabled: true }, { text: "选项二", disabled: true }, { text: "选项三" }],
       showIcon: "展示图标",
       placement: "弹出位置",
       darkTheme: "深色风格",

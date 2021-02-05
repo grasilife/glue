@@ -43,36 +43,21 @@
       </van-tab>
 
       <van-tab :title="basic">
-        <van-col
-          v-for="icon in icons.basic"
-          :key="icon"
-          span="6"
-          @click="copy(icon)"
-        >
+        <van-col v-for="icon in icons.basic" :key="icon" span="6" @click="copy(icon)">
           <van-icon :name="icon" />
           <span>{{ icon }}</span>
         </van-col>
       </van-tab>
 
       <van-tab :title="outline">
-        <van-col
-          v-for="icon in icons.outline"
-          :key="icon"
-          span="6"
-          @click="copy(icon)"
-        >
+        <van-col v-for="icon in icons.outline" :key="icon" span="6" @click="copy(icon)">
           <van-icon :name="icon" />
           <span>{{ icon }}</span>
         </van-col>
       </van-tab>
 
       <van-tab :title="filled">
-        <van-col
-          v-for="icon in icons.filled"
-          :key="icon"
-          span="6"
-          @click="copy(icon)"
-        >
+        <van-col v-for="icon in icons.filled" :key="icon" span="6" @click="copy(icon)">
           <van-icon :name="icon" />
           <span>{{ icon }}</span>
         </van-col>
@@ -94,10 +79,7 @@ function copyToClipboard(str) {
   el.style.left = "-9999px";
   document.body.appendChild(el);
 
-  const selected =
-    document.getSelection().rangeCount > 0
-      ? document.getSelection().getRangeAt(0)
-      : false;
+  const selected = document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false;
 
   el.select();
   document.execCommand("copy");

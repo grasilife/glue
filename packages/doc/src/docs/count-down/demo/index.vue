@@ -35,11 +35,7 @@
       />
       <van-grid clickable :column-num="3">
         <van-grid-item icon="play-circle-o" :text="startTitle" @click="start" />
-        <van-grid-item
-          icon="pause-circle-o"
-          :text="pauseTitle"
-          @click="pause"
-        />
+        <van-grid-item icon="pause-circle-o" :text="pauseTitle" @click="pause" />
         <van-grid-item icon="replay" :text="resetTitle" @click="reset" />
       </van-grid>
     </demo-block>

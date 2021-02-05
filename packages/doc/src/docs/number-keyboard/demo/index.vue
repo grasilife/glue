@@ -28,12 +28,7 @@
       @touchstart.native.stop="keyboard = 'bindValue'"
     />
 
-    <van-number-keyboard
-      :show="keyboard === 'default'"
-      @blur="keyboard = ''"
-      @input="onInput"
-      @delete="onDelete"
-    />
+    <van-number-keyboard :show="keyboard === 'default'" @blur="keyboard = ''" @input="onInput" @delete="onDelete" />
 
     <van-number-keyboard
       :show="keyboard === 'custom'"
@@ -82,12 +77,7 @@
       @delete="onDelete"
     />
 
-    <van-number-keyboard
-      v-model="value"
-      :show="keyboard === 'bindValue'"
-      maxlength="6"
-      @blur="keyboard = ''"
-    />
+    <van-number-keyboard v-model="value" :show="keyboard === 'bindValue'" maxlength="6" @blur="keyboard = ''" />
   </demo-section>
 </template>
 

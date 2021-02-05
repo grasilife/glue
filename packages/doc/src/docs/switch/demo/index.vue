@@ -17,11 +17,7 @@
     </demo-block>
 
     <demo-block :title="customColor">
-      <van-switch
-        v-model="checked3"
-        active-color="#ee0a24"
-        inactive-color="#dcdee0"
-      />
+      <van-switch v-model="checked3" active-color="#ee0a24" inactive-color="#dcdee0" />
     </demo-block>
 
     <demo-block :title="asyncControl">

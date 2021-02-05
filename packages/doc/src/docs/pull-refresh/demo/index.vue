@@ -8,21 +8,13 @@
       </van-tab>
 
       <van-tab :title="successTip">
-        <van-pull-refresh
-          v-model="isLoading"
-          :success-text="success"
-          @refresh="onRefresh(false)"
-        >
+        <van-pull-refresh v-model="isLoading" :success-text="success" @refresh="onRefresh(false)">
           <p>{{ tips }}</p>
         </van-pull-refresh>
       </van-tab>
 
       <van-tab :title="customTips">
-        <van-pull-refresh
-          v-model="isLoading"
-          head-height="80"
-          @refresh="onRefresh(true)"
-        >
+        <van-pull-refresh v-model="isLoading" head-height="80" @refresh="onRefresh(true)">
           <template #pulling="{ distance }">
             <img
               class="doge"

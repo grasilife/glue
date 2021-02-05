@@ -5,21 +5,11 @@
     </demo-block>
 
     <demo-block :title="editContact">
-      <van-contact-card
-        type="edit"
-        :name="currentContact.name"
-        :tel="currentContact.tel"
-        @click="onEdit"
-      />
+      <van-contact-card type="edit" :name="currentContact.name" :tel="currentContact.tel" @click="onEdit" />
     </demo-block>
 
     <demo-block :title="uneditable">
-      <van-contact-card
-        type="edit"
-        :name="currentContact.name"
-        :tel="currentContact.tel"
-        :editable="false"
-      />
+      <van-contact-card type="edit" :name="currentContact.name" :tel="currentContact.tel" :editable="false" />
     </demo-block>
   </demo-section>
 </template>

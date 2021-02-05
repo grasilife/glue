@@ -53,11 +53,7 @@
     </demo-block>
 
     <demo-block :title="customColor">
-      <van-tabbar
-        v-model="active4"
-        active-color="#ee0a24"
-        inactive-color="#000"
-      >
+      <van-tabbar v-model="active4" active-color="#ee0a24" inactive-color="#000">
         <van-tabbar-item icon="home-o">{{ tab }}</van-tabbar-item>
         <van-tabbar-item icon="search">{{ tab }}</van-tabbar-item>
         <van-tabbar-item icon="friends-o">{{ tab }}</van-tabbar-item>

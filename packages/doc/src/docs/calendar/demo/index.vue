@@ -82,11 +82,7 @@
         @click="show('range', 'maxRange')"
       />
 
-      <van-cell
-        is-link
-        :title="firstDayOfWeekTitle"
-        @click="show('single', 'firstDayOfWeek')"
-      />
+      <van-cell is-link :title="firstDayOfWeekTitle" @click="show('single', 'firstDayOfWeek')" />
     </demo-block>
 
     <demo-block card :title="tiledDisplay">

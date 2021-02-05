@@ -1,28 +1,28 @@
 <template>
   <DemoSection>
     <DemoBlock :title="type">
-      <div class="demo-button-row">
-        <van-button type="primary">{{ primary }}</van-button>
-        <van-button type="info">{{ info }}</van-button>
-        <van-button type="default">{{ defaultType }}</van-button>
-      </div>
-      <van-button type="danger">{{ danger }}</van-button>
-      <van-button type="warning">{{ warning }}</van-button>
+      <glue-button type="primary">{{ primary }}</glue-button>
+      <glue-button type="success">{{ success }}</glue-button>
+      <glue-button type="default">{{ defaultType }}</glue-button>
+      <glue-button type="warning">{{ warning }}</glue-button>
+      <glue-button type="danger">{{ danger }}</glue-button>
     </DemoBlock>
 
     <DemoBlock :title="plain">
-      <van-button plain type="primary" :text="plain" />
-      <van-button plain type="info" :text="plain" />
+      <glue-button plain type="primary">{{ plain }}</glue-button>
+      <glue-button plain type="success">{{ plain }}</glue-button>
+      <!-- <van-button plain type="primary" :text="plain" />
+      <van-button plain type="info" :text="plain" /> -->
     </DemoBlock>
 
     <DemoBlock :title="hairline">
-      <van-button plain hairline type="primary" :text="hairlineButton" />
-      <van-button plain hairline type="info" :text="hairlineButton" />
+      <glue-button plain hairline type="primary">{{ hairlineButton }}</glue-button>
+      <glue-button plain hairline type="success">{{ hairlineButton }}</glue-button>
     </DemoBlock>
 
     <DemoBlock :title="disabled">
-      <van-button disabled type="primary" :text="disabled" />
-      <van-button disabled type="info" :text="disabled" />
+      <glue-button disabled type="primary" :text="disabled"></glue-button>
+      <glue-button disabled type="success" :text="disabled"></glue-button>
     </DemoBlock>
 
     <DemoBlock :title="loadingStatus">
@@ -39,12 +39,7 @@
     <DemoBlock :title="icon">
       <van-button type="primary" icon="plus" />
       <van-button type="primary" icon="plus" :text="button" />
-      <van-button
-        plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
-        :text="button"
-      />
+      <van-button plain type="info" icon="https://img.yzcdn.cn/vant/user-active.png" :text="button" />
     </DemoBlock>
 
     <DemoBlock :title="size">
@@ -66,10 +61,7 @@
     <DemoBlock :title="customColor">
       <van-button color="#7232dd" :text="pure" />
       <van-button plain color="#7232dd" :text="pure" />
-      <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
-        :text="gradient"
-      />
+      <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" :text="gradient" />
     </DemoBlock>
   </DemoSection>
 </template>
@@ -94,7 +86,7 @@ export default {
       shape: "按钮形状",
       defaultType: "默认按钮",
       primary: "主要按钮",
-      info: "信息按钮",
+      success: "成功按钮",
       danger: "危险按钮",
       warning: "警告按钮",
       large: "大号按钮",
@@ -119,33 +111,13 @@ export default {
 };
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less" rel="stylesheet/less" scoped>
 @import "../../../common/style/var2.less";
-
-.van-doc-demo-section {
-  .van-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
-  }
-
-  .van-doc-demo-block {
-    padding: 0 @padding-md;
-  }
-  .demo-button-row {
-    margin-bottom: @padding-md;
-  }
-  .van-doc-DemoBlock__title {
-    padding-left: 0;
-  }
-
-  &-row {
-    margin-bottom: @padding-sm;
-  }
+.glue-button {
+  margin-bottom: @padding-md;
+  margin-right: @padding-md;
+}
+.van-doc-demo-block {
+  padding: 0 @padding-md;
 }
 </style>

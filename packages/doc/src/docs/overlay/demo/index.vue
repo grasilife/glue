@@ -1,23 +1,13 @@
 <template>
   <demo-section>
     <demo-block :title="basicUsage">
-      <van-button
-        type="primary"
-        :text="showOverlay"
-        style="margin-left: 16px;"
-        @click="show = true"
-      />
+      <van-button type="primary" :text="showOverlay" style="margin-left: 16px;" @click="show = true" />
 
       <van-overlay :show="show" @click="show = false" />
     </demo-block>
 
     <demo-block :title="embeddedContent">
-      <van-button
-        type="primary"
-        :text="embeddedContent"
-        style="margin-left: 16px;"
-        @click="showEmbedded = true"
-      />
+      <van-button type="primary" :text="embeddedContent" style="margin-left: 16px;" @click="showEmbedded = true" />
 
       <van-overlay :show="showEmbedded" @click="showEmbedded = false">
         <div class="wrapper">

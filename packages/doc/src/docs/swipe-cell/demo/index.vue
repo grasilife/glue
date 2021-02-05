@@ -16,20 +16,9 @@
 
       <demo-block :title="customContent">
         <van-swipe-cell>
-          <van-card
-            num="2"
-            price="2.00"
-            :desc="desc"
-            :title="cardTitle"
-            :thumb="imageURL"
-          />
+          <van-card num="2" price="2.00" :desc="desc" :title="cardTitle" :thumb="imageURL" />
           <template #right>
-            <van-button
-              square
-              type="danger"
-              class="delete-button"
-              :text="deleteTitle"
-            />
+            <van-button square type="danger" class="delete-button" :text="deleteTitle" />
           </template>
         </van-swipe-cell>
       </demo-block>

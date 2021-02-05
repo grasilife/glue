@@ -1,42 +1,19 @@
 <template>
   <demo-section>
     <demo-block card :title="basicUsage">
-      <van-picker
-        show-toolbar
-        :title="title"
-        :columns="textColumns"
-        @change="onChange1"
-      />
+      <van-picker show-toolbar :title="title" :columns="textColumns" @change="onChange1" />
     </demo-block>
 
     <demo-block card :title="defaultIndex">
-      <van-picker
-        show-toolbar
-        :title="title"
-        :columns="textColumns"
-        :default-index="2"
-        @change="onChange1"
-      />
+      <van-picker show-toolbar :title="title" :columns="textColumns" :default-index="2" @change="onChange1" />
     </demo-block>
 
     <demo-block card :title="multipleColumns">
-      <van-picker
-        show-toolbar
-        :title="title"
-        :columns="dateColumns"
-        @cancel="onCancel"
-        @confirm="onConfirm"
-      />
+      <van-picker show-toolbar :title="title" :columns="dateColumns" @cancel="onCancel" @confirm="onConfirm" />
     </demo-block>
 
     <demo-block card :title="cascade">
-      <van-picker
-        show-toolbar
-        :title="title"
-        :columns="cascadeColumns"
-        @cancel="onCancel"
-        @confirm="onConfirm"
-      />
+      <van-picker show-toolbar :title="title" :columns="cascadeColumns" @cancel="onCancel" @confirm="onConfirm" />
     </demo-block>
 
     <demo-block card :title="disableOption">
@@ -44,12 +21,7 @@
     </demo-block>
 
     <demo-block card :title="setColumnValues">
-      <van-picker
-        show-toolbar
-        :title="title"
-        :columns="columns"
-        @change="onChange2"
-      />
+      <van-picker show-toolbar :title="title" :columns="columns" @change="onChange2" />
     </demo-block>
 
     <demo-block card :title="loadingStatus">
@@ -57,22 +29,9 @@
     </demo-block>
 
     <demo-block card :title="withPopup">
-      <van-field
-        readonly
-        clickable
-        :label="city"
-        :value="fieldValue"
-        :placeholder="chooseCity"
-        @click="onClickField"
-      />
+      <van-field readonly clickable :label="city" :value="fieldValue" :placeholder="chooseCity" @click="onClickField" />
       <van-popup v-model="showPicker" round position="bottom">
-        <van-picker
-          show-toolbar
-          :title="title"
-          :columns="textColumns"
-          @cancel="onCancel2"
-          @confirm="onConfirm2"
-        />
+        <van-picker show-toolbar :title="title" :columns="textColumns" @cancel="onCancel2" @confirm="onConfirm2" />
       </van-popup>
     </demo-block>
   </demo-section>
@@ -98,21 +57,8 @@ export default {
       cascadeColumns: cascadeColumns["zh-CN"],
       multipleColumns: "多列选择",
       setColumnValues: "动态设置选项",
-      textColumns: [
-        "杭州",
-        "宁波",
-        "温州",
-        "绍兴",
-        "湖州",
-        "嘉兴",
-        "金华",
-        "衢州"
-      ],
-      disabledColumns: [
-        { text: "杭州", disabled: true },
-        { text: "宁波" },
-        { text: "温州" }
-      ],
+      textColumns: ["杭州", "宁波", "温州", "绍兴", "湖州", "嘉兴", "金华", "衢州"],
+      disabledColumns: [{ text: "杭州", disabled: true }, { text: "宁波" }, { text: "温州" }],
       column3: {
         浙江: ["杭州", "宁波", "温州", "嘉兴", "湖州"],
         福建: ["福州", "厦门", "莆田", "三明", "泉州"]

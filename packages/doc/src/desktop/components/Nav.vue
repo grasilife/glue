@@ -1,19 +1,11 @@
 <template>
   <div class="van-doc-nav">
-    <div
-      v-for="(group, index) in navConfig"
-      class="van-doc-nav__group"
-      :key="index"
-    >
+    <div v-for="(group, index) in navConfig" class="van-doc-nav__group" :key="index">
       <div class="van-doc-nav__title">
         {{ group.title }}
       </div>
       <template v-if="group.items">
-        <div
-          v-for="(item, groupIndex) in group.items"
-          :key="groupIndex"
-          class="van-doc-nav__item"
-        >
+        <div v-for="(item, groupIndex) in group.items" :key="groupIndex" class="van-doc-nav__item">
           <van-doc-nav-link :item="item" :base="base" />
         </div>
       </template>

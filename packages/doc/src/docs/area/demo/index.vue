@@ -13,11 +13,7 @@
     </DemoBlock>
 
     <DemoBlock card :title="title4">
-      <van-area
-        :title="title"
-        :area-list="areaList"
-        :columns-placeholder="columnsPlaceholder"
-      />
+      <van-area :title="title" :area-list="areaList" :columns-placeholder="columnsPlaceholder" />
     </DemoBlock>
   </demo-section>
 </template>

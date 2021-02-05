@@ -9,23 +9,11 @@
     </demo-block>
 
     <demo-block :title="customStyle">
-      <van-rate
-        v-model="value3"
-        :size="25"
-        color="#ffd21e"
-        void-icon="star"
-        void-color="#eee"
-      />
+      <van-rate v-model="value3" :size="25" color="#ffd21e" void-icon="star" void-color="#eee" />
     </demo-block>
 
     <demo-block :title="halfStar">
-      <van-rate
-        v-model="value4"
-        :size="25"
-        allow-half
-        void-icon="star"
-        void-color="#eee"
-      />
+      <van-rate v-model="value4" :size="25" allow-half void-icon="star" void-color="#eee" />
     </demo-block>
 
     <demo-block :title="customCount">

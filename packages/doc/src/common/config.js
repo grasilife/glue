@@ -4,9 +4,7 @@ export default {
     srcDir: "src",
     skipInstall: ["lazyload"],
     site: {
-      publicPath:
-        (typeof window === "undefined" && process.env.PUBLIC_PATH) ||
-        "https://b.yzcdn.cn/vant/"
+      publicPath: (typeof window === "undefined" && process.env.PUBLIC_PATH) || "https://b.yzcdn.cn/vant/"
     },
     vetur: {
       tagPrefix: "van-"
@@ -50,9 +48,7 @@ export default {
             if (location.hostname !== "youzan.github.io") {
               items.forEach(item => {
                 if (item.url) {
-                  item.url =
-                    item.url &&
-                    item.url.replace("youzan.github.io", location.hostname);
+                  item.url = item.url && item.url.replace("youzan.github.io", location.hostname);
                 }
               });
             }

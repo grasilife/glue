@@ -10,11 +10,7 @@
     <demo-block card :title="customIcon">
       <van-cell is-link :title="customIcon" @click="showIconToast" />
       <van-cell is-link :title="customImage" @click="showImageToast" />
-      <van-cell
-        is-link
-        :title="loadingType"
-        @click="showLoadingToast('spinner')"
-      />
+      <van-cell is-link :title="loadingType" @click="showLoadingToast('spinner')" />
     </demo-block>
 
     <demo-block card :title="customPosition">

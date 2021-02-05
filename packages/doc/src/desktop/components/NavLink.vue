@@ -1,10 +1,5 @@
 <template>
-  <router-link
-    v-if="item.path"
-    :class="{ active }"
-    :to="path"
-    v-html="itemName"
-  />
+  <router-link v-if="item.path" :class="{ active }" :to="path" v-html="itemName" />
   <a v-else-if="item.link" :href="item.link" v-html="itemName" />
   <a v-else v-html="itemName" />
 </template>

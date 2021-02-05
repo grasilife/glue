@@ -1,21 +1,13 @@
 <template>
   <div class="demo-home">
-    <h1
-      class="demo-home__title"
-      :class="{ 'demo-home__title--small': smallTitle }"
-    >
+    <h1 class="demo-home__title" :class="{ 'demo-home__title--small': smallTitle }">
       <img :src="config.logo" />
       <span>{{ config.title }}</span>
     </h1>
     <h2 v-if="config.description" class="demo-home__desc">
       {{ config.description }}
     </h2>
-    <DemoHomeNav
-      v-for="(group, index) in config.nav"
-      :key="index"
-      :lang="lang"
-      :group="group"
-    />
+    <DemoHomeNav v-for="(group, index) in config.nav" :key="index" :lang="lang" :group="group" />
   </div>
 </template>
 

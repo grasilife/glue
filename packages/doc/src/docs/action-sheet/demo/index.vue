@@ -3,11 +3,7 @@
     <DemoBlock card :title="basicUsage">
       <van-cell is-link :title="basicUsage" @click="show.basic = true" />
       <van-cell is-link :title="showCancel" @click="show.cancel = true" />
-      <van-cell
-        is-link
-        :title="showDescription"
-        @click="show.description = true"
-      />
+      <van-cell is-link :title="showDescription" @click="show.description = true" />
     </DemoBlock>
 
     <DemoBlock card :title="optionStatus">
@@ -18,11 +14,7 @@
       <van-cell is-link :title="customPanel" @click="show.title = true" />
     </DemoBlock>
 
-    <van-action-sheet
-      v-model="show.basic"
-      :actions="simpleActions"
-      @select="onSelect"
-    />
+    <van-action-sheet v-model="show.basic" :actions="simpleActions" @select="onSelect" />
 
     <van-action-sheet
       v-model="show.cancel"
@@ -40,12 +32,7 @@
       :description="description"
     />
 
-    <van-action-sheet
-      v-model="show.status"
-      close-on-click-action
-      :actions="statusActions"
-      :cancel-text="cancel"
-    />
+    <van-action-sheet v-model="show.status" close-on-click-action :actions="statusActions" :cancel-text="cancel" />
 
     <van-action-sheet v-model="show.title" :title="title">
       <div class="demo-action-sheet-content">{{ content }}</div>
@@ -87,19 +74,11 @@ export default {
 
   computed: {
     simpleActions() {
-      return [
-        { name: this.option1 },
-        { name: this.option2 },
-        { name: this.option3 }
-      ];
+      return [{ name: this.option1 }, { name: this.option2 }, { name: this.option3 }];
     },
 
     actionsWithDescription() {
-      return [
-        { name: this.option1 },
-        { name: this.option2 },
-        { name: this.option3, subname: this.subname }
-      ];
+      return [{ name: this.option1 }, { name: this.option2 }, { name: this.option3, subname: this.subname }];
     },
 
     statusActions() {

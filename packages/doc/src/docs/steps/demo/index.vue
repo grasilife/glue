@@ -12,12 +12,7 @@
     </demo-block>
 
     <demo-block :title="customStyle">
-      <van-steps
-        :active="active"
-        active-icon="success"
-        inactive-icon="arrow"
-        active-color="#38f"
-      >
+      <van-steps :active="active" active-icon="success" inactive-icon="arrow" active-color="#38f">
         <van-step>{{ step1 }}</van-step>
         <van-step>{{ step2 }}</van-step>
         <van-step>{{ step3 }}</van-step>

@@ -26,13 +26,7 @@
         <van-tag mark type="primary">{{ tag }}</van-tag>
       </van-cell>
       <van-cell :title="closeable">
-        <van-tag
-          v-if="show"
-          size="medium"
-          closeable
-          type="primary"
-          @close="close"
-        >
+        <van-tag v-if="show" size="medium" closeable type="primary" @close="close">
           {{ tag }}
         </van-tag>
       </van-cell>

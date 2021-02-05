@@ -5,11 +5,7 @@
     </demo-block>
 
     <demo-block :title="title2">
-      <div
-        v-for="img in backgroundImageList"
-        :key="img"
-        v-lazy:background-image="img"
-      />
+      <div v-for="img in backgroundImageList" :key="img" v-lazy:background-image="img" />
     </demo-block>
 
     <demo-block :title="title3">
@@ -33,14 +29,8 @@ export default {
         "https://img.yzcdn.cn/vant/apple-3.jpg",
         "https://img.yzcdn.cn/vant/apple-4.jpg"
       ],
-      backgroundImageList: [
-        "https://img.yzcdn.cn/vant/apple-5.jpg",
-        "https://img.yzcdn.cn/vant/apple-6.jpg"
-      ],
-      componentImageList: [
-        "https://img.yzcdn.cn/vant/apple-8.jpg",
-        "https://img.yzcdn.cn/vant/apple-7.jpg"
-      ]
+      backgroundImageList: ["https://img.yzcdn.cn/vant/apple-5.jpg", "https://img.yzcdn.cn/vant/apple-6.jpg"],
+      componentImageList: ["https://img.yzcdn.cn/vant/apple-8.jpg", "https://img.yzcdn.cn/vant/apple-7.jpg"]
     };
   }
 };

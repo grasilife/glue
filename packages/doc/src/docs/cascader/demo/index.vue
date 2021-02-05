@@ -9,13 +9,7 @@
         :placeholder="selectArea"
         @click="base.show = true"
       />
-      <van-popup
-        v-model="base.show"
-        round
-        position="bottom"
-        get-container="body"
-        safe-area-inset-bottom
-      >
+      <van-popup v-model="base.show" round position="bottom" get-container="body" safe-area-inset-bottom>
         <van-cascader
           v-model="base.value"
           :title="selectArea"
@@ -35,13 +29,7 @@
         :placeholder="selectArea"
         @click="customColor.show = true"
       />
-      <van-popup
-        v-model="customColor.show"
-        round
-        position="bottom"
-        get-container="body"
-        safe-area-inset-bottom
-      >
+      <van-popup v-model="customColor.show" round position="bottom" get-container="body" safe-area-inset-bottom>
         <van-cascader
           v-model="customColor.value"
           :title="selectArea"
@@ -62,13 +50,7 @@
         :placeholder="selectArea"
         @click="async.show = true"
       />
-      <van-popup
-        v-model="async.show"
-        round
-        position="bottom"
-        get-container="body"
-        safe-area-inset-bottom
-      >
+      <van-popup v-model="async.show" round position="bottom" get-container="body" safe-area-inset-bottom>
         <van-cascader
           v-model="async.value"
           :title="selectArea"
@@ -89,13 +71,7 @@
         :placeholder="selectArea"
         @click="customFieldNames.show = true"
       />
-      <van-popup
-        v-model="customFieldNames.show"
-        round
-        position="bottom"
-        get-container="body"
-        safe-area-inset-bottom
-      >
+      <van-popup v-model="customFieldNames.show" round position="bottom" get-container="body" safe-area-inset-bottom>
         <van-cascader
           v-model="customFieldNames.value"
           :title="selectArea"
@@ -201,9 +177,7 @@ export default {
     },
 
     onFinish(type, { value, selectedOptions }) {
-      const result = selectedOptions
-        .map(option => option.text || option.name)
-        .join("/");
+      const result = selectedOptions.map(option => option.text || option.name).join("/");
 
       this[type] = {
         ...this[type],

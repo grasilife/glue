@@ -17,12 +17,7 @@
     </demo-block>
 
     <demo-block :title="maxSize">
-      <van-uploader
-        v-model="fileList4"
-        multiple
-        :max-size="500 * 1024"
-        @oversize="onOversize"
-      />
+      <van-uploader v-model="fileList4" multiple :max-size="500 * 1024" @oversize="onOversize" />
     </demo-block>
 
     <demo-block :title="customUpload">
@@ -50,12 +45,7 @@
     </demo-block>
 
     <demo-block :title="customPreviewImage">
-      <van-uploader
-        v-model="fileList5"
-        multiple
-        accept="*"
-        :deletable="false"
-      />
+      <van-uploader v-model="fileList5" multiple accept="*" :deletable="false" />
     </demo-block>
   </demo-section>
 </template>
@@ -81,10 +71,7 @@ export default {
       previewCover: "自定义预览样式",
       customPreviewImage: "自定义单个图片预览",
       deleteMessage: "删除前置处理",
-      fileList: [
-        { url: "https://img.yzcdn.cn/vant/leaf.jpg" },
-        { url: "https://img.yzcdn.cn/vant/tree.jpg" }
-      ],
+      fileList: [{ url: "https://img.yzcdn.cn/vant/leaf.jpg" }, { url: "https://img.yzcdn.cn/vant/tree.jpg" }],
       fileList2: [{ url: "https://img.yzcdn.cn/vant/sand.jpg" }],
       fileList3: [],
       fileList4: [{ url: "https://img.yzcdn.cn/vant/sand.jpg" }],

@@ -35,11 +35,7 @@ function getRoutes() {
     locales[lang].nav.forEach(element => {
       if (element.items) {
         element.items.forEach(element2 => {
-          console.log(
-            `/${lang}/${element2.path}`,
-            "../docs/" + element2.path + "/demo/index.vue",
-            "移动端路径"
-          );
+          console.log(`/${lang}/${element2.path}`, "../docs/" + element2.path + "/demo/index.vue", "移动端路径");
           routes.push({
             name: element2.title,
             path: `/${lang}/${element2.path}`,
@@ -48,8 +44,7 @@ function getRoutes() {
             },
             //这个地方不能使用下面的方法
             // component: () => import(imortPath),
-            component: () =>
-              import("../docs/" + element2.path + "/demo/index.vue")
+            component: () => import("../docs/" + element2.path + "/demo/index.vue")
           });
         });
       }

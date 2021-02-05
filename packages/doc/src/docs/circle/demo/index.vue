@@ -1,22 +1,11 @@
 <template>
   <demo-section>
     <demo-block :title="basicUsage">
-      <van-circle
-        v-model="currentRate1"
-        :rate="rate"
-        :speed="100"
-        :text="currentRate1.toFixed(0) + '%'"
-      />
+      <van-circle v-model="currentRate1" :rate="rate" :speed="100" :text="currentRate1.toFixed(0) + '%'" />
     </demo-block>
 
     <demo-block :title="customStyle">
-      <van-circle
-        v-model="currentRate3"
-        :rate="rate"
-        :speed="100"
-        :stroke-width="60"
-        :text="customWidth"
-      />
+      <van-circle v-model="currentRate3" :rate="rate" :speed="100" :stroke-width="60" :text="customWidth" />
 
       <van-circle
         v-model="currentRate3"
@@ -27,13 +16,7 @@
         :text="customColor"
       />
 
-      <van-circle
-        v-model="currentRate2"
-        :rate="rate"
-        :speed="100"
-        :color="gradientColor"
-        :text="gradient"
-      />
+      <van-circle v-model="currentRate2" :rate="rate" :speed="100" :color="gradientColor" :text="gradient" />
 
       <van-circle
         v-model="currentRate4"
@@ -59,12 +42,7 @@
 
     <div style="margin-top: 15px;">
       <van-button :text="addText" type="primary" size="small" @click="add" />
-      <van-button
-        :text="decreaseText"
-        type="danger"
-        size="small"
-        @click="reduce"
-      />
+      <van-button :text="decreaseText" type="danger" size="small" @click="reduce" />
     </div>
   </demo-section>
 </template>

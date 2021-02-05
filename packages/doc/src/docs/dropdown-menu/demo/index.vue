@@ -22,13 +22,7 @@
             </template>
           </van-cell>
           <div style="padding: 5px 16px;">
-            <van-button
-              type="danger"
-              block
-              round
-              style="height: 40px;"
-              @click="onConfirm"
-            >
+            <van-button type="danger" block round style="height: 40px;" @click="onConfirm">
               {{ confirm }}
             </van-button>
           </div>

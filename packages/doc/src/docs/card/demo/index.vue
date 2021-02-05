@@ -1,35 +1,15 @@
 <template>
   <demo-section>
     <demo-block :title="basicUsage">
-      <van-card
-        num="2"
-        price="2.00"
-        :desc="desc"
-        :title="title"
-        :thumb="imageURL"
-      />
+      <van-card num="2" price="2.00" :desc="desc" :title="title" :thumb="imageURL" />
     </demo-block>
 
     <demo-block :title="discountInfo">
-      <van-card
-        num="2"
-        price="2.00"
-        origin-price="10.00"
-        :tag="tag"
-        :desc="desc"
-        :title="title"
-        :thumb="imageURL"
-      />
+      <van-card num="2" price="2.00" origin-price="10.00" :tag="tag" :desc="desc" :title="title" :thumb="imageURL" />
     </demo-block>
 
     <demo-block :title="customContent">
-      <van-card
-        num="2"
-        price="2.00"
-        :desc="desc"
-        :title="title"
-        :thumb="imageURL"
-      >
+      <van-card num="2" price="2.00" :desc="desc" :title="title" :thumb="imageURL">
         <template #tags>
           <div>
             <van-tag plain type="danger" style="margin-right: 5px;">

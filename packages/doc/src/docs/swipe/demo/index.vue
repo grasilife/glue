@@ -27,13 +27,7 @@
     </demo-block>
 
     <demo-block :title="title4">
-      <van-swipe
-        vertical
-        :autoplay="3000"
-        indicator-color="white"
-        style="height: 200px;"
-        class="demo-swipe--vertical"
-      >
+      <van-swipe vertical :autoplay="3000" indicator-color="white" style="height: 200px;" class="demo-swipe--vertical">
         <van-swipe-item>1</van-swipe-item>
         <van-swipe-item>2</van-swipe-item>
         <van-swipe-item>3</van-swipe-item>

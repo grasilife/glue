@@ -1,11 +1,7 @@
 <template>
   <demo-section>
     <demo-block :title="basicUsage">
-      <van-submit-bar
-        :price="3050"
-        :button-text="submit"
-        @submit="onClickButton"
-      />
+      <van-submit-bar :price="3050" :button-text="submit" @submit="onClickButton" />
     </demo-block>
 
     <demo-block :title="disabled">
@@ -20,20 +16,11 @@
     </demo-block>
 
     <demo-block :title="loadingStatus">
-      <van-submit-bar
-        loading
-        :price="3050"
-        :button-text="submit"
-        @submit="onClickButton"
-      />
+      <van-submit-bar loading :price="3050" :button-text="submit" @submit="onClickButton" />
     </demo-block>
 
     <demo-block :title="advancedUsage">
-      <van-submit-bar
-        :price="3050"
-        :button-text="submit"
-        @submit="onClickButton"
-      >
+      <van-submit-bar :price="3050" :button-text="submit" @submit="onClickButton">
         <van-checkbox v-model="checked">{{ check }}</van-checkbox>
         <template #tip>
           {{ tip2 }}

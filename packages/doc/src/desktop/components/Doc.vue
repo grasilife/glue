@@ -77,15 +77,7 @@ export default {
     // this.keyboardHandler();
   },
   mounted() {
-    console.log(
-      this.config,
-      this.langConfigs,
-      this.versions,
-      this.lang,
-      this.base,
-      this.simulator,
-      "config1"
-    );
+    console.log(this.config, this.langConfigs, this.versions, this.lang, this.base, this.simulator, "config1");
   },
   methods: {
     setNav() {

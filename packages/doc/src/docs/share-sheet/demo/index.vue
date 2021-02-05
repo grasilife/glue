@@ -2,31 +2,17 @@
   <demo-section>
     <demo-block card :title="basicUsage">
       <van-cell is-link :title="showSheet" @click="show.basic = true" />
-      <van-share-sheet
-        v-model="show.basic"
-        :title="title"
-        :options="options"
-        @select="onSelect"
-      />
+      <van-share-sheet v-model="show.basic" :title="title" :options="options" @select="onSelect" />
     </demo-block>
 
     <demo-block card :title="multiLine">
       <van-cell is-link :title="showSheet" @click="show.multiLine = true" />
-      <van-share-sheet
-        v-model="show.multiLine"
-        :title="title"
-        :options="multiLineOptions"
-        @select="onSelect"
-      />
+      <van-share-sheet v-model="show.multiLine" :title="title" :options="multiLineOptions" @select="onSelect" />
     </demo-block>
 
     <demo-block card :title="customIcon">
       <van-cell is-link :title="showSheet" @click="show.customIcon = true" />
-      <van-share-sheet
-        v-model="show.customIcon"
-        :options="customIconOptions"
-        @select="onSelect"
-      />
+      <van-share-sheet v-model="show.customIcon" :options="customIconOptions" @select="onSelect" />
     </demo-block>
 
     <demo-block card :title="withDesc">

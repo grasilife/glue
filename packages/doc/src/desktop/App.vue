@@ -1,12 +1,6 @@
 <template>
   <div class="app">
-    <Doc
-      :lang="lang"
-      :config="config"
-      :versions="versions"
-      :simulator="simulator"
-      :lang-configs="langConfigs"
-    >
+    <Doc :lang="lang" :config="config" :versions="versions" :simulator="simulator" :lang-configs="langConfigs">
       <router-view />
     </Doc>
   </div>
@@ -89,10 +83,7 @@ export default {
     setTitle() {
       let { title } = this.config;
 
-      const navItems = this.config.nav.reduce(
-        (result, nav) => [...result, ...nav.items],
-        []
-      );
+      const navItems = this.config.nav.reduce((result, nav) => [...result, ...nav.items], []);
 
       const current = navItems.find(item => {
         return item.path === this.$route.meta.name;

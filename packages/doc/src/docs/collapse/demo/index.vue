@@ -45,9 +45,7 @@
     <demo-block :title="titleSlot">
       <van-collapse v-model="active4">
         <van-collapse-item>
-          <template #title>
-            {{ title + 1 }}<van-icon name="question-o" />
-          </template>
+          <template #title> {{ title + 1 }}<van-icon name="question-o" /> </template>
           {{ text }}
         </van-collapse-item>
         <van-collapse-item :title="title + 2" :value="content" icon="shop-o">

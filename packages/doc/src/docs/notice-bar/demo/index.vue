@@ -19,22 +19,12 @@
     </demo-block>
 
     <demo-block :title="customStyle">
-      <van-notice-bar
-        :text="shortText"
-        color="#1989fa"
-        background="#ecf9ff"
-        left-icon="info-o"
-      />
+      <van-notice-bar :text="shortText" color="#1989fa" background="#ecf9ff" left-icon="info-o" />
     </demo-block>
 
     <demo-block :title="verticalScroll">
       <van-notice-bar left-icon="volume-o" :scrollable="false">
-        <van-swipe
-          vertical
-          class="notice-swipe"
-          :autoplay="3000"
-          :show-indicators="false"
-        >
+        <van-swipe vertical class="notice-swipe" :autoplay="3000" :show-indicators="false">
           <van-swipe-item>{{ content }} 1</van-swipe-item>
           <van-swipe-item>{{ content }} 2</van-swipe-item>
           <van-swipe-item>{{ content }} 3</van-swipe-item>
