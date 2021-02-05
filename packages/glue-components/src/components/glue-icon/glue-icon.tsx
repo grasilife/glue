@@ -11,7 +11,7 @@ export class GlueIcon {
 
   @Prop() name: string;
 
-  @Prop() size: number | string;
+  @Prop() size = 32;
   @Prop() badge: number | string;
   @Prop() color: string;
   @Prop() tag: string;

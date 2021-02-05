@@ -105,7 +105,7 @@ export namespace Components {
         "color": string;
         "dot": boolean;
         "name": string;
-        "size": number | string;
+        "size": number;
         "tag": string;
     }
     interface GlueImage {
@@ -376,7 +376,7 @@ declare namespace LocalJSX {
         "color"?: string;
         "dot"?: boolean;
         "name"?: string;
-        "size"?: number | string;
+        "size"?: number;
         "tag"?: string;
     }
     interface GlueImage {

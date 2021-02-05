@@ -4,61 +4,61 @@
       <van-tab :title="demo">
         <demo-block :title="basicUsage">
           <van-col span="6" @click="copy(demoIcon)">
-            <van-icon :name="demoIcon" />
+            <glue-icon :name="demoIcon" />
           </van-col>
           <van-col span="6" @click="copy(demoImage)">
-            <van-icon :name="demoImage" />
+            <glue-icon :name="demoImage" />
           </van-col>
         </demo-block>
 
         <demo-block :title="badge">
           <van-col span="6" @click="copy(demoIcon, { dot: true })">
-            <van-icon :name="demoIcon" dot />
+            <glue-icon :name="demoIcon" dot />
           </van-col>
           <van-col span="6" @click="copy(demoIcon, { badge: '9' })">
-            <van-icon :name="demoIcon" badge="9" />
+            <glue-icon :name="demoIcon" badge="9" />
           </van-col>
           <van-col span="6" @click="copy(demoIcon, { badge: '99+' })">
-            <van-icon :name="demoIcon" badge="99+" />
+            <glue-icon :name="demoIcon" badge="99+" />
           </van-col>
         </demo-block>
 
         <demo-block :title="color">
           <van-col span="6" @click="copy(demoIcon, { color: '#1989fa' })">
-            <van-icon name="cart-o" color="#1989fa" />
+            <glue-icon name="cart-o" color="#1989fa" />
           </van-col>
           <van-col span="6" @click="copy(demoIcon, { color: RED })">
-            <van-icon name="fire-o" :color="RED" />
+            <glue-icon name="fire-o" :color="RED" />
           </van-col>
         </demo-block>
 
         <demo-block :title="size">
           <van-col span="6" @click="copy(demoIcon, { size: '40' })">
-            <van-icon :name="demoIcon" size="40" />
+            <glue-icon :name="demoIcon" size="40" />
           </van-col>
           <van-col span="6" @click="copy(demoIcon, { size: '3rem' })">
-            <van-icon :name="demoIcon" size="3rem" />
+            <glue-icon :name="demoIcon" size="3rem" />
           </van-col>
         </demo-block>
       </van-tab>
 
       <van-tab :title="basic">
         <van-col v-for="icon in icons.basic" :key="icon" span="6" @click="copy(icon)">
-          <van-icon :name="icon" />
+          <glue-icon :name="icon" />
           <span>{{ icon }}</span>
         </van-col>
       </van-tab>
 
       <van-tab :title="outline">
         <van-col v-for="icon in icons.outline" :key="icon" span="6" @click="copy(icon)">
-          <van-icon :name="icon" />
+          <glue-icon :name="icon" />
           <span>{{ icon }}</span>
         </van-col>
       </van-tab>
 
       <van-tab :title="filled">
         <van-col v-for="icon in icons.filled" :key="icon" span="6" @click="copy(icon)">
-          <van-icon :name="icon" />
+          <glue-icon :name="icon" />
           <span>{{ icon }}</span>
         </van-col>
       </van-tab>
@@ -114,7 +114,7 @@ export default {
 
   methods: {
     copy(icon, option = {}) {
-      let tag = `<van-icon name="${icon}"`;
+      let tag = `<glue-icon name="${icon}"`;
       if ("dot" in option) {
         tag = `${tag} ${option.dot ? "dot" : ""}`;
       }
@@ -179,7 +179,7 @@ export default {
     }
   }
 
-  .van-icon {
+  .glue-icon {
     margin: 16px 0 16px;
     color: @text-color;
     font-size: 32px;

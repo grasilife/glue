@@ -14,7 +14,7 @@
 | `color`       | `color`        |             | `string`           | `undefined` |
 | `dot`         | `dot`          |             | `boolean`          | `undefined` |
 | `name`        | `name`         |             | `string`           | `undefined` |
-| `size`        | `size`         |             | `number \| string` | `undefined` |
+| `size`        | `size`         |             | `number`           | `32`        |
 | `tag`         | `tag`          |             | `string`           | `undefined` |
 
 
