@@ -1,62 +1,62 @@
 <template>
   <demo-section>
     <demo-block :title="basicUsage">
-      <van-cell-group>
-        <van-cell :title="cell" :value="content" />
-        <van-cell :title="cell" :value="content" :label="desc" />
-      </van-cell-group>
+      <glue-cell-group>
+        <glue-cell :title="cell" :value="content" />
+        <glue-cell :title="cell" :value="content" :label="desc" />
+      </glue-cell-group>
     </demo-block>
 
     <demo-block :title="largeSize">
-      <van-cell :title="cell" :value="content" size="large" />
-      <van-cell :title="cell" :value="content" size="large" :label="desc" />
+      <glue-cell :title="cell" :value="content" size="large" />
+      <glue-cell :title="cell" :value="content" size="large" :label="desc" />
     </demo-block>
 
     <demo-block :title="showIcon">
-      <van-cell :title="cell" :value="content" icon="location-o" />
+      <glue-cell :title="cell" :value="content" icon="location-o" />
     </demo-block>
 
     <demo-block :title="valueOnly">
-      <van-cell :value="content" />
+      <glue-cell :value="content" />
     </demo-block>
 
     <demo-block :title="showArrow">
-      <van-cell :title="cell" is-link />
-      <van-cell :title="cell" is-link :value="content" />
-      <van-cell :title="cell" is-link arrow-direction="down" :value="content" />
+      <glue-cell :title="cell" is-link />
+      <glue-cell :title="cell" is-link :value="content" />
+      <glue-cell :title="cell" is-link arrow-direction="down" :value="content" />
     </demo-block>
 
     <demo-block :title="router">
-      <van-cell :title="urlRoute" is-link url="/vant/mobile.html" />
-      <van-cell :title="vueRoute" is-link to="index" />
+      <glue-cell :title="urlRoute" is-link url="/vant/mobile.html" />
+      <glue-cell :title="vueRoute" is-link to="index" />
     </demo-block>
 
     <demo-block :title="groupTitle">
-      <van-cell-group :title="`${group} 1`">
-        <van-cell :title="cell" :value="content" />
-      </van-cell-group>
-      <van-cell-group :title="`${group} 2`">
-        <van-cell :title="cell" :value="content" />
-      </van-cell-group>
+      <glue-cell-group :title="`${group} 1`">
+        <glue-cell :title="cell" :value="content" />
+      </glue-cell-group>
+      <glue-cell-group :title="`${group} 2`">
+        <glue-cell :title="cell" :value="content" />
+      </glue-cell-group>
     </demo-block>
 
     <demo-block :title="useSlots">
-      <van-cell :value="content" is-link>
+      <glue-cell :value="content" is-link>
         <template #title>
           <span class="custom-title">{{ cell }}</span>
-          <van-tag type="danger">{{ tag }}</van-tag>
+          <glue-tag type="danger">{{ tag }}</glue-tag>
         </template>
-      </van-cell>
+      </glue-cell>
 
-      <van-cell icon="shop-o" :title="cell">
+      <glue-cell icon="shop-o" :title="cell">
         <template #right-icon>
-          <van-icon name="search" class="search-icon" />
+          <glue-icon name="search" class="search-icon" />
         </template>
-      </van-cell>
+      </glue-cell>
     </demo-block>
 
     <demo-block :title="verticalCenter">
-      <van-cell center :title="cell" :value="content" :label="desc" />
+      <glue-cell center :title="cell" :value="content" :label="desc" />
     </demo-block>
   </demo-section>
 </template>

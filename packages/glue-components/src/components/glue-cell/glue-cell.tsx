@@ -1,4 +1,4 @@
-import { Component, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, Event, EventEmitter, Host } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 @Component({
@@ -122,7 +122,7 @@ export class GlueCell {
     }
     //TODO:边框未生效
     return (
-      <div
+      <Host
         class={classNames('glue-cell', {
           'glue-cell--center': center,
           'glue-cell--required': required,
@@ -139,7 +139,7 @@ export class GlueCell {
         {this.renderValue()}
         {this.renderRightIcon()}
         <slot></slot>
-      </div>
+      </Host>
     );
   }
 }

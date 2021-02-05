@@ -9,34 +9,24 @@ export class GlueCellGroup {
   @Prop() title: string;
 
   @Prop() border = true;
-  group = () => {
+  renderGroup = () => {
+    return (
+      <div class="glue-cell-group__content">
+        <slot></slot>
+      </div>
+    );
+  };
+  renderTitle = () => {
     if (this.title) {
-      return (
-        <Host>
-          <div></div>
-          <div>
-            <slot></slot>
-          </div>
-        </Host>
-      );
-    } else {
-      return (
-        <div>
-          <slot></slot>
-        </div>
-      );
+      return <div class={classNames('glue-cell-group__title')}>{this.title}</div>;
     }
   };
 
   render() {
     return (
-      <Host
-        class={classNames('van-cell-group', {
-          'van-hairline--top-bottom': true,
-          'glue-cell-group__title': this.border,
-        })}
-      >
-        {this.group()}
+      <Host class={classNames('glue-cell-group')}>
+        {this.renderTitle()}
+        {this.renderGroup()}
       </Host>
     );
   }

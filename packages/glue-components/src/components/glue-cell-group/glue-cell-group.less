@@ -1,7 +1,10 @@
 @import '../../global/styles/var';
 .glue-cell-group {
-  background-color: @cell-group-background-color;
+  display: block;
 
+  &__content {
+    background-color: @cell-group-background-color;
+  }
   &__title {
     padding: @cell-group-title-padding;
     color: @cell-group-title-color;
