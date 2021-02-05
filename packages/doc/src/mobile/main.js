@@ -10,12 +10,12 @@ import DemoBlock from "./components/DemoBlock.vue";
 import DemoSection from "./components/DemoSection.vue";
 Vue.component("DemoBlock", DemoBlock);
 Vue.component("DemoSection", DemoSection);
-// import { applyPolyfills, defineCustomElements } from "glue-components/loader";
+import { applyPolyfills, defineCustomElements } from "glue-components/loader";
 Vue.config.productionTip = false;
-// Vue.config.ignoredElements = [/^glue-/];
-// applyPolyfills().then(() => {
-//   defineCustomElements();
-// });
+Vue.config.ignoredElements = [/^glue-/];
+applyPolyfills().then(() => {
+  defineCustomElements();
+});
 new Vue({
   store,
   router,
