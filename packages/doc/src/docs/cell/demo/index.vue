@@ -42,14 +42,14 @@
 
     <demo-block :title="useSlots">
       <glue-cell :value="content" is-link>
-        <template #title>
+        <template v-slot:title>
           <span class="custom-title">{{ cell }}</span>
           <glue-tag type="danger">{{ tag }}</glue-tag>
         </template>
       </glue-cell>
 
       <glue-cell icon="shop-o" :title="cell">
-        <template #right-icon>
+        <template v-slot:right-icon>
           <glue-icon name="search" class="search-icon" />
         </template>
       </glue-cell>
