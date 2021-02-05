@@ -2,14 +2,14 @@
   <demo-section>
     <demo-block :title="basicUsage">
       <van-row>
-        <van-image width="100" height="100" :src="image" />
+        <glue-image width="100" height="100" :src="image" />
       </van-row>
     </demo-block>
 
     <demo-block :title="fitMode">
       <van-row gutter="20">
         <van-col v-for="fit in fits" span="8" :key="fit">
-          <van-image :fit="fit" width="100%" height="27vw" :src="image" />
+          <glue-image :fit="fit" width="100%" height="27vw" :src="image" />
           <div class="text">{{ fit }}</div>
         </van-col>
       </van-row>
@@ -18,7 +18,7 @@
     <demo-block :title="round">
       <van-row gutter="20">
         <van-col v-for="fit in fits" span="8" :key="fit">
-          <van-image round :fit="fit" width="100%" height="27vw" :src="image" />
+          <glue-image round :fit="fit" width="100%" height="27vw" :src="image" />
           <div class="text">{{ fit }}</div>
         </van-col>
       </van-row>
@@ -27,16 +27,16 @@
     <demo-block :title="loading">
       <van-row gutter="20">
         <van-col span="8">
-          <van-image width="100%" height="27vw" />
+          <glue-image width="100%" height="27vw" />
           <div class="text">{{ defaultTip }}</div>
         </van-col>
 
         <van-col span="8">
-          <van-image width="100%" height="27vw">
+          <glue-image width="100%" height="27vw">
             <template #loading>
               <van-loading type="spinner" size="20" />
             </template>
-          </van-image>
+          </glue-image>
           <div class="text">{{ customTip }}</div>
         </van-col>
       </van-row>
@@ -45,14 +45,14 @@
     <demo-block :title="error">
       <van-row gutter="20">
         <van-col span="8">
-          <van-image width="100%" height="27vw" src="x" />
+          <glue-image width="100%" height="27vw" src="x" />
           <div class="text">{{ defaultTip }}</div>
         </van-col>
 
         <van-col span="8">
-          <van-image width="100%" height="27vw" src="x">
+          <glue-image width="100%" height="27vw" src="x">
             <template #error>{{ loadFail }}</template>
-          </van-image>
+          </glue-image>
           <div class="text">{{ customTip }}</div>
         </van-col>
       </van-row>
