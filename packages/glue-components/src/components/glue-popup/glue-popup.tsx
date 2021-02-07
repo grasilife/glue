@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, EventEmitter, Event } from '@stencil/core';
+import { Component, Prop, h, Host, EventEmitter, Event, State } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { createNamespace } from '../../utils/create/index';
@@ -31,6 +31,7 @@ export class GluePopup {
   @Prop() position = 'center';
   @Prop() closeIcon = 'cross';
   @Prop() closeIconPosition = 'top-right';
+  @State() opened: boolean;
   private zIndexRef: HTMLElement;
   private popupRef: HTMLElement;
   @Event() onClick: EventEmitter;
@@ -49,14 +50,33 @@ export class GluePopup {
   onClickOverlayHandle = () => {
     this.onClickOverlay.emit('click-overlay');
     if (this.closeOnClickOverlay) {
-      close();
+      this.closeHandle();
     }
   };
   @Event() onClickCloseIcon: EventEmitter;
   onClickCloseIconHandle = () => {
     this.onClickCloseIcon.emit('click-close-icon');
-    close();
+    this.closeHandle();
   };
+  @Event() close: EventEmitter;
+  closeHandle = () => {
+    this.show = false;
+    // unlockScroll();
+    this.close.emit(false);
+  };
+  @Event() open: EventEmitter;
+  openHandle = () => {
+    this.show = true;
+    this.open.emit(true);
+  };
+  componentDidRender() {
+    // this.opened;
+    // if (this.show) {
+    //   this.openHandle();
+    // } else {
+    //   this.closeHandle();
+    // }
+  }
   renderCloseIcon = () => {
     if (this.closeable) {
       return (
@@ -91,25 +111,26 @@ export class GluePopup {
   renderPopup = () => {
     const { round, position, safeAreaInsetBottom } = this;
     console.log(position, bem([position]), 'position');
-    return (
-      <div
-        v-show={this.show}
-        ref={dom => (this.popupRef = dom)}
-        style={this.style()}
-        class={classNames(
-          'glue-popup',
-          {
-            'glue-popup--round': round,
-            'glue-popup-safe-area-inset-bottom': safeAreaInsetBottom,
-          },
-          bem([position]),
-        )}
-        onClick={this.onClickHandle}
-      >
-        <slot></slot>
-        {this.renderCloseIcon()}
-      </div>
-    );
+    if (this.show) {
+      return (
+        <div
+          ref={dom => (this.popupRef = dom)}
+          style={this.style()}
+          class={classNames(
+            'glue-popup',
+            {
+              'glue-popup--round': round,
+              'glue-popup-safe-area-inset-bottom': safeAreaInsetBottom,
+            },
+            bem([position]),
+          )}
+          onClick={this.onClickHandle}
+        >
+          <slot></slot>
+          {this.renderCloseIcon()}
+        </div>
+      );
+    }
   };
 
   renderOverlay = () => {

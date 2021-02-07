@@ -464,11 +464,13 @@ declare namespace LocalJSX {
         "duration"?: string;
         "lazyRender"?: boolean;
         "lockScroll"?: boolean;
+        "onClose"?: (event: CustomEvent<any>) => void;
         "onOnClick"?: (event: CustomEvent<any>) => void;
         "onOnClickCloseIcon"?: (event: CustomEvent<any>) => void;
         "onOnClickOverlay"?: (event: CustomEvent<any>) => void;
         "onOnClosed"?: (event: CustomEvent<any>) => void;
         "onOnOpened"?: (event: CustomEvent<any>) => void;
+        "onOpen"?: (event: CustomEvent<any>) => void;
         "overlay"?: boolean;
         "overlayClass"?: any;
         "overlayStyle"?: object;
