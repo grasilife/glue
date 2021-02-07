@@ -150,6 +150,7 @@ export namespace Components {
         "closeOnPopstate": boolean;
         "closeable": boolean;
         "duration": string;
+        "height": string;
         "lazyRender": boolean;
         "lockScroll": boolean;
         "overlay": boolean;
@@ -162,6 +163,7 @@ export namespace Components {
         "teleport": string | object;
         "transition": string;
         "transitionAppear": boolean;
+        "width": string;
         "zIndex": string;
     }
     interface GlueRow {
@@ -462,11 +464,12 @@ declare namespace LocalJSX {
         "closeOnPopstate"?: boolean;
         "closeable"?: boolean;
         "duration"?: string;
+        "height"?: string;
         "lazyRender"?: boolean;
         "lockScroll"?: boolean;
+        "onClickCloseIcon"?: (event: CustomEvent<any>) => void;
         "onClose"?: (event: CustomEvent<any>) => void;
         "onOnClick"?: (event: CustomEvent<any>) => void;
-        "onOnClickCloseIcon"?: (event: CustomEvent<any>) => void;
         "onOnClickOverlay"?: (event: CustomEvent<any>) => void;
         "onOnClosed"?: (event: CustomEvent<any>) => void;
         "onOnOpened"?: (event: CustomEvent<any>) => void;
@@ -481,6 +484,7 @@ declare namespace LocalJSX {
         "teleport"?: string | object;
         "transition"?: string;
         "transitionAppear"?: boolean;
+        "width"?: string;
         "zIndex"?: string;
     }
     interface GlueRow {

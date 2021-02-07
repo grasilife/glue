@@ -14,7 +14,7 @@
 | `color`       | `color`        |             | `string`           | `undefined` |
 | `dot`         | `dot`          |             | `boolean`          | `undefined` |
 | `name`        | `name`         |             | `string`           | `undefined` |
-| `size`        | `size`         |             | `number`           | `32`        |
+| `size`        | `size`         |             | `number`           | `22`        |
 | `tag`         | `tag`          |             | `string`           | `undefined` |
 
 
@@ -26,6 +26,7 @@
  - [glue-button](../glue-button)
  - [glue-cell](../glue-cell)
  - [glue-image](../glue-image)
+ - [glue-popup](../glue-popup)
  - [glue-tag](../glue-tag)
 
 ### Depends on
@@ -40,6 +41,7 @@ graph TD;
   glue-button --> glue-icon
   glue-cell --> glue-icon
   glue-image --> glue-icon
+  glue-popup --> glue-icon
   glue-tag --> glue-icon
   style glue-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```

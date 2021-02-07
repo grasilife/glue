@@ -30,20 +30,20 @@ export class GlueOverlay {
     if (isDef(this.duration)) {
       style.animationDuration = `${this.duration}s`;
     }
-
-    return (
-      <div
-        v-show={this.show}
-        style={style}
-        class={classNames({
-          'glue-overlay': true,
-          // 'glue-image--className': this.className,
-        })}
-        onTouchMove={this.lockScroll ? el => this.preventTouchMove(el) : noop}
-      >
-        <slot></slot>
-      </div>
-    );
+    if (this.show) {
+      return (
+        <div
+          style={style}
+          class={classNames({
+            'glue-overlay': true,
+            // 'glue-image--className': this.className,
+          })}
+          onTouchMove={this.lockScroll ? el => this.preventTouchMove(el) : noop}
+        >
+          <slot></slot>
+        </div>
+      );
+    }
   };
   render() {
     return <Host>{this.renderOverlay()} </Host>;

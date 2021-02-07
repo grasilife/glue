@@ -14,6 +14,8 @@ export class GluePopup {
   @Prop() zIndex = '2000';
 
   @Prop() duration: string;
+  @Prop() width: string;
+  @Prop() height: string;
   @Prop() teleport: string | object;
   @Prop() overlayStyle: object;
   @Prop() overlayClass = null;
@@ -32,30 +34,30 @@ export class GluePopup {
   @Prop() closeIcon = 'cross';
   @Prop() closeIconPosition = 'top-right';
   @State() opened: boolean;
-  private zIndexRef: HTMLElement;
-  private popupRef: HTMLElement;
+  // private zIndexRef: HTMLElement;
+  // private popupRef: HTMLElement;
   @Event() onClick: EventEmitter;
-  onClickHandle = event => {
+  clickHandle = event => {
     this.onClick.emit(event);
   };
   @Event() onOpened: EventEmitter;
-  onOpenedHandle = () => {
+  openedHandle = () => {
     this.onOpened.emit('opened');
   };
   @Event() onClosed: EventEmitter;
-  onClosedHandle = () => {
+  closedHandle = () => {
     this.onClosed.emit('closed');
   };
   @Event() onClickOverlay: EventEmitter;
-  onClickOverlayHandle = () => {
+  clickOverlayHandle = () => {
     this.onClickOverlay.emit('click-overlay');
     if (this.closeOnClickOverlay) {
       this.closeHandle();
     }
   };
-  @Event() onClickCloseIcon: EventEmitter;
-  onClickCloseIconHandle = () => {
-    this.onClickCloseIcon.emit('click-close-icon');
+  @Event() clickCloseIcon: EventEmitter;
+  clickCloseIconHandle = () => {
+    this.clickCloseIcon.emit('click-close-icon');
     this.closeHandle();
   };
   @Event() close: EventEmitter;
@@ -89,7 +91,7 @@ export class GluePopup {
             'glue-popup__close-icon--bottom-right': this.closeIconPosition == 'bottom-right',
           })}
         >
-          <glue-icon role="button" tabindex="0" name={this.closeIcon} onClick={this.onClickCloseIconHandle} />
+          <glue-icon role="button" tabindex="0" name={this.closeIcon} onClick={this.clickCloseIconHandle}></glue-icon>
         </div>
       );
     }
@@ -97,10 +99,16 @@ export class GluePopup {
   style = () => {
     const style = {
       zIndex: this.zIndex,
-      // width: '30%',
-      height: '30%',
     };
+    if (this.position == 'top' || this.position == 'bottom') {
+      style['width'] = this.width || '100%';
+      style['height'] = this.height || '30%';
+    }
 
+    if (this.position == 'right' || this.position == 'left') {
+      style['width'] = this.width || '30%';
+      style['height'] = this.height || '100%';
+    }
     if (isDef(this.duration)) {
       const key = this.position === 'center' ? 'animationDuration' : 'transitionDuration';
       style[key] = `${this.duration}s`;
@@ -114,7 +122,7 @@ export class GluePopup {
     if (this.show) {
       return (
         <div
-          ref={dom => (this.popupRef = dom)}
+          // ref={dom => (this.popupRef = dom)}
           style={this.style()}
           class={classNames(
             'glue-popup',
@@ -124,7 +132,7 @@ export class GluePopup {
             },
             bem([position]),
           )}
-          onClick={this.onClickHandle}
+          onClick={this.clickHandle}
         >
           <slot></slot>
           {this.renderCloseIcon()}
@@ -142,21 +150,21 @@ export class GluePopup {
           zIndex={this.zIndex}
           duration={this.duration}
           customStyle={this.overlayStyle}
-          onClick={this.onClickOverlayHandle}
-        />
+          onClick={this.clickOverlayHandle}
+        ></glue-overlay>
       );
     }
   };
   renderTransition = () => {
     // const { position, transition, transitionAppear } = this;
     // const name = position === 'center' ? 'van-fade' : `van-popup-slide-${position}`;
-    return <div>{this.renderPopup()}</div>;
+    return <div class="glue-popup-transition">{this.renderPopup()}</div>;
   };
   render() {
     return (
       <Host>
         {this.renderOverlay()}
-        {this.renderTransition()}
+        {this.renderPopup()}
       </Host>
     );
   }

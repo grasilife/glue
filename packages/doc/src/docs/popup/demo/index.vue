@@ -2,9 +2,9 @@
   <demo-section>
     <demo-block card :title="basicUsage">
       <van-cell :title="buttonBasic" is-link @click="showBasic = true" />
-      <van-popup v-model="showBasic" :style="{ padding: '30px 50px' }">
+      <glue-popup :show="showBasic" :style="{ padding: '30px 50px' }">
         {{ content }}
-      </van-popup>
+      </glue-popup>
     </demo-block>
 
     <demo-block card :title="position">
@@ -13,10 +13,10 @@
       <van-cell :title="buttonLeft" is-link @click="showLeft = true" />
       <van-cell :title="buttonRight" is-link @click="showRight = true" />
 
-      <van-popup v-model="showTop" position="top" :style="{ height: '30%' }" />
-      <van-popup v-model="showBottom" position="bottom" :style="{ height: '30%' }" />
-      <van-popup v-model="showLeft" position="left" :style="{ width: '30%', height: '100%' }" />
-      <van-popup v-model="showRight" position="right" :style="{ width: '30%', height: '100%' }" />
+      <glue-popup :show="showTop" position="top" width="100%" height="30%" />
+      <glue-popup :show="showBottom" position="bottom" width="100%" height="30%" />
+      <glue-popup :show="showLeft" position="left" width="30%" height="100%" />
+      <glue-popup :show="showRight" position="right" width="30%" height="100%" />
     </demo-block>
 
     <demo-block card :title="closeIcon">
@@ -24,31 +24,33 @@
       <van-cell :title="customCloseIcon" is-link @click="showCustomCloseIcon = true" />
       <van-cell :title="customIconPosition" is-link @click="showCustomIconPosition = true" />
 
-      <van-popup v-model="showCloseIcon" closeable position="bottom" :style="{ height: '30%' }" />
-      <van-popup
-        v-model="showCustomCloseIcon"
+      <glue-popup :show="showCloseIcon" closeable position="bottom" width="100%" height="30%" />
+      <glue-popup
+        :show="showCustomCloseIcon"
         closeable
         close-icon="close"
         position="bottom"
-        :style="{ height: '30%' }"
+        width="100%"
+        height="30%"
       />
-      <van-popup
-        v-model="showCustomIconPosition"
+      <glue-popup
+        :show="showCustomIconPosition"
         closeable
         close-icon-position="top-left"
         position="bottom"
-        :style="{ height: '30%' }"
+        width="100%"
+        height="30%"
       />
     </demo-block>
 
     <demo-block card :title="roundCorner">
       <van-cell :title="roundCorner" is-link @click="showRoundCorner = true" />
-      <van-popup v-model="showRoundCorner" round position="bottom" :style="{ height: '30%' }" />
+      <glue-popup :show="showRoundCorner" round position="bottom" width="100%" height="30%" />
     </demo-block>
 
     <demo-block card :title="getContainer">
       <van-cell :title="getContainer" is-link @click="showGetContainer = true" />
-      <van-popup v-model="showGetContainer" get-container="body" :style="{ padding: '30px 50px' }" />
+      <glue-popup :show="showGetContainer" get-container="body" :style="{ padding: '30px 50px' }" />
     </demo-block>
   </demo-section>
 </template>
