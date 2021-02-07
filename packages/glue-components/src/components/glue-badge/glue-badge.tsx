@@ -23,14 +23,7 @@ export class GlueBadge {
     console.log(this.hasContent(), this.content, 'this.hasContent()');
     if (this.hasContent() || this.dot) {
       return (
-        <div
-          class={classNames({
-            'glue-badge': true,
-            'glue-badge--fixed': true,
-            'glue-badge--dot': this.dot,
-          })}
-          style={{ background: this.color }}
-        >
+        <div class={classNames({})} style={{ background: this.color }}>
           {this.renderContent()}
         </div>
       );
@@ -52,6 +45,9 @@ export class GlueBadge {
     return (
       <Host
         class={classNames({
+          'glue-badge--dot': this.dot,
+          'glue-badge': true,
+          'glue-badge--fixed': true,
           'glue-badge__wrapper': true,
         })}
       >

@@ -144,9 +144,25 @@ export namespace Components {
         "zIndex": string;
     }
     interface GluePopup {
-        "first": string;
-        "last": string;
-        "middle": string;
+        "closeIcon": string;
+        "closeIconPosition": string;
+        "closeOnClickOverlay": boolean;
+        "closeOnPopstate": boolean;
+        "closeable": boolean;
+        "duration": string;
+        "lazyRender": boolean;
+        "lockScroll": boolean;
+        "overlay": boolean;
+        "overlayClass": any;
+        "overlayStyle": object;
+        "position": string;
+        "round": boolean;
+        "safeAreaInsetBottom": boolean;
+        "show": boolean;
+        "teleport": string | object;
+        "transition": string;
+        "transitionAppear": boolean;
+        "zIndex": string;
     }
     interface GlueRow {
         "align": RowAlign;
@@ -440,9 +456,30 @@ declare namespace LocalJSX {
         "zIndex"?: string;
     }
     interface GluePopup {
-        "first"?: string;
-        "last"?: string;
-        "middle"?: string;
+        "closeIcon"?: string;
+        "closeIconPosition"?: string;
+        "closeOnClickOverlay"?: boolean;
+        "closeOnPopstate"?: boolean;
+        "closeable"?: boolean;
+        "duration"?: string;
+        "lazyRender"?: boolean;
+        "lockScroll"?: boolean;
+        "onOnClick"?: (event: CustomEvent<any>) => void;
+        "onOnClickCloseIcon"?: (event: CustomEvent<any>) => void;
+        "onOnClickOverlay"?: (event: CustomEvent<any>) => void;
+        "onOnClosed"?: (event: CustomEvent<any>) => void;
+        "onOnOpened"?: (event: CustomEvent<any>) => void;
+        "overlay"?: boolean;
+        "overlayClass"?: any;
+        "overlayStyle"?: object;
+        "position"?: string;
+        "round"?: boolean;
+        "safeAreaInsetBottom"?: boolean;
+        "show"?: boolean;
+        "teleport"?: string | object;
+        "transition"?: string;
+        "transitionAppear"?: boolean;
+        "zIndex"?: string;
     }
     interface GlueRow {
         "align"?: RowAlign;

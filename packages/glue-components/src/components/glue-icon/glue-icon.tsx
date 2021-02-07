@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Host } from '@stencil/core';
 import { addUnit } from '../../utils/format/unit';
 import classNames from 'classnames';
 @Component({
@@ -11,7 +11,7 @@ export class GlueIcon {
 
   @Prop() name: string;
 
-  @Prop() size = 32;
+  @Prop() size = 22;
   @Prop() badge: number | string;
   @Prop() color: string;
   @Prop() tag: string;
@@ -19,27 +19,29 @@ export class GlueIcon {
   isImage(name?: string) {
     return name ? name.indexOf('/') !== -1 : false;
   }
+  renderBadge() {
+    if (this.badge || this.dot) {
+      return <glue-badge dot={this.dot} tag={this.tag} content={this.badge}></glue-badge>;
+    }
+  }
   render() {
     const { tag, dot, name, size, badge, color, classPrefix } = this;
     console.log(classPrefix);
     const isImageIcon = this.isImage(name);
     return (
-      <glue-badge
-        dot={dot}
-        tag={tag}
-        content={badge}
+      <Host
+        class={classNames('glue-icon', {
+          [`van-icon-${name}`]: true,
+        })}
         style={{
           color,
           fontSize: addUnit(size),
         }}
       >
-        <i
-          class={classNames('van-icon', {
-            [`van-icon-${name}`]: true,
-          })}
-        ></i>
+        {/* <i></i> */}
         {isImageIcon && <img class="glue-icon__image" src={name} />}
-      </glue-badge>
+        {this.renderBadge()}
+      </Host>
     );
   }
 }
