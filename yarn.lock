@@ -2194,10 +2194,10 @@
   resolved "https://registry.npm.taobao.org/@soda/get-current-script/download/@soda/get-current-script-1.0.2.tgz#a53515db25d8038374381b73af20bb4f2e508d87"
   integrity sha1-pTUV2yXYA4N0OBtzryC7Ty5QjYc=
 
-"@stencil/core@^2.0.1":
-  version "2.3.0"
-  resolved "https://registry.npm.taobao.org/@stencil/core/download/@stencil/core-2.3.0.tgz#9190df3a0064537730be1546545e13531d701da8"
-  integrity sha1-kZDfOgBkU3cwvhVGVF4TUx1wHag=
+"@stencil/core@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.npm.taobao.org/@stencil/core/download/@stencil/core-2.4.0.tgz#17b45629c8986e35dcbce3f7dab7d64beede83f2"
+  integrity sha1-F7RWKciYbjXcvOP32rfWS+7eg/I=
 
 "@stencil/less@^1.0.0":
   version "1.0.0"

@@ -6,7 +6,7 @@ const [bem] = createNamespace('glue-popup');
 @Component({
   tag: 'glue-popup',
   styleUrl: 'glue-popup.less',
-  shadow: false,
+  shadow: true,
 })
 export class GluePopup {
   @Prop() show: boolean;
@@ -99,6 +99,7 @@ export class GluePopup {
   style = () => {
     const style = {
       zIndex: this.zIndex,
+      // display: this.show ? 'block' : 'none',
     };
     if (this.position == 'top' || this.position == 'bottom') {
       style['width'] = this.width || '100%';
