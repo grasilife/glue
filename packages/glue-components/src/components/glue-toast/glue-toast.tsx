@@ -1,5 +1,5 @@
 import { Component, Prop, h, Host, EventEmitter, Event } from '@stencil/core';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-popup');

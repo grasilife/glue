@@ -167,6 +167,23 @@ export namespace Components {
         "width": string;
         "zIndex": string;
     }
+    interface GlueRate {
+        "allowHalf": boolean;
+        "color": string;
+        "count": number;
+        "disabled": boolean;
+        "disabledColor": string;
+        "first": string;
+        "gutter": string;
+        "icon": string;
+        "iconPrefix": string;
+        "modelValue": number;
+        "readonly": boolean;
+        "size": number;
+        "touchable": string;
+        "voidColor": string;
+        "voidIcon": string;
+    }
     interface GlueRow {
         "align": RowAlign;
         "gutter": number;
@@ -299,6 +316,12 @@ declare global {
         prototype: HTMLGluePopupElement;
         new (): HTMLGluePopupElement;
     };
+    interface HTMLGlueRateElement extends Components.GlueRate, HTMLStencilElement {
+    }
+    var HTMLGlueRateElement: {
+        prototype: HTMLGlueRateElement;
+        new (): HTMLGlueRateElement;
+    };
     interface HTMLGlueRowElement extends Components.GlueRow, HTMLStencilElement {
     }
     var HTMLGlueRowElement: {
@@ -334,6 +357,7 @@ declare global {
         "glue-loading": HTMLGlueLoadingElement;
         "glue-overlay": HTMLGlueOverlayElement;
         "glue-popup": HTMLGluePopupElement;
+        "glue-rate": HTMLGlueRateElement;
         "glue-row": HTMLGlueRowElement;
         "glue-tag": HTMLGlueTagElement;
         "glue-toast": HTMLGlueToastElement;
@@ -512,6 +536,24 @@ declare namespace LocalJSX {
         "width"?: string;
         "zIndex"?: string;
     }
+    interface GlueRate {
+        "allowHalf"?: boolean;
+        "color"?: string;
+        "count"?: number;
+        "disabled"?: boolean;
+        "disabledColor"?: string;
+        "first"?: string;
+        "gutter"?: string;
+        "icon"?: string;
+        "iconPrefix"?: string;
+        "modelValue"?: number;
+        "onSelect"?: (event: CustomEvent<any>) => void;
+        "readonly"?: boolean;
+        "size"?: number;
+        "touchable"?: string;
+        "voidColor"?: string;
+        "voidIcon"?: string;
+    }
     interface GlueRow {
         "align"?: RowAlign;
         "gutter"?: number;
@@ -566,6 +608,7 @@ declare namespace LocalJSX {
         "glue-loading": GlueLoading;
         "glue-overlay": GlueOverlay;
         "glue-popup": GluePopup;
+        "glue-rate": GlueRate;
         "glue-row": GlueRow;
         "glue-tag": GlueTag;
         "glue-toast": GlueToast;
@@ -591,6 +634,7 @@ declare module "@stencil/core" {
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
             "glue-overlay": LocalJSX.GlueOverlay & JSXBase.HTMLAttributes<HTMLGlueOverlayElement>;
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
+            "glue-rate": LocalJSX.GlueRate & JSXBase.HTMLAttributes<HTMLGlueRateElement>;
             "glue-row": LocalJSX.GlueRow & JSXBase.HTMLAttributes<HTMLGlueRowElement>;
             "glue-tag": LocalJSX.GlueTag & JSXBase.HTMLAttributes<HTMLGlueTagElement>;
             "glue-toast": LocalJSX.GlueToast & JSXBase.HTMLAttributes<HTMLGlueToastElement>;
