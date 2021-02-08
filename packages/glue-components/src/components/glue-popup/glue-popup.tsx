@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, EventEmitter, Event, State } from '@stencil/core';
+import { Component, Prop, h, Host, EventEmitter, Event } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { createNamespace } from '../../utils/create/index';
@@ -33,24 +33,24 @@ export class GluePopup {
   @Prop() position = 'center';
   @Prop() closeIcon = 'cross';
   @Prop() closeIconPosition = 'top-right';
-  @State() opened: boolean;
+  // @State() opened: boolean;
   // private zIndexRef: HTMLElement;
   // private popupRef: HTMLElement;
-  @Event() onClick: EventEmitter;
+  @Event() click: EventEmitter;
   clickHandle = event => {
-    this.onClick.emit(event);
+    this.click.emit(event);
   };
-  @Event() onOpened: EventEmitter;
+  @Event() opened: EventEmitter;
   openedHandle = () => {
-    this.onOpened.emit('opened');
+    this.opened.emit('opened');
   };
-  @Event() onClosed: EventEmitter;
+  @Event() closed: EventEmitter;
   closedHandle = () => {
-    this.onClosed.emit('closed');
+    this.closed.emit('closed');
   };
-  @Event() onClickOverlay: EventEmitter;
+  @Event() clickOverlay: EventEmitter;
   clickOverlayHandle = () => {
-    this.onClickOverlay.emit('click-overlay');
+    this.clickOverlay.emit('click-overlay');
     if (this.closeOnClickOverlay) {
       this.closeHandle();
     }

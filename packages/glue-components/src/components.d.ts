@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ImageFit } from "./components/glue-image/glue-image";
 import { RowAlign, RowJustify } from "./components/glue-row/glue-row";
+import { ToastType } from "./components/glue-toast/glue-toast";
 export namespace Components {
     interface GlueActionBar {
         "safeAreaInsetBottom": true;
@@ -183,6 +184,23 @@ export namespace Components {
         "textColor": string;
         "type": string;
     }
+    interface GlueToast {
+        "closeOnClick": boolean;
+        "closeOnClickOverlay": boolean;
+        "duration": number;
+        "forbidClick": boolean;
+        "icon": string;
+        "iconPrefix": string;
+        "loadingType": ToastType;
+        "lockScroll": boolean;
+        "message": string;
+        "overlayClass": null;
+        "overlayStyle": object;
+        "position": string;
+        "show": boolean;
+        "transition": string;
+        "type": string;
+    }
 }
 declare global {
     interface HTMLGlueActionBarElement extends Components.GlueActionBar, HTMLStencilElement {
@@ -293,6 +311,12 @@ declare global {
         prototype: HTMLGlueTagElement;
         new (): HTMLGlueTagElement;
     };
+    interface HTMLGlueToastElement extends Components.GlueToast, HTMLStencilElement {
+    }
+    var HTMLGlueToastElement: {
+        prototype: HTMLGlueToastElement;
+        new (): HTMLGlueToastElement;
+    };
     interface HTMLElementTagNameMap {
         "glue-action-bar": HTMLGlueActionBarElement;
         "glue-action-bar-button": HTMLGlueActionBarButtonElement;
@@ -312,6 +336,7 @@ declare global {
         "glue-popup": HTMLGluePopupElement;
         "glue-row": HTMLGlueRowElement;
         "glue-tag": HTMLGlueTagElement;
+        "glue-toast": HTMLGlueToastElement;
     }
 }
 declare namespace LocalJSX {
@@ -467,13 +492,13 @@ declare namespace LocalJSX {
         "height"?: string;
         "lazyRender"?: boolean;
         "lockScroll"?: boolean;
+        "onClick"?: (event: CustomEvent<any>) => void;
         "onClickCloseIcon"?: (event: CustomEvent<any>) => void;
+        "onClickOverlay"?: (event: CustomEvent<any>) => void;
         "onClose"?: (event: CustomEvent<any>) => void;
-        "onOnClick"?: (event: CustomEvent<any>) => void;
-        "onOnClickOverlay"?: (event: CustomEvent<any>) => void;
-        "onOnClosed"?: (event: CustomEvent<any>) => void;
-        "onOnOpened"?: (event: CustomEvent<any>) => void;
+        "onClosed"?: (event: CustomEvent<any>) => void;
         "onOpen"?: (event: CustomEvent<any>) => void;
+        "onOpened"?: (event: CustomEvent<any>) => void;
         "overlay"?: boolean;
         "overlayClass"?: any;
         "overlayStyle"?: object;
@@ -505,6 +530,25 @@ declare namespace LocalJSX {
         "textColor"?: string;
         "type"?: string;
     }
+    interface GlueToast {
+        "closeOnClick"?: boolean;
+        "closeOnClickOverlay"?: boolean;
+        "duration"?: number;
+        "forbidClick"?: boolean;
+        "icon"?: string;
+        "iconPrefix"?: string;
+        "loadingType"?: ToastType;
+        "lockScroll"?: boolean;
+        "message"?: string;
+        "onClick"?: (event: CustomEvent<any>) => void;
+        "onToggle"?: (event: CustomEvent<any>) => void;
+        "overlayClass"?: null;
+        "overlayStyle"?: object;
+        "position"?: string;
+        "show"?: boolean;
+        "transition"?: string;
+        "type"?: string;
+    }
     interface IntrinsicElements {
         "glue-action-bar": GlueActionBar;
         "glue-action-bar-button": GlueActionBarButton;
@@ -524,6 +568,7 @@ declare namespace LocalJSX {
         "glue-popup": GluePopup;
         "glue-row": GlueRow;
         "glue-tag": GlueTag;
+        "glue-toast": GlueToast;
     }
 }
 export { LocalJSX as JSX };
@@ -548,6 +593,7 @@ declare module "@stencil/core" {
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
             "glue-row": LocalJSX.GlueRow & JSXBase.HTMLAttributes<HTMLGlueRowElement>;
             "glue-tag": LocalJSX.GlueTag & JSXBase.HTMLAttributes<HTMLGlueTagElement>;
+            "glue-toast": LocalJSX.GlueToast & JSXBase.HTMLAttributes<HTMLGlueToastElement>;
         }
     }
 }
