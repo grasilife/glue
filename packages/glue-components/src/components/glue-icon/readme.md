@@ -27,7 +27,9 @@
  - [glue-cell](../glue-cell)
  - [glue-image](../glue-image)
  - [glue-popup](../glue-popup)
+ - [glue-rate](../glue-rate)
  - [glue-tag](../glue-tag)
+ - [glue-toast](../glue-toast)
 
 ### Depends on
 
@@ -42,7 +44,9 @@ graph TD;
   glue-cell --> glue-icon
   glue-image --> glue-icon
   glue-popup --> glue-icon
+  glue-rate --> glue-icon
   glue-tag --> glue-icon
+  glue-toast --> glue-icon
   style glue-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

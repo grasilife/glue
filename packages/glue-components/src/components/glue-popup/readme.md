@@ -36,13 +36,13 @@
 
 | Event            | Description | Type               |
 | ---------------- | ----------- | ------------------ |
+| `click`          |             | `CustomEvent<any>` |
 | `clickCloseIcon` |             | `CustomEvent<any>` |
+| `clickOverlay`   |             | `CustomEvent<any>` |
 | `close`          |             | `CustomEvent<any>` |
-| `onClick`        |             | `CustomEvent<any>` |
-| `onClickOverlay` |             | `CustomEvent<any>` |
-| `onClosed`       |             | `CustomEvent<any>` |
-| `onOpened`       |             | `CustomEvent<any>` |
+| `closed`         |             | `CustomEvent<any>` |
 | `open`           |             | `CustomEvent<any>` |
+| `opened`         |             | `CustomEvent<any>` |
 
 
 ## Dependencies

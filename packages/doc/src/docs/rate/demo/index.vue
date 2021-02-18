@@ -1,35 +1,35 @@
 <template>
   <demo-section>
     <demo-block :title="basicUsage">
-      <van-rate v-model="value1" />
+      <glue-rate :model-value="value1"></glue-rate>
     </demo-block>
 
     <demo-block :title="customIcon">
-      <van-rate v-model="value2" icon="like" void-icon="like-o" />
+      <glue-rate :model-value="value2" icon="like" void-icon="like-o" />
     </demo-block>
 
     <demo-block :title="customStyle">
-      <van-rate v-model="value3" :size="25" color="#ffd21e" void-icon="star" void-color="#eee" />
+      <glue-rate :model-value="value3" :size="25" color="#ffd21e" void-icon="star" void-color="#eee" />
     </demo-block>
 
     <demo-block :title="halfStar">
-      <van-rate v-model="value4" :size="25" allow-half void-icon="star" void-color="#eee" />
+      <glue-rate :model-value="value4" :size="25" allow-half void-icon="star" void-color="#eee" />
     </demo-block>
 
     <demo-block :title="customCount">
-      <van-rate v-model="value5" :count="6" />
+      <glue-rate :model-value="value5" :count="6" />
     </demo-block>
 
     <demo-block :title="disabled">
-      <van-rate v-model="value6" disabled />
+      <glue-rate :model-value="value6" disabled />
     </demo-block>
 
     <demo-block :title="readonly">
-      <van-rate v-model="value6" readonly />
+      <glue-rate :model-value="value6" readonly />
     </demo-block>
 
     <demo-block :title="changeEvent">
-      <van-rate v-model="value7" @change="onChange" />
+      <glue-rate :model-value="value7" @change="onChange" />
     </demo-block>
   </demo-section>
 </template>
@@ -73,7 +73,7 @@ export default {
   padding-bottom: 20px;
   background-color: #fff;
 
-  .van-rate {
+  glue-rate {
     margin-left: @padding-md;
   }
 }

@@ -22,11 +22,13 @@
 ### Used by
 
  - [glue-button](../glue-button)
+ - [glue-toast](../glue-toast)
 
 ### Graph
 ```mermaid
 graph TD;
   glue-button --> glue-loading
+  glue-toast --> glue-loading
   style glue-loading fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
