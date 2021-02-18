@@ -15,8 +15,14 @@
     <!-- <glue-toast message="111" show="true"></glue-toast> -->
     <!-- <glue-rate model-value="3"></glue-rate>
     <glue-rate model-value="3" icon="like" void-icon="like-o"></glue-rate> -->
-    <glue-rate model-value="1.5"></glue-rate>
-    <glue-circle current-rate="40" rate="100" speed="100" text="40%"></glue-circle>
+    <!-- <glue-rate model-value="1.5"></glue-rate>
+    <glue-circle current-rate="40" rate="100" speed="100" text="40%"></glue-circle> -->
+    <glue-cell title="单元格" value="内容" size="large"></glue-cell>
+    <glue-collapse v-model="activeNames">
+      <glue-collapse-item title="标题1" name="1">内容</glue-collapse-item>
+      <glue-collapse-item title="标题2" name="2">内容</glue-collapse-item>
+      <glue-collapse-item title="标题3" name="3">内容</glue-collapse-item>
+    </glue-collapse>
   </body>
 </html>
 <style>

@@ -113,6 +113,31 @@ export namespace Components {
         "offset": number;
         "span": number;
     }
+    interface GlueCollapse {
+        "accordion": boolean;
+        "border": boolean;
+        "modelValue": string;
+    }
+    interface GlueCollapseItem {
+        "arrowDirection": string;
+        "border": boolean;
+        "center": boolean;
+        "clickable": boolean;
+        "disabled": boolean;
+        "icon": string;
+        "iconPrefix": string;
+        "isLink": boolean;
+        "label": string | number;
+        "name": string;
+        "required": boolean;
+        "size": string;
+        "tilabelClasstle": any;
+        "title": string;
+        "titleClass": any;
+        "titleStyle": any;
+        "value": string | number;
+        "valueClass": any;
+    }
     interface GlueComponent {
         "first": string;
         "last": string;
@@ -299,6 +324,18 @@ declare global {
         prototype: HTMLGlueColElement;
         new (): HTMLGlueColElement;
     };
+    interface HTMLGlueCollapseElement extends Components.GlueCollapse, HTMLStencilElement {
+    }
+    var HTMLGlueCollapseElement: {
+        prototype: HTMLGlueCollapseElement;
+        new (): HTMLGlueCollapseElement;
+    };
+    interface HTMLGlueCollapseItemElement extends Components.GlueCollapseItem, HTMLStencilElement {
+    }
+    var HTMLGlueCollapseItemElement: {
+        prototype: HTMLGlueCollapseItemElement;
+        new (): HTMLGlueCollapseItemElement;
+    };
     interface HTMLGlueComponentElement extends Components.GlueComponent, HTMLStencilElement {
     }
     var HTMLGlueComponentElement: {
@@ -371,6 +408,8 @@ declare global {
         "glue-cell-group": HTMLGlueCellGroupElement;
         "glue-circle": HTMLGlueCircleElement;
         "glue-col": HTMLGlueColElement;
+        "glue-collapse": HTMLGlueCollapseElement;
+        "glue-collapse-item": HTMLGlueCollapseItemElement;
         "glue-component": HTMLGlueComponentElement;
         "glue-icon": HTMLGlueIconElement;
         "glue-image": HTMLGlueImageElement;
@@ -493,6 +532,32 @@ declare namespace LocalJSX {
     interface GlueCol {
         "offset"?: number;
         "span"?: number;
+    }
+    interface GlueCollapse {
+        "accordion"?: boolean;
+        "border"?: boolean;
+        "modelValue"?: string;
+    }
+    interface GlueCollapseItem {
+        "arrowDirection"?: string;
+        "border"?: boolean;
+        "center"?: boolean;
+        "clickable"?: boolean;
+        "disabled"?: boolean;
+        "icon"?: string;
+        "iconPrefix"?: string;
+        "isLink"?: boolean;
+        "label"?: string | number;
+        "name"?: string;
+        "onClickTitle"?: (event: CustomEvent<any>) => void;
+        "required"?: boolean;
+        "size"?: string;
+        "tilabelClasstle"?: any;
+        "title"?: string;
+        "titleClass"?: any;
+        "titleStyle"?: any;
+        "value"?: string | number;
+        "valueClass"?: any;
     }
     interface GlueComponent {
         "first"?: string;
@@ -637,6 +702,8 @@ declare namespace LocalJSX {
         "glue-cell-group": GlueCellGroup;
         "glue-circle": GlueCircle;
         "glue-col": GlueCol;
+        "glue-collapse": GlueCollapse;
+        "glue-collapse-item": GlueCollapseItem;
         "glue-component": GlueComponent;
         "glue-icon": GlueIcon;
         "glue-image": GlueImage;
@@ -664,6 +731,8 @@ declare module "@stencil/core" {
             "glue-cell-group": LocalJSX.GlueCellGroup & JSXBase.HTMLAttributes<HTMLGlueCellGroupElement>;
             "glue-circle": LocalJSX.GlueCircle & JSXBase.HTMLAttributes<HTMLGlueCircleElement>;
             "glue-col": LocalJSX.GlueCol & JSXBase.HTMLAttributes<HTMLGlueColElement>;
+            "glue-collapse": LocalJSX.GlueCollapse & JSXBase.HTMLAttributes<HTMLGlueCollapseElement>;
+            "glue-collapse-item": LocalJSX.GlueCollapseItem & JSXBase.HTMLAttributes<HTMLGlueCollapseItemElement>;
             "glue-component": LocalJSX.GlueComponent & JSXBase.HTMLAttributes<HTMLGlueComponentElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
             "glue-image": LocalJSX.GlueImage & JSXBase.HTMLAttributes<HTMLGlueImageElement>;
