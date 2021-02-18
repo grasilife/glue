@@ -150,6 +150,11 @@ export namespace Components {
         "millisecond": boolean;
         "time": number;
     }
+    interface GlueDemo {
+        "first": string;
+        "last": string;
+        "middle": string;
+    }
     interface GlueDivider {
         "contentPosition": DividerContentPosition;
         "dashed": boolean;
@@ -184,6 +189,17 @@ export namespace Components {
         "showLoading": boolean;
         "src": string;
         "width": string | number;
+    }
+    interface GlueList {
+        "direction": string;
+        "error": boolean;
+        "errorText": string;
+        "finished": boolean;
+        "finishedText": string;
+        "immediateCheck": boolean;
+        "loading": boolean;
+        "loadingText": string;
+        "offset": number;
     }
     interface GlueLoading {
         "color": string;
@@ -366,6 +382,12 @@ declare global {
         prototype: HTMLGlueCountDownElement;
         new (): HTMLGlueCountDownElement;
     };
+    interface HTMLGlueDemoElement extends Components.GlueDemo, HTMLStencilElement {
+    }
+    var HTMLGlueDemoElement: {
+        prototype: HTMLGlueDemoElement;
+        new (): HTMLGlueDemoElement;
+    };
     interface HTMLGlueDividerElement extends Components.GlueDivider, HTMLStencilElement {
     }
     var HTMLGlueDividerElement: {
@@ -389,6 +411,12 @@ declare global {
     var HTMLGlueImageElement: {
         prototype: HTMLGlueImageElement;
         new (): HTMLGlueImageElement;
+    };
+    interface HTMLGlueListElement extends Components.GlueList, HTMLStencilElement {
+    }
+    var HTMLGlueListElement: {
+        prototype: HTMLGlueListElement;
+        new (): HTMLGlueListElement;
     };
     interface HTMLGlueLoadingElement extends Components.GlueLoading, HTMLStencilElement {
     }
@@ -448,10 +476,12 @@ declare global {
         "glue-collapse-item": HTMLGlueCollapseItemElement;
         "glue-component": HTMLGlueComponentElement;
         "glue-count-down": HTMLGlueCountDownElement;
+        "glue-demo": HTMLGlueDemoElement;
         "glue-divider": HTMLGlueDividerElement;
         "glue-empty": HTMLGlueEmptyElement;
         "glue-icon": HTMLGlueIconElement;
         "glue-image": HTMLGlueImageElement;
+        "glue-list": HTMLGlueListElement;
         "glue-loading": HTMLGlueLoadingElement;
         "glue-overlay": HTMLGlueOverlayElement;
         "glue-popup": HTMLGluePopupElement;
@@ -609,6 +639,11 @@ declare namespace LocalJSX {
         "millisecond"?: boolean;
         "time"?: number;
     }
+    interface GlueDemo {
+        "first"?: string;
+        "last"?: string;
+        "middle"?: string;
+    }
     interface GlueDivider {
         "contentPosition"?: DividerContentPosition;
         "dashed"?: boolean;
@@ -645,6 +680,18 @@ declare namespace LocalJSX {
         "showLoading"?: boolean;
         "src"?: string;
         "width"?: string | number;
+    }
+    interface GlueList {
+        "direction"?: string;
+        "error"?: boolean;
+        "errorText"?: string;
+        "finished"?: boolean;
+        "finishedText"?: string;
+        "immediateCheck"?: boolean;
+        "loading"?: boolean;
+        "loadingText"?: string;
+        "offset"?: number;
+        "onClickErrorText"?: (event: CustomEvent<any>) => void;
     }
     interface GlueLoading {
         "color"?: string;
@@ -762,10 +809,12 @@ declare namespace LocalJSX {
         "glue-collapse-item": GlueCollapseItem;
         "glue-component": GlueComponent;
         "glue-count-down": GlueCountDown;
+        "glue-demo": GlueDemo;
         "glue-divider": GlueDivider;
         "glue-empty": GlueEmpty;
         "glue-icon": GlueIcon;
         "glue-image": GlueImage;
+        "glue-list": GlueList;
         "glue-loading": GlueLoading;
         "glue-overlay": GlueOverlay;
         "glue-popup": GluePopup;
@@ -794,10 +843,12 @@ declare module "@stencil/core" {
             "glue-collapse-item": LocalJSX.GlueCollapseItem & JSXBase.HTMLAttributes<HTMLGlueCollapseItemElement>;
             "glue-component": LocalJSX.GlueComponent & JSXBase.HTMLAttributes<HTMLGlueComponentElement>;
             "glue-count-down": LocalJSX.GlueCountDown & JSXBase.HTMLAttributes<HTMLGlueCountDownElement>;
+            "glue-demo": LocalJSX.GlueDemo & JSXBase.HTMLAttributes<HTMLGlueDemoElement>;
             "glue-divider": LocalJSX.GlueDivider & JSXBase.HTMLAttributes<HTMLGlueDividerElement>;
             "glue-empty": LocalJSX.GlueEmpty & JSXBase.HTMLAttributes<HTMLGlueEmptyElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
             "glue-image": LocalJSX.GlueImage & JSXBase.HTMLAttributes<HTMLGlueImageElement>;
+            "glue-list": LocalJSX.GlueList & JSXBase.HTMLAttributes<HTMLGlueListElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
             "glue-overlay": LocalJSX.GlueOverlay & JSXBase.HTMLAttributes<HTMLGlueOverlayElement>;
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
