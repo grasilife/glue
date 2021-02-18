@@ -96,6 +96,19 @@ export namespace Components {
         "border": boolean;
         "title": string;
     }
+    interface GlueCircle {
+        "clockwise": boolean;
+        "color": string;
+        "currentRate": number;
+        "fill": string;
+        "layerColor": string;
+        "rate": number;
+        "size": string;
+        "speed": number;
+        "strokeLinecap": string;
+        "strokeWidth": number;
+        "text": string;
+    }
     interface GlueCol {
         "offset": number;
         "span": number;
@@ -274,6 +287,12 @@ declare global {
         prototype: HTMLGlueCellGroupElement;
         new (): HTMLGlueCellGroupElement;
     };
+    interface HTMLGlueCircleElement extends Components.GlueCircle, HTMLStencilElement {
+    }
+    var HTMLGlueCircleElement: {
+        prototype: HTMLGlueCircleElement;
+        new (): HTMLGlueCircleElement;
+    };
     interface HTMLGlueColElement extends Components.GlueCol, HTMLStencilElement {
     }
     var HTMLGlueColElement: {
@@ -350,6 +369,7 @@ declare global {
         "glue-card": HTMLGlueCardElement;
         "glue-cell": HTMLGlueCellElement;
         "glue-cell-group": HTMLGlueCellGroupElement;
+        "glue-circle": HTMLGlueCircleElement;
         "glue-col": HTMLGlueColElement;
         "glue-component": HTMLGlueComponentElement;
         "glue-icon": HTMLGlueIconElement;
@@ -455,6 +475,20 @@ declare namespace LocalJSX {
     interface GlueCellGroup {
         "border"?: boolean;
         "title"?: string;
+    }
+    interface GlueCircle {
+        "clockwise"?: boolean;
+        "color"?: string;
+        "currentRate"?: number;
+        "fill"?: string;
+        "layerColor"?: string;
+        "onChange"?: (event: CustomEvent<any>) => void;
+        "rate"?: number;
+        "size"?: string;
+        "speed"?: number;
+        "strokeLinecap"?: string;
+        "strokeWidth"?: number;
+        "text"?: string;
     }
     interface GlueCol {
         "offset"?: number;
@@ -601,6 +635,7 @@ declare namespace LocalJSX {
         "glue-card": GlueCard;
         "glue-cell": GlueCell;
         "glue-cell-group": GlueCellGroup;
+        "glue-circle": GlueCircle;
         "glue-col": GlueCol;
         "glue-component": GlueComponent;
         "glue-icon": GlueIcon;
@@ -627,6 +662,7 @@ declare module "@stencil/core" {
             "glue-card": LocalJSX.GlueCard & JSXBase.HTMLAttributes<HTMLGlueCardElement>;
             "glue-cell": LocalJSX.GlueCell & JSXBase.HTMLAttributes<HTMLGlueCellElement>;
             "glue-cell-group": LocalJSX.GlueCellGroup & JSXBase.HTMLAttributes<HTMLGlueCellGroupElement>;
+            "glue-circle": LocalJSX.GlueCircle & JSXBase.HTMLAttributes<HTMLGlueCircleElement>;
             "glue-col": LocalJSX.GlueCol & JSXBase.HTMLAttributes<HTMLGlueColElement>;
             "glue-component": LocalJSX.GlueComponent & JSXBase.HTMLAttributes<HTMLGlueComponentElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
