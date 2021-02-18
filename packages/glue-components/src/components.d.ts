@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DividerContentPosition } from "./components/glue-divider/glue-divider";
 import { ImageFit } from "./components/glue-image/glue-image";
 import { RowAlign, RowJustify } from "./components/glue-row/glue-row";
 import { ToastType } from "./components/glue-toast/glue-toast";
@@ -142,6 +143,18 @@ export namespace Components {
         "first": string;
         "last": string;
         "middle": string;
+    }
+    interface GlueCountDown {
+        "autoStart": boolean;
+        "format": string;
+        "millisecond": boolean;
+        "time": number;
+    }
+    interface GlueDivider {
+        "contentPosition": DividerContentPosition;
+        "dashed": boolean;
+        "hairline": boolean;
+        "text": string;
     }
     interface GlueIcon {
         "badge": number | string;
@@ -342,6 +355,18 @@ declare global {
         prototype: HTMLGlueComponentElement;
         new (): HTMLGlueComponentElement;
     };
+    interface HTMLGlueCountDownElement extends Components.GlueCountDown, HTMLStencilElement {
+    }
+    var HTMLGlueCountDownElement: {
+        prototype: HTMLGlueCountDownElement;
+        new (): HTMLGlueCountDownElement;
+    };
+    interface HTMLGlueDividerElement extends Components.GlueDivider, HTMLStencilElement {
+    }
+    var HTMLGlueDividerElement: {
+        prototype: HTMLGlueDividerElement;
+        new (): HTMLGlueDividerElement;
+    };
     interface HTMLGlueIconElement extends Components.GlueIcon, HTMLStencilElement {
     }
     var HTMLGlueIconElement: {
@@ -411,6 +436,8 @@ declare global {
         "glue-collapse": HTMLGlueCollapseElement;
         "glue-collapse-item": HTMLGlueCollapseItemElement;
         "glue-component": HTMLGlueComponentElement;
+        "glue-count-down": HTMLGlueCountDownElement;
+        "glue-divider": HTMLGlueDividerElement;
         "glue-icon": HTMLGlueIconElement;
         "glue-image": HTMLGlueImageElement;
         "glue-loading": HTMLGlueLoadingElement;
@@ -564,6 +591,18 @@ declare namespace LocalJSX {
         "last"?: string;
         "middle"?: string;
     }
+    interface GlueCountDown {
+        "autoStart"?: boolean;
+        "format"?: string;
+        "millisecond"?: boolean;
+        "time"?: number;
+    }
+    interface GlueDivider {
+        "contentPosition"?: DividerContentPosition;
+        "dashed"?: boolean;
+        "hairline"?: boolean;
+        "text"?: string;
+    }
     interface GlueIcon {
         "badge"?: number | string;
         "classPrefix"?: string;
@@ -705,6 +744,8 @@ declare namespace LocalJSX {
         "glue-collapse": GlueCollapse;
         "glue-collapse-item": GlueCollapseItem;
         "glue-component": GlueComponent;
+        "glue-count-down": GlueCountDown;
+        "glue-divider": GlueDivider;
         "glue-icon": GlueIcon;
         "glue-image": GlueImage;
         "glue-loading": GlueLoading;
@@ -734,6 +775,8 @@ declare module "@stencil/core" {
             "glue-collapse": LocalJSX.GlueCollapse & JSXBase.HTMLAttributes<HTMLGlueCollapseElement>;
             "glue-collapse-item": LocalJSX.GlueCollapseItem & JSXBase.HTMLAttributes<HTMLGlueCollapseItemElement>;
             "glue-component": LocalJSX.GlueComponent & JSXBase.HTMLAttributes<HTMLGlueComponentElement>;
+            "glue-count-down": LocalJSX.GlueCountDown & JSXBase.HTMLAttributes<HTMLGlueCountDownElement>;
+            "glue-divider": LocalJSX.GlueDivider & JSXBase.HTMLAttributes<HTMLGlueDividerElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
             "glue-image": LocalJSX.GlueImage & JSXBase.HTMLAttributes<HTMLGlueImageElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;

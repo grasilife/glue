@@ -26,7 +26,7 @@ export class GlueCollapseItem {
 
   @Prop() disabled: boolean;
   @Event() clickTitle: EventEmitter;
-  clickTitleHandle = event => {
+  clickTitleHandle = () => {
     if (!this.disabled) {
       this.toggle();
     }
@@ -86,6 +86,7 @@ export class GlueCollapseItem {
     </div>
   );
   render() {
+    console.log(this.contentRef);
     return (
       <Host
         class={classNames('glue-collapse-item', {

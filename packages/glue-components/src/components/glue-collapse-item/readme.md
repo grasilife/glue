@@ -1,4 +1,4 @@
-# glue-cell
+# glue-collapse-item
 
 
 
@@ -13,10 +13,12 @@
 | `border`          | `border`           |             | `boolean`          | `true`      |
 | `center`          | `center`           |             | `boolean`          | `undefined` |
 | `clickable`       | `clickable`        |             | `boolean`          | `undefined` |
+| `disabled`        | `disabled`         |             | `boolean`          | `undefined` |
 | `icon`            | `icon`             |             | `string`           | `undefined` |
 | `iconPrefix`      | `icon-prefix`      |             | `string`           | `undefined` |
 | `isLink`          | `is-link`          |             | `boolean`          | `undefined` |
 | `label`           | `label`            |             | `number \| string` | `undefined` |
+| `name`            | `name`             |             | `string`           | `undefined` |
 | `required`        | `required`         |             | `boolean`          | `undefined` |
 | `size`            | `size`             |             | `string`           | `undefined` |
 | `tilabelClasstle` | `tilabel-classtle` |             | `any`              | `null`      |
@@ -29,28 +31,24 @@
 
 ## Events
 
-| Event            | Description | Type               |
-| ---------------- | ----------- | ------------------ |
-| `checkboxchange` |             | `CustomEvent<any>` |
+| Event        | Description | Type               |
+| ------------ | ----------- | ------------------ |
+| `clickTitle` |             | `CustomEvent<any>` |
 
 
 ## Dependencies
 
-### Used by
-
- - [glue-collapse-item](../glue-collapse-item)
-
 ### Depends on
 
-- [glue-icon](../glue-icon)
+- [glue-cell](../glue-cell)
 
 ### Graph
 ```mermaid
 graph TD;
+  glue-collapse-item --> glue-cell
   glue-cell --> glue-icon
   glue-icon --> glue-badge
-  glue-collapse-item --> glue-cell
-  style glue-cell fill:#f9f,stroke:#333,stroke-width:4px
+  style glue-collapse-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
