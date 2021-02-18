@@ -156,6 +156,11 @@ export namespace Components {
         "hairline": boolean;
         "text": string;
     }
+    interface GlueEmpty {
+        "description": string;
+        "image": string;
+        "imageSize": string;
+    }
     interface GlueIcon {
         "badge": number | string;
         "classPrefix": string;
@@ -367,6 +372,12 @@ declare global {
         prototype: HTMLGlueDividerElement;
         new (): HTMLGlueDividerElement;
     };
+    interface HTMLGlueEmptyElement extends Components.GlueEmpty, HTMLStencilElement {
+    }
+    var HTMLGlueEmptyElement: {
+        prototype: HTMLGlueEmptyElement;
+        new (): HTMLGlueEmptyElement;
+    };
     interface HTMLGlueIconElement extends Components.GlueIcon, HTMLStencilElement {
     }
     var HTMLGlueIconElement: {
@@ -438,6 +449,7 @@ declare global {
         "glue-component": HTMLGlueComponentElement;
         "glue-count-down": HTMLGlueCountDownElement;
         "glue-divider": HTMLGlueDividerElement;
+        "glue-empty": HTMLGlueEmptyElement;
         "glue-icon": HTMLGlueIconElement;
         "glue-image": HTMLGlueImageElement;
         "glue-loading": HTMLGlueLoadingElement;
@@ -603,6 +615,11 @@ declare namespace LocalJSX {
         "hairline"?: boolean;
         "text"?: string;
     }
+    interface GlueEmpty {
+        "description"?: string;
+        "image"?: string;
+        "imageSize"?: string;
+    }
     interface GlueIcon {
         "badge"?: number | string;
         "classPrefix"?: string;
@@ -746,6 +763,7 @@ declare namespace LocalJSX {
         "glue-component": GlueComponent;
         "glue-count-down": GlueCountDown;
         "glue-divider": GlueDivider;
+        "glue-empty": GlueEmpty;
         "glue-icon": GlueIcon;
         "glue-image": GlueImage;
         "glue-loading": GlueLoading;
@@ -777,6 +795,7 @@ declare module "@stencil/core" {
             "glue-component": LocalJSX.GlueComponent & JSXBase.HTMLAttributes<HTMLGlueComponentElement>;
             "glue-count-down": LocalJSX.GlueCountDown & JSXBase.HTMLAttributes<HTMLGlueCountDownElement>;
             "glue-divider": LocalJSX.GlueDivider & JSXBase.HTMLAttributes<HTMLGlueDividerElement>;
+            "glue-empty": LocalJSX.GlueEmpty & JSXBase.HTMLAttributes<HTMLGlueEmptyElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
             "glue-image": LocalJSX.GlueImage & JSXBase.HTMLAttributes<HTMLGlueImageElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;

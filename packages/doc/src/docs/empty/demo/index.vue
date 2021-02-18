@@ -1,25 +1,25 @@
 <template>
   <demo-section>
     <demo-block :title="basicUsage">
-      <van-empty :description="description" />
+      <glue-empty :description="description" />
     </demo-block>
 
     <demo-block :title="imageType">
       <van-tabs v-model="active">
         <van-tab name="error" :title="error">
-          <van-empty image="error" :description="description" />
+          <glue-empty image="error" :description="description" />
         </van-tab>
         <van-tab name="network" :title="network">
-          <van-empty image="network" :description="description" />
+          <glue-empty image="network" :description="description" />
         </van-tab>
         <van-tab name="search" :title="search">
-          <van-empty image="search" :description="description" />
+          <glue-empty image="search" :description="description" />
         </van-tab>
       </van-tabs>
     </demo-block>
 
     <demo-block :title="customImage">
-      <van-empty
+      <glue-empty
         class="custom-image"
         image="https://img.yzcdn.cn/vant/custom-empty-image.png"
         :description="description"
@@ -27,11 +27,11 @@
     </demo-block>
 
     <demo-block :title="bottomContent">
-      <van-empty :description="description">
+      <glue-empty :description="description">
         <van-button round type="danger" class="bottom-button">
           {{ button }}
         </van-button>
-      </van-empty>
+      </glue-empty>
     </demo-block>
   </demo-section>
 </template>
