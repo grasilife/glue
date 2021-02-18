@@ -1,14 +1,25 @@
 <template>
   <demo-section>
     <demo-block :title="basicUsage">
-      <van-circle v-model="currentRate1" :rate="rate" :speed="100" :text="currentRate1.toFixed(0) + '%'" />
+      <glue-circle
+        :current-rate="currentRate1"
+        :rate="rate"
+        :speed="100"
+        :text="currentRate1.toFixed(0) + '%'"
+      ></glue-circle>
     </demo-block>
 
     <demo-block :title="customStyle">
-      <van-circle v-model="currentRate3" :rate="rate" :speed="100" :stroke-width="60" :text="customWidth" />
+      <glue-circle
+        :current-rate="currentRate3"
+        :rate="rate"
+        :speed="100"
+        :stroke-width="60"
+        :text="customWidth"
+      ></glue-circle>
 
-      <van-circle
-        v-model="currentRate3"
+      <glue-circle
+        :current-rate="currentRate3"
         color="#ee0a24"
         :rate="rate"
         layer-color="#ebedf0"
@@ -16,10 +27,16 @@
         :text="customColor"
       />
 
-      <van-circle v-model="currentRate2" :rate="rate" :speed="100" :color="gradientColor" :text="gradient" />
+      <glue-circle
+        :current-rate="currentRate2"
+        :rate="rate"
+        :speed="100"
+        :color="gradientColor"
+        :text="gradient"
+      ></glue-circle>
 
-      <van-circle
-        v-model="currentRate4"
+      <glue-circle
+        :current-rate="currentRate4"
         color="#07c160"
         :rate="rate"
         :speed="100"
@@ -28,8 +45,8 @@
         style="margin-top: 15px;"
       />
 
-      <van-circle
-        v-model="currentRate4"
+      <glue-circle
+        :current-rate="currentRate4"
         color="#7232dd"
         :rate="rate"
         :speed="100"
@@ -37,12 +54,12 @@
         :clockwise="false"
         :text="customSize"
         style="margin-top: 15px;"
-      />
+      ></glue-circle>
     </demo-block>
 
     <div style="margin-top: 15px;">
-      <van-button :text="addText" type="primary" size="small" @click="add" />
-      <van-button :text="decreaseText" type="danger" size="small" @click="reduce" />
+      <glue-button type="primary" size="small" @click="add">{{ addText }}</glue-button>
+      <glue-button type="danger" size="small" @click="reduce">{{ decreaseText }}</glue-button>
     </div>
   </demo-section>
 </template>
@@ -90,11 +107,11 @@ export default {
 @import "../../../common/style/var2.less";
 
 .demo-circle {
-  .van-circle {
+  .glue-circle {
     margin-left: @padding-md;
   }
 
-  .van-button {
+  .glue-button {
     margin: @padding-md 0 0 10px;
 
     &:first-of-type {

@@ -34,7 +34,7 @@ export class GlueCircle {
   @Prop() clockwise = true;
   @Event() change: EventEmitter;
   @Watch('rate')
-  watchHandler(newValue, oldValue) {
+  watchHandler(newValue) {
     this.change.emit(newValue);
   }
   viewBoxSize = () => this.strokeWidth + 1000;
