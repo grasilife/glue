@@ -1,0 +1,83 @@
+import { Component, Prop, h, Host } from '@stencil/core';
+//TODO:打包后不生效
+import { getSizeStyle, addUnit } from '../../utils/format/unit';
+import classNames from 'classnames';
+const DEFAULT_ROW_WIDTH = '100%';
+const DEFAULT_LAST_ROW_WIDTH = '60%';
+@Component({
+  tag: 'glue-skeleton',
+  styleUrl: 'glue-skeleton.less',
+  shadow: false,
+})
+export class GlueSkeleton {
+  @Prop() titleState: boolean;
+
+  @Prop() round: boolean;
+
+  @Prop() avatar: string;
+  @Prop() avatarSize: string;
+  @Prop() titleWidth: string;
+  @Prop() row: string | number = 0;
+  @Prop() loading = true;
+  @Prop() animateState = true;
+  @Prop() avatarShape = 'round';
+  @Prop() rowWidth = DEFAULT_ROW_WIDTH;
+  renderAvatar = () => {
+    if (this.avatar) {
+      return (
+        <div
+          class={classNames({
+            'glue-skeleton__avatar': this.avatarShape,
+          })}
+          style={getSizeStyle(this.avatarSize)}
+        />
+      );
+    }
+  };
+
+  renderTitle = () => {
+    if (this.titleState) {
+      return <h3 class="glue-skeleton__title" style={{ width: addUnit(this.titleWidth) }} />;
+    }
+  };
+
+  getRowWidth = (index: number) => {
+    const { rowWidth } = this;
+
+    if (rowWidth === DEFAULT_ROW_WIDTH && index === +this.row - 1) {
+      return DEFAULT_LAST_ROW_WIDTH;
+    }
+
+    if (Array.isArray(rowWidth)) {
+      return rowWidth[index];
+    }
+
+    return rowWidth;
+  };
+
+  renderRows = () => {
+    const Rows = [];
+
+    for (let i = 0; i < this.row; i++) {
+      Rows.push(<div class="glue-skeleton__row" style={{ width: addUnit(this.getRowWidth(i)) }} />);
+    }
+
+    return Rows;
+  };
+  render() {
+    return (
+      <Host
+        class={classNames({
+          'glue-skeleton__animate': this.animateState,
+          'glue-skeleton__round': this.round,
+        })}
+      >
+        {this.renderAvatar()}
+        <div class="glue-skeleton__content">
+          {this.renderTitle()}
+          {this.renderRows()}
+        </div>
+      </Host>
+    );
+  }
+}

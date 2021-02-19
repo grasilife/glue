@@ -1,7 +1,7 @@
 <template>
   <demo-section>
     <demo-block :title="basicUsage">
-      <van-skeleton title :row="3" />
+      <glue-skeleton titleState row="3"></glue-skeleton>
     </demo-block>
 
     <demo-block :title="showAvatar">

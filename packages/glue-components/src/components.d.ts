@@ -284,6 +284,18 @@ export namespace Components {
         "gutter": number;
         "justify": RowJustify;
     }
+    interface GlueSkeleton {
+        "animateState": boolean;
+        "avatar": string;
+        "avatarShape": string;
+        "avatarSize": string;
+        "loading": boolean;
+        "round": boolean;
+        "row": string | number;
+        "rowWidth": string;
+        "titleState": boolean;
+        "titleWidth": string;
+    }
     interface GlueTag {
         "closeable": boolean;
         "color": string;
@@ -483,6 +495,12 @@ declare global {
         prototype: HTMLGlueRowElement;
         new (): HTMLGlueRowElement;
     };
+    interface HTMLGlueSkeletonElement extends Components.GlueSkeleton, HTMLStencilElement {
+    }
+    var HTMLGlueSkeletonElement: {
+        prototype: HTMLGlueSkeletonElement;
+        new (): HTMLGlueSkeletonElement;
+    };
     interface HTMLGlueTagElement extends Components.GlueTag, HTMLStencilElement {
     }
     var HTMLGlueTagElement: {
@@ -524,6 +542,7 @@ declare global {
         "glue-progress": HTMLGlueProgressElement;
         "glue-rate": HTMLGlueRateElement;
         "glue-row": HTMLGlueRowElement;
+        "glue-skeleton": HTMLGlueSkeletonElement;
         "glue-tag": HTMLGlueTagElement;
         "glue-toast": HTMLGlueToastElement;
     }
@@ -823,6 +842,18 @@ declare namespace LocalJSX {
         "gutter"?: number;
         "justify"?: RowJustify;
     }
+    interface GlueSkeleton {
+        "animateState"?: boolean;
+        "avatar"?: string;
+        "avatarShape"?: string;
+        "avatarSize"?: string;
+        "loading"?: boolean;
+        "round"?: boolean;
+        "row"?: string | number;
+        "rowWidth"?: string;
+        "titleState"?: boolean;
+        "titleWidth"?: string;
+    }
     interface GlueTag {
         "closeable"?: boolean;
         "color"?: string;
@@ -884,6 +915,7 @@ declare namespace LocalJSX {
         "glue-progress": GlueProgress;
         "glue-rate": GlueRate;
         "glue-row": GlueRow;
+        "glue-skeleton": GlueSkeleton;
         "glue-tag": GlueTag;
         "glue-toast": GlueToast;
     }
@@ -920,6 +952,7 @@ declare module "@stencil/core" {
             "glue-progress": LocalJSX.GlueProgress & JSXBase.HTMLAttributes<HTMLGlueProgressElement>;
             "glue-rate": LocalJSX.GlueRate & JSXBase.HTMLAttributes<HTMLGlueRateElement>;
             "glue-row": LocalJSX.GlueRow & JSXBase.HTMLAttributes<HTMLGlueRowElement>;
+            "glue-skeleton": LocalJSX.GlueSkeleton & JSXBase.HTMLAttributes<HTMLGlueSkeletonElement>;
             "glue-tag": LocalJSX.GlueTag & JSXBase.HTMLAttributes<HTMLGlueTagElement>;
             "glue-toast": LocalJSX.GlueToast & JSXBase.HTMLAttributes<HTMLGlueToastElement>;
         }
