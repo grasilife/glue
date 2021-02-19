@@ -251,6 +251,17 @@ export namespace Components {
         "width": string;
         "zIndex": string;
     }
+    interface GlueProgress {
+        "color": string;
+        "inactive": string;
+        "percentage": string;
+        "pivotColor": string;
+        "pivotText": string;
+        "showPivot": boolean;
+        "strokeWidth": string;
+        "textColor": string;
+        "trackColor": string;
+    }
     interface GlueRate {
         "allowHalf": boolean;
         "color": string;
@@ -454,6 +465,12 @@ declare global {
         prototype: HTMLGluePopupElement;
         new (): HTMLGluePopupElement;
     };
+    interface HTMLGlueProgressElement extends Components.GlueProgress, HTMLStencilElement {
+    }
+    var HTMLGlueProgressElement: {
+        prototype: HTMLGlueProgressElement;
+        new (): HTMLGlueProgressElement;
+    };
     interface HTMLGlueRateElement extends Components.GlueRate, HTMLStencilElement {
     }
     var HTMLGlueRateElement: {
@@ -504,6 +521,7 @@ declare global {
         "glue-notice-bar": HTMLGlueNoticeBarElement;
         "glue-overlay": HTMLGlueOverlayElement;
         "glue-popup": HTMLGluePopupElement;
+        "glue-progress": HTMLGlueProgressElement;
         "glue-rate": HTMLGlueRateElement;
         "glue-row": HTMLGlueRowElement;
         "glue-tag": HTMLGlueTagElement;
@@ -771,6 +789,17 @@ declare namespace LocalJSX {
         "width"?: string;
         "zIndex"?: string;
     }
+    interface GlueProgress {
+        "color"?: string;
+        "inactive"?: string;
+        "percentage"?: string;
+        "pivotColor"?: string;
+        "pivotText"?: string;
+        "showPivot"?: boolean;
+        "strokeWidth"?: string;
+        "textColor"?: string;
+        "trackColor"?: string;
+    }
     interface GlueRate {
         "allowHalf"?: boolean;
         "color"?: string;
@@ -852,6 +881,7 @@ declare namespace LocalJSX {
         "glue-notice-bar": GlueNoticeBar;
         "glue-overlay": GlueOverlay;
         "glue-popup": GluePopup;
+        "glue-progress": GlueProgress;
         "glue-rate": GlueRate;
         "glue-row": GlueRow;
         "glue-tag": GlueTag;
@@ -887,6 +917,7 @@ declare module "@stencil/core" {
             "glue-notice-bar": LocalJSX.GlueNoticeBar & JSXBase.HTMLAttributes<HTMLGlueNoticeBarElement>;
             "glue-overlay": LocalJSX.GlueOverlay & JSXBase.HTMLAttributes<HTMLGlueOverlayElement>;
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
+            "glue-progress": LocalJSX.GlueProgress & JSXBase.HTMLAttributes<HTMLGlueProgressElement>;
             "glue-rate": LocalJSX.GlueRate & JSXBase.HTMLAttributes<HTMLGlueRateElement>;
             "glue-row": LocalJSX.GlueRow & JSXBase.HTMLAttributes<HTMLGlueRowElement>;
             "glue-tag": LocalJSX.GlueTag & JSXBase.HTMLAttributes<HTMLGlueTagElement>;

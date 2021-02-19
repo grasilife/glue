@@ -19,11 +19,13 @@
 ### Depends on
 
 - [glue-notice-bar](../glue-notice-bar)
+- [glue-progress](../glue-progress)
 
 ### Graph
 ```mermaid
 graph TD;
   glue-demo --> glue-notice-bar
+  glue-demo --> glue-progress
   glue-notice-bar --> glue-icon
   glue-icon --> glue-badge
   style glue-demo fill:#f9f,stroke:#333,stroke-width:4px

@@ -77,6 +77,7 @@ export class GlueDemo {
         </glue-list> */}
         <glue-notice-bar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"></glue-notice-bar>
         <glue-notice-bar scrollable text="技术是开发它的人的共同灵魂。"></glue-notice-bar>
+        <glue-progress percentage="50"></glue-progress>
       </div>
     );
   }
