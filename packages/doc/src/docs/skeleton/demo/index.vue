@@ -1,16 +1,16 @@
 <template>
   <demo-section>
     <demo-block :title="basicUsage">
-      <glue-skeleton titleState row="3"></glue-skeleton>
+      <glue-skeleton titleState :row="3"></glue-skeleton>
     </demo-block>
 
     <demo-block :title="showAvatar">
-      <van-skeleton title avatar :row="3" />
+      <glue-skeleton titleState avatar :row="3" />
     </demo-block>
 
     <demo-block :title="showChildren">
-      <van-switch v-model="show" size="24px" />
-      <van-skeleton title avatar :row="3" :loading="!show">
+      <glue-switch v-model="show" size="24px" />
+      <glue-skeleton titleState avatar :row="3" :loading="!show">
         <div class="demo-preview">
           <img src="https://img.yzcdn.cn/vant/logo.png" />
           <div class="demo-content">
@@ -18,7 +18,7 @@
             <p>{{ desc }}</p>
           </div>
         </div>
-      </van-skeleton>
+      </glue-skeleton>
     </demo-block>
   </demo-section>
 </template>

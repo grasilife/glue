@@ -1,5 +1,4 @@
 import { Component, Prop, h, Host } from '@stencil/core';
-//TODO:打包后不生效
 import { getSizeStyle, addUnit } from '../../utils/format/unit';
 import classNames from 'classnames';
 const DEFAULT_ROW_WIDTH = '100%';
@@ -65,9 +64,12 @@ export class GlueSkeleton {
     return Rows;
   };
   render() {
+    if (!this.loading) {
+      return <slot></slot>;
+    }
     return (
       <Host
-        class={classNames({
+        class={classNames('glue-skeleton', {
           'glue-skeleton__animate': this.animateState,
           'glue-skeleton__round': this.round,
         })}
