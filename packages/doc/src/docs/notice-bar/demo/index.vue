@@ -1,35 +1,35 @@
 <template>
   <demo-section>
     <demo-block :title="basicUsage">
-      <van-notice-bar :text="text" scrollable left-icon="volume-o" />
+      <glue-notice-bar :text="text" scrollable left-icon="volume-o" />
     </demo-block>
 
     <demo-block :title="scrollable">
-      <van-notice-bar scrollable :text="shortText" />
-      <van-notice-bar :scrollable="false" :text="text" />
+      <glue-notice-bar scrollable :text="shortText" />
+      <glue-notice-bar :scrollable="false" :text="text" />
     </demo-block>
 
     <demo-block :title="wrapable">
-      <van-notice-bar wrapable :scrollable="false" :text="text" />
+      <glue-notice-bar wrapable :scrollable="false" :text="text" />
     </demo-block>
 
     <demo-block :title="mode">
-      <van-notice-bar mode="closeable" :text="shortText" />
-      <van-notice-bar mode="link" :text="shortText" />
+      <glue-notice-bar mode="closeable" :text="shortText" />
+      <glue-notice-bar mode="link" :text="shortText" />
     </demo-block>
 
     <demo-block :title="customStyle">
-      <van-notice-bar :text="shortText" color="#1989fa" background="#ecf9ff" left-icon="info-o" />
+      <glue-notice-bar :text="shortText" color="#1989fa" background="#ecf9ff" left-icon="info-o" />
     </demo-block>
 
     <demo-block :title="verticalScroll">
-      <van-notice-bar left-icon="volume-o" :scrollable="false">
+      <glue-notice-bar left-icon="volume-o" :scrollable="false">
         <van-swipe vertical class="notice-swipe" :autoplay="3000" :show-indicators="false">
           <van-swipe-item>{{ content }} 1</van-swipe-item>
           <van-swipe-item>{{ content }} 2</van-swipe-item>
           <van-swipe-item>{{ content }} 3</van-swipe-item>
         </van-swipe>
-      </van-notice-bar>
+      </glue-notice-bar>
     </demo-block>
   </demo-section>
 </template>
@@ -58,7 +58,7 @@ export default {
 .demo-notice-bar {
   background: @white;
 
-  .van-notice-bar:not(:first-of-type) {
+  .glue-notice-bar:not(:first-of-type) {
     margin-top: 4px;
   }
 

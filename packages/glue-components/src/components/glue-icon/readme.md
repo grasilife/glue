@@ -26,6 +26,7 @@
  - [glue-button](../glue-button)
  - [glue-cell](../glue-cell)
  - [glue-image](../glue-image)
+ - [glue-notice-bar](../glue-notice-bar)
  - [glue-popup](../glue-popup)
  - [glue-rate](../glue-rate)
  - [glue-tag](../glue-tag)
@@ -43,6 +44,7 @@ graph TD;
   glue-button --> glue-icon
   glue-cell --> glue-icon
   glue-image --> glue-icon
+  glue-notice-bar --> glue-icon
   glue-popup --> glue-icon
   glue-rate --> glue-icon
   glue-tag --> glue-icon

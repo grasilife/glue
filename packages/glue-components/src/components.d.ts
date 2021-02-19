@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DividerContentPosition } from "./components/glue-divider/glue-divider";
 import { ImageFit } from "./components/glue-image/glue-image";
+import { NoticeBarMode } from "./components/glue-notice-bar/glue-notice-bar";
 import { RowAlign, RowJustify } from "./components/glue-row/glue-row";
 import { ToastType } from "./components/glue-toast/glue-toast";
 export namespace Components {
@@ -208,6 +209,17 @@ export namespace Components {
         "textSize": string | number;
         "type": string;
         "vertical": boolean;
+    }
+    interface GlueNoticeBar {
+        "background": string;
+        "color": string;
+        "delay": number;
+        "leftIcon": string;
+        "mode": NoticeBarMode;
+        "scrollable": any;
+        "speed": number;
+        "text": string;
+        "wrapable": string;
     }
     interface GlueOverlay {
         "customStyle": object;
@@ -424,6 +436,12 @@ declare global {
         prototype: HTMLGlueLoadingElement;
         new (): HTMLGlueLoadingElement;
     };
+    interface HTMLGlueNoticeBarElement extends Components.GlueNoticeBar, HTMLStencilElement {
+    }
+    var HTMLGlueNoticeBarElement: {
+        prototype: HTMLGlueNoticeBarElement;
+        new (): HTMLGlueNoticeBarElement;
+    };
     interface HTMLGlueOverlayElement extends Components.GlueOverlay, HTMLStencilElement {
     }
     var HTMLGlueOverlayElement: {
@@ -483,6 +501,7 @@ declare global {
         "glue-image": HTMLGlueImageElement;
         "glue-list": HTMLGlueListElement;
         "glue-loading": HTMLGlueLoadingElement;
+        "glue-notice-bar": HTMLGlueNoticeBarElement;
         "glue-overlay": HTMLGlueOverlayElement;
         "glue-popup": HTMLGluePopupElement;
         "glue-rate": HTMLGlueRateElement;
@@ -701,6 +720,20 @@ declare namespace LocalJSX {
         "type"?: string;
         "vertical"?: boolean;
     }
+    interface GlueNoticeBar {
+        "background"?: string;
+        "color"?: string;
+        "delay"?: number;
+        "leftIcon"?: string;
+        "mode"?: NoticeBarMode;
+        "onClose"?: (event: CustomEvent<any>) => void;
+        "onOnClickRightIcon"?: (event: CustomEvent<any>) => void;
+        "onReplay"?: (event: CustomEvent<any>) => void;
+        "scrollable"?: any;
+        "speed"?: number;
+        "text"?: string;
+        "wrapable"?: string;
+    }
     interface GlueOverlay {
         "customStyle"?: object;
         "duration"?: string | number;
@@ -816,6 +849,7 @@ declare namespace LocalJSX {
         "glue-image": GlueImage;
         "glue-list": GlueList;
         "glue-loading": GlueLoading;
+        "glue-notice-bar": GlueNoticeBar;
         "glue-overlay": GlueOverlay;
         "glue-popup": GluePopup;
         "glue-rate": GlueRate;
@@ -850,6 +884,7 @@ declare module "@stencil/core" {
             "glue-image": LocalJSX.GlueImage & JSXBase.HTMLAttributes<HTMLGlueImageElement>;
             "glue-list": LocalJSX.GlueList & JSXBase.HTMLAttributes<HTMLGlueListElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
+            "glue-notice-bar": LocalJSX.GlueNoticeBar & JSXBase.HTMLAttributes<HTMLGlueNoticeBarElement>;
             "glue-overlay": LocalJSX.GlueOverlay & JSXBase.HTMLAttributes<HTMLGlueOverlayElement>;
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
             "glue-rate": LocalJSX.GlueRate & JSXBase.HTMLAttributes<HTMLGlueRateElement>;

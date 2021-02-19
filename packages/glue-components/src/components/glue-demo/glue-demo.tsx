@@ -36,6 +36,7 @@ export class GlueDemo {
     },
   ];
   onLoad(index) {
+    console.log(index);
     // const list = this.list[index];
     // list.loading = true;
     // setTimeout(() => {
@@ -68,12 +69,14 @@ export class GlueDemo {
   render() {
     return (
       <div>
-        <glue-list finished={false} finished-text="没有更多了">
+        {/* <glue-list finished={false} finished-text="没有更多了">
           {this.list[0].items.map((item, key) => {
             console.log(item, key);
             return <glue-cell key={key} title={item} />;
           })}
-        </glue-list>
+        </glue-list> */}
+        <glue-notice-bar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"></glue-notice-bar>
+        <glue-notice-bar scrollable text="技术是开发它的人的共同灵魂。"></glue-notice-bar>
       </div>
     );
   }
