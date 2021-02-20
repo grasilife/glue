@@ -85,6 +85,9 @@ export class GlueDemo {
           <glue-step>买家提货</glue-step>
           <glue-step>交易完成</glue-step>
         </glue-steps>
+        <glue-sticky offset-top-value="50">
+          <glue-button type="primary">吸顶距离</glue-button>
+        </glue-sticky>
       </div>
     );
   }

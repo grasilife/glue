@@ -310,6 +310,17 @@ export namespace Components {
         "inactiveColor": string;
         "inactiveIcon": string;
     }
+    interface GlueSticky {
+        "container": any;
+        "fixed": boolean;
+        "height": number;
+        "offsetBottomValue": number;
+        "offsetTopValue": number;
+        "position": string;
+        "transform": number;
+        "width": number;
+        "zIndex": string;
+    }
     interface GlueTag {
         "closeable": boolean;
         "color": string;
@@ -527,6 +538,12 @@ declare global {
         prototype: HTMLGlueStepsElement;
         new (): HTMLGlueStepsElement;
     };
+    interface HTMLGlueStickyElement extends Components.GlueSticky, HTMLStencilElement {
+    }
+    var HTMLGlueStickyElement: {
+        prototype: HTMLGlueStickyElement;
+        new (): HTMLGlueStickyElement;
+    };
     interface HTMLGlueTagElement extends Components.GlueTag, HTMLStencilElement {
     }
     var HTMLGlueTagElement: {
@@ -571,6 +588,7 @@ declare global {
         "glue-skeleton": HTMLGlueSkeletonElement;
         "glue-step": HTMLGlueStepElement;
         "glue-steps": HTMLGlueStepsElement;
+        "glue-sticky": HTMLGlueStickyElement;
         "glue-tag": HTMLGlueTagElement;
         "glue-toast": HTMLGlueToastElement;
     }
@@ -898,6 +916,17 @@ declare namespace LocalJSX {
         "inactiveIcon"?: string;
         "onClickStep"?: (event: CustomEvent<any>) => void;
     }
+    interface GlueSticky {
+        "container"?: any;
+        "fixed"?: boolean;
+        "height"?: number;
+        "offsetBottomValue"?: number;
+        "offsetTopValue"?: number;
+        "position"?: string;
+        "transform"?: number;
+        "width"?: number;
+        "zIndex"?: string;
+    }
     interface GlueTag {
         "closeable"?: boolean;
         "color"?: string;
@@ -962,6 +991,7 @@ declare namespace LocalJSX {
         "glue-skeleton": GlueSkeleton;
         "glue-step": GlueStep;
         "glue-steps": GlueSteps;
+        "glue-sticky": GlueSticky;
         "glue-tag": GlueTag;
         "glue-toast": GlueToast;
     }
@@ -1001,6 +1031,7 @@ declare module "@stencil/core" {
             "glue-skeleton": LocalJSX.GlueSkeleton & JSXBase.HTMLAttributes<HTMLGlueSkeletonElement>;
             "glue-step": LocalJSX.GlueStep & JSXBase.HTMLAttributes<HTMLGlueStepElement>;
             "glue-steps": LocalJSX.GlueSteps & JSXBase.HTMLAttributes<HTMLGlueStepsElement>;
+            "glue-sticky": LocalJSX.GlueSticky & JSXBase.HTMLAttributes<HTMLGlueStickyElement>;
             "glue-tag": LocalJSX.GlueTag & JSXBase.HTMLAttributes<HTMLGlueTagElement>;
             "glue-toast": LocalJSX.GlueToast & JSXBase.HTMLAttributes<HTMLGlueToastElement>;
         }
