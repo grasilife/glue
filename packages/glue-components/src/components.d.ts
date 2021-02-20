@@ -296,6 +296,20 @@ export namespace Components {
         "titleState": boolean;
         "titleWidth": string;
     }
+    interface GlueStep {
+        "first": number;
+        "last": string;
+        "middle": string;
+    }
+    interface GlueSteps {
+        "active": string | number;
+        "activeColor": string;
+        "activeIcon": string;
+        "direction": string;
+        "finishIcon": string;
+        "inactiveColor": string;
+        "inactiveIcon": string;
+    }
     interface GlueTag {
         "closeable": boolean;
         "color": string;
@@ -501,6 +515,18 @@ declare global {
         prototype: HTMLGlueSkeletonElement;
         new (): HTMLGlueSkeletonElement;
     };
+    interface HTMLGlueStepElement extends Components.GlueStep, HTMLStencilElement {
+    }
+    var HTMLGlueStepElement: {
+        prototype: HTMLGlueStepElement;
+        new (): HTMLGlueStepElement;
+    };
+    interface HTMLGlueStepsElement extends Components.GlueSteps, HTMLStencilElement {
+    }
+    var HTMLGlueStepsElement: {
+        prototype: HTMLGlueStepsElement;
+        new (): HTMLGlueStepsElement;
+    };
     interface HTMLGlueTagElement extends Components.GlueTag, HTMLStencilElement {
     }
     var HTMLGlueTagElement: {
@@ -543,6 +569,8 @@ declare global {
         "glue-rate": HTMLGlueRateElement;
         "glue-row": HTMLGlueRowElement;
         "glue-skeleton": HTMLGlueSkeletonElement;
+        "glue-step": HTMLGlueStepElement;
+        "glue-steps": HTMLGlueStepsElement;
         "glue-tag": HTMLGlueTagElement;
         "glue-toast": HTMLGlueToastElement;
     }
@@ -854,6 +882,22 @@ declare namespace LocalJSX {
         "titleState"?: boolean;
         "titleWidth"?: string;
     }
+    interface GlueStep {
+        "first"?: number;
+        "last"?: string;
+        "middle"?: string;
+        "onClickStep"?: (event: CustomEvent<any>) => void;
+    }
+    interface GlueSteps {
+        "active"?: string | number;
+        "activeColor"?: string;
+        "activeIcon"?: string;
+        "direction"?: string;
+        "finishIcon"?: string;
+        "inactiveColor"?: string;
+        "inactiveIcon"?: string;
+        "onClickStep"?: (event: CustomEvent<any>) => void;
+    }
     interface GlueTag {
         "closeable"?: boolean;
         "color"?: string;
@@ -916,6 +960,8 @@ declare namespace LocalJSX {
         "glue-rate": GlueRate;
         "glue-row": GlueRow;
         "glue-skeleton": GlueSkeleton;
+        "glue-step": GlueStep;
+        "glue-steps": GlueSteps;
         "glue-tag": GlueTag;
         "glue-toast": GlueToast;
     }
@@ -953,6 +999,8 @@ declare module "@stencil/core" {
             "glue-rate": LocalJSX.GlueRate & JSXBase.HTMLAttributes<HTMLGlueRateElement>;
             "glue-row": LocalJSX.GlueRow & JSXBase.HTMLAttributes<HTMLGlueRowElement>;
             "glue-skeleton": LocalJSX.GlueSkeleton & JSXBase.HTMLAttributes<HTMLGlueSkeletonElement>;
+            "glue-step": LocalJSX.GlueStep & JSXBase.HTMLAttributes<HTMLGlueStepElement>;
+            "glue-steps": LocalJSX.GlueSteps & JSXBase.HTMLAttributes<HTMLGlueStepsElement>;
             "glue-tag": LocalJSX.GlueTag & JSXBase.HTMLAttributes<HTMLGlueTagElement>;
             "glue-toast": LocalJSX.GlueToast & JSXBase.HTMLAttributes<HTMLGlueToastElement>;
         }

@@ -79,6 +79,12 @@ export class GlueDemo {
         <glue-notice-bar scrollable text="技术是开发它的人的共同灵魂。"></glue-notice-bar>
         <glue-progress percentage="50"></glue-progress>
         <glue-skeleton titleState row="3"></glue-skeleton>
+        <glue-steps active="0">
+          <glue-step>买家下单</glue-step>
+          <glue-step>商家接单</glue-step>
+          <glue-step>买家提货</glue-step>
+          <glue-step>交易完成</glue-step>
+        </glue-steps>
       </div>
     );
   }
