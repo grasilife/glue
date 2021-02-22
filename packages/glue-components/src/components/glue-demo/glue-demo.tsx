@@ -88,6 +88,20 @@ export class GlueDemo {
         <glue-sticky offset-top-value="50">
           <glue-button type="primary">吸顶距离</glue-button>
         </glue-sticky>
+        <glue-action-bar>
+          <glue-action-bar-icon icon="chat-o" text="客服">
+            客服
+          </glue-action-bar-icon>
+          <glue-action-bar-icon icon="cart-o" text="购物车">
+            购物车
+          </glue-action-bar-icon>
+          <glue-action-bar-icon icon="shop-o" text="店铺">
+            店铺
+          </glue-action-bar-icon>
+          <glue-action-bar-button type="danger" text="立即购买">
+            立即购买
+          </glue-action-bar-button>
+        </glue-action-bar>
       </div>
     );
   }

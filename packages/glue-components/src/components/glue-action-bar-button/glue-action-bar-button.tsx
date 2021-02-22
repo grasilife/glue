@@ -1,8 +1,8 @@
 import { Component, Prop, h, EventEmitter, Event, Host } from '@stencil/core';
 // import { format } from '../../utils/utils';
 import classNames from 'classnames';
-// import { createNamespace } from '../../utils/create/index';
-// const [bem] = createNamespace('glue-action-bar-button');
+import { createNamespace } from '../../utils/create/index';
+const [bem] = createNamespace('glue-action-bar-button');
 @Component({
   tag: 'glue-action-bar-button',
   styleUrl: 'glue-action-bar-button.less',
@@ -32,8 +32,18 @@ export class GlueActionBarButton {
     const { type, icon, text, color, loading, disabled } = this;
     console.log(text);
     return (
-      <Host class={classNames('glue-action-bar-button')}>
-        <glue-button size="large" type={type} icon={icon} color={color} loading={loading} disabled={disabled} onClick={this.handleClick} round>
+      <Host>
+        <glue-button
+          size="large"
+          type={type}
+          icon={icon}
+          color={color}
+          loading={loading}
+          disabled={disabled}
+          onClick={this.handleClick}
+          round
+          class={classNames('glue-action-bar-button', bem([type]))}
+        >
           <slot></slot>
         </glue-button>
       </Host>
