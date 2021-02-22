@@ -2,57 +2,57 @@
   <demo-section>
     <demo-block card :title="basicUsage">
       <van-cell :title="`primary ${type}`">
-        <van-tag type="primary">{{ tag }}</van-tag>
+        <glue-tag type="primary">{{ tag }}</glue-tag>
       </van-cell>
       <van-cell :title="`success ${type}`">
-        <van-tag type="success">{{ tag }}</van-tag>
+        <glue-tag type="success">{{ tag }}</glue-tag>
       </van-cell>
       <van-cell :title="`danger ${type}`">
-        <van-tag type="danger">{{ tag }}</van-tag>
+        <glue-tag type="danger">{{ tag }}</glue-tag>
       </van-cell>
       <van-cell :title="`warning ${type}`">
-        <van-tag type="warning">{{ tag }}</van-tag>
+        <glue-tag type="warning">{{ tag }}</glue-tag>
       </van-cell>
     </demo-block>
 
     <demo-block card :title="tagStyle">
       <van-cell :title="plain">
-        <van-tag plain type="primary">{{ tag }}</van-tag>
+        <glue-tag plain type="primary">{{ tag }}</glue-tag>
       </van-cell>
       <van-cell :title="round">
-        <van-tag round type="primary">{{ tag }}</van-tag>
+        <glue-tag round type="primary">{{ tag }}</glue-tag>
       </van-cell>
       <van-cell :title="mark">
-        <van-tag mark type="primary">{{ tag }}</van-tag>
+        <glue-tag mark type="primary">{{ tag }}</glue-tag>
       </van-cell>
       <van-cell :title="closeable">
-        <van-tag v-if="show" size="medium" closeable type="primary" @close="close">
+        <glue-tag v-if="show" size="medium" closeable type="primary" @close="close">
           {{ tag }}
-        </van-tag>
+        </glue-tag>
       </van-cell>
     </demo-block>
 
     <demo-block card :title="customSize">
       <van-cell :title="smallSize">
-        <van-tag type="primary">{{ tag }}</van-tag>
+        <glue-tag type="primary">{{ tag }}</glue-tag>
       </van-cell>
       <van-cell :title="mediumSize">
-        <van-tag type="primary" size="medium">{{ tag }}</van-tag>
+        <glue-tag type="primary" size="medium">{{ tag }}</glue-tag>
       </van-cell>
       <van-cell :title="largeSize">
-        <van-tag type="primary" size="large">{{ tag }}</van-tag>
+        <glue-tag type="primary" size="large">{{ tag }}</glue-tag>
       </van-cell>
     </demo-block>
 
     <demo-block card :title="customColor">
       <van-cell :title="customBgColor">
-        <van-tag color="#7232dd">{{ tag }}</van-tag>
+        <glue-tag color="#7232dd">{{ tag }}</glue-tag>
       </van-cell>
       <van-cell :title="customTextColor">
-        <van-tag color="#ffe1e1" text-color="#ad0000">{{ tag }}</van-tag>
+        <glue-tag color="#ffe1e1" text-color="#ad0000">{{ tag }}</glue-tag>
       </van-cell>
       <van-cell :title="customPlainColor">
-        <van-tag color="#7232dd" plain>{{ tag }}</van-tag>
+        <glue-tag color="#7232dd" plain>{{ tag }}</glue-tag>
       </van-cell>
     </demo-block>
   </demo-section>
@@ -94,7 +94,7 @@ export default {
 @import "../../../common/style/var2.less";
 
 .demo-tag {
-  .van-tag + .van-tag {
+  .glue-tag + .glue-tag {
     margin-left: @padding-xs;
   }
 }
