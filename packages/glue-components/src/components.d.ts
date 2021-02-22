@@ -140,6 +140,9 @@ export namespace Components {
         "value": string | number;
         "valueClass": any;
     }
+    interface GlueCom {
+        "first": string;
+    }
     interface GlueComponent {
         "first": string;
         "last": string;
@@ -190,6 +193,9 @@ export namespace Components {
         "showLoading": boolean;
         "src": string;
         "width": string | number;
+    }
+    interface GlueKkk {
+        "first": string;
     }
     interface GlueList {
         "direction": string;
@@ -430,6 +436,12 @@ declare global {
         prototype: HTMLGlueCollapseItemElement;
         new (): HTMLGlueCollapseItemElement;
     };
+    interface HTMLGlueComElement extends Components.GlueCom, HTMLStencilElement {
+    }
+    var HTMLGlueComElement: {
+        prototype: HTMLGlueComElement;
+        new (): HTMLGlueComElement;
+    };
     interface HTMLGlueComponentElement extends Components.GlueComponent, HTMLStencilElement {
     }
     var HTMLGlueComponentElement: {
@@ -471,6 +483,12 @@ declare global {
     var HTMLGlueImageElement: {
         prototype: HTMLGlueImageElement;
         new (): HTMLGlueImageElement;
+    };
+    interface HTMLGlueKkkElement extends Components.GlueKkk, HTMLStencilElement {
+    }
+    var HTMLGlueKkkElement: {
+        prototype: HTMLGlueKkkElement;
+        new (): HTMLGlueKkkElement;
     };
     interface HTMLGlueListElement extends Components.GlueList, HTMLStencilElement {
     }
@@ -570,6 +588,7 @@ declare global {
         "glue-col": HTMLGlueColElement;
         "glue-collapse": HTMLGlueCollapseElement;
         "glue-collapse-item": HTMLGlueCollapseItemElement;
+        "glue-com": HTMLGlueComElement;
         "glue-component": HTMLGlueComponentElement;
         "glue-count-down": HTMLGlueCountDownElement;
         "glue-demo": HTMLGlueDemoElement;
@@ -577,6 +596,7 @@ declare global {
         "glue-empty": HTMLGlueEmptyElement;
         "glue-icon": HTMLGlueIconElement;
         "glue-image": HTMLGlueImageElement;
+        "glue-kkk": HTMLGlueKkkElement;
         "glue-list": HTMLGlueListElement;
         "glue-loading": HTMLGlueLoadingElement;
         "glue-notice-bar": HTMLGlueNoticeBarElement;
@@ -730,6 +750,9 @@ declare namespace LocalJSX {
         "value"?: string | number;
         "valueClass"?: any;
     }
+    interface GlueCom {
+        "first"?: string;
+    }
     interface GlueComponent {
         "first"?: string;
         "last"?: string;
@@ -782,6 +805,9 @@ declare namespace LocalJSX {
         "showLoading"?: boolean;
         "src"?: string;
         "width"?: string | number;
+    }
+    interface GlueKkk {
+        "first"?: string;
     }
     interface GlueList {
         "direction"?: string;
@@ -973,6 +999,7 @@ declare namespace LocalJSX {
         "glue-col": GlueCol;
         "glue-collapse": GlueCollapse;
         "glue-collapse-item": GlueCollapseItem;
+        "glue-com": GlueCom;
         "glue-component": GlueComponent;
         "glue-count-down": GlueCountDown;
         "glue-demo": GlueDemo;
@@ -980,6 +1007,7 @@ declare namespace LocalJSX {
         "glue-empty": GlueEmpty;
         "glue-icon": GlueIcon;
         "glue-image": GlueImage;
+        "glue-kkk": GlueKkk;
         "glue-list": GlueList;
         "glue-loading": GlueLoading;
         "glue-notice-bar": GlueNoticeBar;
@@ -1013,6 +1041,7 @@ declare module "@stencil/core" {
             "glue-col": LocalJSX.GlueCol & JSXBase.HTMLAttributes<HTMLGlueColElement>;
             "glue-collapse": LocalJSX.GlueCollapse & JSXBase.HTMLAttributes<HTMLGlueCollapseElement>;
             "glue-collapse-item": LocalJSX.GlueCollapseItem & JSXBase.HTMLAttributes<HTMLGlueCollapseItemElement>;
+            "glue-com": LocalJSX.GlueCom & JSXBase.HTMLAttributes<HTMLGlueComElement>;
             "glue-component": LocalJSX.GlueComponent & JSXBase.HTMLAttributes<HTMLGlueComponentElement>;
             "glue-count-down": LocalJSX.GlueCountDown & JSXBase.HTMLAttributes<HTMLGlueCountDownElement>;
             "glue-demo": LocalJSX.GlueDemo & JSXBase.HTMLAttributes<HTMLGlueDemoElement>;
@@ -1020,6 +1049,7 @@ declare module "@stencil/core" {
             "glue-empty": LocalJSX.GlueEmpty & JSXBase.HTMLAttributes<HTMLGlueEmptyElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
             "glue-image": LocalJSX.GlueImage & JSXBase.HTMLAttributes<HTMLGlueImageElement>;
+            "glue-kkk": LocalJSX.GlueKkk & JSXBase.HTMLAttributes<HTMLGlueKkkElement>;
             "glue-list": LocalJSX.GlueList & JSXBase.HTMLAttributes<HTMLGlueListElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
             "glue-notice-bar": LocalJSX.GlueNoticeBar & JSXBase.HTMLAttributes<HTMLGlueNoticeBarElement>;

@@ -10,9 +10,11 @@
     "clear-all": "lerna clean && yarn workspaces run clean",
     "build": "lerna run --stream --sort build",
     "start": "lerna run --stream --sort start",
-    "test": "lerna run --stream --sort test"
+    "test": "lerna run --stream --sort test",
+    "new": "plop"
   },
   "devDependencies": {
-    "lerna": "^3.22.1"
+    "lerna": "^3.22.1",
+    "plop": "^2.7.4"
   }
 }
