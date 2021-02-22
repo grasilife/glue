@@ -6,6 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DividerContentPosition } from "./components/glue-divider/glue-divider";
+import { GridDirection } from "./components/glue-grid/glue-grid";
+import { GridDirection as GridDirection1 } from "./components/glue-grid-item/glue-grid-item";
 import { ImageFit } from "./components/glue-image/glue-image";
 import { NoticeBarMode } from "./components/glue-notice-bar/glue-notice-bar";
 import { RowAlign, RowJustify } from "./components/glue-row/glue-row";
@@ -166,6 +168,31 @@ export namespace Components {
         "description": string;
         "image": string;
         "imageSize": string;
+    }
+    interface GlueGrid {
+        "border": boolean;
+        "center": boolean;
+        "clickable": boolean;
+        "columnNum": number | string;
+        "direction": GridDirection;
+        "gutter": number | string;
+        "iconSize": number | string;
+        "square": boolean;
+    }
+    interface GlueGridItem {
+        "badge": string | number;
+        "border": boolean;
+        "center": boolean;
+        "clickable": boolean;
+        "columnNum": number | string;
+        "direction": GridDirection;
+        "dot": boolean;
+        "gutter": number | string;
+        "icon": string;
+        "iconPrefix": string;
+        "iconSize": number;
+        "square"?: boolean;
+        "text": string;
     }
     interface GlueIcon {
         "badge": number | string;
@@ -469,6 +496,18 @@ declare global {
         prototype: HTMLGlueEmptyElement;
         new (): HTMLGlueEmptyElement;
     };
+    interface HTMLGlueGridElement extends Components.GlueGrid, HTMLStencilElement {
+    }
+    var HTMLGlueGridElement: {
+        prototype: HTMLGlueGridElement;
+        new (): HTMLGlueGridElement;
+    };
+    interface HTMLGlueGridItemElement extends Components.GlueGridItem, HTMLStencilElement {
+    }
+    var HTMLGlueGridItemElement: {
+        prototype: HTMLGlueGridItemElement;
+        new (): HTMLGlueGridItemElement;
+    };
     interface HTMLGlueIconElement extends Components.GlueIcon, HTMLStencilElement {
     }
     var HTMLGlueIconElement: {
@@ -602,6 +641,8 @@ declare global {
         "glue-demo": HTMLGlueDemoElement;
         "glue-divider": HTMLGlueDividerElement;
         "glue-empty": HTMLGlueEmptyElement;
+        "glue-grid": HTMLGlueGridElement;
+        "glue-grid-item": HTMLGlueGridItemElement;
         "glue-icon": HTMLGlueIconElement;
         "glue-image": HTMLGlueImageElement;
         "glue-list": HTMLGlueListElement;
@@ -786,6 +827,31 @@ declare namespace LocalJSX {
         "description"?: string;
         "image"?: string;
         "imageSize"?: string;
+    }
+    interface GlueGrid {
+        "border"?: boolean;
+        "center"?: boolean;
+        "clickable"?: boolean;
+        "columnNum"?: number | string;
+        "direction"?: GridDirection;
+        "gutter"?: number | string;
+        "iconSize"?: number | string;
+        "square"?: boolean;
+    }
+    interface GlueGridItem {
+        "badge"?: string | number;
+        "border"?: boolean;
+        "center"?: boolean;
+        "clickable"?: boolean;
+        "columnNum"?: number | string;
+        "direction"?: GridDirection;
+        "dot"?: boolean;
+        "gutter"?: number | string;
+        "icon"?: string;
+        "iconPrefix"?: string;
+        "iconSize"?: number;
+        "square"?: boolean;
+        "text"?: string;
     }
     interface GlueIcon {
         "badge"?: number | string;
@@ -1017,6 +1083,8 @@ declare namespace LocalJSX {
         "glue-demo": GlueDemo;
         "glue-divider": GlueDivider;
         "glue-empty": GlueEmpty;
+        "glue-grid": GlueGrid;
+        "glue-grid-item": GlueGridItem;
         "glue-icon": GlueIcon;
         "glue-image": GlueImage;
         "glue-list": GlueList;
@@ -1060,6 +1128,8 @@ declare module "@stencil/core" {
             "glue-demo": LocalJSX.GlueDemo & JSXBase.HTMLAttributes<HTMLGlueDemoElement>;
             "glue-divider": LocalJSX.GlueDivider & JSXBase.HTMLAttributes<HTMLGlueDividerElement>;
             "glue-empty": LocalJSX.GlueEmpty & JSXBase.HTMLAttributes<HTMLGlueEmptyElement>;
+            "glue-grid": LocalJSX.GlueGrid & JSXBase.HTMLAttributes<HTMLGlueGridElement>;
+            "glue-grid-item": LocalJSX.GlueGridItem & JSXBase.HTMLAttributes<HTMLGlueGridItemElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
             "glue-image": LocalJSX.GlueImage & JSXBase.HTMLAttributes<HTMLGlueImageElement>;
             "glue-list": LocalJSX.GlueList & JSXBase.HTMLAttributes<HTMLGlueListElement>;
