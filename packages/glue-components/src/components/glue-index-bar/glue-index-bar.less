@@ -1,0 +1,27 @@
+@import '../../global/styles/var';
+
+.glue-index-bar {
+  &__sidebar {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    z-index: @index-bar-sidebar-z-index;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__index {
+    padding: 0 @padding-xs 0 @padding-md;
+    font-weight: @font-weight-bold;
+    font-size: @index-bar-index-font-size;
+    line-height: @index-bar-index-line-height;
+
+    &--active {
+      color: @index-bar-index-active-color;
+    }
+  }
+}

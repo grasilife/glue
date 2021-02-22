@@ -218,6 +218,21 @@ export namespace Components {
         "src": string;
         "width": string | number;
     }
+    interface GlueIndexAnchor {
+        "active": boolean;
+        "index": string | number;
+        "left": any;
+        "rect": { top: number; height: number; };
+        "top": number;
+        "width": any;
+    }
+    interface GlueIndexBar {
+        "highlightColor": string;
+        "indexList": any[];
+        "sticky": boolean;
+        "stickyOffsetTop": number;
+        "zIndex": string;
+    }
     interface GlueList {
         "direction": string;
         "error": boolean;
@@ -520,6 +535,18 @@ declare global {
         prototype: HTMLGlueImageElement;
         new (): HTMLGlueImageElement;
     };
+    interface HTMLGlueIndexAnchorElement extends Components.GlueIndexAnchor, HTMLStencilElement {
+    }
+    var HTMLGlueIndexAnchorElement: {
+        prototype: HTMLGlueIndexAnchorElement;
+        new (): HTMLGlueIndexAnchorElement;
+    };
+    interface HTMLGlueIndexBarElement extends Components.GlueIndexBar, HTMLStencilElement {
+    }
+    var HTMLGlueIndexBarElement: {
+        prototype: HTMLGlueIndexBarElement;
+        new (): HTMLGlueIndexBarElement;
+    };
     interface HTMLGlueListElement extends Components.GlueList, HTMLStencilElement {
     }
     var HTMLGlueListElement: {
@@ -645,6 +672,8 @@ declare global {
         "glue-grid-item": HTMLGlueGridItemElement;
         "glue-icon": HTMLGlueIconElement;
         "glue-image": HTMLGlueImageElement;
+        "glue-index-anchor": HTMLGlueIndexAnchorElement;
+        "glue-index-bar": HTMLGlueIndexBarElement;
         "glue-list": HTMLGlueListElement;
         "glue-loading": HTMLGlueLoadingElement;
         "glue-notice-bar": HTMLGlueNoticeBarElement;
@@ -879,6 +908,22 @@ declare namespace LocalJSX {
         "src"?: string;
         "width"?: string | number;
     }
+    interface GlueIndexAnchor {
+        "active"?: boolean;
+        "index"?: string | number;
+        "left"?: any;
+        "rect"?: { top: number; height: number; };
+        "top"?: number;
+        "width"?: any;
+    }
+    interface GlueIndexBar {
+        "highlightColor"?: string;
+        "indexList"?: any[];
+        "onClickSidebar"?: (event: CustomEvent<any>) => void;
+        "sticky"?: boolean;
+        "stickyOffsetTop"?: number;
+        "zIndex"?: string;
+    }
     interface GlueList {
         "direction"?: string;
         "error"?: boolean;
@@ -1087,6 +1132,8 @@ declare namespace LocalJSX {
         "glue-grid-item": GlueGridItem;
         "glue-icon": GlueIcon;
         "glue-image": GlueImage;
+        "glue-index-anchor": GlueIndexAnchor;
+        "glue-index-bar": GlueIndexBar;
         "glue-list": GlueList;
         "glue-loading": GlueLoading;
         "glue-notice-bar": GlueNoticeBar;
@@ -1132,6 +1179,8 @@ declare module "@stencil/core" {
             "glue-grid-item": LocalJSX.GlueGridItem & JSXBase.HTMLAttributes<HTMLGlueGridItemElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
             "glue-image": LocalJSX.GlueImage & JSXBase.HTMLAttributes<HTMLGlueImageElement>;
+            "glue-index-anchor": LocalJSX.GlueIndexAnchor & JSXBase.HTMLAttributes<HTMLGlueIndexAnchorElement>;
+            "glue-index-bar": LocalJSX.GlueIndexBar & JSXBase.HTMLAttributes<HTMLGlueIndexBarElement>;
             "glue-list": LocalJSX.GlueList & JSXBase.HTMLAttributes<HTMLGlueListElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
             "glue-notice-bar": LocalJSX.GlueNoticeBar & JSXBase.HTMLAttributes<HTMLGlueNoticeBarElement>;

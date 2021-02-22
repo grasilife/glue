@@ -30,11 +30,11 @@ export function useTouch() {
     direction = '';
   };
 
-  const start = ((event: TouchEvent) => {
+  const start = (event: TouchEvent) => {
     reset();
     startX = event.touches[0].clientX;
     startY = event.touches[0].clientY;
-  }) as EventListener;
+  };
 
   const move = ((event: TouchEvent) => {
     const touch = event.touches[0];
