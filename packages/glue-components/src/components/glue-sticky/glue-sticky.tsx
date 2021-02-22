@@ -1,7 +1,7 @@
 import { Component, Prop, h, Host } from '@stencil/core';
 import { getScrollTop } from '../../utils/dom/scroll';
-import { createNamespace } from '../../utils/create/index';
-const [bem] = createNamespace('glue-sticky');
+// import { createNamespace } from '../../utils/create/index';
+// const [bem] = createNamespace('glue-sticky');
 import classNames from 'classnames';
 @Component({
   tag: 'glue-sticky',

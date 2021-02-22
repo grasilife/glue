@@ -25,6 +25,9 @@
 - [glue-step](../glue-step)
 - [glue-sticky](../glue-sticky)
 - [glue-button](../glue-button)
+- [glue-action-bar](../glue-action-bar)
+- [glue-action-bar-icon](../glue-action-bar-icon)
+- [glue-action-bar-button](../glue-action-bar-button)
 
 ### Graph
 ```mermaid
@@ -36,10 +39,15 @@ graph TD;
   glue-demo --> glue-step
   glue-demo --> glue-sticky
   glue-demo --> glue-button
+  glue-demo --> glue-action-bar
+  glue-demo --> glue-action-bar-icon
+  glue-demo --> glue-action-bar-button
   glue-notice-bar --> glue-icon
   glue-icon --> glue-badge
   glue-button --> glue-loading
   glue-button --> glue-icon
+  glue-action-bar-icon --> glue-icon
+  glue-action-bar-button --> glue-button
   style glue-demo fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
