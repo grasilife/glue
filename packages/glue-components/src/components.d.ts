@@ -252,6 +252,17 @@ export namespace Components {
         "type": string;
         "vertical": boolean;
     }
+    interface GlueNavBar {
+        "border": boolean;
+        "fixed": boolean;
+        "leftArrow": boolean;
+        "leftText": string;
+        "placeholder": boolean;
+        "rightText": string;
+        "safeAreaInsetTop": boolean;
+        "title": string;
+        "zIndex": string | number;
+    }
     interface GlueNoticeBar {
         "background": string;
         "color": string;
@@ -559,6 +570,12 @@ declare global {
         prototype: HTMLGlueLoadingElement;
         new (): HTMLGlueLoadingElement;
     };
+    interface HTMLGlueNavBarElement extends Components.GlueNavBar, HTMLStencilElement {
+    }
+    var HTMLGlueNavBarElement: {
+        prototype: HTMLGlueNavBarElement;
+        new (): HTMLGlueNavBarElement;
+    };
     interface HTMLGlueNoticeBarElement extends Components.GlueNoticeBar, HTMLStencilElement {
     }
     var HTMLGlueNoticeBarElement: {
@@ -676,6 +693,7 @@ declare global {
         "glue-index-bar": HTMLGlueIndexBarElement;
         "glue-list": HTMLGlueListElement;
         "glue-loading": HTMLGlueLoadingElement;
+        "glue-nav-bar": HTMLGlueNavBarElement;
         "glue-notice-bar": HTMLGlueNoticeBarElement;
         "glue-overlay": HTMLGlueOverlayElement;
         "glue-popup": HTMLGluePopupElement;
@@ -944,6 +962,19 @@ declare namespace LocalJSX {
         "type"?: string;
         "vertical"?: boolean;
     }
+    interface GlueNavBar {
+        "border"?: boolean;
+        "fixed"?: boolean;
+        "leftArrow"?: boolean;
+        "leftText"?: string;
+        "onClickLeft"?: (event: CustomEvent<any>) => void;
+        "onClickRight"?: (event: CustomEvent<any>) => void;
+        "placeholder"?: boolean;
+        "rightText"?: string;
+        "safeAreaInsetTop"?: boolean;
+        "title"?: string;
+        "zIndex"?: string | number;
+    }
     interface GlueNoticeBar {
         "background"?: string;
         "color"?: string;
@@ -1136,6 +1167,7 @@ declare namespace LocalJSX {
         "glue-index-bar": GlueIndexBar;
         "glue-list": GlueList;
         "glue-loading": GlueLoading;
+        "glue-nav-bar": GlueNavBar;
         "glue-notice-bar": GlueNoticeBar;
         "glue-overlay": GlueOverlay;
         "glue-popup": GluePopup;
@@ -1183,6 +1215,7 @@ declare module "@stencil/core" {
             "glue-index-bar": LocalJSX.GlueIndexBar & JSXBase.HTMLAttributes<HTMLGlueIndexBarElement>;
             "glue-list": LocalJSX.GlueList & JSXBase.HTMLAttributes<HTMLGlueListElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
+            "glue-nav-bar": LocalJSX.GlueNavBar & JSXBase.HTMLAttributes<HTMLGlueNavBarElement>;
             "glue-notice-bar": LocalJSX.GlueNoticeBar & JSXBase.HTMLAttributes<HTMLGlueNoticeBarElement>;
             "glue-overlay": LocalJSX.GlueOverlay & JSXBase.HTMLAttributes<HTMLGlueOverlayElement>;
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
