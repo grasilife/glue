@@ -33,9 +33,32 @@ export namespace Components {
         "text": string;
     }
     interface GlueActionSheet {
-        "first": string;
-        "last": string;
-        "middle": string;
+        "actions": any;
+        "cancelText": string;
+        "closeIcon": string;
+        "closeIconPosition": string;
+        "closeOnClickAction": boolean;
+        "closeOnClickOverlay": boolean;
+        "closeOnPopstate": boolean;
+        "closeable": boolean;
+        "description": boolean;
+        "duration": string;
+        "height": string;
+        "lazyRender": boolean;
+        "lockScroll": boolean;
+        "overlay": boolean;
+        "overlayClass": any;
+        "overlayStyle": object;
+        "position": string;
+        "round": boolean;
+        "safeAreaInsetBottom": boolean;
+        "show": boolean;
+        "teleport": string | object;
+        "title": string;
+        "transition": string;
+        "transitionAppear": boolean;
+        "width": string;
+        "zIndex": string;
     }
     interface GlueBadge {
         "color": string;
@@ -795,9 +818,34 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface GlueActionSheet {
-        "first"?: string;
-        "last"?: string;
-        "middle"?: string;
+        "actions"?: any;
+        "cancelText"?: string;
+        "closeIcon"?: string;
+        "closeIconPosition"?: string;
+        "closeOnClickAction"?: boolean;
+        "closeOnClickOverlay"?: boolean;
+        "closeOnPopstate"?: boolean;
+        "closeable"?: boolean;
+        "description"?: boolean;
+        "duration"?: string;
+        "height"?: string;
+        "lazyRender"?: boolean;
+        "lockScroll"?: boolean;
+        "onOnCancel"?: (event: CustomEvent<any>) => void;
+        "onOnShow"?: (event: CustomEvent<any>) => void;
+        "overlay"?: boolean;
+        "overlayClass"?: any;
+        "overlayStyle"?: object;
+        "position"?: string;
+        "round"?: boolean;
+        "safeAreaInsetBottom"?: boolean;
+        "show"?: boolean;
+        "teleport"?: string | object;
+        "title"?: string;
+        "transition"?: string;
+        "transitionAppear"?: boolean;
+        "width"?: string;
+        "zIndex"?: string;
     }
     interface GlueBadge {
         "color"?: string;
