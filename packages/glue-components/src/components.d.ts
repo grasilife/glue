@@ -403,6 +403,12 @@ export namespace Components {
     interface GlueSwipeItem {
         "first": string;
     }
+    interface GlueTabbar {
+        "first": string;
+    }
+    interface GlueTabbarItem {
+        "first": string;
+    }
     interface GlueTag {
         "closeable": boolean;
         "color": string;
@@ -692,6 +698,18 @@ declare global {
         prototype: HTMLGlueSwipeItemElement;
         new (): HTMLGlueSwipeItemElement;
     };
+    interface HTMLGlueTabbarElement extends Components.GlueTabbar, HTMLStencilElement {
+    }
+    var HTMLGlueTabbarElement: {
+        prototype: HTMLGlueTabbarElement;
+        new (): HTMLGlueTabbarElement;
+    };
+    interface HTMLGlueTabbarItemElement extends Components.GlueTabbarItem, HTMLStencilElement {
+    }
+    var HTMLGlueTabbarItemElement: {
+        prototype: HTMLGlueTabbarItemElement;
+        new (): HTMLGlueTabbarItemElement;
+    };
     interface HTMLGlueTagElement extends Components.GlueTag, HTMLStencilElement {
     }
     var HTMLGlueTagElement: {
@@ -748,6 +766,8 @@ declare global {
         "glue-swipe": HTMLGlueSwipeElement;
         "glue-swipe-cell": HTMLGlueSwipeCellElement;
         "glue-swipe-item": HTMLGlueSwipeItemElement;
+        "glue-tabbar": HTMLGlueTabbarElement;
+        "glue-tabbar-item": HTMLGlueTabbarItemElement;
         "glue-tag": HTMLGlueTagElement;
         "glue-toast": HTMLGlueToastElement;
     }
@@ -1172,6 +1192,12 @@ declare namespace LocalJSX {
     interface GlueSwipeItem {
         "first"?: string;
     }
+    interface GlueTabbar {
+        "first"?: string;
+    }
+    interface GlueTabbarItem {
+        "first"?: string;
+    }
     interface GlueTag {
         "closeable"?: boolean;
         "color"?: string;
@@ -1248,6 +1274,8 @@ declare namespace LocalJSX {
         "glue-swipe": GlueSwipe;
         "glue-swipe-cell": GlueSwipeCell;
         "glue-swipe-item": GlueSwipeItem;
+        "glue-tabbar": GlueTabbar;
+        "glue-tabbar-item": GlueTabbarItem;
         "glue-tag": GlueTag;
         "glue-toast": GlueToast;
     }
@@ -1299,6 +1327,8 @@ declare module "@stencil/core" {
             "glue-swipe": LocalJSX.GlueSwipe & JSXBase.HTMLAttributes<HTMLGlueSwipeElement>;
             "glue-swipe-cell": LocalJSX.GlueSwipeCell & JSXBase.HTMLAttributes<HTMLGlueSwipeCellElement>;
             "glue-swipe-item": LocalJSX.GlueSwipeItem & JSXBase.HTMLAttributes<HTMLGlueSwipeItemElement>;
+            "glue-tabbar": LocalJSX.GlueTabbar & JSXBase.HTMLAttributes<HTMLGlueTabbarElement>;
+            "glue-tabbar-item": LocalJSX.GlueTabbarItem & JSXBase.HTMLAttributes<HTMLGlueTabbarItemElement>;
             "glue-tag": LocalJSX.GlueTag & JSXBase.HTMLAttributes<HTMLGlueTagElement>;
             "glue-toast": LocalJSX.GlueToast & JSXBase.HTMLAttributes<HTMLGlueToastElement>;
         }
