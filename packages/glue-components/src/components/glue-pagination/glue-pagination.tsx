@@ -25,7 +25,7 @@ export class GluePagination {
   @Event() change: EventEmitter;
   select = (page: number, emitChange?: boolean) => {
     page = Math.min(this.count(), Math.max(1, page));
-
+    this.modelValue = page;
     if (this.modelValue !== page) {
       this.value.emit(page);
       if (emitChange) {
@@ -127,7 +127,7 @@ export class GluePagination {
           {this.pages().map(page => (
             <li
               class={classNames('glue-pagination__item', 'glue-pagination__page', BORDER, {
-                'glue-pagination__active': page.active,
+                'glue-pagination__item--active': page.active,
               })}
               onClick={onSelect(page.number)}
             >
