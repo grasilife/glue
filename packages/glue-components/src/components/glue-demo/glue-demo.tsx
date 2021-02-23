@@ -104,6 +104,7 @@ export class GlueDemo {
         </glue-action-bar> */}
         <glue-nav-bar title="标题" left-text="返回" right-text="按钮" left-arrow></glue-nav-bar>
         <glue-pagination model-value="1" total-items="24" items-per-page="5"></glue-pagination>
+        <glue-pagination v-model="1" page-count="12" mode="simple"></glue-pagination>
       </div>
     );
   }

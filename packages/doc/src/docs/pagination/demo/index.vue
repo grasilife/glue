@@ -1,8 +1,8 @@
 <template>
   <demo-section>
     <demo-block :title="basicUsage">
-      <van-pagination
-        v-model="currentPage1"
+      <glue-pagination
+        :model-value="currentPage1"
         :total-items="24"
         :items-per-page="5"
         :prev-text="prevText"
@@ -11,8 +11,8 @@
     </demo-block>
 
     <demo-block :title="title2">
-      <van-pagination
-        v-model="currentPage2"
+      <glue-pagination
+        :model-value="currentPage2"
         :page-count="12"
         :prev-text="prevText"
         :next-text="nextText"
@@ -22,8 +22,8 @@
     </demo-block>
 
     <demo-block :title="title3">
-      <van-pagination
-        v-model="currentPage3"
+      <glue-pagination
+        :model-value="currentPage3"
         force-ellipses
         :total-items="125"
         :show-page-size="3"
