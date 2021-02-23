@@ -104,7 +104,12 @@ export class GlueDemo {
         </glue-action-bar> */}
         <glue-nav-bar title="标题" left-text="返回" right-text="按钮" left-arrow></glue-nav-bar>
         <glue-pagination model-value="1" total-items="24" items-per-page="5"></glue-pagination>
-        <glue-pagination v-model="1" page-count="12" mode="simple"></glue-pagination>
+        <glue-pagination model-value="1" page-count="12" mode="simple"></glue-pagination>
+        <glue-sidebar model-value="0">
+          <glue-sidebar-item title="标签名称"></glue-sidebar-item>
+          <glue-sidebar-item title="标签名称"></glue-sidebar-item>
+          <glue-sidebar-item title="标签名称"></glue-sidebar-item>
+        </glue-sidebar>
       </div>
     );
   }

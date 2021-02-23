@@ -348,6 +348,15 @@ export namespace Components {
         "gutter": number;
         "justify": RowJustify;
     }
+    interface GlueSidebar {
+        "modelValue": number;
+    }
+    interface GlueSidebarItem {
+        "badge": string;
+        "disabled": boolean;
+        "dot": boolean;
+        "title": string;
+    }
     interface GlueSkeleton {
         "animateState": boolean;
         "avatar": string;
@@ -629,6 +638,18 @@ declare global {
         prototype: HTMLGlueRowElement;
         new (): HTMLGlueRowElement;
     };
+    interface HTMLGlueSidebarElement extends Components.GlueSidebar, HTMLStencilElement {
+    }
+    var HTMLGlueSidebarElement: {
+        prototype: HTMLGlueSidebarElement;
+        new (): HTMLGlueSidebarElement;
+    };
+    interface HTMLGlueSidebarItemElement extends Components.GlueSidebarItem, HTMLStencilElement {
+    }
+    var HTMLGlueSidebarItemElement: {
+        prototype: HTMLGlueSidebarItemElement;
+        new (): HTMLGlueSidebarItemElement;
+    };
     interface HTMLGlueSkeletonElement extends Components.GlueSkeleton, HTMLStencilElement {
     }
     var HTMLGlueSkeletonElement: {
@@ -718,6 +739,8 @@ declare global {
         "glue-progress": HTMLGlueProgressElement;
         "glue-rate": HTMLGlueRateElement;
         "glue-row": HTMLGlueRowElement;
+        "glue-sidebar": HTMLGlueSidebarElement;
+        "glue-sidebar-item": HTMLGlueSidebarItemElement;
         "glue-skeleton": HTMLGlueSkeletonElement;
         "glue-step": HTMLGlueStepElement;
         "glue-steps": HTMLGlueStepsElement;
@@ -1091,6 +1114,16 @@ declare namespace LocalJSX {
         "gutter"?: number;
         "justify"?: RowJustify;
     }
+    interface GlueSidebar {
+        "modelValue"?: number;
+    }
+    interface GlueSidebarItem {
+        "badge"?: string;
+        "disabled"?: boolean;
+        "dot"?: boolean;
+        "onClick"?: (event: CustomEvent<any>) => void;
+        "title"?: string;
+    }
     interface GlueSkeleton {
         "animateState"?: boolean;
         "avatar"?: string;
@@ -1206,6 +1239,8 @@ declare namespace LocalJSX {
         "glue-progress": GlueProgress;
         "glue-rate": GlueRate;
         "glue-row": GlueRow;
+        "glue-sidebar": GlueSidebar;
+        "glue-sidebar-item": GlueSidebarItem;
         "glue-skeleton": GlueSkeleton;
         "glue-step": GlueStep;
         "glue-steps": GlueSteps;
@@ -1255,6 +1290,8 @@ declare module "@stencil/core" {
             "glue-progress": LocalJSX.GlueProgress & JSXBase.HTMLAttributes<HTMLGlueProgressElement>;
             "glue-rate": LocalJSX.GlueRate & JSXBase.HTMLAttributes<HTMLGlueRateElement>;
             "glue-row": LocalJSX.GlueRow & JSXBase.HTMLAttributes<HTMLGlueRowElement>;
+            "glue-sidebar": LocalJSX.GlueSidebar & JSXBase.HTMLAttributes<HTMLGlueSidebarElement>;
+            "glue-sidebar-item": LocalJSX.GlueSidebarItem & JSXBase.HTMLAttributes<HTMLGlueSidebarItemElement>;
             "glue-skeleton": LocalJSX.GlueSkeleton & JSXBase.HTMLAttributes<HTMLGlueSkeletonElement>;
             "glue-step": LocalJSX.GlueStep & JSXBase.HTMLAttributes<HTMLGlueStepElement>;
             "glue-steps": LocalJSX.GlueSteps & JSXBase.HTMLAttributes<HTMLGlueStepsElement>;
