@@ -2,6 +2,7 @@ import { Config } from '@stencil/core';
 import { less } from '@stencil/less';
 export const config: Config = {
   namespace: 'glue-components',
+  globalStyle: 'src/global/styles/base.less',
   plugins: [less()],
   outputTargets: [
     {

@@ -281,6 +281,17 @@ export namespace Components {
         "show": boolean;
         "zIndex": string;
     }
+    interface GluePagination {
+        "forceEllipses": boolean;
+        "itemsPerPage": number;
+        "mode": string;
+        "modelValue": number;
+        "nextText": string;
+        "pageCount": number;
+        "prevText": string;
+        "showPageSize": number;
+        "totalItems": number;
+    }
     interface GluePopup {
         "closeIcon": string;
         "closeIconPosition": string;
@@ -588,6 +599,12 @@ declare global {
         prototype: HTMLGlueOverlayElement;
         new (): HTMLGlueOverlayElement;
     };
+    interface HTMLGluePaginationElement extends Components.GluePagination, HTMLStencilElement {
+    }
+    var HTMLGluePaginationElement: {
+        prototype: HTMLGluePaginationElement;
+        new (): HTMLGluePaginationElement;
+    };
     interface HTMLGluePopupElement extends Components.GluePopup, HTMLStencilElement {
     }
     var HTMLGluePopupElement: {
@@ -696,6 +713,7 @@ declare global {
         "glue-nav-bar": HTMLGlueNavBarElement;
         "glue-notice-bar": HTMLGlueNoticeBarElement;
         "glue-overlay": HTMLGlueOverlayElement;
+        "glue-pagination": HTMLGluePaginationElement;
         "glue-popup": HTMLGluePopupElement;
         "glue-progress": HTMLGlueProgressElement;
         "glue-rate": HTMLGlueRateElement;
@@ -996,6 +1014,19 @@ declare namespace LocalJSX {
         "show"?: boolean;
         "zIndex"?: string;
     }
+    interface GluePagination {
+        "forceEllipses"?: boolean;
+        "itemsPerPage"?: number;
+        "mode"?: string;
+        "modelValue"?: number;
+        "nextText"?: string;
+        "onChange"?: (event: CustomEvent<any>) => void;
+        "onValue"?: (event: CustomEvent<any>) => void;
+        "pageCount"?: number;
+        "prevText"?: string;
+        "showPageSize"?: number;
+        "totalItems"?: number;
+    }
     interface GluePopup {
         "closeIcon"?: string;
         "closeIconPosition"?: string;
@@ -1170,6 +1201,7 @@ declare namespace LocalJSX {
         "glue-nav-bar": GlueNavBar;
         "glue-notice-bar": GlueNoticeBar;
         "glue-overlay": GlueOverlay;
+        "glue-pagination": GluePagination;
         "glue-popup": GluePopup;
         "glue-progress": GlueProgress;
         "glue-rate": GlueRate;
@@ -1218,6 +1250,7 @@ declare module "@stencil/core" {
             "glue-nav-bar": LocalJSX.GlueNavBar & JSXBase.HTMLAttributes<HTMLGlueNavBarElement>;
             "glue-notice-bar": LocalJSX.GlueNoticeBar & JSXBase.HTMLAttributes<HTMLGlueNoticeBarElement>;
             "glue-overlay": LocalJSX.GlueOverlay & JSXBase.HTMLAttributes<HTMLGlueOverlayElement>;
+            "glue-pagination": LocalJSX.GluePagination & JSXBase.HTMLAttributes<HTMLGluePaginationElement>;
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
             "glue-progress": LocalJSX.GlueProgress & JSXBase.HTMLAttributes<HTMLGlueProgressElement>;
             "glue-rate": LocalJSX.GlueRate & JSXBase.HTMLAttributes<HTMLGlueRateElement>;
