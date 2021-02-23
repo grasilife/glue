@@ -1,39 +1,39 @@
 <template>
   <demo-section>
     <demo-block :title="type">
-      <van-loading />
-      <van-loading type="spinner" />
+      <g lue-loading />
+      <glue-loading type="spinner" />
     </demo-block>
 
     <demo-block :title="color">
-      <van-loading color="#1989fa" />
-      <van-loading type="spinner" color="#1989fa" />
+      <glue-loading color="#1989fa" />
+      <glue-loading type="spinner" color="#1989fa" />
     </demo-block>
 
     <demo-block :title="size">
-      <van-loading size="24" />
-      <van-loading type="spinner" size="24" />
+      <glue-loading size="24" />
+      <glue-loading type="spinner" size="24" />
     </demo-block>
 
     <demo-block :title="text">
-      <van-loading size="24px">
+      <glue-loading size="24px">
         {{ loading }}
-      </van-loading>
+      </glue-loading>
     </demo-block>
 
     <demo-block :title="vertical">
-      <van-loading size="24px" vertical>
+      <glue-loading size="24px" vertical>
         {{ loading }}
-      </van-loading>
+      </glue-loading>
     </demo-block>
 
     <demo-block :title="textColor">
-      <van-loading size="24px" vertical color="#0094ff">
+      <glue-loading size="24px" vertical color="#0094ff">
         {{ loading }}
-      </van-loading>
-      <van-loading size="24px" vertical text-color="#0094ff">
+      </glue-loading>
+      <glue-loading size="24px" vertical text-color="#0094ff">
         {{ loading }}
-      </van-loading>
+      </glue-loading>
     </demo-block>
   </demo-section>
 </template>
@@ -60,7 +60,7 @@ export default {
 .demo-loading {
   background: @white;
 
-  .van-loading {
+  .glue-loading {
     display: inline-block;
     margin: 5px 0 5px 20px;
 
