@@ -1,5 +1,8 @@
-import { Component, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, Event, EventEmitter, Host } from '@stencil/core';
 import classNames from 'classnames';
+import { createNamespace } from '../../utils/create/index';
+const [bem] = createNamespace('glue-nav-bar');
+import { BORDER_BOTTOM } from '../../global/constant/constant';
 @Component({
   tag: 'glue-nav-bar',
   styleUrl: 'glue-nav-bar.less',
@@ -36,9 +39,9 @@ export class GlueNavBar {
     return <span class="glue-nav-bar__text">{this.rightText}</span>;
   };
   renderNavBar = () => {
-    const { title, fixed, border, zIndex } = this;
+    const { title, fixed, border } = this;
     const style = {
-      zIndex: (zIndex !== undefined ? +zIndex : undefined).toString(),
+      // zIndex: (zIndex !== undefined ? +zIndex : undefined).toString(),
     };
 
     const hasLeft = this.leftArrow || this.leftText;
@@ -49,6 +52,10 @@ export class GlueNavBar {
         ref={dom => {
           this.navBarRef = dom;
         }}
+        class={classNames('safe-area-inset-top', bem([fixed]), {
+          'glue-nav-bar__safeAreaInsetTop': this.safeAreaInsetTop,
+          [BORDER_BOTTOM]: border,
+        })}
         style={style}
       >
         <div class="glue-nav-bar__content">
@@ -57,7 +64,7 @@ export class GlueNavBar {
               {this.renderLeft()}
             </div>
           )}
-          <div class="glue-nav-bar__title glue-nav-bar__title--van-ellipsis">{title}</div>
+          <div class="glue-nav-bar__title van-ellipsis">{title}</div>
           {hasRight && (
             <div class="glue-nav-bar__right" onClick={this.onClickRight}>
               {this.renderRight()}
@@ -68,11 +75,12 @@ export class GlueNavBar {
     );
   };
   render() {
-    return () => {
-      // if (this.fixed && this.placeholder) {
-      //   return this.renderPlaceholder(this.renderNavBar);
-      // }
-      return this.renderNavBar();
-    };
+    return <Host class="glue-nav-bar">{this.renderNavBar()}</Host>;
+    // return () => {
+    //   // if (this.fixed && this.placeholder) {
+    //   //   return this.renderPlaceholder(this.renderNavBar);
+    //   // }
+    //   return this.renderNavBar();
+    // };
   }
 }

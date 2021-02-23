@@ -18,36 +18,14 @@
 
 ### Depends on
 
-- [glue-notice-bar](../glue-notice-bar)
-- [glue-progress](../glue-progress)
-- [glue-skeleton](../glue-skeleton)
-- [glue-steps](../glue-steps)
-- [glue-step](../glue-step)
-- [glue-sticky](../glue-sticky)
-- [glue-button](../glue-button)
-- [glue-action-bar](../glue-action-bar)
-- [glue-action-bar-icon](../glue-action-bar-icon)
-- [glue-action-bar-button](../glue-action-bar-button)
+- [glue-nav-bar](../glue-nav-bar)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-notice-bar
-  glue-demo --> glue-progress
-  glue-demo --> glue-skeleton
-  glue-demo --> glue-steps
-  glue-demo --> glue-step
-  glue-demo --> glue-sticky
-  glue-demo --> glue-button
-  glue-demo --> glue-action-bar
-  glue-demo --> glue-action-bar-icon
-  glue-demo --> glue-action-bar-button
-  glue-notice-bar --> glue-icon
+  glue-demo --> glue-nav-bar
+  glue-nav-bar --> glue-icon
   glue-icon --> glue-badge
-  glue-button --> glue-loading
-  glue-button --> glue-icon
-  glue-action-bar-icon --> glue-icon
-  glue-action-bar-button --> glue-button
   style glue-demo fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

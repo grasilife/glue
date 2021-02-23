@@ -75,7 +75,7 @@ export class GlueDemo {
             return <glue-cell key={key} title={item} />;
           })}
         </glue-list> */}
-        <glue-notice-bar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"></glue-notice-bar>
+        {/* <glue-notice-bar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"></glue-notice-bar>
         <glue-notice-bar scrollable text="技术是开发它的人的共同灵魂。"></glue-notice-bar>
         <glue-progress percentage="50"></glue-progress>
         <glue-skeleton titleState row="3"></glue-skeleton>
@@ -101,7 +101,8 @@ export class GlueDemo {
           <glue-action-bar-button type="danger" text="立即购买">
             立即购买
           </glue-action-bar-button>
-        </glue-action-bar>
+        </glue-action-bar> */}
+        <glue-nav-bar title="标题" left-text="返回" right-text="按钮" left-arrow></glue-nav-bar>
       </div>
     );
   }

@@ -1,14 +1,14 @@
 <template>
   <demo-section>
     <demo-block :title="basicUsage">
-      <van-nav-bar
+      <glue-nav-bar
         :title="title"
         :left-text="back"
         :right-text="button"
         left-arrow
         @click-left="onClickLeft"
         @click-right="onClickRight"
-      />
+      ></glue-nav-bar>
     </demo-block>
 
     <demo-block :title="useSlot">

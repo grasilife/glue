@@ -25,7 +25,9 @@
  - [glue-action-bar-icon](../glue-action-bar-icon)
  - [glue-button](../glue-button)
  - [glue-cell](../glue-cell)
+ - [glue-grid-item](../glue-grid-item)
  - [glue-image](../glue-image)
+ - [glue-nav-bar](../glue-nav-bar)
  - [glue-notice-bar](../glue-notice-bar)
  - [glue-popup](../glue-popup)
  - [glue-rate](../glue-rate)
@@ -43,7 +45,9 @@ graph TD;
   glue-action-bar-icon --> glue-icon
   glue-button --> glue-icon
   glue-cell --> glue-icon
+  glue-grid-item --> glue-icon
   glue-image --> glue-icon
+  glue-nav-bar --> glue-icon
   glue-notice-bar --> glue-icon
   glue-popup --> glue-icon
   glue-rate --> glue-icon
