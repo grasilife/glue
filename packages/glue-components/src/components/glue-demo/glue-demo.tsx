@@ -111,7 +111,10 @@ export class GlueDemo {
           <glue-sidebar-item title="标签名称"></glue-sidebar-item>
           <glue-sidebar-item title="标签名称"></glue-sidebar-item>
         </glue-sidebar> */}
-        <glue-action-sheet show={true} actions={this.actions}></glue-action-sheet>
+        {/* <glue-action-sheet show={true} actions={this.actions}></glue-action-sheet> */}
+        <glue-pull-refresh model-value="state.loading">
+          <p>刷新次数: </p>
+        </glue-pull-refresh>
       </div>
     );
   }

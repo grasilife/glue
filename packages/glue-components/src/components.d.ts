@@ -349,6 +349,17 @@ export namespace Components {
         "textColor": string;
         "trackColor": string;
     }
+    interface GluePullRefresh {
+        "animationDuration": number;
+        "disabled": boolean;
+        "headHeight": number;
+        "loadingText": string;
+        "loosingText": string;
+        "modelValue": boolean;
+        "pullingText": string;
+        "successDuration": number;
+        "successText": string;
+    }
     interface GlueRate {
         "allowHalf": boolean;
         "color": string;
@@ -655,6 +666,12 @@ declare global {
         prototype: HTMLGlueProgressElement;
         new (): HTMLGlueProgressElement;
     };
+    interface HTMLGluePullRefreshElement extends Components.GluePullRefresh, HTMLStencilElement {
+    }
+    var HTMLGluePullRefreshElement: {
+        prototype: HTMLGluePullRefreshElement;
+        new (): HTMLGluePullRefreshElement;
+    };
     interface HTMLGlueRateElement extends Components.GlueRate, HTMLStencilElement {
     }
     var HTMLGlueRateElement: {
@@ -778,6 +795,7 @@ declare global {
         "glue-pagination": HTMLGluePaginationElement;
         "glue-popup": HTMLGluePopupElement;
         "glue-progress": HTMLGlueProgressElement;
+        "glue-pull-refresh": HTMLGluePullRefreshElement;
         "glue-rate": HTMLGlueRateElement;
         "glue-row": HTMLGlueRowElement;
         "glue-sidebar": HTMLGlueSidebarElement;
@@ -1159,6 +1177,18 @@ declare namespace LocalJSX {
         "textColor"?: string;
         "trackColor"?: string;
     }
+    interface GluePullRefresh {
+        "animationDuration"?: number;
+        "disabled"?: boolean;
+        "headHeight"?: number;
+        "loadingText"?: string;
+        "loosingText"?: string;
+        "modelValue"?: boolean;
+        "onRefresh"?: (event: CustomEvent<any>) => void;
+        "pullingText"?: string;
+        "successDuration"?: number;
+        "successText"?: string;
+    }
     interface GlueRate {
         "allowHalf"?: boolean;
         "color"?: string;
@@ -1311,6 +1341,7 @@ declare namespace LocalJSX {
         "glue-pagination": GluePagination;
         "glue-popup": GluePopup;
         "glue-progress": GlueProgress;
+        "glue-pull-refresh": GluePullRefresh;
         "glue-rate": GlueRate;
         "glue-row": GlueRow;
         "glue-sidebar": GlueSidebar;
@@ -1364,6 +1395,7 @@ declare module "@stencil/core" {
             "glue-pagination": LocalJSX.GluePagination & JSXBase.HTMLAttributes<HTMLGluePaginationElement>;
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
             "glue-progress": LocalJSX.GlueProgress & JSXBase.HTMLAttributes<HTMLGlueProgressElement>;
+            "glue-pull-refresh": LocalJSX.GluePullRefresh & JSXBase.HTMLAttributes<HTMLGluePullRefreshElement>;
             "glue-rate": LocalJSX.GlueRate & JSXBase.HTMLAttributes<HTMLGlueRateElement>;
             "glue-row": LocalJSX.GlueRow & JSXBase.HTMLAttributes<HTMLGlueRowElement>;
             "glue-sidebar": LocalJSX.GlueSidebar & JSXBase.HTMLAttributes<HTMLGlueSidebarElement>;
