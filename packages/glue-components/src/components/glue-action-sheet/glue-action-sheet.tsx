@@ -83,6 +83,7 @@ export class GlueActionSheet {
   };
 
   renderOption = (item: ActionSheetAction, index: number) => {
+    console.log(index);
     const { name, color, subname, loading, callback, disabled, className } = item;
 
     const Content = loading ? (

@@ -88,6 +88,9 @@ export namespace Components {
         "text": string;
         "type": string;
     }
+    interface GlueCalendar {
+        "first": string;
+    }
     interface GlueCard {
         "centered": boolean;
         "currency": string;
@@ -100,6 +103,9 @@ export namespace Components {
         "thumb": string;
         "thumbLink": string;
         "title": string;
+    }
+    interface GlueCascader {
+        "first": string;
     }
     interface GlueCell {
         "arrowDirection": string;
@@ -122,6 +128,12 @@ export namespace Components {
     interface GlueCellGroup {
         "border": boolean;
         "title": string;
+    }
+    interface GlueCheckbox {
+        "first": string;
+    }
+    interface GlueCheckboxGroup {
+        "first": string;
     }
     interface GlueCircle {
         "clockwise": boolean;
@@ -175,6 +187,9 @@ export namespace Components {
         "format": string;
         "millisecond": boolean;
         "time": number;
+    }
+    interface GlueDatetimePicker {
+        "first": string;
     }
     interface GlueDemo {
         "first": string;
@@ -542,11 +557,23 @@ declare global {
         prototype: HTMLGlueButtonElement;
         new (): HTMLGlueButtonElement;
     };
+    interface HTMLGlueCalendarElement extends Components.GlueCalendar, HTMLStencilElement {
+    }
+    var HTMLGlueCalendarElement: {
+        prototype: HTMLGlueCalendarElement;
+        new (): HTMLGlueCalendarElement;
+    };
     interface HTMLGlueCardElement extends Components.GlueCard, HTMLStencilElement {
     }
     var HTMLGlueCardElement: {
         prototype: HTMLGlueCardElement;
         new (): HTMLGlueCardElement;
+    };
+    interface HTMLGlueCascaderElement extends Components.GlueCascader, HTMLStencilElement {
+    }
+    var HTMLGlueCascaderElement: {
+        prototype: HTMLGlueCascaderElement;
+        new (): HTMLGlueCascaderElement;
     };
     interface HTMLGlueCellElement extends Components.GlueCell, HTMLStencilElement {
     }
@@ -559,6 +586,18 @@ declare global {
     var HTMLGlueCellGroupElement: {
         prototype: HTMLGlueCellGroupElement;
         new (): HTMLGlueCellGroupElement;
+    };
+    interface HTMLGlueCheckboxElement extends Components.GlueCheckbox, HTMLStencilElement {
+    }
+    var HTMLGlueCheckboxElement: {
+        prototype: HTMLGlueCheckboxElement;
+        new (): HTMLGlueCheckboxElement;
+    };
+    interface HTMLGlueCheckboxGroupElement extends Components.GlueCheckboxGroup, HTMLStencilElement {
+    }
+    var HTMLGlueCheckboxGroupElement: {
+        prototype: HTMLGlueCheckboxGroupElement;
+        new (): HTMLGlueCheckboxGroupElement;
     };
     interface HTMLGlueCircleElement extends Components.GlueCircle, HTMLStencilElement {
     }
@@ -595,6 +634,12 @@ declare global {
     var HTMLGlueCountDownElement: {
         prototype: HTMLGlueCountDownElement;
         new (): HTMLGlueCountDownElement;
+    };
+    interface HTMLGlueDatetimePickerElement extends Components.GlueDatetimePicker, HTMLStencilElement {
+    }
+    var HTMLGlueDatetimePickerElement: {
+        prototype: HTMLGlueDatetimePickerElement;
+        new (): HTMLGlueDatetimePickerElement;
     };
     interface HTMLGlueDemoElement extends Components.GlueDemo, HTMLStencilElement {
     }
@@ -807,15 +852,20 @@ declare global {
         "glue-action-sheet": HTMLGlueActionSheetElement;
         "glue-badge": HTMLGlueBadgeElement;
         "glue-button": HTMLGlueButtonElement;
+        "glue-calendar": HTMLGlueCalendarElement;
         "glue-card": HTMLGlueCardElement;
+        "glue-cascader": HTMLGlueCascaderElement;
         "glue-cell": HTMLGlueCellElement;
         "glue-cell-group": HTMLGlueCellGroupElement;
+        "glue-checkbox": HTMLGlueCheckboxElement;
+        "glue-checkbox-group": HTMLGlueCheckboxGroupElement;
         "glue-circle": HTMLGlueCircleElement;
         "glue-col": HTMLGlueColElement;
         "glue-collapse": HTMLGlueCollapseElement;
         "glue-collapse-item": HTMLGlueCollapseItemElement;
         "glue-component": HTMLGlueComponentElement;
         "glue-count-down": HTMLGlueCountDownElement;
+        "glue-datetime-picker": HTMLGlueDatetimePickerElement;
         "glue-demo": HTMLGlueDemoElement;
         "glue-divider": HTMLGlueDividerElement;
         "glue-empty": HTMLGlueEmptyElement;
@@ -933,6 +983,9 @@ declare namespace LocalJSX {
         "text"?: string;
         "type"?: string;
     }
+    interface GlueCalendar {
+        "first"?: string;
+    }
     interface GlueCard {
         "centered"?: boolean;
         "currency"?: string;
@@ -946,6 +999,9 @@ declare namespace LocalJSX {
         "thumb"?: string;
         "thumbLink"?: string;
         "title"?: string;
+    }
+    interface GlueCascader {
+        "first"?: string;
     }
     interface GlueCell {
         "arrowDirection"?: string;
@@ -969,6 +1025,12 @@ declare namespace LocalJSX {
     interface GlueCellGroup {
         "border"?: boolean;
         "title"?: string;
+    }
+    interface GlueCheckbox {
+        "first"?: string;
+    }
+    interface GlueCheckboxGroup {
+        "first"?: string;
     }
     interface GlueCircle {
         "clockwise"?: boolean;
@@ -1024,6 +1086,9 @@ declare namespace LocalJSX {
         "format"?: string;
         "millisecond"?: boolean;
         "time"?: number;
+    }
+    interface GlueDatetimePicker {
+        "first"?: string;
     }
     interface GlueDemo {
         "first"?: string;
@@ -1392,15 +1457,20 @@ declare namespace LocalJSX {
         "glue-action-sheet": GlueActionSheet;
         "glue-badge": GlueBadge;
         "glue-button": GlueButton;
+        "glue-calendar": GlueCalendar;
         "glue-card": GlueCard;
+        "glue-cascader": GlueCascader;
         "glue-cell": GlueCell;
         "glue-cell-group": GlueCellGroup;
+        "glue-checkbox": GlueCheckbox;
+        "glue-checkbox-group": GlueCheckboxGroup;
         "glue-circle": GlueCircle;
         "glue-col": GlueCol;
         "glue-collapse": GlueCollapse;
         "glue-collapse-item": GlueCollapseItem;
         "glue-component": GlueComponent;
         "glue-count-down": GlueCountDown;
+        "glue-datetime-picker": GlueDatetimePicker;
         "glue-demo": GlueDemo;
         "glue-divider": GlueDivider;
         "glue-empty": GlueEmpty;
@@ -1447,15 +1517,20 @@ declare module "@stencil/core" {
             "glue-action-sheet": LocalJSX.GlueActionSheet & JSXBase.HTMLAttributes<HTMLGlueActionSheetElement>;
             "glue-badge": LocalJSX.GlueBadge & JSXBase.HTMLAttributes<HTMLGlueBadgeElement>;
             "glue-button": LocalJSX.GlueButton & JSXBase.HTMLAttributes<HTMLGlueButtonElement>;
+            "glue-calendar": LocalJSX.GlueCalendar & JSXBase.HTMLAttributes<HTMLGlueCalendarElement>;
             "glue-card": LocalJSX.GlueCard & JSXBase.HTMLAttributes<HTMLGlueCardElement>;
+            "glue-cascader": LocalJSX.GlueCascader & JSXBase.HTMLAttributes<HTMLGlueCascaderElement>;
             "glue-cell": LocalJSX.GlueCell & JSXBase.HTMLAttributes<HTMLGlueCellElement>;
             "glue-cell-group": LocalJSX.GlueCellGroup & JSXBase.HTMLAttributes<HTMLGlueCellGroupElement>;
+            "glue-checkbox": LocalJSX.GlueCheckbox & JSXBase.HTMLAttributes<HTMLGlueCheckboxElement>;
+            "glue-checkbox-group": LocalJSX.GlueCheckboxGroup & JSXBase.HTMLAttributes<HTMLGlueCheckboxGroupElement>;
             "glue-circle": LocalJSX.GlueCircle & JSXBase.HTMLAttributes<HTMLGlueCircleElement>;
             "glue-col": LocalJSX.GlueCol & JSXBase.HTMLAttributes<HTMLGlueColElement>;
             "glue-collapse": LocalJSX.GlueCollapse & JSXBase.HTMLAttributes<HTMLGlueCollapseElement>;
             "glue-collapse-item": LocalJSX.GlueCollapseItem & JSXBase.HTMLAttributes<HTMLGlueCollapseItemElement>;
             "glue-component": LocalJSX.GlueComponent & JSXBase.HTMLAttributes<HTMLGlueComponentElement>;
             "glue-count-down": LocalJSX.GlueCountDown & JSXBase.HTMLAttributes<HTMLGlueCountDownElement>;
+            "glue-datetime-picker": LocalJSX.GlueDatetimePicker & JSXBase.HTMLAttributes<HTMLGlueDatetimePickerElement>;
             "glue-demo": LocalJSX.GlueDemo & JSXBase.HTMLAttributes<HTMLGlueDemoElement>;
             "glue-divider": LocalJSX.GlueDivider & JSXBase.HTMLAttributes<HTMLGlueDividerElement>;
             "glue-empty": LocalJSX.GlueEmpty & JSXBase.HTMLAttributes<HTMLGlueEmptyElement>;
