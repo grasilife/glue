@@ -207,6 +207,50 @@ export namespace Components {
         "image": string;
         "imageSize": string;
     }
+    interface GlueField {
+        "arrowDirection": string;
+        "autocomplete": string;
+        "autosize": any;
+        "border": boolean;
+        "center": boolean;
+        "clearTrigger": string;
+        "clearable": string;
+        "clickable": boolean;
+        "colon": any;
+        "disabled": any;
+        "error": any;
+        "errorMessage": string;
+        "errorMessageAlign": string;
+        "formatTrigger": string;
+        "formatter": any;
+        "icon": string;
+        "iconPrefix": string;
+        "inputAlign": string;
+        "isLink": boolean;
+        "label": string | number;
+        "labelAlign": string;
+        "labelClass": any;
+        "labelWidth": string | number;
+        "leftIcon": string;
+        "maxlength": string | number;
+        "modelValue": string;
+        "name": string;
+        "placeholder": string;
+        "readonly": any;
+        "required": boolean;
+        "rightIcon": string;
+        "rows": string | number;
+        "rules": [];
+        "showWordLimit": boolean;
+        "size": string;
+        "tilabelClasstle": any;
+        "title": string;
+        "titleClass": any;
+        "titleStyle": any;
+        "type": string;
+        "value": string | number;
+        "valueClass": any;
+    }
     interface GlueGrid {
         "border": boolean;
         "center": boolean;
@@ -659,6 +703,12 @@ declare global {
         prototype: HTMLGlueEmptyElement;
         new (): HTMLGlueEmptyElement;
     };
+    interface HTMLGlueFieldElement extends Components.GlueField, HTMLStencilElement {
+    }
+    var HTMLGlueFieldElement: {
+        prototype: HTMLGlueFieldElement;
+        new (): HTMLGlueFieldElement;
+    };
     interface HTMLGlueGridElement extends Components.GlueGrid, HTMLStencilElement {
     }
     var HTMLGlueGridElement: {
@@ -869,6 +919,7 @@ declare global {
         "glue-demo": HTMLGlueDemoElement;
         "glue-divider": HTMLGlueDividerElement;
         "glue-empty": HTMLGlueEmptyElement;
+        "glue-field": HTMLGlueFieldElement;
         "glue-grid": HTMLGlueGridElement;
         "glue-grid-item": HTMLGlueGridItemElement;
         "glue-icon": HTMLGlueIconElement;
@@ -1105,6 +1156,50 @@ declare namespace LocalJSX {
         "description"?: string;
         "image"?: string;
         "imageSize"?: string;
+    }
+    interface GlueField {
+        "arrowDirection"?: string;
+        "autocomplete"?: string;
+        "autosize"?: any;
+        "border"?: boolean;
+        "center"?: boolean;
+        "clearTrigger"?: string;
+        "clearable"?: string;
+        "clickable"?: boolean;
+        "colon"?: any;
+        "disabled"?: any;
+        "error"?: any;
+        "errorMessage"?: string;
+        "errorMessageAlign"?: string;
+        "formatTrigger"?: string;
+        "formatter"?: any;
+        "icon"?: string;
+        "iconPrefix"?: string;
+        "inputAlign"?: string;
+        "isLink"?: boolean;
+        "label"?: string | number;
+        "labelAlign"?: string;
+        "labelClass"?: any;
+        "labelWidth"?: string | number;
+        "leftIcon"?: string;
+        "maxlength"?: string | number;
+        "modelValue"?: string;
+        "name"?: string;
+        "placeholder"?: string;
+        "readonly"?: any;
+        "required"?: boolean;
+        "rightIcon"?: string;
+        "rows"?: string | number;
+        "rules"?: [];
+        "showWordLimit"?: boolean;
+        "size"?: string;
+        "tilabelClasstle"?: any;
+        "title"?: string;
+        "titleClass"?: any;
+        "titleStyle"?: any;
+        "type"?: string;
+        "value"?: string | number;
+        "valueClass"?: any;
     }
     interface GlueGrid {
         "border"?: boolean;
@@ -1474,6 +1569,7 @@ declare namespace LocalJSX {
         "glue-demo": GlueDemo;
         "glue-divider": GlueDivider;
         "glue-empty": GlueEmpty;
+        "glue-field": GlueField;
         "glue-grid": GlueGrid;
         "glue-grid-item": GlueGridItem;
         "glue-icon": GlueIcon;
@@ -1534,6 +1630,7 @@ declare module "@stencil/core" {
             "glue-demo": LocalJSX.GlueDemo & JSXBase.HTMLAttributes<HTMLGlueDemoElement>;
             "glue-divider": LocalJSX.GlueDivider & JSXBase.HTMLAttributes<HTMLGlueDividerElement>;
             "glue-empty": LocalJSX.GlueEmpty & JSXBase.HTMLAttributes<HTMLGlueEmptyElement>;
+            "glue-field": LocalJSX.GlueField & JSXBase.HTMLAttributes<HTMLGlueFieldElement>;
             "glue-grid": LocalJSX.GlueGrid & JSXBase.HTMLAttributes<HTMLGlueGridElement>;
             "glue-grid-item": LocalJSX.GlueGridItem & JSXBase.HTMLAttributes<HTMLGlueGridItemElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;

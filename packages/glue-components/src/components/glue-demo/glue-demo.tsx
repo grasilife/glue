@@ -129,8 +129,11 @@ export class GlueDemo {
         {/* <glue-pull-refresh model-value="state.loading">
           <p>刷新次数: </p>
         </glue-pull-refresh> */}
-        <glue-cell title="显示分享面板" onClick={this.onClick}></glue-cell>
-        <glue-share-sheet show={this.showShare} title="立即分享给好友" options={this.option} onSelect={this.onSelect}></glue-share-sheet>
+        {/* <glue-cell title="显示分享面板" onClick={this.onClick}></glue-cell>
+        <glue-share-sheet show={this.showShare} title="立即分享给好友" options={this.option} onSelect={this.onSelect}></glue-share-sheet> */}
+        <glue-cell-group>
+          <glue-field value="value" label="文本" placeholder="请输入用户名" />
+        </glue-cell-group>
       </div>
     );
   }
