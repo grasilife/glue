@@ -26,9 +26,9 @@ export class GlueCell {
   @Event({
     eventName: 'checkboxchange',
   })
-  onClick: EventEmitter;
+  click: EventEmitter;
   handleClick = event => {
-    this.onClick.emit(event);
+    this.click.emit(event);
   };
   renderLabel = () => {
     const showLabel = isDef(this.label);

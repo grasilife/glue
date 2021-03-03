@@ -382,6 +382,33 @@ export namespace Components {
         "gutter": number;
         "justify": RowJustify;
     }
+    interface GlueShareSheet {
+        "cancelText": string;
+        "closeIcon": string;
+        "closeIconPosition": string;
+        "closeOnClickOverlay": boolean;
+        "closeOnPopstate": boolean;
+        "closeable": boolean;
+        "description": string;
+        "duration": string;
+        "height": string;
+        "lazyRender": boolean;
+        "lockScroll": boolean;
+        "options": any[];
+        "overlay": boolean;
+        "overlayClass": any;
+        "overlayStyle": object;
+        "position": string;
+        "round": boolean;
+        "safeAreaInsetBottom": boolean;
+        "show": boolean;
+        "teleport": string | object;
+        "title": string;
+        "transition": string;
+        "transitionAppear": boolean;
+        "width": string;
+        "zIndex": string;
+    }
     interface GlueSidebar {
         "modelValue": number;
     }
@@ -684,6 +711,12 @@ declare global {
         prototype: HTMLGlueRowElement;
         new (): HTMLGlueRowElement;
     };
+    interface HTMLGlueShareSheetElement extends Components.GlueShareSheet, HTMLStencilElement {
+    }
+    var HTMLGlueShareSheetElement: {
+        prototype: HTMLGlueShareSheetElement;
+        new (): HTMLGlueShareSheetElement;
+    };
     interface HTMLGlueSidebarElement extends Components.GlueSidebar, HTMLStencilElement {
     }
     var HTMLGlueSidebarElement: {
@@ -798,6 +831,7 @@ declare global {
         "glue-pull-refresh": HTMLGluePullRefreshElement;
         "glue-rate": HTMLGlueRateElement;
         "glue-row": HTMLGlueRowElement;
+        "glue-share-sheet": HTMLGlueShareSheetElement;
         "glue-sidebar": HTMLGlueSidebarElement;
         "glue-sidebar-item": HTMLGlueSidebarItemElement;
         "glue-skeleton": HTMLGlueSkeletonElement;
@@ -1212,6 +1246,36 @@ declare namespace LocalJSX {
         "gutter"?: number;
         "justify"?: RowJustify;
     }
+    interface GlueShareSheet {
+        "cancelText"?: string;
+        "closeIcon"?: string;
+        "closeIconPosition"?: string;
+        "closeOnClickOverlay"?: boolean;
+        "closeOnPopstate"?: boolean;
+        "closeable"?: boolean;
+        "description"?: string;
+        "duration"?: string;
+        "height"?: string;
+        "lazyRender"?: boolean;
+        "lockScroll"?: boolean;
+        "onCancel"?: (event: CustomEvent<any>) => void;
+        "onSelect"?: (event: CustomEvent<any>) => void;
+        "onShowChange"?: (event: CustomEvent<any>) => void;
+        "options"?: any[];
+        "overlay"?: boolean;
+        "overlayClass"?: any;
+        "overlayStyle"?: object;
+        "position"?: string;
+        "round"?: boolean;
+        "safeAreaInsetBottom"?: boolean;
+        "show"?: boolean;
+        "teleport"?: string | object;
+        "title"?: string;
+        "transition"?: string;
+        "transitionAppear"?: boolean;
+        "width"?: string;
+        "zIndex"?: string;
+    }
     interface GlueSidebar {
         "modelValue"?: number;
     }
@@ -1344,6 +1408,7 @@ declare namespace LocalJSX {
         "glue-pull-refresh": GluePullRefresh;
         "glue-rate": GlueRate;
         "glue-row": GlueRow;
+        "glue-share-sheet": GlueShareSheet;
         "glue-sidebar": GlueSidebar;
         "glue-sidebar-item": GlueSidebarItem;
         "glue-skeleton": GlueSkeleton;
@@ -1398,6 +1463,7 @@ declare module "@stencil/core" {
             "glue-pull-refresh": LocalJSX.GluePullRefresh & JSXBase.HTMLAttributes<HTMLGluePullRefreshElement>;
             "glue-rate": LocalJSX.GlueRate & JSXBase.HTMLAttributes<HTMLGlueRateElement>;
             "glue-row": LocalJSX.GlueRow & JSXBase.HTMLAttributes<HTMLGlueRowElement>;
+            "glue-share-sheet": LocalJSX.GlueShareSheet & JSXBase.HTMLAttributes<HTMLGlueShareSheetElement>;
             "glue-sidebar": LocalJSX.GlueSidebar & JSXBase.HTMLAttributes<HTMLGlueSidebarElement>;
             "glue-sidebar-item": LocalJSX.GlueSidebarItem & JSXBase.HTMLAttributes<HTMLGlueSidebarItemElement>;
             "glue-skeleton": LocalJSX.GlueSkeleton & JSXBase.HTMLAttributes<HTMLGlueSkeletonElement>;

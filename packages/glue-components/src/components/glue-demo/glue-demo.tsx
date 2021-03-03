@@ -36,6 +36,14 @@ export class GlueDemo {
     },
   ];
   @State() actions = [{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }];
+  @State() showShare = false;
+  @State() option = [
+    { name: '微信', icon: 'wechat' },
+    { name: '微博', icon: 'weibo' },
+    { name: '复制链接', icon: 'link' },
+    { name: '分享海报', icon: 'poster' },
+    { name: '二维码', icon: 'qrcode' },
+  ];
   onLoad(index) {
     console.log(index);
     // const list = this.list[index];
@@ -66,6 +74,12 @@ export class GlueDemo {
   onRefresh(index) {
     this.list[index].finished = false;
     this.onLoad(index);
+  }
+  onSelect() {
+    this.showShare = false;
+  }
+  onClick() {
+    this.showShare = true;
   }
   render() {
     return (
@@ -112,9 +126,11 @@ export class GlueDemo {
           <glue-sidebar-item title="标签名称"></glue-sidebar-item>
         </glue-sidebar> */}
         {/* <glue-action-sheet show={true} actions={this.actions}></glue-action-sheet> */}
-        <glue-pull-refresh model-value="state.loading">
+        {/* <glue-pull-refresh model-value="state.loading">
           <p>刷新次数: </p>
-        </glue-pull-refresh>
+        </glue-pull-refresh> */}
+        <glue-cell title="显示分享面板" onClick={this.onClick}></glue-cell>
+        <glue-share-sheet show={this.showShare} title="立即分享给好友" options={this.option} onSelect={this.onSelect}></glue-share-sheet>
       </div>
     );
   }
