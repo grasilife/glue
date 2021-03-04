@@ -174,6 +174,7 @@ export class GlueField {
     });
 
   validateWithTrigger = trigger => {
+    console.log(trigger);
     // if (form && this.rules) {
     //   const defaultTrigger = form.this.validateTrigger === trigger;
     //   const rules = this.rules.filter(rule => {
@@ -238,6 +239,7 @@ export class GlueField {
   };
 
   onFocus = event => {
+    console.log(event);
     this.focused = true;
     // emit('focus', event);
 
@@ -249,6 +251,7 @@ export class GlueField {
   };
 
   onBlur = event => {
+    console.log(event);
     this.focused = false;
     this.updateValue(this.modelValue, 'onBlur');
     // emit('blur', event);
@@ -257,14 +260,17 @@ export class GlueField {
   };
 
   onClickInput = event => {
+    console.log(event);
     // emit('click-input', event);
   };
 
   onClickLeftIcon = event => {
+    console.log(event);
     // emit('click-left-icon', event);
   };
 
   onClickRightIcon = event => {
+    console.log(event);
     // emit('click-right-icon', event);
   };
 

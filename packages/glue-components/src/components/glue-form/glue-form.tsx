@@ -3,7 +3,7 @@ import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
 const { children } = {
   children: [],
 };
-export const FORM_KEY = 'vanForm';
+// export const FORM_KEY = 'vanForm';
 @Component({
   tag: 'glue-form',
   styleUrl: 'glue-form.less',

@@ -251,6 +251,21 @@ export namespace Components {
         "value": string | number;
         "valueClass": any;
     }
+    interface GlueForm {
+        "colon": boolean;
+        "disabled": boolean;
+        "errorMessageAlign": string;
+        "inputAlign": string;
+        "labelAlign": string;
+        "labelWidth": string | number;
+        "readonly": boolean;
+        "scrollToError": boolean;
+        "showError": boolean;
+        "showErrorMessage": boolean;
+        "submitOnEnter": boolean;
+        "validateFirst": boolean;
+        "validateTrigger": string;
+    }
     interface GlueGrid {
         "border": boolean;
         "center": boolean;
@@ -607,7 +622,7 @@ export namespace Components {
         "inactiveColor": string;
         "inactiveValue": boolean;
         "loading": boolean;
-        "modelValue": any;
+        "modelValue": boolean;
         "size": string | number;
     }
     interface GlueTabbar {
@@ -790,6 +805,12 @@ declare global {
     var HTMLGlueFieldElement: {
         prototype: HTMLGlueFieldElement;
         new (): HTMLGlueFieldElement;
+    };
+    interface HTMLGlueFormElement extends Components.GlueForm, HTMLStencilElement {
+    }
+    var HTMLGlueFormElement: {
+        prototype: HTMLGlueFormElement;
+        new (): HTMLGlueFormElement;
     };
     interface HTMLGlueGridElement extends Components.GlueGrid, HTMLStencilElement {
     }
@@ -1038,6 +1059,7 @@ declare global {
         "glue-divider": HTMLGlueDividerElement;
         "glue-empty": HTMLGlueEmptyElement;
         "glue-field": HTMLGlueFieldElement;
+        "glue-form": HTMLGlueFormElement;
         "glue-grid": HTMLGlueGridElement;
         "glue-grid-item": HTMLGlueGridItemElement;
         "glue-icon": HTMLGlueIconElement;
@@ -1324,6 +1346,23 @@ declare namespace LocalJSX {
         "type"?: string;
         "value"?: string | number;
         "valueClass"?: any;
+    }
+    interface GlueForm {
+        "colon"?: boolean;
+        "disabled"?: boolean;
+        "errorMessageAlign"?: string;
+        "inputAlign"?: string;
+        "labelAlign"?: string;
+        "labelWidth"?: string | number;
+        "onFailed"?: (event: CustomEvent<any>) => void;
+        "onSubmitChange"?: (event: CustomEvent<any>) => void;
+        "readonly"?: boolean;
+        "scrollToError"?: boolean;
+        "showError"?: boolean;
+        "showErrorMessage"?: boolean;
+        "submitOnEnter"?: boolean;
+        "validateFirst"?: boolean;
+        "validateTrigger"?: string;
     }
     interface GlueGrid {
         "border"?: boolean;
@@ -1723,7 +1762,7 @@ declare namespace LocalJSX {
         "inactiveColor"?: string;
         "inactiveValue"?: boolean;
         "loading"?: boolean;
-        "modelValue"?: any;
+        "modelValue"?: boolean;
         "onChange"?: (event: CustomEvent<any>) => void;
         "onChangeValue"?: (event: CustomEvent<any>) => void;
         "size"?: string | number;
@@ -1791,6 +1830,7 @@ declare namespace LocalJSX {
         "glue-divider": GlueDivider;
         "glue-empty": GlueEmpty;
         "glue-field": GlueField;
+        "glue-form": GlueForm;
         "glue-grid": GlueGrid;
         "glue-grid-item": GlueGridItem;
         "glue-icon": GlueIcon;
@@ -1858,6 +1898,7 @@ declare module "@stencil/core" {
             "glue-divider": LocalJSX.GlueDivider & JSXBase.HTMLAttributes<HTMLGlueDividerElement>;
             "glue-empty": LocalJSX.GlueEmpty & JSXBase.HTMLAttributes<HTMLGlueEmptyElement>;
             "glue-field": LocalJSX.GlueField & JSXBase.HTMLAttributes<HTMLGlueFieldElement>;
+            "glue-form": LocalJSX.GlueForm & JSXBase.HTMLAttributes<HTMLGlueFormElement>;
             "glue-grid": LocalJSX.GlueGrid & JSXBase.HTMLAttributes<HTMLGlueGridElement>;
             "glue-grid-item": LocalJSX.GlueGridItem & JSXBase.HTMLAttributes<HTMLGlueGridItemElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;

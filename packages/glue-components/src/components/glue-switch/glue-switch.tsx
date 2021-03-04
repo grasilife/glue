@@ -12,7 +12,7 @@ export class GlueSwitch {
   @Prop() size: string | number;
   @Prop() loading: boolean;
   @Prop() disabled: boolean;
-  @Prop() modelValue = null;
+  @Prop() modelValue: boolean;
   @Prop() activeColor: string;
   @Prop() inactiveColor: string;
   @Prop() activeValue = true;
@@ -38,6 +38,7 @@ export class GlueSwitch {
   render() {
     const { size, loading, disabled, activeColor, inactiveColor } = this;
     const checked = this.isChecked();
+    console.log(checked, this.modelValue, this.activeValue, 'huhu');
     const style = {
       fontSize: addUnit(size),
       backgroundColor: checked ? activeColor : inactiveColor,
@@ -45,10 +46,10 @@ export class GlueSwitch {
     return (
       <Host
         role="switch"
-        class={classNames({
-          'glue-switch__on': checked,
-          'glue-switch__loading': loading,
-          'glue-switch__disabled': disabled,
+        class={classNames('glue-switch', {
+          'glue-switch--on': checked,
+          'glue-switch--loading': loading,
+          'glue-switch--disabled': disabled,
         })}
         style={style}
         aria-checked={checked}
