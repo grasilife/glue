@@ -7,6 +7,7 @@ import { addUnit } from '../../utils/format/unit';
 import { formatNumber } from '../../utils/format/number';
 import { resetScroll } from '../../utils/dom/scroll';
 import { runSyncRule } from './utils';
+
 import { trigger, preventDefault } from '../../utils/dom/event';
 const [bem] = createNamespace('glue-field');
 @Component({
