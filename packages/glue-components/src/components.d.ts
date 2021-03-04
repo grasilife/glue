@@ -315,6 +315,14 @@ export namespace Components {
         "stickyOffsetTop": number;
         "zIndex": string;
     }
+    interface GlueKey {
+        "color": string;
+        "large": boolean;
+        "loading": boolean;
+        "text": string | number;
+        "type": string;
+        "wider": boolean;
+    }
     interface GlueList {
         "direction": string;
         "error": boolean;
@@ -355,6 +363,25 @@ export namespace Components {
         "speed": number;
         "text": string;
         "wrapable": string;
+    }
+    interface GlueNumberKeyboard {
+        "blurOnClose": boolean;
+        "closeButtonLoading": boolean;
+        "closeButtonText": string;
+        "deleteButtonText": string;
+        "extraKey": string;
+        "hideOnClickOutside": boolean;
+        "maxlength": number;
+        "modelValue": string;
+        "randomKeyOrder": boolean;
+        "safeAreaInsetBottom": boolean;
+        "show": boolean;
+        "showDeleteKey": boolean;
+        "teleport": string | number;
+        "theme": string;
+        "title": string;
+        "transition": boolean;
+        "zIndex": string;
     }
     interface GlueOverlay {
         "customStyle": object;
@@ -745,6 +772,12 @@ declare global {
         prototype: HTMLGlueIndexBarElement;
         new (): HTMLGlueIndexBarElement;
     };
+    interface HTMLGlueKeyElement extends Components.GlueKey, HTMLStencilElement {
+    }
+    var HTMLGlueKeyElement: {
+        prototype: HTMLGlueKeyElement;
+        new (): HTMLGlueKeyElement;
+    };
     interface HTMLGlueListElement extends Components.GlueList, HTMLStencilElement {
     }
     var HTMLGlueListElement: {
@@ -768,6 +801,12 @@ declare global {
     var HTMLGlueNoticeBarElement: {
         prototype: HTMLGlueNoticeBarElement;
         new (): HTMLGlueNoticeBarElement;
+    };
+    interface HTMLGlueNumberKeyboardElement extends Components.GlueNumberKeyboard, HTMLStencilElement {
+    }
+    var HTMLGlueNumberKeyboardElement: {
+        prototype: HTMLGlueNumberKeyboardElement;
+        new (): HTMLGlueNumberKeyboardElement;
     };
     interface HTMLGlueOverlayElement extends Components.GlueOverlay, HTMLStencilElement {
     }
@@ -926,10 +965,12 @@ declare global {
         "glue-image": HTMLGlueImageElement;
         "glue-index-anchor": HTMLGlueIndexAnchorElement;
         "glue-index-bar": HTMLGlueIndexBarElement;
+        "glue-key": HTMLGlueKeyElement;
         "glue-list": HTMLGlueListElement;
         "glue-loading": HTMLGlueLoadingElement;
         "glue-nav-bar": HTMLGlueNavBarElement;
         "glue-notice-bar": HTMLGlueNoticeBarElement;
+        "glue-number-keyboard": HTMLGlueNumberKeyboardElement;
         "glue-overlay": HTMLGlueOverlayElement;
         "glue-pagination": HTMLGluePaginationElement;
         "glue-popup": HTMLGluePopupElement;
@@ -1268,6 +1309,14 @@ declare namespace LocalJSX {
         "stickyOffsetTop"?: number;
         "zIndex"?: string;
     }
+    interface GlueKey {
+        "color"?: string;
+        "large"?: boolean;
+        "loading"?: boolean;
+        "text"?: string | number;
+        "type"?: string;
+        "wider"?: boolean;
+    }
     interface GlueList {
         "direction"?: string;
         "error"?: boolean;
@@ -1314,6 +1363,30 @@ declare namespace LocalJSX {
         "speed"?: number;
         "text"?: string;
         "wrapable"?: string;
+    }
+    interface GlueNumberKeyboard {
+        "blurOnClose"?: boolean;
+        "closeButtonLoading"?: boolean;
+        "closeButtonText"?: string;
+        "deleteButtonText"?: string;
+        "extraKey"?: string;
+        "hideOnClickOutside"?: boolean;
+        "maxlength"?: number;
+        "modelValue"?: string;
+        "onBlur"?: (event: CustomEvent<any>) => void;
+        "onChangeValue"?: (event: CustomEvent<any>) => void;
+        "onClose"?: (event: CustomEvent<any>) => void;
+        "onDelete"?: (event: CustomEvent<any>) => void;
+        "onInput"?: (event: CustomEvent<any>) => void;
+        "randomKeyOrder"?: boolean;
+        "safeAreaInsetBottom"?: boolean;
+        "show"?: boolean;
+        "showDeleteKey"?: boolean;
+        "teleport"?: string | number;
+        "theme"?: string;
+        "title"?: string;
+        "transition"?: boolean;
+        "zIndex"?: string;
     }
     interface GlueOverlay {
         "customStyle"?: object;
@@ -1576,10 +1649,12 @@ declare namespace LocalJSX {
         "glue-image": GlueImage;
         "glue-index-anchor": GlueIndexAnchor;
         "glue-index-bar": GlueIndexBar;
+        "glue-key": GlueKey;
         "glue-list": GlueList;
         "glue-loading": GlueLoading;
         "glue-nav-bar": GlueNavBar;
         "glue-notice-bar": GlueNoticeBar;
+        "glue-number-keyboard": GlueNumberKeyboard;
         "glue-overlay": GlueOverlay;
         "glue-pagination": GluePagination;
         "glue-popup": GluePopup;
@@ -1637,10 +1712,12 @@ declare module "@stencil/core" {
             "glue-image": LocalJSX.GlueImage & JSXBase.HTMLAttributes<HTMLGlueImageElement>;
             "glue-index-anchor": LocalJSX.GlueIndexAnchor & JSXBase.HTMLAttributes<HTMLGlueIndexAnchorElement>;
             "glue-index-bar": LocalJSX.GlueIndexBar & JSXBase.HTMLAttributes<HTMLGlueIndexBarElement>;
+            "glue-key": LocalJSX.GlueKey & JSXBase.HTMLAttributes<HTMLGlueKeyElement>;
             "glue-list": LocalJSX.GlueList & JSXBase.HTMLAttributes<HTMLGlueListElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
             "glue-nav-bar": LocalJSX.GlueNavBar & JSXBase.HTMLAttributes<HTMLGlueNavBarElement>;
             "glue-notice-bar": LocalJSX.GlueNoticeBar & JSXBase.HTMLAttributes<HTMLGlueNoticeBarElement>;
+            "glue-number-keyboard": LocalJSX.GlueNumberKeyboard & JSXBase.HTMLAttributes<HTMLGlueNumberKeyboardElement>;
             "glue-overlay": LocalJSX.GlueOverlay & JSXBase.HTMLAttributes<HTMLGlueOverlayElement>;
             "glue-pagination": LocalJSX.GluePagination & JSXBase.HTMLAttributes<HTMLGluePaginationElement>;
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
