@@ -401,6 +401,15 @@ export namespace Components {
         "showPageSize": number;
         "totalItems": number;
     }
+    interface GluePasswordInput {
+        "errorInfo": string;
+        "focused": boolean;
+        "gutter": string | number;
+        "info": string;
+        "length": number;
+        "mask": boolean;
+        "value": string;
+    }
     interface GluePopup {
         "closeIcon": string;
         "closeIconPosition": string;
@@ -820,6 +829,12 @@ declare global {
         prototype: HTMLGluePaginationElement;
         new (): HTMLGluePaginationElement;
     };
+    interface HTMLGluePasswordInputElement extends Components.GluePasswordInput, HTMLStencilElement {
+    }
+    var HTMLGluePasswordInputElement: {
+        prototype: HTMLGluePasswordInputElement;
+        new (): HTMLGluePasswordInputElement;
+    };
     interface HTMLGluePopupElement extends Components.GluePopup, HTMLStencilElement {
     }
     var HTMLGluePopupElement: {
@@ -973,6 +988,7 @@ declare global {
         "glue-number-keyboard": HTMLGlueNumberKeyboardElement;
         "glue-overlay": HTMLGlueOverlayElement;
         "glue-pagination": HTMLGluePaginationElement;
+        "glue-password-input": HTMLGluePasswordInputElement;
         "glue-popup": HTMLGluePopupElement;
         "glue-progress": HTMLGlueProgressElement;
         "glue-pull-refresh": HTMLGluePullRefreshElement;
@@ -1408,6 +1424,16 @@ declare namespace LocalJSX {
         "showPageSize"?: number;
         "totalItems"?: number;
     }
+    interface GluePasswordInput {
+        "errorInfo"?: string;
+        "focused"?: boolean;
+        "gutter"?: string | number;
+        "info"?: string;
+        "length"?: number;
+        "mask"?: boolean;
+        "onFocus"?: (event: CustomEvent<any>) => void;
+        "value"?: string;
+    }
     interface GluePopup {
         "closeIcon"?: string;
         "closeIconPosition"?: string;
@@ -1657,6 +1683,7 @@ declare namespace LocalJSX {
         "glue-number-keyboard": GlueNumberKeyboard;
         "glue-overlay": GlueOverlay;
         "glue-pagination": GluePagination;
+        "glue-password-input": GluePasswordInput;
         "glue-popup": GluePopup;
         "glue-progress": GlueProgress;
         "glue-pull-refresh": GluePullRefresh;
@@ -1720,6 +1747,7 @@ declare module "@stencil/core" {
             "glue-number-keyboard": LocalJSX.GlueNumberKeyboard & JSXBase.HTMLAttributes<HTMLGlueNumberKeyboardElement>;
             "glue-overlay": LocalJSX.GlueOverlay & JSXBase.HTMLAttributes<HTMLGlueOverlayElement>;
             "glue-pagination": LocalJSX.GluePagination & JSXBase.HTMLAttributes<HTMLGluePaginationElement>;
+            "glue-password-input": LocalJSX.GluePasswordInput & JSXBase.HTMLAttributes<HTMLGluePasswordInputElement>;
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
             "glue-progress": LocalJSX.GlueProgress & JSXBase.HTMLAttributes<HTMLGlueProgressElement>;
             "glue-pull-refresh": LocalJSX.GluePullRefresh & JSXBase.HTMLAttributes<HTMLGluePullRefreshElement>;
