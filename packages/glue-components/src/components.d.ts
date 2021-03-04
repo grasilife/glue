@@ -477,6 +477,18 @@ export namespace Components {
         "gutter": number;
         "justify": RowJustify;
     }
+    interface GlueSearch {
+        "actionText": string;
+        "background": string;
+        "clearTrigger": string;
+        "clearable": boolean;
+        "label": string;
+        "leftIcon": string;
+        "modelValue": string;
+        "rightIcon": string;
+        "shape": 'square';
+        "showAction": boolean;
+    }
     interface GlueShareSheet {
         "cancelText": string;
         "closeIcon": string;
@@ -865,6 +877,12 @@ declare global {
         prototype: HTMLGlueRowElement;
         new (): HTMLGlueRowElement;
     };
+    interface HTMLGlueSearchElement extends Components.GlueSearch, HTMLStencilElement {
+    }
+    var HTMLGlueSearchElement: {
+        prototype: HTMLGlueSearchElement;
+        new (): HTMLGlueSearchElement;
+    };
     interface HTMLGlueShareSheetElement extends Components.GlueShareSheet, HTMLStencilElement {
     }
     var HTMLGlueShareSheetElement: {
@@ -994,6 +1012,7 @@ declare global {
         "glue-pull-refresh": HTMLGluePullRefreshElement;
         "glue-rate": HTMLGlueRateElement;
         "glue-row": HTMLGlueRowElement;
+        "glue-search": HTMLGlueSearchElement;
         "glue-share-sheet": HTMLGlueShareSheetElement;
         "glue-sidebar": HTMLGlueSidebarElement;
         "glue-sidebar-item": HTMLGlueSidebarItemElement;
@@ -1510,6 +1529,21 @@ declare namespace LocalJSX {
         "gutter"?: number;
         "justify"?: RowJustify;
     }
+    interface GlueSearch {
+        "actionText"?: string;
+        "background"?: string;
+        "clearTrigger"?: string;
+        "clearable"?: boolean;
+        "label"?: string;
+        "leftIcon"?: string;
+        "modelValue"?: string;
+        "onCancel"?: (event: CustomEvent<any>) => void;
+        "onChangeValue"?: (event: CustomEvent<any>) => void;
+        "onSearch"?: (event: CustomEvent<any>) => void;
+        "rightIcon"?: string;
+        "shape"?: 'square';
+        "showAction"?: boolean;
+    }
     interface GlueShareSheet {
         "cancelText"?: string;
         "closeIcon"?: string;
@@ -1689,6 +1723,7 @@ declare namespace LocalJSX {
         "glue-pull-refresh": GluePullRefresh;
         "glue-rate": GlueRate;
         "glue-row": GlueRow;
+        "glue-search": GlueSearch;
         "glue-share-sheet": GlueShareSheet;
         "glue-sidebar": GlueSidebar;
         "glue-sidebar-item": GlueSidebarItem;
@@ -1753,6 +1788,7 @@ declare module "@stencil/core" {
             "glue-pull-refresh": LocalJSX.GluePullRefresh & JSXBase.HTMLAttributes<HTMLGluePullRefreshElement>;
             "glue-rate": LocalJSX.GlueRate & JSXBase.HTMLAttributes<HTMLGlueRateElement>;
             "glue-row": LocalJSX.GlueRow & JSXBase.HTMLAttributes<HTMLGlueRowElement>;
+            "glue-search": LocalJSX.GlueSearch & JSXBase.HTMLAttributes<HTMLGlueSearchElement>;
             "glue-share-sheet": LocalJSX.GlueShareSheet & JSXBase.HTMLAttributes<HTMLGlueShareSheetElement>;
             "glue-sidebar": LocalJSX.GlueSidebar & JSXBase.HTMLAttributes<HTMLGlueSidebarElement>;
             "glue-sidebar-item": LocalJSX.GlueSidebarItem & JSXBase.HTMLAttributes<HTMLGlueSidebarItemElement>;
