@@ -542,6 +542,30 @@ export namespace Components {
         "last": string;
         "middle": string;
     }
+    interface GlueStepper {
+        "allowEmpty": boolean;
+        "beforeChange": any;
+        "buttonSize": string | number;
+        "decimalLength": string | number;
+        "defaultValue": number;
+        "disableInput": boolean;
+        "disableMinus": boolean;
+        "disablePlus": boolean;
+        "disabled": boolean;
+        "inputWidth": string | number;
+        "integer": boolean;
+        "longPress": boolean;
+        "max": number;
+        "min": number;
+        "modelValue": string | number;
+        "name": string;
+        "placeholder": string;
+        "showInput": boolean;
+        "showMinus": boolean;
+        "showPlus": boolean;
+        "step": number;
+        "theme": string;
+    }
     interface GlueSteps {
         "active": string | number;
         "activeColor": string;
@@ -913,6 +937,12 @@ declare global {
         prototype: HTMLGlueStepElement;
         new (): HTMLGlueStepElement;
     };
+    interface HTMLGlueStepperElement extends Components.GlueStepper, HTMLStencilElement {
+    }
+    var HTMLGlueStepperElement: {
+        prototype: HTMLGlueStepperElement;
+        new (): HTMLGlueStepperElement;
+    };
     interface HTMLGlueStepsElement extends Components.GlueSteps, HTMLStencilElement {
     }
     var HTMLGlueStepsElement: {
@@ -1018,6 +1048,7 @@ declare global {
         "glue-sidebar-item": HTMLGlueSidebarItemElement;
         "glue-skeleton": HTMLGlueSkeletonElement;
         "glue-step": HTMLGlueStepElement;
+        "glue-stepper": HTMLGlueStepperElement;
         "glue-steps": HTMLGlueStepsElement;
         "glue-sticky": HTMLGlueStickyElement;
         "glue-swipe": HTMLGlueSwipeElement;
@@ -1602,6 +1633,34 @@ declare namespace LocalJSX {
         "middle"?: string;
         "onClickStep"?: (event: CustomEvent<any>) => void;
     }
+    interface GlueStepper {
+        "allowEmpty"?: boolean;
+        "beforeChange"?: any;
+        "buttonSize"?: string | number;
+        "decimalLength"?: string | number;
+        "defaultValue"?: number;
+        "disableInput"?: boolean;
+        "disableMinus"?: boolean;
+        "disablePlus"?: boolean;
+        "disabled"?: boolean;
+        "inputWidth"?: string | number;
+        "integer"?: boolean;
+        "longPress"?: boolean;
+        "max"?: number;
+        "min"?: number;
+        "modelValue"?: string | number;
+        "name"?: string;
+        "onBlur"?: (event: CustomEvent<any>) => void;
+        "onChangeValue"?: (event: CustomEvent<any>) => void;
+        "onFocus"?: (event: CustomEvent<any>) => void;
+        "onOverlimit"?: (event: CustomEvent<any>) => void;
+        "placeholder"?: string;
+        "showInput"?: boolean;
+        "showMinus"?: boolean;
+        "showPlus"?: boolean;
+        "step"?: number;
+        "theme"?: string;
+    }
     interface GlueSteps {
         "active"?: string | number;
         "activeColor"?: string;
@@ -1729,6 +1788,7 @@ declare namespace LocalJSX {
         "glue-sidebar-item": GlueSidebarItem;
         "glue-skeleton": GlueSkeleton;
         "glue-step": GlueStep;
+        "glue-stepper": GlueStepper;
         "glue-steps": GlueSteps;
         "glue-sticky": GlueSticky;
         "glue-swipe": GlueSwipe;
@@ -1794,6 +1854,7 @@ declare module "@stencil/core" {
             "glue-sidebar-item": LocalJSX.GlueSidebarItem & JSXBase.HTMLAttributes<HTMLGlueSidebarItemElement>;
             "glue-skeleton": LocalJSX.GlueSkeleton & JSXBase.HTMLAttributes<HTMLGlueSkeletonElement>;
             "glue-step": LocalJSX.GlueStep & JSXBase.HTMLAttributes<HTMLGlueStepElement>;
+            "glue-stepper": LocalJSX.GlueStepper & JSXBase.HTMLAttributes<HTMLGlueStepperElement>;
             "glue-steps": LocalJSX.GlueSteps & JSXBase.HTMLAttributes<HTMLGlueStepsElement>;
             "glue-sticky": LocalJSX.GlueSticky & JSXBase.HTMLAttributes<HTMLGlueStickyElement>;
             "glue-swipe": LocalJSX.GlueSwipe & JSXBase.HTMLAttributes<HTMLGlueSwipeElement>;
