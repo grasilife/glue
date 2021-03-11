@@ -28,9 +28,9 @@ export class GlueImage {
   @Prop() loadingIcon = 'photo';
   @State() loading = true;
   @State() error = false;
-  @Event({
-    eventName: 'load',
-  })
+  // @Event({
+  //   eventName: 'load',
+  // })
   onLoad: EventEmitter;
 
   @Event({

@@ -12,6 +12,7 @@ export class GlueContactList {
   @Prop() modelValue = null;
   @Prop() defaultTagText: string;
   renderItem = (item, index) => {
+    console.log(index);
     const onClick = () => {
       // emit('update:modelValue', item.id);
       // emit('select', item, index);

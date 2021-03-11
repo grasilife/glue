@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { getSizeStyle } from '../../utils/format/unit';
 import { pick } from '../../utils/base';
 import { isImageFile, readFileContent, isOversize, filterFiles, toArray } from './utils';
+console.log(isImageFile, toArray);
 import { isPromise } from '../../utils/base';
 export type ResultType = 'dataUrl' | 'text' | 'file';
 let imagePreview;
@@ -168,6 +169,7 @@ export class GlueUploader {
   };
 
   deleteFile = (item, index) => {
+    console.log(item);
     const fileList = this.modelValue.slice(0);
     fileList.splice(index, 1);
 

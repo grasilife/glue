@@ -18,16 +18,13 @@
 
 ### Depends on
 
-- [glue-nav-bar](../glue-nav-bar)
-- [glue-pagination](../glue-pagination)
+- [glue-switch](../glue-switch)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-nav-bar
-  glue-demo --> glue-pagination
-  glue-nav-bar --> glue-icon
-  glue-icon --> glue-badge
+  glue-demo --> glue-switch
+  glue-switch --> glue-loading
   style glue-demo fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

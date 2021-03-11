@@ -48,6 +48,7 @@ export class GlueKey {
   };
 
   onTouchEnd = (event: TouchEvent) => {
+    console.log(event);
     if (this.active) {
       // eliminate tap delay on safari
       // see: https://github.com/youzan/vant/issues/6836

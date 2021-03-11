@@ -32,7 +32,9 @@
 
 ### Used by
 
+ - [glue-address-list-item](../glue-address-list-item)
  - [glue-card](../glue-card)
+ - [glue-contact-list](../glue-contact-list)
 
 ### Depends on
 
@@ -43,7 +45,9 @@
 graph TD;
   glue-tag --> glue-icon
   glue-icon --> glue-badge
+  glue-address-list-item --> glue-tag
   glue-card --> glue-tag
+  glue-contact-list --> glue-tag
   style glue-tag fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

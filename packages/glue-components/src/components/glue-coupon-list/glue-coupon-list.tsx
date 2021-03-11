@@ -48,6 +48,7 @@ export class GlueCouponList {
   };
 
   scrollToCoupon = index => {
+    console.log(index);
     // nextTick(() => {
     //   if (couponRefs.value[index]) {
     //     couponRefs.value[index].scrollIntoView();

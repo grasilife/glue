@@ -828,7 +828,7 @@ export namespace Components {
         "lazyRender": boolean;
         "lineHeight": string | number;
         "lineWidth": string | number;
-        "offsetTop": number;
+        "offsetTopValue": number;
         "scrollspy": boolean;
         "sticky": boolean;
         "swipeThreshold": number;
@@ -1969,7 +1969,6 @@ declare namespace LocalJSX {
         "lazyLoad"?: boolean;
         "loadingIcon"?: string;
         "onError"?: (event: CustomEvent<any>) => void;
-        "onLoad"?: (event: CustomEvent<any>) => void;
         "radius"?: string | number;
         "round"?: boolean;
         "showError"?: boolean;
@@ -2044,7 +2043,6 @@ declare namespace LocalJSX {
         "leftIcon"?: string;
         "mode"?: NoticeBarMode;
         "onClose"?: (event: CustomEvent<any>) => void;
-        "onOnClickRightIcon"?: (event: CustomEvent<any>) => void;
         "onReplay"?: (event: CustomEvent<any>) => void;
         "scrollable"?: any;
         "speed"?: number;
@@ -2393,7 +2391,7 @@ declare namespace LocalJSX {
         "lazyRender"?: boolean;
         "lineHeight"?: string | number;
         "lineWidth"?: string | number;
-        "offsetTop"?: number;
+        "offsetTopValue"?: number;
         "scrollspy"?: boolean;
         "sticky"?: boolean;
         "swipeThreshold"?: number;

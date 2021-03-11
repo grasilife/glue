@@ -15,6 +15,7 @@ export class GlueContactCard {
   @Prop() editable = true;
   @Prop() type = 'add';
   onClick = event => {
+    console.log(event);
     if (this.editable) {
       // emit('click', event);
     }

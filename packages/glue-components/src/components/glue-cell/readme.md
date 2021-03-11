@@ -38,7 +38,16 @@
 
 ### Used by
 
+ - [glue-address-edit](../glue-address-edit)
+ - [glue-address-edit-detail](../glue-address-edit-detail)
+ - [glue-address-list-item](../glue-address-list-item)
  - [glue-collapse-item](../glue-collapse-item)
+ - [glue-contact-card](../glue-contact-card)
+ - [glue-contact-edit](../glue-contact-edit)
+ - [glue-contact-list](../glue-contact-list)
+ - [glue-coupon-cell](../glue-coupon-cell)
+ - [glue-dropdown-item](../glue-dropdown-item)
+ - [glue-field](../glue-field)
 
 ### Depends on
 
@@ -49,7 +58,16 @@
 graph TD;
   glue-cell --> glue-icon
   glue-icon --> glue-badge
+  glue-address-edit --> glue-cell
+  glue-address-edit-detail --> glue-cell
+  glue-address-list-item --> glue-cell
   glue-collapse-item --> glue-cell
+  glue-contact-card --> glue-cell
+  glue-contact-edit --> glue-cell
+  glue-contact-list --> glue-cell
+  glue-coupon-cell --> glue-cell
+  glue-dropdown-item --> glue-cell
+  glue-field --> glue-cell
   style glue-cell fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

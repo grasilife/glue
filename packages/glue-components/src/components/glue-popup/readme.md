@@ -47,6 +47,12 @@
 
 ## Dependencies
 
+### Used by
+
+ - [glue-action-sheet](../glue-action-sheet)
+ - [glue-address-edit](../glue-address-edit)
+ - [glue-share-sheet](../glue-share-sheet)
+
 ### Depends on
 
 - [glue-icon](../glue-icon)
@@ -58,6 +64,9 @@ graph TD;
   glue-popup --> glue-icon
   glue-popup --> glue-overlay
   glue-icon --> glue-badge
+  glue-action-sheet --> glue-popup
+  glue-address-edit --> glue-popup
+  glue-share-sheet --> glue-popup
   style glue-popup fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

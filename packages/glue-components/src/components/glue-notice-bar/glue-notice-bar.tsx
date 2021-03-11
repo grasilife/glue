@@ -28,7 +28,7 @@ export class GlueNoticeBar {
   @State() wrapWidth = 0;
   @State() contentWidth = 0;
   @State() startTimer = null;
-  @Event() onClickRightIcon: EventEmitter;
+  // @Event() onClickRightIcon: EventEmitter;
   @Event() close: EventEmitter;
   @Event() replay: EventEmitter;
   wrapRef: HTMLElement;

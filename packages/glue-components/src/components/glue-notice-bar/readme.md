@@ -22,11 +22,10 @@
 
 ## Events
 
-| Event              | Description | Type               |
-| ------------------ | ----------- | ------------------ |
-| `close`            |             | `CustomEvent<any>` |
-| `onClickRightIcon` |             | `CustomEvent<any>` |
-| `replay`           |             | `CustomEvent<any>` |
+| Event    | Description | Type               |
+| -------- | ----------- | ------------------ |
+| `close`  |             | `CustomEvent<any>` |
+| `replay` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

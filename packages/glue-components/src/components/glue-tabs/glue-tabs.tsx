@@ -23,7 +23,7 @@ export class GlueTabs {
   @Prop() active = 0;
   @Prop() ellipsis = true;
   @Prop() duration = 0.3;
-  @Prop() offsetTop = 0;
+  @Prop() offsetTopValue = 0;
   @Prop() lazyRender = true;
   @Prop() swipeThreshold = 5;
 

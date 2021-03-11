@@ -1,5 +1,5 @@
 import { Component, Prop, h, Host } from '@stencil/core';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 @Component({
   tag: 'glue-address-list',
   styleUrl: 'glue-address-list.less',
@@ -15,22 +15,24 @@ export class GlueAddressList {
   @Prop() switchable = true;
   renderItem = (item, index, disabled) => {
     const onEdit = () => {
+      console.log(onEdit);
       const name = disabled ? 'edit-disabled' : 'edit';
+      console.log(name, item, index);
       // emit(name, item, index);
     };
 
-    const onClick = () => {
-      // emit('click-item', item, index);
-    };
+    // const onClick = () => {
+    //   // emit('click-item', item, index);
+    // };
 
-    const onSelect = () => {
-      // const name = disabled ? 'select-disabled' : 'select';
-      // emit(name, item, index);
+    // const onSelect = () => {
+    //   // const name = disabled ? 'select-disabled' : 'select';
+    //   // emit(name, item, index);
 
-      if (!disabled) {
-        // emit('update:modelValue', item.id);
-      }
-    };
+    //   if (!disabled) {
+    //     // emit('update:modelValue', item.id);
+    //   }
+    // };
 
     // return (
     //   <AddressItem

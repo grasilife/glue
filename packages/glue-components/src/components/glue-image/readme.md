@@ -29,10 +29,13 @@
 | Event   | Description | Type               |
 | ------- | ----------- | ------------------ |
 | `error` |             | `CustomEvent<any>` |
-| `load`  |             | `CustomEvent<any>` |
 
 
 ## Dependencies
+
+### Used by
+
+ - [glue-preview-item](../glue-preview-item)
 
 ### Depends on
 
@@ -43,6 +46,7 @@
 graph TD;
   glue-image --> glue-icon
   glue-icon --> glue-badge
+  glue-preview-item --> glue-image
   style glue-image fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
