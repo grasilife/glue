@@ -1,0 +1,39 @@
+@import '../../global/styles/var';
+
+.g lue-dropdown-item {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: @dropdown-item-z-index;
+  overflow: hidden;
+
+  &__icon {
+    display: block;
+    line-height: inherit;
+  }
+
+  &__option {
+    text-align: left;
+
+    &--active {
+      color: @dropdown-menu-option-active-color;
+
+      .glue-dropdown-item__icon {
+        color: @dropdown-menu-option-active-color;
+      }
+    }
+  }
+
+  &--up {
+    top: 0;
+  }
+
+  &--down {
+    bottom: 0;
+  }
+
+  &__content {
+    position: absolute;
+    max-height: @dropdown-menu-content-max-height;
+  }
+}

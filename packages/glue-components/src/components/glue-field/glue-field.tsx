@@ -18,11 +18,11 @@ const [bem] = createNamespace('glue-field');
 export class GlueField {
   @Prop() rows: string | number;
   @Prop() name: string;
-  @Prop() rules: [];
+  @Prop() rules: any;
   @Prop() autosize: any;
   @Prop() leftIcon: string;
   @Prop() rightIcon: string;
-  @Prop() clearable: string;
+  @Prop() clearable: boolean;
   @Prop() formatter: any;
   @Prop() maxlength: string | number;
   @Prop() labelWidth: string | number;

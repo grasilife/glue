@@ -1,0 +1,30 @@
+@import '../../global/styles/var';
+
+.glue-contact-edit {
+  padding: @contact-edit-padding;
+
+  &__fields {
+    overflow: hidden;
+    border-radius: @contact-edit-fields-radius;
+
+    .glue-field__label {
+      width: @contact-edit-field-label-width;
+    }
+  }
+
+  &__switch-cell {
+    margin-top: 10px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-radius: @contact-edit-fields-radius;
+  }
+
+  &__buttons {
+    padding: @contact-edit-buttons-padding;
+  }
+
+  .glue-button {
+    margin-bottom: @contact-edit-button-margin-bottom;
+    font-size: @contact-edit-button-font-size;
+  }
+}

@@ -1,0 +1,43 @@
+@import '../../global/styles/var';
+
+.glue-address-edit {
+  padding: @address-edit-padding;
+
+  &__fields {
+    overflow: hidden;
+    border-radius: @padding-xs;
+
+    .glue-field__label {
+      width: 4.1em;
+    }
+  }
+
+  &__default {
+    margin-top: @padding-sm;
+    overflow: hidden;
+    border-radius: @padding-xs;
+  }
+
+  &__buttons {
+    padding: @address-edit-buttons-padding;
+
+    .glue-button {
+      margin-bottom: @address-edit-button-margin-bottom;
+    }
+  }
+
+  &-detail {
+    &__search-item {
+      background-color: @gray-2;
+    }
+
+    &__keyword {
+      color: @red;
+    }
+
+    &__finish {
+      color: @address-edit-detail-finish-color;
+      font-size: @address-edit-detail-finish-font-size;
+    }
+  }
+}

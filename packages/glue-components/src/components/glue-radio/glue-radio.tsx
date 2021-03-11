@@ -1,12 +1,11 @@
 import { Component, Prop, h } from '@stencil/core';
 import classNames from 'classnames';
 @Component({
-  tag: 'glue-checkbox',
-  styleUrl: 'glue-checkbox.less',
+  tag: 'glue-radio',
+  styleUrl: 'glue-radio.less',
   shadow: false,
 })
-export class GlueCheckbox {
-  @Prop() first: string;
+export class GlueRadio {
   @Prop() name: null;
   @Prop() disabled: boolean;
   @Prop() iconSize: string | number;
@@ -16,6 +15,6 @@ export class GlueCheckbox {
   @Prop() labelDisabled: boolean;
   @Prop() shape = 'round';
   render() {
-    return <div class={classNames('cunstom')}>Hello, World! I'm {this.first}</div>;
+    return <div class={classNames('cunstom')}>Hello, World! I'm </div>;
   }
 }
