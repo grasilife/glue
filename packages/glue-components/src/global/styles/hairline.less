@@ -1,13 +1,13 @@
 @import './var';
 @import './mixins/hairline';
 
-[class*='van-hairline'] {
+[class*='glue-hairline'] {
   &::after {
     .hairline();
   }
 }
 
-.van-hairline {
+.glue-hairline {
   &,
   &--top,
   &--left,
@@ -43,5 +43,6 @@
 
   &--surround::after {
     border-width: @border-width-base;
+    border-color: inherit;
   }
 }

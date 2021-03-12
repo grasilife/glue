@@ -2,7 +2,7 @@
 export const RED = '#ee0a24';
 
 // border
-export const BORDER = 'van-hairline';
+export const BORDER = 'glue-hairline';
 export const BORDER_TOP = `${BORDER}--top`;
 export const BORDER_LEFT = `${BORDER}--left`;
 export const BORDER_BOTTOM = `${BORDER}--bottom`;

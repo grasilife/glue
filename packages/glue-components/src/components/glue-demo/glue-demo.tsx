@@ -7,134 +7,30 @@ import { Component, Prop, h, State } from '@stencil/core';
 })
 export class GlueDemo {
   @Prop() first: string;
-
-  @Prop() middle: string;
-
-  @Prop() last: string;
-
-  @State() list = [
-    {
-      items: ['1', '2', '3'],
-      refreshing: false,
-      loading: false,
-      error: false,
-      finished: false,
-    },
-    {
-      items: [],
-      refreshing: false,
-      loading: false,
-      error: false,
-      finished: false,
-    },
-    {
-      items: [],
-      refreshing: false,
-      loading: false,
-      error: false,
-      finished: false,
-    },
-  ];
-  @State() actions = [{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }];
   @State() showShare = false;
-  @State() option = [
-    { name: '微信', icon: 'wechat' },
-    { name: '微博', icon: 'weibo' },
-    { name: '复制链接', icon: 'link' },
-    { name: '分享海报', icon: 'poster' },
-    { name: '二维码', icon: 'qrcode' },
-  ];
-  onLoad(index) {
-    console.log(index);
-    // const list = this.list[index];
-    // list.loading = true;
-    // setTimeout(() => {
-    //   if (list.refreshing) {
-    //     list.items = [];
-    //     list.refreshing = false;
-    //   }
-    //   for (let i = 0; i < 10; i++) {
-    //     const text = list.items.length + 1;
-    //     list.items.push(text < 10 ? '0' + text : text);
-    //   }
-    //   list.loading = false;
-    //   list.refreshing = false;
-    //   // show error info in second demo
-    //   if (index === 1 && list.items.length === 10 && !list.error) {
-    //     list.error = true;
-    //   } else {
-    //     list.error = false;
-    //   }
-    //   if (list.items.length >= 40) {
-    //     list.finished = true;
-    //   }
-    // }, 1000);
-  }
 
-  onRefresh(index) {
-    this.list[index].finished = false;
-    this.onLoad(index);
-  }
-  onSelect() {
-    this.showShare = false;
-  }
-  onClick() {
-    this.showShare = true;
-  }
   render() {
     return (
       <div>
-        {/* <glue-list finished={false} finished-text="没有更多了">
-          {this.list[0].items.map((item, key) => {
-            console.log(item, key);
-            return <glue-cell key={key} title={item} />;
-          })}
-        </glue-list> */}
-        {/* <glue-notice-bar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"></glue-notice-bar>
-        <glue-notice-bar scrollable text="技术是开发它的人的共同灵魂。"></glue-notice-bar>
-        <glue-progress percentage="50"></glue-progress>
-        <glue-skeleton titleState row="3"></glue-skeleton>
-        <glue-steps active="0">
-          <glue-step>买家下单</glue-step>
-          <glue-step>商家接单</glue-step>
-          <glue-step>买家提货</glue-step>
-          <glue-step>交易完成</glue-step>
-        </glue-steps>
-        <glue-sticky offset-top-value="50">
-          <glue-button type="primary">吸顶距离</glue-button>
-        </glue-sticky>
-        <glue-action-bar>
-          <glue-action-bar-icon icon="chat-o" text="客服">
-            客服
-          </glue-action-bar-icon>
-          <glue-action-bar-icon icon="cart-o" text="购物车">
-            购物车
-          </glue-action-bar-icon>
-          <glue-action-bar-icon icon="shop-o" text="店铺">
-            店铺
-          </glue-action-bar-icon>
-          <glue-action-bar-button type="danger" text="立即购买">
-            立即购买
-          </glue-action-bar-button>
-        </glue-action-bar> */}
-        {/* <glue-nav-bar title="标题" left-text="返回" right-text="按钮" left-arrow></glue-nav-bar>
-        <glue-pagination model-value="1" total-items="24" items-per-page="5"></glue-pagination>
-        <glue-pagination model-value="1" page-count="12" mode="simple"></glue-pagination>
-        <glue-sidebar model-value="0">
-          <glue-sidebar-item title="标签名称"></glue-sidebar-item>
-          <glue-sidebar-item title="标签名称"></glue-sidebar-item>
-          <glue-sidebar-item title="标签名称"></glue-sidebar-item>
-        </glue-sidebar> */}
-        {/* <glue-action-sheet show={true} actions={this.actions}></glue-action-sheet> */}
-        {/* <glue-pull-refresh model-value="state.loading">
-          <p>刷新次数: </p>
-        </glue-pull-refresh> */}
-        {/* <glue-cell title="显示分享面板" onClick={this.onClick}></glue-cell>
-        <glue-share-sheet show={this.showShare} title="立即分享给好友" options={this.option} onSelect={this.onSelect}></glue-share-sheet> */}
-        {/* <glue-cell-group>
-          <glue-field value="value" label="文本" placeholder="请输入用户名" />
-        </glue-cell-group> */}
-        <glue-switch model-value={true}></glue-switch>
+        <glue-button type="primary">主要按钮</glue-button>
+        <glue-button type="success">成功按钮</glue-button>
+        <glue-button type="default">默认按钮</glue-button>
+        <glue-button type="warning">警告按钮</glue-button>
+        <glue-button type="danger">危险按钮</glue-button>
+        {/* 朴素按钮 */}
+        <glue-button plain type="primary">
+          朴素按钮
+        </glue-button>
+        <glue-button plain type="success">
+          朴素按钮
+        </glue-button>
+        {/* 细边框 */}
+        <glue-button hairline plain type="primary">
+          细边框按钮
+        </glue-button>
+        <glue-button plain hairline type="success">
+          细边框按钮
+        </glue-button>
       </div>
     );
   }

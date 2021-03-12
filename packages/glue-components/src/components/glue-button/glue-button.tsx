@@ -1,6 +1,6 @@
 import { Component, Prop, h, EventEmitter, Event, Host } from '@stencil/core';
 import classNames from 'classnames';
-// import { BORDER_SURROUND } from '../../global/constant/constant';
+import { BORDER_SURROUND } from '../../global/constant/constant';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-button');
 @Component({
@@ -135,6 +135,7 @@ export class GlueButton {
           'glue-button--loading': loading,
           'glue-button--disabled': disabled,
           'glue-button--hairline': hairline,
+          [BORDER_SURROUND]: hairline,
         })}
         onClick={this.handleClick}
         style={this.getStyle()}
