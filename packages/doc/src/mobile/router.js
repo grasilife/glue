@@ -6,6 +6,18 @@ import "../common/iframe-router";
 import config from "../common/config";
 const { locales, defaultLang } = config.site;
 console.log(locales, defaultLang, "路由");
+const list = [
+  "home",
+  "quickstart",
+  "advanced-usage",
+  "changelog-v3",
+  "migrate-from-v2",
+  "theme",
+  "contribution",
+  "design",
+  "style-guide",
+  "locale"
+];
 if (isMobile) {
   location.replace("mobile.html" + location.hash);
 }
@@ -35,20 +47,39 @@ function getRoutes() {
     locales[lang].nav.forEach(element => {
       if (element.items) {
         element.items.forEach(element2 => {
-          console.log(`/${lang}/${element2.path}`, "../docs/" + element2.path + "/demo/index.vue", "移动端路径");
-          routes.push({
-            name: element2.title,
-            path: `/${lang}/${element2.path}`,
-            meta: {
-              name: element2.title
-            },
-            //这个地方不能使用下面的方法
-            // component: () => import(imortPath),
-            component: () => import("../docs/" + element2.path + "/demo/index.vue")
-          });
+          console.log(element2, "element2");
+          if (list.includes(element2.path)) {
+            console.log(`/${lang}/${element2.path}`, "../docs/" + element2.path + "/demo/index.vue", "移动端路径");
+            routes.push({
+              name: element2.title,
+              path: `/${lang}/${element2.path}`,
+              meta: {
+                name: element2.title
+              },
+              //这个地方不能使用下面的方法
+              // component: () => import(imortPath),
+              component: () => import("./components/DemoHome.vue")
+            });
+          } else {
+            console.log(`/${lang}/${element2.path}`, "../docs/" + element2.path + "/demo/index.vue", "移动端路径");
+            routes.push({
+              name: element2.title,
+              path: `/${lang}/${element2.path}`,
+              meta: {
+                name: element2.title
+              },
+              //这个地方不能使用下面的方法
+              // component: () => import(imortPath),
+              component: () => import("../docs/" + element2.path + "/demo/index.vue")
+            });
+          }
         });
       }
     });
+  });
+  routes.push({
+    path: "*",
+    component: () => import("./components/DemoHome.vue")
   });
   console.log(routes, "routes");
   return routes;
