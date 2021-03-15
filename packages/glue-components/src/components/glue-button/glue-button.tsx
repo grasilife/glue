@@ -99,7 +99,7 @@ export class GlueButton {
 
   renderText = () => {
     console.log(this.loading, 'texttext');
-    if (this.loading) {
+    if (this.loading && this.loadingText) {
       return (
         <span
           class={classNames({
@@ -110,15 +110,7 @@ export class GlueButton {
         </span>
       );
     } else {
-      return (
-        <span
-          class={classNames({
-            'glue-button__text': true,
-          })}
-        >
-          <slot></slot>
-        </span>
-      );
+      return <slot></slot>;
     }
   };
   render() {

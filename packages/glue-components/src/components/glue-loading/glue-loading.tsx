@@ -1,7 +1,7 @@
-import { Component, Prop, h, Host } from '@stencil/core';
+import { Component, Prop, h, Host, Element } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
-import { addUnit } from '../../utils/format/unit';
+import { addUnit, getSizeStyle } from '../../utils/format/unit';
 const [bem] = createNamespace('glue-loading');
 
 export type LoadingType = 'circular' | 'spinner';
@@ -11,6 +11,7 @@ export type LoadingType = 'circular' | 'spinner';
   shadow: false,
 })
 export class GlueLoading {
+  @Element() el!: HTMLElement;
   @Prop() size: string | number;
 
   @Prop() color: string;
@@ -19,6 +20,10 @@ export class GlueLoading {
   @Prop() textSize: string | number;
   @Prop() textColor: string;
   @Prop() type = 'circular';
+  spinnerStyle = () => ({
+    color: this.color,
+    ...getSizeStyle(this.size),
+  });
   spinIcon = () => {
     const SpinIcon = [];
     for (let i = 0; i < 12; i++) {
@@ -55,7 +60,8 @@ export class GlueLoading {
   };
   //TODO:type==spinner时没动画效果
   render() {
-    console.log(this.circularIcon, 'this.circularIcon');
+    // const TagType = 'button';
+    console.log(this.el, this.el.parentNode, this.el.parentElement, this.el.children, this, 'this.circularIcon');
     return (
       <Host
         class={classNames(
@@ -67,7 +73,7 @@ export class GlueLoading {
         )}
       >
         <span
-          style={{ color: this.color }}
+          style={this.spinnerStyle()}
           class={classNames('glue-loading__spinner', {
             'glue-loading__spinner--spinner': this.type == 'spinner',
             'glue-loading__spinner--circular': this.type == 'circular',
@@ -75,7 +81,7 @@ export class GlueLoading {
         >
           {this.type === 'spinner' ? this.spinIcon() : this.circularIcon()}
         </span>
-        {this.renderText()}
+        {/* {this.renderText()} */}
       </Host>
     );
   }
