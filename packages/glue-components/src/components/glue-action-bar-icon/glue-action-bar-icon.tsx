@@ -15,9 +15,7 @@ export class GlueActionBarIcon {
   @Prop() color: string;
   @Prop() badge: string | number;
   @Prop() iconClass: null;
-  @Event({
-    eventName: 'change',
-  })
+  @Event()
   onClick: EventEmitter;
   handleClick = event => {
     this.onClick.emit(event);

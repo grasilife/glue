@@ -20,9 +20,7 @@ export class GlueCard {
   @Prop() price: string | number;
   @Prop() originPrice: string | number;
   @Prop() currency = '¥';
-  @Event({
-    eventName: 'checkboxchange',
-  })
+  @Event()
   onClick: EventEmitter;
   clickThumb = event => {
     this.onClick.emit(event);

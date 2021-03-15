@@ -31,13 +31,11 @@ export class GlueButton {
   @Prop() loadingSize = '20px';
   @Prop() iconPosition = 'left';
 
-  @Event({
-    eventName: 'checkboxchange',
-  })
-  onClick: EventEmitter;
+  @Event()
+  glueClick: EventEmitter;
   handleClick = event => {
     if (!this.loading && !this.disabled) {
-      this.onClick.emit(event);
+      this.glueClick.emit(event);
     }
   };
   getStyle = () => {

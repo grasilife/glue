@@ -23,9 +23,7 @@ export class GlueCell {
   @Prop() tilabelClasstle = null;
   @Prop() arrowDirection: string;
   @Prop() border = true;
-  @Event({
-    eventName: 'checkboxchange',
-  })
+  @Event()
   click: EventEmitter;
   handleClick = event => {
     this.click.emit(event);

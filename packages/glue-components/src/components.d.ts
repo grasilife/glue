@@ -1528,7 +1528,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "icon"?: string;
         "loading"?: boolean;
-        "onChange"?: (event: CustomEvent<any>) => void;
+        "onOnClick"?: (event: CustomEvent<any>) => void;
         "text"?: string;
         "type"?: string;
     }
@@ -1538,7 +1538,7 @@ declare namespace LocalJSX {
         "dot"?: boolean;
         "icon"?: string;
         "iconClass"?: null;
-        "onChange"?: (event: CustomEvent<any>) => void;
+        "onOnClick"?: (event: CustomEvent<any>) => void;
         "text"?: string;
     }
     interface GlueActionSheet {
@@ -1647,7 +1647,7 @@ declare namespace LocalJSX {
         "loadingText"?: string;
         "loadingType"?: string;
         "nativeType"?: string;
-        "onCheckboxchange"?: (event: CustomEvent<any>) => void;
+        "onGlueClick"?: (event: CustomEvent<any>) => void;
         "plain"?: boolean;
         "round"?: boolean;
         "size"?: string;
@@ -1665,7 +1665,7 @@ declare namespace LocalJSX {
         "desc"?: string;
         "lazyLoad"?: boolean;
         "num"?: string | number;
-        "onCheckboxchange"?: (event: CustomEvent<any>) => void;
+        "onOnClick"?: (event: CustomEvent<any>) => void;
         "originPrice"?: string | number;
         "price"?: string | number;
         "tag"?: string;
@@ -1685,7 +1685,7 @@ declare namespace LocalJSX {
         "iconPrefix"?: string;
         "isLink"?: boolean;
         "label"?: string | number;
-        "onCheckboxchange"?: (event: CustomEvent<any>) => void;
+        "onClick"?: (event: CustomEvent<any>) => void;
         "required"?: boolean;
         "size"?: string;
         "tilabelClasstle"?: any;
@@ -1964,7 +1964,7 @@ declare namespace LocalJSX {
         "iconPrefix"?: string;
         "lazyLoad"?: boolean;
         "loadingIcon"?: string;
-        "onError"?: (event: CustomEvent<any>) => void;
+        "onOnError"?: (event: CustomEvent<any>) => void;
         "radius"?: string | number;
         "round"?: boolean;
         "showError"?: boolean;
@@ -2401,7 +2401,7 @@ declare namespace LocalJSX {
         "color"?: string;
         "first"?: string;
         "mark"?: boolean;
-        "onClose"?: (event: CustomEvent<any>) => void;
+        "onOnClick"?: (event: CustomEvent<any>) => void;
         "plain"?: boolean;
         "round"?: boolean;
         "show"?: boolean;

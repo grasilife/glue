@@ -8,11 +8,15 @@ import { Component, Prop, h, State } from '@stencil/core';
 export class GlueDemo {
   @Prop() first: string;
   @State() showShare = false;
-
+  handleClick = e => {
+    console.log(e);
+  };
   render() {
     return (
       <div>
-        <glue-button type="primary">主要按钮</glue-button>
+        <glue-button type="primary" onGlueClick={this.handleClick}>
+          主要按钮
+        </glue-button>
         <glue-button type="success">成功按钮</glue-button>
         <glue-button type="default">默认按钮</glue-button>
         <glue-button type="warning">警告按钮</glue-button>

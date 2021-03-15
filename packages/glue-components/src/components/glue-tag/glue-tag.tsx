@@ -19,10 +19,7 @@ export class GlueTag {
   @Prop() closeable: boolean;
   @Prop() type = 'default';
   @Prop() show = true;
-  @Event({
-    eventName: 'close',
-  })
-  onClick: EventEmitter;
+  @Event() onClick: EventEmitter;
   onClose = event => {
     this.onClick.emit(event);
   };

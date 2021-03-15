@@ -28,15 +28,10 @@ export class GlueImage {
   @Prop() loadingIcon = 'photo';
   @State() loading = true;
   @State() error = false;
-  // @Event({
-  //   eventName: 'load',
-  // })
+  // @Event()
   onLoad: EventEmitter;
 
-  @Event({
-    eventName: 'error',
-  })
-  onError: EventEmitter;
+  @Event() onError: EventEmitter;
   style = () => {
     const style = {
       width: '',
