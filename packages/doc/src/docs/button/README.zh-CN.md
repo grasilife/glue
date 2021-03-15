@@ -4,16 +4,6 @@
 
 按钮用于触发一个操作，如提交表单。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Button } from 'vant';
-
-const app = createApp();
-app.use(Button);
-```
-
 ## 代码演示
 
 ### 按钮类型
