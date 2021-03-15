@@ -29,7 +29,7 @@ export default {
       "zh-CN": {
         title: "Glue",
         description: "轻量、可靠的移动端 Vue 组件库",
-        logo: "https://img.yzcdn.cn/vant/logo.png",
+        logo: "https://grasilife.github.io/material/logo.png",
         langLabel: "中",
         links: [
           {

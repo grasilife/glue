@@ -47,6 +47,7 @@
  - [glue-contact-edit](../glue-contact-edit)
  - [glue-contact-list](../glue-contact-list)
  - [glue-coupon-list](../glue-coupon-list)
+ - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -65,6 +66,7 @@ graph TD;
   glue-contact-edit --> glue-button
   glue-contact-list --> glue-button
   glue-coupon-list --> glue-button
+  glue-demo --> glue-button
   style glue-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
