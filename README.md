@@ -4,11 +4,11 @@
 
 <h1 align="center">Glue</h1>
 
-<p align="center">可能是中国第一个如此完善的移动端web component组件库</p>
+<p align="center">可能是中国第一个如此完善的移动端web components组件库</p>
 
 ### 介绍
 
-Glue是一个基于web component构建的组件库,可以在react,vue2,vue3,angular和html等任何前端框架中,真正做到了一个组件库多框架运行
+Glue是一个基于web components构建的组件库,可以在react,vue2,vue3,angular和html等任何前端框架中,真正做到了一个组件库多框架运行
 
 ## 特性
 
@@ -74,7 +74,7 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-// test-component is the name of our made up Web Component that we have
+// test-component is the name of our made up web components that we have
 // published to npm:
 import { applyPolyfills, defineCustomElements } from 'test-components/loader';
 
