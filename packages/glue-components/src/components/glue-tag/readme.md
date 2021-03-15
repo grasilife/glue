@@ -23,9 +23,9 @@
 
 ## Events
 
-| Event   | Description | Type               |
-| ------- | ----------- | ------------------ |
-| `close` |             | `CustomEvent<any>` |
+| Event     | Description | Type               |
+| --------- | ----------- | ------------------ |
+| `onClick` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

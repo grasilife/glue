@@ -29,9 +29,9 @@
 
 ## Events
 
-| Event            | Description | Type               |
-| ---------------- | ----------- | ------------------ |
-| `checkboxchange` |             | `CustomEvent<any>` |
+| Event   | Description | Type               |
+| ------- | ----------- | ------------------ |
+| `click` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

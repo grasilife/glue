@@ -35,7 +35,7 @@ npm i glue-components -S
 ```js
 import Vue from 'vue';
 import App from './App.vue';
-
+import "glue-components/dist/glue-components/glue-components.css";
 import { applyPolyfills, defineCustomElements } from 'test-components/loader';
 
 Vue.config.productionTip = false;
@@ -72,6 +72,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import "glue-components/dist/glue-components/glue-components.css";
 import registerServiceWorker from './registerServiceWorker';
 
 // test-component is the name of our made up web components that we have

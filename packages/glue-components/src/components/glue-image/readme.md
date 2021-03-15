@@ -26,9 +26,9 @@
 
 ## Events
 
-| Event   | Description | Type               |
-| ------- | ----------- | ------------------ |
-| `error` |             | `CustomEvent<any>` |
+| Event     | Description | Type               |
+| --------- | ----------- | ------------------ |
+| `onError` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

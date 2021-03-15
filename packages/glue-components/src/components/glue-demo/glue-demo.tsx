@@ -21,14 +21,13 @@ export class GlueDemo {
         <glue-button type="default">默认按钮</glue-button>
         <glue-button type="warning">警告按钮</glue-button>
         <glue-button type="danger">危险按钮</glue-button>
-        {/* 朴素按钮 */}
         <glue-button plain type="primary">
           朴素按钮
         </glue-button>
         <glue-button plain type="success">
           朴素按钮
         </glue-button>
-        {/* 细边框 */}
+
         <glue-button hairline plain type="primary">
           细边框按钮
         </glue-button>
@@ -72,12 +71,6 @@ export class GlueDemo {
         <glue-button type="primary" block>
           块级元素
         </glue-button>
-        {/* <glue-button type="primary" url="/vant/mobile.html">
-          URL 跳转
-        </glue-button>
-        <glue-button type="primary" to="index">
-          路由跳转
-        </glue-button> */}
         <glue-button color="#7232dd">单色按钮</glue-button>
         <glue-button color="#7232dd" plain>
           单色按钮

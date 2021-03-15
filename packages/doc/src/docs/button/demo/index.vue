@@ -57,11 +57,6 @@
       <glue-button type="primary" block>{{ blockElement }}</glue-button>
     </DemoBlock>
 
-    <DemoBlock :title="router">
-      <glue-button type="primary" url="/vant/mobile.html">{{ urlRoute }}</glue-button>
-      <glue-button type="primary" to="index">{{ vueRoute }}</glue-button>
-    </DemoBlock>
-
     <DemoBlock :title="customColor">
       <glue-button color="#7232dd">{{ pure }}</glue-button>
       <glue-button plain color="#7232dd">{{ pure }}</glue-button>

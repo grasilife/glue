@@ -32,9 +32,9 @@
 
 ## Events
 
-| Event            | Description | Type               |
-| ---------------- | ----------- | ------------------ |
-| `checkboxchange` |             | `CustomEvent<any>` |
+| Event       | Description | Type               |
+| ----------- | ----------- | ------------------ |
+| `glueClick` |             | `CustomEvent<any>` |
 
 
 ## Dependencies
