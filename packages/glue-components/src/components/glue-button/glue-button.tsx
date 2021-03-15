@@ -34,6 +34,9 @@ export class GlueButton {
   @Event()
   glueClick: EventEmitter;
   handleClick = event => {
+    if (this.loading) {
+      event.preventDefault();
+    }
     if (!this.loading && !this.disabled) {
       this.glueClick.emit(event);
     }
