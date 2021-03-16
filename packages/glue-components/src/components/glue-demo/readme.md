@@ -16,14 +16,15 @@
 
 ### Depends on
 
-- [glue-button](../glue-button)
+- [glue-cell](../glue-cell)
+- [glue-icon](../glue-icon)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-button
-  glue-button --> glue-loading
-  glue-button --> glue-icon
+  glue-demo --> glue-cell
+  glue-demo --> glue-icon
+  glue-cell --> glue-icon
   glue-icon --> glue-badge
   style glue-demo fill:#f9f,stroke:#333,stroke-width:4px
 ```

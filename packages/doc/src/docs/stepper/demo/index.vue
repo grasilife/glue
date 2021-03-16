@@ -1,5 +1,5 @@
 <template>
-  <demo-section>
+  <DemoSection>
     <van-cell center :title="basicUsage">
       <van-stepper v-model="stepper1" />
     </van-cell>

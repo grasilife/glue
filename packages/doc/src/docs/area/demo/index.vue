@@ -1,5 +1,5 @@
 <template>
-  <demo-section>
+  <DemoSection>
     <DemoBlock card :title="basicUsage">
       <van-area :title="title" :area-list="areaList" />
     </DemoBlock>

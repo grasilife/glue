@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-coupon-cell :coupons="coupons" :chosen-coupon="chosenCoupon" @click="showList = true" />
 
       <van-popup v-model="showList" round position="bottom" style="height: 90%; padding-top: 4px;">

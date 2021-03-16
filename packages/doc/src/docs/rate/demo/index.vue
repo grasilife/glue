@@ -1,34 +1,34 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <glue-rate :model-value="value1"></glue-rate>
     </demo-block>
 
-    <demo-block :title="customIcon">
+    <DemoBlock :title="customIcon">
       <glue-rate :model-value="value2" icon="like" void-icon="like-o" />
     </demo-block>
 
-    <demo-block :title="customStyle">
+    <DemoBlock :title="customStyle">
       <glue-rate :model-value="value3" :size="25" color="#ffd21e" void-icon="star" void-color="#eee" />
     </demo-block>
 
-    <demo-block :title="halfStar">
+    <DemoBlock :title="halfStar">
       <glue-rate :model-value="value4" :size="25" allow-half void-icon="star" void-color="#eee" />
     </demo-block>
 
-    <demo-block :title="customCount">
+    <DemoBlock :title="customCount">
       <glue-rate :model-value="value5" :count="6" />
     </demo-block>
 
-    <demo-block :title="disabled">
+    <DemoBlock :title="disabled">
       <glue-rate :model-value="value6" disabled />
     </demo-block>
 
-    <demo-block :title="readonly">
+    <DemoBlock :title="readonly">
       <glue-rate :model-value="value6" readonly />
     </demo-block>
 
-    <demo-block :title="changeEvent">
+    <DemoBlock :title="changeEvent">
       <glue-rate :model-value="value7" @change="onChange" />
     </demo-block>
   </demo-section>

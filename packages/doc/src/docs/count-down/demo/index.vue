@@ -1,18 +1,18 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-count-down :time="time" />
     </demo-block>
 
-    <demo-block :title="customFormat">
+    <DemoBlock :title="customFormat">
       <van-count-down :time="time" :format="formatWithDay" />
     </demo-block>
 
-    <demo-block :title="millisecond">
+    <DemoBlock :title="millisecond">
       <van-count-down millisecond :time="time" format="HH:mm:ss:SS" />
     </demo-block>
 
-    <demo-block :title="customStyle">
+    <DemoBlock :title="customStyle">
       <van-count-down :time="time">
         <template #default="currentTime">
           <span class="block">{{ currentTime.hours }}</span>
@@ -24,7 +24,7 @@
       </van-count-down>
     </demo-block>
 
-    <demo-block :title="manualControl">
+    <DemoBlock :title="manualControl">
       <van-count-down
         ref="countDown"
         millisecond

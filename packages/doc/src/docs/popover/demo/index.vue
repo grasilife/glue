@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-popover
         v-model="show.lightTheme"
         trigger="click"
@@ -31,7 +31,7 @@
       </van-popover>
     </demo-block>
 
-    <demo-block :title="placement">
+    <DemoBlock :title="placement">
       <van-field is-link readonly name="picker" :label="choosePlacement" @click="showPicker = true" />
 
       <van-popup v-model="showPicker" round position="bottom" get-container="body">
@@ -53,7 +53,7 @@
       </van-popup>
     </demo-block>
 
-    <demo-block :title="actionOptions">
+    <DemoBlock :title="actionOptions">
       <van-popover
         v-model="show.showIcon"
         trigger="click"
@@ -84,7 +84,7 @@
       </van-popover>
     </demo-block>
 
-    <demo-block :title="customContent">
+    <DemoBlock :title="customContent">
       <van-popover
         v-model="show.customContent"
         trigger="click"

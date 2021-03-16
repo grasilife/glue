@@ -1,7 +1,7 @@
 <template>
   <div>
-    <demo-section>
-      <demo-block :title="basicUsage">
+    <DemoSection>
+      <DemoBlock :title="basicUsage">
         <van-swipe-cell>
           <template #left>
             <van-button square type="primary" :text="select" />
@@ -14,7 +14,7 @@
         </van-swipe-cell>
       </demo-block>
 
-      <demo-block :title="customContent">
+      <DemoBlock :title="customContent">
         <van-swipe-cell>
           <van-card num="2" price="2.00" :desc="desc" :title="cardTitle" :thumb="imageURL" />
           <template #right>
@@ -23,7 +23,7 @@
         </van-swipe-cell>
       </demo-block>
 
-      <demo-block :title="beforeCloseTitle">
+      <DemoBlock :title="beforeCloseTitle">
         <van-swipe-cell :before-close="beforeClose">
           <template #left>
             <van-button square type="primary" :text="select" />

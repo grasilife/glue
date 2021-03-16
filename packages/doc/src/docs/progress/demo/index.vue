@@ -1,18 +1,18 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <glue-progress :percentage="50" />
     </demo-block>
 
-    <demo-block :title="strokeWidth">
+    <DemoBlock :title="strokeWidth">
       <glue-progress :percentage="50" stroke-width="8" />
     </demo-block>
 
-    <demo-block :title="title2">
+    <DemoBlock :title="title2">
       <glue-progress inactive :percentage="50" />
     </demo-block>
 
-    <demo-block :title="title3">
+    <DemoBlock :title="title3">
       <glue-progress color="#f2826a" :percentage="25" :pivot-text="orange" />
       <glue-progress color="#ee0a24" :percentage="50" :pivot-text="red" />
       <glue-progress

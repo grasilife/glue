@@ -3,7 +3,7 @@
     <DemoNav />
     <router-view>
       <keep-alive>
-        <demo-section>
+        <DemoSection>
           <!-- <component :is="Component" /> -->
         </demo-section>
       </keep-alive>

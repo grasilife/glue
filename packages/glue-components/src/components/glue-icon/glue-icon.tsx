@@ -1,8 +1,6 @@
 import { Component, Prop, h, Host } from '@stencil/core';
 import { addUnit } from '../../utils/format/unit';
 import classNames from 'classnames';
-import { createNamespace } from '../../utils/create/index';
-const [bem] = createNamespace('glue-icon');
 @Component({
   tag: 'glue-icon',
   styleUrl: 'glue-icon.less',

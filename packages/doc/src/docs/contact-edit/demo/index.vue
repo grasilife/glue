@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-contact-edit
         is-edit
         show-set-default

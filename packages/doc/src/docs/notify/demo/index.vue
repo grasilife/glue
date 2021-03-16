@@ -1,22 +1,22 @@
 <template>
-  <demo-section>
-    <demo-block card :title="basicUsage">
+  <DemoSection>
+    <DemoBlock card :title="basicUsage">
       <van-cell is-link :title="basicUsage" @click="showNotify" />
     </demo-block>
 
-    <demo-block card :title="notifyType">
+    <DemoBlock card :title="notifyType">
       <van-cell is-link :title="primary" @click="showType('primary')" />
       <van-cell is-link :title="success" @click="showType('success')" />
       <van-cell is-link :title="danger" @click="showType('danger')" />
       <van-cell is-link :title="warning" @click="showType('warning')" />
     </demo-block>
 
-    <demo-block card :title="customNotify">
+    <DemoBlock card :title="customNotify">
       <van-cell is-link :title="customColor" @click="showCustomColor" />
       <van-cell is-link :title="customDuration" @click="showCustomDuration" />
     </demo-block>
 
-    <demo-block card :title="componentCall">
+    <DemoBlock card :title="componentCall">
       <van-cell is-link :title="componentCall" @click="showComponentCall" />
 
       <van-notify v-model="show" type="success">

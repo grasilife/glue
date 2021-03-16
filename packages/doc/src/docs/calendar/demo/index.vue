@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block card :title="basicUsage">
+  <DemoSection>
+    <DemoBlock card :title="basicUsage">
       <van-cell
         is-link
         :title="selectSingle"
@@ -23,7 +23,7 @@
       />
     </demo-block>
 
-    <demo-block card :title="quickSelect">
+    <DemoBlock card :title="quickSelect">
       <van-cell
         is-link
         :title="selectSingle"
@@ -39,7 +39,7 @@
       />
     </demo-block>
 
-    <demo-block card :title="customCalendar">
+    <DemoBlock card :title="customCalendar">
       <van-cell
         is-link
         :title="customColor"
@@ -85,7 +85,7 @@
       <van-cell is-link :title="firstDayOfWeekTitle" @click="show('single', 'firstDayOfWeek')" />
     </demo-block>
 
-    <demo-block card :title="tiledDisplay">
+    <DemoBlock card :title="tiledDisplay">
       <van-calendar
         :title="calendar"
         :poppable="false"

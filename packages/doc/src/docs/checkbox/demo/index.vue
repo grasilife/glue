@@ -1,10 +1,10 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-checkbox v-model="checkbox1">{{ checkbox }}</van-checkbox>
     </demo-block>
 
-    <demo-block :title="disabled">
+    <DemoBlock :title="disabled">
       <van-checkbox :value="false" disabled>
         {{ checkbox }}
       </van-checkbox>
@@ -13,25 +13,25 @@
       </van-checkbox>
     </demo-block>
 
-    <demo-block :title="customShape">
+    <DemoBlock :title="customShape">
       <van-checkbox v-model="checkboxShape" shape="square">
         {{ customColor }}
       </van-checkbox>
     </demo-block>
 
-    <demo-block :title="customColor">
+    <DemoBlock :title="customColor">
       <van-checkbox v-model="checkbox2" checked-color="#ee0a24">
         {{ customColor }}
       </van-checkbox>
     </demo-block>
 
-    <demo-block :title="customIconSize">
+    <DemoBlock :title="customIconSize">
       <van-checkbox v-model="checboxIcon" icon-size="24px">
         {{ customIconSize }}
       </van-checkbox>
     </demo-block>
 
-    <demo-block :title="customIcon">
+    <DemoBlock :title="customIcon">
       <van-checkbox v-model="checkbox3">
         {{ customIcon }}
         <template #icon="{ checked }">
@@ -40,27 +40,27 @@
       </van-checkbox>
     </demo-block>
 
-    <demo-block :title="disableLabel">
+    <DemoBlock :title="disableLabel">
       <van-checkbox v-model="checkboxLabel" label-disabled>
         {{ checkbox }}
       </van-checkbox>
     </demo-block>
 
-    <demo-block :title="title3">
+    <DemoBlock :title="title3">
       <van-checkbox-group v-model="result">
         <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
         <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
       </van-checkbox-group>
     </demo-block>
 
-    <demo-block :title="horizontal">
+    <DemoBlock :title="horizontal">
       <van-checkbox-group v-model="horizontalResult" direction="horizontal">
         <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
         <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
       </van-checkbox-group>
     </demo-block>
 
-    <demo-block :title="title4">
+    <DemoBlock :title="title4">
       <van-checkbox-group v-model="result2" :max="2">
         <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
         <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
@@ -68,7 +68,7 @@
       </van-checkbox-group>
     </demo-block>
 
-    <demo-block :title="toggleAllTitle">
+    <DemoBlock :title="toggleAllTitle">
       <van-checkbox-group v-model="checkAllResult" ref="group">
         <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
         <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
@@ -85,7 +85,7 @@
       </div>
     </demo-block>
 
-    <demo-block :title="title5">
+    <DemoBlock :title="title5">
       <van-checkbox-group v-model="result3">
         <van-cell-group>
           <van-cell

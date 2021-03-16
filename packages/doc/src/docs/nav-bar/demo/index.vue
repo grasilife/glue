@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <glue-nav-bar
         :title="title"
         :left-text="back"
@@ -11,7 +11,7 @@
       ></glue-nav-bar>
     </demo-block>
 
-    <demo-block :title="useSlot">
+    <DemoBlock :title="useSlot">
       <van-nav-bar :title="title" :left-text="back" left-arrow>
         <template #right>
           <van-icon name="search" size="18" />

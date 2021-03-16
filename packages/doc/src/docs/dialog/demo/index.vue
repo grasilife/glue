@@ -1,21 +1,21 @@
 <template>
-  <demo-section>
-    <demo-block card :title="basicUsage">
+  <DemoSection>
+    <DemoBlock card :title="basicUsage">
       <van-cell is-link :title="alert1" @click="onClickAlert" />
       <van-cell is-link :title="alert2" @click="onClickAlert2" />
       <van-cell is-link :title="confirm" @click="onClickConfirm" />
     </demo-block>
 
-    <demo-block card :title="roundButton">
+    <DemoBlock card :title="roundButton">
       <van-cell is-link :title="alert1" @click="onClickRound" />
       <van-cell is-link :title="alert2" @click="onClickRound2" />
     </demo-block>
 
-    <demo-block card :title="asyncClose">
+    <DemoBlock card :title="asyncClose">
       <van-cell is-link :title="asyncClose" @click="onClickAsyncClose" />
     </demo-block>
 
-    <demo-block card :title="componentCall">
+    <DemoBlock card :title="componentCall">
       <van-cell is-link :title="componentCall" @click="show = true" />
       <van-dialog v-model="show" :title="title" show-cancel-button :lazy-render="false">
         <img :src="image" />

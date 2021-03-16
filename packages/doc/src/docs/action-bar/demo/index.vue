@@ -1,6 +1,6 @@
 <template>
   <DemoSection>
-    <demo-block :title="basicUsage">
+    <DemoBlock :title="basicUsage">
       <glue-action-bar>
         <glue-action-bar-icon icon="chat-o" :text="icon1" @click="onClickIcon">{{ icon1 }}</glue-action-bar-icon>
         <glue-action-bar-icon icon="cart-o" :text="icon2" @click="onClickIcon">{{ icon2 }}</glue-action-bar-icon>
@@ -11,7 +11,7 @@
       </glue-action-bar>
     </demo-block>
 
-    <demo-block :title="iconBadge">
+    <DemoBlock :title="iconBadge">
       <glue-action-bar>
         <glue-action-bar-icon icon="chat-o" dot :text="icon1">{{ icon1 }}</glue-action-bar-icon>
         <glue-action-bar-icon icon="cart-o" badge="5" :text="icon2">{{ icon2 }}</glue-action-bar-icon>
@@ -21,7 +21,7 @@
       </glue-action-bar>
     </demo-block>
 
-    <demo-block :title="customIconColor">
+    <DemoBlock :title="customIconColor">
       <glue-action-bar>
         <glue-action-bar-icon icon="chat-o" :text="icon1" color="#ee0a24">{{ icon1 }}</glue-action-bar-icon>
         <glue-action-bar-icon icon="cart-o" :text="icon2">{{ icon2 }}</glue-action-bar-icon>
@@ -31,7 +31,7 @@
       </glue-action-bar>
     </demo-block>
 
-    <demo-block :title="customButtonColor">
+    <DemoBlock :title="customButtonColor">
       <glue-action-bar>
         <glue-action-bar-icon icon="chat-o" :text="icon1">{{ icon1 }}</glue-action-bar-icon>
         <glue-action-bar-icon icon="cart-o" :text="icon2">{{ icon2 }}</glue-action-bar-icon>

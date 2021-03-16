@@ -7,13 +7,14 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type               | Default     |
-| --------- | --------- | ----------- | ------------------ | ----------- |
-| `color`   | `color`   |             | `string`           | `undefined` |
-| `content` | `content` |             | `number \| string` | `undefined` |
-| `dot`     | `dot`     |             | `boolean`          | `undefined` |
-| `max`     | `max`     |             | `number \| string` | `undefined` |
-| `tag`     | `tag`     |             | `string`           | `'dev'`     |
+| Property      | Attribute      | Description | Type               | Default     |
+| ------------- | -------------- | ----------- | ------------------ | ----------- |
+| `color`       | `color`        |             | `string`           | `undefined` |
+| `content`     | `content`      |             | `number \| string` | `undefined` |
+| `dot`         | `dot`          |             | `boolean`          | `undefined` |
+| `max`         | `max`          |             | `number \| string` | `undefined` |
+| `offset`      | `offset`       |             | `any`              | `undefined` |
+| `slotContent` | `slot-content` |             | `boolean`          | `undefined` |
 
 
 ## Dependencies

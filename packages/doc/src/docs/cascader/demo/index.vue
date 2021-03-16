@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block card :title="basicUsage">
+  <DemoSection>
+    <DemoBlock card :title="basicUsage">
       <van-field
         v-model="base.result"
         is-link
@@ -20,7 +20,7 @@
       </van-popup>
     </demo-block>
 
-    <demo-block card :title="customColorTitle">
+    <DemoBlock card :title="customColorTitle">
       <van-field
         v-model="customColor.result"
         is-link
@@ -41,7 +41,7 @@
       </van-popup>
     </demo-block>
 
-    <demo-block card :title="asyncOptions">
+    <DemoBlock card :title="asyncOptions">
       <van-field
         v-model="async.result"
         is-link
@@ -62,7 +62,7 @@
       </van-popup>
     </demo-block>
 
-    <demo-block card :title="customFieldNamesTitle">
+    <DemoBlock card :title="customFieldNamesTitle">
       <van-field
         v-model="customFieldNames.result"
         is-link

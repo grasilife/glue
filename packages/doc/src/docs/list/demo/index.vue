@@ -1,5 +1,5 @@
 <template>
-  <demo-section>
+  <DemoSection>
     <van-tabs>
       <van-tab :title="basicUsage">
         <van-list

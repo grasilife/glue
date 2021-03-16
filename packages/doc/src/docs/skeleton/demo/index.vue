@@ -1,14 +1,14 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <glue-skeleton titleState :row="3"></glue-skeleton>
     </demo-block>
 
-    <demo-block :title="showAvatar">
+    <DemoBlock :title="showAvatar">
       <glue-skeleton titleState avatar :row="3" />
     </demo-block>
 
-    <demo-block :title="showChildren">
+    <DemoBlock :title="showChildren">
       <glue-switch v-model="show" size="24px" />
       <glue-skeleton titleState avatar :row="3" :loading="!show">
         <div class="demo-preview">

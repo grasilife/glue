@@ -1,37 +1,37 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <glue-cell-group>
         <glue-cell :title="cell" :value="content" />
         <glue-cell :title="cell" :value="content" :label="desc" />
       </glue-cell-group>
     </demo-block>
 
-    <demo-block :title="largeSize">
+    <DemoBlock :title="largeSize">
       <glue-cell :title="cell" :value="content" size="large" />
       <glue-cell :title="cell" :value="content" size="large" :label="desc" />
     </demo-block>
 
-    <demo-block :title="showIcon">
+    <DemoBlock :title="showIcon">
       <glue-cell :title="cell" :value="content" icon="location-o" />
     </demo-block>
 
-    <demo-block :title="valueOnly">
+    <DemoBlock :title="valueOnly">
       <glue-cell :value="content" />
     </demo-block>
 
-    <demo-block :title="showArrow">
+    <DemoBlock :title="showArrow">
       <glue-cell :title="cell" is-link />
       <glue-cell :title="cell" is-link :value="content" />
       <glue-cell :title="cell" is-link arrow-direction="down" :value="content" />
     </demo-block>
 
-    <demo-block :title="router">
+    <DemoBlock :title="router">
       <glue-cell :title="urlRoute" is-link url="/vant/mobile.html" />
       <glue-cell :title="vueRoute" is-link to="index" />
     </demo-block>
 
-    <demo-block :title="groupTitle">
+    <DemoBlock :title="groupTitle">
       <glue-cell-group :title="`${group} 1`">
         <glue-cell :title="cell" :value="content" />
       </glue-cell-group>
@@ -40,7 +40,7 @@
       </glue-cell-group>
     </demo-block>
 
-    <demo-block :title="useSlots">
+    <DemoBlock :title="useSlots">
       <glue-cell :value="content" is-link>
         <template v-slot:title>
           <span class="custom-title">{{ cell }}</span>
@@ -55,7 +55,7 @@
       </glue-cell>
     </demo-block>
 
-    <demo-block :title="verticalCenter">
+    <DemoBlock :title="verticalCenter">
       <glue-cell center :title="cell" :value="content" :label="desc" />
     </demo-block>
   </demo-section>

@@ -1,28 +1,28 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-search v-model="value1" :placeholder="placeholder" />
     </demo-block>
 
-    <demo-block :title="listenToEvents">
+    <DemoBlock :title="listenToEvents">
       <form action="/">
         <van-search v-model="value5" :placeholder="placeholder" show-action @search="onSearch" @cancel="onCancel" />
       </form>
     </demo-block>
 
-    <demo-block :title="inputAlign">
+    <DemoBlock :title="inputAlign">
       <van-search v-model="value4" :placeholder="placeholder" input-align="center" />
     </demo-block>
 
-    <demo-block :title="disabled">
+    <DemoBlock :title="disabled">
       <van-search v-model="value3" :placeholder="placeholder" disabled />
     </demo-block>
 
-    <demo-block :title="background">
+    <DemoBlock :title="background">
       <van-search v-model="value2" :placeholder="placeholder" shape="round" background="#4fc08d" />
     </demo-block>
 
-    <demo-block :title="customButton">
+    <DemoBlock :title="customButton">
       <van-search v-model="value6" show-action :label="label" :placeholder="placeholder" @search="onSearch">
         <template #action>
           <div @click="onSearch(value6)">{{ search }}</div>

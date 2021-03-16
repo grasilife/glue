@@ -1,5 +1,5 @@
 <template>
-  <demo-section>
+  <DemoSection>
     <van-tabs v-model="activeTab">
       <van-tab :title="basicUsage">
         <van-index-bar>

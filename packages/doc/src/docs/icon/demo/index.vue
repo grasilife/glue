@@ -1,8 +1,8 @@
 <template>
-  <demo-section>
+  <DemoSection>
     <van-tabs v-model="tab" sticky>
       <van-tab :title="demo">
-        <demo-block :title="basicUsage">
+        <DemoBlock :title="basicUsage">
           <van-col span="6" @click="copy(demoIcon)">
             <glue-icon :name="demoIcon" />
           </van-col>
@@ -11,7 +11,7 @@
           </van-col>
         </demo-block>
 
-        <demo-block :title="badge">
+        <DemoBlock :title="badge">
           <van-col span="6" @click="copy(demoIcon, { dot: true })">
             <glue-icon :name="demoIcon" dot />
           </van-col>
@@ -23,7 +23,7 @@
           </van-col>
         </demo-block>
 
-        <demo-block :title="color">
+        <DemoBlock :title="color">
           <van-col span="6" @click="copy(demoIcon, { color: '#1989fa' })">
             <glue-icon name="cart-o" color="#1989fa" />
           </van-col>
@@ -32,7 +32,7 @@
           </van-col>
         </demo-block>
 
-        <demo-block :title="size">
+        <DemoBlock :title="size">
           <van-col span="6" @click="copy(demoIcon, { size: '40' })">
             <glue-icon :name="demoIcon" size="40" />
           </van-col>

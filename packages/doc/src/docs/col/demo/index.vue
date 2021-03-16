@@ -1,6 +1,6 @@
 <template>
-  <demo-section class="demo-col">
-    <demo-block :title="basicUsage">
+  <DemoSection class="demo-col">
+    <DemoBlock :title="basicUsage">
       <glue-row>
         <glue-col span="8">span: 8</glue-col>
         <glue-col span="8">span: 8</glue-col>
@@ -21,7 +21,7 @@
       </glue-row>
     </demo-block>
 
-    <demo-block :title="title2">
+    <DemoBlock :title="title2">
       <glue-row gutter="20">
         <glue-col span="8">span: 8</glue-col>
         <glue-col span="8">span: 8</glue-col>
@@ -29,7 +29,7 @@
       </glue-row>
     </demo-block>
 
-    <demo-block :title="title3">
+    <DemoBlock :title="title3">
       <glue-row type="flex">
         <glue-col span="6">span: 6</glue-col>
         <glue-col span="6">span: 6</glue-col>

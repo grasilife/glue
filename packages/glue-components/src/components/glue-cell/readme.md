@@ -7,31 +7,26 @@
 
 ## Properties
 
-| Property          | Attribute          | Description | Type               | Default     |
-| ----------------- | ------------------ | ----------- | ------------------ | ----------- |
-| `arrowDirection`  | `arrow-direction`  |             | `string`           | `undefined` |
-| `border`          | `border`           |             | `boolean`          | `true`      |
-| `center`          | `center`           |             | `boolean`          | `undefined` |
-| `clickable`       | `clickable`        |             | `boolean`          | `undefined` |
-| `icon`            | `icon`             |             | `string`           | `undefined` |
-| `iconPrefix`      | `icon-prefix`      |             | `string`           | `undefined` |
-| `isLink`          | `is-link`          |             | `boolean`          | `undefined` |
-| `label`           | `label`            |             | `number \| string` | `undefined` |
-| `required`        | `required`         |             | `boolean`          | `undefined` |
-| `size`            | `size`             |             | `string`           | `undefined` |
-| `tilabelClasstle` | `tilabel-classtle` |             | `any`              | `null`      |
-| `title`           | `title`            |             | `string`           | `undefined` |
-| `titleClass`      | `title-class`      |             | `any`              | `null`      |
-| `titleStyle`      | `title-style`      |             | `any`              | `null`      |
-| `value`           | `value`            |             | `number \| string` | `undefined` |
-| `valueClass`      | `value-class`      |             | `any`              | `null`      |
-
-
-## Events
-
-| Event   | Description | Type               |
-| ------- | ----------- | ------------------ |
-| `click` |             | `CustomEvent<any>` |
+| Property          | Attribute          | Description | Type                                  | Default     |
+| ----------------- | ------------------ | ----------- | ------------------------------------- | ----------- |
+| `arrowDirection`  | `arrow-direction`  |             | `"down" \| "left" \| "right" \| "up"` | `undefined` |
+| `border`          | `border`           |             | `boolean`                             | `true`      |
+| `center`          | `center`           |             | `boolean`                             | `undefined` |
+| `clickable`       | `clickable`        |             | `boolean`                             | `undefined` |
+| `icon`            | `icon`             |             | `string`                              | `undefined` |
+| `iconPrefix`      | `icon-prefix`      |             | `string`                              | `undefined` |
+| `isLink`          | `is-link`          |             | `boolean`                             | `undefined` |
+| `label`           | `label`            |             | `number \| string`                    | `undefined` |
+| `required`        | `required`         |             | `boolean`                             | `undefined` |
+| `size`            | `size`             |             | `string`                              | `undefined` |
+| `slotRightIcon`   | `slot-right-icon`  |             | `boolean`                             | `undefined` |
+| `slotTitle`       | `slot-title`       |             | `boolean`                             | `undefined` |
+| `tilabelClasstle` | `tilabel-classtle` |             | `any`                                 | `null`      |
+| `title`           | `title`            |             | `string`                              | `undefined` |
+| `titleClass`      | `title-class`      |             | `any`                                 | `null`      |
+| `titleStyle`      | `title-style`      |             | `any`                                 | `null`      |
+| `value`           | `value`            |             | `number \| string`                    | `undefined` |
+| `valueClass`      | `value-class`      |             | `any`                                 | `null`      |
 
 
 ## Dependencies
@@ -46,6 +41,7 @@
  - [glue-contact-edit](../glue-contact-edit)
  - [glue-contact-list](../glue-contact-list)
  - [glue-coupon-cell](../glue-coupon-cell)
+ - [glue-demo](../glue-demo)
  - [glue-dropdown-item](../glue-dropdown-item)
  - [glue-field](../glue-field)
 
@@ -66,6 +62,7 @@ graph TD;
   glue-contact-edit --> glue-cell
   glue-contact-list --> glue-cell
   glue-coupon-cell --> glue-cell
+  glue-demo --> glue-cell
   glue-dropdown-item --> glue-cell
   glue-field --> glue-cell
   style glue-cell fill:#f9f,stroke:#333,stroke-width:4px

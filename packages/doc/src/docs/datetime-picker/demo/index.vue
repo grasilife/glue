@@ -1,10 +1,10 @@
 <template>
-  <demo-section>
-    <demo-block card :title="dateType">
+  <DemoSection>
+    <DemoBlock card :title="dateType">
       <van-datetime-picker v-model="value.date" type="date" :title="dateType" :min-date="minDate" :max-date="maxDate" />
     </demo-block>
 
-    <demo-block card :title="yearMonthType">
+    <DemoBlock card :title="yearMonthType">
       <van-datetime-picker
         v-model="value.yearMonth"
         type="year-month"
@@ -15,7 +15,7 @@
       />
     </demo-block>
 
-    <demo-block card :title="monthDayType">
+    <DemoBlock card :title="monthDayType">
       <van-datetime-picker
         v-model="value.monthDayType"
         type="month-day"
@@ -26,11 +26,11 @@
       />
     </demo-block>
 
-    <demo-block card :title="timeType">
+    <DemoBlock card :title="timeType">
       <van-datetime-picker v-model="value.time" type="time" :title="timeType" :min-hour="10" :max-hour="20" />
     </demo-block>
 
-    <demo-block card :title="datetimeType">
+    <DemoBlock card :title="datetimeType">
       <van-datetime-picker
         v-model="value.datetime"
         type="datetime"
@@ -40,7 +40,7 @@
       />
     </demo-block>
 
-    <demo-block card :title="datehourType">
+    <DemoBlock card :title="datehourType">
       <van-datetime-picker
         v-model="value.datehour"
         type="datehour"
@@ -50,11 +50,11 @@
       />
     </demo-block>
 
-    <demo-block card :title="optionFilter">
+    <DemoBlock card :title="optionFilter">
       <van-datetime-picker v-model="value.optionFilter" type="time" :title="optionFilter" :filter="filter" />
     </demo-block>
 
-    <demo-block card :title="sortColumns">
+    <DemoBlock card :title="sortColumns">
       <van-datetime-picker
         v-model="value.sortColumnsDate"
         type="date"

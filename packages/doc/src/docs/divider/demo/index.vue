@@ -1,16 +1,16 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <glue-divider></glue-divider>
     </demo-block>
 
-    <demo-block :title="withText">
+    <DemoBlock :title="withText">
       <glue-divider :text="text">
         <!-- {{ text }} -->
       </glue-divider>
     </demo-block>
 
-    <demo-block :title="contentPosition">
+    <DemoBlock :title="contentPosition">
       <glue-divider content-position="left" :text="text">
         <!-- {{ text }} -->
       </glue-divider>
@@ -20,13 +20,13 @@
       </glue-divider>
     </demo-block>
 
-    <demo-block :title="dashed">
+    <DemoBlock :title="dashed">
       <glue-divider dashed :hairline="false" :text="text">
         <!-- {{ text }} -->
       </glue-divider>
     </demo-block>
 
-    <demo-block :title="customStyle">
+    <DemoBlock :title="customStyle">
       <glue-divider :style="{ borderColor: '#1989fa', color: '#1989fa', padding: '0 16px' }" :text="text">
         <!-- {{ text }} -->
       </glue-divider>

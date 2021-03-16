@@ -1,10 +1,10 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <glue-empty :description="description" />
     </demo-block>
 
-    <demo-block :title="imageType">
+    <DemoBlock :title="imageType">
       <van-tabs v-model="active">
         <van-tab name="error" :title="error">
           <glue-empty image="error" :description="description" />
@@ -18,7 +18,7 @@
       </van-tabs>
     </demo-block>
 
-    <demo-block :title="customImage">
+    <DemoBlock :title="customImage">
       <glue-empty
         class="custom-image"
         image="https://img.yzcdn.cn/vant/custom-empty-image.png"
@@ -26,7 +26,7 @@
       />
     </demo-block>
 
-    <demo-block :title="bottomContent">
+    <DemoBlock :title="bottomContent">
       <glue-empty :description="description">
         <van-button round type="danger" class="bottom-button">
           {{ button }}

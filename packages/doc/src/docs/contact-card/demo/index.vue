@@ -1,14 +1,14 @@
 <template>
-  <demo-section>
-    <demo-block :title="addContact">
+  <DemoSection>
+    <DemoBlock :title="addContact">
       <van-contact-card type="add" @click="onAdd" />
     </demo-block>
 
-    <demo-block :title="editContact">
+    <DemoBlock :title="editContact">
       <van-contact-card type="edit" :name="currentContact.name" :tel="currentContact.tel" @click="onEdit" />
     </demo-block>
 
-    <demo-block :title="uneditable">
+    <DemoBlock :title="uneditable">
       <van-contact-card type="edit" :name="currentContact.name" :tel="currentContact.tel" :editable="false" />
     </demo-block>
   </demo-section>

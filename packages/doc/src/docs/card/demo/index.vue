@@ -1,14 +1,14 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-card num="2" price="2.00" :desc="desc" :title="title" :thumb="imageURL" />
     </demo-block>
 
-    <demo-block :title="discountInfo">
+    <DemoBlock :title="discountInfo">
       <van-card num="2" price="2.00" origin-price="10.00" :tag="tag" :desc="desc" :title="title" :thumb="imageURL" />
     </demo-block>
 
-    <demo-block :title="customContent">
+    <DemoBlock :title="customContent">
       <van-card num="2" price="2.00" :desc="desc" :title="title" :thumb="imageURL">
         <template #tags>
           <div>

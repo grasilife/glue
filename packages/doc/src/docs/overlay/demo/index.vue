@@ -1,12 +1,12 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-button type="primary" :text="showOverlay" style="margin-left: 16px;" @click="show = true" />
 
       <glue-overlay :show="show" @click="show = false" />
     </demo-block>
 
-    <demo-block :title="embeddedContent">
+    <DemoBlock :title="embeddedContent">
       <van-button type="primary" :text="embeddedContent" style="margin-left: 16px;" @click="showEmbedded = true" />
 
       <g lue-overlay :show="showEmbedded" @click="showEmbedded = false">

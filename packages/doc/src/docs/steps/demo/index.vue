@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-steps :active="active">
         <van-step>{{ step1 }}</van-step>
         <van-step>{{ step2 }}</van-step>
@@ -11,7 +11,7 @@
       <van-button @click="nextStep">{{ nextStepTitle }}</van-button>
     </demo-block>
 
-    <demo-block :title="customStyle">
+    <DemoBlock :title="customStyle">
       <van-steps :active="active" active-icon="success" inactive-icon="arrow" active-color="#38f">
         <van-step>{{ step1 }}</van-step>
         <van-step>{{ step2 }}</van-step>
@@ -20,7 +20,7 @@
       </van-steps>
     </demo-block>
 
-    <demo-block :title="title3">
+    <DemoBlock :title="title3">
       <van-steps :active="0" direction="vertical">
         <van-step>
           <h3>{{ status1 }}</h3>

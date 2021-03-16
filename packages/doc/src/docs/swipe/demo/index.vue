@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-swipe :autoplay="3000" indicator-color="white">
         <van-swipe-item>1</van-swipe-item>
         <van-swipe-item>2</van-swipe-item>
@@ -9,7 +9,7 @@
       </van-swipe>
     </demo-block>
 
-    <demo-block :title="title2">
+    <DemoBlock :title="title2">
       <van-swipe :autoplay="3000">
         <van-swipe-item v-for="(image, index) in images" :key="index">
           <img v-lazy="image" />
@@ -17,7 +17,7 @@
       </van-swipe>
     </demo-block>
 
-    <demo-block :title="title3">
+    <DemoBlock :title="title3">
       <van-swipe indicator-color="white" @change="onChange1">
         <van-swipe-item>1</van-swipe-item>
         <van-swipe-item>2</van-swipe-item>
@@ -26,7 +26,7 @@
       </van-swipe>
     </demo-block>
 
-    <demo-block :title="title4">
+    <DemoBlock :title="title4">
       <van-swipe vertical :autoplay="3000" indicator-color="white" style="height: 200px;" class="demo-swipe--vertical">
         <van-swipe-item>1</van-swipe-item>
         <van-swipe-item>2</van-swipe-item>
@@ -35,7 +35,7 @@
       </van-swipe>
     </demo-block>
 
-    <demo-block :title="title5">
+    <DemoBlock :title="title5">
       <van-swipe :width="300" :loop="false" indicator-color="white">
         <van-swipe-item>1</van-swipe-item>
         <van-swipe-item>2</van-swipe-item>
@@ -44,7 +44,7 @@
       </van-swipe>
     </demo-block>
 
-    <demo-block :title="title6">
+    <DemoBlock :title="title6">
       <van-swipe @change="onChange2">
         <van-swipe-item>1</van-swipe-item>
         <van-swipe-item>2</van-swipe-item>

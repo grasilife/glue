@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block ref="basicUsage" :title="basicUsage">
+  <DemoSection>
+    <DemoBlock ref="basicUsage" :title="basicUsage">
       <van-password-input
         :value="value.basicUsage"
         :focused="current === 'basicUsage'"
@@ -8,7 +8,7 @@
       />
     </demo-block>
 
-    <demo-block ref="customLength" :title="customLength">
+    <DemoBlock ref="customLength" :title="customLength">
       <van-password-input
         :value="value.customLength"
         :length="4"
@@ -17,7 +17,7 @@
       />
     </demo-block>
 
-    <demo-block ref="addGutter" :title="addGutter">
+    <DemoBlock ref="addGutter" :title="addGutter">
       <van-password-input
         :value="value.addGutter"
         :gutter="10"
@@ -26,7 +26,7 @@
       />
     </demo-block>
 
-    <demo-block ref="removeMask" :title="removeMask">
+    <DemoBlock ref="removeMask" :title="removeMask">
       <van-password-input
         :mask="false"
         :value="value.removeMask"
@@ -35,7 +35,7 @@
       />
     </demo-block>
 
-    <demo-block ref="showInfo" :title="showInfo">
+    <DemoBlock ref="showInfo" :title="showInfo">
       <van-password-input
         :info="info"
         :value="value.showInfo"

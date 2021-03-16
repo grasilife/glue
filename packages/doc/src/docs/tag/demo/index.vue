@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block card :title="basicUsage">
+  <DemoSection>
+    <DemoBlock card :title="basicUsage">
       <van-cell :title="`primary ${type}`">
         <glue-tag type="primary">{{ tag }}</glue-tag>
       </van-cell>
@@ -15,7 +15,7 @@
       </van-cell>
     </demo-block>
 
-    <demo-block card :title="tagStyle">
+    <DemoBlock card :title="tagStyle">
       <van-cell :title="plain">
         <glue-tag plain type="primary">{{ tag }}</glue-tag>
       </van-cell>
@@ -32,7 +32,7 @@
       </van-cell>
     </demo-block>
 
-    <demo-block card :title="customSize">
+    <DemoBlock card :title="customSize">
       <van-cell :title="smallSize">
         <glue-tag type="primary">{{ tag }}</glue-tag>
       </van-cell>
@@ -44,7 +44,7 @@
       </van-cell>
     </demo-block>
 
-    <demo-block card :title="customColor">
+    <DemoBlock card :title="customColor">
       <van-cell :title="customBgColor">
         <glue-tag color="#7232dd">{{ tag }}</glue-tag>
       </van-cell>

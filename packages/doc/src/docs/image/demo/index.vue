@@ -1,12 +1,12 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-row>
         <glue-image width="100" height="100" :src="image" />
       </van-row>
     </demo-block>
 
-    <demo-block :title="fitMode">
+    <DemoBlock :title="fitMode">
       <van-row gutter="20">
         <van-col v-for="fit in fits" span="8" :key="fit">
           <glue-image :fit="fit" width="100%" height="27vw" :src="image" />
@@ -15,7 +15,7 @@
       </van-row>
     </demo-block>
 
-    <demo-block :title="round">
+    <DemoBlock :title="round">
       <van-row gutter="20">
         <van-col v-for="fit in fits" span="8" :key="fit">
           <glue-image round :fit="fit" width="100%" height="27vw" :src="image" />
@@ -24,7 +24,7 @@
       </van-row>
     </demo-block>
 
-    <demo-block :title="loading">
+    <DemoBlock :title="loading">
       <van-row gutter="20">
         <van-col span="8">
           <glue-image width="100%" height="27vw" />
@@ -42,7 +42,7 @@
       </van-row>
     </demo-block>
 
-    <demo-block :title="error">
+    <DemoBlock :title="error">
       <van-row gutter="20">
         <van-col span="8">
           <glue-image width="100%" height="27vw" src="x" />

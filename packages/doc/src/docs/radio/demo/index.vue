@@ -1,48 +1,48 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-radio-group v-model="radio1" class="demo-radio-group">
         <van-radio name="1">{{ radio }} 1</van-radio>
         <van-radio name="2">{{ radio }} 2</van-radio>
       </van-radio-group>
     </demo-block>
 
-    <demo-block :title="horizontal">
+    <DemoBlock :title="horizontal">
       <van-radio-group v-model="radioHorizontal" class="demo-radio-group" direction="horizontal">
         <van-radio name="1">{{ radio }} 1</van-radio>
         <van-radio name="2">{{ radio }} 2</van-radio>
       </van-radio-group>
     </demo-block>
 
-    <demo-block :title="disabled">
+    <DemoBlock :title="disabled">
       <van-radio-group v-model="radio2" class="demo-radio-group" disabled>
         <van-radio name="1">{{ radio }} 1</van-radio>
         <van-radio name="2">{{ radio }} 2</van-radio>
       </van-radio-group>
     </demo-block>
 
-    <demo-block :title="customShape">
+    <DemoBlock :title="customShape">
       <van-radio-group v-model="radioShape" class="demo-radio-group">
         <van-radio name="1" shape="square">{{ radio }} 1</van-radio>
         <van-radio name="2" shape="square">{{ radio }} 2</van-radio>
       </van-radio-group>
     </demo-block>
 
-    <demo-block :title="customColor">
+    <DemoBlock :title="customColor">
       <van-radio-group v-model="radio3" class="demo-radio-group">
         <van-radio name="1" checked-color="#ee0a24"> {{ radio }} 1 </van-radio>
         <van-radio name="2" checked-color="#ee0a24"> {{ radio }} 2 </van-radio>
       </van-radio-group>
     </demo-block>
 
-    <demo-block :title="customIconSize">
+    <DemoBlock :title="customIconSize">
       <van-radio-group v-model="radioIconSize" class="demo-radio-group">
         <van-radio name="1" icon-size="24px"> {{ radio }} 1 </van-radio>
         <van-radio name="2" icon-size="24px"> {{ radio }} 2 </van-radio>
       </van-radio-group>
     </demo-block>
 
-    <demo-block :title="customIcon">
+    <DemoBlock :title="customIcon">
       <van-radio-group v-model="radio4" class="demo-radio-group">
         <van-radio name="1">
           {{ radio }} 1
@@ -59,14 +59,14 @@
       </van-radio-group>
     </demo-block>
 
-    <demo-block :title="disableLabel">
+    <DemoBlock :title="disableLabel">
       <van-radio-group v-model="radioLabel" class="demo-radio-group">
         <van-radio name="1" label-disabled>{{ radio }} 1</van-radio>
         <van-radio name="2" label-disabled>{{ radio }} 2</van-radio>
       </van-radio-group>
     </demo-block>
 
-    <demo-block :title="withCell">
+    <DemoBlock :title="withCell">
       <van-radio-group v-model="radio5">
         <van-cell-group>
           <van-cell clickable :title="radio + 1" @click="radio5 = '1'">

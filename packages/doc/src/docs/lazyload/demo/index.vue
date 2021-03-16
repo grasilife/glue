@@ -1,14 +1,14 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <img v-for="img in imageList" :key="img" v-lazy="img" />
     </demo-block>
 
-    <demo-block :title="title2">
+    <DemoBlock :title="title2">
       <div v-for="img in backgroundImageList" :key="img" v-lazy:background-image="img" />
     </demo-block>
 
-    <demo-block :title="title3">
+    <DemoBlock :title="title3">
       <lazy-component>
         <img v-for="img in componentImageList" :key="img" v-lazy="img" />
       </lazy-component>

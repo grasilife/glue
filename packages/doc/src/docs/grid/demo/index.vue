@@ -1,18 +1,18 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-grid>
         <van-grid-item v-for="i in 4" :key="i" icon="photo-o" :text="text" />
       </van-grid>
     </demo-block>
 
-    <demo-block :title="columnNum">
+    <DemoBlock :title="columnNum">
       <van-grid :column-num="3">
         <van-grid-item v-for="i in 6" :key="i" icon="photo-o" :text="text" />
       </van-grid>
     </demo-block>
 
-    <demo-block :title="customContent">
+    <DemoBlock :title="customContent">
       <van-grid :border="false" :column-num="3">
         <van-grid-item>
           <van-image fit="contain" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
@@ -26,19 +26,19 @@
       </van-grid>
     </demo-block>
 
-    <demo-block :title="square">
+    <DemoBlock :title="square">
       <van-grid square>
         <van-grid-item v-for="i in 8" :key="i" icon="photo-o" :text="text" />
       </van-grid>
     </demo-block>
 
-    <demo-block :title="gutter">
+    <DemoBlock :title="gutter">
       <van-grid :gutter="10">
         <van-grid-item v-for="i in 8" :key="i" icon="photo-o" :text="text" />
       </van-grid>
     </demo-block>
 
-    <demo-block :title="horizontal">
+    <DemoBlock :title="horizontal">
       <van-grid direction="horizontal" :column-num="3">
         <van-grid-item icon="photo-o" :text="text" />
         <van-grid-item icon="photo-o" :text="text" />
@@ -46,14 +46,14 @@
       </van-grid>
     </demo-block>
 
-    <demo-block :title="route">
+    <DemoBlock :title="route">
       <van-grid clickable :column-num="2">
         <van-grid-item icon="home-o" :text="vueRoute" to="/" />
         <van-grid-item icon="search" :text="urlRoute" url="/vant/mobile.html" />
       </van-grid>
     </demo-block>
 
-    <demo-block :title="showBadge">
+    <DemoBlock :title="showBadge">
       <van-grid :column-num="2">
         <van-grid-item icon="home-o" :text="text" dot />
         <van-grid-item icon="search" :text="text" badge="99+" />

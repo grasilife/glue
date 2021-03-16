@@ -7,26 +7,26 @@
 
 ## Properties
 
-| Property          | Attribute          | Description | Type               | Default     |
-| ----------------- | ------------------ | ----------- | ------------------ | ----------- |
-| `arrowDirection`  | `arrow-direction`  |             | `string`           | `undefined` |
-| `border`          | `border`           |             | `boolean`          | `true`      |
-| `center`          | `center`           |             | `boolean`          | `undefined` |
-| `clickable`       | `clickable`        |             | `boolean`          | `undefined` |
-| `disabled`        | `disabled`         |             | `boolean`          | `undefined` |
-| `icon`            | `icon`             |             | `string`           | `undefined` |
-| `iconPrefix`      | `icon-prefix`      |             | `string`           | `undefined` |
-| `isLink`          | `is-link`          |             | `boolean`          | `undefined` |
-| `label`           | `label`            |             | `number \| string` | `undefined` |
-| `name`            | `name`             |             | `string`           | `undefined` |
-| `required`        | `required`         |             | `boolean`          | `undefined` |
-| `size`            | `size`             |             | `string`           | `undefined` |
-| `tilabelClasstle` | `tilabel-classtle` |             | `any`              | `null`      |
-| `title`           | `title`            |             | `string`           | `undefined` |
-| `titleClass`      | `title-class`      |             | `any`              | `null`      |
-| `titleStyle`      | `title-style`      |             | `any`              | `null`      |
-| `value`           | `value`            |             | `number \| string` | `undefined` |
-| `valueClass`      | `value-class`      |             | `any`              | `null`      |
+| Property          | Attribute          | Description | Type                                  | Default     |
+| ----------------- | ------------------ | ----------- | ------------------------------------- | ----------- |
+| `arrowDirection`  | `arrow-direction`  |             | `"down" \| "left" \| "right" \| "up"` | `undefined` |
+| `border`          | `border`           |             | `boolean`                             | `true`      |
+| `center`          | `center`           |             | `boolean`                             | `undefined` |
+| `clickable`       | `clickable`        |             | `boolean`                             | `undefined` |
+| `disabled`        | `disabled`         |             | `boolean`                             | `undefined` |
+| `icon`            | `icon`             |             | `string`                              | `undefined` |
+| `iconPrefix`      | `icon-prefix`      |             | `string`                              | `undefined` |
+| `isLink`          | `is-link`          |             | `boolean`                             | `undefined` |
+| `label`           | `label`            |             | `number \| string`                    | `undefined` |
+| `name`            | `name`             |             | `string`                              | `undefined` |
+| `required`        | `required`         |             | `boolean`                             | `undefined` |
+| `size`            | `size`             |             | `string`                              | `undefined` |
+| `tilabelClasstle` | `tilabel-classtle` |             | `any`                                 | `null`      |
+| `title`           | `title`            |             | `string`                              | `undefined` |
+| `titleClass`      | `title-class`      |             | `any`                                 | `null`      |
+| `titleStyle`      | `title-style`      |             | `any`                                 | `null`      |
+| `value`           | `value`            |             | `number \| string`                    | `undefined` |
+| `valueClass`      | `value-class`      |             | `any`                                 | `null`      |
 
 
 ## Events

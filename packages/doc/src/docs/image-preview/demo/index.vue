@@ -1,12 +1,12 @@
 <template>
-  <demo-section>
-    <demo-block card :title="basicUsage">
+  <DemoSection>
+    <DemoBlock card :title="basicUsage">
       <van-cell is-link @click="showImagePreview">
         {{ showImages }}
       </van-cell>
     </demo-block>
 
-    <demo-block card :title="customConfig">
+    <DemoBlock card :title="customConfig">
       <van-cell is-link @click="showImagePreview({ startPosition: 1 })">
         {{ startPosition }}
       </van-cell>
@@ -18,13 +18,13 @@
       </van-cell>
     </demo-block>
 
-    <demo-block card :title="asyncClose">
+    <DemoBlock card :title="asyncClose">
       <van-cell is-link @click="showImagePreview({ asyncClose: true })">
         {{ asyncClose }}
       </van-cell>
     </demo-block>
 
-    <demo-block card :title="componentCallTitle">
+    <DemoBlock card :title="componentCallTitle">
       <van-cell is-link @click="componentCall">
         {{ componentCallTitle }}
       </van-cell>

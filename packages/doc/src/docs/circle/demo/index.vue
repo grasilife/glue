@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <glue-circle
         :current-rate="currentRate1"
         :rate="rate"
@@ -9,7 +9,7 @@
       ></glue-circle>
     </demo-block>
 
-    <demo-block :title="customStyle">
+    <DemoBlock :title="customStyle">
       <glue-circle
         :current-rate="currentRate3"
         :rate="rate"

@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-tabbar v-model="active">
         <van-tabbar-item icon="home-o">{{ tab }}</van-tabbar-item>
         <van-tabbar-item icon="search">{{ tab }}</van-tabbar-item>
@@ -9,7 +9,7 @@
       </van-tabbar>
     </demo-block>
 
-    <demo-block :title="matchByName">
+    <DemoBlock :title="matchByName">
       <van-tabbar v-model="activeName">
         <van-tabbar-item name="home" icon="home-o">
           {{ tab }}
@@ -26,7 +26,7 @@
       </van-tabbar>
     </demo-block>
 
-    <demo-block :title="badge">
+    <DemoBlock :title="badge">
       <van-tabbar v-model="active2">
         <van-tabbar-item icon="home-o">{{ tab }}</van-tabbar-item>
         <van-tabbar-item icon="search" dot>{{ tab }}</van-tabbar-item>
@@ -39,7 +39,7 @@
       </van-tabbar>
     </demo-block>
 
-    <demo-block :title="customIcon">
+    <DemoBlock :title="customIcon">
       <van-tabbar v-model="active3">
         <van-tabbar-item badge="3">
           <span>{{ custom }}</span>
@@ -52,7 +52,7 @@
       </van-tabbar>
     </demo-block>
 
-    <demo-block :title="customColor">
+    <DemoBlock :title="customColor">
       <van-tabbar v-model="active4" active-color="#ee0a24" inactive-color="#000">
         <van-tabbar-item icon="home-o">{{ tab }}</van-tabbar-item>
         <van-tabbar-item icon="search">{{ tab }}</van-tabbar-item>
@@ -61,7 +61,7 @@
       </van-tabbar>
     </demo-block>
 
-    <demo-block :title="switchEvent">
+    <DemoBlock :title="switchEvent">
       <van-tabbar v-model="active5" @change="onChange">
         <van-tabbar-item icon="home-o">{{ tab + 1 }}</van-tabbar-item>
         <van-tabbar-item icon="search">{{ tab + 2 }}</van-tabbar-item>

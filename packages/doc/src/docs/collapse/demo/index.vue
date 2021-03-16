@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-collapse v-model="active1">
         <van-collapse-item :title="title + 1">
           {{ text }}
@@ -14,7 +14,7 @@
       </van-collapse>
     </demo-block>
 
-    <demo-block :title="accordion">
+    <DemoBlock :title="accordion">
       <van-collapse v-model="active2" accordion>
         <van-collapse-item :title="title + 1">
           {{ text }}
@@ -28,7 +28,7 @@
       </van-collapse>
     </demo-block>
 
-    <demo-block :title="disabled">
+    <DemoBlock :title="disabled">
       <van-collapse v-model="active3">
         <van-collapse-item :title="title + 1">
           {{ text }}
@@ -42,7 +42,7 @@
       </van-collapse>
     </demo-block>
 
-    <demo-block :title="titleSlot">
+    <DemoBlock :title="titleSlot">
       <van-collapse v-model="active4">
         <van-collapse-item>
           <template #title> {{ title + 1 }}<van-icon name="question-o" /> </template>

@@ -7,50 +7,50 @@
 
 ## Properties
 
-| Property            | Attribute             | Description | Type               | Default      |
-| ------------------- | --------------------- | ----------- | ------------------ | ------------ |
-| `arrowDirection`    | `arrow-direction`     |             | `string`           | `undefined`  |
-| `autocomplete`      | `autocomplete`        |             | `string`           | `undefined`  |
-| `autosize`          | `autosize`            |             | `any`              | `undefined`  |
-| `border`            | `border`              |             | `boolean`          | `true`       |
-| `center`            | `center`              |             | `boolean`          | `undefined`  |
-| `clearTrigger`      | `clear-trigger`       |             | `string`           | `'focus'`    |
-| `clearable`         | `clearable`           |             | `boolean`          | `undefined`  |
-| `clickable`         | `clickable`           |             | `boolean`          | `undefined`  |
-| `colon`             | `colon`               |             | `any`              | `null`       |
-| `disabled`          | `disabled`            |             | `any`              | `null`       |
-| `error`             | `error`               |             | `any`              | `null`       |
-| `errorMessage`      | `error-message`       |             | `string`           | `undefined`  |
-| `errorMessageAlign` | `error-message-align` |             | `string`           | `undefined`  |
-| `formatTrigger`     | `format-trigger`      |             | `string`           | `'onChange'` |
-| `formatter`         | `formatter`           |             | `any`              | `undefined`  |
-| `icon`              | `icon`                |             | `string`           | `undefined`  |
-| `iconPrefix`        | `icon-prefix`         |             | `string`           | `undefined`  |
-| `inputAlign`        | `input-align`         |             | `string`           | `undefined`  |
-| `isLink`            | `is-link`             |             | `boolean`          | `undefined`  |
-| `label`             | `label`               |             | `number \| string` | `undefined`  |
-| `labelAlign`        | `label-align`         |             | `string`           | `undefined`  |
-| `labelClass`        | `label-class`         |             | `any`              | `null`       |
-| `labelWidth`        | `label-width`         |             | `number \| string` | `undefined`  |
-| `leftIcon`          | `left-icon`           |             | `string`           | `undefined`  |
-| `maxlength`         | `maxlength`           |             | `number \| string` | `undefined`  |
-| `modelValue`        | `model-value`         |             | `string`           | `undefined`  |
-| `name`              | `name`                |             | `string`           | `undefined`  |
-| `placeholder`       | `placeholder`         |             | `string`           | `undefined`  |
-| `readonly`          | `readonly`            |             | `any`              | `null`       |
-| `required`          | `required`            |             | `boolean`          | `undefined`  |
-| `rightIcon`         | `right-icon`          |             | `string`           | `undefined`  |
-| `rows`              | `rows`                |             | `number \| string` | `undefined`  |
-| `rules`             | `rules`               |             | `any`              | `undefined`  |
-| `showWordLimit`     | `show-word-limit`     |             | `boolean`          | `undefined`  |
-| `size`              | `size`                |             | `string`           | `undefined`  |
-| `tilabelClasstle`   | `tilabel-classtle`    |             | `any`              | `null`       |
-| `title`             | `title`               |             | `string`           | `undefined`  |
-| `titleClass`        | `title-class`         |             | `any`              | `null`       |
-| `titleStyle`        | `title-style`         |             | `any`              | `null`       |
-| `type`              | `type`                |             | `string`           | `'text'`     |
-| `value`             | `value`               |             | `number \| string` | `undefined`  |
-| `valueClass`        | `value-class`         |             | `any`              | `null`       |
+| Property            | Attribute             | Description | Type                                  | Default      |
+| ------------------- | --------------------- | ----------- | ------------------------------------- | ------------ |
+| `arrowDirection`    | `arrow-direction`     |             | `"down" \| "left" \| "right" \| "up"` | `undefined`  |
+| `autocomplete`      | `autocomplete`        |             | `string`                              | `undefined`  |
+| `autosize`          | `autosize`            |             | `any`                                 | `undefined`  |
+| `border`            | `border`              |             | `boolean`                             | `true`       |
+| `center`            | `center`              |             | `boolean`                             | `undefined`  |
+| `clearTrigger`      | `clear-trigger`       |             | `string`                              | `'focus'`    |
+| `clearable`         | `clearable`           |             | `boolean`                             | `undefined`  |
+| `clickable`         | `clickable`           |             | `boolean`                             | `undefined`  |
+| `colon`             | `colon`               |             | `any`                                 | `null`       |
+| `disabled`          | `disabled`            |             | `any`                                 | `null`       |
+| `error`             | `error`               |             | `any`                                 | `null`       |
+| `errorMessage`      | `error-message`       |             | `string`                              | `undefined`  |
+| `errorMessageAlign` | `error-message-align` |             | `string`                              | `undefined`  |
+| `formatTrigger`     | `format-trigger`      |             | `string`                              | `'onChange'` |
+| `formatter`         | `formatter`           |             | `any`                                 | `undefined`  |
+| `icon`              | `icon`                |             | `string`                              | `undefined`  |
+| `iconPrefix`        | `icon-prefix`         |             | `string`                              | `undefined`  |
+| `inputAlign`        | `input-align`         |             | `string`                              | `undefined`  |
+| `isLink`            | `is-link`             |             | `boolean`                             | `undefined`  |
+| `label`             | `label`               |             | `number \| string`                    | `undefined`  |
+| `labelAlign`        | `label-align`         |             | `string`                              | `undefined`  |
+| `labelClass`        | `label-class`         |             | `any`                                 | `null`       |
+| `labelWidth`        | `label-width`         |             | `number \| string`                    | `undefined`  |
+| `leftIcon`          | `left-icon`           |             | `string`                              | `undefined`  |
+| `maxlength`         | `maxlength`           |             | `number \| string`                    | `undefined`  |
+| `modelValue`        | `model-value`         |             | `string`                              | `undefined`  |
+| `name`              | `name`                |             | `string`                              | `undefined`  |
+| `placeholder`       | `placeholder`         |             | `string`                              | `undefined`  |
+| `readonly`          | `readonly`            |             | `any`                                 | `null`       |
+| `required`          | `required`            |             | `boolean`                             | `undefined`  |
+| `rightIcon`         | `right-icon`          |             | `string`                              | `undefined`  |
+| `rows`              | `rows`                |             | `number \| string`                    | `undefined`  |
+| `rules`             | `rules`               |             | `any`                                 | `undefined`  |
+| `showWordLimit`     | `show-word-limit`     |             | `boolean`                             | `undefined`  |
+| `size`              | `size`                |             | `string`                              | `undefined`  |
+| `tilabelClasstle`   | `tilabel-classtle`    |             | `any`                                 | `null`       |
+| `title`             | `title`               |             | `string`                              | `undefined`  |
+| `titleClass`        | `title-class`         |             | `any`                                 | `null`       |
+| `titleStyle`        | `title-style`         |             | `any`                                 | `null`       |
+| `type`              | `type`                |             | `string`                              | `'text'`     |
+| `value`             | `value`               |             | `number \| string`                    | `undefined`  |
+| `valueClass`        | `value-class`         |             | `any`                                 | `null`       |
 
 
 ## Dependencies

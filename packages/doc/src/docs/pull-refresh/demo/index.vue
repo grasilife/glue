@@ -1,5 +1,5 @@
 <template>
-  <demo-section name="pull-refresh">
+  <DemoSection name="pull-refresh">
     <van-tabs>
       <van-tab :title="basicUsage">
         <van-pull-refresh v-model="isLoading" @refresh="onRefresh(true)">

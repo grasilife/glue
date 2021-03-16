@@ -1,5 +1,5 @@
 <template>
-  <demo-section>
+  <DemoSection>
     <van-grid :column-num="2" :border="false">
       <van-grid-item>
         <h3 class="demo-sidebar-title">{{ basicUsage }}</h3>

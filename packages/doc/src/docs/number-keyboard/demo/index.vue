@@ -1,5 +1,5 @@
 <template>
-  <demo-section>
+  <DemoSection>
     <van-cell is-link @touchstart.native.stop="keyboard = 'default'">
       {{ button1 }}
     </van-cell>

@@ -1,6 +1,6 @@
 <template>
-  <demo-section>
-    <demo-block :title="basicUsage">
+  <DemoSection>
+    <DemoBlock :title="basicUsage">
       <van-badge content="5">
         <div class="child" />
       </van-badge>
@@ -15,7 +15,7 @@
       </van-badge>
     </demo-block>
 
-    <demo-block :title="max">
+    <DemoBlock :title="max">
       <van-badge content="20" max="9">
         <div class="child" />
       </van-badge>
@@ -27,7 +27,7 @@
       </van-badge>
     </demo-block>
 
-    <demo-block :title="customColor">
+    <DemoBlock :title="customColor">
       <van-badge content="5" color="#1989fa">
         <div class="child" />
       </van-badge>
@@ -39,7 +39,7 @@
       </van-badge>
     </demo-block>
 
-    <demo-block :title="customContent">
+    <DemoBlock :title="customContent">
       <van-badge>
         <div class="child" />
         <template #content>
@@ -60,7 +60,7 @@
       </van-badge>
     </demo-block>
 
-    <demo-block :title="standalone">
+    <DemoBlock :title="standalone">
       <van-badge content="20" style="margin-left: 16px;" />
       <van-badge content="200" max="99" style="margin-left: 12px;" />
     </demo-block>
