@@ -18,9 +18,8 @@
 | `isLink`          | `is-link`          |             | `boolean`                             | `undefined` |
 | `label`           | `label`            |             | `number \| string`                    | `undefined` |
 | `required`        | `required`         |             | `boolean`                             | `undefined` |
+| `rightIcon`       | `right-icon`       |             | `string`                              | `undefined` |
 | `size`            | `size`             |             | `string`                              | `undefined` |
-| `slotRightIcon`   | `slot-right-icon`  |             | `boolean`                             | `undefined` |
-| `slotTitle`       | `slot-title`       |             | `boolean`                             | `undefined` |
 | `tilabelClasstle` | `tilabel-classtle` |             | `any`                                 | `null`      |
 | `title`           | `title`            |             | `string`                              | `undefined` |
 | `titleClass`      | `title-class`      |             | `any`                                 | `null`      |

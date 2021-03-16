@@ -94,13 +94,28 @@ export class GlueDemo {
           <glue-cell title="单元格" value="内容"></glue-cell>
         </glue-cell-group> */}
         {/* <glue-cell value="内容" is-link></glue-cell> */}
-        <glue-cell value="内容" is-link slot-title>
+        <glue-cell value="内容" title="#slot">
           <div slot="title">
             <span class="custom-title">单元格2</span>
           </div>
         </glue-cell>
-        <glue-cell title="单元格" icon="shop-o" slot-right-icon>
-          <div slot="slotRightIcon">
+        <glue-cell value="#slot" title="单元格">
+          <div slot="value">
+            <span class="custom-title">单元格1112</span>
+          </div>
+        </glue-cell>
+        <glue-cell value="1111" title="单元格" label="#slot">
+          <div slot="label">
+            <span class="custom-title">单元格1112</span>
+          </div>
+        </glue-cell>
+        <glue-cell title="单元格" icon="#slot">
+          <div slot="icon">
+            <glue-icon name="search" class="search-icon"></glue-icon>
+          </div>
+        </glue-cell>
+        <glue-cell title="单元格" icon="shop-o" right-icon="#slot">
+          <div slot="rightIcon">
             <glue-icon name="search" class="search-icon"></glue-icon>
           </div>
         </glue-cell>

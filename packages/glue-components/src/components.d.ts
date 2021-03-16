@@ -174,9 +174,8 @@ export namespace Components {
         "isLink": boolean;
         "label": string | number;
         "required": boolean;
+        "rightIcon": string;
         "size": string;
-        "slotRightIcon": boolean;
-        "slotTitle": boolean;
         "tilabelClasstle": any;
         "title": string;
         "titleClass": any;
@@ -1691,9 +1690,8 @@ declare namespace LocalJSX {
         "isLink"?: boolean;
         "label"?: string | number;
         "required"?: boolean;
+        "rightIcon"?: string;
         "size"?: string;
-        "slotRightIcon"?: boolean;
-        "slotTitle"?: boolean;
         "tilabelClasstle"?: any;
         "title"?: string;
         "titleClass"?: any;

@@ -79,19 +79,37 @@
 如以上用法不能满足你的需求，可以使用插槽来自定义内容。
 
 ```html
-<glue-cell value="内容" is-link slot-title>
+<glue-cell :value="content" is-link title="#slot">
   <!-- 使用 title 插槽来自定义标题 -->
   <div slot="title">
-    <span class="custom-title">单元格</span>
-    <glue-tag type="danger">标签</glue-tag>
+    <span class="custom-title">{{ cell }}</span>
+    <glue-tag type="danger">{{ tag }}</glue-tag>
   </div>
 </glue-cell>
 
-<glue-cell title="单元格" icon="shop-o" slot-right-icon>
-  <!-- 使用 right-icon 插槽来自定义右侧图标 -->
-  <div slot="slotRightIcon">
+<glue-cell value="#slot" is-link :title="cell">
+  <!-- 使用 value 插槽来自定义标题 -->
+  <div slot="value">
+    <span class="custom-title">{{ value }}</span>
+    <glue-tag type="danger">{{ tag }}</glue-tag>
+  </div>
+</glue-cell>
+
+<glue-cell :title="cell" icon="#slot" right-icon="#slot">
+  <!-- 使用icon插槽和right-icon插槽来自定义标题 -->
+  <div slot="icon">
+    <glue-icon name="shop-o" class="search-icon" />
+  </div>
+  <div slot="rightIcon">
     <glue-icon name="search" class="search-icon" />
-    </div>
+  </div>
+</glue-cell>
+
+ <glue-cell :title="cell" right-icon="#slot">
+   <!-- 使用right-icon插槽来自定义标题 -->
+  <div slot="rightIcon">
+    <glue-icon name="search" class="search-icon" />
+  </div>
 </glue-cell>
 
 <style>
@@ -128,11 +146,12 @@
 
 | 参数            | 说明                                                                | 类型                        | 默认值     |
 |-----------------|-------------------------------------------------------------------|-----------------------------|------------|
-| title           | 左侧标题                                                            | _number \| string_          | -          |
-| value           | 右侧内容                                                            | _number \| string_          | -          |
-| label           | 标题下方的描述信息                                                  | _string_                    | -          |
+| title           | 左侧标题,使用#slot开启插槽                                                           | _number \| string_ |        | -          |
+| value           | 右侧内容,使用#slot开启插槽                                                            | _number \| string_          | -          |
+| label           | 标题下方的描述信息,使用#slot开启插槽                                                  | _string_                    | -          |
 | size            | 单元格大小，可选值为 `large`                                         | _string_                    | -          |
-| icon            | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_                    | -          |
+| icon            | 左侧[图标名称](#/zh-CN/icon)或图片链接,使用#slot开启插槽                               | _string_                    | -          |
+| right-icon      | 左侧[图标名称](#/zh-CN/icon),使用#slot开启插槽                                         | _string_                    | -          |
 | icon-prefix     | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_                    | `van-icon` |
 | border          | 是否显示内边框                                                      | _boolean_                   | `true`     |
 | replace         | 是否在跳转时替换当前页面历史                                        | _boolean_                   | `false`    |
@@ -145,8 +164,6 @@
 | title-class     | 左侧标题额外类名                                                    | _string \| Array \| object_ | -          |
 | value-class     | 右侧内容额外类名                                                    | _string \| Array \| object_ | -          |
 | label-class     | 描述信息额外类名                                                    | _string \| Array \| object_ | -          |
-| slot-title      | 开启slotTitle                                                       | _boolean_                   | -          |
-| slot-right-icon | 开启slotRightIcon                                                   | _boolean_                   | -          |
 
 ### Cell Events
 
@@ -161,16 +178,14 @@
 
 ### Cell Slots
 
-| 名称          | 说明                         |
-|---------------|----------------------------|
-| default       | 自定义右侧 value 的内容      |
-| title         | 自定义左侧 title 的内容      |
-| label         | 自定义标题下方 label 的内容  |
-| icon          | 自定义左侧图标               |
-| right-icon    | 自定义右侧按钮，默认为`arrow` |
-| extra         | 自定义单元格最右侧的额外内容 |
-| slotTitle     | 自定义标题                   |
-| slotRightIcon | 自定义右侧图标               |
+| 名称       | 说明                         |
+|------------|----------------------------|
+| default    | 自定义右侧 value 的内容      |
+| title      | 自定义左侧 title 的内容      |
+| label      | 自定义标题下方 label 的内容  |
+| icon       | 自定义左侧图标               |
+| right-icon | 自定义右侧按钮，默认为`arrow` |
+| extra      | 自定义单元格最右侧的额外内容 |
 
 ### 样式变量
 

@@ -41,15 +41,28 @@
     </DemoBlock>
 
     <DemoBlock :title="useSlots">
-      <glue-cell :value="content" is-link slot-title>
+      <glue-cell :value="content" is-link title="#slot">
         <div slot="title">
           <span class="custom-title">{{ cell }}</span>
           <glue-tag type="danger">{{ tag }}</glue-tag>
         </div>
       </glue-cell>
-
-      <glue-cell icon="shop-o" :title="cell" slot-right-icon>
-        <div slot="slotRightIcon">
+      <glue-cell value="#slot" is-link :title="cell">
+        <div slot="value">
+          <span class="custom-title">{{ value }}</span>
+          <glue-tag type="danger">{{ tag }}</glue-tag>
+        </div>
+      </glue-cell>
+      <glue-cell :title="cell" icon="#slot" right-icon="#slot">
+        <div slot="icon">
+          <glue-icon name="shop-o" class="search-icon" />
+        </div>
+        <div slot="rightIcon">
+          <glue-icon name="search" class="search-icon" />
+        </div>
+      </glue-cell>
+      <glue-cell :title="cell" right-icon="#slot">
+        <div slot="rightIcon">
           <glue-icon name="search" class="search-icon" />
         </div>
       </glue-cell>

@@ -24,10 +24,10 @@ export class GlueCell {
   @Prop() tilabelClasstle = null;
   @Prop() arrowDirection: CellArrowDirection;
   @Prop() border = true;
-  @Prop() slotTitle: boolean;
-  @Prop() slotRightIcon: boolean;
+  @Prop() rightIcon: string;
+
   renderLabel = () => {
-    const showLabel = isDef(this.label);
+    const showLabel = this.label == '#slot' || isDef(this.label);
 
     if (showLabel) {
       return (
@@ -36,14 +36,14 @@ export class GlueCell {
             'glue-cell__label': true,
           })}
         >
-          {this.label}
+          {this.label == '#slot' ? <slot name="label"></slot> : this.label}
         </div>
       );
     }
   };
 
   renderTitle = () => {
-    if (this.slotTitle || isDef(this.title)) {
+    if (this.title == '#slot' || isDef(this.title)) {
       return (
         <div
           class={classNames({
@@ -52,7 +52,7 @@ export class GlueCell {
           })}
           style={this.titleStyle}
         >
-          {this.slotTitle ? <slot name="title"></slot> : <span>{this.title}</span>}
+          {this.title == '#slot' ? <slot name="title"></slot> : <span>{this.title}</span>}
           {this.renderLabel()}
         </div>
       );
@@ -60,8 +60,8 @@ export class GlueCell {
   };
 
   renderValue = () => {
-    const hasTitle = this.slotTitle || isDef(this.title);
-    const hasValue = isDef(this.value);
+    const hasTitle = this.title == '#slot' || isDef(this.title);
+    const hasValue = this.value == '#slot' || isDef(this.value);
 
     if (hasValue) {
       return (
@@ -71,13 +71,16 @@ export class GlueCell {
             'glue-cell__value--alone': !hasTitle,
           })}
         >
-          {<span>{this.value}</span>}
+          {this.value == '#slot' ? <slot name="value"></slot> : <span>{this.value}</span>}
         </div>
       );
     }
   };
 
   renderLeftIcon = () => {
+    if (this.icon == '#slot') {
+      return <slot name="icon"></slot>;
+    }
     if (this.icon) {
       return (
         <glue-icon
@@ -92,8 +95,8 @@ export class GlueCell {
   };
 
   renderRightIcon = () => {
-    if (this.slotRightIcon) {
-      return <slot name="slotRightIcon"></slot>;
+    if (this.rightIcon == '#slot') {
+      return <slot name="rightIcon"></slot>;
     }
     if (this.isLink) {
       const name = this.arrowDirection ? `arrow-${this.arrowDirection}` : 'arrow';
