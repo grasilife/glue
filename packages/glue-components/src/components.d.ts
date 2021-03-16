@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { CellArrowDirection } from "./components/glue-cell/glue-cell-interface";
 import { DividerContentPosition } from "./components/glue-divider/glue-divider";
 import { GridDirection } from "./components/glue-grid/glue-grid";
 import { GridDirection as GridDirection1 } from "./components/glue-grid-item/glue-grid-item";
@@ -120,7 +121,8 @@ export namespace Components {
         "content": number | string;
         "dot": boolean;
         "max": number | string;
-        "tag": string;
+        "offset": any;
+        "slotContent": boolean;
     }
     interface GlueButton {
         "block": boolean;
@@ -163,7 +165,7 @@ export namespace Components {
         "first": string;
     }
     interface GlueCell {
-        "arrowDirection": string;
+        "arrowDirection": CellArrowDirection;
         "border": boolean;
         "center": boolean;
         "clickable": boolean;
@@ -221,7 +223,7 @@ export namespace Components {
         "modelValue": string;
     }
     interface GlueCollapseItem {
-        "arrowDirection": string;
+        "arrowDirection": CellArrowDirection;
         "border": boolean;
         "center": boolean;
         "clickable": boolean;
@@ -345,7 +347,7 @@ export namespace Components {
         "imageSize": string;
     }
     interface GlueField {
-        "arrowDirection": string;
+        "arrowDirection": CellArrowDirection;
         "autocomplete": string;
         "autosize": any;
         "border": boolean;
@@ -434,7 +436,7 @@ export namespace Components {
         "color": string;
         "dot": boolean;
         "name": string;
-        "size": number;
+        "size": number | string;
         "tag": string;
     }
     interface GlueImage {
@@ -1632,7 +1634,8 @@ declare namespace LocalJSX {
         "content"?: number | string;
         "dot"?: boolean;
         "max"?: number | string;
-        "tag"?: string;
+        "offset"?: any;
+        "slotContent"?: boolean;
     }
     interface GlueButton {
         "block"?: boolean;
@@ -1677,7 +1680,7 @@ declare namespace LocalJSX {
         "first"?: string;
     }
     interface GlueCell {
-        "arrowDirection"?: string;
+        "arrowDirection"?: CellArrowDirection;
         "border"?: boolean;
         "center"?: boolean;
         "clickable"?: boolean;
@@ -1685,7 +1688,6 @@ declare namespace LocalJSX {
         "iconPrefix"?: string;
         "isLink"?: boolean;
         "label"?: string | number;
-        "onClick"?: (event: CustomEvent<any>) => void;
         "required"?: boolean;
         "size"?: string;
         "tilabelClasstle"?: any;
@@ -1737,7 +1739,7 @@ declare namespace LocalJSX {
         "modelValue"?: string;
     }
     interface GlueCollapseItem {
-        "arrowDirection"?: string;
+        "arrowDirection"?: CellArrowDirection;
         "border"?: boolean;
         "center"?: boolean;
         "clickable"?: boolean;
@@ -1862,7 +1864,7 @@ declare namespace LocalJSX {
         "imageSize"?: string;
     }
     interface GlueField {
-        "arrowDirection"?: string;
+        "arrowDirection"?: CellArrowDirection;
         "autocomplete"?: string;
         "autosize"?: any;
         "border"?: boolean;
@@ -1953,7 +1955,7 @@ declare namespace LocalJSX {
         "color"?: string;
         "dot"?: boolean;
         "name"?: string;
-        "size"?: number;
+        "size"?: number | string;
         "tag"?: string;
     }
     interface GlueImage {

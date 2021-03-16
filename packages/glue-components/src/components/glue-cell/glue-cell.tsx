@@ -1,6 +1,7 @@
-import { Component, Prop, h, Event, EventEmitter, Host } from '@stencil/core';
+import { Component, Prop, h, Host } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
+import { CellArrowDirection } from '../glue-cell/glue-cell-interface';
 @Component({
   tag: 'glue-cell',
   styleUrl: 'glue-cell.less',
@@ -21,13 +22,8 @@ export class GlueCell {
   @Prop() titleClass = null;
   @Prop() valueClass = null;
   @Prop() tilabelClasstle = null;
-  @Prop() arrowDirection: string;
+  @Prop() arrowDirection: CellArrowDirection;
   @Prop() border = true;
-  @Event()
-  click: EventEmitter;
-  handleClick = event => {
-    this.click.emit(event);
-  };
   renderLabel = () => {
     const showLabel = isDef(this.label);
 
@@ -118,7 +114,6 @@ export class GlueCell {
     if (size) {
       classes[size] = !!size;
     }
-    //TODO:边框未生效
     return (
       <Host
         class={classNames('glue-cell', {
@@ -130,7 +125,6 @@ export class GlueCell {
         })}
         role={clickable ? 'button' : undefined}
         tabindex={clickable ? 0 : undefined}
-        onClick={this.handleClick}
       >
         {this.renderLeftIcon()}
         {this.renderTitle()}

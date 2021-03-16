@@ -5,7 +5,7 @@ export function addUnit(value?: string | number): string | undefined {
   if (!isDef(value)) {
     return undefined;
   }
-
+  console.log(value, 'value');
   return isNumeric(value) ? `${value}px` : String(value);
 }
 
@@ -25,8 +25,7 @@ let rootFontSize: number;
 function getRootFontSize() {
   if (!rootFontSize) {
     const doc = document.documentElement;
-    const fontSize =
-      doc.style.fontSize || window.getComputedStyle(doc).fontSize;
+    const fontSize = doc.style.fontSize || window.getComputedStyle(doc).fontSize;
 
     rootFontSize = parseFloat(fontSize);
   }

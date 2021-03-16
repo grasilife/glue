@@ -1,5 +1,6 @@
 import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
+import { CellArrowDirection } from '../glue-cell/glue-cell-interface';
 @Component({
   tag: 'glue-collapse-item',
   styleUrl: 'glue-collapse-item.less',
@@ -20,7 +21,7 @@ export class GlueCollapseItem {
   @Prop() titleClass = null;
   @Prop() valueClass = null;
   @Prop() tilabelClasstle = null;
-  @Prop() arrowDirection: string;
+  @Prop() arrowDirection: CellArrowDirection;
   @Prop() border = true;
   @Prop() name: string;
 

@@ -7,7 +7,7 @@ import { addUnit } from '../../utils/format/unit';
 import { formatNumber } from '../../utils/format/number';
 import { resetScroll } from '../../utils/dom/scroll';
 import { runSyncRule } from './utils';
-
+import { CellArrowDirection } from '../glue-cell/glue-cell-interface';
 import { trigger, preventDefault } from '../../utils/dom/event';
 const [bem] = createNamespace('glue-field');
 @Component({
@@ -57,7 +57,7 @@ export class GlueField {
   @Prop() titleClass = null;
   @Prop() valueClass = null;
   @Prop() tilabelClasstle = null;
-  @Prop() arrowDirection: string;
+  @Prop() arrowDirection: CellArrowDirection;
   @Prop() border = true;
   @State() focused = false;
   @State() validateFailed = false;

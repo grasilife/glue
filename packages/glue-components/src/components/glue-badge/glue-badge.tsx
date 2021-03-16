@@ -1,7 +1,7 @@
-import { Component, Prop, h, Host } from '@stencil/core';
+import { Component, Prop, h, Host, Element } from '@stencil/core';
 import { isDef } from '../../utils/base';
 import classNames from 'classnames';
-// import { isNumeric } from '../../utils/validate/number';
+import { isNumeric } from '../../utils/validate/number';
 @Component({
   tag: 'glue-badge',
   styleUrl: 'glue-badge.less',
@@ -10,50 +10,74 @@ import classNames from 'classnames';
 export class GlueBadge {
   @Prop() dot: boolean;
   @Prop() max: number | string;
-
   @Prop() color: string;
+  @Prop() offset: any;
   @Prop() content: number | string;
+  @Prop() slotContent: boolean;
+  @Element() el!: HTMLElement;
+  hasContent = () => !!(isDef(this.content) && this.content !== '');
 
-  @Prop() tag: string = 'dev';
+  renderContent = () => {
+    const { dot, max, content } = this;
 
-  hasContent = () => !!(this.content || isDef(this.content));
+    if (!dot && this.hasContent()) {
+      // if (slots.content) {
+      //   return slots.content();
+      // }
 
+      if (isDef(max) && isNumeric(content!) && +content > max) {
+        return `${max}+`;
+      }
+
+      return content;
+    }
+  };
+  renderSlotContent = () => {
+    return (
+      <div class="glue-badge__wrapper">
+        <slot></slot>
+        {this.renderBadge()}
+      </div>
+    );
+  };
   renderBadge = () => {
-    console.log(this, 'ahfuahuh');
-    console.log(this.hasContent(), this.content, 'this.hasContent()');
     if (this.hasContent() || this.dot) {
+      const style = {
+        background: this.color,
+      };
+
+      if (this.offset) {
+        // const [x, y] = this.offset;
+        // if (slots.default) {
+        //   style.top = `${y}px`;
+        //   style.right = `${-x}px`;
+        // } else {
+        //   style.marginTop = `${y}px`;
+        //   style.marginLeft = `${x}px`;
+        // }
+      }
+
       return (
-        <div class={classNames({})} style={{ background: this.color }}>
+        <div
+          class={classNames({
+            'glue-badge--dot': this.dot,
+            'glue-badge': true,
+            'glue-badge--fixed': true,
+            // 'glue-badge__wrapper': true,
+          })}
+          style={style}
+        >
           {this.renderContent()}
         </div>
       );
     }
   };
-
-  renderContent = () => {
-    const { dot, max, content } = this;
-    console.log(this);
-    if (!dot && this.hasContent()) {
-      if (isDef(max)) {
-        return `${max}+`;
-      }
-      console.log(content, 'content');
-      return content;
-    }
-  };
   render() {
-    return (
-      <Host
-        class={classNames({
-          'glue-badge--dot': this.dot,
-          'glue-badge': true,
-          'glue-badge--fixed': true,
-          'glue-badge__wrapper': true,
-        })}
-      >
-        <slot></slot>
-        {this.renderBadge()}
-      </Host>
-    );
+    console.log(this.el, this.slotContent, '元素');
+    if (this.slotContent) {
+      return <Host>{this.renderSlotContent()}</Host>;
+    } else {
+      return <Host>{this.renderBadge()}</Host>;
+    }
   }
 }
