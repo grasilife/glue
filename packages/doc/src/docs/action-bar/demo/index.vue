@@ -9,7 +9,7 @@
           button2
         }}</glue-action-bar-button>
       </glue-action-bar>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="iconBadge">
       <glue-action-bar>
@@ -19,7 +19,7 @@
         <glue-action-bar-button type="warning" :text="button1">{{ button1 }}</glue-action-bar-button>
         <glue-action-bar-button type="danger" :text="button2">{{ button2 }}</glue-action-bar-button>
       </glue-action-bar>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customIconColor">
       <glue-action-bar>
@@ -29,7 +29,7 @@
         <glue-action-bar-button type="warning" :text="button1">{{ button1 }}</glue-action-bar-button>
         <glue-action-bar-button type="danger" :text="button2">{{ button2 }}</glue-action-bar-button>
       </glue-action-bar>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customButtonColor">
       <glue-action-bar>
@@ -38,7 +38,7 @@
         <glue-action-bar-button color="#be99ff" type="warning" :text="button1">{{ button1 }}</glue-action-bar-button>
         <glue-action-bar-button color="#7232dd" type="danger" :text="button2">{{ button2 }}</glue-action-bar-button>
       </glue-action-bar>
-    </demo-block>
+    </DemoBlock>
   </DemoSection>
 </template>
 

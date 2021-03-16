@@ -37,7 +37,7 @@
         </van-sidebar>
       </van-grid-item>
     </van-grid>
-  </demo-section>
+  </DemoSection>
 </template>
 
 <script>

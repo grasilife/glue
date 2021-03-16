@@ -5,7 +5,7 @@
       <keep-alive>
         <DemoSection>
           <!-- <component :is="Component" /> -->
-        </demo-section>
+        </DemoSection>
       </keep-alive>
     </router-view>
   </div>

@@ -2,23 +2,23 @@
   <DemoSection>
     <DemoBlock :title="basicUsage">
       <van-uploader :after-read="afterRead" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="preview">
       <van-uploader v-model="fileList" multiple accept="*" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="status">
       <van-uploader v-model="statusFileList" :after-read="afterReadFailed" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="maxCount">
       <van-uploader v-model="fileList2" multiple :max-count="2" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="maxSize">
       <van-uploader v-model="fileList4" multiple :max-size="500 * 1024" @oversize="onOversize" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customUpload">
       <van-uploader>
@@ -26,7 +26,7 @@
           {{ upload }}
         </van-button>
       </van-uploader>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="previewCover">
       <van-uploader v-model="previewCoverFiles">
@@ -34,20 +34,20 @@
           <div class="preview-cover van-ellipsis">{{ file.name }}</div>
         </template>
       </van-uploader>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="beforeReadTitle">
       <van-uploader v-model="fileList3" :before-read="beforeRead" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="disabled">
       <van-uploader :after-read="afterRead" disabled />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customPreviewImage">
       <van-uploader v-model="fileList5" multiple accept="*" :deletable="false" />
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

@@ -3,17 +3,17 @@
     <DemoBlock card :title="basicUsage">
       <van-cell is-link :title="showSheet" @click="show.basic = true" />
       <van-share-sheet v-model="show.basic" :title="title" :options="options" @select="onSelect" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="multiLine">
       <van-cell is-link :title="showSheet" @click="show.multiLine = true" />
       <van-share-sheet v-model="show.multiLine" :title="title" :options="multiLineOptions" @select="onSelect" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="customIcon">
       <van-cell is-link :title="showSheet" @click="show.customIcon = true" />
       <van-share-sheet v-model="show.customIcon" :options="customIconOptions" @select="onSelect" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="withDesc">
       <van-cell is-link :title="showSheet" @click="show.withDesc = true" />
@@ -24,8 +24,8 @@
         :description="description"
         @select="onSelect"
       />
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

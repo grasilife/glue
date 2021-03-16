@@ -29,7 +29,7 @@
           </van-button>
         </template>
       </van-popover>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="placement">
       <van-field is-link readonly name="picker" :label="choosePlacement" @click="showPicker = true" />
@@ -51,7 +51,7 @@
         </div>
         <van-picker :columns="placements" @change="onPickerChange" />
       </van-popup>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="actionOptions">
       <van-popover
@@ -82,7 +82,7 @@
           </van-button>
         </template>
       </van-popover>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customContent">
       <van-popover
@@ -101,8 +101,8 @@
           </van-button>
         </template>
       </van-popover>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

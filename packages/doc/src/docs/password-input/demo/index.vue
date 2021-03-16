@@ -6,7 +6,7 @@
         :focused="current === 'basicUsage'"
         @focus="current = 'basicUsage'"
       />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock ref="customLength" :title="customLength">
       <van-password-input
@@ -15,7 +15,7 @@
         :focused="current === 'customLength'"
         @focus="current = 'customLength'"
       />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock ref="addGutter" :title="addGutter">
       <van-password-input
@@ -24,7 +24,7 @@
         :focused="current === 'addGutter'"
         @focus="current = 'addGutter'"
       />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock ref="removeMask" :title="removeMask">
       <van-password-input
@@ -33,7 +33,7 @@
         :focused="current === 'removeMask'"
         @focus="current = 'removeMask'"
       />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock ref="showInfo" :title="showInfo">
       <van-password-input
@@ -43,10 +43,10 @@
         :focused="current === 'showInfo'"
         @focus="current = 'showInfo'"
       />
-    </demo-block>
+    </DemoBlock>
 
     <van-number-keyboard :show="!!current" @blur="current = ''" @input="onInput" @delete="onDelete" />
-  </demo-section>
+  </DemoSection>
 </template>
 
 <script>

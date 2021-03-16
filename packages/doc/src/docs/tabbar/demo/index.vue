@@ -7,7 +7,7 @@
         <van-tabbar-item icon="friends-o">{{ tab }}</van-tabbar-item>
         <van-tabbar-item icon="setting-o">{{ tab }}</van-tabbar-item>
       </van-tabbar>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="matchByName">
       <van-tabbar v-model="activeName">
@@ -24,7 +24,7 @@
           {{ tab }}
         </van-tabbar-item>
       </van-tabbar>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="badge">
       <van-tabbar v-model="active2">
@@ -37,7 +37,7 @@
           {{ tab }}
         </van-tabbar-item>
       </van-tabbar>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customIcon">
       <van-tabbar v-model="active3">
@@ -50,7 +50,7 @@
         <van-tabbar-item icon="search">{{ tab }}</van-tabbar-item>
         <van-tabbar-item icon="setting-o">{{ tab }}</van-tabbar-item>
       </van-tabbar>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customColor">
       <van-tabbar v-model="active4" active-color="#ee0a24" inactive-color="#000">
@@ -59,7 +59,7 @@
         <van-tabbar-item icon="friends-o">{{ tab }}</van-tabbar-item>
         <van-tabbar-item icon="setting-o">{{ tab }}</van-tabbar-item>
       </van-tabbar>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="switchEvent">
       <van-tabbar v-model="active5" @change="onChange">
@@ -68,8 +68,8 @@
         <van-tabbar-item icon="friends-o">{{ tab + 3 }}</van-tabbar-item>
         <van-tabbar-item icon="setting-o">{{ tab + 4 }}</van-tabbar-item>
       </van-tabbar>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

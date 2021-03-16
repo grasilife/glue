@@ -9,7 +9,7 @@
         @click-left="onClickLeft"
         @click-right="onClickRight"
       ></glue-nav-bar>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="useSlot">
       <van-nav-bar :title="title" :left-text="back" left-arrow>
@@ -17,8 +17,8 @@
           <van-icon name="search" size="18" />
         </template>
       </van-nav-bar>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

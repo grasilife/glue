@@ -2,27 +2,27 @@
   <DemoSection>
     <DemoBlock :title="title1">
       <van-slider v-model="value1" @change="onChange" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title2">
       <van-slider range v-model="value2" @change="onChange" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title3">
       <van-slider v-model="value3" :min="-50" :max="50" @change="onChange" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title4">
       <van-slider v-model="value4" disabled />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title5">
       <van-slider v-model="value5" :step="10" @change="onChange" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customStyle">
       <van-slider v-model="value6" bar-height="4px" active-color="#ee0a24" @change="onChange" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customButton">
       <van-slider v-model="value7" active-color="#ee0a24">
@@ -30,15 +30,15 @@
           <div class="custom-button">{{ value7 }}</div>
         </template>
       </van-slider>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="vertical">
       <div :style="{ height: '150px', paddingLeft: '30px' }">
         <van-slider v-model="value8" vertical @change="onChange" />
         <van-slider v-model="value9" range vertical style="margin-left: 100px;" @change="onChange" />
       </div>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

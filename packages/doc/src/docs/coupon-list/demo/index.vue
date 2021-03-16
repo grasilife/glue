@@ -13,8 +13,8 @@
           @exchange="onExchange"
         />
       </van-popup>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

@@ -18,7 +18,7 @@
           @finish="onFinish('base', $event)"
         />
       </van-popup>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="customColorTitle">
       <van-field
@@ -39,7 +39,7 @@
           @finish="onFinish('customColor', $event)"
         />
       </van-popup>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="asyncOptions">
       <van-field
@@ -60,7 +60,7 @@
           @finish="onFinish('async', $event)"
         />
       </van-popup>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="customFieldNamesTitle">
       <van-field
@@ -81,8 +81,8 @@
           @finish="onFinish('customFieldNames', $event)"
         />
       </van-popup>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

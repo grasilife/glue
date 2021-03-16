@@ -21,7 +21,7 @@
         :value="formatRange(date.selectRange)"
         @click="show('range', 'selectRange')"
       />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="quickSelect">
       <van-cell
@@ -37,7 +37,7 @@
         :value="formatRange(date.quickSelect2)"
         @click="show('range', 'quickSelect2')"
       />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="customCalendar">
       <van-cell
@@ -83,7 +83,7 @@
       />
 
       <van-cell is-link :title="firstDayOfWeekTitle" @click="show('single', 'firstDayOfWeek')" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="tiledDisplay">
       <van-calendar
@@ -95,7 +95,7 @@
         :default-date="tiledMinDate"
         :style="{ height: '500px' }"
       />
-    </demo-block>
+    </DemoBlock>
 
     <van-calendar
       v-model="showCalendar"
@@ -113,7 +113,7 @@
       :first-day-of-week="firstDayOfWeek"
       @confirm="onConfirm"
     />
-  </demo-section>
+  </DemoSection>
 </template>
 
 <script>

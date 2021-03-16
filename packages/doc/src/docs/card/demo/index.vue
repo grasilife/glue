@@ -2,11 +2,11 @@
   <DemoSection>
     <DemoBlock :title="basicUsage">
       <van-card num="2" price="2.00" :desc="desc" :title="title" :thumb="imageURL" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="discountInfo">
       <van-card num="2" price="2.00" origin-price="10.00" :tag="tag" :desc="desc" :title="title" :thumb="imageURL" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customContent">
       <van-card num="2" price="2.00" :desc="desc" :title="title" :thumb="imageURL">
@@ -32,8 +32,8 @@
           </div>
         </template>
       </van-card>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

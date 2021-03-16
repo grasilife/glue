@@ -37,7 +37,7 @@
         </van-pull-refresh>
       </van-tab>
     </van-tabs>
-  </demo-section>
+  </DemoSection>
 </template>
 
 <script>

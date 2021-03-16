@@ -2,25 +2,25 @@
   <DemoSection>
     <DemoBlock :title="basicUsage">
       <glue-notice-bar :text="text" scrollable left-icon="volume-o" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="scrollable">
       <glue-notice-bar scrollable :text="shortText" />
       <glue-notice-bar :scrollable="false" :text="text" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="wrapable">
       <glue-notice-bar wrapable :scrollable="false" :text="text" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="mode">
       <glue-notice-bar mode="closeable" :text="shortText" />
       <glue-notice-bar mode="link" :text="shortText" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customStyle">
       <glue-notice-bar :text="shortText" color="#1989fa" background="#ecf9ff" left-icon="info-o" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="verticalScroll">
       <glue-notice-bar left-icon="volume-o" :scrollable="false">
@@ -30,8 +30,8 @@
           <van-swipe-item>{{ content }} 3</van-swipe-item>
         </van-swipe>
       </glue-notice-bar>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

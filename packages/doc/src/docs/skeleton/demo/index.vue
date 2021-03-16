@@ -2,11 +2,11 @@
   <DemoSection>
     <DemoBlock :title="basicUsage">
       <glue-skeleton titleState :row="3"></glue-skeleton>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="showAvatar">
       <glue-skeleton titleState avatar :row="3" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="showChildren">
       <glue-switch v-model="show" size="24px" />
@@ -19,8 +19,8 @@
           </div>
         </div>
       </glue-skeleton>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

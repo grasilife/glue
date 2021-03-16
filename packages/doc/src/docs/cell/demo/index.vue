@@ -5,31 +5,31 @@
         <glue-cell :title="cell" :value="content" />
         <glue-cell :title="cell" :value="content" :label="desc" />
       </glue-cell-group>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="largeSize">
       <glue-cell :title="cell" :value="content" size="large" />
       <glue-cell :title="cell" :value="content" size="large" :label="desc" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="showIcon">
       <glue-cell :title="cell" :value="content" icon="location-o" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="valueOnly">
       <glue-cell :value="content" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="showArrow">
       <glue-cell :title="cell" is-link />
       <glue-cell :title="cell" is-link :value="content" />
       <glue-cell :title="cell" is-link arrow-direction="down" :value="content" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="router">
       <glue-cell :title="urlRoute" is-link url="/vant/mobile.html" />
       <glue-cell :title="vueRoute" is-link to="index" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="groupTitle">
       <glue-cell-group :title="`${group} 1`">
@@ -38,7 +38,7 @@
       <glue-cell-group :title="`${group} 2`">
         <glue-cell :title="cell" :value="content" />
       </glue-cell-group>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="useSlots">
       <glue-cell :value="content" is-link>
@@ -53,12 +53,12 @@
           <glue-icon name="search" class="search-icon" />
         </template>
       </glue-cell>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="verticalCenter">
       <glue-cell center :title="cell" :value="content" :label="desc" />
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

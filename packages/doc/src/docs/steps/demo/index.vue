@@ -9,7 +9,7 @@
       </van-steps>
 
       <van-button @click="nextStep">{{ nextStepTitle }}</van-button>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customStyle">
       <van-steps :active="active" active-icon="success" inactive-icon="arrow" active-color="#38f">
@@ -18,7 +18,7 @@
         <van-step>{{ step3 }}</van-step>
         <van-step>{{ step4 }}</van-step>
       </van-steps>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title3">
       <van-steps :active="0" direction="vertical">
@@ -35,8 +35,8 @@
           <p>2016-07-10 09:30</p>
         </van-step>
       </van-steps>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

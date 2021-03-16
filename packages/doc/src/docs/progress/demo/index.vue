@@ -2,15 +2,15 @@
   <DemoSection>
     <DemoBlock :title="basicUsage">
       <glue-progress :percentage="50" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="strokeWidth">
       <glue-progress :percentage="50" stroke-width="8" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title2">
       <glue-progress inactive :percentage="50" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title3">
       <glue-progress color="#f2826a" :percentage="25" :pivot-text="orange" />
@@ -21,8 +21,8 @@
         pivot-color="#7232dd"
         color="linear-gradient(to right, #be99ff, #7232dd)"
       />
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

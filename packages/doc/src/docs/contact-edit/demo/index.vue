@@ -9,8 +9,8 @@
         @save="onSave"
         @delete="onDelete"
       />
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

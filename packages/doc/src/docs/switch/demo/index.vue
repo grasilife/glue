@@ -2,27 +2,27 @@
   <DemoSection>
     <DemoBlock :title="basicUsage">
       <van-switch v-model="checked" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="disabled">
       <van-switch v-model="checked" disabled />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="loadingStatus">
       <van-switch v-model="checked" loading />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customSize">
       <van-switch v-model="checked2" size="24px" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customColor">
       <van-switch v-model="checked3" active-color="#ee0a24" inactive-color="#dcdee0" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="asyncControl">
       <van-switch :value="checked4" @input="onInput" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="withCell">
       <van-cell center :title="title">
@@ -30,8 +30,8 @@
           <van-switch v-model="checked5" size="24" />
         </template>
       </van-cell>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

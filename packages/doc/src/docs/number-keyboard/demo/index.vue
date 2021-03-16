@@ -78,7 +78,7 @@
     />
 
     <van-number-keyboard v-model="value" :show="keyboard === 'bindValue'" maxlength="6" @blur="keyboard = ''" />
-  </demo-section>
+  </DemoSection>
 </template>
 
 <script>

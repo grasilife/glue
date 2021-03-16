@@ -2,18 +2,18 @@
   <DemoSection>
     <DemoBlock :title="basicUsage">
       <img v-for="img in imageList" :key="img" v-lazy="img" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title2">
       <div v-for="img in backgroundImageList" :key="img" v-lazy:background-image="img" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title3">
       <lazy-component>
         <img v-for="img in componentImageList" :key="img" v-lazy="img" />
       </lazy-component>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

@@ -8,7 +8,7 @@
         :prev-text="prevText"
         :next-text="nextText"
       />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title2">
       <glue-pagination
@@ -19,7 +19,7 @@
         mode="simple"
         size="small"
       />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title3">
       <glue-pagination
@@ -30,7 +30,7 @@
         :prev-text="prevText"
         :next-text="nextText"
       />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title4">
       <van-pagination v-model="currentPage4" :total-items="125" :show-page-size="5">
@@ -42,8 +42,8 @@
         </template>
         <template #page="{ text }">{{ text }}</template>
       </van-pagination>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

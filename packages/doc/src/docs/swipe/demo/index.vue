@@ -7,7 +7,7 @@
         <van-swipe-item>3</van-swipe-item>
         <van-swipe-item>4</van-swipe-item>
       </van-swipe>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title2">
       <van-swipe :autoplay="3000">
@@ -15,7 +15,7 @@
           <img v-lazy="image" />
         </van-swipe-item>
       </van-swipe>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title3">
       <van-swipe indicator-color="white" @change="onChange1">
@@ -24,7 +24,7 @@
         <van-swipe-item>3</van-swipe-item>
         <van-swipe-item>4</van-swipe-item>
       </van-swipe>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title4">
       <van-swipe vertical :autoplay="3000" indicator-color="white" style="height: 200px;" class="demo-swipe--vertical">
@@ -33,7 +33,7 @@
         <van-swipe-item>3</van-swipe-item>
         <van-swipe-item>4</van-swipe-item>
       </van-swipe>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title5">
       <van-swipe :width="300" :loop="false" indicator-color="white">
@@ -42,7 +42,7 @@
         <van-swipe-item>3</van-swipe-item>
         <van-swipe-item>4</van-swipe-item>
       </van-swipe>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title6">
       <van-swipe @change="onChange2">
@@ -55,8 +55,8 @@
           <div class="custom-indicator">{{ current + 1 }}/4</div>
         </template>
       </van-swipe>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

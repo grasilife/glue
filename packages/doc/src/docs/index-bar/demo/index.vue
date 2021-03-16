@@ -25,7 +25,7 @@
         </van-index-bar>
       </van-tab>
     </van-tabs>
-  </demo-section>
+  </DemoSection>
 </template>
 
 <script>

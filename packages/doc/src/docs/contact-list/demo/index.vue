@@ -9,8 +9,8 @@
         @edit="onEdit"
         @select="onSelect"
       />
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

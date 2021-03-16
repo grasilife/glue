@@ -2,11 +2,11 @@
   <DemoSection>
     <DemoBlock :title="radioMode">
       <van-tree-select :items="items" :active-id.sync="activeId" :main-active-index.sync="activeIndex" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="multipleMode">
       <van-tree-select :items="items" :active-id.sync="activeIds" :main-active-index.sync="activeIndex2" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customContent">
       <van-tree-select height="55vw" :items="simpleItems" :main-active-index.sync="activeIndex3">
@@ -15,7 +15,7 @@
           <van-image v-if="activeIndex3 === 1" :show-loading="false" src="https://img.yzcdn.cn/vant/apple-2.jpg" />
         </template>
       </van-tree-select>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="showBadge">
       <van-tree-select
@@ -24,8 +24,8 @@
         :active-id.sync="activeId2"
         :main-active-index.sync="activeIndex4"
       />
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

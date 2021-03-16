@@ -2,39 +2,39 @@
   <DemoSection>
     <DemoBlock card :title="basicUsage">
       <van-picker show-toolbar :title="title" :columns="textColumns" @change="onChange1" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="defaultIndex">
       <van-picker show-toolbar :title="title" :columns="textColumns" :default-index="2" @change="onChange1" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="multipleColumns">
       <van-picker show-toolbar :title="title" :columns="dateColumns" @cancel="onCancel" @confirm="onConfirm" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="cascade">
       <van-picker show-toolbar :title="title" :columns="cascadeColumns" @cancel="onCancel" @confirm="onConfirm" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="disableOption">
       <van-picker show-toolbar :title="title" :columns="disabledColumns" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="setColumnValues">
       <van-picker show-toolbar :title="title" :columns="columns" @change="onChange2" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="loadingStatus">
       <van-picker loading show-toolbar :title="title" :columns="columns" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="withPopup">
       <van-field readonly clickable :label="city" :value="fieldValue" :placeholder="chooseCity" @click="onClickField" />
       <van-popup v-model="showPicker" round position="bottom">
         <van-picker show-toolbar :title="title" :columns="textColumns" @cancel="onCancel2" @confirm="onConfirm2" />
       </van-popup>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

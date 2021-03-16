@@ -4,7 +4,7 @@
       <van-button type="primary" :text="showOverlay" style="margin-left: 16px;" @click="show = true" />
 
       <glue-overlay :show="show" @click="show = false" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="embeddedContent">
       <van-button type="primary" :text="embeddedContent" style="margin-left: 16px;" @click="showEmbedded = true" />
@@ -14,8 +14,8 @@
           <div class="block" />
         </div>
       </g>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

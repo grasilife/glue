@@ -9,7 +9,7 @@
           <van-col span="6" @click="copy(demoImage)">
             <glue-icon :name="demoImage" />
           </van-col>
-        </demo-block>
+        </DemoBlock>
 
         <DemoBlock :title="badge">
           <van-col span="6" @click="copy(demoIcon, { dot: true })">
@@ -21,7 +21,7 @@
           <van-col span="6" @click="copy(demoIcon, { badge: '99+' })">
             <glue-icon :name="demoIcon" badge="99+" />
           </van-col>
-        </demo-block>
+        </DemoBlock>
 
         <DemoBlock :title="color">
           <van-col span="6" @click="copy(demoIcon, { color: '#1989fa' })">
@@ -30,7 +30,7 @@
           <van-col span="6" @click="copy(demoIcon, { color: RED })">
             <glue-icon name="fire-o" :color="RED" />
           </van-col>
-        </demo-block>
+        </DemoBlock>
 
         <DemoBlock :title="size">
           <van-col span="6" @click="copy(demoIcon, { size: '40' })">
@@ -39,7 +39,7 @@
           <van-col span="6" @click="copy(demoIcon, { size: '3rem' })">
             <glue-icon :name="demoIcon" size="3rem" />
           </van-col>
-        </demo-block>
+        </DemoBlock>
       </van-tab>
 
       <van-tab :title="basic">
@@ -63,7 +63,7 @@
         </van-col>
       </van-tab>
     </van-tabs>
-  </demo-section>
+  </DemoSection>
 </template>
 
 <script>

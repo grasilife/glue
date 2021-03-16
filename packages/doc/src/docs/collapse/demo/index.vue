@@ -12,7 +12,7 @@
           {{ text }}
         </van-collapse-item>
       </van-collapse>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="accordion">
       <van-collapse v-model="active2" accordion>
@@ -26,7 +26,7 @@
           {{ text }}
         </van-collapse-item>
       </van-collapse>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="disabled">
       <van-collapse v-model="active3">
@@ -40,7 +40,7 @@
           {{ text }}
         </van-collapse-item>
       </van-collapse>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="titleSlot">
       <van-collapse v-model="active4">
@@ -52,8 +52,8 @@
           {{ text }}
         </van-collapse-item>
       </van-collapse>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

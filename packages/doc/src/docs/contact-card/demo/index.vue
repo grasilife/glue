@@ -2,16 +2,16 @@
   <DemoSection>
     <DemoBlock :title="addContact">
       <van-contact-card type="add" @click="onAdd" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="editContact">
       <van-contact-card type="edit" :name="currentContact.name" :tel="currentContact.tel" @click="onEdit" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="uneditable">
       <van-contact-card type="edit" :name="currentContact.name" :tel="currentContact.tel" :editable="false" />
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

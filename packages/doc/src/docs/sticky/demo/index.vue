@@ -6,7 +6,7 @@
           {{ basicUsage }}
         </van-button>
       </van-sticky>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="offsetTop">
       <van-sticky :offset-top="50">
@@ -14,7 +14,7 @@
           {{ offsetTop }}
         </van-button>
       </van-sticky>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="setContainer">
       <div ref="container" style="height: 150px; background-color: #fff;">
@@ -24,8 +24,8 @@
           </van-button>
         </van-sticky>
       </div>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

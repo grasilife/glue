@@ -2,13 +2,13 @@
   <DemoSection>
     <DemoBlock :title="basicUsage">
       <glue-divider></glue-divider>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="withText">
       <glue-divider :text="text">
         <!-- {{ text }} -->
       </glue-divider>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="contentPosition">
       <glue-divider content-position="left" :text="text">
@@ -18,20 +18,20 @@
       <glue-divider content-position="right" :text="text">
         <!-- {{ text }} -->
       </glue-divider>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="dashed">
       <glue-divider dashed :hairline="false" :text="text">
         <!-- {{ text }} -->
       </glue-divider>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customStyle">
       <glue-divider :style="{ borderColor: '#1989fa', color: '#1989fa', padding: '0 16px' }" :text="text">
         <!-- {{ text }} -->
       </glue-divider>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

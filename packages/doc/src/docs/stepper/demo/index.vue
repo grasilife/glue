@@ -39,7 +39,7 @@
     <van-cell center :title="roundTheme">
       <van-stepper v-model="stepperRound" theme="round" button-size="22" disable-input />
     </van-cell>
-  </demo-section>
+  </DemoSection>
 </template>
 
 <script>

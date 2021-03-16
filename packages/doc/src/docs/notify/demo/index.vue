@@ -2,19 +2,19 @@
   <DemoSection>
     <DemoBlock card :title="basicUsage">
       <van-cell is-link :title="basicUsage" @click="showNotify" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="notifyType">
       <van-cell is-link :title="primary" @click="showType('primary')" />
       <van-cell is-link :title="success" @click="showType('success')" />
       <van-cell is-link :title="danger" @click="showType('danger')" />
       <van-cell is-link :title="warning" @click="showType('warning')" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="customNotify">
       <van-cell is-link :title="customColor" @click="showCustomColor" />
       <van-cell is-link :title="customDuration" @click="showCustomDuration" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="componentCall">
       <van-cell is-link :title="componentCall" @click="showComponentCall" />
@@ -23,8 +23,8 @@
         <van-icon name="bell" style="margin-right: 4px;" />
         <span>{{ content }}</span>
       </van-notify>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

@@ -4,7 +4,7 @@
       <van-cell is-link @click="showImagePreview">
         {{ showImages }}
       </van-cell>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="customConfig">
       <van-cell is-link @click="showImagePreview({ startPosition: 1 })">
@@ -16,13 +16,13 @@
       <van-cell is-link @click="showImagePreview({ onClose })">
         {{ closeEvent }}
       </van-cell>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="asyncClose">
       <van-cell is-link @click="showImagePreview({ asyncClose: true })">
         {{ asyncClose }}
       </van-cell>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="componentCallTitle">
       <van-cell is-link @click="componentCall">
@@ -31,8 +31,8 @@
       <van-image-preview v-model="show" :images="images" @change="onChange">
         <template #index>{{ index }}</template>
       </van-image-preview>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

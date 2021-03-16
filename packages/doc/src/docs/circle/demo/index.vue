@@ -7,7 +7,7 @@
         :speed="100"
         :text="currentRate1.toFixed(0) + '%'"
       ></glue-circle>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customStyle">
       <glue-circle
@@ -55,13 +55,13 @@
         :text="customSize"
         style="margin-top: 15px;"
       ></glue-circle>
-    </demo-block>
+    </DemoBlock>
 
     <div style="margin-top: 15px;">
       <glue-button type="primary" size="small" @click="add">{{ addText }}</glue-button>
       <glue-button type="danger" size="small" @click="reduce">{{ decreaseText }}</glue-button>
     </div>
-  </demo-section>
+  </DemoSection>
 </template>
 
 <script>

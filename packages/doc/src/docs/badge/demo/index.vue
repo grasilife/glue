@@ -13,7 +13,7 @@
       <van-badge dot>
         <div class="child" />
       </van-badge>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="max">
       <van-badge content="20" max="9">
@@ -25,7 +25,7 @@
       <van-badge content="200" max="99">
         <div class="child" />
       </van-badge>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customColor">
       <van-badge content="5" color="#1989fa">
@@ -37,7 +37,7 @@
       <van-badge dot color="#1989fa">
         <div class="child" />
       </van-badge>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customContent">
       <van-badge>
@@ -58,13 +58,13 @@
           <van-icon name="down" class="badge-icon" />
         </template>
       </van-badge>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="standalone">
       <van-badge content="20" style="margin-left: 16px;" />
       <van-badge content="200" max="99" style="margin-left: 12px;" />
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

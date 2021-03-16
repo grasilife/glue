@@ -5,23 +5,23 @@
       <van-cell is-link :title="title2" @click="showLoadingToast()" />
       <van-cell is-link :title="success" @click="showSuccessToast" />
       <van-cell is-link :title="fail" @click="showFailToast" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="customIcon">
       <van-cell is-link :title="customIcon" @click="showIconToast" />
       <van-cell is-link :title="customImage" @click="showImageToast" />
       <van-cell is-link :title="loadingType" @click="showLoadingToast('spinner')" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="customPosition">
       <van-cell is-link :title="positionTop" @click="showTopToast" />
       <van-cell is-link :title="positionBottom" @click="showBottomToast" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="updateMessage">
       <van-cell is-link :title="updateMessage" @click="showCustomizedToast" />
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

@@ -5,7 +5,7 @@
         <van-dropdown-item v-model="value1" :options="option1" />
         <van-dropdown-item v-model="value2" :options="option2" />
       </van-dropdown-menu>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customContent">
       <van-dropdown-menu>
@@ -28,29 +28,29 @@
           </div>
         </van-dropdown-item>
       </van-dropdown-menu>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customActiveColor">
       <van-dropdown-menu active-color="#1989fa">
         <van-dropdown-item v-model="value1" :options="option1" />
         <van-dropdown-item v-model="value2" :options="option2" />
       </van-dropdown-menu>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="expandDirection">
       <van-dropdown-menu direction="up">
         <van-dropdown-item v-model="value1" :options="option1" />
         <van-dropdown-item v-model="value2" :options="option2" />
       </van-dropdown-menu>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="disableMenu">
       <van-dropdown-menu>
         <van-dropdown-item v-model="value1" disabled :options="option1" />
         <van-dropdown-item v-model="value2" disabled :options="option2" />
       </van-dropdown-menu>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

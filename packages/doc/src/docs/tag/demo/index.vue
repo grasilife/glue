@@ -13,7 +13,7 @@
       <van-cell :title="`warning ${type}`">
         <glue-tag type="warning">{{ tag }}</glue-tag>
       </van-cell>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="tagStyle">
       <van-cell :title="plain">
@@ -30,7 +30,7 @@
           {{ tag }}
         </glue-tag>
       </van-cell>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="customSize">
       <van-cell :title="smallSize">
@@ -42,7 +42,7 @@
       <van-cell :title="largeSize">
         <glue-tag type="primary" size="large">{{ tag }}</glue-tag>
       </van-cell>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="customColor">
       <van-cell :title="customBgColor">
@@ -54,8 +54,8 @@
       <van-cell :title="customPlainColor">
         <glue-tag color="#7232dd" plain>{{ tag }}</glue-tag>
       </van-cell>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

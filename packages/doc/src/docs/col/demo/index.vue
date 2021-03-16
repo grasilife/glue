@@ -19,7 +19,7 @@
           offset: 12, span: 12
         </glue-col>
       </glue-row>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title2">
       <glue-row gutter="20">
@@ -27,7 +27,7 @@
         <glue-col span="8">span: 8</glue-col>
         <glue-col span="8">span: 8</glue-col>
       </glue-row>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title3">
       <glue-row type="flex">
@@ -59,8 +59,8 @@
         <glue-col span="6">span: 6</glue-col>
         <glue-col span="6">span: 6</glue-col>
       </glue-row>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

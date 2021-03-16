@@ -2,7 +2,7 @@
   <DemoSection>
     <DemoBlock :title="basicUsage">
       <glue-empty :description="description" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="imageType">
       <van-tabs v-model="active">
@@ -16,7 +16,7 @@
           <glue-empty image="search" :description="description" />
         </van-tab>
       </van-tabs>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customImage">
       <glue-empty
@@ -24,7 +24,7 @@
         image="https://img.yzcdn.cn/vant/custom-empty-image.png"
         :description="description"
       />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="bottomContent">
       <glue-empty :description="description">
@@ -32,8 +32,8 @@
           {{ button }}
         </van-button>
       </glue-empty>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

@@ -5,7 +5,7 @@
       <glue-popup :show="showBasic" :style="{ padding: '30px 50px' }" @close="showBasic = false">
         {{ content }}
       </glue-popup>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="position">
       <van-cell :title="buttonTop" is-link @click="showTop = true" @close="showTop = false" />
@@ -17,7 +17,7 @@
       <glue-popup :show="showBottom" position="bottom" width="100%" height="30%" @close="showBottom = false" />
       <glue-popup :show="showLeft" position="left" width="30%" height="100%" @close="showLeft = false" />
       <glue-popup :show="showRight" position="right" width="30%" height="100%" @close="showRight = false" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="closeIcon">
       <van-cell :title="closeIcon" is-link @click="showCloseIcon = true" />
@@ -50,7 +50,7 @@
         height="30%"
         @close="showCustomIconPosition = false"
       />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="roundCorner">
       <van-cell :title="roundCorner" is-link @click="showRoundCorner = true" />
@@ -62,7 +62,7 @@
         height="30%"
         @close="showRoundCorner = false"
       />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock card :title="getContainer">
       <van-cell :title="getContainer" is-link @click="showGetContainer = true" />
@@ -72,8 +72,8 @@
         :style="{ padding: '30px 50px' }"
         @close="showGetContainer = false"
       />
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

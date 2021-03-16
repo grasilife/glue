@@ -4,7 +4,7 @@
       <van-row>
         <glue-image width="100" height="100" :src="image" />
       </van-row>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="fitMode">
       <van-row gutter="20">
@@ -13,7 +13,7 @@
           <div class="text">{{ fit }}</div>
         </van-col>
       </van-row>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="round">
       <van-row gutter="20">
@@ -22,7 +22,7 @@
           <div class="text">{{ fit }}</div>
         </van-col>
       </van-row>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="loading">
       <van-row gutter="20">
@@ -40,7 +40,7 @@
           <div class="text">{{ customTip }}</div>
         </van-col>
       </van-row>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="error">
       <van-row gutter="20">
@@ -56,8 +56,8 @@
           <div class="text">{{ customTip }}</div>
         </van-col>
       </van-row>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

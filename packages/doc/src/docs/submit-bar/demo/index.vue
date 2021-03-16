@@ -2,7 +2,7 @@
   <DemoSection>
     <DemoBlock :title="basicUsage">
       <van-submit-bar :price="3050" :button-text="submit" @submit="onClickButton" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="disabled">
       <van-submit-bar
@@ -13,11 +13,11 @@
         tip-icon="info-o"
         @submit="onClickButton"
       />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="loadingStatus">
       <van-submit-bar loading :price="3050" :button-text="submit" @submit="onClickButton" />
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="advancedUsage">
       <van-submit-bar :price="3050" :button-text="submit" @submit="onClickButton">
@@ -29,8 +29,8 @@
           </span>
         </template>
       </van-submit-bar>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

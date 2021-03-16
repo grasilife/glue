@@ -2,7 +2,7 @@
   <DemoSection>
     <DemoBlock :title="basicUsage">
       <van-checkbox v-model="checkbox1">{{ checkbox }}</van-checkbox>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="disabled">
       <van-checkbox :value="false" disabled>
@@ -11,25 +11,25 @@
       <van-checkbox :value="true" disabled>
         {{ checkbox }}
       </van-checkbox>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customShape">
       <van-checkbox v-model="checkboxShape" shape="square">
         {{ customColor }}
       </van-checkbox>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customColor">
       <van-checkbox v-model="checkbox2" checked-color="#ee0a24">
         {{ customColor }}
       </van-checkbox>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customIconSize">
       <van-checkbox v-model="checboxIcon" icon-size="24px">
         {{ customIconSize }}
       </van-checkbox>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="customIcon">
       <van-checkbox v-model="checkbox3">
@@ -38,27 +38,27 @@
           <img :src="checked ? activeIcon : inactiveIcon" />
         </template>
       </van-checkbox>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="disableLabel">
       <van-checkbox v-model="checkboxLabel" label-disabled>
         {{ checkbox }}
       </van-checkbox>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title3">
       <van-checkbox-group v-model="result">
         <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
         <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
       </van-checkbox-group>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="horizontal">
       <van-checkbox-group v-model="horizontalResult" direction="horizontal">
         <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
         <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
       </van-checkbox-group>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title4">
       <van-checkbox-group v-model="result2" :max="2">
@@ -66,7 +66,7 @@
         <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
         <van-checkbox name="c">{{ checkbox }} c</van-checkbox>
       </van-checkbox-group>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="toggleAllTitle">
       <van-checkbox-group v-model="checkAllResult" ref="group">
@@ -83,7 +83,7 @@
           {{ inverse }}
         </van-button>
       </div>
-    </demo-block>
+    </DemoBlock>
 
     <DemoBlock :title="title5">
       <van-checkbox-group v-model="result3">
@@ -101,8 +101,8 @@
           </van-cell>
         </van-cell-group>
       </van-checkbox-group>
-    </demo-block>
-  </demo-section>
+    </DemoBlock>
+  </DemoSection>
 </template>
 
 <script>

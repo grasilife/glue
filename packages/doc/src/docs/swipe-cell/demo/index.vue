@@ -12,7 +12,7 @@
             <van-button square type="primary" :text="collect" />
           </template>
         </van-swipe-cell>
-      </demo-block>
+      </DemoBlock>
 
       <DemoBlock :title="customContent">
         <van-swipe-cell>
@@ -21,7 +21,7 @@
             <van-button square type="danger" class="delete-button" :text="deleteTitle" />
           </template>
         </van-swipe-cell>
-      </demo-block>
+      </DemoBlock>
 
       <DemoBlock :title="beforeCloseTitle">
         <van-swipe-cell :before-close="beforeClose">
@@ -33,8 +33,8 @@
             <van-button square type="danger" :text="deleteTitle" />
           </template>
         </van-swipe-cell>
-      </demo-block>
-    </demo-section>
+      </DemoBlock>
+    </DemoSection>
   </div>
 </template>
 
