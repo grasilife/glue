@@ -76,29 +76,40 @@ export class GlueDemo {
           单色按钮
         </glue-button>
         <glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">渐变色按钮</glue-button> */}
-        <glue-cell-group>
-          <glue-cell title="单元格" value="内容" />
-          <glue-cell title="单元格" value="内容" label="描述信息" />
+        {/* <glue-cell-group>
+          <glue-cell title="单元格" value="内容"></glue-cell>
+          <glue-cell title="单元格" value="内容" label="描述信息"></glue-cell>
         </glue-cell-group>
-        <glue-cell title="单元格" value="内容" size="large" />
-        <glue-cell title="单元格" value="内容" size="large" label="描述信息" />
-        <glue-cell title="单元格" icon="location-o" value="内容" />
-        <glue-cell value="内容" />
-        <glue-cell title="单元格" is-link />
-        <glue-cell title="单元格" is-link value="内容" />
-        <glue-cell title="单元格" is-link arrow-direction="down" value="内容" />
-        <glue-cell-group title="分组1">
-          <glue-cell title="单元格" value="内容" />
-        </glue-cell-group>
-        <glue-cell-group title="分组2">
-          <glue-cell title="单元格" value="内容" />
-        </glue-cell-group>
-        <glue-cell value="内容" is-link></glue-cell>
-        <glue-icon name="chat-o" />
-        <glue-icon name="chat-o" badge="99+" />
+        <glue-cell title="单元格" value="内容" size="large"></glue-cell>
+        <glue-cell title="单元格" value="内容" size="large" label="描述信息"></glue-cell>
+        <glue-cell title="单元格" icon="location-o" value="内容"></glue-cell>
+        <glue-cell value="内容"></glue-cell>
+        <glue-cell title="单元格" is-link></glue-cell>
+        <glue-cell title="单元格" is-link value="内容"></glue-cell>
+        <glue-cell title="单元格" is-link arrow-direction="down" value="内容"></glue-cell> */}
+        {/* <glue-cell-group title="分组1">
+          <glue-cell title="单元格" value="内容"></glue-cell>
+        </glue-cell-group> */}
+        {/* <glue-cell-group title="分组2">
+          <glue-cell title="单元格" value="内容"></glue-cell>
+        </glue-cell-group> */}
+        {/* <glue-cell value="内容" is-link></glue-cell> */}
+        <glue-cell value="内容" is-link slot-title>
+          <div slot="title">
+            <span class="custom-title">单元格2</span>
+          </div>
+        </glue-cell>
+        <glue-cell title="单元格" icon="shop-o" slot-right-icon>
+          <div slot="slotRightIcon">
+            <glue-icon name="search" class="search-icon"></glue-icon>
+          </div>
+        </glue-cell>
+        <glue-cell center title="单元格" value="内容" label="描述信息" />
+        {/* <glue-icon name="chat-o"></glue-icon>
+        <glue-icon name="chat-o" badge="99+"></glue-icon>
         <glue-badge content="5" slot-content>
-          <div class="child" />
-        </glue-badge>
+          <div class="child"></div>
+        </glue-badge> */}
       </div>
     );
   }

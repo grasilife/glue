@@ -24,6 +24,8 @@ export class GlueCell {
   @Prop() tilabelClasstle = null;
   @Prop() arrowDirection: CellArrowDirection;
   @Prop() border = true;
+  @Prop() slotTitle: boolean;
+  @Prop() slotRightIcon: boolean;
   renderLabel = () => {
     const showLabel = isDef(this.label);
 
@@ -41,7 +43,7 @@ export class GlueCell {
   };
 
   renderTitle = () => {
-    if (isDef(this.title)) {
+    if (this.slotTitle || isDef(this.title)) {
       return (
         <div
           class={classNames({
@@ -50,7 +52,7 @@ export class GlueCell {
           })}
           style={this.titleStyle}
         >
-          {<span>{this.title}</span>}
+          {this.slotTitle ? <slot name="title"></slot> : <span>{this.title}</span>}
           {this.renderLabel()}
         </div>
       );
@@ -58,7 +60,7 @@ export class GlueCell {
   };
 
   renderValue = () => {
-    const hasTitle = isDef(this.title);
+    const hasTitle = this.slotTitle || isDef(this.title);
     const hasValue = isDef(this.value);
 
     if (hasValue) {
@@ -90,6 +92,9 @@ export class GlueCell {
   };
 
   renderRightIcon = () => {
+    if (this.slotRightIcon) {
+      return <slot name="slotRightIcon"></slot>;
+    }
     if (this.isLink) {
       const name = this.arrowDirection ? `arrow-${this.arrowDirection}` : 'arrow';
       return (

@@ -175,6 +175,8 @@ export namespace Components {
         "label": string | number;
         "required": boolean;
         "size": string;
+        "slotRightIcon": boolean;
+        "slotTitle": boolean;
         "tilabelClasstle": any;
         "title": string;
         "titleClass": any;
@@ -1690,6 +1692,8 @@ declare namespace LocalJSX {
         "label"?: string | number;
         "required"?: boolean;
         "size"?: string;
+        "slotRightIcon"?: boolean;
+        "slotTitle"?: boolean;
         "tilabelClasstle"?: any;
         "title"?: string;
         "titleClass"?: any;
