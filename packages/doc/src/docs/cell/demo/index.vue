@@ -41,17 +41,17 @@
     </DemoBlock>
 
     <DemoBlock :title="useSlots">
-      <glue-cell :value="content" is-link>
-        <template v-slot:title>
+      <glue-cell :value="content" is-link slot-title>
+        <div slot="title">
           <span class="custom-title">{{ cell }}</span>
           <glue-tag type="danger">{{ tag }}</glue-tag>
-        </template>
+        </div>
       </glue-cell>
 
-      <glue-cell icon="shop-o" :title="cell">
-        <template v-slot:right-icon>
+      <glue-cell icon="shop-o" :title="cell" slot-right-icon>
+        <div slot="slotRightIcon">
           <glue-icon name="search" class="search-icon" />
-        </template>
+        </div>
       </glue-cell>
     </DemoBlock>
 
