@@ -26,11 +26,6 @@
       <glue-cell :title="cell" is-link arrow-direction="down" :value="content" />
     </DemoBlock>
 
-    <DemoBlock :title="router">
-      <glue-cell :title="urlRoute" is-link url="/vant/mobile.html" />
-      <glue-cell :title="vueRoute" is-link to="index" />
-    </DemoBlock>
-
     <DemoBlock :title="groupTitle">
       <glue-cell-group :title="`${group} 1`">
         <glue-cell :title="cell" :value="content" />
