@@ -32,7 +32,7 @@ export default {
     locales: {
       "zh-CN": {
         title: "Glue",
-        description: "轻量、可靠的移动端 Vue 组件库",
+        description: "Glue是一个基于web components的组件库",
         logo: "https://grasilife.github.io/material/logo.svg",
         langLabel: "中",
         links: [
@@ -411,7 +411,7 @@ export default {
       },
       "en-US": {
         title: "Glue",
-        description: "轻量、可靠的移动端 Vue 组件库",
+        description: "Glue是一个基于web components的组件库",
         logo: "https://grasilife.github.io/material/logo.svg",
         langLabel: "中",
         links: [
