@@ -25,6 +25,7 @@ export default {
 
   props: {
     lang: String,
+    type: String,
     navConfig: Array
   },
 
@@ -44,7 +45,8 @@ export default {
     },
 
     base() {
-      return this.lang ? `/${this.lang}/` : "/";
+      console.log(this.type, this.lang, "ahuhauhuahu");
+      return `/${this.type}/${this.lang}/`;
     }
   },
 

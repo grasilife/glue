@@ -3,8 +3,8 @@ import VueRouter from "vue-router";
 import { isMobile, decamelize } from "../common";
 import config from "../common/config";
 import "../common/iframe-router";
-const { locales, defaultLang } = config.site;
-console.log(locales, defaultLang, isMobile, "路由");
+const { locales, defaultLang, defaultType, types } = config.site;
+console.log(locales, defaultLang, defaultType, isMobile, config.site, types, "路由");
 if (isMobile) {
   location.replace("mobile.html" + location.hash);
 }
@@ -24,21 +24,37 @@ function getRoutes() {
     {
       path: "/",
       name: "home",
-      redirect: `/${defaultLang}/home`
+      redirect: `/${defaultType}/${defaultLang}/home`,
+      meta: {
+        path: "home",
+        lang: defaultLang,
+        type: defaultType
+      }
     }
   ];
   Object.keys(locales).forEach(lang => {
-    console.log(lang, locales[lang]);
+    // console.log(lang, locales[lang], "hauhauhuahuhauhu");
     locales[lang].nav.forEach(element => {
       if (element.items) {
         element.items.forEach(element2 => {
-          console.log(`/${lang}/${element2.path}`, "../docs/" + element2.path + "/" + "README." + lang + ".md");
-          routes.push({
-            name: element2.title,
-            path: `/${lang}/${element2.path}`,
-            //这个地方不能使用下面的方法
-            // component: () => import(imortPath),
-            component: () => import("../docs/" + element2.path + "/" + "README." + lang + ".md")
+          types.forEach(type => {
+            // console.log(type, "typetypetypetypetype");
+            // console.log(
+            //   `/${type.label}/${lang}/${element2.path}`,
+            //   "../docs/" + element2.path + "/" + "README." + lang + ".md"
+            // );
+            routes.push({
+              name: `/${type.label}/${lang}/${element2.title}`,
+              path: `/${type.label}/${lang}/${element2.path}`,
+              //这个地方不能使用下面的方法
+              // component: () => import(imortPath),
+              component: () => import("../docs/" + element2.path + "/" + "README." + lang + ".md"),
+              meta: {
+                path: element2.path,
+                lang,
+                type: type.label
+              }
+            });
           });
         });
       }

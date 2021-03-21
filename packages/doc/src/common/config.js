@@ -12,10 +12,14 @@ export default {
   },
   site: {
     defaultLang: "zh-CN",
-    versions: [
-      { label: "Vant v1", link: "/vant/v1/" },
-      { label: "Vant v2", link: "/vant/" },
-      { label: "Vant Weapp", link: "/vant-weapp/" }
+    defaultType: "Vue2",
+    versions: [{ label: "1.0.0", link: "/glue/" }],
+    types: [
+      { label: "Vue2", link: "/glue/" },
+      { label: "React", link: "/glue/React" },
+      { label: "Vue3", link: "/glue/Vue3" },
+      { label: "Angular", link: "/glue/Angular" },
+      { label: "Stencil", link: "/glue/Stencil" }
     ],
     baiduAnalytics: {
       seed: "ad6b5732c36321f2dafed737ac2da92f"
@@ -40,7 +44,7 @@ export default {
         ],
         searchConfig: {
           apiKey: "90067aecdaa2c85220e2783cd305caac",
-          indexName: "vant",
+          indexName: "glue",
           searchParameters: {
             facetFilters: ["lang:zh-CN", "version:v3"]
           },
@@ -406,14 +410,15 @@ export default {
         ]
       },
       "en-US": {
-        title: "Vant",
-        description: "Mobile UI Components built on Vue",
-        logo: "https://img.yzcdn.cn/vant/logo.png",
-        langLabel: "EN",
+        title: "Glue",
+        description: "轻量、可靠的移动端 Vue 组件库",
+        logo: "https://grasilife.github.io/material/logo.svg",
+        langLabel: "中",
         links: [
           {
             logo: "https://b.yzcdn.cn/vant/logo/github.svg",
-            url: "https://github.com/youzan/vant"
+            text: "https://github.com/youzan/vant",
+            url: "https://github.com/grasilife/glue"
           }
         ],
         searchConfig: {

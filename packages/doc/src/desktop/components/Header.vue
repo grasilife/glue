@@ -8,15 +8,23 @@
         </a>
 
         <ul class="van-doc-header__top-nav">
-          <li v-for="(item, index) in config.links" :key="index" class="van-doc-header__top-nav-item">
-            <a class="van-doc-header__link" target="_blank" :href="item.url">
-              <img v-if="item.logo" :src="item.logo" />
-              <span v-else-if="item.text">
-                {{ item.text }}
-              </span>
-            </a>
+          <li ref="type" v-if="type" class="van-doc-header__top-nav-item">
+            <span class="van-doc-header__cube van-doc-header__version" @click="toggleTypePop">
+              {{ type }}
+              <transition name="van-doc-dropdown">
+                <div v-if="showTypePop" class="van-doc-header__version-pop">
+                  <div
+                    v-for="(item, index) in types"
+                    :key="index"
+                    class="van-doc-header__version-pop-item"
+                    @click="onSwitchType(item)"
+                  >
+                    {{ item.label }}
+                  </div>
+                </div>
+              </transition>
+            </span>
           </li>
-
           <li ref="version" v-if="versions" class="van-doc-header__top-nav-item">
             <span class="van-doc-header__cube van-doc-header__version" @click="toggleVersionPop">
               {{ packageVersion }}
@@ -40,7 +48,14 @@
               {{ langLabel }}
             </a>
           </li>
-
+          <li v-for="(item, index) in config.links" :key="index" class="van-doc-header__top-nav-item">
+            <a class="van-doc-header__link" target="_blank" :href="item.url">
+              <img v-if="item.logo" :src="item.logo" />
+              <span v-else-if="item.text">
+                {{ item.text }}
+              </span>
+            </a>
+          </li>
           <!-- <search-input
             v-if="searchConfig"
             :lang="lang"
@@ -66,13 +81,16 @@ export default {
     lang: String,
     config: Object,
     versions: Array,
+    types: Array,
     langConfigs: Array
   },
 
   data() {
     return {
-      packageVersion: "1.0.1",
-      showVersionPop: false
+      packageVersion: "1.0.0",
+      type: "Vue2",
+      showVersionPop: false,
+      showTypePop: false
     };
   },
   mounted() {
@@ -107,6 +125,18 @@ export default {
   },
 
   methods: {
+    toggleTypePop() {
+      const val = !this.showTypePop;
+
+      //   const action = val ? "add" : "remove";
+      //   document.body[`${action}EventListener`](
+      //     "click",
+      //     this.checkHideVersionPop
+      //   );
+
+      this.showTypePop = val;
+      console.log(this.showTypePop, this.types, "this.showTypePop");
+    },
     toggleVersionPop() {
       const val = !this.showVersionPop;
 
@@ -126,10 +156,17 @@ export default {
     },
 
     onSwitchLang(lang) {
-      this.$router.push(this.$route.path.replace(lang.from, lang.to));
+      console.log(lang, "langlanglang");
+      const { type, path } = this.$route.meta;
+      this.$router.push(`/${type}/${lang}/${path}`);
     },
-
+    onSwitchType(item) {
+      this.type = item.label;
+      const { lang, path } = this.$route.meta;
+      this.$router.push(`/${item.label}/${lang}/${path}`);
+    },
     onSwitchVersion(version) {
+      console.log(version, "versionversionversion");
       if (version.link) {
         location.href = version.link;
       }

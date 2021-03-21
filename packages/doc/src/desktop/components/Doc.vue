@@ -4,11 +4,12 @@
       :lang="lang"
       :config="config"
       :versions="versions"
+      :types="types"
       :lang-configs="langConfigs"
       @switch-version="$emit('switch-version', $event)"
     />
     <div class="van-body">
-      <doc-nav :lang="lang" :nav-config="config.nav" />
+      <doc-nav :lang="lang" :type="type" :nav-config="config.nav" />
       <doc-container :has-simulator="!!simulator">
         <doc-content>
           <slot />
@@ -39,7 +40,15 @@ export default {
 
   props: {
     lang: String,
+    type: String,
     versions: {
+      type: Array,
+      required: false,
+      default: () => {
+        return [];
+      }
+    },
+    types: {
       type: Array,
       required: false,
       default: () => {

@@ -44,7 +44,7 @@
       </glue-cell>
       <glue-cell value="#slot" is-link :title="cell">
         <div slot="value">
-          <span class="custom-title">{{ value }}</span>
+          <span class="custom-title">{{ content }}</span>
           <glue-tag type="danger">{{ tag }}</glue-tag>
         </div>
       </glue-cell>

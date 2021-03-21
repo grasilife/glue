@@ -1,6 +1,14 @@
 <template>
   <div class="app">
-    <Doc :lang="lang" :config="config" :versions="versions" :simulator="simulator" :lang-configs="langConfigs">
+    <Doc
+      :lang="lang"
+      :type="type"
+      :config="config"
+      :versions="versions"
+      :types="types"
+      :simulator="simulator"
+      :lang-configs="langConfigs"
+    >
       <router-view />
     </Doc>
   </div>
@@ -10,7 +18,7 @@
 import Doc from "./components/Doc";
 import config from "../common/config";
 // import { setLang } from "../common/locales";
-console.log(config, "config");
+console.log(config, "config2222");
 export default {
   components: {
     Doc
@@ -28,9 +36,15 @@ export default {
 
   computed: {
     lang() {
-      const lang = "zh-CN";
+      const { lang } = this.$route.meta;
       console.log(lang, "lang");
-      return lang || "";
+      return lang || "zh-CN";
+    },
+    type() {
+      const { type } = this.$route.meta;
+      console.log(this.$route, "this.$routethis.$routethis.$route");
+      console.log(type, "type");
+      return type || "Vue2";
     },
 
     langConfigs() {
@@ -53,6 +67,9 @@ export default {
 
     versions() {
       return config.site.versions;
+    },
+    types() {
+      return config.site.types;
     }
   },
   mounted() {
