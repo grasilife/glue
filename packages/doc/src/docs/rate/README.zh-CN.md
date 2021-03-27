@@ -4,16 +4,6 @@
 
 用于对事物进行评级操作。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Rate } from 'vant';
-
-const app = createApp();
-app.use(Rate);
-```
-
 ## 代码演示
 
 ### 基础用法

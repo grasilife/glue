@@ -4,16 +4,6 @@
 
 用于数据录入、校验，支持输入框、单选框、复选框、文件上传等类型。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Form } from 'vant';
-
-const app = createApp();
-app.use(Form);
-```
-
 ## 代码演示
 
 ### 基础用法

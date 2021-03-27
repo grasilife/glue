@@ -4,16 +4,6 @@
 
 以卡片的形式展示联系人信息。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { ContactCard } from 'vant';
-
-const app = createApp();
-app.use(ContactCard);
-```
-
 ## 代码演示
 
 ### 添加联系人

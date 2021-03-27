@@ -4,16 +4,6 @@
 
 底部弹起的模态面板，包含与当前情境相关的多个选项。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { ActionSheet } from 'vant';
-
-const app = createApp();
-app.use(ActionSheet);
-```
-
 ## 代码演示
 
 ### 基础用法

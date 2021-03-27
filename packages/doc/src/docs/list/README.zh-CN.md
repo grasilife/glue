@@ -4,16 +4,6 @@
 
 瀑布流滚动加载，用于展示长列表，当列表即将滚动到底部时，会触发事件并加载更多列表项。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { List } from 'vant';
-
-const app = createApp();
-app.use(List);
-```
-
 ## 代码演示
 
 ### 基础用法

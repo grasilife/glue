@@ -4,17 +4,6 @@
 
 宫格可以在水平方向上把页面分隔成等宽度的区块，用于展示内容或进行页面导航。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Grid, GridItem } from 'vant';
-
-const app = createApp();
-app.use(Grid);
-app.use(GridItem);
-```
-
 ## 代码演示
 
 ### 基础用法

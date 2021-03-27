@@ -4,16 +4,6 @@
 
 提供多个选项集合供用户选择，支持单列选择和多列级联，通常与[弹出层](#/zh-CN/popup)组件配合使用。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Picker } from 'vant';
-
-const app = createApp();
-app.use(Picker);
-```
-
 ## 代码演示
 
 ### 基础用法

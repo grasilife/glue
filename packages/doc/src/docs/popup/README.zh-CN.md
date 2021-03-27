@@ -4,16 +4,6 @@
 
 弹出层容器，用于展示弹窗、信息提示等内容，支持多个弹出层叠加展示。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Popup } from 'vant';
-
-const app = createApp();
-app.use(Popup);
-```
-
 ## 代码演示
 
 ### 基础用法

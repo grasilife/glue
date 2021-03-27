@@ -1,16 +1,5 @@
 # Sidebar 侧边导航
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Sidebar, SidebarItem } from 'vant';
-
-const app = createApp();
-app.use(Sidebar);
-app.use(SidebarItem);
-```
-
 ## 代码演示
 
 ### 基础用法

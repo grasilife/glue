@@ -4,16 +4,6 @@
 
 用于在打开和关闭状态之间进行切换。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Switch } from 'vant';
-
-const app = createApp();
-app.use(Switch);
-```
-
 ## 代码演示
 
 ### 基础用法

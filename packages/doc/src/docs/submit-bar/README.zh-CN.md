@@ -1,15 +1,5 @@
 # SubmitBar 提交订单栏
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { SubmitBar } from 'vant';
-
-const app = createApp();
-app.use(SubmitBar);
-```
-
 ## 代码演示
 
 ### 基础用法

@@ -4,16 +4,6 @@
 
 底部弹起的分享面板，用于展示各分享渠道对应的操作按钮，不含具体的分享逻辑。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { ShareSheet } from 'vant';
-
-const app = createApp();
-app.use(ShareSheet);
-```
-
 ## 代码演示
 
 ### 基础用法

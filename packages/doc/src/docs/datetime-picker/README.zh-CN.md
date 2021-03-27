@@ -4,16 +4,6 @@
 
 时间选择器，支持日期、年月、时分等维度，通常与[弹出层](#/zh-CN/popup)组件配合使用。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { DatetimePicker } from 'vant';
-
-const app = createApp();
-app.use(DatetimePicker);
-```
-
 ## 代码演示
 
 ### 选择年月日

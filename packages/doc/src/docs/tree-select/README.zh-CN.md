@@ -1,15 +1,5 @@
 # TreeSelect 分类选择
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { TreeSelect } from 'vant';
-
-const app = createApp();
-app.use(TreeSelect);
-```
-
 ## 代码演示
 
 ### 单选模式

@@ -1,15 +1,5 @@
 # NavBar 导航栏
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { NavBar } from 'vant';
-
-const app = createApp();
-app.use(NavBar);
-```
-
 ## 代码演示
 
 ### 基础用法

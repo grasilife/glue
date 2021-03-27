@@ -4,16 +4,6 @@
 
 在右上角展示徽标数字或小红点。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Badge } from 'vant';
-
-const app = createApp();
-app.use(Badge);
-```
-
 ## 代码演示
 
 ### 基础用法

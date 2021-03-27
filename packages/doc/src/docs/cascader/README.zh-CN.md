@@ -4,16 +4,6 @@
 
 级联选择框，用于多层级数据的选择，典型场景为省市区选择。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Cascader } from 'vant';
-
-const app = createApp();
-app.use(Cascader);
-```
-
 ## 代码演示
 
 ### 基础用法

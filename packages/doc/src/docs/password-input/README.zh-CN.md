@@ -4,17 +4,6 @@
 
 带网格的输入框组件，可以用于输入密码、短信验证码等场景，通常与[数字键盘](#/zh-CN/number-keyboard)组件配合使用。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { PasswordInput, NumberKeyboard } from 'vant';
-
-const app = createApp();
-app.use(PasswordInput);
-app.use(NumberKeyboard);
-```
-
 ## 代码演示
 
 ### 基础用法

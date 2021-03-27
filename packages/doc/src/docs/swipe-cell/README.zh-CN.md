@@ -4,16 +4,6 @@
 
 可以左右滑动来展示操作按钮的单元格组件。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { SwipeCell } from 'vant';
-
-const app = createApp();
-app.use(SwipeCell);
-```
-
 ## 代码演示
 
 ### 基础用法

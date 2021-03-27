@@ -1,22 +1,5 @@
 # Lazyload 懒加载
 
-### 引入
-
-`Lazyload` 是 `Vue` 指令，使用前需要对指令进行注册。
-
-```js
-import { createApp } from 'vue';
-import { Lazyload } from 'vant';
-
-const app = createApp();
-app.use(Lazyload);
-
-// 注册时可以配置额外的选项
-app.use(Lazyload, {
-  lazyComponent: true,
-});
-```
-
 ## 代码演示
 
 ### 基础用法

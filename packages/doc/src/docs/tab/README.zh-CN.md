@@ -1,16 +1,5 @@
 # Tab 标签页
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Tab, Tabs } from 'vant';
-
-const app = createApp();
-app.use(Tab);
-app.use(Tabs);
-```
-
 ## 代码演示
 
 ### 基础用法

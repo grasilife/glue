@@ -4,16 +4,6 @@
 
 滑动输入条，用于在给定的范围内选择一个值。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Slider } from 'vant';
-
-const app = createApp();
-app.use(Slider);
-```
-
 ## 代码演示
 
 ### 基础用法

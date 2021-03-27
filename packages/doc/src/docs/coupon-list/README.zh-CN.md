@@ -1,16 +1,5 @@
 # Coupon 优惠券选择器
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { CouponCell, CouponList } from 'vant';
-
-const app = createApp();
-app.use(CouponCell);
-app.use(CouponList);
-```
-
 ## 代码演示
 
 ### 基础用法

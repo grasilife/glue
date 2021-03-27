@@ -4,16 +4,6 @@
 
 用于将内容分隔为多个区域。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Divider } from 'vant';
-
-const app = createApp();
-app.use(Divider);
-```
-
 ## 代码演示
 
 ### 基础用法

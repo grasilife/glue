@@ -4,17 +4,6 @@
 
 向下弹出的菜单列表。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { DropdownMenu, DropdownItem } from 'vant';
-
-const app = createApp();
-app.use(DropdownMenu);
-app.use(DropdownItem);
-```
-
 ## 代码演示
 
 ### 基础用法

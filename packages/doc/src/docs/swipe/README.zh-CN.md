@@ -4,17 +4,6 @@
 
 用于循环播放一组图片或内容。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Swipe, SwipeItem } from 'vant';
-
-const app = createApp();
-app.use(Swipe);
-app.use(SwipeItem);
-```
-
 ## 代码演示
 
 ### 基础用法

@@ -4,16 +4,6 @@
 
 空状态时的占位提示。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Empty } from 'vant';
-
-const app = createApp();
-app.use(Empty);
-```
-
 ## 代码演示
 
 ### 基础用法

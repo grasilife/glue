@@ -4,17 +4,6 @@
 
 用于在选中和非选中状态之间进行切换。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Checkbox, CheckboxGroup } from 'vant';
-
-const app = createApp();
-app.use(Checkbox);
-app.use(CheckboxGroup);
-```
-
 ## 代码演示
 
 ### 基础用法

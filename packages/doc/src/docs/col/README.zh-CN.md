@@ -4,17 +4,6 @@
 
 Layout 提供了 `van-row` 和 `van-col` 两个组件来进行行列布局。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Col, Row } from 'vant';
-
-const app = createApp();
-app.use(Col);
-app.use(Row);
-```
-
 ## 代码演示
 
 ### 基础用法

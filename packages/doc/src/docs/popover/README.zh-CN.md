@@ -4,16 +4,6 @@
 
 弹出式的气泡菜单。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Popover } from 'vant';
-
-const app = createApp();
-app.use(Popover);
-```
-
 ## 代码演示
 
 ### 基础用法

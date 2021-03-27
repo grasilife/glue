@@ -4,16 +4,6 @@
 
 用于搜索场景的输入框组件。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Search } from 'vant';
-
-const app = createApp();
-app.use(Search);
-```
-
 ## 代码演示
 
 ### 基础用法

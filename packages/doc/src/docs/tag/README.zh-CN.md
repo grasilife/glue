@@ -1,15 +1,5 @@
 # Tag 标签
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Tag } from 'vant';
-
-const app = createApp();
-app.use(Tag);
-```
-
 ## 代码演示
 
 ### 基础用法

@@ -4,16 +4,6 @@
 
 用于展示操作的当前进度。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Progress } from 'vant';
-
-const app = createApp();
-app.use(Progress);
-```
-
 ## 代码演示
 
 ### 基础用法

@@ -4,17 +4,6 @@
 
 将一组内容放置在多个折叠面板中，点击面板的标题可以展开或收缩其内容。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Collapse, CollapseItem } from 'vant';
-
-const app = createApp();
-app.use(Collapse);
-app.use(CollapseItem);
-```
-
 ## 代码演示
 
 ### 基础用法

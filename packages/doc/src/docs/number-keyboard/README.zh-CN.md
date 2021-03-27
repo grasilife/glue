@@ -4,16 +4,6 @@
 
 虚拟数字键盘，可以配合[密码输入框组件](#/zh-CN/password-input)或自定义的输入框组件使用。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { NumberKeyboard } from 'vant';
-
-const app = createApp();
-app.use(NumberKeyboard);
-```
-
 ## 代码演示
 
 ### 默认样式

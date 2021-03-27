@@ -4,16 +4,6 @@
 
 用于在内容加载过程中展示一组占位图形。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Skeleton } from 'vant';
-
-const app = createApp();
-app.use(Skeleton);
-```
-
 ## 代码演示
 
 ### 基础用法

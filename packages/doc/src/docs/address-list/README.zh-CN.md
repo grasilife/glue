@@ -4,16 +4,6 @@
 
 展示收货地址列表。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { AddressList } from 'vant';
-
-const app = createApp();
-app.use(AddressList);
-```
-
 ## 代码演示
 
 ### 基础用法

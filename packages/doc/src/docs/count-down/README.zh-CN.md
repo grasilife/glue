@@ -4,16 +4,6 @@
 
 用于实时展示倒计时数值，支持毫秒精度。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { CountDown } from 'vant';
-
-const app = createApp();
-app.use(CountDown);
-```
-
 ## 代码演示
 
 ### 基础用法

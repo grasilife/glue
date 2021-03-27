@@ -1,16 +1,5 @@
 # IndexBar 索引栏
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { IndexBar, IndexAnchor } from 'vant';
-
-const app = createApp();
-app.use(IndexBar);
-app.use(IndexAnchor);
-```
-
 ## 代码演示
 
 ### 基础用法

@@ -4,16 +4,6 @@
 
 用于将本地的图片或文件上传至服务器，并在上传过程中展示预览图和上传进度。目前 Uploader 组件不包含将文件上传至服务器的接口逻辑，该步骤需要自行实现。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Uploader } from 'vant';
-
-const app = createApp();
-app.use(Uploader);
-```
-
 ## 代码演示
 
 ### 基础用法

@@ -4,16 +4,6 @@
 
 用于提供下拉刷新的交互操作。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { PullRefresh } from 'vant';
-
-const app = createApp();
-app.use(PullRefresh);
-```
-
 ## 代码演示
 
 ### 基础用法

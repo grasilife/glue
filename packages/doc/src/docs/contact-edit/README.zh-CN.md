@@ -4,16 +4,6 @@
 
 编辑并保存联系人信息。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { ContactEdit } from 'vant';
-
-const app = createApp();
-app.use(ContactEdit);
-```
-
 ## 代码演示
 
 ### 基础用法

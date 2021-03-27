@@ -4,16 +4,6 @@
 
 加载图标，用于表示加载中的过渡状态。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Loading } from 'vant';
-
-const app = createApp();
-app.use(Loading);
-```
-
 ## 代码演示
 
 ### 加载类型

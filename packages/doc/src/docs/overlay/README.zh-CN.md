@@ -4,16 +4,6 @@
 
 创建一个遮罩层，用于强调特定的页面元素，并阻止用户进行其他操作。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Overlay } from 'vant';
-
-const app = createApp();
-app.use(Overlay);
-```
-
 ## 代码演示
 
 ### 基础用法

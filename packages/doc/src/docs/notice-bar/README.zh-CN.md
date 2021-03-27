@@ -4,16 +4,6 @@
 
 用于循环播放展示一组消息通知。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { NoticeBar } from 'vant';
-
-const app = createApp();
-app.use(NoticeBar);
-```
-
 ## 代码演示
 
 ### 基础用法

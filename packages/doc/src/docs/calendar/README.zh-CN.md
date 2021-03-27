@@ -4,16 +4,6 @@
 
 日历组件用于选择日期或日期区间。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Calendar } from 'vant';
-
-const app = createApp();
-app.use(Calendar);
-```
-
 ## 代码演示
 
 ### 选择单个日期

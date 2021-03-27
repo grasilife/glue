@@ -1,15 +1,5 @@
 # Pagination 分页
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Pagination } from 'vant';
-
-const app = createApp();
-app.use(Pagination);
-```
-
 ## 代码演示
 
 ### 基础用法

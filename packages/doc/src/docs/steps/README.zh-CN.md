@@ -4,17 +4,6 @@
 
 用于展示操作流程的各个环节，让用户了解当前的操作在整体流程中的位置。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Step, Steps } from 'vant';
-
-const app = createApp();
-app.use(Step);
-app.use(Steps);
-```
-
 ## 代码演示
 
 ### 基础用法

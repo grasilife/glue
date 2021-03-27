@@ -4,16 +4,6 @@
 
 商品卡片，用于展示商品的图片、价格等信息。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Card } from 'vant';
-
-const app = createApp();
-app.use(Card);
-```
-
 ## 代码演示
 
 ### 基础用法

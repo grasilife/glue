@@ -4,16 +4,6 @@
 
 圆环形的进度条组件，支持进度渐变动画。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { Circle } from 'vant';
-
-const app = createApp();
-app.use(Circle);
-```
-
 ## 代码演示
 
 ### 基础用法

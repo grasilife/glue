@@ -4,17 +4,6 @@
 
 用于在多个选项中选择单个结果。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { RadioGroup, Radio } from 'vant';
-
-const app = createApp();
-app.use(Radio);
-app.use(RadioGroup);
-```
-
 ## 代码演示
 
 ### 基础用法

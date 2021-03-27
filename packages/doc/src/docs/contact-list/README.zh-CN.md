@@ -4,16 +4,6 @@
 
 展示联系人列表。
 
-### 引入
-
-```js
-import { createApp } from 'vue';
-import { ContactList } from 'vant';
-
-const app = createApp();
-app.use(ContactList);
-```
-
 ## 代码演示
 
 ### 基础用法
