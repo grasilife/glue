@@ -12,14 +12,14 @@ export default {
   },
   site: {
     defaultLang: "zh-CN",
-    defaultType: "Vue2",
+    defaultType: "vue2",
     versions: [{ label: "1.0.0", link: "/glue/" }],
     types: [
-      { label: "Vue2", link: "/glue/" },
-      { label: "React", link: "/glue/React" },
-      { label: "Vue3", link: "/glue/Vue3" },
-      { label: "Angular", link: "/glue/Angular" },
-      { label: "Stencil", link: "/glue/Stencil" }
+      { label: "vue2", link: "/glue/" },
+      { label: "react", link: "/glue/react" },
+      { label: "vue3", link: "/glue/vue3" },
+      { label: "angular", link: "/glue/angular" },
+      { label: "stencil", link: "/glue/stencil" }
     ],
     baiduAnalytics: {
       seed: "ad6b5732c36321f2dafed737ac2da92f"
