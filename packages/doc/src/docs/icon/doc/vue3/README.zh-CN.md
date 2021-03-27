@@ -1,181 +1,107 @@
-# Button 按钮
+# Icon 图标
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+基于字体的图标集，可以通过 Icon 组件使用，也可以在其他组件中通过 `icon` 属性引用。
+
+### 引入
+
+```js
+import { createApp } from 'vue';
+import { Icon } from 'vant';
+
+const app = createApp();
+app.use(Icon);
+```
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+`Icon` 的 `name` 属性支持传入图标名称或图片链接，所有可用的图标名称见右侧示例。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-icon name="chat-o" />
+<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
 ```
 
-### 朴素按钮
+### 徽标提示
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+设置 `dot` 属性后，会在图标右上角展示一个小红点；设置 `badge` 属性后，会在图标右上角展示相应的徽标。
 
 ```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+<van-icon name="chat-o" dot />
+<van-icon name="chat-o" badge="9" />
+<van-icon name="chat-o" badge="99+" />
 ```
 
-### 细边框
+### 图标颜色
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+`Icon` 的 `color` 属性用来设置图标的颜色。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-icon name="cart-o" color="#1989fa" />
+<van-icon name="fire-o" color="#ee0a24" />
 ```
 
-### 禁用状态
+### 图标大小
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+`Icon` 的 `size` 属性用来设置图标的尺寸大小，默认单位为 `px`。
 
 ```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+<van-icon name="chat-o" size="40" /> <van-icon name="chat-o" size="3rem" />
 ```
 
-### 加载状态
+### 使用本地字体文件
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+Icon 组件默认引用有赞 CDN 提供的字体文件，并通过网络下载。如果需要在项目中使用本地字体文件，请引入下面的 CSS 文件，并在项目中配置 `url-loader`。
 
-```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+```js
+import 'vant/lib/icon/local.css';
 ```
 
-### 按钮形状
+> Tips: Vant 默认使用 woff2 格式的本地字体文件，只有在不支持 woff2 字体的低端浏览器上才会加载有赞 CDN 的网络图标。
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+### 自定义图标
 
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+如果需要在现有 Icon 的基础上使用更多图标，可以引入第三方 iconfont 对应的字体文件和 CSS 文件，之后就可以在 Icon 组件中直接使用。
+
+```css
+/* 引入第三方或自定义的字体图标样式 */
+@font-face {
+  font-family: 'my-icon';
+  src: url('./my-icon.ttf') format('truetype');
+}
+
+.my-icon {
+  font-family: 'my-icon';
+}
+
+.my-icon-extra::before {
+  content: '\e626';
+}
 ```
 
-### 图标按钮
-
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
-
 ```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
-
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+<!-- 通过 class-prefix 指定类名为 my-icon -->
+<van-icon class-prefix="my-icon" name="extra" />
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数         | 说明                                    | 类型               | 默认值     |
+|--------------|---------------------------------------|--------------------|------------|
+| name         | 图标名称或图片链接                      | _string_           | -          |
+| dot          | 是否显示图标右上角小红点                | _boolean_          | `false`    |
+| badge        | 图标右上角徽标的内容                    | _number \| string_ | -          |
+| color        | 图标颜色                                | _string_           | `inherit`  |
+| size         | 图标大小，如 `20px` `2em`，默认单位为`px` | _number \| string_ | `inherit`  |
+| class-prefix | 类名前缀，用于使用自定义图标             | _string_           | `van-icon` |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
-
-### Slots
-
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
-
-### 样式变量
-
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
-
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 事件名  | 说明           | 回调参数       |
+|---------|--------------|----------------|
+| default | 点击图标时触发 | _event: Event_ |

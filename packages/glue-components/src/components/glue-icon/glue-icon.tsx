@@ -9,7 +9,7 @@ import classNames from 'classnames';
 export class GlueIcon {
   @Prop() dot: boolean;
   @Prop() name: string;
-  @Prop() size: number | string;
+  @Prop() size: number | string = 32;
   @Prop() badge: number | string;
   @Prop() color: string;
   @Prop() tag: string;
@@ -24,26 +24,30 @@ export class GlueIcon {
   }
   render() {
     const { dot, name, size, badge, color, classPrefix } = this;
-    console.log(addUnit(size));
+    console.log(addUnit(size), 'jiahuahu');
     const isImageIcon = this.isImage(name);
     console.log(isImageIcon, 'isImageIcon');
     return (
       <Host>
-        <glue-badge
-          dot={dot}
-          content={badge}
-          slot-content
-          style={{
-            color,
-            fontSize: addUnit(size),
-          }}
-        >
+        <glue-badge dot={dot} content={badge} slot-content>
           <i
+            style={{
+              color,
+              fontSize: addUnit(size),
+            }}
             class={classNames(classPrefix, 'glue-icon', {
               [`van-icon-${name}`]: true,
             })}
           ></i>
-          {isImageIcon && <img class="glue-icon__image" src={name} />}
+          {isImageIcon && (
+            <img
+              style={{
+                fontSize: addUnit(size),
+              }}
+              class="glue-icon__image"
+              src={name}
+            />
+          )}
         </glue-badge>
       </Host>
     );

@@ -179,10 +179,8 @@ export default {
     }
   }
 
-  .glue-icon {
+  glue-icon {
     margin: 16px 0 16px;
-    color: @text-color;
-    font-size: 32px;
   }
 
   .van-tab__pane {
