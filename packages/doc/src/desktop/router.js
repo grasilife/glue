@@ -48,7 +48,7 @@ function getRoutes() {
               path: `/${type.label}/${lang}/${element2.path}`,
               //这个地方不能使用下面的方法
               // component: () => import(imortPath),
-              component: () => import("../docs/" + element2.path + "/" + "README." + lang + ".md"),
+              component: () => import("../docs/" + element2.path + "/doc/" + type.label + "/README." + lang + ".md"),
               meta: {
                 path: element2.path,
                 lang,
