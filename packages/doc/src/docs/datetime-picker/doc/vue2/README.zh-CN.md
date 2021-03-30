@@ -1,181 +1,361 @@
-# Button 按钮
+# DatetimePicker 时间选择
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+时间选择器，支持日期、年月、时分等维度，通常与[弹出层](#/zh-CN/popup)组件配合使用。
 
 ## 代码演示
 
-### 按钮类型
+### 选择年月日
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为 `date` 表示选择年月日。通过 min-date 和 max-date 属性可以确定可选的时间范围。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-datetime-picker
+  v-model="currentDate"
+  type="date"
+  title="选择年月日"
+  :min-date="minDate"
+  :max-date="maxDate"
+/>
 ```
 
-### 朴素按钮
+```js
+import { ref } from 'vue';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
-
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+export default {
+  setup() {
+    const currentDate = ref(new Date());
+    return {
+      minDate: new Date(2020, 0, 1),
+      maxDate: new Date(2025, 10, 1),
+      currentDate,
+    };
+  },
+};
 ```
 
-### 细边框
+### 选择年月
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+将 type 设置为 `year-month` 即可选择年份和月份。通过传入 `formatter` 函数，可以对选项文字进行格式化处理。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-datetime-picker
+  v-model="currentDate"
+  type="year-month"
+  title="选择年月"
+  :min-date="minDate"
+  :max-date="maxDate"
+  :formatter="formatter"
+/>
 ```
 
-### 禁用状态
+```js
+import { ref } from 'vue';
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+export default {
+  setup() {
+    const currentDate = ref(new Date());
 
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+    const formatter = (type, val) => {
+      if (type === 'year') {
+        return `${val}年`;
+      } else if (type === 'month') {
+        return `${val}月`;
+      }
+      return val;
+    };
+
+    return {
+      minDate: new Date(2020, 0, 1),
+      maxDate: new Date(2025, 10, 1),
+      formatter,
+      currentDate,
+    };
+  },
+};
 ```
 
-### 加载状态
+### 选择月日
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+将 type 设置为 `month-day` 即可选择月份和日期。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-datetime-picker
+  v-model="currentDate"
+  type="month-day"
+  title="选择月日"
+  :min-date="minDate"
+  :max-date="maxDate"
+  :formatter="formatter"
+/>
 ```
 
-### 按钮形状
+```js
+import { ref } from 'vue';
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+export default {
+  setup() {
+    const currentDate = ref(new Date());
 
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+    const formatter = (type, val) => {
+      if (type === 'month') {
+        return `${val}月`;
+      } else if (type === 'day') {
+        return `${val}日`;
+      }
+      return val;
+    };
+
+    return {
+      minDate: new Date(2020, 0, 1),
+      maxDate: new Date(2025, 10, 1),
+      formatter,
+      currentDate,
+    };
+  },
+};
 ```
 
-### 图标按钮
+### 选择时间
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+将 type 设置为 `time` 即可选择时间（小时和分钟）。
 
 ```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
+<van-datetime-picker
+  v-model="currentTime"
+  type="time"
+  title="选择时间"
+  :min-hour="10"
+  :max-hour="20"
+/>
 ```
 
-### 按钮尺寸
+```js
+import { ref } from 'vue';
 
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
+export default {
+  setup() {
+    const currentTime = ref('12:00');
+    return { currentTime };
+  },
+};
 ```
 
-### 块级元素
+### 选择完整时间
 
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
+将 type 设置为 `datetime` 即可选择完整时间，包括年月日和小时、分钟。
 
 ```html
-<glue-button type="primary" block>块级元素</glue-button>
+<van-datetime-picker
+  v-model="currentDate"
+  type="datetime"
+  title="选择完整时间"
+  :min-date="minDate"
+  :max-date="maxDate"
+/>
 ```
 
-### 自定义颜色
+```js
+import { ref } from 'vue';
 
-通过 `color` 属性可以自定义按钮的颜色。
+export default {
+  setup() {
+    const currentDate = ref(new Date());
+    return {
+      minDate: new Date(2020, 0, 1),
+      maxDate: new Date(2025, 10, 1),
+      currentDate,
+    };
+  },
+};
+```
+
+### 选择年月日小时
+
+将 type 设置为 `datehour` 即可选择日期和小时，包括年月日和小时。
 
 ```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+<van-datetime-picker
+  v-model="currentDate"
+  type="datehour"
+  title="选择年月日小时"
+  :min-date="minDate"
+  :max-date="maxDate"
+/>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const currentDate = ref(new Date());
+    return {
+      minDate: new Date(2020, 0, 1),
+      maxDate: new Date(2025, 10, 1),
+      currentDate,
+    };
+  },
+};
+```
+
+### 选项过滤器
+
+通过传入 `filter` 函数，可以对选项数组进行过滤，实现自定义时间间隔。
+
+```html
+<van-datetime-picker v-model="currentTime" type="time" :filter="filter" />
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const currentTime = ref('12:00');
+
+    const filter = (type, options) => {
+      if (type === 'minute') {
+        return options.filter((option) => Number(option) % 5 === 0);
+      }
+      return options;
+    };
+
+    return {
+      filter,
+      currentTime,
+    };
+  },
+};
+```
+
+### 自定义列排序
+
+```html
+<van-datetime-picker
+  v-model="currentDate"
+  type="date"
+  title="自定义列排序"
+  :columns-order="['month', 'day', 'year']"
+  :formatter="formatter"
+/>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const currentDate = ref(new Date());
+
+    const formatter = (type, val) => {
+      if (type === 'year') {
+        return val + '年';
+      }
+      if (type === 'month') {
+        return val + '月';
+      }
+      if (type === 'day') {
+        return val + '日';
+      }
+      return val;
+    };
+
+    return {
+      formatter,
+      currentDate,
+    };
+  },
+};
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数                | 说明                                                                     | 类型                   | 默认值     |
+|---------------------|------------------------------------------------------------------------|------------------------|------------|
+| type                | 时间类型，可选值为 `date` `time` <br> `year-month` `month-day` `datehour` | _string_               | `datetime` |
+| title               | 顶部栏标题                                                               | _string_               | `''`       |
+| confirm-button-text | 确认按钮文字                                                             | _string_               | `确认`     |
+| cancel-button-text  | 取消按钮文字                                                             | _string_               | `取消`     |
+| show-toolbar        | 是否显示顶部栏                                                           | _boolean_              | `true`     |
+| loading             | 是否显示加载状态                                                         | _boolean_              | `false`    |
+| readonly            | 是否为只读状态，只读状态下无法切换选项                                    | _boolean_              | `false`    |
+| filter              | 选项过滤函数                                                             | _(type, vals) => vals_ | -          |
+| formatter           | 选项格式化函数                                                           | _(type, val) => val_   | -          |
+| columns-order       | 自定义列排序数组, 子项可选值为<br> `year`、`month`、`day`、`hour`、`minute`  | _string[]_             | -          |
+| item-height         | 选项高度，支持 `px` `vw` `vh` `rem` 单位，默认 `px`                        | _number \| string_     | `44`       |
+| visible-item-count  | 可见的选项个数                                                           | _number \| string_     | `6`        |
+| swipe-duration      | 快速滑动时惯性滚动的时长，单位`ms`                                        | _number \| string_     | `1000`     |
+
+### DatePicker Props
+
+当时间选择器类型为 date 或 datetime 时，支持以下 props:
+
+| 参数     | 说明                      | 类型   | 默认值 |
+|----------|-------------------------|--------|-----|
+| min-date | 可选的最小时间，精确到分钟 | _Date_ | 十年前 |
+| max-date | 可选的最大时间，精确到分钟 | _Date_ | 十年后 |
+
+### TimePicker Props
+
+当时间选择器类型为 time 时，支持以下 props:
+
+| 参数       | 说明           | 类型               | 默认值 |
+|------------|--------------|--------------------|--------|
+| min-hour   | 可选的最小小时 | _number \| string_ | `0`    |
+| max-hour   | 可选的最大小时 | _number \| string_ | `23`   |
+| min-minute | 可选的最小分钟 | _number \| string_ | `0`    |
+| max-minute | 可选的最大分钟 | _number \| string_ | `59`   |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名  | 说明                     | 回调参数              |
+|---------|------------------------|-----------------------|
+| change  | 当值变化时触发的事件     | value: 当前选中的时间 |
+| confirm | 点击完成按钮时触发的事件 | value: 当前选中的时间 |
+| cancel  | 点击取消按钮时触发的事件 | -                     |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称           | 说明                   | 参数                       |
+|----------------|----------------------|----------------------------|
+| default        | 自定义整个顶部栏的内容 | -                          |
+| title          | 自定义标题内容         | -                          |
+| confirm        | 自定义确认按钮内容     | -                          |
+| cancel         | 自定义取消按钮内容     | -                          |
+| option         | 自定义选项内容         | _option: string \| object_ |
+| columns-top    | 自定义选项上方内容     | -                          |
+| columns-bottom | 自定义选项下方内容     | -                          |
 
-### 样式变量
+### 方法
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+通过 ref 可以获取到 DatetimePicker 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 方法名    | 说明                                                                  | 参数 | 返回值 |
+|-----------|---------------------------------------------------------------------|------|--------|
+| getPicker | 获取 Picker 实例，用于调用 Picker 的[实例方法](#/zh-CN/picker#fang-fa) | -    | -      |
+
+## 常见问题
+
+### 设置 min-date 或 max-date 后出现页面卡死的情况？
+
+请注意不要在模板中直接使用类似`min-date="new Date()"`的写法，这样会导致每次渲染组件时传入一个新的 Date 对象，而传入新的数据会触发下一次渲染，从而陷入死循环。
+
+正确的做法是将`min-date`作为一个数据定义在`data`函数中。
+
+### 在 iOS 系统上初始化组件失败？
+
+如果你遇到了在 iOS 上无法渲染组件的问题，请确认在创建 Date 对象时没有使用`new Date('2020-01-01')`这样的写法，iOS 不支持以中划线分隔的日期格式，正确写法是`new Date('2020/01/01')`。
+
+对此问题的详细解释：[stackoverflow](https://stackoverflow.com/questions/13363673/javascript-date-is-invalid-on-ios)。
+
+### 在桌面端无法操作组件？
+
+参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。
+
+### 是否有年份或月份选择器？
+
+如果仅需要选择年份或者月份，建议直接使用 [Picker](#/zh-CN/picker) 组件。

@@ -1,181 +1,266 @@
-# Button 按钮
+# List 列表
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+瀑布流滚动加载，用于展示长列表，当列表即将滚动到底部时，会触发事件并加载更多列表项。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+List 组件通过 `loading` 和 `finished` 两个变量控制加载状态，当组件滚动到底部时，会触发 `load` 事件并将 `loading` 设置成 `true`。此时可以发起异步操作并更新数据，数据更新完毕后，将 `loading` 设置成 `false` 即可。若数据已全部加载完毕，则直接将 `finished` 设置成 `true` 即可。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-list
+  v-model:loading="state.loading"
+  :finished="state.finished"
+  finished-text="没有更多了"
+  @load="onLoad"
+>
+  <van-cell v-for="item in state.list" :key="item" :title="item" />
+</van-list>
 ```
 
-### 朴素按钮
+```js
+import { reactive } from 'vue';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+export default {
+  setup() {
+    const state = reactive({
+      list: [],
+      loading: false,
+      finished: false,
+    });
 
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+    const onLoad = () => {
+      // 异步更新数据
+      // setTimeout 仅做示例，真实场景中一般为 ajax 请求
+      setTimeout(() => {
+        for (let i = 0; i < 10; i++) {
+          state.list.push(state.list.length + 1);
+        }
+
+        // 加载状态结束
+        state.loading = false;
+
+        // 数据全部加载完成
+        if (state.list.length >= 40) {
+          state.finished = true;
+        }
+      }, 1000);
+    };
+
+    return {
+      state,
+      onLoad,
+    };
+  },
+};
 ```
 
-### 细边框
+### 错误提示
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+若列表数据加载失败，将 `error` 设置成 `true` 即可显示错误提示，用户点击错误提示后会重新触发 load 事件。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-list
+  v-model:loading="state.loading"
+  v-model:error="state.error"
+  error-text="请求失败，点击重新加载"
+  @load="onLoad"
+>
+  <van-cell v-for="item in state.list" :key="item" :title="item" />
+</van-list>
 ```
 
-### 禁用状态
+```js
+import { reactive } from 'vue';
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+export default {
+  setup() {
+    const state = reactive({
+      list: [],
+      error: false,
+      loading: false,
+    });
 
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+    const onLoad = () => {
+      fetchSomeThing().catch(() => {
+        state.error = true;
+      });
+    };
+
+    return {
+      state,
+      onLoad,
+    };
+  },
+};
 ```
 
-### 加载状态
+### 下拉刷新
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+List 组件可以与 [PullRefresh](#/zh-CN/pull-refresh) 组件结合使用，实现下拉刷新的效果。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-pull-refresh v-model="state.refreshing" @refresh="onRefresh">
+  <van-list
+    v-model:loading="state.loading"
+    :finished="state.finished"
+    finished-text="没有更多了"
+    @load="onLoad"
+  >
+    <van-cell v-for="item in state.list" :key="item" :title="item" />
+  </van-list>
+</van-pull-refresh>
 ```
 
-### 按钮形状
+```js
+import { reactive } from 'vue';
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+export default {
+  setup() {
+    const state = reactive({
+      list: [],
+      loading: false,
+      finished: false,
+      refreshing: false,
+    });
 
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
-```
+    const onLoad = () => {
+      setTimeout(() => {
+        if (state.refreshing) {
+          state.list = [];
+          state.refreshing = false;
+        }
 
-### 图标按钮
+        for (let i = 0; i < 10; i++) {
+          state.list.push(state.list.length + 1);
+        }
+        state.loading = false;
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+        if (state.list.length >= 40) {
+          state.finished = true;
+        }
+      }, 1000);
+    };
 
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
+    const onRefresh = () => {
+      // 清空列表数据
+      state.finished = false;
 
-### 按钮尺寸
+      // 重新加载数据
+      // 将 loading 设置为 true，表示处于加载状态
+      state.loading = true;
+      onLoad();
+    };
 
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+    return {
+      state,
+      onLoad,
+      onRefresh,
+    };
+  },
+};
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数            | 说明                                                                               | 类型               | 默认值      |
+|-----------------|----------------------------------------------------------------------------------|--------------------|-------------|
+| v-model:loading | 是否处于加载状态，加载过程中不触发`load`事件                                        | _boolean_          | `false`     |
+| finished        | 是否已加载完成，加载完成后不再触发`load`事件                                        | _boolean_          | `false`     |
+| error           | 是否加载失败，加载失败后点击错误提示可以重新<br>触发`load`事件，必须使用`sync`修饰符 | _boolean_          | `false`     |
+| offset          | 滚动条与底部距离小于 offset 时触发`load`事件                                       | _number \| string_ | `300`       |
+| loading-text    | 加载过程中的提示文案                                                               | _string_           | `加载中...` |
+| finished-text   | 加载完成后的提示文案                                                               | _string_           | -           |
+| error-text      | 加载失败后的提示文案                                                               | _string_           | -           |
+| immediate-check | 是否在初始化时立即执行滚动位置检查                                                 | _boolean_          | `true`      |
+| direction       | 滚动触发加载的方向，可选值为`up`                                                    | _string_           | `down`      |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名 | 说明                               | 回调参数 |
+|--------|----------------------------------|----------|
+| load   | 滚动条与底部距离小于 offset 时触发 | -        |
+
+### 方法
+
+通过 ref 可以获取到 List 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明                                                 | 参数 | 返回值 |
+|--------|----------------------------------------------------|------|--------|
+| check  | 检查当前的滚动位置，若已滚动至底部，则会触发 load 事件 | -    | -      |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称     | 说明                       |
+|----------|--------------------------|
+| default  | 列表内容                   |
+| loading  | 自定义底部加载中提示       |
+| finished | 自定义加载完成后的提示文案 |
+| error    | 自定义加载失败后的提示文案 |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                    | 默认值          | 描述 |
+|-------------------------|-----------------|------|
+| @list-icon-margin-right | `5px`           | -    |
+| @list-text-color        | `@gray-6`       | -    |
+| @list-text-font-size    | `@font-size-md` | -    |
+| @list-text-line-height  | `50px`          | -    |
+
+## 常见问题
+
+### List 的运行机制是什么？
+
+List 会监听浏览器的滚动事件并计算列表的位置，当列表底部与可视区域的距离小于`offset`时，List 会触发一次 load 事件。
+
+### 为什么 List 初始化后会立即触发 load 事件？
+
+List 初始化后会触发一次 load 事件，用于加载第一屏的数据，这个特性可以通过`immediate-check`属性关闭。
+
+### 为什么会连续触发 load 事件？
+
+如果一次请求加载的数据条数较少，导致列表内容无法铺满当前屏幕，List 会继续触发 load 事件，直到内容铺满屏幕或数据全部加载完成。因此你需要调整每次获取的数据条数，理想情况下每次请求获取的数据条数应能够填满一屏高度。
+
+### loading 和 finished 分别是什么含义？
+
+`List`有以下三种状态，理解这些状态有助于你正确地使用`List`组件：
+
+- 非加载中，`loading`为`false`，此时会根据列表滚动位置判断是否触发`load`事件（列表内容不足一屏幕时，会直接触发）
+- 加载中，`loading`为`true`，表示正在发送异步请求，此时不会触发`load`事件
+- 加载完成，`finished`为`true`，此时不会触发`load`事件
+
+在每次请求完毕后，需要手动将`loading`设置为`false`，表示加载结束
+
+### 使用 float 布局后一直触发加载？
+
+若 List 的内容使用了 float 布局，可以在容器上添加`van-clearfix`类名来清除浮动，使得 List 能正确判断元素位置
+
+```html
+<van-list>
+  <div class="van-clearfix">
+    <div class="float-item" />
+    <div class="float-item" />
+    <div class="float-item" />
+  </div>
+</van-list>
+```
+
+### 在 html、body 上设置 overflow 后一直触发加载？
+
+如果在 html 和 body 标签上设置了`overflow-x: hidden`样式，会导致 List 一直触发加载。
+
+```css
+html,
+body {
+  overflow-x: hidden;
+}
+```
+
+这个问题的原因是当元素设置了`overflow-x: hidden`样式时，该元素的`overflow-y`会被浏览器设置为`auto`，而不是默认值`visible`，导致 List 无法正确地判断滚动容器。解决方法是去除该样式，或者在 html 和 body 标签上添加`height: 100%`样式。

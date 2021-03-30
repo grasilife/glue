@@ -1,181 +1,231 @@
-# Button 按钮
+# NumberKeyboard 数字键盘
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+虚拟数字键盘，可以配合[密码输入框组件](#/zh-CN/password-input)或自定义的输入框组件使用。
 
 ## 代码演示
 
-### 按钮类型
+### 默认样式
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+数字键盘提供了 `input`、`delete`、`blur` 事件，分别对应输入内容、删除内容和失去焦点的动作。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-cell @touchstart.stop="show = true">弹出默认键盘</van-cell>
+<van-number-keyboard
+  :show="show"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
 ```
 
-### 朴素按钮
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+export default {
+  setup() {
+    const show = ref(true);
+    const onInput = (value) => Toast(value);
+    const onDelete = () => Toast('删除');
 
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+    return {
+      show,
+      onInput,
+      onDelete,
+    };
+  },
+};
 ```
 
-### 细边框
+> 点击键盘以外的区域时，键盘会自动收起，通过阻止元素上的 touchstart 事件冒泡可以避免键盘收起。
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+### 带右侧栏的键盘
+
+将 theme 属性设置为 `custom` 来展示键盘的右侧栏，常用于输入金额的场景。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-number-keyboard
+  :show="show"
+  theme="custom"
+  extra-key="."
+  close-button-text="完成"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
 ```
 
-### 禁用状态
+### 身份证号键盘
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+通过 `extra-key` 属性可以设置左下角按键内容，比如需要输入身份证号时，可以将 `extra-key` 设置为 `X`。
 
 ```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+<van-cell plain type="primary" @touchstart.stop="show = true">
+  弹出身份证号键盘
+</van-cell>
+<van-number-keyboard
+  :show="show"
+  extra-key="X"
+  close-button-text="完成"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
 ```
 
-### 加载状态
+### 键盘标题
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+通过 `title` 属性可以设置键盘标题。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-cell plain type="primary" @touchstart.stop="show = true">
+  弹出带标题的键盘
+</van-cell>
+<van-number-keyboard
+  :show="show"
+  title="键盘标题"
+  extra-key="."
+  close-button-text="完成"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
 ```
 
-### 按钮形状
+### 配置多个按键
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+当 theme 为 `custom` 时，支持以数组的形式配置两个 `extra-key`。
 
 ```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+<van-cell plain type="primary" @touchstart.stop="show = true">
+  弹出配置多个按键的键盘
+</van-cell>
+<van-number-keyboard
+  :show="show"
+  :extra-key="['00', '.']"
+  close-button-text="完成"
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
 ```
 
-### 图标按钮
+### 随机数字键盘
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+通过 `random-key-order` 属性可以随机排序数字键盘，常用于安全等级较高的场景。
 
 ```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
+<van-cell @touchstart.stop="show = true"> 弹出配置随机数字的键盘 </van-cell>
+<van-number-keyboard
+  :show="show"
+  random-key-order
+  @blur="show = false"
+  @input="onInput"
+  @delete="onDelete"
+/>
 ```
 
-### 按钮尺寸
+### 双向绑定
 
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
+可以通过 `v-model` 绑定键盘当前输入值。
 
 ```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
+<van-field v-model="value" readonly clickable @touchstart.stop="show = true" />
+<van-number-keyboard
+  v-model="value"
+  :show="show"
+  :maxlength="6"
+  @blur="show = false"
+/>
 ```
 
-### 块级元素
+```js
+import { ref } from 'vue';
 
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+export default {
+  setup() {
+    const show = ref(true);
+    const value = ref('');
+    return {
+      show,
+      value,
+    };
+  },
+};
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数                   | 说明                                                                      | 类型                 | 默认值    |
+|------------------------|-------------------------------------------------------------------------|----------------------|-----------|
+| v-model                | 当前输入值                                                                | _string_             | -         |
+| show                   | 是否显示键盘                                                              | _boolean_            | -         |
+| title                  | 键盘标题                                                                  | _string_             | -         |
+| theme                  | 样式风格，可选值为 `custom`                                                | _string_             | `default` |
+| maxlength              | 输入值最大长度                                                            | _number \| string_   | -         |
+| transition             | 是否开启过场动画                                                          | _boolean_            | `true`    |
+| z-index                | 键盘 z-index 层级                                                         | _number \| string_   | `100`     |
+| extra-key              | 底部额外按键的内容                                                        | _string \| string[]_ | `''`      |
+| close-button-text      | 关闭按钮文字，空则不展示                                                   | _string_             | -         |
+| delete-button-text     | 删除按钮文字，空则展示删除图标                                             | _string_             | -         |
+| close-button-loading   | 是否将关闭按钮设置为加载中状态，仅在 `theme="custom"` 时有效               | _boolean_            | `false`   |
+| show-delete-key        | 是否展示删除图标                                                          | _boolean_            | `true`    |
+| blur-on-close `v3.0.6` | 是否在点击关闭按钮时触发 blur 事件                                        | _boolean_            | `true`    |
+| hide-on-click-outside  | 是否在点击外部时收起键盘                                                  | _boolean_            | `true`    |
+| teleport               | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi)         | _string \| Element_  | -         |
+| safe-area-inset-bottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_            | `true`    |
+| random-key-order       | 是否将通过随机顺序展示按键                                                | _boolean_            | `false`   |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名 | 说明                           | 回调参数      |
+|--------|------------------------------|---------------|
+| input  | 点击按键时触发                 | key: 按键内容 |
+| delete | 点击删除键时触发               | -             |
+| close  | 点击关闭按钮时触发             | -             |
+| blur   | 点击关闭按钮或非键盘区域时触发 | -             |
+| show   | 键盘完全弹出时触发             | -             |
+| hide   | 键盘完全收起时触发             | -             |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称       | 说明                 |
+|------------|--------------------|
+| delete     | 自定义删除按键内容   |
+| extra-key  | 自定义左下角按键内容 |
+| title-left | 自定义标题栏左侧内容 |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                                       | 默认值             | 描述 |
+|--------------------------------------------|--------------------|------|
+| @number-keyboard-background-color          | `@gray-2`          | -    |
+| @number-keyboard-key-height                | `48px`             | -    |
+| @number-keyboard-key-font-size             | `28px`             | -    |
+| @number-keyboard-key-active-color          | `@gray-3`          | -    |
+| @number-keyboard-delete-font-size          | `@font-size-lg`    | -    |
+| @number-keyboard-title-color               | `@gray-7`          | -    |
+| @number-keyboard-title-height              | `34px`             | -    |
+| @number-keyboard-title-font-size           | `@font-size-lg`    | -    |
+| @number-keyboard-close-padding             | `0 @padding-md`    | -    |
+| @number-keyboard-close-color               | `@text-link-color` | -    |
+| @number-keyboard-close-font-size           | `@font-size-md`    | -    |
+| @number-keyboard-button-text-color         | `@white`           | -    |
+| @number-keyboard-button-background-color   | `@blue`            | -    |
+| @number-keyboard-cursor-color              | `@text-color`      | -    |
+| @number-keyboard-cursor-width              | `1px`              | -    |
+| @number-keyboard-cursor-height             | `40%`              | -    |
+| @number-keyboard-cursor-animation-duration | `1s`               | -    |
+| @number-keyboard-z-index                   | `100`              | -    |
+
+## 常见问题
+
+### 在桌面端无法操作组件？
+
+参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。

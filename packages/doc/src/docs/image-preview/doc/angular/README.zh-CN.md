@@ -1,181 +1,266 @@
-# Button 按钮
+# ImagePreview 图片预览
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+图片放大预览，支持函数调用和组件调用两种方式。
+
+### 函数调用
+
+ImagePreview 是一个函数，调用函数后会直接在页面中展示图片预览界面。
+
+```js
+import { ImagePreview } from 'vant';
+
+ImagePreview(['https://img01.yzcdn.cn/vant/apple-1.jpg']);
+```
+
+### 组件调用
+
+通过组件调用 ImagePreview 时，可以通过下面的方式进行注册。
+
+```js
+import { createApp } from 'vue';
+import { ImagePreview } from 'vant';
+
+// 全局注册
+const app = createApp();
+app.use(ImagePreview);
+
+// 局部注册
+export default {
+  components: {
+    [ImagePreview.Component.name]: ImagePreview.Component,
+  },
+};
+```
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+直接传入图片数组，即可展示图片预览。
 
-```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+```js
+ImagePreview([
+  'https://img01.yzcdn.cn/vant/apple-1.jpg',
+  'https://img01.yzcdn.cn/vant/apple-2.jpg',
+]);
 ```
 
-### 朴素按钮
+### 指定初始位置
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+ImagePreview 支持传入配置对象，并通过 `startPosition` 选项指定图片的初始位置（索引值）。
 
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+```js
+ImagePreview({
+  images: [
+    'https://img01.yzcdn.cn/vant/apple-1.jpg',
+    'https://img01.yzcdn.cn/vant/apple-2.jpg',
+  ],
+  startPosition: 1,
+});
 ```
 
-### 细边框
+### 展示关闭按钮
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+设置 `closeable` 属性后，会在弹出层的右上角显示关闭图标，并且可以通过 `close-icon` 属性自定义图标，使用`close-icon-position` 属性可以自定义图标位置。
 
-```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+```js
+ImagePreview({
+  images: [
+    'https://img01.yzcdn.cn/vant/apple-1.jpg',
+    'https://img01.yzcdn.cn/vant/apple-2.jpg',
+  ],
+  closeable: true,
+});
 ```
 
-### 禁用状态
+### 监听关闭事件
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+通过 `onClose` 选项监听图片预览的关闭事件。
 
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+```js
+import { Toast } from 'vant';
+
+ImagePreview({
+  images: [
+    'https://img01.yzcdn.cn/vant/apple-1.jpg',
+    'https://img01.yzcdn.cn/vant/apple-2.jpg',
+  ],
+  onClose() {
+    Toast('关闭');
+  },
+});
 ```
 
-### 加载状态
+### 异步关闭
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+通过 `beforeClose` 属性可以拦截关闭行为。
 
-```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+```js
+const instance = ImagePreview({
+  images: [
+    'https://img01.yzcdn.cn/vant/apple-1.jpg',
+    'https://img01.yzcdn.cn/vant/apple-2.jpg',
+  ],
+  beforeClose: () => false,
+});
+
+setTimeout(() => {
+  // 调用实例上的 close 方法手动关闭图片预览
+  instance.close();
+}, 2000);
 ```
 
-### 按钮形状
+### 组件调用
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+如果需要在图片预览内嵌入组件或其他自定义内容，可以使用组件调用的方式，调用前需要通过 `app.use` 注册组件。
 
 ```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+<van-image-preview
+  v-model:show="state.show"
+  :images="state.images"
+  @change="onChange"
+>
+  <template v-slot:index>第{{ index }}页</template>
+</van-image-preview>
 ```
 
-### 图标按钮
+```js
+import { reactive } from 'vue';
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+export default {
+  setup() {
+    const state = reactive({
+      show: false,
+      index: 0,
+    });
+    const onChange = (index) => {
+      state.index = index;
+    };
 
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
-
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+    return {
+      state,
+      images: [
+        'https://img01.yzcdn.cn/vant/apple-1.jpg',
+        'https://img01.yzcdn.cn/vant/apple-2.jpg',
+      ],
+      onChange,
+    };
+  },
+};
 ```
 
 ## API
 
+### Options
+
+通过函数调用 `ImagePreview` 时，支持传入以下选项：
+
+| 参数名            | 说明                                                              | 类型                             | 默认值      |
+|-------------------|-----------------------------------------------------------------|----------------------------------|-------------|
+| images            | 需要预览的图片 URL 数组                                           | _string[]_                       | `[]`        |
+| startPosition     | 图片预览起始位置索引                                              | _number \| string_               | `0`         |
+| swipeDuration     | 动画时长，单位为 `ms`                                              | _number \| string_               | `300`       |
+| showIndex         | 是否显示页码                                                      | _boolean_                        | `true`      |
+| showIndicators    | 是否显示轮播指示器                                                | _boolean_                        | `false`     |
+| loop              | 是否开启循环播放                                                  | _boolean_                        | `true`      |
+| onClose           | 关闭时的回调函数                                                  | _Function_                       | -           |
+| onChange          | 切换图片时的回调函数，回调参数为当前索引                           | _Function_                       | -           |
+| onScale           | 缩放图片时的回调函数，回调参数为当前索引和当前缩放值组成的对象     | _Function_                       | -           |
+| beforeClose       | 关闭前的回调函数，返回 `false` 可阻止关闭，支持返回 Promise         | _(active) => boolean \| Promise_ | -           |
+| closeOnPopstate   | 是否在页面回退时自动关闭                                          | _boolean_                        | `true`      |
+| className         | 自定义类名                                                        | _string \| Array \| object_      | -           |
+| maxZoom           | 手势缩放时，最大缩放比例                                           | _number \| string_               | `3`         |
+| minZoom           | 手势缩放时，最小缩放比例                                           | _number \| string_               | `1/3`       |
+| closeable         | 是否显示关闭图标                                                  | _boolean_                        | `false`     |
+| closeIcon         | 关闭图标名称或图片链接                                            | _string_                         | `clear`     |
+| closeIconPosition | 关闭图标位置，可选值为 `top-left`<br>`bottom-left` `bottom-right`  | _string_                         | `top-right` |
+| teleport          | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi) | _string \| Element_              | -           |
+
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+通过组件调用 `ImagePreview` 时，支持以下 Props：
+
+| 参数                | 说明                                                              | 类型                             | 默认值      |
+|---------------------|-----------------------------------------------------------------|----------------------------------|-------------|
+| images              | 需要预览的图片 URL 数组                                           | _string[]_                       | `[]`        |
+| start-position      | 图片预览起始位置索引                                              | _number \| string_               | `0`         |
+| swipe-duration      | 动画时长，单位为 ms                                                | _number \| string_               | `300`       |
+| show-index          | 是否显示页码                                                      | _boolean_                        | `true`      |
+| show-indicators     | 是否显示轮播指示器                                                | _boolean_                        | `false`     |
+| loop                | 是否开启循环播放                                                  | _boolean_                        | `true`      |
+| before-close        | 关闭前的回调函数，返回 `false` 可阻止关闭，支持返回 Promise         | _(active) => boolean \| Promise_ | -           |
+| close-on-popstate   | 是否在页面回退时自动关闭                                          | _boolean_                        | `true`      |
+| class-name          | 自定义类名                                                        | _string \| Array \| object_      | -           |
+| max-zoom            | 手势缩放时，最大缩放比例                                           | _number \| string_               | `3`         |
+| min-zoom            | 手势缩放时，最小缩放比例                                           | _number \| string_               | `1/3`       |
+| closeable           | 是否显示关闭图标                                                  | _boolean_                        | `false`     |
+| close-icon          | 关闭图标名称或图片链接                                            | _string_                         | `clear`     |
+| close-icon-position | 关闭图标位置，可选值为`top-left`<br>`bottom-left` `bottom-right`   | _string_                         | `top-right` |
+| teleport            | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi) | _string \| Element_              | -           |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+通过组件调用 `ImagePreview` 时，支持以下事件：
+
+| 事件   | 说明                   | 回调参数                                       |
+|--------|----------------------|------------------------------------------------|
+| close  | 关闭时触发             | { index: 索引, url: 图片链接 }                 |
+| closed | 关闭且且动画结束后触发 | -                                              |
+| change | 切换当前图片时触发     | index: 当前图片的索引                          |
+| scale  | 缩放当前图片时触发     | { index: 当前图片的索引, scale: 当前缩放的值 } |
+
+### 方法
+
+通过组件调用 `ImagePreview` 时，通过 ref 可以获取到 ImagePreview 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名          | 说明           | 参数                            | 返回值 |
+|-----------------|--------------|---------------------------------|--------|
+| swipeTo `2.9.0` | 切换到指定位置 | index: number, options: Options | -      |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+通过组件调用 `ImagePreview` 时，支持以下插槽：
+
+| 名称  | 说明                           | 参数                      |
+|-------|------------------------------|---------------------------|
+| index | 自定义页码内容                 | { index: 当前图片的索引 } |
+| cover | 自定义覆盖在图片预览上方的内容 | -                         |
+
+### onClose 回调参数
+
+| 参数名 | 说明             | 类型     |
+|--------|----------------|----------|
+| url    | 当前图片 URL     | _string_ |
+| index  | 当前图片的索引值 | _number_ |
+
+### onScale 回调参数
+
+| 参数名 | 说明             | 类型     |
+|--------|----------------|----------|
+| index  | 当前图片的索引值 | _number_ |
+| scale  | 当前图片的缩放值 | _number_ |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                                    | 默认值               | 描述 |
+|-----------------------------------------|----------------------|------|
+| @image-preview-index-text-color         | `@white`             | -    |
+| @image-preview-index-font-size          | `@font-size-md`      | -    |
+| @image-preview-index-line-height        | `@line-height-md`    | -    |
+| @image-preview-index-text-shadow        | `0 1px 1px @gray-8`  | -    |
+| @image-preview-overlay-background-color | `rgba(0, 0, 0, 0.9)` | -    |
+| @image-preview-close-icon-size          | `22px`               | -    |
+| @image-preview-close-icon-color         | `@gray-5`            | -    |
+| @image-preview-close-icon-active-color  | `@gray-6`            | -    |
+| @image-preview-close-icon-margin        | `@padding-md`        | -    |
+| @image-preview-close-icon-z-index       | `1`                  | -    |
+
+## 常见问题
+
+### 在桌面端无法操作组件？
+
+参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。

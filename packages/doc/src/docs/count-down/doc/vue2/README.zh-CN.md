@@ -1,181 +1,198 @@
-# Button 按钮
+# CountDown 倒计时
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+用于实时展示倒计时数值，支持毫秒精度。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+`time` 属性表示倒计时总时长，单位为毫秒。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-count-down :time="time" />
 ```
 
-### 朴素按钮
+```js
+import { ref } from 'vue';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
-
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+export default {
+  setup() {
+    const time = ref(30 * 60 * 60 * 1000);
+    return { time };
+  },
+};
 ```
 
-### 细边框
+### 自定义格式
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+通过 `format` 属性设置倒计时文本的内容。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-count-down :time="time" format="DD 天 HH 时 mm 分 ss 秒" />
 ```
 
-### 禁用状态
+### 毫秒级渲染
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+倒计时默认每秒渲染一次，设置 `millisecond` 属性可以开启毫秒级渲染。
 
 ```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+<van-count-down millisecond :time="time" format="HH:mm:ss:SS" />
 ```
 
-### 加载状态
+### 自定义样式
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+通过插槽自定义倒计时的样式，`timeData` 对象格式见下方表格。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-count-down :time="time">
+  <template #default="timeData">
+    <span class="block">{{ timeData.hours }}</span>
+    <span class="colon">:</span>
+    <span class="block">{{ timeData.minutes }}</span>
+    <span class="colon">:</span>
+    <span class="block">{{ timeData.seconds }}</span>
+  </template>
+</van-count-down>
+
+<style>
+  .colon {
+    display: inline-block;
+    margin: 0 4px;
+    color: #ee0a24;
+  }
+  .block {
+    display: inline-block;
+    width: 22px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    background-color: #ee0a24;
+  }
+</style>
 ```
 
-### 按钮形状
+### 手动控制
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+通过 ref 获取到组件实例后，可以调用 `start`、`pause`、`reset` 方法。
 
 ```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+<van-count-down
+  ref="countDown"
+  millisecond
+  :time="3000"
+  :auto-start="false"
+  format="ss:SSS"
+  @finish="onFinish"
+/>
+<van-grid clickable>
+  <van-grid-item text="开始" icon="play-circle-o" @click="start" />
+  <van-grid-item text="暂停" icon="pause-circle-o" @click="pause" />
+  <van-grid-item text="重置" icon="replay" @click="reset" />
+</van-grid>
 ```
 
-### 图标按钮
+```js
+import { Toast } from 'vant';
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+export default {
+  setup() {
+    const countDown = ref(null);
 
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
+    const start = () => {
+      countDown.value.start();
+    };
+    const pause = () => {
+      countDown.value.pause();
+    };
+    const reset = () => {
+      countDown.value.reset();
+    };
+    const onFinish = () => Toast('倒计时结束');
 
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+    return {
+      start,
+      pause,
+      reset,
+      onFinish,
+      countDown,
+    };
+  },
+};
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数        | 说明                | 类型               | 默认值     |
+|-------------|-------------------|--------------------|------------|
+| time        | 倒计时时长，单位毫秒 | _number \| string_ | `0`        |
+| format      | 时间格式            | _string_           | `HH:mm:ss` |
+| auto-start  | 是否自动开始倒计时  | _boolean_          | `true`     |
+| millisecond | 是否开启毫秒级渲染  | _boolean_          | `false`    |
+
+### format 格式
+
+| 格式 | 说明       |
+|------|----------|
+| DD   | 天数       |
+| HH   | 小时       |
+| mm   | 分钟       |
+| ss   | 秒数       |
+| S    | 毫秒（1 位） |
+| SS   | 毫秒（2 位） |
+| SSS  | 毫秒（3 位） |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名 | 说明             | 回调参数                   |
+|--------|----------------|----------------------------|
+| finish | 倒计时结束时触发 | -                          |
+| change | 倒计时变化时触发 | _currentTime: CurrentTime_ |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称    | 说明       | 参数                       |
+|---------|----------|----------------------------|
+| default | 自定义内容 | _currentTime: CurrentTime_ |
+
+### CurrentTime 格式
+
+| 名称         | 说明                 | 类型     |
+|--------------|--------------------|----------|
+| total        | 剩余总时间（单位毫秒） | _number_ |
+| days         | 剩余天数             | _number_ |
+| hours        | 剩余小时             | _number_ |
+| minutes      | 剩余分钟             | _number_ |
+| seconds      | 剩余秒数             | _number_ |
+| milliseconds | 剩余毫秒             | _number_ |
+
+### 方法
+
+通过 ref 可以获取到 CountDown 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明                                                        | 参数 | 返回值 |
+|--------|-----------------------------------------------------------|------|--------|
+| start  | 开始倒计时                                                  | -    | -      |
+| pause  | 暂停倒计时                                                  | -    | -      |
+| reset  | 重设倒计时，若 `auto-start` 为 `true`，重设后会自动开始倒计时 | -    | -      |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                    | 默认值            | 描述 |
+|-------------------------|-------------------|------|
+| @count-down-text-color  | `@text-color`     | -    |
+| @count-down-font-size   | `@font-size-md`   | -    |
+| @count-down-line-height | `@line-height-md` | -    |
+
+## 常见问题
+
+### 在 iOS 系统上倒计时不生效？
+
+如果你遇到了在 iOS 上倒计时不生效的问题，请确认在创建 Date 对象时没有使用`new Date('2020-01-01')`这样的写法，iOS 不支持以中划线分隔的日期格式，正确写法是`new Date('2020/01/01')`。
+
+对此问题的详细解释：[stackoverflow](https://stackoverflow.com/questions/13363673/javascript-date-is-invalid-on-ios)。

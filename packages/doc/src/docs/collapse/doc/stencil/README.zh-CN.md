@@ -1,181 +1,159 @@
-# Button 按钮
+# Collapse 折叠面板
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+将一组内容放置在多个折叠面板中，点击面板的标题可以展开或收缩其内容。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+通过 `v-model` 控制展开的面板列表，`activeNames` 为数组格式。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-collapse v-model="activeNames">
+  <van-collapse-item title="标题1" name="1">内容</van-collapse-item>
+  <van-collapse-item title="标题2" name="2">内容</van-collapse-item>
+  <van-collapse-item title="标题3" name="3">内容</van-collapse-item>
+</van-collapse>
 ```
 
-### 朴素按钮
+```js
+import { ref } from 'vue';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
-
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+export default {
+  setup() {
+    const activeNames = ref(['1']);
+    return { activeNames };
+  },
+};
 ```
 
-### 细边框
+### 手风琴
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+通过 `accordion` 可以设置为手风琴模式，最多展开一个面板，此时 `activeName` 为字符串格式。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-collapse v-model="activeName" accordion>
+  <van-collapse-item title="标题1" name="1">内容</van-collapse-item>
+  <van-collapse-item title="标题2" name="2">内容</van-collapse-item>
+  <van-collapse-item title="标题3" name="3">内容</van-collapse-item>
+</van-collapse>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const activeName = ref('1');
+    return { activeName };
+  },
+};
 ```
 
 ### 禁用状态
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+通过 `disabled` 属性来禁用单个面板。
 
 ```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+<van-collapse v-model="activeNames">
+  <van-collapse-item title="标题1" name="1">内容</van-collapse-item>
+  <van-collapse-item title="标题2" name="2" disabled>内容</van-collapse-item>
+  <van-collapse-item title="标题3" name="3" disabled>内容</van-collapse-item>
+</van-collapse>
 ```
 
-### 加载状态
+### 自定义标题内容
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+通过 `title` 插槽可以自定义标题栏的内容。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-collapse v-model="activeNames">
+  <van-collapse-item name="1">
+    <template #title>
+      <div>标题1 <van-icon name="question-o" /></div>
+    </template>
+    内容
+  </van-collapse-item>
+  <van-collapse-item title="标题2" name="2" icon="shop-o">
+    内容
+  </van-collapse-item>
+</van-collapse>
 ```
 
-### 按钮形状
+```js
+import { ref } from 'vue';
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
-
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
-```
-
-### 图标按钮
-
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
-
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
-
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+export default {
+  setup() {
+    const activeNames = ref(['1']);
+    return { activeNames };
+  },
+};
 ```
 
 ## API
 
-### Props
+### Collapse Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数      | 说明                | 类型                                                                 | 默认值  |
+|-----------|-------------------|----------------------------------------------------------------------|---------|
+| v-model   | 当前展开面板的 name | 手风琴模式：_number \| string_<br>非手风琴模式：_(number \| string)[]_ | -       |
+| accordion | 是否开启手风琴模式  | _boolean_                                                            | `false` |
+| border    | 是否显示外边框      | _boolean_                                                            | `true`  |
 
-### Events
+### Collapse Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名 | 说明           | 回调参数                                 |
+|--------|--------------|--------------------------------------|
+| change | 切换面板时触发 | activeNames: 类型与 v-model 绑定的值一致 |
 
-### Slots
+### CollapseItem Props
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 参数        | 说明                                         | 类型               | 默认值  |
+|-------------|--------------------------------------------|--------------------|---------|
+| name        | 唯一标识符，默认为索引值                      | _number \| string_ | `index` |
+| icon        | 标题栏左侧[图标名称](#/zh-CN/icon)或图片链接 | _string_           | -       |
+| size        | 标题栏大小，可选值为 `large`                  | _string_           | -       |
+| title       | 标题栏左侧内容                               | _number \| string_ | -       |
+| value       | 标题栏右侧内容                               | _number \| string_ | -       |
+| label       | 标题栏描述信息                               | _number \| string_ | -       |
+| border      | 是否显示内边框                               | _boolean_          | `true`  |
+| is-link     | 是否展示标题栏右侧箭头并开启点击反馈         | _boolean_          | `true`  |
+| disabled    | 是否禁用面板                                 | _boolean_          | `false` |
+| title-class | 左侧标题额外类名                             | _string_           | -       |
+| value-class | 右侧内容额外类名                             | _string_           | -       |
+| label-class | 描述信息额外类名                             | _string_           | -       |
+
+### CollapseItem Slots
+
+| 名称       | 说明                          |
+|------------|-----------------------------|
+| default    | 面板内容                      |
+| value      | 自定义显示内容                |
+| icon       | 自定义 `icon`                 |
+| title      | 自定义 `title`                |
+| right-icon | 自定义右侧按钮，默认是 `arrow` |
+
+### CollapseItem 方法
+
+通过 ref 可以获取到 CollapseItem 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明                                                          | 参数               | 返回值 |
+|--------|-------------------------------------------------------------|--------------------|--------|
+| toggle | 切换面试展开状态，传 `true` 为展开，`false` 为收起，不传参为切换 | _expand?: boolean_ | -      |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                                    | 默认值                     | 描述 |
+|-----------------------------------------|----------------------------|------|
+| @collapse-item-transition-duration      | `@animation-duration-base` | -    |
+| @collapse-item-content-padding          | `@padding-sm @padding-md`  | -    |
+| @collapse-item-content-font-size        | `@font-size-md`            | -    |
+| @collapse-item-content-line-height      | `1.5`                      | -    |
+| @collapse-item-content-text-color       | `@gray-6`                  | -    |
+| @collapse-item-content-background-color | `@white`                   | -    |
+| @collapse-item-title-disabled-color     | `@gray-5`                  | -    |

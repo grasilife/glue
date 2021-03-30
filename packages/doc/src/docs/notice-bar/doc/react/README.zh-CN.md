@@ -1,181 +1,141 @@
-# Button 按钮
+# NoticeBar 通知栏
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+用于循环播放展示一组消息通知。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+通过 `text` 属性设置通知栏的内容，通过 `left-icon` 属性设置通知栏左侧的图标。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-notice-bar
+  left-icon="volume-o"
+  text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
+/>
 ```
 
-### 朴素按钮
+### 滚动播放
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+通知栏的内容长度溢出时会自动开启滚动播放，通过 `scrollable` 属性可以控制该行为。
 
 ```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+<!-- 文字较短时，通过设置 scrollable 属性开启滚动播放 -->
+<van-notice-bar scrollable text="技术是开发它的人的共同灵魂。" />
+
+<!-- 文字较长时，通过禁用 scrollable 属性关闭滚动播放 -->
+<van-notice-bar
+  :scrollable="false"
+  text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
+/>
 ```
 
-### 细边框
+### 多行展示
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+文字较长时，可以通过设置 `wrapable` 属性来开启多行展示。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-notice-bar
+  wrapable
+  :scrollable="false"
+  text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
+/>
 ```
 
-### 禁用状态
+### 通知栏模式
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+通知栏支持 `closeable` 和 `link` 两种模式。
 
 ```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+<!-- closeable 模式，在右侧显示关闭按钮 -->
+<van-notice-bar mode="closeable">技术是开发它的人的共同灵魂。</van-notice-bar>
+
+<!-- link 模式，在右侧显示链接箭头 -->
+<van-notice-bar mode="link">技术是开发它的人的共同灵魂。</van-notice-bar>
 ```
 
-### 加载状态
+### 自定义样式
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+通过 `color` 属性设置文本颜色，通过 `background` 属性设置背景色。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-notice-bar color="#1989fa" background="#ecf9ff" left-icon="info-o">
+  技术是开发它的人的共同灵魂。
+</van-notice-bar>
 ```
 
-### 按钮形状
+### 垂直滚动
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
-
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
-```
-
-### 图标按钮
-
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+搭配 NoticeBar 和 Swipe 组件可以实现垂直滚动的效果。
 
 ```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
+<van-notice-bar left-icon="volume-o" :scrollable="false">
+  <van-swipe
+    vertical
+    class="notice-swipe"
+    :autoplay="3000"
+    :show-indicators="false"
+  >
+    <van-swipe-item>内容 1</van-swipe-item>
+    <van-swipe-item>内容 2</van-swipe-item>
+    <van-swipe-item>内容 3</van-swipe-item>
+  </van-swipe>
+</van-notice-bar>
 
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+<style>
+  .notice-swipe {
+    height: 40px;
+    line-height: 40px;
+  }
+</style>
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数       | 说明                                    | 类型               | 默认值    |
+|------------|---------------------------------------|--------------------|-----------|
+| mode       | 通知栏模式，可选值为 `closeable` `link`  | _string_           | `''`      |
+| text       | 通知文本内容                            | _string_           | `''`      |
+| color      | 通知文本颜色                            | _string_           | `#f60`    |
+| background | 滚动条背景                              | _string_           | `#fff7cc` |
+| left-icon  | 左侧[图标名称](#/zh-CN/icon)或图片链接  | _string_           | -         |
+| delay      | 动画延迟时间 (s)                        | _number \| string_ | `1`       |
+| speed      | 滚动速率 (px/s)                         | _number \| string_ | `50`      |
+| scrollable | 是否开启滚动播放，内容长度溢出时默认开启 | _boolean_          | -         |
+| wrapable   | 是否开启文本换行，只在禁用滚动时生效     | _boolean_          | `false`   |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名 | 说明                         | 回调参数       |
+|--------|----------------------------|----------------|
+| click  | 点击通知栏时触发             | _event: Event_ |
+| close  | 关闭通知栏时触发             | _event: Event_ |
+| replay | 每当滚动栏重新开始滚动时触发 | -              |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称       | 内容           |
+|------------|--------------|
+| default    | 通知文本内容   |
+| left-icon  | 自定义左侧图标 |
+| right-icon | 自定义右侧图标 |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                         | 默认值                    | 描述 |
+|------------------------------|---------------------------|------|
+| @notice-bar-height           | `40px`                    | -    |
+| @notice-bar-padding          | `0 @padding-md`           | -    |
+| @notice-bar-wrapable-padding | `@padding-xs @padding-md` | -    |
+| @notice-bar-text-color       | `@orange-dark`            | -    |
+| @notice-bar-font-size        | `@font-size-md`           | -    |
+| @notice-bar-line-height      | `24px`                    | -    |
+| @notice-bar-background-color | `@orange-light`           | -    |
+| @notice-bar-icon-size        | `16px`                    | -    |
+| @notice-bar-icon-min-width   | `24px`                    | -    |

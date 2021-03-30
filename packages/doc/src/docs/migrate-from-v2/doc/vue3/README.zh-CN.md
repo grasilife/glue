@@ -1,181 +1,241 @@
-# Button 按钮
+# 从 v2 升级
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+本文档提供了从 Vant 2 到 Vant 3 的升级指南。
 
-## 代码演示
+### 升级步骤
 
-### 按钮类型
+#### 1. 升级 Vue 3
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+Vant 3 是基于 Vue 3 开发的，在使用 Vant 3 前，请将项目中的 Vue 升级到 3.0 以上版本。
 
-```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
-```
+#### 2. 处理不兼容更新
 
-### 朴素按钮
+Vant 2 到 Vant 3 存在一些不兼容更新，请仔细阅读下方的不兼容更新内容，并依次处理。
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+## 不兼容更新
+
+### 组件命名调整
+
+GoodsAction 商品导航组件重命名为 **ActionBar 行动栏**。
 
 ```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+<!-- Vant 2 -->
+<van-goods-action>
+  <van-goods-action-icon text="图标" />
+  <van-goods-action-button text="按钮" />
+</van-goods-action>
+
+<!-- Vant 3 -->
+<van-action-bar>
+  <van-action-bar-icon text="图标" />
+  <van-action-bar-button text="按钮" />
+</van-action-bar>
 ```
 
-### 细边框
+### 废弃组件
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+移除 SwitchCell 组件，可以直接使用 Cell 和 Switch 组件代替。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<!-- Vant 2 -->
+<van-switch-cell title="标题" v-model="checked" />
+
+<!-- Vant 3 -->
+<van-cell center title="标题">
+  <template #right-icon>
+    <van-switch v-model="checked" size="24" />
+  </template>
+</van-cell>
 ```
 
-### 禁用状态
+### 弹窗型组件 v-model 变更
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+为了适配 Vue 3 的 v-model API 用法变更，所有提供 v-model 属性的组件在用法上有一定调整。以下弹窗类组件的 `v-model` 被重命名为 `v-model:show`：
+
+- ActionSheet
+- Calendar
+- Dialog
+- ImagePreview
+- Notify
+- Popover
+- Popup
+- ShareSheet
 
 ```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+<!-- Vant 2 -->
+<van-popup v-model="show" />
+
+<!-- Vant 3 -->
+<van-popup v-model:show="show" />
 ```
 
-### 加载状态
+### 表单型组件 v-model 内部值变更
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+以下表单型组件 v-model 对应的 prop 重命名为 `modelValue`，event 重命名为 `update:modelValue`：
+
+- Checkbox
+- CheckboxGroup
+- DatetimePicker
+- DropdownItem
+- Field
+- Radio
+- RadioGroup
+- Search
+- Stepper
+- Switch
+- Sidebar
+- Uploader
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<!-- Vant 2 -->
+<van-field :value="value" @input="onInput" />
+
+<!-- Vant 3 -->
+<van-field :model-value="value" @update:model-value="onInput" />
 ```
 
-### 按钮形状
+### 其他 v-model 调整
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+- Circle: `v-model` 重命名为 `v-model:currentRate`
+- CouponList: `v-model` 重命名为 `v-model:code`
+- List: `v-model` 重命名为 `v-model:loading`，`error.sync` 重命名为 `v-model:error`
+- Tabs: `v-model` 重命名为 `v-model:active`
+- TreeSelect: `active-id.sync` 重命名为 `v-model:active-id`
+- TreeSelect: `main-active-index.sync` 重命名为 `v-model:main-active-index`
+
+### 徽标属性命名调整
+
+在之前的版本中，我们通过 info 属性来展示图标右上角的徽标信息，为了更符合社区的命名习惯，我们将这个属性重命名为 badge，影响以下组件：
+
+- Tab
+- Icon
+- GridItem
+- TreeSelect
+- TabbarItem
+- SidebarItem
+- GoodsActionIcon
+
+同时内部使用的 Info 组件也会重命名为 Badge。
 
 ```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+<!-- Vant 2 -->
+<van-icon info="5" />
+
+<!-- Vant 3 -->
+<van-icon badge="5" />
 ```
 
-### 图标按钮
+### 重命名 get-container 属性
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+Vue 3.0 中增加了 `Teleport` 组件，提供将组件渲染到任意 DOM 位置的能力，Vant 2 也通过 `get-container` 属性提供了类似的能力。为了与官方的 API 保持一致，Vant 中的 `get-container` 属性将重命名为 `teleport`。
 
 ```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
+<!-- Vant 2 -->
+<template>
+  <van-popup get-container="body" />
+  <van-popup :get-container="getContainer" />
+</template>
+<script>
+  export default {
+    methods: {
+      getContainer() {
+        return document.querySelector('#container');
+      },
+    },
+  };
+</script>
+
+<!-- Vant 3 -->
+<template>
+  <van-popup teleport="body" />
+  <van-popup :teleport="container" />
+</template>
+<script>
+  export default {
+    beforeCreate() {
+      this.container = document.querySelector('#container');
+    },
+  };
+</script>
 ```
 
-### 按钮尺寸
+### API 调整
 
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
+#### Area
 
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
+- `change` 事件参数不再传入组件实例
+
+#### Button
+
+- 蓝色按钮对应的类型由 `info` 调整为 `primary`
+- 绿色按钮对应的类型由 `primary` 调整为 `success`
+- `native-type` 的默认值由 `submit` 调整为 `button`
+
+#### Checkbox
+
+- 在 Cell 内部使用时，现在需要手动添加 `@click.stop` 来阻止事件冒泡
+
+#### Dialog
+
+- 默认关闭 `allow-html` 属性
+- `before-close` 属性用法调整，不再传入 done 函数，而是通过返回 Promise 来控制
+
+#### DatetimePicker
+
+- `change` 事件参数不再传入组件实例
+
+#### ImagePreview
+
+- 移除 `async-close` 属性，可以使用新增的 `before-close` 属性代替
+
+#### Picker
+
+- `change` 事件参数不再传入组件实例
+- 默认关闭 `allow-html` 属性
+- 默认开启 `show-toolbar` 属性
+- 级联选择下，`confirm`、`change` 事件返回的回调参数将包含为完整的选项对象。
+
+#### Popover
+
+- `trigger` 属性的默认值调整为 `click`
+
+#### Stepper
+
+- `async-change` 属性重命名为 `before-change`，并调整使用方法
+
+#### SwipeCell
+
+- `open` 事件的 `detail` 参数重命名为 `name`
+- `on-close` 属性重命名为 `before-close`，并调整参数结构
+- `before-close` 属性不再传入组件实例
+
+#### Toast
+
+- `mask` 属性重命名为 `overlay`
+
+#### TreeSelect
+
+- `navclick` 事件重命名为 `click-nav`
+- `itemclick` 事件重命名为 `click-item`
+
+### 注册全局方法
+
+Vant 2 中默认提供了 `$toast`、`$dialog` 等全局方法，但 Vue 3.0 不再支持直接在 Vue 的原型链上挂载方法，因此从 Vant 3.0 开始，使用全局方法前必须先通过 `app.use` 将组件注册到对应的 app 上。
+
+```js
+import { Toast, Dialog, Notify } from 'vant';
+
+// 将 Toast 等组件注册到 app 上
+app.use(Toast);
+app.use(Dialog);
+app.use(Notify);
+
+// app 内的子组件可以直接调用 $toast 等方法
+export default {
+  mounted() {
+    this.$toast('提示文案');
+  },
+};
 ```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
-```
-
-## API
-
-### Props
-
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
-
-### Events
-
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
-
-### Slots
-
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
-
-### 样式变量
-
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
-
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |

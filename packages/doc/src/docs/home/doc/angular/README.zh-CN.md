@@ -1,181 +1,48 @@
-# Button 按钮
+<div class="card">
+  <div class="van-doc-intro">
+    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://grasilife.github.io/material/logo.svg">
+    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Glue</h2>
+    <p>可能是中国第一个如此完善的移动端web components组件库</p>
+  </div>
+</div>
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+Glue是一个基于web components的组件库,底层基于[stencil](<https://stenciljs.com/>)<br><br>
+前端组件库经过这几年的发展,取得了长足的进步,前端框架基本造就了vue,react,angular三分天下的格局,我们在使用组件库的时候往往会受制于生态,在不同的框架下只能使用特定的组件库,一些大的组件库比如antd等,为了解决不同框架下使用的组件有相同的UI和api,只能在vue,react,angular下分别开发一套UI组件库.由于语言不同,使用上还是会有很多不一样,开发者为了实现相同的api,开发难度也是大大增加,版本迭代很困难,框架升级需要重构组件库等问题,为了解决这些问题,我们基于web components构建了一套组件库,完美解决了上述问题.
+这套组件库可能是中国第一个如此全面的,组件数量如此多的组件库,由于这套组件库截止现在完全是我一个人维护,希望有更多的开发者参与到这个项目中,致力于打造新一代最优秀的组件库,现在这个版本是基于移动端的,后续计划开源桌面端的组件库,打造全面的跨技术栈的组件库,甚至跨小程序的组件库
 
-## 代码演示
+### 特性
 
-### 按钮类型
+- 提供 60 多个高质量组件，覆盖移动端各类场景
+- 性能极佳，组件平均体积不到 1kb（min+gzip）
+- 单元测试覆盖率 90%+，提供稳定性保障
+- 完善的中文档和示例
+- 支持 Vue 2 & Vue 3 & React & Angular & Html
+- 支持按需引入
+- 支持主题定制
+- 支持 TypeScript
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+### 快速上手
 
-```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
-```
+请参考[快速上手](#/zh-CN/quickstart)章节。
 
-### 朴素按钮
+### 贡献代码
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+修改代码请阅读我们的[开发指南](#/zh-CN/contribution)。
 
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
-```
+使用过程中发现任何问题都可以提 [Issue](https://github.com/grasilife/glue/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/grasilife/glue/pulls)。
 
-### 细边框
+### 浏览器支持
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+现代浏览器以及 Android 4.0+, iOS 8.0+, chrome 60+, Safari 10.1+,Firefox 63+,Edge 79+
 
-```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
-```
+### 链接
 
-### 禁用状态
+- [意见反馈](https://github.com/grasilife/glue/issues)
+- [更新日志](#/zh-CN/changelog)
+- [码云镜像](https://gotab.gitee.io/glue/#/zh-CN/home)
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+### 开源协议
 
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
-```
-
-### 加载状态
-
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
-
-```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
-```
-
-### 按钮形状
-
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
-
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
-```
-
-### 图标按钮
-
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
-
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
-
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
-```
-
-## API
-
-### Props
-
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
-
-### Events
-
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
-
-### Slots
-
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
-
-### 样式变量
-
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
-
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
