@@ -1,181 +1,249 @@
-# Button 按钮
+# ShareSheet 分享面板
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+底部弹起的分享面板，用于展示各分享渠道对应的操作按钮，不含具体的分享逻辑。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+分享面板通过 `options` 属性来定义分享选项，数组的每一项是一个对象，对象格式见文档下方表格。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-cell title="显示分享面板" @click="showShare = true" />
+<van-share-sheet
+  v-model:show="showShare"
+  title="立即分享给好友"
+  :options="options"
+  @select="onSelect"
+/>
 ```
 
-### 朴素按钮
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+export default {
+  setup() {
+    const showShare = ref(false);
+    const options = [
+      { name: '微信', icon: 'wechat' },
+      { name: '微博', icon: 'weibo' },
+      { name: '复制链接', icon: 'link' },
+      { name: '分享海报', icon: 'poster' },
+      { name: '二维码', icon: 'qrcode' },
+    ];
 
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+    const onSelect = (option) => {
+      Toast(option.name);
+      showShare.value = false;
+    };
+
+    return {
+      options,
+      onSelect,
+      showShare,
+    };
+  },
+};
 ```
 
-### 细边框
+### 展示多行选项
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+当分享选项的数量较多时，可以将 `options` 定义为数组嵌套的格式，每个子数组会作为一行选项展示。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-share-sheet
+  v-model:show="showShare"
+  title="立即分享给好友"
+  :options="options"
+/>
 ```
 
-### 禁用状态
+```js
+import { ref } from 'vue';
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+export default {
+  setup() {
+    const showShare = ref(false);
+    const options = [
+      [
+        { name: '微信', icon: 'wechat' },
+        { name: '朋友圈', icon: 'wechat-moments' },
+        { name: '微博', icon: 'weibo' },
+        { name: 'QQ', icon: 'qq' },
+      ],
+      [
+        { name: '复制链接', icon: 'link' },
+        { name: '分享海报', icon: 'poster' },
+        { name: '二维码', icon: 'qrcode' },
+        { name: '小程序码', icon: 'weapp-qrcode' },
+      ],
+    ];
 
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+    return {
+      options,
+      showShare,
+    };
+  },
+};
 ```
 
-### 加载状态
+### 自定义图标
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+除了使用内置的几种图标外，可以直接在 `icon` 中传入图片 URL 来使用自定义的图标。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-share-sheet v-model:show="showShare" :options="options" />
 ```
 
-### 按钮形状
+```js
+import { ref } from 'vue';
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+export default {
+  setup() {
+    const showShare = ref(false);
+    const options = [
+      {
+        name: '名称',
+        icon: 'https://img01.yzcdn.cn/vant/custom-icon-fire.png',
+      },
+      {
+        name: '名称',
+        icon: 'https://img01.yzcdn.cn/vant/custom-icon-light.png',
+      },
+      {
+        name: '名称',
+        icon: 'https://img01.yzcdn.cn/vant/custom-icon-water.png',
+      },
+    ];
 
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+    return {
+      options,
+      showShare,
+    };
+  },
+};
 ```
 
-### 图标按钮
+### 展示描述信息
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+通过 `description` 属性可以设置标题下方的描述文字, 在 `options` 内设置 `description` 属性可以添加分享选项描述。
 
 ```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
+<van-share-sheet
+  v-model:show="showShare"
+  :options="options"
+  title="立即分享给好友"
+  description="描述信息"
+/>
 ```
 
-### 按钮尺寸
+```js
+import { ref } from 'vue';
 
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
+export default {
+  setup() {
+    const showShare = ref(false);
+    const options = [
+      { name: '微信', icon: 'wechat' },
+      { name: '微博', icon: 'weibo' },
+      { name: '复制链接', icon: 'link', description: '描述信息' },
+      { name: '分享海报', icon: 'poster' },
+      { name: '二维码', icon: 'qrcode' },
+    ];
 
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+    return {
+      options,
+      showShare,
+    };
+  },
+};
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数                   | 说明                                                                      | 类型                | 默认值   |
+|------------------------|-------------------------------------------------------------------------|---------------------|----------|
+| v-model:show           | 是否显示分享面板                                                          | _boolean_           | `false`  |
+| options                | 分享选项                                                                  | _Option[]_          | `[]`     |
+| title                  | 顶部标题                                                                  | _string_            | -        |
+| cancel-text            | 取消按钮文字，传入空字符串可以隐藏按钮                                     | _string_            | `'取消'` |
+| description            | 标题下方的辅助描述文字                                                    | _string_            | -        |
+| duration               | 动画时长，单位秒                                                           | _number \| string_  | `0.3`    |
+| overlay                | 是否显示遮罩层                                                            | _boolean_           | `true`   |
+| lock-scroll            | 是否锁定背景滚动                                                          | _boolean_           | `true`   |
+| lazy-render            | 是否在显示弹层时才渲染内容                                                | _boolean_           | `true`   |
+| close-on-popstate      | 是否在页面回退时自动关闭                                                  | _boolean_           | `true`   |
+| close-on-click-overlay | 是否在点击遮罩层后关闭                                                    | _boolean_           | `true`   |
+| safe-area-inset-bottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_           | `true`   |
+| teleport               | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi)         | _string \| Element_ | -        |
+
+### Option 数据结构
+
+`options`属性为一个对象数组，数组中的每个对象配置一列，对象可以包含以下值：
+
+| 键名        | 说明                                                                                                          | 类型     |
+|-------------|-------------------------------------------------------------------------------------------------------------|----------|
+| name        | 分享渠道名称                                                                                                  | _string_ |
+| description | 分享选项描述                                                                                                  | _string_ |
+| icon        | 图标，可选值为 `wechat` `weibo` `qq` `link` `qrcode` `poster` `weapp-qrcode` `wechat-moments`，支持传入图片 URL | _string_ |
+| className   | 分享选项类名                                                                                                  | _string_ |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名        | 说明               | 回调参数                        |
+|---------------|------------------|---------------------------------|
+| select        | 点击分享选项时触发 | _option: Option, index: number_ |
+| cancel        | 点击取消按钮时触发 | -                               |
+| click-overlay | 点击遮罩层时触发   | -                               |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称        | 说明           |
+|-------------|--------------|
+| title       | 自定义顶部标题 |
+| description | 自定义描述文字 |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                                      | 默认值                                  | 描述 |
+|-------------------------------------------|-----------------------------------------|------|
+| @share-sheet-header-padding               | `@padding-sm @padding-md @padding-base` | -    |
+| @share-sheet-title-color                  | `@text-color`                           | -    |
+| @share-sheet-title-font-size              | `@font-size-md`                         | -    |
+| @share-sheet-title-line-height            | `@line-height-md`                       | -    |
+| @share-sheet-description-color            | `@gray-6`                               | -    |
+| @share-sheet-description-font-size        | `@font-size-sm`                         | -    |
+| @share-sheet-description-line-height      | `16px`                                  | -    |
+| @share-sheet-icon-size                    | `48px`                                  | -    |
+| @share-sheet-option-name-color            | `@gray-7`                               | -    |
+| @share-sheet-option-name-font-size        | `@font-size-sm`                         | -    |
+| @share-sheet-option-description-color     | `@gray-5`                               | -    |
+| @share-sheet-option-description-font-size | `@font-size-sm`                         | -    |
+| @share-sheet-cancel-button-font-size      | `@font-size-lg`                         | -    |
+| @share-sheet-cancel-button-height         | `48px`                                  | -    |
+| @share-sheet-cancel-button-background     | `@white`                                | -    |
+
+## 常见问题
+
+### 如何实现分享逻辑？
+
+在不同的 App 或浏览器中，存在各式各样的分享接口或分享方式，因此 ShareSheet 组件不提供具体的分享逻辑，需要开发者根据业务场景自行实现。
+
+#### 微信内分享
+
+由于微信未提供分享相关的 API，需要引导用户点击右上角进行分享。
+
+#### App 内分享
+
+可以通过 JSBridge 调用原生应用的 SDK 进行分享。
+
+#### 分享海报或二维码
+
+可以通过 [Popup](#/zh-CN/popup) 组件以弹层的形式展示图片，然后引导用户保存图片进行分享。

@@ -1,181 +1,151 @@
-# Button 按钮
+# PullRefresh 下拉刷新
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+用于提供下拉刷新的交互操作。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+下拉刷新时会触发 `refresh` 事件，在事件的回调函数中可以进行同步或异步操作，操作完成后将 `v-model` 设置为 `false`，表示加载完成。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-pull-refresh v-model="state.loading" @refresh="onRefresh">
+  <p>刷新次数: {{ state.count }}</p>
+</van-pull-refresh>
 ```
 
-### 朴素按钮
+```js
+import { reactive } from 'vue';
+import { Toast } from 'vant';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+export default {
+  setup() {
+    const state = reactive({
+      count: 0,
+      loading: false,
+    });
+    const onRefresh = () => {
+      setTimeout(() => {
+        Toast('刷新成功');
+        state.loading = false;
+        state.count++;
+      }, 1000);
+    };
 
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+    return {
+      state,
+      onRefresh,
+    };
+  },
+};
 ```
 
-### 细边框
+### 成功提示
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+通过 `success-text` 可以设置刷新成功后的顶部提示文案。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-pull-refresh
+  v-model="isLoading"
+  success-text="刷新成功"
+  @refresh="onRefresh"
+>
+  <p>刷新次数: {{ count }}</p>
+</van-pull-refresh>
 ```
 
-### 禁用状态
+### 自定义提示
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
-
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
-```
-
-### 加载状态
-
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+通过插槽可以自定义下拉刷新过程中的提示内容。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
-```
+<van-pull-refresh v-model="isLoading" :head-height="80" @refresh="onRefresh">
+  <!-- 下拉提示，通过 scale 实现一个缩放效果 -->
+  <template #pulling="props">
+    <img
+      class="doge"
+      src="https://img01.yzcdn.cn/vant/doge.png"
+      :style="{ transform: `scale(${props.distance / 80})` }"
+    />
+  </template>
 
-### 按钮形状
+  <!-- 释放提示 -->
+  <template #loosing>
+    <img class="doge" src="https://img01.yzcdn.cn/vant/doge.png" />
+  </template>
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+  <!-- 加载提示 -->
+  <template #loading>
+    <img class="doge" src="https://img01.yzcdn.cn/vant/doge-fire.jpg" />
+  </template>
+  <p>刷新次数: {{ count }}</p>
+</van-pull-refresh>
 
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
-```
-
-### 图标按钮
-
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
-
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
-
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+<style>
+  .doge {
+    width: 140px;
+    height: 72px;
+    margin-top: 8px;
+    border-radius: 4px;
+  }
+</style>
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数               | 说明                     | 类型               | 默认值            |
+|--------------------|------------------------|--------------------|-------------------|
+| v-model            | 是否处于加载中状态       | _boolean_          | -                 |
+| pulling-text       | 下拉过程提示文案         | _string_           | `下拉即可刷新...` |
+| loosing-text       | 释放过程提示文案         | _string_           | `释放即可刷新...` |
+| loading-text       | 加载过程提示文案         | _string_           | `加载中...`       |
+| success-text       | 刷新成功提示文案         | _string_           | -                 |
+| success-duration   | 刷新成功提示展示时长(ms) | _number \| string_ | `500`             |
+| animation-duration | 动画时长                 | _number \| string_ | `300`             |
+| head-height        | 顶部内容高度             | _number \| string_ | `50`              |
+| disabled           | 是否禁用下拉刷新         | _boolean_          | `false`           |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名  | 说明           | 回调参数 |
+|---------|--------------|----------|
+| refresh | 下拉刷新时触发 | -        |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称    | 说明                 | 参数                       |
+|---------|--------------------|----------------------------|
+| default | 自定义内容           | -                          |
+| normal  | 非下拉状态时顶部内容 | -                          |
+| pulling | 下拉过程中顶部内容   | { distance: 当前下拉距离 } |
+| loosing | 释放过程中顶部内容   | { distance: 当前下拉距离 } |
+| loading | 加载过程中顶部内容   | { distance: 当前下拉距离 } |
+| success | 刷新成功提示内容     | -                          |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                          | 默认值          | 描述 |
+|-------------------------------|-----------------|------|
+| @pull-refresh-head-height     | `50px`          | -    |
+| @pull-refresh-head-font-size  | `@font-size-md` | -    |
+| @pull-refresh-head-text-color | `@gray-6`       | -    |
+
+## 常见问题
+
+### PullReresh 的内容未填满屏幕时，只有一部分区域可以下拉？
+
+默认情况下，下拉区域的高度是和内容高度保持一致的，如果需要让下拉区域始终为全屏，可以给 PullRefresh 设置一个与屏幕大小相等的最小高度：
+
+```html
+<van-pull-refresh style="min-height: 100vh;" />
+```
+
+### 在桌面端无法操作组件？
+
+参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。

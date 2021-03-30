@@ -1,181 +1,190 @@
-# Button 按钮
+# Search 搜索
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+用于搜索场景的输入框组件。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+`v-model` 用于控制搜索框中的文字，`background` 可以自定义搜索框外部背景色。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-search v-model="value" placeholder="请输入搜索关键词" />
 ```
 
-### 朴素按钮
+```js
+import { ref } from 'vue';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
-
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+export default {
+  setup() {
+    const value = ref('');
+    return { value };
+  },
+};
 ```
 
-### 细边框
+### 事件监听
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+Search 组件提供了 `search` 和 `cancel` 事件，`search` 事件在点击键盘上的搜索/回车按钮后触发，`cancel` 事件在点击搜索框右侧取消按钮时触发。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<form action="/">
+  <van-search
+    v-model="value"
+    show-action
+    placeholder="请输入搜索关键词"
+    @search="onSearch"
+    @cancel="onCancel"
+  />
+</form>
 ```
 
-### 禁用状态
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
-
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+export default {
+  setup() {
+    const value = ref('');
+    const onSearch = (val) => Toast(val);
+    const onCancel = () => Toast('取消');
+    return {
+      value,
+      onSearch,
+      onCancel,
+    };
+  },
+};
 ```
 
-### 加载状态
+> Tips: 在 van-search 外层增加 form 标签，且 action 不为空，即可在 iOS 输入法中显示搜索按钮。
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+### 搜索框内容对齐
+
+通过 `input-align` 属性设置搜索框内容的对齐方式，可选值为 `center`、`right`。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-search
+  v-model="value"
+  placeholder="请输入搜索关键词"
+  input-align="center"
+/>
 ```
 
-### 按钮形状
+### 禁用搜索框
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+通过 `disabled` 属性禁用搜索框。
 
 ```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+<van-search v-model="value" disabled placeholder="请输入搜索关键词" />
 ```
 
-### 图标按钮
+### 自定义背景色
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+通过 `background` 属性可以设置搜索框外部的背景色，通过 `shape` 属性设置搜索框的形状，可选值为 `round`。
 
 ```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
+<van-search
+  v-model="value"
+  shape="round"
+  background="#4fc08d"
+  placeholder="请输入搜索关键词"
+/>
 ```
 
-### 按钮尺寸
+### 自定义按钮
 
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
+使用 `action` 插槽可以自定义右侧按钮的内容。使用插槽后，`cancel` 事件将不再触发。
 
 ```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+<van-search
+  v-model="value"
+  show-action
+  label="地址"
+  placeholder="请输入搜索关键词"
+  @search="onSearch"
+>
+  <template #action>
+    <div @click="onSearch">搜索</div>
+  </template>
+</van-search>
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数          | 说明                                                                                        | 类型               | 默认值    |
+|---------------|-------------------------------------------------------------------------------------------|--------------------|-----------|
+| label         | 搜索框左侧文本                                                                              | _string_           | -         |
+| shape         | 搜索框形状，可选值为 `round`                                                                 | _string_           | `square`  |
+| background    | 搜索框外部背景色                                                                            | _string_           | `#f2f2f2` |
+| maxlength     | 输入的最大字符数                                                                            | _number \| string_ | -         |
+| placeholder   | 占位提示文字                                                                                | _string_           | -         |
+| clearable     | 是否启用清除图标，点击清除图标后会清空输入框                                                 | _boolean_          | `true`    |
+| clear-trigger | 显示清除图标的时机，`always` 表示输入框不为空时展示，<br>`focus` 表示输入框聚焦且不为空时展示 | _string_           | `focus`   |
+| autofocus     | 是否自动聚焦，iOS 系统不支持该属性                                                           | _boolean_          | `false`   |
+| show-action   | 是否在搜索框右侧显示取消按钮                                                                | _boolean_          | `false`   |
+| action-text   | 取消按钮文字                                                                                | _boolean_          | `取消`    |
+| disabled      | 是否禁用输入框                                                                              | _boolean_          | `false`   |
+| readonly      | 是否将输入框设为只读状态，只读状态下无法输入内容                                             | _boolean_          | `false`   |
+| error         | 是否将输入内容标红                                                                          | _boolean_          | `false`   |
+| input-align   | 输入框内容对齐方式，可选值为 `center` `right`                                                | _string_           | `left`    |
+| left-icon     | 输入框左侧[图标名称](#/zh-CN/icon)或图片链接                                                | _string_           | `search`  |
+| right-icon    | 输入框右侧[图标名称](#/zh-CN/icon)或图片链接                                                | _string_           | -         |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名             | 说明                 | 回调参数                       |
+|--------------------|--------------------|--------------------------------|
+| search             | 确定搜索时触发       | _value: string (当前输入的值)_ |
+| update:model-value | 输入框内容变化时触发 | _value: string (当前输入的值)_ |
+| focus              | 输入框获得焦点时触发 | _event: Event_                 |
+| blur               | 输入框失去焦点时触发 | _event: Event_                 |
+| clear              | 点击清除按钮后触发   | _event: Event_                 |
+| cancel             | 点击取消按钮时触发   | -                              |
+
+### 方法
+
+通过 ref 可以获取到 Search 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明           | 参数 | 返回值 |
+|--------|--------------|------|--------|
+| focus  | 获取输入框焦点 | -    | -      |
+| blur   | 取消输入框焦点 | -    | -      |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称       | 说明                                                 |
+|------------|----------------------------------------------------|
+| left       | 自定义左侧内容（搜索框外）                             |
+| action     | 自定义右侧内容（搜索框外），设置`show-action`属性后展示 |
+| label      | 自定义左侧文本（搜索框内）                             |
+| left-icon  | 自定义左侧图标（搜索框内）                             |
+| right-icon | 自定义右侧图标（搜索框内）                             |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                             | 默认值             | 描述 |
+|----------------------------------|--------------------|------|
+| @search-padding                  | `10px @padding-sm` | -    |
+| @search-background-color         | `@white`           | -    |
+| @search-content-background-color | `@gray-1`          | -    |
+| @search-input-height             | `34px`             | -    |
+| @search-label-padding            | `0 5px`            | -    |
+| @search-label-color              | `@text-color`      | -    |
+| @search-label-font-size          | `@font-size-md`    | -    |
+| @search-left-icon-color          | `@gray-6`          | -    |
+| @search-action-padding           | `0 @padding-xs`    | -    |
+| @search-action-text-color        | `@text-color`      | -    |
+| @search-action-font-size         | `@font-size-md`    | -    |
+
+## 常见问题
+
+### 在桌面端点击清除按钮无效？
+
+清除按钮监听是的移动端 Touch 事件，参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。

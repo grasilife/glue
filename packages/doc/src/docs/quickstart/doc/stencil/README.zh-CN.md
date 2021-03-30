@@ -1,181 +1,183 @@
-# Button 按钮
+# 快速上手
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+通过本章节你可以了解到 Vant 的安装方法和基本使用姿势。
 
-## 代码演示
+## 安装
 
-### 按钮类型
+### 通过 npm 安装
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+在现有项目中使用 Vant 时，可以通过 `npm` 或 `yarn` 进行安装：
 
-```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+```bash
+# Vue 2 项目，安装 Vant 2：
+npm i vant -S
+
+# Vue 3 项目，安装 Vant 3：
+npm i vant@next -S
 ```
 
-### 朴素按钮
+### 通过 CDN 安装
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
-
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
-```
-
-### 细边框
-
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+使用 Vant 最简单的方法是直接在 html 文件中引入 CDN 链接，之后你可以通过全局变量 `vant` 访问到所有组件。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<!-- 引入样式文件 -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/vant@next/lib/index.css"
+/>
+
+<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@next/lib/vant.min.js"></script>
+
+<script>
+  // 在 #app 标签下渲染一个按钮组件
+  const app = Vue.createApp({
+    template: `<van-button>按钮</van-button>`,
+  });
+  app.use(vant);
+
+  // 通过 CDN 引入时不会自动注册 Lazyload 组件
+  // 可以通过下面的方式手动注册
+  app.use(vant.Lazyload);
+
+  // 调用函数组件，弹出一个 Toast
+  vant.Toast('提示');
+
+  app.mount('#app');
+</script>
 ```
 
-### 禁用状态
+### 通过脚手架安装
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+在新项目中使用 Vant 时，推荐使用 Vue 官方提供的脚手架 [Vue Cli](https://cli.vuejs.org/zh/) 创建项目并安装 Vant。
+
+```bash
+# 安装 Vue Cli
+npm install -g @vue/cli
+
+# 创建一个项目
+vue create hello-world
+
+# 创建完成后，可以通过命令打开图形化界面，如下图所示
+vue ui
+```
+
+![](https://img01.yzcdn.cn/vant/vue-cli-demo-201809032000.png)
+
+在图形化界面中，点击 `依赖` -> `安装依赖`，然后将 `vant` 添加到依赖中即可。
+
+## 示例
+
+### 示例工程
+
+我们提供了丰富的[示例工程](https://github.com/youzan/vant-demo)，通过示例工程你可以了解如下内容：
+
+- 基于 Vue Cli 和 Vant 搭建应用
+- 基于 Nuxt 和 Vant 搭建应用
+- 配置按需引入组件
+- 配置基于 Rem 的适配方案
+- 配置基于 Viewport 的适配方案
+- 配置基于 TypeScript 的工程
+- 配置自定义主题色方案
+
+## 引入组件
+
+### 方式一. 自动按需引入组件 (推荐)
+
+[babel-plugin-import](https://github.com/ant-design/babel-plugin-import) 是一款 babel 插件，它会在编译过程中将 import 的写法自动转换为按需引入的方式。
+
+```bash
+# 安装插件
+npm i babel-plugin-import -D
+```
+
+```js
+// 在.babelrc 中添加配置
+// 注意：webpack 1 无需设置 libraryDirectory
+{
+  "plugins": [
+    ["import", {
+      "libraryName": "vant",
+      "libraryDirectory": "es",
+      "style": true
+    }]
+  ]
+}
+
+// 对于使用 babel7 的用户，可以在 babel.config.js 中配置
+module.exports = {
+  plugins: [
+    ['import', {
+      libraryName: 'vant',
+      libraryDirectory: 'es',
+      style: true
+    }, 'vant']
+  ]
+};
+```
+
+```js
+// 接着你可以在代码中直接引入 Vant 组件
+// 插件会自动将代码转化为方式二中的按需引入形式
+import { Button } from 'vant';
+```
+
+> Tips: 如果你在使用 TypeScript，可以使用 [ts-import-plugin](https://github.com/Brooooooklyn/ts-import-plugin) 实现按需引入。
+
+### 方式二. 手动按需引入组件
+
+在不使用插件的情况下，可以手动引入需要的组件。
+
+```js
+import Button from 'vant/lib/button';
+import 'vant/lib/button/style';
+```
+
+### 方式三. 导入所有组件
+
+Vant 支持一次性导入所有组件，引入所有组件会增加代码包体积，因此不推荐这种做法。
+
+```js
+import { createApp } from 'vue';
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+const app = createApp();
+app.use(Vant);
+```
+
+> Tips: 配置按需引入后，将不允许直接导入所有组件。
+
+## 常见问题
+
+### 在 Vite 中如何按需引入组件？
+
+在 Vite 中无须考虑按需引入的问题。Vite 在构建代码时，会自动通过 Tree Shaking 移除未使用的 ESM 模块。而 Vant 3.0 内部所有模块都是基于 ESM 编写的，天然具备按需引入的能力。
+
+现阶段遗留的问题是，未使用的组件样式无法被 Tree Shaking 识别并移除，后续我们会考虑通过 Vite 插件的方式进行支持。
+
+### 在 HTML 中无法正确渲染组件？
+
+在 HTML 中使用 Vant 组件时，你可能会碰到部分示例代码无法正确渲染的情况，比如下面的用法：
 
 ```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+<van-cell-group>
+  <van-cell title="单元格" value="内容" />
+  <van-cell title="单元格" value="内容" />
+</van-cell-group>
 ```
 
-### 加载状态
-
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+这是因为 HTML 并不支持自闭合的自定义元素，也就是说 `<van-cell />` 这样的语法是不被识别的，使用完整的闭合标签可以避免这个问题：
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-cell-group>
+  <van-cell title="单元格" value="内容"></van-cell>
+  <van-cell title="单元格" value="内容"></van-cell>
+</van-cell-group>
 ```
 
-### 按钮形状
-
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
-
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
-```
-
-### 图标按钮
-
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
-
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
-
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
-```
-
-## API
-
-### Props
-
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
-
-### Events
-
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
-
-### Slots
-
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
-
-### 样式变量
-
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
-
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+在单文件组件、字符串模板和 JSX 中可以使用自闭合的自定义元素，因此不会出现这个问题。

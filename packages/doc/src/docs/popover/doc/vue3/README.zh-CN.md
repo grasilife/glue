@@ -1,181 +1,268 @@
-# Button 按钮
+# Popover 气泡弹出框
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+弹出式的气泡菜单。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+当 Popover 弹出时，会基于 `reference` 插槽的内容进行定位。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-popover v-model:show="showPopover" :actions="actions" @select="onSelect">
+  <template #reference>
+    <van-button type="primary">浅色风格</van-button>
+  </template>
+</van-popover>
 ```
 
-### 朴素按钮
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+export default {
+  setup() {
+    const showPopover = ref(false);
 
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+    // 通过 actions 属性来定义菜单选项
+    const actions = [
+      { text: '选项一' },
+      { text: '选项二' },
+      { text: '选项三' },
+    ];
+    const onSelect = (action) => Toast(action.text);
+
+    return {
+      actions,
+      onSelect,
+      showPopover,
+    };
+  },
+};
 ```
 
-### 细边框
+### 深色风格
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+Popover 支持浅色和深色两种风格，默认为浅色风格，将 `theme` 属性设置为 `dark` 可切换为深色风格。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-popover v-model:show="showPopover" theme="dark" :actions="actions">
+  <template #reference>
+    <van-button type="primary">深色风格</van-button>
+  </template>
+</van-popover>
 ```
 
-### 禁用状态
+```js
+import { ref } from 'vue';
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+export default {
+  setup() {
+    const showPopover = ref(false);
+    const actions = [
+      { text: '选项一' },
+      { text: '选项二' },
+      { text: '选项三' },
+    ];
 
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+    return {
+      actions,
+      showPopover,
+    };
+  },
+};
 ```
 
-### 加载状态
+### 弹出位置
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+通过 `placement` 属性来控制气泡的弹出位置。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-popover placement="top" />
 ```
 
-### 按钮形状
+`placement` 支持以下值：
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
-
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+```bash
+top           # 顶部中间位置
+top-start     # 顶部左侧位置
+top-end       # 顶部右侧位置
+left          # 左侧中间位置
+left-start    # 左侧上方位置
+left-end      # 左侧下方位置
+right         # 右侧中间位置
+right-start   # 右侧上方位置
+right-end     # 右侧下方位置
+bottom        # 底部中间位置
+bottom-start  # 底部左侧位置
+bottom-end    # 底部右侧位置
 ```
 
-### 图标按钮
+### 展示图标
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+在 `actions` 数组中，可以通过 `icon` 字段来定义选项的图标，支持传入[图标名称](#/zh-CN/icon)或图片链接。
 
 ```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
+<van-popover v-model:show="showPopover" :actions="actions">
+  <template #reference>
+    <van-button type="primary">展示图标</van-button>
+  </template>
+</van-popover>
 ```
 
-### 按钮尺寸
+```js
+import { ref } from 'vue';
 
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
+export default {
+  setup() {
+    const showPopover = ref(false);
+    const actions = [
+      { text: '选项一', icon: 'add-o' },
+      { text: '选项二', icon: 'music-o' },
+      { text: '选项三', icon: 'more-o' },
+    ];
 
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
+    return {
+      actions,
+      showPopover,
+    };
+  },
+};
 ```
 
-### 块级元素
+### 禁用选项
 
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
+在 `actions` 数组中，可以通过 `disabled` 字段来禁用某个选项。
 
 ```html
-<glue-button type="primary" block>块级元素</glue-button>
+<van-popover v-model:show="showPopover" :actions="actions">
+  <template #reference>
+    <van-button type="primary">禁用选项</van-button>
+  </template>
+</van-popover>
 ```
 
-### 自定义颜色
+```js
+import { ref } from 'vue';
 
-通过 `color` 属性可以自定义按钮的颜色。
+export default {
+  setup() {
+    const showPopover = ref(false);
+    const actions = [
+      { text: '选项一', disabled: true },
+      { text: '选项二', disabled: true },
+      { text: '选项三' },
+    ];
+
+    return {
+      actions,
+      showPopover,
+    };
+  },
+};
+```
+
+### 自定义内容
+
+通过默认插槽，可以在 Popover 内部放置任意内容。
 
 ```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+<van-popover v-model:show="showPopover">
+  <van-grid
+    square
+    clickable
+    :border="false"
+    column-num="3"
+    style="width: 240px;"
+  >
+    <van-grid-item
+      v-for="i in 6"
+      :key="i"
+      text="选项"
+      icon="photo-o"
+      @click="showPopover = false"
+    />
+  </van-grid>
+  <template #reference>
+    <van-button type="primary">自定义内容</van-button>
+  </template>
+</van-popover>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const showPopover = ref(false);
+    return { showPopover };
+  },
+};
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数         | 说明                     | 类型       | 默认值   |
+|--------------|------------------------|------------|----------|
+| v-model:show | 是否展示气泡弹出层       | _boolean_  | `false`  |
+| actions      | 选项列表                 | _Action[]_ | `[]`     |
+| placement    | 弹出位置                 | _string_   | `bottom` |
+| theme        | 主题风格，可选值为 `dark` | _string_   | `light`  |
+| trigger | 触发方式，可选值为 `manual` | `click` |
+| offset | 出现位置的偏移量 | _[number, number]_ | `[0, 8]` |
+| overlay | 是否显示遮罩层 | _boolean_ | `false` |
+| close-on-click-action | 是否在点击选项后关闭 | _boolean_ | `true` |
+| close-on-click-outside | 是否在点击外部元素后关闭菜单 | _boolean_ | `true` |
+| teleport | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi) | _string \| Element_ | `body` |
+
+### Action 数据结构
+
+`actions` 属性是一个由对象构成的数组，数组中的每个对象配置一列，对象可以包含以下值：
+
+| 键名      | 说明                                                      | 类型                        |
+|-----------|---------------------------------------------------------|-----------------------------|
+| text      | 选项文字                                                  | _string_                    |
+| icon      | 文字左侧的图标，支持传入[图标名称](#/zh-CN/icon)或图片链接 | _string_                    |
+| disabled  | 是否为禁用状态                                            | _boolean_                   |
+| className | 为对应选项添加额外的类名                                  | _string \| Array \| object_ |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名 | 说明                     | 回调参数                        |
+|--------|------------------------|---------------------------------|
+| select | 点击选项时触发           | _action: Action, index: number_ |
+| open   | 打开菜单时触发           | -                               |
+| close  | 关闭菜单时触发           | -                               |
+| opened | 打开菜单且动画结束后触发 | -                               |
+| closed | 关闭菜单且动画结束后触发 | -                               |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称      | 说明                        |
+|-----------|---------------------------|
+| default   | 自定义菜单内容              |
+| reference | 触发 Popover 显示的元素内容 |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                                      | 默认值              | 描述 |
+|-------------------------------------------|---------------------|------|
+| @popover-arrow-size                       | `6px`               | -    |
+| @popover-border-radius                    | `@border-radius-lg` | -    |
+| @popover-action-width                     | `128px`             | -    |
+| @popover-action-height                    | `44px`              | -    |
+| @popover-action-font-size                 | `@font-size-md`     | -    |
+| @popover-action-line-height               | `@line-height-md`   | -    |
+| @popover-action-icon-size                 | `20px`              | -    |
+| @popover-light-text-color                 | `@text-color`       | -    |
+| @popover-light-background-color           | `@white`            | -    |
+| @popover-light-action-disabled-text-color | `@gray-5`           | -    |
+| @popover-dark-text-color                  | `@white`            | -    |
+| @popover-dark-background-color            | `#4a4a4a`           | -    |
+| @popover-dark-action-disabled-text-color  | `@gray-6`           | -    |
