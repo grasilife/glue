@@ -1,181 +1,153 @@
-# Button 按钮
+# Area 省市区选择
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+省市区三级联动选择，通常与[弹出层](#/zh-CN/popup)组件配合使用。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+要初始化一个 `Area` 组件，你需要传入一个 `area-list` 属性，数据格式具体可看下面数据格式章节。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-area title="标题" :area-list="areaList" />
 ```
 
-### 朴素按钮
+### 选中省市区
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+如果想选中某个省市区，需要传入一个 `value` 属性，绑定对应的省市区 `code`。
 
 ```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+<van-area title="标题" :area-list="areaList" value="110101" />
 ```
 
-### 细边框
+### 配置显示列
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+可以通过 `columns-num` 属性配置省市区显示的列数，默认情况下会显示省市区，当你设置为 `2`，则只会显示省市选择。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-area title="标题" :area-list="areaList" :columns-num="2" />
 ```
 
-### 禁用状态
+### 配置列占位提示文字
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
-
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
-```
-
-### 加载状态
-
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+可以通过 `columns-placeholder` 属性配置每一列的占位提示文字。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
-```
-
-### 按钮形状
-
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
-
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
-```
-
-### 图标按钮
-
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
-
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
-
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+<van-area
+  title="标题"
+  :area-list="areaList"
+  :columns-placeholder="['请选择', '请选择', '请选择']"
+/>
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数                | 说明                                              | 类型               | 默认值  |
+|---------------------|-------------------------------------------------|--------------------|---------|
+| value               | 当前选中的省市区`code`                            | _string_           | -       |
+| title               | 顶部栏标题                                        | _string_           | -       |
+| confirm-button-text | 确认按钮文字                                      | _string_           | `确认`  |
+| cancel-button-text  | 取消按钮文字                                      | _string_           | `取消`  |
+| area-list           | 省市区数据，格式见下方                             | _object_           | -       |
+| columns-placeholder | 列占位提示文字                                    | _string[]_         | `[]`    |
+| loading             | 是否显示加载状态                                  | _boolean_          | `false` |
+| readonly            | 是否为只读状态，只读状态下无法切换选项             | _boolean_          | `false` |
+| item-height         | 选项高度，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `44`    |
+| columns-num         | 显示列数，3-省市区，2-省市，1-省                     | _number \| string_ | `3`     |
+| visible-item-count  | 可见的选项个数                                    | _number \| string_ | `6`     |
+| swipe-duration      | 快速滑动时惯性滚动的时长，单位`ms`                 | _number \| string_ | `1000`  |
+| is-oversea-code     | 根据`code`校验海外地址，海外地址会划分至单独的分类 | _() => boolean_    | -       |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件    | 说明               | 回调参数                                |
+|---------|------------------|-----------------------------------------|
+| confirm | 点击右上方完成按钮 | 一个数组参数，具体格式看下方数据格式章节 |
+| cancel  | 点击取消按钮时     | -                                       |
+| change  | 选项改变时触发     | 所有列选中值，当前列对应的索引           |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称           | 说明               |
+|----------------|------------------|
+| title          | 自定义标题内容     |
+| columns-top    | 自定义选项上方内容 |
+| columns-bottom | 自定义选项下方内容 |
 
-### 样式变量
+### 方法
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+通过 ref 可以获取到 Area 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 方法名 | 说明                                              | 参数          | 返回值 |
+|--------|-------------------------------------------------|---------------|--------|
+| reset  | 根据 code 重置所有选项，若不传 code，则重置到第一项 | code?: string | -      |
+
+### 省市区列表数据格式
+
+整体是一个 object，包含 `province_list`, `city_list`, `county_list` 三个 key。
+
+每项以省市区编码作为 key，省市区名字作为 value。编码为 6 位数字，前两位代表省份，中间两位代表城市，后两位代表区县，以 0 补足 6 位。如北京编码为 `11`，以零补足 6 位，为 `110000`。
+
+`AreaList`具体格式如下：
+
+```js
+{
+  province_list: {
+    110000: '北京市',
+    120000: '天津市'
+  },
+  city_list: {
+    110100: '北京市',
+    110200: '县',
+    120100: '天津市',
+    120200: '县'
+  },
+  county_list: {
+    110101: '东城区',
+    110102: '西城区',
+    110105: '朝阳区',
+    110106: '丰台区'
+    120101: '和平区',
+    120102: '河东区',
+    120103: '河西区',
+    120104: '南开区',
+    120105: '河北区',
+    // ....
+  }
+}
+```
+
+完整数据见 [Area.json](https://github.com/youzan/vant/blob/dev/src/area/demo/area.js)
+
+### 点击完成时返回的数据格式
+
+返回的数据整体为一个数组，数组内包含 `columnsNum` 个数据， 每个数据对应一列选项中被选中的数据。
+
+`code` 代表被选中的地区编码， `name` 代表被选中的地区名称
+
+```js
+[
+  {
+    code: '110000',
+    name: '北京市',
+  },
+  {
+    code: '110100',
+    name: '北京市',
+  },
+  {
+    code: '110101',
+    name: '东城区',
+  },
+];
+```
+
+## 常见问题
+
+### 在桌面端无法操作组件？
+
+参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。

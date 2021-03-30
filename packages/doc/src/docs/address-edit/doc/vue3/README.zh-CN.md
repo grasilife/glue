@@ -1,181 +1,155 @@
-# Button 按钮
+# AddressEdit 地址编辑
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+收货地址编辑组件，用于新建、更新、删除收货地址。
 
 ## 代码演示
 
-### 按钮类型
-
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+### 基础用法
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-address-edit
+  :area-list="areaList"
+  show-postal
+  show-delete
+  show-set-default
+  show-search-result
+  :search-result="searchResult"
+  :area-columns-placeholder="['请选择', '请选择', '请选择']"
+  @save="onSave"
+  @delete="onDelete"
+  @change-detail="onChangeDetail"
+/>
 ```
 
-### 朴素按钮
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+export default {
+  setup() {
+    const searchResult = ref([]);
 
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
-```
+    const onSave = () => Toast('save');
+    const onDelete = () => Toast('delete');
+    const onChangeDetail = (val) => {
+      if (val) {
+        searchResult.value = [
+          {
+            name: '黄龙万科中心',
+            address: '杭州市西湖区',
+          },
+        ];
+      } else {
+        searchResult.value = [];
+      }
+    };
 
-### 细边框
-
-设置 `hairline` 属性可以展示 0.5px 的细边框。
-
-```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
-```
-
-### 禁用状态
-
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
-
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
-```
-
-### 加载状态
-
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
-
-```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
-```
-
-### 按钮形状
-
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
-
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
-```
-
-### 图标按钮
-
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
-
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
-
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+    return {
+      onSave,
+      onDelete,
+      areaList,
+      searchResult,
+      onChangeDetail,
+    };
+  },
+};
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数                     | 说明                     | 类型                   | 默认值             |
+|--------------------------|------------------------|------------------------|--------------------|
+| area-list                | 地区列表                 | _object_               | -                  |
+| area-columns-placeholder | 地区选择列占位提示文字   | _string[]_             | `[]`               |
+| area-placeholder         | 地区输入框占位提示文字   | _string_               | `选择省 / 市 / 区` |
+| address-info             | 收货人信息初始值         | _AddressInfo_          | `{}`               |
+| search-result            | 详细地址搜索结果         | _SearchResult[]_       | `[]`               |
+| show-postal              | 是否显示邮政编码         | _boolean_              | `false`            |
+| show-delete              | 是否显示删除按钮         | _boolean_              | `false`            |
+| show-set-default         | 是否显示默认地址栏       | _boolean_              | `false`            |
+| show-search-result       | 是否显示搜索结果         | _boolean_              | `false`            |
+| show-area                | 是否显示地区             | _boolean_              | `true`             |
+| show-detail              | 是否显示详细地址         | _boolean_              | `true`             |
+| disable-area             | 是否禁用地区选择         | _boolean_              | `false`            |
+| save-button-text         | 保存按钮文字             | _string_               | `保存`             |
+| delete-button-text       | 删除按钮文字             | _string_               | `删除`             |
+| detail-rows              | 详细地址输入框行数       | _number \| string_     | `1`                |
+| detail-maxlength         | 详细地址最大长度         | _number \| string_     | `200`              |
+| is-saving                | 是否显示保存按钮加载动画 | _boolean_              | `false`            |
+| is-deleting              | 是否显示删除按钮加载动画 | _boolean_              | `false`            |
+| tel-validator            | 手机号格式校验函数       | _string => boolean_    | -                  |
+| tel-maxlength            | 手机号最大长度           | _number \| string_     | -                  |
+| postal-validator         | 邮政编码格式校验函数     | _string => boolean_    | -                  |
+| validator                | 自定义校验函数           | _(key, val) => string_ | -                  |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名         | 说明                       | 回调参数                    |
+|----------------|--------------------------|-----------------------------|
+| save           | 点击保存按钮时触发         | content：表单内容            |
+| focus          | 输入框聚焦时触发           | key: 聚焦的输入框对应的 key |
+| delete         | 确认删除地址时触发         | content：表单内容            |
+| cancel-delete  | 取消删除地址时触发         | content：表单内容            |
+| select-search  | 选中搜索结果时触发         | value: 搜索结果             |
+| click-area     | 点击收件地区时触发         | -                           |
+| change-area    | 修改收件地区时触发         | values: 地区信息            |
+| change-detail  | 修改详细地址时触发         | value: 详细地址内容         |
+| change-default | 切换是否使用默认地址时触发 | value: 是否选中             |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称    | 说明                   |
+|---------|----------------------|
+| default | 在邮政编码下方插入内容 |
+
+### 方法
+
+通过 ref 可以获取到 AddressEdit 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名           | 说明         | 参数                  | 返回值 |
+|------------------|------------|-----------------------|--------|
+| setAddressDetail | 设置详细地址 | addressDetail: string | -      |
+
+### AddressInfo 数据格式
+
+注意：AddressInfo 仅作为初始值传入，表单最终内容可以在 save 事件中获取
+
+| key           | 说明                                | 类型               |
+|---------------|-----------------------------------|--------------------|
+| id            | 每条地址的唯一标识                  | _number \| string_ |
+| name          | 收货人姓名                          | _string_           |
+| tel           | 收货人手机号                        | _string_           |
+| province      | 省份                                | _string_           |
+| city          | 城市                                | _string_           |
+| county        | 区县                                | _string_           |
+| addressDetail | 详细地址                            | _string_           |
+| areaCode      | 地区编码，通过`省市区选择`获取（必填） | _string_           |
+| postalCode    | 邮政编码                            | _string_           |
+| isDefault     | 是否为默认地址                      | _boolean_          |
+
+### SearchResult 数据格式
+
+| key     | 说明     | 类型     |
+|---------|--------|----------|
+| name    | 地名     | _string_ |
+| address | 详细地址 | _string_ |
+
+### 省市县列表数据格式
+
+请参考 [Area](#/zh-CN/area) 组件。
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                                  | 默认值                      | 描述 |
+|---------------------------------------|-----------------------------|------|
+| @address-edit-padding                 | `@padding-sm`               | -    |
+| @address-edit-buttons-padding         | `@padding-xl @padding-base` | -    |
+| @address-edit-button-margin-bottom    | `@padding-sm`               | -    |
+| @address-edit-detail-finish-color     | `@blue`                     | -    |
+| @address-edit-detail-finish-font-size | `@font-size-sm`             | -    |

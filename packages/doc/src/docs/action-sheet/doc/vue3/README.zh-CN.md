@@ -1,181 +1,249 @@
-# Button 按钮
+# ActionSheet 动作面板
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+底部弹起的模态面板，包含与当前情境相关的多个选项。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+动作面板通过 `actions` 属性来定义选项，`actions` 属性是一个由对象构成的数组，数组中的每个对象配置一列，对象格式见文档下方表格。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-cell is-link title="基础用法" @click="show = true" />
+<van-action-sheet v-model:show="show" :actions="actions" @select="onSelect" />
 ```
 
-### 朴素按钮
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+export default {
+  setup() {
+    const show = ref(false);
+    const actions = [
+      { name: '选项一' },
+      { name: '选项二' },
+      { name: '选项三' },
+    ];
+    const onSelect = (item) => {
+      // 默认情况下点击选项时不会自动收起
+      // 可以通过 close-on-click-action 属性开启自动收起
+      show.value = false;
+      Toast(item.name);
+    };
 
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+    return {
+      show,
+      actions,
+      onSelect,
+    };
+  },
+};
 ```
 
-### 细边框
+### 展示取消按钮
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+设置 `cancel-text` 属性后，会在底部展示取消按钮，点击后关闭当前面板并触发 `cancel` 事件。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-action-sheet
+  v-model:show="show"
+  :actions="actions"
+  cancel-text="取消"
+  close-on-click-action
+  @cancel="onCancel"
+/>
 ```
 
-### 禁用状态
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+export default {
+  setup() {
+    const show = ref(false);
+    const actions = [
+      { name: '选项一' },
+      { name: '选项二' },
+      { name: '选项三' },
+    ];
+    const onCancel = () => Toast('取消');
 
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+    return {
+      show,
+      actions,
+      onCancel,
+    };
+  },
+};
 ```
 
-### 加载状态
+### 展示描述信息
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+通过 `description` 可以在菜单顶部显示描述信息，通过选项的 `subname` 属性可以在选项文字的右侧展示描述信息。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-action-sheet
+  v-model:show="show"
+  :actions="actions"
+  cancel-text="取消"
+  description="这是一段描述信息"
+  close-on-click-action
+/>
 ```
 
-### 按钮形状
+```js
+import { ref } from 'vue';
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+export default {
+  setup() {
+    const show = ref(false);
+    const actions = [
+      { name: '选项一' },
+      { name: '选项二' },
+      { name: '选项三', subname: '描述信息' },
+    ];
 
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+    return {
+      show,
+      actions,
+    };
+  },
+};
 ```
 
-### 图标按钮
+### 选项状态
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+可以通过 `loading` 和 `disabled` 将选项设置为加载状态或禁用状态，或者通过`color`设置选项的颜色
 
 ```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
+<van-action-sheet
+  v-model:show="show"
+  :actions="actions"
+  cancel-text="取消"
+  close-on-click-action
+/>
 ```
 
-### 按钮尺寸
+```js
+import { ref } from 'vue';
 
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
+export default {
+  setup() {
+    const show = ref(false);
+    const actions = [
+      { name: '着色选项', color: '#ee0a24' },
+      { name: '禁用选项', disabled: true },
+      { name: '加载选项', loading: true },
+    ];
 
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
+    return {
+      show,
+      actions,
+    };
+  },
+};
 ```
 
-### 块级元素
+### 自定义面板
 
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
+通过插槽可以自定义面板的展示内容，同时可以使用`title`属性展示标题栏
 
 ```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+<van-action-sheet v-model:show="show" title="标题">
+  <div class="content">内容</div>
+</van-action-sheet>
+
+<style>
+  .content {
+    padding: 16px 16px 160px;
+  }
+</style>
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数                   | 说明                                                                      | 类型                | 默认值  |
+|------------------------|-------------------------------------------------------------------------|---------------------|---------|
+| v-model:show           | 是否显示动作面板                                                          | _boolean_           | `false` |
+| actions                | 面板选项列表                                                              | _Action[]_          | `[]`    |
+| title                  | 顶部标题                                                                  | _string_            | -       |
+| cancel-text            | 取消按钮文字                                                              | _string_            | -       |
+| description            | 选项上方的描述信息                                                        | _string_            | -       |
+| closeable              | 是否显示关闭图标                                                          | _boolean_           | `true`  |
+| close-icon             | 关闭[图标名称](#/zh-CN/icon)或图片链接                                    | _string_            | `cross` |
+| duration               | 动画时长，单位秒                                                           | _number \| string_  | `0.3`   |
+| round                  | 是否显示圆角                                                              | _boolean_           | `true`  |
+| overlay                | 是否显示遮罩层                                                            | _boolean_           | `true`  |
+| lock-scroll            | 是否锁定背景滚动                                                          | _boolean_           | `true`  |
+| lazy-render            | 是否在显示弹层时才渲染节点                                                | _boolean_           | `true`  |
+| close-on-popstate      | 是否在页面回退时自动关闭                                                  | _boolean_           | `false` |
+| close-on-click-action  | 是否在点击选项后关闭                                                      | _boolean_           | `false` |
+| close-on-click-overlay | 是否在点击遮罩层后关闭                                                    | _boolean_           | `true`  |
+| safe-area-inset-bottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_           | `true`  |
+| teleport               | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi)         | _string \| Element_ | -       |
+
+### Action 数据结构
+
+`actions` 属性是一个由对象构成的数组，数组中的每个对象配置一列，对象可以包含以下值：
+
+| 键名      | 说明                     | 类型                        |
+|-----------|------------------------|-----------------------------|
+| name      | 标题                     | _string_                    |
+| subname   | 二级标题                 | _string_                    |
+| color     | 选项文字颜色             | _string_                    |
+| className | 为对应列添加额外的 class | _string \| Array \| object_ |
+| loading   | 是否为加载状态           | _boolean_                   |
+| disabled  | 是否为禁用状态           | _boolean_                   |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名        | 说明                                    | 回调参数                        |
+|---------------|---------------------------------------|---------------------------------|
+| select        | 点击选项时触发，禁用或加载状态下不会触发 | _action: Action, index: number_ |
+| cancel        | 点击取消按钮时触发                      | -                               |
+| open          | 打开面板时触发                          | -                               |
+| close         | 关闭面板时触发                          | -                               |
+| opened        | 打开面板且动画结束后触发                | -                               |
+| closed        | 关闭面板且动画结束后触发                | -                               |
+| click-overlay | 点击遮罩层时触发                        | -                               |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称        | 说明                 |
+|-------------|--------------------|
+| default     | 自定义面板的展示内容 |
+| description | 自定义描述文案       |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                                   | 默认值              | 描述 |
+|----------------------------------------|---------------------|------|
+| @action-sheet-max-height               | `80%`               | -    |
+| @action-sheet-header-height            | `48px`              | -    |
+| @action-sheet-header-font-size         | `@font-size-lg`     | -    |
+| @action-sheet-description-color        | `@gray-6`           | -    |
+| @action-sheet-description-font-size    | `@font-size-md`     | -    |
+| @action-sheet-description-line-height  | `@line-height-md`   | -    |
+| @action-sheet-item-background          | `@white`            | -    |
+| @action-sheet-item-font-size           | `@font-size-lg`     | -    |
+| @action-sheet-item-line-height         | `@line-height-lg`   | -    |
+| @action-sheet-item-text-color          | `@text-color`       | -    |
+| @action-sheet-item-disabled-text-color | `@gray-5`           | -    |
+| @action-sheet-subname-color            | `@gray-6`           | -    |
+| @action-sheet-subname-font-size        | `@font-size-sm`     | -    |
+| @action-sheet-subname-line-height      | `@line-height-sm`   | -    |
+| @action-sheet-close-icon-size          | `22px`              | -    |
+| @action-sheet-close-icon-color         | `@gray-5`           | -    |
+| @action-sheet-close-icon-active-color  | `@gray-6`           | -    |
+| @action-sheet-close-icon-padding       | `0 @padding-md`     | -    |
+| @action-sheet-cancel-text-color        | `@gray-7`           | -    |
+| @action-sheet-cancel-padding-top       | `@padding-xs`       | -    |
+| @action-sheet-cancel-padding-color     | `@background-color` | -    |
+| @action-sheet-loading-icon-size        | `22px`              | -    |

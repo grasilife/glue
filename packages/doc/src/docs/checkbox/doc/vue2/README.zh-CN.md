@@ -1,181 +1,349 @@
-# Button 按钮
+# Checkbox 复选框
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+用于在选中和非选中状态之间进行切换。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+通过 `v-model` 绑定复选框的勾选状态。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-checkbox v-model="checked">复选框</van-checkbox>
 ```
 
-### 朴素按钮
+```js
+import { ref } from 'vue';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
-
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
-```
-
-### 细边框
-
-设置 `hairline` 属性可以展示 0.5px 的细边框。
-
-```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+export default {
+  setup() {
+    const checked = ref(true);
+    return { checked };
+  },
+};
 ```
 
 ### 禁用状态
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+通过设置 `disabled` 属性可以禁用复选框。
 
 ```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+<van-checkbox v-model="checked" disabled>复选框</van-checkbox>
 ```
 
-### 加载状态
+### 自定义形状
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
-
-```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
-```
-
-### 按钮形状
-
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+将 `shape` 属性设置为 `square`，复选框的形状会变成方形。
 
 ```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
-```
-
-### 图标按钮
-
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
-
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
-
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
+<van-checkbox v-model="checked" shape="square">复选框</van-checkbox>
 ```
 
 ### 自定义颜色
 
-通过 `color` 属性可以自定义按钮的颜色。
+通过 `checked-color` 属性设置选中状态的图标颜色。
 
 ```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+<van-checkbox v-model="checked" checked-color="#ee0a24">复选框</van-checkbox>
+```
+
+### 自定义大小
+
+通过 `icon-size` 属性可以自定义图标的大小。
+
+```html
+<van-checkbox v-model="checked" icon-size="24px">复选框</van-checkbox>
+```
+
+### 自定义图标
+
+通过 `icon` 插槽自定义图标，可以通过 `slotProps` 判断是否为选中状态.
+
+```html
+<van-checkbox v-model="checked">
+  自定义图标
+  <template #icon="props">
+    <img class="img-icon" :src="props.checked ? activeIcon : inactiveIcon" />
+  </template>
+</van-checkbox>
+
+<style>
+  .img-icon {
+    height: 20px;
+  }
+</style>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref(true);
+    return {
+      checked,
+      activeIcon: 'https://img01.yzcdn.cn/vant/user-active.png',
+      inactiveIcon: 'https://img01.yzcdn.cn/vant/user-inactive.png',
+    };
+  },
+};
+```
+
+### 禁用文本点击
+
+设置 `label-disabled` 属性后，点击图标以外的内容不会触发复选框切换。
+
+```html
+<van-checkbox v-model="checked" label-disabled>复选框</van-checkbox>
+```
+
+### 复选框组
+
+复选框可以与复选框组一起使用，复选框组通过 `v-model` 数组绑定复选框的勾选状态。
+
+```html
+<van-checkbox-group v-model="checked">
+  <van-checkbox name="a">复选框 a</van-checkbox>
+  <van-checkbox name="b">复选框 b</van-checkbox>
+</van-checkbox-group>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref(['a', 'b']);
+    return { checked };
+  },
+};
+```
+
+### 水平排列
+
+将 `direction` 属性设置为 `horizontal` 后，复选框组会变成水平排列。
+
+```html
+<van-checkbox-group v-model="checked" direction="horizontal">
+  <van-checkbox name="a">复选框 a</van-checkbox>
+  <van-checkbox name="b">复选框 b</van-checkbox>
+</van-checkbox-group>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref([]);
+    return { checked };
+  },
+};
+```
+
+### 限制最大可选数
+
+通过 `max` 属性可以限制复选框组的最大可选数。
+
+```html
+<van-checkbox-group v-model="result" :max="2">
+  <van-checkbox name="a">复选框 a</van-checkbox>
+  <van-checkbox name="b">复选框 b</van-checkbox>
+  <van-checkbox name="c">复选框 c</van-checkbox>
+</van-checkbox-group>
+```
+
+### 全选与反选
+
+通过 `CheckboxGroup` 实例上的 `toggleAll` 方法可以实现全选与反选。
+
+```html
+<van-checkbox-group v-model="result" ref="checkboxGroup">
+  <van-checkbox name="a">复选框 a</van-checkbox>
+  <van-checkbox name="b">复选框 b</van-checkbox>
+  <van-checkbox name="c">复选框 c</van-checkbox>
+</van-checkbox-group>
+
+<van-button type="primary" @click="checkAll">全选</van-button>
+<van-button type="primary" @click="toggleAll">反选</van-button>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref([]);
+    const checkboxGroup = ref(null);
+
+    const checkAll = () => {
+      checkboxGroup.value.toggleAll(true);
+    }
+    const toggleAll = () => {
+      checkboxGroup.value.toggleAll();
+    },
+
+    return {
+      checked,
+      checkAll,
+      toggleAll,
+      checkboxGroup,
+    };
+  },
+};
+```
+
+### 搭配单元格组件使用
+
+此时你需要再引入 `Cell` 和 `CellGroup` 组件，并通过 `Checkbox` 实例上的 toggle 方法触发切换。
+
+```html
+<van-checkbox-group v-model="checked">
+  <van-cell-group>
+    <van-cell
+      v-for="(item, index) in list"
+      clickable
+      :key="item"
+      :title="`复选框 ${item}`"
+      @click="toggle(index)"
+    >
+      <template #right-icon>
+        <van-checkbox
+          :name="item"
+          :ref="el => checkboxRefs[index] = el"
+          @click.stop
+        />
+      </template>
+    </van-cell>
+  </van-cell-group>
+</van-checkbox-group>
+```
+
+```js
+import { ref, onBeforeUpdate } from 'vue';
+
+export default {
+  setup() {
+    const checked = ref([]);
+    const checkboxRefs = ref([]);
+    const toggle = (index) => {
+      checkboxRefs.value[index].toggle();
+    };
+
+    onBeforeUpdate(() => {
+      checkboxRefs.value = [];
+    });
+
+    return {
+      list: ['a', 'b'],
+      toggle,
+      checked,
+      checkboxRefs,
+    };
+  },
+};
 ```
 
 ## API
 
-### Props
+### Checkbox Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数           | 说明                     | 类型               | 默认值    |
+|----------------|------------------------|--------------------|-----------|
+| v-model        | 是否为选中状态           | _boolean_          | `false`   |
+| name           | 标识符                   | _any_              | -         |
+| shape          | 形状，可选值为 `square`   | _string_           | `round`   |
+| disabled       | 是否禁用复选框           | _boolean_          | `false`   |
+| label-disabled | 是否禁用复选框文本点击   | _boolean_          | `false`   |
+| label-position | 文本位置，可选值为 `left` | _string_           | `right`   |
+| icon-size      | 图标大小，默认单位为 `px` | _number \| string_ | `20px`    |
+| checked-color  | 选中状态颜色             | _string_           | `#1989fa` |
+| bind-group     | 是否与复选框组绑定       | _boolean_          | `true`    |
 
-### Events
+### CheckboxGroup Props
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 参数          | 说明                                 | 类型               | 默认值     |
+|---------------|------------------------------------|--------------------|------------|
+| v-model       | 所有选中项的标识符                   | _any[]_            | -          |
+| disabled      | 是否禁用所有复选框                   | _boolean_          | `false`    |
+| max           | 最大可选数，`0`为无限制               | _number \| string_ | `0`        |
+| direction     | 排列方向，可选值为 `horizontal`       | _string_           | `vertical` |
+| icon-size     | 所有复选框的图标大小，默认单位为 `px` | _number \| string_ | `20px`     |
+| checked-color | 所有复选框的选中状态颜色             | _string_           | `#1989fa`  |
 
-### Slots
+### Checkbox Events
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 事件名 | 说明                     | 回调参数           |
+|--------|------------------------|--------------------|
+| change | 当绑定值变化时触发的事件 | _checked: boolean_ |
+| click  | 点击复选框时触发         | _event: Event_     |
+
+### CheckboxGroup Events
+
+| 事件名 | 说明                     | 回调参数       |
+|--------|------------------------|----------------|
+| change | 当绑定值变化时触发的事件 | _names: any[]_ |
+
+### Checkbox Slots
+
+| 名称    | 说明       | 参数               |
+|---------|----------|--------------------|
+| default | 自定义文本 | -                  |
+| icon    | 自定义图标 | _checked: boolean_ |
+
+### CheckboxGroup 方法
+
+通过 ref 可以获取到 CheckboxGroup 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名    | 说明                                                            | 参数                          | 返回值 |
+|-----------|---------------------------------------------------------------|-------------------------------|--------|
+| toggleAll | 切换所有复选框，传 `true` 为选中，`false` 为取消选中，不传参为取反 | _options?: boolean \| object_ | -      |
+
+### toggleAll 方法示例
+
+```js
+const { checkboxGroup } = this.$refs;
+
+// 全部反选
+checkboxGroup.toggleAll();
+// 全部选中
+checkboxGroup.toggleAll(true);
+// 全部取消
+checkboxGroup.toggleAll(false);
+
+// 全部反选，并跳过禁用的复选框
+checkboxGroup.toggleAll({
+  skipDisabled: true,
+});
+// 全部选中，并跳过禁用的复选框
+checkboxGroup.toggleAll({
+  checked: true,
+  skipDisabled: true,
+});
+```
+
+### Checkbox 方法
+
+通过 ref 可以获取到 Checkbox 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明                                                          | 参数                | 返回值 |
+|--------|-------------------------------------------------------------|---------------------|--------|
+| toggle | 切换选中状态，传 `true` 为选中，`false` 为取消选中，不传参为取反 | _checked?: boolean_ | -      |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                                | 默认值                     | 描述 |
+|-------------------------------------|----------------------------|------|
+| @checkbox-size                      | `20px`                     | -    |
+| @checkbox-border-color              | `@gray-5`                  | -    |
+| @checkbox-transition-duration       | `@animation-duration-fast` | -    |
+| @checkbox-label-margin              | `@padding-xs`              | -    |
+| @checkbox-label-color               | `@text-color`              | -    |
+| @checkbox-checked-icon-color        | `@blue`                    | -    |
+| @checkbox-disabled-icon-color       | `@gray-5`                  | -    |
+| @checkbox-disabled-label-color      | `@gray-5`                  | -    |
+| @checkbox-disabled-background-color | `@border-color`            | -    |
