@@ -1,181 +1,209 @@
-# Button 按钮
-
-### 介绍
-
-按钮用于触发一个操作，如提交表单。
+# Tabbar 标签栏
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+`v-model` 默认绑定选中标签的索引值，通过修改 `v-model` 即可切换选中的标签。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-tabbar v-model="active">
+  <van-tabbar-item icon="home-o">标签</van-tabbar-item>
+  <van-tabbar-item icon="search">标签</van-tabbar-item>
+  <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
+  <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+</van-tabbar>
 ```
 
-### 朴素按钮
+```js
+import { ref } from 'vue';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
-
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+export default {
+  setup() {
+    const active = ref(0);
+    return { active };
+  },
+};
 ```
 
-### 细边框
+### 通过名称匹配
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+在标签指定 `name` 属性的情况下，`v-model` 的值为当前标签的 `name`。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-tabbar v-model="active">
+  <van-tabbar-item name="home" icon="home-o">标签</van-tabbar-item>
+  <van-tabbar-item name="search" icon="search">标签</van-tabbar-item>
+  <van-tabbar-item name="friends" icon="friends-o">标签</van-tabbar-item>
+  <van-tabbar-item name="setting" icon="setting-o">标签</van-tabbar-item>
+</van-tabbar>
 ```
 
-### 禁用状态
+```js
+import { ref } from 'vue';
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
-
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+export default {
+  setup() {
+    const active = ref('home');
+    return { active };
+  },
+};
 ```
 
-### 加载状态
+### 徽标提示
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+设置 `dot` 属性后，会在图标右上角展示一个小红点；设置 `badge` 属性后，会在图标右上角展示相应的徽标。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-tabbar v-model="active">
+  <van-tabbar-item icon="home-o">标签</van-tabbar-item>
+  <van-tabbar-item icon="search" dot>标签</van-tabbar-item>
+  <van-tabbar-item icon="friends-o" badge="5">标签</van-tabbar-item>
+  <van-tabbar-item icon="setting-o" badge="20">标签</van-tabbar-item>
+</van-tabbar>
 ```
 
-### 按钮形状
+### 自定义图标
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+通过 `icon` 插槽自定义图标，可以通过 `slot-scope` 判断标签是否选中。
 
 ```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+<van-tabbar v-model="active">
+  <van-tabbar-item badge="3">
+    <span>自定义</span>
+    <template #icon="props">
+      <img :src="props.active ? icon.active : icon.inactive" />
+    </template>
+  </van-tabbar-item>
+  <van-tabbar-item icon="search">标签</van-tabbar-item>
+  <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+</van-tabbar>
 ```
 
-### 图标按钮
+```js
+import { ref } from 'vue';
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
-
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
-
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
+export default {
+  setup() {
+    const active = ref(0);
+    const icon = {
+      active: 'https://img01.yzcdn.cn/vant/user-active.png',
+      inactive: 'https://img01.yzcdn.cn/vant/user-inactive.png',
+    };
+    return {
+      icon,
+      active,
+    };
+  },
+};
 ```
 
 ### 自定义颜色
 
-通过 `color` 属性可以自定义按钮的颜色。
+```html
+<van-tabbar v-model="active" active-color="#ee0a24" inactive-color="#000">
+  <van-tabbar-item icon="home-o">标签</van-tabbar-item>
+  <van-tabbar-item icon="search">标签</van-tabbar-item>
+  <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
+  <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+</van-tabbar>
+```
+
+### 监听切换事件
 
 ```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+<van-tabbar v-model="active" @change="onChange">
+  <van-tabbar-item icon="home-o">标签 1</van-tabbar-item>
+  <van-tabbar-item icon="search">标签 2</van-tabbar-item>
+  <van-tabbar-item icon="friends-o">标签 3</van-tabbar-item>
+  <van-tabbar-item icon="setting-o">标签 4</van-tabbar-item>
+</van-tabbar>
+```
+
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
+
+export default {
+  setup() {
+    const active = ref(0);
+    const onChange = (index) => Toast(`标签 ${index}`);
+    return {
+      icon,
+      onChange,
+    };
+  },
+};
+```
+
+### 路由模式
+
+标签栏支持路由模式，用于搭配 `vue-router` 使用。路由模式下会匹配页面路径和标签的 `to` 属性，并自动选中对应的标签。
+
+```html
+<router-view />
+
+<van-tabbar route>
+  <van-tabbar-item replace to="/home" icon="home-o">标签</van-tabbar-item>
+  <van-tabbar-item replace to="/search" icon="search">标签</van-tabbar-item>
+</van-tabbar>
 ```
 
 ## API
 
-### Props
+### Tabbar Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数                   | 说明                                                                                            | 类型                           | 默认值    |
+|------------------------|-----------------------------------------------------------------------------------------------|--------------------------------|-----------|
+| v-model                | 当前选中标签的名称或索引值                                                                      | _number \| string_             | `0`       |
+| fixed                  | 是否固定在底部                                                                                  | _boolean_                      | `true`    |
+| border                 | 是否显示外边框                                                                                  | _boolean_                      | `true`    |
+| z-index                | 元素 z-index                                                                                    | _number \| string_             | `1`       |
+| active-color           | 选中标签的颜色                                                                                  | _string_                       | `#1989fa` |
+| inactive-color         | 未选中标签的颜色                                                                                | _string_                       | `#7d7e80` |
+| route                  | 是否开启路由模式                                                                                | _boolean_                      | `false`   |
+| placeholder            | 固定在底部时，是否在标签位置生成一个等高的占位元素                                               | _boolean_                      | `false`   |
+| safe-area-inset-bottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei)，设置 fixed 时默认开启 | _boolean_                      | `false`   |
+| before-change          | 切换标签前的回调函数，返回 `false` 可阻止切换，支持返回 Promise                                   | _(name) => boolean \| Promise_ | -         |
 
-### Events
+### Tabbar Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名 | 说明           | 回调参数                           |
+|--------|--------------|--------------------------------|
+| change | 切换标签时触发 | active: 当前选中标签的名称或索引值 |
 
-### Slots
+### TabbarItem Props
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 参数        | 说明                                                                                     | 类型               | 默认值           |
+|-------------|----------------------------------------------------------------------------------------|--------------------|------------------|
+| name        | 标签名称，作为匹配的标识符                                                                | _number \| string_ | 当前标签的索引值 |
+| icon        | [图标名称](#/zh-CN/icon)或图片链接                                                       | _string_           | -                |
+| icon-prefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props)                      | _string_           | `van-icon`       |
+| dot         | 是否显示图标右上角小红点                                                                 | _boolean_          | `false`          |
+| badge       | 图标右上角徽标的内容                                                                     | _number \| string_ | -                |
+| url         | 点击后跳转的链接地址                                                                     | _string_           | -                |
+| to          | 点击后跳转的目标路由对象，同 vue-router 的 [to 属性](https://router.vuejs.org/zh/api/#to) | _string \| object_ | -                |
+| replace     | 是否在跳转时替换当前页面历史                                                             | _boolean_          | `false`          |
+
+### TabbarItem Slots
+
+| 名称 | 说明       | 参数                   |
+|------|----------|----------------------|
+| icon | 自定义图标 | active: 是否为选中标签 |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                                 | 默认值                     | 描述 |
+|--------------------------------------|----------------------------|------|
+| @tabbar-height                       | `50px`                     | -    |
+| @tabbar-z-index                      | `1`                        | -    |
+| @tabbar-background-color             | `@white`                   | -    |
+| @tabbar-item-font-size               | `@font-size-sm`            | -    |
+| @tabbar-item-text-color              | `@gray-7`                  | -    |
+| @tabbar-item-active-color            | `@blue`                    | -    |
+| @tabbar-item-active-background-color | `@tabbar-background-color` | -    |
+| @tabbar-item-line-height             | `1`                        | -    |
+| @tabbar-item-icon-size               | `22px`                     | -    |
+| @tabbar-item-margin-bottom           | `4px`                      | -    |

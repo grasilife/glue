@@ -1,181 +1,378 @@
-# Button 按钮
+# Uploader 文件上传
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+用于将本地的图片或文件上传至服务器，并在上传过程中展示预览图和上传进度。目前 Uploader 组件不包含将文件上传至服务器的接口逻辑，该步骤需要自行实现。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+文件上传完毕后会触发 `after-read` 回调函数，获取到对应的 `file` 对象。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-uploader :after-read="afterRead" />
 ```
 
-### 朴素按钮
+```js
+export default {
+  setup() {
+    const afterRead = (file) => {
+      // 此时可以自行将文件上传至服务器
+      console.log(file);
+    };
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
-
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+    return {
+      afterRead,
+    };
+  },
+};
 ```
 
-### 细边框
+### 文件预览
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+通过 `v-model` 可以绑定已经上传的文件列表，并展示文件列表的预览图。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-uploader v-model="fileList" multiple />
 ```
 
-### 禁用状态
+```js
+import { ref } from 'vue';
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+export default {
+  setup() {
+    const fileList = ref([
+      { url: 'https://img01.yzcdn.cn/vant/leaf.jpg' },
+      // Uploader 根据文件后缀来判断是否为图片文件
+      // 如果图片 URL 中不包含类型信息，可以添加 isImage 标记来声明
+      { url: 'https://cloud-image', isImage: true },
+    ]);
 
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+    return {
+      fileList,
+    };
+  },
+};
 ```
 
-### 加载状态
+### 上传状态
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+通过 `status` 属性可以标识上传状态，`uploading` 表示上传中，`failed` 表示上传失败，`done` 表示上传完成。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-uploader v-model="fileList" :after-read="afterRead" />
 ```
 
-### 按钮形状
+```js
+import { ref } from 'vue';
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+export default {
+  setup() {
+    const fileList = ref([
+      {
+        url: 'https://img01.yzcdn.cn/vant/leaf.jpg',
+        status: 'uploading',
+        message: '上传中...',
+      },
+      {
+        url: 'https://img01.yzcdn.cn/vant/tree.jpg',
+        status: 'failed',
+        message: '上传失败',
+      },
+    ]);
 
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+    const afterRead = (file) => {
+      file.status = 'uploading';
+      file.message = '上传中...';
+
+      setTimeout(() => {
+        file.status = 'failed';
+        file.message = '上传失败';
+      }, 1000);
+    };
+
+    return {
+      fileList,
+      afterRead,
+    };
+  },
+};
 ```
 
-### 图标按钮
+### 限制上传数量
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+通过 `max-count` 属性可以限制上传文件的数量，上传数量达到限制后，会自动隐藏上传区域。
 
 ```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
+<van-uploader v-model="fileList" multiple :max-count="2" />
 ```
 
-### 按钮尺寸
+```js
+import { ref } from 'vue';
 
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
+export default {
+  setup() {
+    const fileList = ref([]);
 
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
+    return {
+      fileList,
+    };
+  },
+};
 ```
 
-### 块级元素
+### 限制上传大小
 
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
+通过 `max-size` 属性可以限制上传文件的大小，超过大小的文件会被自动过滤，这些文件信息可以通过 `oversize` 事件获取。
 
 ```html
-<glue-button type="primary" block>块级元素</glue-button>
+<van-uploader multiple :max-size="500 * 1024" @oversize="onOversize" />
 ```
 
-### 自定义颜色
+```js
+import { Toast } from 'vant';
 
-通过 `color` 属性可以自定义按钮的颜色。
+export default {
+  setup() {
+    const onOversize = (file) => {
+      console.log(file);
+      Toast('文件大小不能超过 500kb');
+    };
+
+    return {
+      onOversize,
+    };
+  },
+};
+```
+
+### 自定义上传样式
+
+通过默认插槽可以自定义上传区域的样式。
 
 ```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+<van-uploader>
+  <van-button icon="plus" type="primary">上传文件</van-button>
+</van-uploader>
+```
+
+### 自定义预览样式
+
+通过 `preview-cover` 插槽可以自定义覆盖在预览区域上方的内容。
+
+```html
+<van-uploader v-model="fileList">
+  <template #preview-cover="{ file }">
+    <div class="preview-cover van-ellipsis">{{ file.name }}</div>
+  </template>
+</van-uploader>
+
+<style>
+  .preview-cover {
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 4px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+  }
+</style>
+```
+
+### 上传前置处理
+
+通过传入 `beforeRead` 函数可以在上传前进行校验和处理，返回 `true` 表示校验通过，返回 `false` 表示校验失败。支持返回 `Promise` 对 file 对象进行自定义处理，例如压缩图片。
+
+```html
+<van-uploader :before-read="beforeRead" />
+```
+
+```js
+import { Toast } from 'vant';
+
+export default {
+  setup() {
+    // 返回布尔值
+    const beforeRead = (file) => {
+      if (file.type !== 'image/jpeg') {
+        Toast('请上传 jpg 格式图片');
+        return false;
+      }
+      return true;
+    };
+
+    // 返回 Promise
+    const asyncBeforeRead = (file) => {
+      return new Promise((resolve, reject) => {
+        if (file.type !== 'image/jpeg') {
+          Toast('请上传 jpg 格式图片');
+          reject();
+        } else {
+          let img = new File(['foo'], 'bar.jpg', {
+            type: 'image/jpeg',
+          });
+          resolve(img);
+        }
+      });
+    };
+
+    return {
+      beforeRead,
+      asyncBeforeRead,
+    };
+  },
+};
+```
+
+### 禁用文件上传
+
+通过 `disabled` 属性禁用文件上传。
+
+```html
+<van-uploader disabled />
+```
+
+### 自定义单个图片预览
+
+在 `v-model` 数组中设置单个预览图片属性，支持 `imageFit` `deletable` `previewSize` `beforeDelete`。
+
+```html
+<van-uploader v-model="fileList" :deletable="false" />
+```
+
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
+
+export default {
+  setup() {
+    const fileList = ref([
+      { url: 'https://img01.yzcdn.cn/vant/leaf.jpg' },
+      {
+        url: 'https://img01.yzcdn.cn/vant/sand.jpg',
+        deletable: true,
+        beforeDelete: () => {
+          Toast('自定义单个预览图片的事件和样式');
+        },
+      },
+      {
+        url: 'https://img01.yzcdn.cn/vant/tree.jpg',
+        deletable: true,
+        imageFit: 'contain',
+        previewSize: 120,
+      },
+    ]);
+    return {
+      fileList:
+    };
+  }
+};
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数               | 说明                                                                                                                                                                                  | 类型               | 默认值       |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|--------------|
+| v-model            | 已上传的文件列表                                                                                                                                                                      | _FileListItem[]_   | -            |
+| accept             | 允许上传的文件类型，[详细说明](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input/file#%E9%99%90%E5%88%B6%E5%85%81%E8%AE%B8%E7%9A%84%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B) | _string_           | `image/*`    |
+| name               | 标识符，可以在回调函数的第二项参数中获取                                                                                                                                               | _number \| string_ | -            |
+| preview-size       | 预览图和上传区域的尺寸，默认单位为 `px`                                                                                                                                                | _number \| string_ | `80px`       |
+| preview-image      | 是否在上传完成后展示预览图                                                                                                                                                            | _boolean_          | `true`       |
+| preview-full-image | 是否在点击预览图后展示全屏图片预览                                                                                                                                                    | _boolean_          | `true`       |
+| preview-options    | 全屏图片预览的配置项，可选值见 [ImagePreview](#/zh-CN/image-preview)                                                                                                                   | _object_           | -            |
+| multiple           | 是否开启图片多选，部分安卓机型不支持                                                                                                                                                   | _boolean_          | `false`      |
+| disabled           | 是否禁用文件上传                                                                                                                                                                      | _boolean_          | `false`      |
+| deletable          | 是否展示删除按钮                                                                                                                                                                      | _boolean_          | `true`       |
+| show-upload        | 是否展示上传区域                                                                                                                                                                      | _boolean_          | `true`       |
+| lazy-load          | 是否开启图片懒加载，须配合 [Lazyload](#/zh-CN/lazyload) 组件使用                                                                                                                       | _boolean_          | `false`      |
+| capture            | 图片选取模式，可选值为 `camera` (直接调起摄像头)                                                                                                                                       | _string_           | -            |
+| after-read         | 文件读取完成后的回调函数                                                                                                                                                              | _Function_         | -            |
+| before-read        | 文件读取前的回调函数，返回 `false` 可终止文件读取，<br>支持返回 `Promise`                                                                                                               | _Function_         | -            |
+| before-delete      | 文件删除前的回调函数，返回 `false` 可终止文件读取，<br>支持返回 `Promise`                                                                                                               | _Function_         | -            |
+| max-size           | 文件大小限制，单位为 `byte`                                                                                                                                                            | _number \| string_ | -            |
+| max-count          | 文件上传数量限制                                                                                                                                                                      | _number \| string_ | -            |
+| result-type        | 文件读取结果类型，可选值为 `file` `text`                                                                                                                                               | _string_           | `dataUrl`    |
+| upload-text        | 上传区域文字提示                                                                                                                                                                      | _string_           | -            |
+| image-fit          | 预览图裁剪模式，可选值见 [Image](#/zh-CN/image) 组件                                                                                                                                   | _string_           | `cover`      |
+| upload-icon        | 上传区域[图标名称](#/zh-CN/icon)或图片链接                                                                                                                                            | _string_           | `photograph` |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名        | 说明                   | 回调参数        |
+|---------------|----------------------|-----------------|
+| oversize      | 文件大小超过限制时触发 | 同 `after-read` |
+| click-preview | 点击预览图时触发       | 同 `after-read` |
+| close-preview | 关闭全屏图片预览时触发 | -               |
+| delete        | 删除文件预览时触发     | 同 `after-read` |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称          | 说明                           | 参数                 |
+|---------------|------------------------------|----------------------|
+| default       | 自定义上传区域                 | -                    |
+| preview-cover | 自定义覆盖在预览区域上方的内容 | _item: FileListItem_ |
+
+### 回调参数
+
+before-read、after-read、before-delete 执行时会传递以下回调参数：
+
+| 参数名 | 说明                             | 类型     |
+|--------|--------------------------------|----------|
+| file   | file 对象                        | _object_ |
+| detail | 额外信息，包含 name 和 index 字段 | _object_ |
+
+### ResultType  可选值
+
+`result-type` 字段表示文件读取结果的类型，上传大文件时，建议使用 file 类型，避免卡顿。
+
+| 值      | 描述                                          |
+|---------|---------------------------------------------|
+| file    | 结果仅包含 File 对象                          |
+| text    | 结果包含 File 对象，以及文件的文本内容         |
+| dataUrl | 结果包含 File 对象，以及文件对应的 base64 编码 |
+
+### 方法
+
+通过 ref 可以获取到 Uploader 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名            | 说明                                                                       | 参数 | 返回值 |
+|-------------------|--------------------------------------------------------------------------|------|--------|
+| closeImagePreview | 关闭全屏的图片预览                                                         | -    | -      |
+| chooseFile        | 主动调起文件选择，由于浏览器安全限制，只有在用户触发操作的上下文中调用才有效 | -    | -      |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                               | 默认值               | 描述 |
+|------------------------------------|----------------------|------|
+| @uploader-size                     | `80px`               | -    |
+| @uploader-icon-size                | `24px`               | -    |
+| @uploader-icon-color               | `@gray-4`            | -    |
+| @uploader-text-color               | `@gray-6`            | -    |
+| @uploader-text-font-size           | `@font-size-sm`      | -    |
+| @uploader-upload-background-color  | `@gray-1`            | -    |
+| @uploader-upload-active-color      | `@active-color`      | -    |
+| @uploader-delete-color             | `@white`             | -    |
+| @uploader-delete-icon-size         | `14px`               | -    |
+| @uploader-delete-background-color  | `rgba(0, 0, 0, 0.7)` | -    |
+| @uploader-file-background-color    | `@background-color`  | -    |
+| @uploader-file-icon-size           | `20px`               | -    |
+| @uploader-file-icon-color          | `@gray-7`            | -    |
+| @uploader-file-name-padding        | `0 @padding-base`    | -    |
+| @uploader-file-name-margin-top     | `@padding-xs`        | -    |
+| @uploader-file-name-font-size      | `@font-size-sm`      | -    |
+| @uploader-file-name-text-color     | `@gray-7`            | -    |
+| @uploader-mask-background-color    | `fade(@gray-8, 88%)` | -    |
+| @uploader-mask-icon-size           | `22px`               | -    |
+| @uploader-mask-message-font-size   | `@font-size-sm`      | -    |
+| @uploader-mask-message-line-height | `@line-height-xs`    | -    |
+| @uploader-loading-icon-size        | `22px`               | -    |
+| @uploader-loading-icon-color       | `@white`             | -    |
+| @uploader-disabled-opacity         | `@disabled-opacity`  | -    |

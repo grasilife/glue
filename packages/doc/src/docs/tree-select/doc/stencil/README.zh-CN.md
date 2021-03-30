@@ -1,181 +1,236 @@
-# Button 按钮
-
-### 介绍
-
-按钮用于触发一个操作，如提交表单。
+# TreeSelect 分类选择
 
 ## 代码演示
 
-### 按钮类型
+### 单选模式
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+`item` 为分类显示所需的数据，数据格式见下方示例。`main-active-index` 表示左侧高亮选项的索引，`active-id` 表示右侧高亮选项的 id。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-tree-select
+  v-model:active-id="state.activeId"
+  v-model:main-active-index="state.activeIndex"
+  :items="items"
+/>
 ```
 
-### 朴素按钮
+```js
+import { reactive } from 'vue';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+export default {
+  setup() {
+    const state = reactive({
+      activeId: 1,
+      activeIndex: 0,
+    });
+    const items = [
+      {
+        text: '浙江',
+        children: [
+          { text: '杭州', id: 1 },
+          { text: '温州', id: 2 },
+        ],
+      },
+      {
+        text: '江苏',
+        children: [
+          { text: '南京', id: 5 },
+          { text: '无锡', id: 6 },
+        ],
+      },
+    ];
 
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+    return {
+      state,
+      items,
+    };
+  },
+};
 ```
 
-### 细边框
+### 多选模式
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+`active-id` 为数组格式时，可以选中多个右侧选项。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-tree-select
+  v-model:active-id="state.activeIds"
+  v-model:main-active-index="state.activeIndex"
+  :items="items"
+/>
 ```
 
-### 禁用状态
+```js
+import { reactive } from 'vue';
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+export default {
+  setup() {
+    const state = reactive({
+      activeId: [1, 2],
+      activeIndex: 0,
+    });
+    const items = [
+      {
+        text: '浙江',
+        children: [
+          { text: '杭州', id: 1 },
+          { text: '温州', id: 2 },
+        ],
+      },
+      {
+        text: '江苏',
+        children: [
+          { text: '南京', id: 5 },
+          { text: '无锡', id: 6 },
+        ],
+      },
+    ];
 
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+    return {
+      state,
+      items,
+    };
+  },
+};
 ```
 
-### 加载状态
+### 自定义内容
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+通过 `content` 插槽可以自定义右侧区域的内容。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-tree-select
+  v-model:main-active-index="activeIndex"
+  height="55vw"
+  :items="items"
+>
+  <template #content>
+    <van-image
+      v-if="activeIndex === 0"
+      src="https://img01.yzcdn.cn/vant/apple-1.jpg"
+    />
+    <van-image
+      v-if="activeIndex === 1"
+      src="https://img01.yzcdn.cn/vant/apple-2.jpg"
+    />
+  </template>
+</van-tree-select>
 ```
 
-### 按钮形状
+```js
+import { ref } from 'vue';
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
-
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+export default {
+  setup() {
+    const activeIndex = ref(0);
+    return {
+      activeIndex,
+      items: [{ text: '分组 1' }, { text: '分组 2' }],
+    };
+  },
+};
 ```
 
-### 图标按钮
+### 徽标提示
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+设置 `dot` 属性后，会在图标右上角展示一个小红点；设置 `badge` 属性后，会在图标右上角展示相应的徽标。
 
 ```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
+<van-tree-select
+  v-model:main-active-index="activeIndex"
+  height="55vw"
+  :items="items"
+/>
 ```
 
-### 按钮尺寸
+```js
+import { ref } from 'vue';
 
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+export default {
+  setup() {
+    const activeIndex = ref(0);
+    return {
+      activeIndex,
+      items: [
+        { text: '浙江', children: [], dot: true },
+        { text: '江苏', children: [], badge: 5 },
+      ],
+    };
+  },
+};
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数              | 说明                         | 类型                                          | 默认值     |
+|-------------------|----------------------------|-----------------------------------------------|------------|
+| items             | 分类显示所需的数据           | _Item[]_                                      | `[]`       |
+| height            | 高度，默认单位为`px`          | _number \| string_                            | `300`      |
+| main-active-index | 左侧选中项的索引             | _number \| string_                            | `0`        |
+| active-id         | 右侧选中项的 id，支持传入数组 | _number \| string \|<br>(number \| string)[]_ | `0`        |
+| max               | 右侧项最大选中个数           | _number \| string_                            | `Infinity` |
+| selected-icon     | 自定义右侧栏选中状态的图标   | _string_                                      | `success`  |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名     | 说明                 | 回调参数                 |
+|------------|--------------------|----------------------|
+| click-nav  | 点击左侧导航时触发   | index：被点击的导航的索引 |
+| click-item | 点击右侧选择项时触发 | data: 该点击项的数据     |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称    | 说明               |
+|---------|------------------|
+| content | 自定义右侧区域内容 |
+
+### Item 数据结构
+
+`items` 整体为一个数组，数组内包含一系列描述分类的对象，每个分类里，`text`表示当前分类的名称，`children`表示分类里的可选项。
+
+```js
+[
+  {
+    // 导航名称
+    text: '所有城市',
+    // 导航名称右上角徽标
+    badge: 3,
+    // 是否在导航名称右上角显示小红点
+    dot: true,
+    // 导航节点额外类名
+    className: 'my-class',
+    // 该导航下所有的可选项
+    children: [
+      {
+        // 名称
+        text: '温州',
+        // id，作为匹配选中状态的标识符
+        id: 1,
+        // 禁用选项
+        disabled: true,
+      },
+      {
+        text: '杭州',
+        id: 2,
+      },
+    ],
+  },
+];
+```
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                                  | 默认值              | 描述 |
+|---------------------------------------|---------------------|------|
+| @tree-select-font-size                | `@font-size-md`     | -    |
+| @tree-select-nav-background-color     | `@background-color` | -    |
+| @tree-select-content-background-color | `@white`            | -    |
+| @tree-select-nav-item-padding         | `14px @padding-sm`  | -    |
+| @tree-select-item-height              | `48px`              | -    |
+| @tree-select-item-active-color        | `@red`              | -    |
+| @tree-select-item-disabled-color      | `@gray-5`           | -    |
+| @tree-select-item-selected-size       | `16px`              | -    |

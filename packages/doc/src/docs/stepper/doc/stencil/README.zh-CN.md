@@ -1,181 +1,199 @@
-# Button 按钮
+# Stepper 步进器
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+步进器由增加按钮、减少按钮和输入框组成，用于在一定范围内输入、调整数字。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+通过 `v-model` 绑定输入值，可以通过 `change` 事件监听到输入值的变化。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-stepper v-model="value" />
 ```
 
-### 朴素按钮
+```js
+import { ref } from 'vue';
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
-
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+export default {
+  setup() {
+    const value = ref(1);
+    return { value };
+  },
+};
 ```
 
-### 细边框
+### 步长设置
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+通过 `step` 属性设置每次点击增加或减少按钮时变化的值，默认为 `1`。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-stepper v-model="value" step="2" />
+```
+
+### 限制输入范围
+
+通过 `min` 和 `max` 属性限制输入值的范围。
+
+```html
+<van-stepper v-model="value" min="5" max="8" />
+```
+
+### 限制输入整数
+
+设置 `integer` 属性后，输入框将限制只能输入整数。
+
+```html
+<van-stepper v-model="value" integer />
 ```
 
 ### 禁用状态
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+通过设置 `disabled` 属性来禁用步进器，禁用状态下无法点击按钮或修改输入框。
 
 ```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+<van-stepper v-model="value" disabled />
 ```
 
-### 加载状态
+### 禁用输入框
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+通过设置 `disable-input` 属性来禁用输入框，此时按钮仍然可以点击。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-stepper v-model="value" disable-input />
 ```
 
-### 按钮形状
+### 固定小数位数
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+通过设置 `decimal-length` 属性可以保留固定的小数位数。
 
 ```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+<van-stepper v-model="value" step="0.2" :decimal-length="1" />
 ```
 
-### 图标按钮
+### 自定义大小
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+通过 `input-width` 属性设置输入框宽度，通过 `button-size` 属性设置按钮大小和输入框高度。
 
 ```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
+<van-stepper v-model="value" input-width="40px" button-size="32px" />
 ```
 
-### 按钮尺寸
+### 异步变更
 
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
+通过 `before-change` 属性可以在
 
 ```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
+<van-stepper v-model="value" :before-change="beforeChange" />
 ```
 
-### 块级元素
+```js
+import { ref } from 'vue';
+import { Toast } from 'vant';
 
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
+export default {
+  setup() {
+    const value = ref(1);
 
-```html
-<glue-button type="primary" block>块级元素</glue-button>
+    const beforeChange = (value) => {
+      Toast.loading({ forbidClick: true });
+
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          Toast.clear();
+          // 在 resolve 函数中返回 true 或 false
+          resolve(true);
+        }, 500);
+      });
+    };
+
+    return {
+      value,
+      beforeChange,
+    };
+  },
+};
 ```
 
-### 自定义颜色
+### 圆角风格
 
-通过 `color` 属性可以自定义按钮的颜色。
+将 `theme` 设置为 `round` 来展示圆角风格的步进器。
 
 ```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+<van-stepper v-model="value" theme="round" button-size="22" disable-input />
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 参数           | 说明                                                            | 类型                            | 默认值  |
+|----------------|---------------------------------------------------------------|---------------------------------|---------|
+| v-model        | 当前输入的值                                                    | _number \| string_              | -       |
+| min            | 最小值                                                          | _number \| string_              | `1`     |
+| max            | 最大值                                                          | _number \| string_              | -       |
+| default-value  | 初始值，当 v-model 为空时生效                                    | _number \| string_              | `1`     |
+| step           | 步长，每次点击时改变的值                                         | _number \| string_              | `1`     |
+| name           | 标识符，可以在 `change` 事件回调参数中获取                       | _number \| string_              | -       |
+| input-width    | 输入框宽度，默认单位为 `px`                                      | _number \| string_              | `32px`  |
+| button-size    | 按钮大小以及输入框高度，默认单位为 `px`                          | _number \| string_              | `28px`  |
+| decimal-length | 固定显示的小数位数                                              | _number \| string_              | -       |
+| theme          | 样式风格，可选值为 `round`                                       | _string_                        | -       |
+| placeholder    | 输入框占位提示文字                                              | _string_                        | -       |
+| integer        | 是否只允许输入整数                                              | _boolean_                       | `false` |
+| disabled       | 是否禁用步进器                                                  | _boolean_                       | `false` |
+| disable-plus   | 是否禁用增加按钮                                                | _boolean_                       | `false` |
+| disable-minus  | 是否禁用减少按钮                                                | _boolean_                       | `false` |
+| disable-input  | 是否禁用输入框                                                  | _boolean_                       | `false` |
+| before-change  | 输入值变化前的回调函数，返回 `false` 可阻止输入，支持返回 Promise | _(value) => boolean \| Promise_ | `false` |
+| show-plus      | 是否显示增加按钮                                                | _boolean_                       | `true`  |
+| show-minus     | 是否显示减少按钮                                                | _boolean_                       | `true`  |
+| show-input     | 是否显示输入框                                                  | _boolean_                       | `true`  |
+| long-press     | 是否开启长按手势                                                | _boolean_                       | `true`  |
+| allow-empty    | 是否允许输入的值为空                                            | _boolean_                       | `false` |
 
 ### Events
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
-
-### Slots
-
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 事件名    | 说明                     | 回调参数                                  |
+|-----------|------------------------|-------------------------------------------|
+| change    | 当绑定值变化时触发的事件 | _value: string, detail: { name: string }_ |
+| overlimit | 点击不可用的按钮时触发   | -                                         |
+| plus      | 点击增加按钮时触发       | -                                         |
+| minus     | 点击减少按钮时触发       | -                                         |
+| focus     | 输入框聚焦时触发         | _event: Event_                            |
+| blur      | 输入框失焦时触发         | _event: Event_                            |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                                     | 默认值              | 描述 |
+|------------------------------------------|---------------------|------|
+| @stepper-active-color                    | `#e8e8e8`           | -    |
+| @stepper-background-color                | `@active-color`     | -    |
+| @stepper-button-icon-color               | `@text-color`       | -    |
+| @stepper-button-disabled-color           | `@background-color` | -    |
+| @stepper-button-disabled-icon-color      | `@gray-5`           | -    |
+| @stepper-button-round-theme-color        | `@red`              | -    |
+| @stepper-input-width                     | `32px`              | -    |
+| @stepper-input-height                    | `28px`              | -    |
+| @stepper-input-font-size                 | `@font-size-md`     | -    |
+| @stepper-input-line-height               | `normal`            | -    |
+| @stepper-input-text-color                | `@text-color`       | -    |
+| @stepper-input-disabled-text-color       | `@gray-5`           | -    |
+| @stepper-input-disabled-background-color | `@active-color`     | -    |
+| @stepper-border-radius                   | `@border-radius-md` | -    |
+
+## 常见问题
+
+### 为什么 value 有时候会变成 string 类型？
+
+这是因为用户输入过程中可能出现小数点或空值，比如 `1.`，这种情况下组件会抛出字符串类型。
+
+如果希望 value 保持 number 类型，可以在 v-model 上添加 `number` 修饰符：
+
+```html
+<van-stepper v-model.number="value" />
+```

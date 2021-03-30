@@ -1,181 +1,161 @@
-# Button 按钮
+# SwipeCell 滑动单元格
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+可以左右滑动来展示操作按钮的单元格组件。
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+`SwipeCell` 组件提供了 `left` 和 `right` 两个插槽，用于定义两侧滑动区域的内容。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-swipe-cell>
+  <template #left>
+    <van-button square type="primary" text="选择" />
+  </template>
+  <van-cell :border="false" title="单元格" value="内容" />
+  <template #right>
+    <van-button square type="danger" text="删除" />
+    <van-button square type="primary" text="收藏" />
+  </template>
+</van-swipe-cell>
 ```
 
-### 朴素按钮
+### 自定义内容
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+`SwipeCell` 可以嵌套任意内容，比如嵌套一个商品卡片。
 
 ```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+<van-swipe-cell>
+  <van-card
+    num="2"
+    price="2.00"
+    desc="描述信息"
+    title="商品标题"
+    class="goods-card"
+    thumb="https://img01.yzcdn.cn/vant/cat.jpeg"
+  />
+  <template #right>
+    <van-button square text="删除" type="danger" class="delete-button" />
+  </template>
+</van-swipe-cell>
+
+<style>
+  .goods-card {
+    margin: 0;
+    background-color: @white;
+  }
+
+  .delete-button {
+    height: 100%;
+  }
+</style>
 ```
 
-### 细边框
+### 异步关闭
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+通过传入 `before-close` 回调函数，可以自定义两侧滑动内容关闭时的行为。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-swipe-cell :before-close="beforeClose">
+  <template #left>
+    <van-button square type="primary" text="选择" />
+  </template>
+  <van-cell :border="false" title="单元格" value="内容" />
+  <template #right>
+    <van-button square type="danger" text="删除" />
+  </template>
+</van-swipe-cell>
 ```
 
-### 禁用状态
+```js
+import { Dialog } from 'vant';
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+export default {
+  setup() {
+    // position 为关闭时点击的位置
+    const beforeClose = ({ position }) => {
+      switch (position) {
+        case 'left':
+        case 'cell':
+        case 'outside':
+          return true;
+        case 'right':
+          return new Promise((resolve) => {
+            Dialog.confirm({
+              title: '确定删除吗？',
+            }).then(resolve);
+          });
+      }
+    };
 
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
-```
-
-### 加载状态
-
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
-
-```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
-```
-
-### 按钮形状
-
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
-
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
-```
-
-### 图标按钮
-
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
-
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
-
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
-
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
-
-### 自定义颜色
-
-通过 `color` 属性可以自定义按钮的颜色。
-
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+    return { beforeClose };
+  },
+};
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
-
-### Events
-
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 参数             | 说明                                                      | 类型                           | 默认值  |
+|------------------|---------------------------------------------------------|--------------------------------|---------|
+| name             | 标识符，可以在事件参数中获取到                             | _number \| string_             | -       |
+| left-width       | 指定左侧滑动区域宽度，单位为 `px`                          | _number \| string_             | `auto`  |
+| right-width      | 指定右侧滑动区域宽度，单位为 `px`                          | _number \| string_             | `auto`  |
+| before-close     | 关闭前的回调函数，返回 `false` 可阻止关闭，支持返回 Promise | _(args) => boolean \| Promise_ | -       |
+| disabled         | 是否禁用滑动                                              | _boolean_                      | `false` |
+| stop-propagation | 是否阻止滑动事件冒泡                                      | _boolean_                      | `false` |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称    | 说明           |
+|---------|--------------|
+| default | 自定义显示内容 |
+| left    | 左侧滑动内容   |
+| right   | 右侧滑动内容   |
+
+### Events
+
+| 事件名 | 说明       | 回调参数                                           |
+|--------|----------|----------------------------------------------------|
+| click  | 点击时触发 | 关闭时的点击位置 (`left` `right` `cell` `outside`) |
+| open   | 打开时触发 | { position: 'left' \| 'right' , name: string }     |
+| close  | 关闭时触发 | { position: string , name: string }                |
+
+### beforeClose 参数
+
+beforeClose 的第一个参数为对象，对象中包含以下属性：
+
+| 参数名   | 说明                                               | 类型     |
+|----------|--------------------------------------------------|----------|
+| name     | 标识符                                             | _string_ |
+| position | 关闭时的点击位置 (`left` `right` `cell` `outside`) | _string_ |
+
+### 方法
+
+通过 ref 可以获取到 SwipeCell 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明             | 参数                      | 返回值 |
+|--------|----------------|---------------------------|--------|
+| open   | 打开单元格侧边栏 | position: `left \| right` | -      |
+| close  | 收起单元格侧边栏 | -                         | -      |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                              | 默认值                               | 描述 |
+|-----------------------------------|--------------------------------------|------|
+| @switch-cell-padding-top          | `@cell-vertical-padding - 1px`       | -    |
+| @switch-cell-padding-bottom       | `@cell-vertical-padding - 1px`       | -    |
+| @switch-cell-large-padding-top    | `@cell-large-vertical-padding - 1px` | -    |
+| @switch-cell-large-padding-bottom | `@cell-large-vertical-padding - 1px` | -    |
+
+## 常见问题
+
+### 在桌面端无法操作组件？
+
+参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。

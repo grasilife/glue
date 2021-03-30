@@ -1,181 +1,138 @@
-# Button 按钮
-
-### 介绍
-
-按钮用于触发一个操作，如提交表单。
+# Tag 标签
 
 ## 代码演示
 
-### 按钮类型
+### 基础用法
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
+通过 `type` 属性控制标签颜色。
 
 ```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+<van-tag type="primary">标签</van-tag>
+<van-tag type="success">标签</van-tag>
+<van-tag type="danger">标签</van-tag>
+<van-tag type="warning">标签</van-tag>
 ```
 
-### 朴素按钮
+### 空心样式
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+设置 `plain` 属性设置为空心样式。
 
 ```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+<van-tag plain type="primary">标签</van-tag>
 ```
 
-### 细边框
+### 圆角样式
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+通过 `round` 设置为圆角样式。
 
 ```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+<van-tag round type="primary">标签</van-tag>
 ```
 
-### 禁用状态
+### 标记样式
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+通过 `mark` 设置为标记样式(半圆角)。
 
 ```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+<van-tag mark type="primary">标签</van-tag>
 ```
 
-### 加载状态
+### 可关闭标签
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+添加 `closeable` 属性表示标签是可关闭的，关闭标签时会触发 `close` 事件，在 `close` 事件中可以执行隐藏标签的逻辑。
 
 ```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+<van-tag :show="show" closeable size="medium" type="primary" @close="close">
+  标签
+</van-tag>
 ```
 
-### 按钮形状
+```js
+import { ref } from 'vue';
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+export default {
+  setup() {
+    const show = ref(true);
+    const close = () => {
+      show.value = false;
+    };
 
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+    return {
+      show,
+      close,
+    };
+  },
+};
 ```
 
-### 图标按钮
+### 标签大小
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
-
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
-```
-
-### 按钮尺寸
-
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
+通过 `size` 属性调整标签大小。
 
 ```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
-```
-
-### 块级元素
-
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
-
-```html
-<glue-button type="primary" block>块级元素</glue-button>
+<van-tag type="primary">标签</van-tag>
+<van-tag type="primary" size="medium">标签</van-tag>
+<van-tag type="primary" size="large">标签</van-tag>
 ```
 
 ### 自定义颜色
 
-通过 `color` 属性可以自定义按钮的颜色。
+通过 `color` 和 `text-color` 属性设置标签颜色。
 
 ```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+<van-tag color="#7232dd">标签</van-tag>
+<van-tag color="#ffe1e1" text-color="#ad0000">标签</van-tag>
+<van-tag color="#7232dd" plain>标签</van-tag>
 ```
 
 ## API
 
 ### Props
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
-
-### Events
-
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 参数       | 说明                                                 | 类型      | 默认值    |
+|------------|----------------------------------------------------|-----------|-----------|
+| type       | 类型，可选值为 `primary` `success` `danger` `warning` | _string_  | `default` |
+| size       | 大小, 可选值为 `large` `medium`                      | _string_  | -         |
+| color      | 标签颜色                                             | _string_  | -         |
+| show       | 是否展示标签                                         | _boolean_ | `true`    |
+| plain      | 是否为空心样式                                       | _boolean_ | `false`   |
+| round      | 是否为圆角样式                                       | _boolean_ | `false`   |
+| mark       | 是否为标记样式                                       | _boolean_ | `false`   |
+| text-color | 文本颜色，优先级高于 `color` 属性                     | _string_  | `white`   |
+| closeable  | 是否为可关闭标签                                     | _boolean_ | `false`   |
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 名称    | 说明         |
+|---------|------------|
+| default | 标签显示内容 |
+
+### Events
+
+| 事件名 | 说明           | 回调参数       |
+|--------|--------------|----------------|
+| click  | 点击时触发     | _event: Event_ |
+| close  | 关闭标签时触发 | -              |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                        | 默认值                      | 描述 |
+|-----------------------------|-----------------------------|------|
+| @tag-padding                | `0 @padding-base`           | -    |
+| @tag-text-color             | `@white`                    | -    |
+| @tag-font-size              | `@font-size-sm`             | -    |
+| @tag-border-radius          | `2px`                       | -    |
+| @tag-line-height            | `16px`                      | -    |
+| @tag-medium-padding         | `2px 6px`                   | -    |
+| @tag-large-padding          | `@padding-base @padding-xs` | -    |
+| @tag-large-border-radius    | `@border-radius-md`         | -    |
+| @tag-large-font-size        | `@font-size-md`             | -    |
+| @tag-round-border-radius    | `@border-radius-max`        | -    |
+| @tag-danger-color           | `@red`                      | -    |
+| @tag-primary-color          | `@blue`                     | -    |
+| @tag-success-color          | `@green`                    | -    |
+| @tag-warning-color          | `@orange`                   | -    |
+| @tag-default-color          | `@gray-6`                   | -    |
+| @tag-plain-background-color | `@white`                    | -    |

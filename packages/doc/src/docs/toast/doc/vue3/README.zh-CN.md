@@ -1,181 +1,194 @@
-# Button 按钮
+# Toast 轻提示
 
 ### 介绍
 
-按钮用于触发一个操作，如提交表单。
+在页面中间弹出黑色半透明提示，用于消息通知、加载提示、操作结果提示等场景。
 
 ## 代码演示
 
-### 按钮类型
+### 文字提示
 
-按钮支持 `default`、`primary`、`success`、`warning`、`danger` 五种类型，默认为 `default`。
-
-```html
-<glue-button type="primary">主要按钮</glue-button>
-<glue-button type="success">成功按钮</glue-button>
-<glue-button type="default">默认按钮</glue-button>
-<glue-button type="warning">警告按钮</glue-button>
-<glue-button type="danger">危险按钮</glue-button>
+```js
+Toast('提示内容');
 ```
 
-### 朴素按钮
+### 加载提示
 
-通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
+使用 `Toast.loading` 方法展示加载提示，通过 `forbidClick` 属性可以禁用背景点击。
 
-```html
-<glue-button plain type="primary">朴素按钮</glue-button>
-<glue-button plain type="success">朴素按钮</glue-button>
+```js
+Toast.loading({
+  message: '加载中...',
+  forbidClick: true,
+});
 ```
 
-### 细边框
+### 成功/失败提示
 
-设置 `hairline` 属性可以展示 0.5px 的细边框。
+使用 `Toast.success` 方法展示成功提示，使用 `Toast.fail` 方法展示失败提示。
 
-```html
-<glue-button plain hairline type="primary">细边框按钮</glue-button>
-<glue-button plain hairline type="success">细边框按钮</glue-button>
+```js
+Toast.success('成功文案');
+Toast.fail('失败文案');
 ```
 
-### 禁用状态
+### 自定义图标
 
-通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
+通过 `icon` 选项可以自定义图标，支持传入[图标名称](#/zh-CN/icon)或图片链接，通过`loadingType` 属性可以自定义加载图标类型。
 
-```html
-<glue-button disabled type="primary">禁用状态</glue-button>
-<glue-button disabled type="success">禁用状态</glue-button>
+```js
+Toast({
+  message: '自定义图标',
+  icon: 'like-o',
+});
+
+Toast({
+  message: '自定义图片',
+  icon: 'https://img01.yzcdn.cn/vant/logo.png',
+});
+
+Toast.loading({
+  message: '加载中...',
+  forbidClick: true,
+  loadingType: 'spinner',
+});
 ```
 
-### 加载状态
+### 自定义位置
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+Toast 默认渲染在屏幕正中位置，通过 `position` 属性可以控制 Toast 展示的位置。
 
-```html
-<glue-button loading type="primary"></glue-button>
-<glue-button loading type="primary" loading-type="spinner"></glue-button>
-<glue-button loading type="primary" loading-text="加载中..."></glue-button>
+```js
+Toast({
+  message: '顶部展示',
+  position: 'top',
+});
+
+Toast({
+  message: '底部展示',
+  position: 'bottom',
+});
 ```
 
-### 按钮形状
+### 动态更新提示
 
-通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
+执行 Toast 方法时会返回对应的 Toast 实例，通过修改实例上的 `message` 属性可以实现动态更新提示的效果。
 
-```html
-<glue-button square type="primary">方形按钮</glue-button>
-<glue-button round type="primary">圆形按钮</glue-button>
+```js
+const toast = Toast.loading({
+  duration: 0,
+  forbidClick: true,
+  message: '倒计时 3 秒',
+});
+
+let second = 3;
+const timer = setInterval(() => {
+  second--;
+  if (second) {
+    toast.message = `倒计时 ${second} 秒`;
+  } else {
+    clearInterval(timer);
+    Toast.clear();
+  }
+}, 1000);
 ```
 
-### 图标按钮
+### 全局方法
 
-通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
+通过 `app.use` 注册 Toast 组件后，会自动在 app 的所有子组件上挂载 `$toast` 方法，便于在组件内调用。
 
-```html
-<glue-button icon="plus" type="primary"></glue-button>
-<glue-button icon="plus" type="primary">按钮</glue-button>
-<glue-button icon="https://img01.yzcdn.cn/vant/user-active.png" type="primary">
-  按钮
-</glue-button>
+```js
+export default {
+  mounted() {
+    this.$toast('提示文案');
+  },
+};
 ```
 
-### 按钮尺寸
+### 单例模式
 
-支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
+Toast 默认采用单例模式，即同一时间只会存在一个 Toast，如果需要在同一时间弹出多个 Toast，可以参考下面的示例：
 
-```html
-<glue-button type="primary" size="large">大号按钮</glue-button>
-<glue-button type="primary" size="normal">普通按钮</glue-button>
-<glue-button type="primary" size="small">小型按钮</glue-button>
-<glue-button type="primary" size="mini">迷你按钮</glue-button>
+```js
+Toast.allowMultiple();
+
+const toast1 = Toast('第一个 Toast');
+const toast2 = Toast.success('第二个 Toast');
+
+toast1.clear();
+toast2.clear();
 ```
 
-### 块级元素
+### 修改默认配置
 
-按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
+通过 `Toast.setDefaultOptions` 函数可以全局修改 Toast 的默认配置。
 
-```html
-<glue-button type="primary" block>块级元素</glue-button>
-```
+```js
+Toast.setDefaultOptions({ duration: 2000 });
 
-### 自定义颜色
+Toast.setDefaultOptions('loading', { forbidClick: true });
 
-通过 `color` 属性可以自定义按钮的颜色。
+Toast.resetDefaultOptions();
 
-```html
-<glue-button color="#7232dd">单色按钮</glue-button>
-<glue-button color="#7232dd" plain>单色按钮</glue-button>
-<glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  渐变色按钮
-</glue-button>
+Toast.resetDefaultOptions('loading');
 ```
 
 ## API
 
-### Props
+### 方法
 
-| 参数          | 说明                                                                | 类型      | 默认值     |
-|---------------|-------------------------------------------------------------------|-----------|------------|
-| type          | 类型，可选值为 `primary` `success` `warning` `danger`                | _string_  | `default`  |
-| size          | 尺寸，可选值为 `large` `small` `mini`                                | _string_  | `normal`   |
-| text          | 按钮文字                                                            | _string_  | -          |
-| color         | 按钮颜色，支持传入 `linear-gradient` 渐变色                          | _string_  | -          |
-| icon          | 左侧[图标名称](#/zh-CN/icon)或图片链接                              | _string_  | -          |
-| icon-prefix   | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_  | `van-icon` |
-| icon-position | 图标展示位置，可选值为 `right`                                       | _string_  | `left`     |
-| native-type   | 原生 button 标签的 type 属性                                        | _string_  | `button`   |
-| block         | 是否为块级元素                                                      | _boolean_ | `false`    |
-| plain         | 是否为朴素按钮                                                      | _boolean_ | `false`    |
-| square        | 是否为方形按钮                                                      | _boolean_ | `false`    |
-| round         | 是否为圆形按钮                                                      | _boolean_ | `false`    |
-| disabled      | 是否禁用按钮                                                        | _boolean_ | `false`    |
-| hairline      | 是否使用 0.5px 边框                                                 | _boolean_ | `false`    |
-| loading       | 是否显示为加载状态                                                  | _boolean_ | `false`    |
-| loading-text  | 加载状态提示文字                                                    | _string_  | -          |
-| loading-type  | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner`                  | _string_  | `circular` |
-| loading-size  | 加载图标大小                                                        | _string_  | `20px`     |
+| 方法名                    | 说明                                                                    | 参数                 | 返回值     |
+|---------------------------|-----------------------------------------------------------------------|----------------------|------------|
+| Toast                     | 展示提示                                                                | `options \| message` | toast 实例 |
+| Toast.loading             | 展示加载提示                                                            | `options \| message` | toast 实例 |
+| Toast.success             | 展示成功提示                                                            | `options \| message` | toast 实例 |
+| Toast.fail                | 展示失败提示                                                            | `options \| message` | toast 实例 |
+| Toast.clear               | 关闭提示                                                                | `clearAll: boolean`  | `void`     |
+| Toast.allowMultiple       | 允许同时存在多个 Toast                                                  | -                    | `void`     |
+| Toast.setDefaultOptions   | 修改默认配置，对所有 Toast 生效。<br>传入 type 可以修改指定类型的默认配置 | `type \| options`    | `void`     |
+| Toast.resetDefaultOptions | 重置默认配置，对所有 Toast 生效。<br>传入 type 可以重置指定类型的默认配置 | `type`               | `void`     |
 
-### Events
+### Options
 
-| 事件名    | 说明                                    | 回调参数       |
-|-----------|---------------------------------------|----------------|
-| glueClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
-
-### Slots
-
-| 名称    | 说明     |
-|---------|--------|
-| default | 按钮内容 |
+| 参数     | 说明                                                   | 类型     | 默认值   |
+|----------|------------------------------------------------------|----------|----------|
+| type     | 提示类型，可选值为 `loading` `success`<br>`fail` `html` | _string_ | `text`   |
+| position | 位置，可选值为 `top` `bottom`                           | _string_ | `middle` |
+| message | 文本内容，支持通过`\n`换行 | _string_ | `''` | - |
+| icon | 自定义图标，支持传入[图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
+| iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
+| overlay | 是否显示背景遮罩层 | _boolean_ | `false` |
+| forbidClick | 是否禁止背景点击 | _boolean_ | `false` |
+| closeOnClick | 是否在点击后关闭 | _boolean_ | `false` |
+| closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `false` |
+| loadingType | [加载图标类型](#/zh-CN/loading), 可选值为 `spinner` | _string_ | `circular` |
+| duration | 展示时长(ms)，值为 0 时，toast 不会消失 | _number_ | `2000` |
+| className | 自定义类名 | _string \| Array \| object_ | - |
+| overlayClass `v3.0.4` | 自定义遮罩层类名 | _string \| Array \| object_ | - |
+| overlayStyle `v3.0.4` | 自定义遮罩层样式 | _object_ | - |
+| onOpened | 完全展示后的回调函数 | _Function_ | - |
+| onClose | 关闭时的回调函数 | _Function_ | - |
+| transition | 动画类名，等价于 [transtion](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的`name`属性 | _string_ | `van-fade` |
+| teleport | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi) | _string \| Element_ | `body` |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                             | 默认值               | 描述 |
-|----------------------------------|----------------------|------|
-| @button-mini-height              | `24px`               | -    |
-| @button-mini-font-size           | `@font-size-xs`      | -    |
-| @button-small-height             | `32px`               | -    |
-| @button-small-font-size          | `@font-size-sm`      | -    |
-| @button-normal-font-size         | `@font-size-md`      | -    |
-| @button-large-height             | `50px`               | -    |
-| @button-default-height           | `44px`               | -    |
-| @button-default-line-height      | `1.2`                | -    |
-| @button-default-font-size        | `@font-size-lg`      | -    |
-| @button-default-color            | `@text-color`        | -    |
-| @button-default-background-color | `@white`             | -    |
-| @button-default-border-color     | `@border-color`      | -    |
-| @button-primary-color            | `@white`             | -    |
-| @button-primary-background-color | `@blue`              | -    |
-| @button-primary-border-color     | `@blue`              | -    |
-| @button-success-color            | `@white`             | -    |
-| @button-success-background-color | `@green`             | -    |
-| @button-success-border-color     | `@green`             | -    |
-| @button-danger-color             | `@white`             | -    |
-| @button-danger-background-color  | `@red`               | -    |
-| @button-danger-border-color      | `@red`               | -    |
-| @button-warning-color            | `@white`             | -    |
-| @button-warning-background-color | `@orange`            | -    |
-| @button-warning-border-color     | `@orange`            | -    |
-| @button-border-width             | `@border-width-base` | -    |
-| @button-border-radius            | `@border-radius-sm`  | -    |
-| @button-round-border-radius      | `@border-radius-max` | -    |
-| @button-plain-background-color   | `@white`             | -    |
-| @button-disabled-opacity         | `@disabled-opacity`  | -    |
+| 名称                            | 默认值                    | 描述 |
+|---------------------------------|---------------------------|------|
+| @toast-max-width                | `70%`                     | -    |
+| @toast-font-size                | `@font-size-md`           | -    |
+| @toast-text-color               | `@white`                  | -    |
+| @toast-loading-icon-color       | `@white`                  | -    |
+| @toast-line-height              | `@line-height-md`         | -    |
+| @toast-border-radius            | `@border-radius-lg`       | -    |
+| @toast-background-color         | `fade(@black, 70%)`       | -    |
+| @toast-icon-size                | `36px`                    | -    |
+| @toast-text-min-width           | `96px`                    | -    |
+| @toast-text-padding             | `@padding-xs @padding-sm` | -    |
+| @toast-default-padding          | `@padding-md`             | -    |
+| @toast-default-width            | `88px`                    | -    |
+| @toast-default-min-height       | `88px`                    | -    |
+| @toast-position-top-distance    | `20%`                     | -    |
+| @toast-position-bottom-distance | `20%`                     | -    |
