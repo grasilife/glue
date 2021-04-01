@@ -23,6 +23,7 @@
 
  - [glue-action-sheet](../glue-action-sheet)
  - [glue-button](../glue-button)
+ - [glue-demo](../glue-demo)
  - [glue-key](../glue-key)
  - [glue-list](../glue-list)
  - [glue-preview-item](../glue-preview-item)
@@ -35,6 +36,7 @@
 graph TD;
   glue-action-sheet --> glue-loading
   glue-button --> glue-loading
+  glue-demo --> glue-loading
   glue-key --> glue-loading
   glue-list --> glue-loading
   glue-preview-item --> glue-loading

@@ -23,6 +23,14 @@
         </van-col>
       </van-row>
     </DemoBlock>
+    <DemoBlock :title="lazy">
+      <van-row gutter="20">
+        <van-col v-for="fit in fits" span="8" :key="fit">
+          <glue-image width="100" height="100" lazy-load :src="image" />
+          <div class="text">{{ lazy }}</div>
+        </van-col>
+      </van-row>
+    </DemoBlock>
 
     <DemoBlock :title="loading">
       <van-row gutter="20">
@@ -32,10 +40,10 @@
         </van-col>
 
         <van-col span="8">
-          <glue-image width="100%" height="27vw">
-            <template #loading>
-              <van-loading type="spinner" size="20" />
-            </template>
+          <glue-image width="100%" height="27vw" loading-icon="#slot">
+            <div slot="loadingIcon">
+              <glue-loading type="spinner" size="20" />
+            </div>
           </glue-image>
           <div class="text">{{ customTip }}</div>
         </van-col>
@@ -50,8 +58,8 @@
         </van-col>
 
         <van-col span="8">
-          <glue-image width="100%" height="27vw" src="x">
-            <template #error>{{ loadFail }}</template>
+          <glue-image width="100%" height="27vw" src="x" error-icon="#slot">
+            <div slot="errorIcon">{{ loadFail }}</div>
           </glue-image>
           <div class="text">{{ customTip }}</div>
         </van-col>
@@ -67,6 +75,7 @@ export default {
       basicUsage: "基础用法",
       fitMode: "填充模式",
       round: "圆形图片",
+      lazy: "图片懒加载",
       loading: "加载中提示",
       error: "加载失败提示",
       defaultTip: "默认提示",
