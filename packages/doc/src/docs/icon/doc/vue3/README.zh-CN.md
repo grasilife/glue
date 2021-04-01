@@ -1,6 +1,6 @@
 # Icon 图标
 
-### 介绍
+## 介绍
 
 基于字体的图标集，可以通过 Icon 组件使用，也可以在其他组件中通过 `icon` 属性引用。
 
@@ -11,8 +11,8 @@
 `Icon` 的 `name` 属性支持传入图标名称或图片链接，所有可用的图标名称见右侧示例。
 
 ```html
-<van-icon name="chat-o" />
-<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
+<van-icon name="chat-o" size="32"/>
+<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" size="32"/>
 ```
 
 ### 徽标提示
@@ -20,9 +20,9 @@
 设置 `dot` 属性后，会在图标右上角展示一个小红点；设置 `badge` 属性后，会在图标右上角展示相应的徽标。
 
 ```html
-<van-icon name="chat-o" dot />
-<van-icon name="chat-o" badge="9" />
-<van-icon name="chat-o" badge="99+" />
+<van-icon name="chat-o" dot size="32"/>
+<van-icon name="chat-o" badge="9" size="32"/>
+<van-icon name="chat-o" badge="99+" size="32"/>
 ```
 
 ### 图标颜色
@@ -30,8 +30,8 @@
 `Icon` 的 `color` 属性用来设置图标的颜色。
 
 ```html
-<van-icon name="cart-o" color="#1989fa" />
-<van-icon name="fire-o" color="#ee0a24" />
+<van-icon name="cart-o" color="#1989fa" size="32"/>
+<van-icon name="fire-o" color="#ee0a24" size="32"/>
 ```
 
 ### 图标大小
@@ -39,42 +39,8 @@
 `Icon` 的 `size` 属性用来设置图标的尺寸大小，默认单位为 `px`。
 
 ```html
-<van-icon name="chat-o" size="40" /> <van-icon name="chat-o" size="3rem" />
-```
-
-### 使用本地字体文件
-
-Icon 组件默认引用有赞 CDN 提供的字体文件，并通过网络下载。如果需要在项目中使用本地字体文件，请引入下面的 CSS 文件，并在项目中配置 `url-loader`。
-
-```js
-import 'vant/lib/icon/local.css';
-```
-
-> Tips: Vant 默认使用 woff2 格式的本地字体文件，只有在不支持 woff2 字体的低端浏览器上才会加载有赞 CDN 的网络图标。
-
-### 自定义图标
-
-如果需要在现有 Icon 的基础上使用更多图标，可以引入第三方 iconfont 对应的字体文件和 CSS 文件，之后就可以在 Icon 组件中直接使用。
-
-```css
-/* 引入第三方或自定义的字体图标样式 */
-@font-face {
-  font-family: 'my-icon';
-  src: url('./my-icon.ttf') format('truetype');
-}
-
-.my-icon {
-  font-family: 'my-icon';
-}
-
-.my-icon-extra::before {
-  content: '\e626';
-}
-```
-
-```html
-<!-- 通过 class-prefix 指定类名为 my-icon -->
-<van-icon class-prefix="my-icon" name="extra" />
+<van-icon name="chat-o" size="40" />
+<van-icon name="chat-o" size="3rem" />
 ```
 
 ## API

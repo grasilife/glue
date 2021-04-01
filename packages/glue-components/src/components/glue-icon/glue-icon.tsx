@@ -9,7 +9,7 @@ import classNames from 'classnames';
 export class GlueIcon {
   @Prop() dot: boolean;
   @Prop() name: string;
-  @Prop() size: number | string = 32;
+  @Prop() size: number | string = 16;
   @Prop() badge: number | string;
   @Prop() color: string;
   @Prop() tag: string;

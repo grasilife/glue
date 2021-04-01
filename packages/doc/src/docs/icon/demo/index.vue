@@ -4,31 +4,31 @@
       <van-tab :title="demo">
         <DemoBlock :title="basicUsage">
           <van-col span="6" @click="copy(demoIcon)">
-            <glue-icon :name="demoIcon" />
+            <glue-icon :name="demoIcon" size="32" />
           </van-col>
           <van-col span="6" @click="copy(demoImage)">
-            <glue-icon :name="demoImage" />
+            <glue-icon :name="demoImage" size="32" />
           </van-col>
         </DemoBlock>
 
         <DemoBlock :title="badge">
           <van-col span="6" @click="copy(demoIcon, { dot: true })">
-            <glue-icon :name="demoIcon" dot />
+            <glue-icon :name="demoIcon" dot size="32" />
           </van-col>
           <van-col span="6" @click="copy(demoIcon, { badge: '9' })">
-            <glue-icon :name="demoIcon" badge="9" />
+            <glue-icon :name="demoIcon" badge="9" size="32" />
           </van-col>
           <van-col span="6" @click="copy(demoIcon, { badge: '99+' })">
-            <glue-icon :name="demoIcon" badge="99+" />
+            <glue-icon :name="demoIcon" badge="99+" size="32" />
           </van-col>
         </DemoBlock>
 
         <DemoBlock :title="color">
           <van-col span="6" @click="copy(demoIcon, { color: '#1989fa' })">
-            <glue-icon name="cart-o" color="#1989fa" />
+            <glue-icon name="cart-o" color="#1989fa" size="32" />
           </van-col>
           <van-col span="6" @click="copy(demoIcon, { color: RED })">
-            <glue-icon name="fire-o" :color="RED" />
+            <glue-icon name="fire-o" :color="RED" size="32" />
           </van-col>
         </DemoBlock>
 
@@ -44,21 +44,21 @@
 
       <van-tab :title="basic">
         <van-col v-for="icon in icons.basic" :key="icon" span="6" @click="copy(icon)">
-          <glue-icon :name="icon" />
+          <glue-icon :name="icon" size="32" />
           <span>{{ icon }}</span>
         </van-col>
       </van-tab>
 
       <van-tab :title="outline">
         <van-col v-for="icon in icons.outline" :key="icon" span="6" @click="copy(icon)">
-          <glue-icon :name="icon" />
+          <glue-icon :name="icon" size="32" />
           <span>{{ icon }}</span>
         </van-col>
       </van-tab>
 
       <van-tab :title="filled">
         <van-col v-for="icon in icons.filled" :key="icon" span="6" @click="copy(icon)">
-          <glue-icon :name="icon" />
+          <glue-icon :name="icon" size="32" />
           <span>{{ icon }}</span>
         </van-col>
       </van-tab>
