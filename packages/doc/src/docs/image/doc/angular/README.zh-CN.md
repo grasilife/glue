@@ -115,6 +115,10 @@
 `Image` 组件提供了默认的加载中提示，支持通过 `loadingIcon` 插槽自定义内容。
 
 ```html
+<glue-image width="100%" height="27vw">
+
+</glue-image>
+
 <glue-image width="100%" height="27vw" loading-icon="#slot">
   <div slot="loadingIcon">
     <glue-loading type="spinner" size="20" />
@@ -127,6 +131,8 @@
 `Image` 组件提供了默认的加载失败提示，支持通过 `errorIcon` 插槽自定义内容。
 
 ```html
+<glue-image width="100%" height="27vw" src="x">
+
  <glue-image width="100%" height="27vw" src="x" error-icon="#slot">
     <div slot="errorIcon">加载失败</div>
 </glue-image>
