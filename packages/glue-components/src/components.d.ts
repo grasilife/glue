@@ -665,7 +665,6 @@ export namespace Components {
     }
     interface GlueRow {
         "align": RowAlign;
-        "groups": string | number;
         "gutter": string | number;
         "justify": RowJustify;
     }
@@ -2212,7 +2211,6 @@ declare namespace LocalJSX {
     }
     interface GlueRow {
         "align"?: RowAlign;
-        "groups"?: string | number;
         "gutter"?: string | number;
         "justify"?: RowJustify;
     }

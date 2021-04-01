@@ -68,8 +68,8 @@ export default {
   data() {
     return {
       basicUsage: "基础用法",
-      title2: "在列元素之间增加间距",
-      title3: "Flex 布局"
+      title2: "设置列元素间距",
+      title3: "对齐方式"
     };
   }
 };

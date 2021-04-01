@@ -14,21 +14,19 @@ export class GlueCol {
 
   @Prop() span: string | number = 0;
   style = () => {
-    let groups = this.getParentGroups();
-    console.log(groups, 'groups');
+    let gutter = this.getParentGutter();
+    console.log(gutter, 'groups');
     return {
-      paddingLeft: groups ? `${groups}px` : null,
-      paddingRight: groups ? `${groups}px` : null,
+      paddingLeft: gutter ? `${gutter}px` : null,
+      paddingRight: gutter ? `${gutter}px` : null,
     };
   };
-  componentDidLoad() {
-    // this.groups();
-  }
-  getParentGroups() {
+  componentDidLoad() {}
+  getParentGutter() {
     let parentEl = getElementParent(this.el);
-    let groups = getAttribute(parentEl, 'groups');
-    console.log(groups, 'groups');
-    return groups;
+    let gutter = getAttribute(parentEl, 'gutter');
+    console.log(gutter, 'gutter');
+    return gutter;
   }
   render() {
     const { span, offset } = this;

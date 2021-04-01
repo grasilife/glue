@@ -15,7 +15,7 @@ export class GlueDemo {
   render() {
     return (
       <div>
-        <glue-row groups="10">
+        <glue-row gutter="10">
           <glue-col span="8" class="col">
             <div class="text">span: 8</div>
           </glue-col>

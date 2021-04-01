@@ -19,8 +19,7 @@ export class GlueRow {
   @Prop({
     reflect: true,
   })
-  groups: string | number;
-  @Prop() gutter: string | number = 0;
+  gutter: string | number = 0;
 
   componentDidLoad() {}
 
