@@ -1968,6 +1968,8 @@ declare namespace LocalJSX {
         "iconPrefix"?: string;
         "lazyLoad"?: boolean;
         "loadingIcon"?: string;
+        "onGlueError"?: (event: CustomEvent<any>) => void;
+        "onGlueLoad"?: (event: CustomEvent<any>) => void;
         "onOnError"?: (event: CustomEvent<any>) => void;
         "radius"?: string | number;
         "round"?: boolean;

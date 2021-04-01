@@ -2223,10 +2223,10 @@
   resolved "https://registry.npm.taobao.org/@soda/get-current-script/download/@soda/get-current-script-1.0.2.tgz#a53515db25d8038374381b73af20bb4f2e508d87"
   integrity sha1-pTUV2yXYA4N0OBtzryC7Ty5QjYc=
 
-"@stencil/core@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.npm.taobao.org/@stencil/core/download/@stencil/core-2.4.0.tgz#17b45629c8986e35dcbce3f7dab7d64beede83f2"
-  integrity sha1-F7RWKciYbjXcvOP32rfWS+7eg/I=
+"@stencil/core@^2.5.2":
+  version "2.5.2"
+  resolved "http://npm.xesv5.com/@stencil%2fcore/-/core-2.5.2.tgz#ad00d495ee37bbed4044524d59c7f22de15ab4a7"
+  integrity sha1-rQDUle43u+1ARFJNWcfyLeFatKc=
 
 "@stencil/less@^1.0.0":
   version "1.0.0"
@@ -7535,6 +7535,11 @@ interpret@^1.2.0:
   version "1.4.0"
   resolved "https://registry.npm.taobao.org/interpret/download/interpret-1.4.0.tgz#665ab8bc4da27a774a40584e812e3e0fa45b1a1e"
   integrity sha1-Zlq4vE2iendKQFhOgS4+D6RbGh4=
+
+intersection-observer@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.npm.taobao.org/intersection-observer/download/intersection-observer-0.12.0.tgz#6c84628f67ce8698e5f9ccf857d97718745837aa"
+  integrity sha1-bIRij2fOhpjl+cz4V9l3GHRYN6o=
 
 invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"

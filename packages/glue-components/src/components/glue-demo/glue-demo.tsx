@@ -8,21 +8,34 @@ import { Component, Prop, h, State } from '@stencil/core';
 export class GlueDemo {
   @Prop() first: string;
   @State() showShare = false;
+  @State() list = [1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1, 1, 1, 1, 1, 1, 1, 1, ,];
   handleClick = e => {
     console.log(e);
   };
   render() {
     return (
       <div>
-        <glue-icon name="chat-o" />
-        <glue-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
-        <glue-icon name="chat-o" dot />
-        <glue-icon name="chat-o" badge="9" />
-        <glue-icon name="chat-o" badge="99+" />
-        <glue-icon name="cart-o" color="#1989fa" />
-        <glue-icon name="fire-o" color="#ee0a24" />
-        <glue-icon name="chat-o" size="40" />
-        <glue-icon name="chat-o" size="3rem" />
+        {/* <glue-image width="100" height="100" src="https://img01.yzcdn.cn/vant/cat.jpeg" />
+        <glue-image width="10rem" height="10rem" fit="contain" src="https://img01.yzcdn.cn/vant/cat.jpeg" /> */}
+        {/* <glue-image round width="10rem" height="10rem" src="https://img01.yzcdn.cn/vant/cat.jpeg" /> */}
+        {this.list.map(() => {
+          return (
+            <glue-image lazy-load src="https://img01.yzcdn.cn/vant/cat.jpeg" loading-icon="#slot" error-icon="#slot">
+              <div slot="loadingIcon">
+                <glue-loading type="spinner" size="20"></glue-loading>
+              </div>
+              <div slot="errorIcon">加载失败</div>
+            </glue-image>
+          );
+        })}
+        {/* <glue-image src="https://img01.yzcdn.cn/vant/cat.jpeg" loading-icon="#slot">
+          <div slot="loadingIcon">
+            <glue-loading type="spinner" size="20" />
+          </div>
+        </glue-image>
+        <glue-image src="https://img01.yzcdn.cn/vant/cat" error-icon="#slot">
+          <div slot="errorIcon">加载失败</div>
+        </glue-image> */}
       </div>
     );
   }

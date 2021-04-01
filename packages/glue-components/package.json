@@ -23,7 +23,8 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^2.4.0"
+    "@stencil/core": "^2.5.2",
+    "intersection-observer": "^0.12.0"
   },
   "license": "MIT",
   "gitHead": "092134cf700bfbc7245a6bbc576d5cee3d1b8145",
