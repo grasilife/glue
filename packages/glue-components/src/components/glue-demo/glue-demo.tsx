@@ -15,28 +15,7 @@ export class GlueDemo {
   render() {
     return (
       <div>
-        <glue-row gutter="10">
-          <glue-col span="8" class="col">
-            <div class="text">span: 8</div>
-          </glue-col>
-          <glue-col span="8" class="col">
-            <div class="text">span: 8</div>
-          </glue-col>
-          <glue-col span="8" class="col">
-            <div class="text">span: 8</div>
-          </glue-col>
-        </glue-row>
-        <glue-row justify="center">
-          <glue-col span="6">
-            <div class="text">span: 8</div>
-          </glue-col>
-          <glue-col span="6">
-            <div class="text">span: 8</div>
-          </glue-col>
-          <glue-col span="6">
-            <div class="text">span: 8</div>
-          </glue-col>
-        </glue-row>
+        <glue-image width="100%" height="27vw"></glue-image>
       </div>
     );
   }

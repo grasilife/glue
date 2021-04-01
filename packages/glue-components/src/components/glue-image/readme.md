@@ -37,6 +37,7 @@
 
 ### Used by
 
+ - [glue-demo](../glue-demo)
  - [glue-preview-item](../glue-preview-item)
 
 ### Depends on
@@ -48,6 +49,7 @@
 graph TD;
   glue-image --> glue-icon
   glue-icon --> glue-badge
+  glue-demo --> glue-image
   glue-preview-item --> glue-image
   style glue-image fill:#f9f,stroke:#333,stroke-width:4px
 ```

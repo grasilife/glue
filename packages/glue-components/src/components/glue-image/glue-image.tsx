@@ -73,6 +73,7 @@ export class GlueImage {
     }
     return (
       <glue-icon
+        size="32"
         name={this.loadingIcon}
         class={classNames({
           'glue-image__loading-icon': true,
@@ -89,6 +90,7 @@ export class GlueImage {
     }
     return (
       <glue-icon
+        size="32"
         name={this.errorIcon}
         class={classNames({
           'glue-image__error-icon': true,
