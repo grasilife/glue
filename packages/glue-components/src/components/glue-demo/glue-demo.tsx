@@ -15,11 +15,28 @@ export class GlueDemo {
   render() {
     return (
       <div>
-        {/* <glue-cell title="cell" value="content" icon="location-o" /> */}
-        <glue-icon name="chat-o" />
-        {/* <glue-badge content="5">
-          <div class="child" />
-        </glue-badge> */}
+        <glue-row groups="10">
+          <glue-col span="8" class="col">
+            <div class="text">span: 8</div>
+          </glue-col>
+          <glue-col span="8" class="col">
+            <div class="text">span: 8</div>
+          </glue-col>
+          <glue-col span="8" class="col">
+            <div class="text">span: 8</div>
+          </glue-col>
+        </glue-row>
+        <glue-row justify="center">
+          <glue-col span="6">
+            <div class="text">span: 8</div>
+          </glue-col>
+          <glue-col span="6">
+            <div class="text">span: 8</div>
+          </glue-col>
+          <glue-col span="6">
+            <div class="text">span: 8</div>
+          </glue-col>
+        </glue-row>
       </div>
     );
   }

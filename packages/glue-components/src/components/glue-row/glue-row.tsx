@@ -1,9 +1,10 @@
-import { Component, Prop, h, Host } from '@stencil/core';
+import { Component, Prop, h, Host, Element } from '@stencil/core';
 import classNames from 'classnames';
 export type RowAlign = 'top' | 'center' | 'bottom';
 
 export type RowJustify = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
 import { createNamespace } from '../../utils/create/index';
+export type RowSpaces = { left?: number; right: number }[];
 const [bem] = createNamespace('glue-row');
 @Component({
   tag: 'glue-row',
@@ -11,15 +12,21 @@ const [bem] = createNamespace('glue-row');
   shadow: false,
 })
 export class GlueRow {
+  @Element() el!: HTMLElement;
   @Prop() align: RowAlign;
 
   @Prop() justify: RowJustify;
+  @Prop({
+    reflect: true,
+  })
+  groups: string | number;
+  @Prop() gutter: string | number = 0;
 
-  @Prop() gutter = 0;
+  componentDidLoad() {}
 
   render() {
     const { align, justify } = this;
-    console.log(align, justify, 'hauhauhua');
+    console.log(justify, 'justify');
     return (
       <Host class={classNames('glue-row', bem([`align-${align}`, `justify-${justify}`]))}>
         <slot></slot>

@@ -37,3 +37,15 @@ export function pick(obj: Record<string, any>, keys: string[]) {
     return ret;
   }, {} as Record<string, any>);
 }
+export const getElementChildren = (el: any) => {
+  return el.children != null ? el.children : el.childNodes;
+};
+export const getElementParent = (el: any) => {
+  return el.parentElement != null ? el.parentElement : el.parentNode;
+};
+export const getAttribute = (el: any, prop: string) => {
+  console.log(el.hasAttribute(prop), el, 'el.hasAttribute(prop)');
+  if (el.hasAttribute(prop)) {
+    return el.getAttribute(prop);
+  }
+};

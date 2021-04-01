@@ -215,8 +215,8 @@ export namespace Components {
         "text": string;
     }
     interface GlueCol {
-        "offset": number;
-        "span": number;
+        "offset": string | number;
+        "span": string | number;
     }
     interface GlueCollapse {
         "accordion": boolean;
@@ -665,7 +665,8 @@ export namespace Components {
     }
     interface GlueRow {
         "align": RowAlign;
-        "gutter": number;
+        "groups": string | number;
+        "gutter": string | number;
         "justify": RowJustify;
     }
     interface GlueSearch {
@@ -1732,8 +1733,8 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface GlueCol {
-        "offset"?: number;
-        "span"?: number;
+        "offset"?: string | number;
+        "span"?: string | number;
     }
     interface GlueCollapse {
         "accordion"?: boolean;
@@ -2211,7 +2212,8 @@ declare namespace LocalJSX {
     }
     interface GlueRow {
         "align"?: RowAlign;
-        "gutter"?: number;
+        "groups"?: string | number;
+        "gutter"?: string | number;
         "justify"?: RowJustify;
     }
     interface GlueSearch {
