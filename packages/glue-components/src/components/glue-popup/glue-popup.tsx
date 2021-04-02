@@ -1,25 +1,25 @@
-import { Component, Prop, h, Host, EventEmitter, Event } from '@stencil/core';
+import { Component, Prop, h, Host, EventEmitter, Event, Element, Watch } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-popup');
+import anime from 'animejs/lib/anime.es.js';
 @Component({
   tag: 'glue-popup',
   styleUrl: 'glue-popup.less',
-  shadow: true,
+  shadow: false,
 })
 export class GluePopup {
-  @Prop() show: boolean;
-
+  @Element() el!: HTMLGluePopupElement;
+  refdiv: HTMLElement;
+  @Prop({ mutable: true }) show: boolean;
   @Prop() zIndex = '2000';
-
   @Prop() duration: string;
   @Prop() width: string;
   @Prop() height: string;
   @Prop() teleport: string | object;
   @Prop() overlayStyle: object;
   @Prop() overlayClass = null;
-
   @Prop() transitionAppear: boolean;
   @Prop() overlay = true;
   @Prop() lockScroll = true;
@@ -33,6 +33,7 @@ export class GluePopup {
   @Prop() position = 'center';
   @Prop() closeIcon = 'cross';
   @Prop() closeIconPosition = 'top-right';
+  @Prop() content = '';
   // @State() opened: boolean;
   // private zIndexRef: HTMLElement;
   // private popupRef: HTMLElement;
@@ -71,6 +72,40 @@ export class GluePopup {
     this.show = true;
     this.open.emit(true);
   };
+  @Watch('show')
+  watchHandler(newValue) {
+    if (newValue) {
+      anime({
+        targets: this.refdiv,
+        duration: 300,
+        delay: 0,
+        opacity: [0, 1],
+        easing: 'spring(1, 80, 10, 0)',
+        begin: anim => {
+          console.log(anim, '开始');
+        },
+        complete: anim => {
+          console.log(anim, '完成');
+          this.refdiv.style.display = 'inline';
+        },
+      });
+    } else {
+      anime({
+        targets: this.refdiv,
+        duration: 300,
+        delay: 0,
+        opacity: [1, 0],
+        easing: 'linear',
+        begin: anim => {
+          console.log(anim, '开始');
+        },
+        complete: anim => {
+          console.log(anim, this.refdiv, '完成2');
+          this.refdiv.style.display = 'none';
+        },
+      });
+    }
+  }
   componentDidRender() {
     // this.opened;
     // if (this.show) {
@@ -120,26 +155,29 @@ export class GluePopup {
   renderPopup = () => {
     const { round, position, safeAreaInsetBottom } = this;
     console.log(position, bem([position]), 'position');
-    if (this.show) {
-      return (
-        <div
-          // ref={dom => (this.popupRef = dom)}
-          style={this.style()}
-          class={classNames(
-            'glue-popup',
-            {
-              'glue-popup--round': round,
-              'glue-popup-safe-area-inset-bottom': safeAreaInsetBottom,
-            },
-            bem([position]),
-          )}
-          onClick={this.clickHandle}
-        >
-          <slot></slot>
-          {this.renderCloseIcon()}
-        </div>
-      );
-    }
+    // if (this.show) {
+    return (
+      <div
+        ref={dom => {
+          this.refdiv = dom;
+        }}
+        // ref={dom => (this.popupRef = dom)}
+        style={this.style()}
+        class={classNames(
+          'glue-popup',
+          {
+            'glue-popup--round': round,
+            'glue-popup-safe-area-inset-bottom': safeAreaInsetBottom,
+          },
+          bem([position]),
+        )}
+        onClick={this.clickHandle}
+      >
+        <slot></slot>
+        {this.renderCloseIcon()}
+      </div>
+    );
+    // }
   };
 
   renderOverlay = () => {
@@ -162,6 +200,8 @@ export class GluePopup {
     return <div class="glue-popup-transition">{this.renderPopup()}</div>;
   };
   render() {
+    console.log(this.el.slot, 'ajijhiajiaji');
+    // const transition = active ? 'width 1s ease-in-out' : 'none'
     return (
       <Host>
         {this.renderOverlay()}

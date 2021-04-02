@@ -14,6 +14,7 @@
 | `closeOnClickOverlay` | `close-on-click-overlay` |             | `boolean`          | `true`        |
 | `closeOnPopstate`     | `close-on-popstate`      |             | `boolean`          | `undefined`   |
 | `closeable`           | `closeable`              |             | `boolean`          | `undefined`   |
+| `content`             | `content`                |             | `string`           | `''`          |
 | `duration`            | `duration`               |             | `string`           | `undefined`   |
 | `height`              | `height`                 |             | `string`           | `undefined`   |
 | `lazyRender`          | `lazy-render`            |             | `boolean`          | `true`        |
@@ -51,6 +52,7 @@
 
  - [glue-action-sheet](../glue-action-sheet)
  - [glue-address-edit](../glue-address-edit)
+ - [glue-demo](../glue-demo)
  - [glue-share-sheet](../glue-share-sheet)
 
 ### Depends on
@@ -66,6 +68,7 @@ graph TD;
   glue-icon --> glue-badge
   glue-action-sheet --> glue-popup
   glue-address-edit --> glue-popup
+  glue-demo --> glue-popup
   glue-share-sheet --> glue-popup
   style glue-popup fill:#f9f,stroke:#333,stroke-width:4px
 ```

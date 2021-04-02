@@ -580,6 +580,7 @@ export namespace Components {
         "closeOnClickOverlay": boolean;
         "closeOnPopstate": boolean;
         "closeable": boolean;
+        "content": string;
         "duration": string;
         "height": string;
         "lazyRender": boolean;
@@ -2117,6 +2118,7 @@ declare namespace LocalJSX {
         "closeOnClickOverlay"?: boolean;
         "closeOnPopstate"?: boolean;
         "closeable"?: boolean;
+        "content"?: string;
         "duration"?: string;
         "height"?: string;
         "lazyRender"?: boolean;
