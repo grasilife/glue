@@ -1,69 +1,69 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-row>
+      <glue-row>
         <glue-image width="100" height="100" :src="image" />
-      </van-row>
+      </glue-row>
     </DemoBlock>
 
     <DemoBlock :title="fitMode">
-      <van-row gutter="20">
-        <van-col v-for="fit in fits" span="8" :key="fit">
+      <glue-row gutter="10">
+        <glue-col v-for="fit in fits" span="8" :key="fit">
           <glue-image :fit="fit" width="100%" height="27vw" :src="image" />
           <div class="text">{{ fit }}</div>
-        </van-col>
-      </van-row>
+        </glue-col>
+      </glue-row>
     </DemoBlock>
 
     <DemoBlock :title="round">
-      <van-row gutter="20">
-        <van-col v-for="fit in fits" span="8" :key="fit">
+      <glue-row gutter="10">
+        <glue-col v-for="fit in fits" span="8" :key="fit">
           <glue-image round :fit="fit" width="100%" height="27vw" :src="image" />
           <div class="text">{{ fit }}</div>
-        </van-col>
-      </van-row>
+        </glue-col>
+      </glue-row>
     </DemoBlock>
     <DemoBlock :title="lazy">
-      <van-row gutter="20">
-        <van-col v-for="fit in fits" span="8" :key="fit">
+      <glue-row gutter="10">
+        <glue-col v-for="fit in fits" span="8" :key="fit">
           <glue-image width="100" height="100" lazy-load :src="image" />
           <div class="text">{{ lazy }}</div>
-        </van-col>
-      </van-row>
+        </glue-col>
+      </glue-row>
     </DemoBlock>
 
     <DemoBlock :title="loading">
-      <van-row gutter="20">
-        <van-col span="8">
+      <glue-row gutter="10">
+        <glue-col span="8">
           <glue-image width="100%" height="27vw" />
           <div class="text">{{ defaultTip }}</div>
-        </van-col>
+        </glue-col>
 
-        <van-col span="8">
+        <glue-col span="8">
           <glue-image width="100%" height="27vw" loading-icon="#slot">
             <div slot="loadingIcon">
               <glue-loading type="spinner" size="20" />
             </div>
           </glue-image>
           <div class="text">{{ customTip }}</div>
-        </van-col>
-      </van-row>
+        </glue-col>
+      </glue-row>
     </DemoBlock>
 
     <DemoBlock :title="error">
-      <van-row gutter="20">
-        <van-col span="8">
+      <glue-row gutter="10">
+        <glue-col span="8">
           <glue-image width="100%" height="27vw" src="x" />
           <div class="text">{{ defaultTip }}</div>
-        </van-col>
+        </glue-col>
 
-        <van-col span="8">
+        <glue-col span="8">
           <glue-image width="100%" height="27vw" src="x" error-icon="#slot">
             <div slot="errorIcon">{{ loadFail }}</div>
           </glue-image>
           <div class="text">{{ customTip }}</div>
-        </van-col>
-      </van-row>
+        </glue-col>
+      </glue-row>
     </DemoBlock>
   </DemoSection>
 </template>
@@ -95,11 +95,11 @@ export default {
   overflow-x: hidden;
   background-color: @white;
 
-  .van-row {
+  glue-row {
     padding: 0 @padding-md;
   }
 
-  .van-col {
+  glue-col {
     margin-bottom: 20px;
   }
 
