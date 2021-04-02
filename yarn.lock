@@ -2225,7 +2225,7 @@
 
 "@stencil/core@^2.5.2":
   version "2.5.2"
-  resolved "http://npm.xesv5.com/@stencil%2fcore/-/core-2.5.2.tgz#ad00d495ee37bbed4044524d59c7f22de15ab4a7"
+  resolved "https://registry.npm.taobao.org/@stencil/core/download/@stencil/core-2.5.2.tgz#ad00d495ee37bbed4044524d59c7f22de15ab4a7"
   integrity sha1-rQDUle43u+1ARFJNWcfyLeFatKc=
 
 "@stencil/less@^1.0.0":
