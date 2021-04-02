@@ -18,7 +18,8 @@ export class GlueDemo {
         {/* <glue-popup show={true}>
           <div style={{ padding: '30px 50px' }}>内容</div>
         </glue-popup> */}
-        <glue-popup show={true} position="left" style={{ height: '30%' }} />
+        {/* <glue-popup show={true} position="left" style={{ height: '30%' }} /> */}
+        <glue-popup show={true} closeable position="bottom" close-icon="close" style={{ height: '30%' }} close-icon-position="top-left" />
       </div>
     );
   }

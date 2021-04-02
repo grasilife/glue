@@ -15,7 +15,6 @@ import {
   rightLeaveAnimation,
 } from './animation';
 const [bem] = createNamespace('glue-popup');
-import anime from 'animejs/lib/anime.es.js';
 @Component({
   tag: 'glue-popup',
   styleUrl: 'glue-popup.less',
