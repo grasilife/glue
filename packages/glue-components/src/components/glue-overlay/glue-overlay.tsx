@@ -9,7 +9,7 @@ import anime from 'animejs/lib/anime.es.js';
   shadow: false,
 })
 export class GlueOverlay {
-  refdiv: HTMLElement;
+  private overlayRef: HTMLElement;
   @Prop() show: boolean;
 
   @Prop() zIndex: string;
@@ -22,22 +22,22 @@ export class GlueOverlay {
   watchHandler(newValue) {
     if (newValue) {
       anime({
-        targets: this.refdiv,
+        targets: this.overlayRef,
         duration: 300,
         delay: 0,
         opacity: [0, 1],
-        easing: 'spring(1, 80, 10, 0)',
+        easing: 'linear',
         begin: anim => {
           console.log(anim, '开始');
         },
         complete: anim => {
           console.log(anim, '完成');
-          this.refdiv.style.display = 'inline';
+          this.overlayRef.style.display = 'inline';
         },
       });
     } else {
       anime({
-        targets: this.refdiv,
+        targets: this.overlayRef,
         duration: 300,
         delay: 0,
         opacity: [1, 0],
@@ -46,8 +46,8 @@ export class GlueOverlay {
           console.log(anim, '开始');
         },
         complete: anim => {
-          console.log(anim, this.refdiv, '完成2');
-          this.refdiv.style.display = 'none';
+          console.log(anim, this.overlayRef, '完成2');
+          this.overlayRef.style.display = 'none';
         },
       });
     }
@@ -70,7 +70,7 @@ export class GlueOverlay {
       <div
         style={style}
         ref={dom => {
-          this.refdiv = dom;
+          this.overlayRef = dom;
         }}
         class={classNames({
           'glue-overlay': true,
@@ -86,7 +86,20 @@ export class GlueOverlay {
   };
 
   componentDidLoad() {
-    console.log(32323232);
+    anime({
+      targets: this.overlayRef,
+      duration: 300,
+      delay: 0,
+      opacity: [0, 1],
+      easing: 'linear',
+      begin: anim => {
+        console.log(anim, '开始');
+      },
+      complete: anim => {
+        console.log(anim, '完成');
+        this.overlayRef.style.display = 'inline';
+      },
+    });
   }
   render() {
     return <Host>{this.renderOverlay()} </Host>;

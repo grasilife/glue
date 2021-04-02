@@ -2,6 +2,18 @@ import { Component, Prop, h, Host, EventEmitter, Event, Element, Watch } from '@
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { createNamespace } from '../../utils/create/index';
+import {
+  centerEnterAnimation,
+  centerLeaveAnimation,
+  topEnterAnimation,
+  topLeaveAnimation,
+  bottomEnterAnimation,
+  bottomLeaveAnimation,
+  leftEnterAnimation,
+  leftLeaveAnimation,
+  rightEnterAnimation,
+  rightLeaveAnimation,
+} from './animation';
 const [bem] = createNamespace('glue-popup');
 import anime from 'animejs/lib/anime.es.js';
 @Component({
@@ -11,7 +23,7 @@ import anime from 'animejs/lib/anime.es.js';
 })
 export class GluePopup {
   @Element() el!: HTMLGluePopupElement;
-  refdiv: HTMLElement;
+  popupRef: HTMLElement;
   @Prop({ mutable: true }) show: boolean;
   @Prop() zIndex = '2000';
   @Prop() duration: string;
@@ -75,35 +87,57 @@ export class GluePopup {
   @Watch('show')
   watchHandler(newValue) {
     if (newValue) {
-      anime({
-        targets: this.refdiv,
-        duration: 300,
-        delay: 0,
-        opacity: [0, 1],
-        easing: 'spring(1, 80, 10, 0)',
-        begin: anim => {
-          console.log(anim, '开始');
-        },
-        complete: anim => {
-          console.log(anim, '完成');
-          this.refdiv.style.display = 'inline';
-        },
-      });
+      if (this.position == 'center') {
+        centerEnterAnimation(this.popupRef, () => {
+          this.popupRef.style.display = 'inline';
+        });
+      }
+      if (this.position == 'top') {
+        topEnterAnimation(this.popupRef, () => {
+          this.popupRef.style.display = 'inline';
+        });
+      }
+      if (this.position == 'bottom') {
+        bottomEnterAnimation(this.popupRef, () => {
+          this.popupRef.style.display = 'inline';
+        });
+      }
+      if (this.position == 'left') {
+        leftEnterAnimation(this.popupRef, () => {
+          this.popupRef.style.display = 'inline';
+        });
+      }
+      if (this.position == 'right') {
+        rightEnterAnimation(this.popupRef, () => {
+          this.popupRef.style.display = 'inline';
+        });
+      }
     } else {
-      anime({
-        targets: this.refdiv,
-        duration: 300,
-        delay: 0,
-        opacity: [1, 0],
-        easing: 'linear',
-        begin: anim => {
-          console.log(anim, '开始');
-        },
-        complete: anim => {
-          console.log(anim, this.refdiv, '完成2');
-          this.refdiv.style.display = 'none';
-        },
-      });
+      if (this.position == 'center') {
+        centerLeaveAnimation(this.popupRef, () => {
+          this.popupRef.style.display = 'none';
+        });
+      }
+      if (this.position == 'top') {
+        topLeaveAnimation(this.popupRef, () => {
+          this.popupRef.style.display = 'none';
+        });
+      }
+      if (this.position == 'bottom') {
+        bottomLeaveAnimation(this.popupRef, () => {
+          this.popupRef.style.display = 'none';
+        });
+      }
+      if (this.position == 'left') {
+        leftLeaveAnimation(this.popupRef, () => {
+          this.popupRef.style.display = 'none';
+        });
+      }
+      if (this.position == 'right') {
+        rightLeaveAnimation(this.popupRef, () => {
+          this.popupRef.style.display = 'none';
+        });
+      }
     }
   }
   componentDidRender() {
@@ -159,9 +193,8 @@ export class GluePopup {
     return (
       <div
         ref={dom => {
-          this.refdiv = dom;
+          this.popupRef = dom;
         }}
-        // ref={dom => (this.popupRef = dom)}
         style={this.style()}
         class={classNames(
           'glue-popup',
@@ -199,9 +232,35 @@ export class GluePopup {
     // const name = position === 'center' ? 'van-fade' : `van-popup-slide-${position}`;
     return <div class="glue-popup-transition">{this.renderPopup()}</div>;
   };
+
+  componentDidLoad() {
+    if (this.position == 'center') {
+      centerEnterAnimation(this.popupRef, () => {
+        this.popupRef.style.display = 'inline';
+      });
+    }
+    if (this.position == 'top') {
+      topEnterAnimation(this.popupRef, () => {
+        this.popupRef.style.display = 'inline';
+      });
+    }
+    if (this.position == 'bottom') {
+      bottomEnterAnimation(this.popupRef, () => {
+        this.popupRef.style.display = 'inline';
+      });
+    }
+    if (this.position == 'left') {
+      leftEnterAnimation(this.popupRef, () => {
+        this.popupRef.style.display = 'inline';
+      });
+    }
+    if (this.position == 'right') {
+      rightEnterAnimation(this.popupRef, () => {
+        this.popupRef.style.display = 'inline';
+      });
+    }
+  }
   render() {
-    console.log(this.el.slot, 'ajijhiajiaji');
-    // const transition = active ? 'width 1s ease-in-out' : 'none'
     return (
       <Host>
         {this.renderOverlay()}
