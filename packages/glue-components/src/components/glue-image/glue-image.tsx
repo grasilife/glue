@@ -211,7 +211,7 @@ export class GlueImage {
         {/* {this.renderPlaceholder()} */}
         <div
           class={classNames({
-            'glue-image__hidden': !(this.errorState && this.showError),
+            'glue-slot__hidden': !(this.errorState && this.showError),
             'glue-image__error': true,
           })}
           hidden={!(this.errorState && this.showError)}
@@ -220,7 +220,7 @@ export class GlueImage {
         </div>
         <div
           class={classNames({
-            'glue-image__hidden': !(this.loadingState && this.showLoading),
+            'glue-slot__hidden': !(this.loadingState && this.showLoading),
             'glue-image__loading': true,
           })}
           hidden={!(this.loadingState && this.showLoading)}

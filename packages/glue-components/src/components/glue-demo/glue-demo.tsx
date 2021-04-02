@@ -15,7 +15,18 @@ export class GlueDemo {
   render() {
     return (
       <div>
-        <glue-image width="100%" height="27vw"></glue-image>
+        {/* <glue-popup round position="bottom" style={{ height: '30%' }} show={true} /> */}
+        <glue-popup show={true}>
+          <div style={{ padding: '30px 50px' }}>内容</div>
+        </glue-popup>
+        {/* <glue-image width="100%" height="27vw" loading-icon="#slot">
+          <div slot="loadingIcon">
+            <glue-loading type="spinner" size="20" />
+          </div>
+        </glue-image> */}
+        {/* <glue-image width="100%" height="27vw" src="x" error-icon="#slot">
+          <div slot="errorIcon">加载失败</div>
+        </glue-image> */}
       </div>
     );
   }
