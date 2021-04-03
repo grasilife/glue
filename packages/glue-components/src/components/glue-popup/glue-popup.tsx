@@ -30,7 +30,7 @@ export class GluePopup {
   @Prop() easing: string = EASING;
   @Prop() width: string;
   @Prop() height: string;
-  @Prop() teleport: string | object;
+  @Prop() teleport: string | HTMLElement;
   @Prop() overlayStyle: object;
   @Prop() overlayClass = null;
   @Prop() transitionAppear: boolean;
@@ -263,8 +263,20 @@ export class GluePopup {
       }
     }
   };
+  renderTeleport = () => {
+    if (this.teleport) {
+      //如果是字符串选择器,如果不是选择器就是dom
+      if (typeof this.teleport == 'string') {
+        console.log(document.querySelector(this.teleport), this.teleport, 'teleport');
+        document.querySelector(this.teleport).appendChild(this.el);
+      } else {
+        this.teleport.appendChild(this.el);
+      }
+    }
+  };
   componentDidLoad() {
     this.renderTransitionAppear();
+    this.renderTeleport();
   }
   render() {
     return (

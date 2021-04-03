@@ -595,7 +595,7 @@ export namespace Components {
         "round": boolean;
         "safeAreaInsetBottom": boolean;
         "show": boolean;
-        "teleport": string | object;
+        "teleport": string | HTMLElement;
         "transitionAppear": boolean;
         "width": string;
         "zIndex": string;
@@ -2142,7 +2142,7 @@ declare namespace LocalJSX {
         "round"?: boolean;
         "safeAreaInsetBottom"?: boolean;
         "show"?: boolean;
-        "teleport"?: string | object;
+        "teleport"?: string | HTMLElement;
         "transitionAppear"?: boolean;
         "width"?: string;
         "zIndex"?: string;
