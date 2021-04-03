@@ -318,7 +318,7 @@ export namespace Components {
         "first": string;
     }
     interface GlueDemo {
-        "show": string;
+        "show": boolean;
     }
     interface GlueDialog {
         "first": string;
@@ -1839,7 +1839,7 @@ declare namespace LocalJSX {
         "first"?: string;
     }
     interface GlueDemo {
-        "show"?: string;
+        "show"?: boolean;
     }
     interface GlueDialog {
         "first"?: string;

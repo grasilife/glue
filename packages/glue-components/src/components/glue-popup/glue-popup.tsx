@@ -67,13 +67,13 @@ export class GluePopup {
   clickOverlayHandle = () => {
     this.glueClickOverlay.emit('click-overlay');
     if (this.closeOnClickOverlay) {
-      this.closeHandle();
+      this.show = false;
     }
   };
   @Event() glueClickCloseIcon: EventEmitter;
   clickCloseIconHandle = () => {
     this.glueClickCloseIcon.emit('click-close-icon');
-    this.closeHandle();
+    this.show = false;
   };
   @Event() glueClose: EventEmitter;
   closeHandle = () => {
@@ -296,6 +296,7 @@ export class GluePopup {
     this.renderTeleport();
   }
   render() {
+    console.log(this.show, 'hgyag');
     return (
       <Host>
         {this.renderOverlay()}
