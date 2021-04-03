@@ -1,119 +1,119 @@
 import anime from 'animejs/lib/anime.es.js';
-import { DURATION, EASING } from '../../global/constant/constant';
+
 //center
-export const centerEnterAnimation = (el, complete) => {
+export const centerEnterAnimation = (el, duration, easing, complete) => {
   anime({
     targets: el,
-    duration: DURATION,
+    duration: duration,
     opacity: [0, 1],
-    easing: EASING,
+    easing: easing,
     complete: anim => {
       return complete(anim);
     },
   });
 };
-export const centerLeaveAnimation = (el, complete) => {
+export const centerLeaveAnimation = (el, duration, easing, complete) => {
   anime({
     targets: el,
-    duration: DURATION,
+    duration: duration,
     opacity: [1, 0],
-    easing: EASING,
+    easing: easing,
     complete: anim => {
       return complete(anim);
     },
   });
 };
 //top
-export const topEnterAnimation = (el, complete) => {
+export const topEnterAnimation = (el, duration, easing, complete) => {
   anime({
     targets: el,
-    duration: DURATION,
+    duration: duration,
     height: '30%',
-    easing: EASING,
+    easing: easing,
 
     complete: anim => {
       return complete(anim);
     },
   });
 };
-export const topLeaveAnimation = (el, complete) => {
+export const topLeaveAnimation = (el, duration, easing, complete) => {
   anime({
     targets: el,
-    duration: DURATION,
+    duration: duration,
     height: '0%',
-    easing: EASING,
+    easing: easing,
     complete: anim => {
       return complete(anim);
     },
   });
 };
 //bottom
-export const bottomEnterAnimation = (el, complete) => {
+export const bottomEnterAnimation = (el, duration, easing, complete) => {
   anime({
     targets: el,
-    duration: DURATION,
+    duration: duration,
     height: '30%',
-    easing: EASING,
+    easing: easing,
 
     complete: anim => {
       return complete(anim);
     },
   });
 };
-export const bottomLeaveAnimation = (el, complete) => {
+export const bottomLeaveAnimation = (el, duration, easing, complete) => {
   anime({
     targets: el,
-    duration: DURATION,
+    duration: duration,
     height: '0%',
-    easing: EASING,
+    easing: easing,
     complete: anim => {
       return complete(anim);
     },
   });
 };
 // left
-export const leftEnterAnimation = (el, complete) => {
+export const leftEnterAnimation = (el, duration, easing, complete) => {
   anime({
     targets: el,
-    duration: DURATION,
+    duration: duration,
     width: '30%',
-    easing: EASING,
+    easing: easing,
 
     complete: anim => {
       return complete(anim);
     },
   });
 };
-export const leftLeaveAnimation = (el, complete) => {
+export const leftLeaveAnimation = (el, duration, easing, complete) => {
   anime({
     targets: el,
-    duration: DURATION,
+    duration: duration,
     width: '0',
-    easing: EASING,
+    easing: easing,
     complete: anim => {
       return complete(anim);
     },
   });
 };
 // right
-export const rightEnterAnimation = (el, complete) => {
+export const rightEnterAnimation = (el, duration, easing, complete) => {
   anime({
     targets: el,
-    duration: DURATION,
+    duration: duration,
     width: '30%',
-    easing: EASING,
+    easing: easing,
 
     complete: anim => {
       return complete(anim);
     },
   });
 };
-export const rightLeaveAnimation = (el, complete) => {
+export const rightLeaveAnimation = (el, duration, easing, complete) => {
   anime({
     targets: el,
-    duration: DURATION,
+    duration: duration,
     width: '0%',
-    easing: EASING,
+    easing: easing,
     complete: anim => {
       return complete(anim);
     },

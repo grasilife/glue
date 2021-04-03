@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import { isDef, noop } from '../../utils/base';
 import { preventDefault } from '../../utils/dom/event';
 import anime from 'animejs/lib/anime.es.js';
+import { DURATION, EASING } from '../../global/constant/constant';
+import { enterAnimation, leaveAnimation } from './animation';
 @Component({
   tag: 'glue-overlay',
   styleUrl: 'glue-overlay.less',
@@ -11,44 +13,22 @@ import anime from 'animejs/lib/anime.es.js';
 export class GlueOverlay {
   private overlayRef: HTMLElement;
   @Prop() show: boolean;
-
   @Prop() zIndex: string;
-
-  @Prop() duration: string | number;
+  @Prop() duration: number | string = DURATION;
+  @Prop() easing: string = EASING;
+  @Prop() transitionAppear: boolean;
   // @Prop() className = null;
   @Prop() customStyle: object;
   @Prop() lockScroll = true;
   @Watch('show')
   watchHandler(newValue) {
     if (newValue) {
-      anime({
-        targets: this.overlayRef,
-        duration: 300,
-        delay: 0,
-        opacity: [0, 1],
-        easing: 'linear',
-        begin: anim => {
-          console.log(anim, '开始');
-        },
-        complete: anim => {
-          console.log(anim, '完成');
-          this.overlayRef.style.display = 'inline';
-        },
+      enterAnimation(this.overlayRef, this.duration, this.easing, () => {
+        this.overlayRef.style.display = 'inline';
       });
     } else {
-      anime({
-        targets: this.overlayRef,
-        duration: 300,
-        delay: 0,
-        opacity: [1, 0],
-        easing: 'linear',
-        begin: anim => {
-          console.log(anim, '开始');
-        },
-        complete: anim => {
-          console.log(anim, this.overlayRef, '完成2');
-          this.overlayRef.style.display = 'none';
-        },
+      leaveAnimation(this.overlayRef, this.duration, this.easing, () => {
+        this.overlayRef.style.display = 'none';
       });
     }
   }
@@ -86,20 +66,11 @@ export class GlueOverlay {
   };
 
   componentDidLoad() {
-    anime({
-      targets: this.overlayRef,
-      duration: 300,
-      delay: 0,
-      opacity: [0, 1],
-      easing: 'linear',
-      begin: anim => {
-        console.log(anim, '开始');
-      },
-      complete: anim => {
-        console.log(anim, '完成');
+    if (this.show && this.transitionAppear) {
+      enterAnimation(this.overlayRef, this.duration, this.easing, () => {
         this.overlayRef.style.display = 'inline';
-      },
-    });
+      });
+    }
   }
   render() {
     return <Host>{this.renderOverlay()} </Host>;

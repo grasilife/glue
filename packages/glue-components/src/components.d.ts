@@ -543,9 +543,11 @@ export namespace Components {
     }
     interface GlueOverlay {
         "customStyle": object;
-        "duration": string | number;
+        "duration": number | string;
+        "easing": string;
         "lockScroll": boolean;
         "show": boolean;
+        "transitionAppear": boolean;
         "zIndex": string;
     }
     interface GluePagination {
@@ -581,7 +583,8 @@ export namespace Components {
         "closeOnPopstate": boolean;
         "closeable": boolean;
         "content": string;
-        "duration": string;
+        "duration": number | string;
+        "easing": string;
         "height": string;
         "lazyRender": boolean;
         "lockScroll": boolean;
@@ -593,7 +596,6 @@ export namespace Components {
         "safeAreaInsetBottom": boolean;
         "show": boolean;
         "teleport": string | object;
-        "transition": string;
         "transitionAppear": boolean;
         "width": string;
         "zIndex": string;
@@ -2078,9 +2080,11 @@ declare namespace LocalJSX {
     }
     interface GlueOverlay {
         "customStyle"?: object;
-        "duration"?: string | number;
+        "duration"?: number | string;
+        "easing"?: string;
         "lockScroll"?: boolean;
         "show"?: boolean;
+        "transitionAppear"?: boolean;
         "zIndex"?: string;
     }
     interface GluePagination {
@@ -2119,7 +2123,8 @@ declare namespace LocalJSX {
         "closeOnPopstate"?: boolean;
         "closeable"?: boolean;
         "content"?: string;
-        "duration"?: string;
+        "duration"?: number | string;
+        "easing"?: string;
         "height"?: string;
         "lazyRender"?: boolean;
         "lockScroll"?: boolean;
@@ -2138,7 +2143,6 @@ declare namespace LocalJSX {
         "safeAreaInsetBottom"?: boolean;
         "show"?: boolean;
         "teleport"?: string | object;
-        "transition"?: string;
         "transitionAppear"?: boolean;
         "width"?: string;
         "zIndex"?: string;

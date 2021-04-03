@@ -2,6 +2,7 @@ import { Component, Prop, h, Host, EventEmitter, Event, Element, Watch } from '@
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { createNamespace } from '../../utils/create/index';
+import { DURATION, EASING } from '../../global/constant/constant';
 import {
   centerEnterAnimation,
   centerLeaveAnimation,
@@ -25,7 +26,8 @@ export class GluePopup {
   popupRef: HTMLElement;
   @Prop({ mutable: true }) show: boolean;
   @Prop() zIndex = '2000';
-  @Prop() duration: string;
+  @Prop() duration: number | string = DURATION;
+  @Prop() easing: string = EASING;
   @Prop() width: string;
   @Prop() height: string;
   @Prop() teleport: string | object;
@@ -38,7 +40,6 @@ export class GluePopup {
   @Prop() closeOnClickOverlay = true;
   @Prop() round = true;
   @Prop() closeable: boolean;
-  @Prop() transition: string;
   @Prop() closeOnPopstate: boolean;
   @Prop() safeAreaInsetBottom = false;
   @Prop() position = 'center';
@@ -87,53 +88,53 @@ export class GluePopup {
   watchHandler(newValue) {
     if (newValue) {
       if (this.position == 'center') {
-        centerEnterAnimation(this.popupRef, () => {
+        centerEnterAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'inline';
         });
       }
       if (this.position == 'top') {
-        topEnterAnimation(this.popupRef, () => {
+        topEnterAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'inline';
         });
       }
       if (this.position == 'bottom') {
-        bottomEnterAnimation(this.popupRef, () => {
+        bottomEnterAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'inline';
         });
       }
       if (this.position == 'left') {
-        leftEnterAnimation(this.popupRef, () => {
+        leftEnterAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'inline';
         });
       }
       if (this.position == 'right') {
-        rightEnterAnimation(this.popupRef, () => {
+        rightEnterAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'inline';
         });
       }
     } else {
       if (this.position == 'center') {
-        centerLeaveAnimation(this.popupRef, () => {
+        centerLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'none';
         });
       }
       if (this.position == 'top') {
-        topLeaveAnimation(this.popupRef, () => {
+        topLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'none';
         });
       }
       if (this.position == 'bottom') {
-        bottomLeaveAnimation(this.popupRef, () => {
+        bottomLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'none';
         });
       }
       if (this.position == 'left') {
-        leftLeaveAnimation(this.popupRef, () => {
+        leftLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'none';
         });
       }
       if (this.position == 'right') {
-        rightLeaveAnimation(this.popupRef, () => {
+        rightLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'none';
         });
       }
@@ -220,6 +221,8 @@ export class GluePopup {
           class={this.overlayClass}
           zIndex={this.zIndex}
           duration={this.duration}
+          easing={this.easing}
+          transitionAppear={this.transitionAppear}
           customStyle={this.overlayStyle}
           onClick={this.clickOverlayHandle}
         ></glue-overlay>
@@ -231,33 +234,37 @@ export class GluePopup {
     // const name = position === 'center' ? 'van-fade' : `van-popup-slide-${position}`;
     return <div class="glue-popup-transition">{this.renderPopup()}</div>;
   };
-
+  renderTransitionAppear = () => {
+    if (this.show && this.transitionAppear) {
+      if (this.position == 'center') {
+        centerEnterAnimation(this.popupRef, this.duration, this.easing, () => {
+          this.popupRef.style.display = 'inline';
+        });
+      }
+      if (this.position == 'top') {
+        topEnterAnimation(this.popupRef, this.duration, this.easing, () => {
+          this.popupRef.style.display = 'inline';
+        });
+      }
+      if (this.position == 'bottom') {
+        bottomEnterAnimation(this.popupRef, this.duration, this.easing, () => {
+          this.popupRef.style.display = 'inline';
+        });
+      }
+      if (this.position == 'left') {
+        leftEnterAnimation(this.popupRef, this.duration, this.easing, () => {
+          this.popupRef.style.display = 'inline';
+        });
+      }
+      if (this.position == 'right') {
+        rightEnterAnimation(this.popupRef, this.duration, this.easing, () => {
+          this.popupRef.style.display = 'inline';
+        });
+      }
+    }
+  };
   componentDidLoad() {
-    if (this.position == 'center') {
-      centerEnterAnimation(this.popupRef, () => {
-        this.popupRef.style.display = 'inline';
-      });
-    }
-    if (this.position == 'top') {
-      topEnterAnimation(this.popupRef, () => {
-        this.popupRef.style.display = 'inline';
-      });
-    }
-    if (this.position == 'bottom') {
-      bottomEnterAnimation(this.popupRef, () => {
-        this.popupRef.style.display = 'inline';
-      });
-    }
-    if (this.position == 'left') {
-      leftEnterAnimation(this.popupRef, () => {
-        this.popupRef.style.display = 'inline';
-      });
-    }
-    if (this.position == 'right') {
-      rightEnterAnimation(this.popupRef, () => {
-        this.popupRef.style.display = 'inline';
-      });
-    }
+    this.renderTransitionAppear();
   }
   render() {
     return (
