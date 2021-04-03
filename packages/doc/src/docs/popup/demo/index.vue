@@ -2,24 +2,24 @@
   <DemoSection>
     <DemoBlock card :title="basicUsage">
       <van-cell :title="buttonBasic" is-link @click="showBasic = true" />
-      <glue-popup :show="showBasic" :style="{ padding: '30px 50px' }" @close="showBasic = false">
+      <glue-popup :show="showBasic" :style="{ padding: '30px 50px' }" @glueClose="showBasic = false">
         {{ content }}
       </glue-popup>
     </DemoBlock>
 
     <DemoBlock card :title="position">
-      <van-cell :title="buttonTop" is-link @click="showTop = true" @close="showTop = false" />
-      <van-cell :title="buttonBottom" is-link @click="showBottom = true" @close="showBottom = false" />
-      <van-cell :title="buttonLeft" is-link @click="showLeft = true" @close="showLeft = false" />
-      <van-cell :title="buttonRight" is-link @click="showRight = true" @close="showRight = false" />
+      <van-cell :title="buttonTop" is-link @click="showTop = true" @glueClose="showTop = false" />
+      <van-cell :title="buttonBottom" is-link @click="showBottom = true" @glueClose="showBottom = false" />
+      <van-cell :title="buttonLeft" is-link @click="showLeft = true" @glueClose="showLeft = false" />
+      <van-cell :title="buttonRight" is-link @click="showRight = true" @glueClose="showRight = false" />
 
-      <glue-popup :show="showTop" position="top" width="100%" height="30%" @close="showTop = false" />
-      <glue-popup :show="showBottom" position="bottom" width="100%" height="30%" @close="showBottom = false" />
-      <glue-popup :show="showLeft" position="left" width="30%" height="100%" @close="showLeft = false" />
-      <glue-popup :show="showRight" position="right" width="30%" height="100%" @close="showRight = false" />
+      <glue-popup :show="showTop" position="top" width="100%" height="30%" @glueClose="showTop = false" />
+      <!-- <glue-popup :show="showBottom" position="bottom" width="100%" height="30%" @glueClose="showBottom = false" />
+      <glue-popup :show="showLeft" position="left" width="30%" height="100%" @glueClose="showLeft = false" />
+      <glue-popup :show="showRight" position="right" width="30%" height="100%" @glueClose="showRight = false" /> -->
     </DemoBlock>
 
-    <DemoBlock card :title="closeIcon">
+    <!-- <DemoBlock card :title="closeIcon">
       <van-cell :title="closeIcon" is-link @click="showCloseIcon = true" />
       <van-cell :title="customCloseIcon" is-link @click="showCustomCloseIcon = true" />
       <van-cell :title="customIconPosition" is-link @click="showCustomIconPosition = true" />
@@ -72,7 +72,7 @@
         :style="{ padding: '30px 50px' }"
         @close="showGetContainer = false"
       />
-    </DemoBlock>
+    </DemoBlock> -->
   </DemoSection>
 </template>
 

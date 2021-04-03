@@ -2,7 +2,6 @@ import { Component, Prop, h, Host, Watch } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef, noop } from '../../utils/base';
 import { preventDefault } from '../../utils/dom/event';
-import anime from 'animejs/lib/anime.es.js';
 import { DURATION, EASING } from '../../global/constant/constant';
 import { enterAnimation, leaveAnimation } from './animation';
 @Component({
@@ -37,6 +36,7 @@ export class GlueOverlay {
   };
   renderOverlay = () => {
     const style = {
+      // display: this.show ? 'block' : 'none',
       animationDuration: '',
       zIndex: this.zIndex,
       ...this.customStyle,
@@ -66,6 +66,7 @@ export class GlueOverlay {
   };
 
   componentDidLoad() {
+    console.log(this.show, 'ahguahgbia');
     if (this.show && this.transitionAppear) {
       enterAnimation(this.overlayRef, this.duration, this.easing, () => {
         this.overlayRef.style.display = 'inline';

@@ -7,13 +7,15 @@
 
 ## Properties
 
-| Property      | Attribute     | Description | Type               | Default     |
-| ------------- | ------------- | ----------- | ------------------ | ----------- |
-| `customStyle` | --            |             | `object`           | `undefined` |
-| `duration`    | `duration`    |             | `number \| string` | `undefined` |
-| `lockScroll`  | `lock-scroll` |             | `boolean`          | `true`      |
-| `show`        | `show`        |             | `boolean`          | `undefined` |
-| `zIndex`      | `z-index`     |             | `string`           | `undefined` |
+| Property           | Attribute           | Description | Type               | Default     |
+| ------------------ | ------------------- | ----------- | ------------------ | ----------- |
+| `customStyle`      | --                  |             | `object`           | `undefined` |
+| `duration`         | `duration`          |             | `number \| string` | `DURATION`  |
+| `easing`           | `easing`            |             | `string`           | `EASING`    |
+| `lockScroll`       | `lock-scroll`       |             | `boolean`          | `true`      |
+| `show`             | `show`              |             | `boolean`          | `undefined` |
+| `transitionAppear` | `transition-appear` |             | `boolean`          | `undefined` |
+| `zIndex`           | `z-index`           |             | `string`           | `undefined` |
 
 
 ## Dependencies

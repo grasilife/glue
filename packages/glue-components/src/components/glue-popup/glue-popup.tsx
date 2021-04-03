@@ -23,7 +23,7 @@ const [bem] = createNamespace('glue-popup');
 })
 export class GluePopup {
   @Element() el!: HTMLGluePopupElement;
-  popupRef: HTMLElement;
+  private popupRef: HTMLElement;
   @Prop({ mutable: true }) show: boolean;
   @Prop() zIndex = '2000';
   @Prop() duration: number | string = DURATION;
@@ -49,35 +49,37 @@ export class GluePopup {
   // @State() opened: boolean;
   // private zIndexRef: HTMLElement;
   // private popupRef: HTMLElement;
-  @Event() click: EventEmitter;
+  @Event() glueClick: EventEmitter;
   clickHandle = event => {
-    this.click.emit(event);
+    this.glueClick.emit(event);
   };
-  @Event() opened: EventEmitter;
+  @Event() glueOpened: EventEmitter;
   openedHandle = () => {
-    this.opened.emit('opened');
+    this.show = true;
+    this.glueOpened.emit('opened');
   };
-  @Event() closed: EventEmitter;
+  @Event() glueClosed: EventEmitter;
   closedHandle = () => {
-    this.closed.emit('closed');
+    this.show = false;
+    this.glueClosed.emit('closed');
   };
-  @Event() clickOverlay: EventEmitter;
+  @Event() glueClickOverlay: EventEmitter;
   clickOverlayHandle = () => {
-    this.clickOverlay.emit('click-overlay');
+    this.glueClickOverlay.emit('click-overlay');
     if (this.closeOnClickOverlay) {
       this.closeHandle();
     }
   };
-  @Event() clickCloseIcon: EventEmitter;
+  @Event() glueClickCloseIcon: EventEmitter;
   clickCloseIconHandle = () => {
-    this.clickCloseIcon.emit('click-close-icon');
+    this.glueClickCloseIcon.emit('click-close-icon');
     this.closeHandle();
   };
-  @Event() close: EventEmitter;
+  @Event() glueClose: EventEmitter;
   closeHandle = () => {
     this.show = false;
     // unlockScroll();
-    this.close.emit(false);
+    this.glueClose.emit(false);
   };
   @Event() open: EventEmitter;
   openHandle = () => {
@@ -85,57 +87,70 @@ export class GluePopup {
     this.open.emit(true);
   };
   @Watch('show')
-  watchHandler(newValue) {
+  watchShowHandler(newValue) {
     if (newValue) {
+      this.openHandle();
       if (this.position == 'center') {
         centerEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'inline';
+          this.popupRef.style.display = 'block';
+          this.openedHandle();
         });
       }
       if (this.position == 'top') {
         topEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'inline';
+          this.popupRef.style.display = 'block';
+          this.openedHandle();
         });
       }
       if (this.position == 'bottom') {
         bottomEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'inline';
+          this.popupRef.style.display = 'block';
+          this.openedHandle();
         });
       }
       if (this.position == 'left') {
         leftEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'inline';
+          this.popupRef.style.display = 'block';
+          this.openedHandle();
         });
       }
       if (this.position == 'right') {
         rightEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'inline';
+          this.popupRef.style.display = 'block';
+          this.openedHandle();
         });
       }
     } else {
+      this.closeHandle();
       if (this.position == 'center') {
         centerLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'none';
+          this.closedHandle();
         });
       }
       if (this.position == 'top') {
         topLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'none';
+          this.closedHandle();
         });
       }
       if (this.position == 'bottom') {
         bottomLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
+          console.log(this, 'this.popupRef.style');
           this.popupRef.style.display = 'none';
+          this.closedHandle();
         });
       }
       if (this.position == 'left') {
         leftLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'none';
+          this.closedHandle();
         });
       }
       if (this.position == 'right') {
         rightLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
           this.popupRef.style.display = 'none';
+          this.closedHandle();
         });
       }
     }
@@ -166,6 +181,7 @@ export class GluePopup {
     }
   };
   style = () => {
+    console.log(this.show, 'this.show');
     const style = {
       zIndex: this.zIndex,
       // display: this.show ? 'block' : 'none',
@@ -229,36 +245,36 @@ export class GluePopup {
       );
     }
   };
-  renderTransition = () => {
-    // const { position, transition, transitionAppear } = this;
-    // const name = position === 'center' ? 'van-fade' : `van-popup-slide-${position}`;
-    return <div class="glue-popup-transition">{this.renderPopup()}</div>;
-  };
   renderTransitionAppear = () => {
     if (this.show && this.transitionAppear) {
       if (this.position == 'center') {
         centerEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'inline';
+          this.popupRef.style.display = 'block';
+          this.openedHandle();
         });
       }
       if (this.position == 'top') {
         topEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'inline';
+          this.popupRef.style.display = 'block';
+          this.openedHandle();
         });
       }
       if (this.position == 'bottom') {
         bottomEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'inline';
+          this.popupRef.style.display = 'block';
+          this.openedHandle();
         });
       }
       if (this.position == 'left') {
         leftEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'inline';
+          this.popupRef.style.display = 'block';
+          this.openedHandle();
         });
       }
       if (this.position == 'right') {
         rightEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'inline';
+          this.popupRef.style.display = 'block';
+          this.openedHandle();
         });
       }
     }
@@ -275,6 +291,7 @@ export class GluePopup {
     }
   };
   componentDidLoad() {
+    console.log(this.show, 'hhhh1');
     this.renderTransitionAppear();
     this.renderTeleport();
   }

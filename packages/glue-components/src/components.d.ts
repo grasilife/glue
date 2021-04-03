@@ -318,7 +318,7 @@ export namespace Components {
         "first": string;
     }
     interface GlueDemo {
-        "first": string;
+        "show": string;
     }
     interface GlueDialog {
         "first": string;
@@ -1839,7 +1839,7 @@ declare namespace LocalJSX {
         "first"?: string;
     }
     interface GlueDemo {
-        "first"?: string;
+        "show"?: string;
     }
     interface GlueDialog {
         "first"?: string;
@@ -2128,13 +2128,13 @@ declare namespace LocalJSX {
         "height"?: string;
         "lazyRender"?: boolean;
         "lockScroll"?: boolean;
-        "onClick"?: (event: CustomEvent<any>) => void;
-        "onClickCloseIcon"?: (event: CustomEvent<any>) => void;
-        "onClickOverlay"?: (event: CustomEvent<any>) => void;
-        "onClose"?: (event: CustomEvent<any>) => void;
-        "onClosed"?: (event: CustomEvent<any>) => void;
+        "onGlueClick"?: (event: CustomEvent<any>) => void;
+        "onGlueClickCloseIcon"?: (event: CustomEvent<any>) => void;
+        "onGlueClickOverlay"?: (event: CustomEvent<any>) => void;
+        "onGlueClose"?: (event: CustomEvent<any>) => void;
+        "onGlueClosed"?: (event: CustomEvent<any>) => void;
+        "onGlueOpened"?: (event: CustomEvent<any>) => void;
         "onOpen"?: (event: CustomEvent<any>) => void;
-        "onOpened"?: (event: CustomEvent<any>) => void;
         "overlay"?: boolean;
         "overlayClass"?: any;
         "overlayStyle"?: object;
