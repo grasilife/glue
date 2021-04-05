@@ -120,28 +120,7 @@ export class GluePopup {
       );
     }
   };
-  style = () => {
-    console.log(this.show, 'this.show');
-    const style = {
-      zIndex: this.zIndex,
-      // display: this.show ? 'block' : 'none',
-    };
-    if (this.position == 'top' || this.position == 'bottom') {
-      // style['width'] = this.width || '100%';
-      // style['height'] = this.height || '30%';
-    }
 
-    if (this.position == 'right' || this.position == 'left') {
-      // style['width'] = this.width || '30%';
-      // style['height'] = this.height || '100%';
-    }
-    if (isDef(this.duration)) {
-      // const key = this.position === 'center' ? 'animationDuration' : 'transitionDuration';
-      // style[key] = `${this.duration}s`;
-    }
-    console.log(style, 'style');
-    return style;
-  };
   renderPopup = () => {
     const { round, position, safeAreaInsetBottom } = this;
     console.log(position, bem([position]), 'position');
@@ -151,7 +130,7 @@ export class GluePopup {
         ref={dom => {
           this.popupRef = dom;
         }}
-        style={this.style()}
+        style={{ zIndex: this.zIndex }}
         class={classNames(
           'glue-popup',
           {
@@ -331,8 +310,25 @@ export class GluePopup {
     }
   };
   renderTransitionAppear = () => {
-    if (this.show && this.transitionAppear) {
-      this.showAnimation();
+    if (this.show) {
+      if (this.transitionAppear) {
+        this.showAnimation();
+      } else {
+        let style = this.popupRef.style;
+        this.popupRef.style.display = 'block';
+        this.popupRef.style.zIndex = this.zIndex;
+        if (this.position == 'top' || this.position == 'bottom') {
+          style['width'] = this.width || '100%';
+          style['height'] = this.height || '30%';
+        }
+
+        if (this.position == 'right' || this.position == 'left') {
+          style['width'] = this.width || '30%';
+          style['height'] = this.height || '100%';
+        }
+      }
+    } else {
+      this.popupRef.style.display = 'none';
     }
   };
   renderTeleport = () => {
@@ -346,8 +342,10 @@ export class GluePopup {
       }
     }
   };
+  componentShouldUpdate(e) {
+    console.log(e, 'componentShouldUpdate');
+  }
   componentDidLoad() {
-    console.log(this.show, 'hhhh1');
     this.renderTransitionAppear();
     this.renderTeleport();
   }

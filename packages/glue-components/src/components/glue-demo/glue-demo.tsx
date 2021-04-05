@@ -1,4 +1,4 @@
-import { Component, Prop, h, State } from '@stencil/core';
+import { Component, h, State } from '@stencil/core';
 // import classNames from 'classnames';
 @Component({
   tag: 'glue-demo',
@@ -6,7 +6,6 @@ import { Component, Prop, h, State } from '@stencil/core';
   shadow: false,
 })
 export class GlueDemo {
-  @Prop({ mutable: true }) show = true;
   @State() open: boolean = true;
   @State() list = [1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1, 1, 1, 1, 1, 1, 1, 1, ,];
 
@@ -34,6 +33,7 @@ export class GlueDemo {
           close-icon-position="top-left"
           duration={1000}
           onGlueClose={this.onGlueClose}
+          transitionAppear={true}
         ></glue-popup>
       </div>
     );

@@ -13,7 +13,7 @@
       <van-cell :title="buttonLeft" is-link @click="showLeft = true" @glueClose="showLeft = false" />
       <van-cell :title="buttonRight" is-link @click="showRight = true" @glueClose="showRight = false" />
 
-      <glue-popup :show="showTop" position="top" width="100%" height="30%" @glueClose="showTop = false" />
+      <!-- <glue-popup :show="showTop" position="top" width="100%" height="30%" @glueClose="showTop = false" /> -->
       <!-- <glue-popup :show="showBottom" position="bottom" width="100%" height="30%" @glueClose="showBottom = false" />
       <glue-popup :show="showLeft" position="left" width="30%" height="100%" @glueClose="showLeft = false" />
       <glue-popup :show="showRight" position="right" width="30%" height="100%" @glueClose="showRight = false" /> -->

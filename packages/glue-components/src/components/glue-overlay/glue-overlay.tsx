@@ -33,7 +33,7 @@ export class GlueOverlay {
       this.duration,
       this.easing,
       () => {
-        this.overlayRef.style.display = 'inline';
+        this.overlayRef.style.display = 'block';
       },
       () => {},
     );
@@ -82,12 +82,20 @@ export class GlueOverlay {
     );
     // }
   };
-
+  renderTransitionAppear = () => {
+    if (this.show) {
+      if (this.transitionAppear) {
+        this.showAnimation();
+      } else {
+        this.overlayRef.style.display = 'block';
+      }
+    } else {
+      this.overlayRef.style.display = 'none';
+    }
+  };
   componentDidLoad() {
     console.log(this.show, 'ahguahgbia');
-    if (this.show && this.transitionAppear) {
-      this.showAnimation();
-    }
+    this.renderTransitionAppear();
   }
   render() {
     return <Host>{this.renderOverlay()} </Host>;
