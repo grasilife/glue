@@ -49,6 +49,17 @@ export class GluePopup {
   clickHandle = event => {
     this.glueClick.emit(event);
   };
+  @Event() glueOpen: EventEmitter;
+  openHandle = () => {
+    this.show = true;
+    this.glueOpen.emit(true);
+  };
+  @Event() glueClose: EventEmitter;
+  closeHandle = () => {
+    this.show = false;
+    // unlockScroll();
+    this.glueClose.emit(false);
+  };
   @Event() glueOpened: EventEmitter;
   openedHandle = () => {
     this.show = true;
@@ -71,17 +82,7 @@ export class GluePopup {
     this.glueClickCloseIcon.emit('click-close-icon');
     this.show = false;
   };
-  @Event() glueClose: EventEmitter;
-  closeHandle = () => {
-    this.show = false;
-    // unlockScroll();
-    this.glueClose.emit(false);
-  };
-  @Event() open: EventEmitter;
-  openHandle = () => {
-    this.show = true;
-    this.open.emit(true);
-  };
+
   @Watch('show')
   watchShowHandler(newValue) {
     console.log(newValue, this.position, '弹窗状态');
@@ -305,14 +306,15 @@ export class GluePopup {
   };
   renderTransitionAppear = () => {
     let style = this.popupRef.style;
-    if (this.show) {
-      if (this.position == 'top' || this.position == 'bottom') {
-        style['width'] = this.width || '100%';
-      }
+    if (this.position == 'top' || this.position == 'bottom') {
+      style['width'] = this.width || '100%';
+    }
 
-      if (this.position == 'right' || this.position == 'left') {
-        style['height'] = this.height || '100%';
-      }
+    if (this.position == 'right' || this.position == 'left') {
+      style['height'] = this.height || '100%';
+    }
+    if (this.show) {
+      console.log(style, 'style');
       if (this.transitionAppear) {
         this.showAnimation();
       } else {

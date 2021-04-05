@@ -19,7 +19,7 @@
       <glue-popup :show="showRight" position="right" width="30%" height="100%" @glueClose="showRight = false" />
     </DemoBlock>
 
-    <!-- <DemoBlock card :title="closeIcon">
+    <DemoBlock card :title="closeIcon">
       <van-cell :title="closeIcon" is-link @click="showCloseIcon = true" />
       <van-cell :title="customCloseIcon" is-link @click="showCustomCloseIcon = true" />
       <van-cell :title="customIconPosition" is-link @click="showCustomIconPosition = true" />
@@ -30,7 +30,7 @@
         position="bottom"
         width="100%"
         height="30%"
-        @close="showCloseIcon = false"
+        @glueClose="showCloseIcon = false"
       />
       <glue-popup
         :show="showCustomCloseIcon"
@@ -39,7 +39,7 @@
         position="bottom"
         width="100%"
         height="30%"
-        @close="showCustomCloseIcon = false"
+        @glueClose="showCustomCloseIcon = false"
       />
       <glue-popup
         :show="showCustomIconPosition"
@@ -48,7 +48,7 @@
         position="bottom"
         width="100%"
         height="30%"
-        @close="showCustomIconPosition = false"
+        @glueClose="showCustomIconPosition = false"
       />
     </DemoBlock>
 
@@ -60,23 +60,21 @@
         position="bottom"
         width="100%"
         height="30%"
-        @close="showRoundCorner = false"
+        @glueClose="showRoundCorner = false"
       />
     </DemoBlock>
 
     <DemoBlock card :title="getContainer">
       <van-cell :title="getContainer" is-link @click="showGetContainer = true" />
-      <glue-popup
-        :show="showGetContainer"
-        get-container="body"
-        :style="{ padding: '30px 50px' }"
-        @close="showGetContainer = false"
-      />
-    </DemoBlock> -->
+      <glue-popup :show="showGetContainer" teleport="body" @glueClose="showGetContainer = false">
+        <div :style="{ padding: '30px 50px' }">{{ content }}</div>
+      </glue-popup>
+    </DemoBlock>
   </DemoSection>
 </template>
 
 <script>
+const myContainer = document.querySelector(".my-container");
 export default {
   data() {
     return {

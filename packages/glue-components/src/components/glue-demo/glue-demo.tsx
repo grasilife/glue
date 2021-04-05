@@ -28,10 +28,10 @@ export class GlueDemo {
         <glue-popup
           show={this.open}
           closeable
-          position="top"
+          position="left"
           close-icon="close"
-          width="100%"
-          height="50%"
+          width="50%"
+          height="100%"
           close-icon-position="top-left"
           duration={1000}
           onGlueClose={this.onGlueClose}
