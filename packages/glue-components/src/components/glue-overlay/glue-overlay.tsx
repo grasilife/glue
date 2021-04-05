@@ -22,15 +22,33 @@ export class GlueOverlay {
   @Watch('show')
   watchHandler(newValue) {
     if (newValue) {
-      enterAnimation(this.overlayRef, this.duration, this.easing, () => {
-        this.overlayRef.style.display = 'inline';
-      });
+      this.showAnimation();
     } else {
-      leaveAnimation(this.overlayRef, this.duration, this.easing, () => {
-        this.overlayRef.style.display = 'none';
-      });
+      this.hiddenAnimation();
     }
   }
+  showAnimation = () => {
+    enterAnimation(
+      this.overlayRef,
+      this.duration,
+      this.easing,
+      () => {
+        this.overlayRef.style.display = 'inline';
+      },
+      () => {},
+    );
+  };
+  hiddenAnimation = () => {
+    leaveAnimation(
+      this.overlayRef,
+      this.duration,
+      this.easing,
+      () => {},
+      () => {
+        this.overlayRef.style.display = 'none';
+      },
+    );
+  };
   preventTouchMove = (event: TouchEvent) => {
     preventDefault(event, true);
   };
@@ -68,9 +86,7 @@ export class GlueOverlay {
   componentDidLoad() {
     console.log(this.show, 'ahguahgbia');
     if (this.show && this.transitionAppear) {
-      enterAnimation(this.overlayRef, this.duration, this.easing, () => {
-        this.overlayRef.style.display = 'inline';
-      });
+      this.showAnimation();
     }
   }
   render() {

@@ -20,6 +20,7 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
+  extras: {},
   // buildEs5: false,
   // minifyJs: true,
   // minifyCss: true,

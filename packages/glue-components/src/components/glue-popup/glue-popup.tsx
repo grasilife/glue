@@ -88,71 +88,11 @@ export class GluePopup {
   };
   @Watch('show')
   watchShowHandler(newValue) {
+    console.log(newValue, this.position, '弹窗状态');
     if (newValue) {
-      this.openHandle();
-      if (this.position == 'center') {
-        centerEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'block';
-          this.openedHandle();
-        });
-      }
-      if (this.position == 'top') {
-        topEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'block';
-          this.openedHandle();
-        });
-      }
-      if (this.position == 'bottom') {
-        bottomEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'block';
-          this.openedHandle();
-        });
-      }
-      if (this.position == 'left') {
-        leftEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'block';
-          this.openedHandle();
-        });
-      }
-      if (this.position == 'right') {
-        rightEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'block';
-          this.openedHandle();
-        });
-      }
+      this.showAnimation();
     } else {
-      this.closeHandle();
-      if (this.position == 'center') {
-        centerLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'none';
-          this.closedHandle();
-        });
-      }
-      if (this.position == 'top') {
-        topLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'none';
-          this.closedHandle();
-        });
-      }
-      if (this.position == 'bottom') {
-        bottomLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
-          console.log(this, 'this.popupRef.style');
-          this.popupRef.style.display = 'none';
-          this.closedHandle();
-        });
-      }
-      if (this.position == 'left') {
-        leftLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'none';
-          this.closedHandle();
-        });
-      }
-      if (this.position == 'right') {
-        rightLeaveAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'none';
-          this.closedHandle();
-        });
-      }
+      this.hiddenAnimation();
     }
   }
   componentDidRender() {
@@ -187,17 +127,17 @@ export class GluePopup {
       // display: this.show ? 'block' : 'none',
     };
     if (this.position == 'top' || this.position == 'bottom') {
-      style['width'] = this.width || '100%';
-      style['height'] = this.height || '30%';
+      // style['width'] = this.width || '100%';
+      // style['height'] = this.height || '30%';
     }
 
     if (this.position == 'right' || this.position == 'left') {
-      style['width'] = this.width || '30%';
-      style['height'] = this.height || '100%';
+      // style['width'] = this.width || '30%';
+      // style['height'] = this.height || '100%';
     }
     if (isDef(this.duration)) {
-      const key = this.position === 'center' ? 'animationDuration' : 'transitionDuration';
-      style[key] = `${this.duration}s`;
+      // const key = this.position === 'center' ? 'animationDuration' : 'transitionDuration';
+      // style[key] = `${this.duration}s`;
     }
     console.log(style, 'style');
     return style;
@@ -245,38 +185,154 @@ export class GluePopup {
       );
     }
   };
+  showAnimation = () => {
+    if (this.position == 'center') {
+      centerEnterAnimation(
+        this.popupRef,
+        this.duration,
+        this.easing,
+        () => {
+          this.popupRef.style.display = 'block';
+          this.openHandle();
+        },
+        () => {
+          this.openedHandle();
+        },
+      );
+    }
+    if (this.position == 'top') {
+      topEnterAnimation(
+        this.popupRef,
+        this.duration,
+        this.easing,
+        () => {
+          this.popupRef.style.display = 'block';
+          this.openHandle();
+        },
+        () => {
+          this.openedHandle();
+        },
+      );
+    }
+    if (this.position == 'bottom') {
+      bottomEnterAnimation(
+        this.popupRef,
+        this.duration,
+        this.easing,
+        () => {
+          this.popupRef.style.display = 'block';
+          this.openHandle();
+        },
+        () => {
+          this.openedHandle();
+        },
+      );
+    }
+    if (this.position == 'left') {
+      leftEnterAnimation(
+        this.popupRef,
+        this.duration,
+        this.easing,
+        () => {
+          this.popupRef.style.display = 'block';
+          this.openHandle();
+        },
+        () => {
+          this.openedHandle();
+        },
+      );
+    }
+    if (this.position == 'right') {
+      rightEnterAnimation(
+        this.popupRef,
+        this.duration,
+        this.easing,
+        () => {
+          this.popupRef.style.display = 'block';
+          this.openHandle();
+        },
+        () => {
+          this.openedHandle();
+        },
+      );
+    }
+  };
+  hiddenAnimation = () => {
+    if (this.position == 'center') {
+      centerLeaveAnimation(
+        this.popupRef,
+        this.duration,
+        this.easing,
+        () => {
+          this.closeHandle();
+        },
+        () => {
+          this.popupRef.style.display = 'none';
+          this.closedHandle();
+        },
+      );
+    }
+    if (this.position == 'top') {
+      topLeaveAnimation(
+        this.popupRef,
+        this.duration,
+        this.easing,
+        () => {
+          this.closeHandle();
+        },
+        () => {
+          this.popupRef.style.display = 'none';
+          this.closedHandle();
+        },
+      );
+    }
+    if (this.position == 'bottom') {
+      bottomLeaveAnimation(
+        this.popupRef,
+        this.duration,
+        this.easing,
+        () => {
+          this.closeHandle();
+        },
+        () => {
+          console.log(this, 'this.popupRef.style');
+          this.popupRef.style.display = 'none';
+          this.closedHandle();
+        },
+      );
+    }
+    if (this.position == 'left') {
+      leftLeaveAnimation(
+        this.popupRef,
+        this.duration,
+        this.easing,
+        () => {
+          this.closeHandle();
+        },
+        () => {
+          this.popupRef.style.display = 'none';
+          this.closedHandle();
+        },
+      );
+    }
+    if (this.position == 'right') {
+      rightLeaveAnimation(
+        this.popupRef,
+        this.duration,
+        this.easing,
+        () => {
+          this.closeHandle();
+        },
+        () => {
+          this.popupRef.style.display = 'none';
+          this.closedHandle();
+        },
+      );
+    }
+  };
   renderTransitionAppear = () => {
     if (this.show && this.transitionAppear) {
-      if (this.position == 'center') {
-        centerEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'block';
-          this.openedHandle();
-        });
-      }
-      if (this.position == 'top') {
-        topEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'block';
-          this.openedHandle();
-        });
-      }
-      if (this.position == 'bottom') {
-        bottomEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'block';
-          this.openedHandle();
-        });
-      }
-      if (this.position == 'left') {
-        leftEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'block';
-          this.openedHandle();
-        });
-      }
-      if (this.position == 'right') {
-        rightEnterAnimation(this.popupRef, this.duration, this.easing, () => {
-          this.popupRef.style.display = 'block';
-          this.openedHandle();
-        });
-      }
+      this.showAnimation();
     }
   };
   renderTeleport = () => {

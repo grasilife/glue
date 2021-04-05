@@ -7,36 +7,33 @@ import { Component, Prop, h, State } from '@stencil/core';
 })
 export class GlueDemo {
   @Prop({ mutable: true }) show = true;
-  @State() showShare = true;
+  @State() open: boolean = true;
   @State() list = [1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1, 1, 1, 1, 1, 1, 1, 1, ,];
-  handleClick = e => {
-    console.log(e);
+
+  handleClick = () => {
+    this.open = true;
   };
-  renderTeleport() {
-    this.show = true;
-    console.log(this.show, 'this.showShare');
-  }
+  onGlueClose = () => {
+    this.open = false;
+  };
   render() {
     return (
       <div>
-        <div onClick={this.renderTeleport}>11111</div>
-
+        <div onClick={this.handleClick}>点击 </div>
+        <button>{this.open ? 'On' : 'Off'}</button>
         {/* <glue-popup show={true}>
           <div style={{ padding: '30px 50px' }}>内容</div>
         </glue-popup> */}
         {/* <glue-popup show={true} position="left" style={{ height: '30%' }} /> */}
         <glue-popup
-          show={this.show}
+          show={this.open}
           closeable
           position="bottom"
           close-icon="close"
           style={{ height: '30%' }}
           close-icon-position="top-left"
           duration={1000}
-          onGlueClose={() => {
-            this.showShare = false;
-            console.log(this.show, 'this.showShare');
-          }}
+          onGlueClose={this.onGlueClose}
         ></glue-popup>
       </div>
     );
