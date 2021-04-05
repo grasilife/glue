@@ -1,6 +1,5 @@
 import { Component, Prop, h, Host, EventEmitter, Event, Element, Watch } from '@stencil/core';
 import classNames from 'classnames';
-import { isDef } from '../../utils/base';
 import { createNamespace } from '../../utils/create/index';
 import { DURATION, EASING } from '../../global/constant/constant';
 import {
@@ -46,9 +45,6 @@ export class GluePopup {
   @Prop() closeIcon = 'cross';
   @Prop() closeIconPosition = 'top-right';
   @Prop() content = '';
-  // @State() opened: boolean;
-  // private zIndexRef: HTMLElement;
-  // private popupRef: HTMLElement;
   @Event() glueClick: EventEmitter;
   clickHandle = event => {
     this.glueClick.emit(event);
@@ -95,14 +91,7 @@ export class GluePopup {
       this.hiddenAnimation();
     }
   }
-  componentDidRender() {
-    // this.opened;
-    // if (this.show) {
-    //   this.openHandle();
-    // } else {
-    //   this.closeHandle();
-    // }
-  }
+  componentDidRender() {}
   renderCloseIcon = () => {
     if (this.closeable) {
       return (
@@ -184,6 +173,7 @@ export class GluePopup {
         this.popupRef,
         this.duration,
         this.easing,
+        this.height,
         () => {
           this.popupRef.style.display = 'block';
           this.openHandle();
@@ -198,6 +188,7 @@ export class GluePopup {
         this.popupRef,
         this.duration,
         this.easing,
+        this.height,
         () => {
           this.popupRef.style.display = 'block';
           this.openHandle();
@@ -212,6 +203,7 @@ export class GluePopup {
         this.popupRef,
         this.duration,
         this.easing,
+        this.width,
         () => {
           this.popupRef.style.display = 'block';
           this.openHandle();
@@ -226,6 +218,7 @@ export class GluePopup {
         this.popupRef,
         this.duration,
         this.easing,
+        this.width,
         () => {
           this.popupRef.style.display = 'block';
           this.openHandle();
@@ -242,6 +235,7 @@ export class GluePopup {
         this.popupRef,
         this.duration,
         this.easing,
+
         () => {
           this.closeHandle();
         },
@@ -310,25 +304,30 @@ export class GluePopup {
     }
   };
   renderTransitionAppear = () => {
+    let style = this.popupRef.style;
     if (this.show) {
+      if (this.position == 'top' || this.position == 'bottom') {
+        style['width'] = this.width || '100%';
+      }
+
+      if (this.position == 'right' || this.position == 'left') {
+        style['height'] = this.height || '100%';
+      }
       if (this.transitionAppear) {
         this.showAnimation();
       } else {
-        let style = this.popupRef.style;
         this.popupRef.style.display = 'block';
         this.popupRef.style.zIndex = this.zIndex;
         if (this.position == 'top' || this.position == 'bottom') {
-          style['width'] = this.width || '100%';
           style['height'] = this.height || '30%';
         }
 
         if (this.position == 'right' || this.position == 'left') {
           style['width'] = this.width || '30%';
-          style['height'] = this.height || '100%';
         }
       }
     } else {
-      this.popupRef.style.display = 'none';
+      style.display = 'none';
     }
   };
   renderTeleport = () => {

@@ -2,8 +2,8 @@
   <DemoSection>
     <DemoBlock card :title="basicUsage">
       <van-cell :title="buttonBasic" is-link @click="showBasic = true" />
-      <glue-popup :show="showBasic" :style="{ padding: '30px 50px' }" @glueClose="showBasic = false">
-        {{ content }}
+      <glue-popup :show="showBasic" @glueClose="showBasic = false">
+        <div :style="{ padding: '30px 50px' }">{{ content }}</div>
       </glue-popup>
     </DemoBlock>
 
@@ -13,10 +13,10 @@
       <van-cell :title="buttonLeft" is-link @click="showLeft = true" @glueClose="showLeft = false" />
       <van-cell :title="buttonRight" is-link @click="showRight = true" @glueClose="showRight = false" />
 
-      <!-- <glue-popup :show="showTop" position="top" width="100%" height="30%" @glueClose="showTop = false" /> -->
-      <!-- <glue-popup :show="showBottom" position="bottom" width="100%" height="30%" @glueClose="showBottom = false" />
+      <glue-popup :show="showTop" position="top" width="100%" height="30%" @glueClose="showTop = false" />
+      <glue-popup :show="showBottom" position="bottom" width="100%" height="30%" @glueClose="showBottom = false" />
       <glue-popup :show="showLeft" position="left" width="30%" height="100%" @glueClose="showLeft = false" />
-      <glue-popup :show="showRight" position="right" width="30%" height="100%" @glueClose="showRight = false" /> -->
+      <glue-popup :show="showRight" position="right" width="30%" height="100%" @glueClose="showRight = false" />
     </DemoBlock>
 
     <!-- <DemoBlock card :title="closeIcon">

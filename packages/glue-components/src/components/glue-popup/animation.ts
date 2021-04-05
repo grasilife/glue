@@ -30,12 +30,12 @@ export const centerLeaveAnimation = (el, duration, easing, begin, complete) => {
   });
 };
 //top
-export const topEnterAnimation = (el, duration, easing, begin, complete) => {
+export const topEnterAnimation = (el, duration, easing, height, begin, complete) => {
   anime({
     targets: el,
     duration: duration,
-    height: '30%',
     easing: easing,
+    height: height ? height : '30%',
     begin: anim => {
       return begin(anim);
     },
@@ -59,12 +59,13 @@ export const topLeaveAnimation = (el, duration, easing, begin, complete) => {
   });
 };
 //bottom
-export const bottomEnterAnimation = (el, duration, easing, begin, complete) => {
+export const bottomEnterAnimation = (el, duration, easing, height, begin, complete) => {
   anime({
     targets: el,
     duration: duration,
-    height: '30%',
+
     easing: easing,
+    height: height ? height : '30%',
     begin: anim => {
       return begin(anim);
     },
@@ -88,12 +89,12 @@ export const bottomLeaveAnimation = (el, duration, easing, begin, complete) => {
   });
 };
 // left
-export const leftEnterAnimation = (el, duration, easing, begin, complete) => {
+export const leftEnterAnimation = (el, duration, easing, width, begin, complete) => {
   anime({
     targets: el,
     duration: duration,
-    width: '30%',
     easing: easing,
+    width: width ? width : '30%',
     begin: anim => {
       return begin(anim);
     },
@@ -117,11 +118,12 @@ export const leftLeaveAnimation = (el, duration, easing, begin, complete) => {
   });
 };
 // right
-export const rightEnterAnimation = (el, duration, easing, begin, complete) => {
+export const rightEnterAnimation = (el, duration, easing, width, begin, complete) => {
+  console.log(width, 'width');
   anime({
     targets: el,
     duration: duration,
-    width: '30%',
+    width: width ? width : '30%',
     easing: easing,
     begin: anim => {
       return begin(anim);

@@ -17,9 +17,10 @@ export class GlueDemo {
   };
   render() {
     return (
-      <div>
+      <div class="container">
         <div onClick={this.handleClick}>点击 </div>
         <button>{this.open ? 'On' : 'Off'}</button>
+        {/* <div class="test"></div> */}
         {/* <glue-popup show={true}>
           <div style={{ padding: '30px 50px' }}>内容</div>
         </glue-popup> */}
@@ -27,9 +28,10 @@ export class GlueDemo {
         <glue-popup
           show={this.open}
           closeable
-          position="bottom"
+          position="top"
           close-icon="close"
-          style={{ height: '30%' }}
+          width="100%"
+          height="50%"
           close-icon-position="top-left"
           duration={1000}
           onGlueClose={this.onGlueClose}
