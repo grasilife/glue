@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, EventEmitter, Event, Watch, Element } from '@stencil/core';
+import { Component, Prop, h, Host, EventEmitter, Event, Watch, Element, State } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { createNamespace } from '../../utils/create/index';
@@ -6,7 +6,7 @@ const [bem] = createNamespace('glue-toast');
 export type ToastType = 'text' | 'loading' | 'success' | 'fail' | 'html';
 export type ToastPosition = 'top' | 'middle' | 'bottom';
 import { enterAnimation, leaveAnimation } from './animation';
-import { EASING, DURATION } from '../../global/constant/constant';
+import { EASING } from '../../global/constant/constant';
 let timer = null;
 @Component({
   tag: 'glue-toast',
@@ -28,9 +28,10 @@ export class GlueToast {
   @Prop() closeOnClick: boolean;
   @Prop() closeOnClickOverlay: boolean;
   @Prop() type = 'text';
-  @Prop() duration: number = 2000;
+  @Prop() duration: number = 5000;
   @Prop() position = 'middle';
   @Prop() easing: string = EASING;
+  @State() enterAnimationInstance = null;
   @Watch('show')
   watchHandler(newValue) {
     console.log(newValue, 'newValuenewValue');
@@ -42,31 +43,36 @@ export class GlueToast {
   @Event() glueOpen: EventEmitter;
   openHandle = () => {
     this.show = true;
-    this.glueOpen.emit(true);
+    this.glueOpen.emit(this.show);
   };
   @Event() glueClose: EventEmitter;
   closeHandle = () => {
     this.show = false;
     // unlockScroll();
-    this.glueClose.emit(false);
+    this.glueClose.emit(this.show);
   };
   @Event() glueOpened: EventEmitter;
   openedHandle = () => {
     this.show = true;
     //打开动画完成后立马启动关闭动画
     this.hiddenAnimation();
-    this.glueOpened.emit('opened');
+    this.glueOpened.emit(this.show);
   };
   @Event() glueClosed: EventEmitter;
   closedHandle = () => {
     this.show = false;
-    this.glueClosed.emit('closed');
+    this.glueClosed.emit(this.show);
   };
   @Event()
-  click: EventEmitter;
+  glueClick: EventEmitter;
   clickHandle = () => {
     if (this.closeOnClick) {
-      this.click.emit(false);
+      //立马暂停启动的动画
+      if (this.enterAnimationInstance) {
+        this.enterAnimationInstance.pause;
+      }
+      this.hiddenAnimation();
+      this.glueClick.emit();
     }
   };
   @Event() toggle: EventEmitter;
@@ -77,7 +83,7 @@ export class GlueToast {
     clearTimeout(timer);
   };
   showAnimation = () => {
-    enterAnimation(
+    this.enterAnimationInstance = enterAnimation(
       this.el,
       this.duration,
       this.easing,
@@ -126,7 +132,7 @@ export class GlueToast {
   };
   render() {
     return (
-      <Host style={{ display: 'none' }} class={classNames('glue-toast', 'glue-toast__popup', bem([this.position, this.type]))}>
+      <Host style={{ display: 'none' }} class={classNames('glue-toast', 'glue-toast__popup', bem([this.position, this.type]))} onClick={this.clickHandle}>
         {this.renderIcon()}
         {this.renderMessage()}
       </Host>

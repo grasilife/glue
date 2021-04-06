@@ -2430,7 +2430,7 @@ declare namespace LocalJSX {
         "loadingType"?: ToastType;
         "lockScroll"?: boolean;
         "message"?: string;
-        "onClick"?: (event: CustomEvent<any>) => void;
+        "onGlueClick"?: (event: CustomEvent<any>) => void;
         "onGlueClose"?: (event: CustomEvent<any>) => void;
         "onGlueClosed"?: (event: CustomEvent<any>) => void;
         "onGlueOpen"?: (event: CustomEvent<any>) => void;

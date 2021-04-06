@@ -3,7 +3,7 @@ import { DURATION } from '../../global/constant/constant';
 //enter
 export const enterAnimation = (el, duration, easing, begin, complete) => {
   console.log(duration);
-  anime({
+  return anime({
     targets: el,
     opacity: [
       {
@@ -28,7 +28,7 @@ export const enterAnimation = (el, duration, easing, begin, complete) => {
 export const leaveAnimation = (el, duration, easing, begin, complete) => {
   console.log(duration);
   //分阶段动画
-  anime({
+  return anime({
     targets: el,
     opacity: [
       {
