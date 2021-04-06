@@ -855,7 +855,7 @@ export namespace Components {
     interface GlueToast {
         "closeOnClick": boolean;
         "closeOnClickOverlay": boolean;
-        "duration": number | string;
+        "duration": number;
         "easing": string;
         "forbidClick": boolean;
         "icon": string;
@@ -2422,7 +2422,7 @@ declare namespace LocalJSX {
     interface GlueToast {
         "closeOnClick"?: boolean;
         "closeOnClickOverlay"?: boolean;
-        "duration"?: number | string;
+        "duration"?: number;
         "easing"?: string;
         "forbidClick"?: boolean;
         "icon"?: string;
@@ -2431,10 +2431,8 @@ declare namespace LocalJSX {
         "lockScroll"?: boolean;
         "message"?: string;
         "onClick"?: (event: CustomEvent<any>) => void;
-        "onGlueClose"?: (event: CustomEvent<any>) => void;
         "onGlueClosed"?: (event: CustomEvent<any>) => void;
         "onGlueOpen"?: (event: CustomEvent<any>) => void;
-        "onGlueOpened"?: (event: CustomEvent<any>) => void;
         "onToggle"?: (event: CustomEvent<any>) => void;
         "overlayClass"?: null;
         "overlayStyle"?: object;
