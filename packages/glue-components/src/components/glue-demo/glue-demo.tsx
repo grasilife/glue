@@ -1,4 +1,5 @@
 import { Component, h, State } from '@stencil/core';
+import Toast from '../glue-toast/index';
 // import classNames from 'classnames';
 @Component({
   tag: 'glue-demo',
@@ -15,6 +16,9 @@ export class GlueDemo {
   onGlueClose = () => {
     this.open = false;
   };
+  componentDidLoad() {
+    Toast('提示内容');
+  }
   render() {
     return (
       <div class="container">
@@ -28,7 +32,7 @@ export class GlueDemo {
         {/* <glue-toast message="提示内容" show={this.open} type="icon" icon="https://img01.yzcdn.cn/vant/logo.png"></glue-toast> */}
         {/* <glue-toast message="提示内容" show={this.open} loading-type="spinner" type="loading"></glue-toast> */}
         {/* <glue-toast message="提示内容" show={this.open} type="text" position="bottom"></glue-toast> */}
-        <glue-toast message="倒计时 3 秒" show={this.open} type="loading" onGlueClosed={this.onGlueClose} close-on-click={true}></glue-toast>
+        {/* <glue-toast message="倒计时 3 秒" show={this.open} type="loading" onGlueClosed={this.onGlueClose} close-on-click={true}></glue-toast> */}
         {/* <glue-popup show={this.open} onGlueClose={this.onGlueClose}>
           <div style={{ padding: '30px 50px' }}>内容</div>
         </glue-popup> */}
