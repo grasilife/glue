@@ -22,7 +22,14 @@
   word-wrap: break-word;
   background-color: @toast-background-color;
   border-radius: @toast-border-radius;
-
+  &__popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    max-height: 100%;
+    overflow-y: auto;
+  }
   &--unclickable {
     // lock scroll
     overflow: hidden;

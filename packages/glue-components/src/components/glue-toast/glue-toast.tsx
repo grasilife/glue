@@ -1,10 +1,12 @@
-import { Component, Prop, h, Host, EventEmitter, Event } from '@stencil/core';
-// import classNames from 'classnames';
+import { Component, Prop, h, Host, EventEmitter, Event, Watch, Element } from '@stencil/core';
+import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { createNamespace } from '../../utils/create/index';
-const [bem] = createNamespace('glue-popup');
+const [bem] = createNamespace('glue-toast');
 export type ToastType = 'text' | 'loading' | 'success' | 'fail' | 'html';
 export type ToastPosition = 'top' | 'middle' | 'bottom';
+import { enterAnimation, leaveAnimation } from './animation';
+import { EASING, DURATION } from '../../global/constant/constant';
 let timer = null;
 @Component({
   tag: 'glue-toast',
@@ -12,8 +14,9 @@ let timer = null;
   shadow: false,
 })
 export class GlueToast {
+  @Element() el!: HTMLElement;
   @Prop() icon: string;
-  @Prop() show: boolean;
+  @Prop({ mutable: true }) show: boolean;
   @Prop() message: string;
   // @Prop() className: null;
   @Prop() iconPrefix: string;
@@ -25,10 +28,41 @@ export class GlueToast {
   @Prop() closeOnClick: boolean;
   @Prop() closeOnClickOverlay: boolean;
   @Prop() type = 'text';
-  @Prop() duration = 2000;
+  @Prop() duration: number | string = DURATION;
   @Prop() position = 'middle';
-  @Prop() transition = 'van-fade';
-  @Event() click: EventEmitter;
+  @Prop() easing: string = EASING;
+  @Watch('show')
+  watchHandler(newValue) {
+    console.log(newValue, 'newValuenewValue');
+    if (newValue) {
+      this.showAnimation();
+    } else {
+      this.hiddenAnimation();
+    }
+  }
+  @Event() glueOpen: EventEmitter;
+  openHandle = () => {
+    this.show = true;
+    this.glueOpen.emit(true);
+  };
+  @Event() glueClose: EventEmitter;
+  closeHandle = () => {
+    this.show = false;
+    // unlockScroll();
+    this.glueClose.emit(false);
+  };
+  @Event() glueOpened: EventEmitter;
+  openedHandle = () => {
+    this.show = true;
+    this.glueOpened.emit('opened');
+  };
+  @Event() glueClosed: EventEmitter;
+  closedHandle = () => {
+    this.show = false;
+    this.glueClosed.emit('closed');
+  };
+  @Event()
+  click: EventEmitter;
   clickHandle = () => {
     if (this.closeOnClick) {
       this.click.emit(false);
@@ -41,45 +75,59 @@ export class GlueToast {
   clearTimer = () => {
     clearTimeout(timer);
   };
+  showAnimation = () => {
+    enterAnimation(
+      this.el,
+      this.duration,
+      this.easing,
+      () => {
+        this.el.style.display = 'flex';
+        this.openHandle();
+      },
+      () => {
+        this.openedHandle();
+      },
+    );
+  };
+  hiddenAnimation = () => {
+    leaveAnimation(
+      this.el,
+      this.duration,
+      this.easing,
+      () => {
+        this.closeHandle();
+      },
+      () => {
+        this.el.style.display = 'none';
+        this.closedHandle();
+      },
+    );
+  };
   renderIcon = () => {
     const { icon, type, iconPrefix, loadingType } = this;
-    const hasIcon = icon || type === 'success' || type === 'fail';
+    const hasIcon = icon || type === 'success' || type === 'fail' || type === 'icon';
 
     if (hasIcon) {
-      return <glue-icon name={icon || type} class={bem('icon')} classPrefix={iconPrefix} />;
+      return <glue-icon name={icon || type} classPrefix={iconPrefix} size="36" />;
     }
 
     if (type === 'loading') {
-      return <glue-loading class={bem('loading')} type={loadingType} />;
+      return <glue-loading class="glue-toast__loading" type={loadingType} />;
     }
   };
 
   renderMessage = () => {
-    const { type, message } = this;
+    const { message } = this;
 
     if (isDef(message) && message !== '') {
-      return type === 'html' ? <div class="glue-toast__text" innerHTML={String(message)} /> : <div class="glue-toast__text">{message}</div>;
+      return <div class="glue-toast__text">{message}</div>;
     }
   };
   render() {
     return (
-      <Host class="glue-toast glue-toast--text glue-toast--center glue-toast--popup">
+      <Host style={{ display: 'none' }} class={classNames('glue-toast', 'glue-toast__popup', bem([this.position, this.type]))}>
         {this.renderIcon()}
         {this.renderMessage()}
-        {/* <glue-popup
-          show={this.show}
-          class={classNames(bem([this.position]))}
-          lockScroll={false}
-          transition={this.transition}
-          overlayClass={this.overlayClass}
-          overlayStyle={this.overlayStyle}
-          closeOnClickOverlay={this.closeOnClickOverlay}
-          onClick={this.clickHandle}
-          onClosed={this.clearTimer}
-        >
-          {this.renderIcon()}
-          {this.renderMessage()}
-        </glue-popup>{' '} */}
       </Host>
     );
   }

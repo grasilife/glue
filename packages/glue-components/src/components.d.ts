@@ -855,7 +855,8 @@ export namespace Components {
     interface GlueToast {
         "closeOnClick": boolean;
         "closeOnClickOverlay": boolean;
-        "duration": number;
+        "duration": number | string;
+        "easing": string;
         "forbidClick": boolean;
         "icon": string;
         "iconPrefix": string;
@@ -866,7 +867,6 @@ export namespace Components {
         "overlayStyle": object;
         "position": string;
         "show": boolean;
-        "transition": string;
         "type": string;
     }
     interface GlueTreeSelect {
@@ -2131,8 +2131,8 @@ declare namespace LocalJSX {
         "onGlueClickOverlay"?: (event: CustomEvent<any>) => void;
         "onGlueClose"?: (event: CustomEvent<any>) => void;
         "onGlueClosed"?: (event: CustomEvent<any>) => void;
+        "onGlueOpen"?: (event: CustomEvent<any>) => void;
         "onGlueOpened"?: (event: CustomEvent<any>) => void;
-        "onOpen"?: (event: CustomEvent<any>) => void;
         "overlay"?: boolean;
         "overlayClass"?: any;
         "overlayStyle"?: object;
@@ -2422,7 +2422,8 @@ declare namespace LocalJSX {
     interface GlueToast {
         "closeOnClick"?: boolean;
         "closeOnClickOverlay"?: boolean;
-        "duration"?: number;
+        "duration"?: number | string;
+        "easing"?: string;
         "forbidClick"?: boolean;
         "icon"?: string;
         "iconPrefix"?: string;
@@ -2430,12 +2431,15 @@ declare namespace LocalJSX {
         "lockScroll"?: boolean;
         "message"?: string;
         "onClick"?: (event: CustomEvent<any>) => void;
+        "onGlueClose"?: (event: CustomEvent<any>) => void;
+        "onGlueClosed"?: (event: CustomEvent<any>) => void;
+        "onGlueOpen"?: (event: CustomEvent<any>) => void;
+        "onGlueOpened"?: (event: CustomEvent<any>) => void;
         "onToggle"?: (event: CustomEvent<any>) => void;
         "overlayClass"?: null;
         "overlayStyle"?: object;
         "position"?: string;
         "show"?: boolean;
-        "transition"?: string;
         "type"?: string;
     }
     interface GlueTreeSelect {

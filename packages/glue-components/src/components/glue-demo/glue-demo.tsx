@@ -6,7 +6,7 @@ import { Component, h, State } from '@stencil/core';
   shadow: false,
 })
 export class GlueDemo {
-  @State() open: boolean = true;
+  @State() open: boolean = false;
   @State() list = [1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1, 1, 1, 1, 1, 1, 1, 1, ,];
 
   handleClick = () => {
@@ -19,24 +19,19 @@ export class GlueDemo {
     return (
       <div class="container">
         <div onClick={this.handleClick}>点击 </div>
-        <button>{this.open ? 'On' : 'Off'}</button>
-        {/* <div class="test"></div> */}
-        {/* <glue-popup show={true}>
+        {/* <glue-toast message="提示内容" show={this.open} type="text"></glue-toast> */}
+        {/* <glue-toast message="提示内容" show={this.open} type="loading"></glue-toast> */}
+        {/* <glue-toast message="提示内容" show={this.open} type="success"></glue-toast> */}
+        {/* <glue-toast message="提示内容" show={this.open} type="fail"></glue-toast> */}
+        {/* <glue-toast message="提示内容" show={this.open} type="html"></glue-toast> */}
+        {/* <glue-toast message="提示内容" show={this.open} icon="like-o" type="icon"></glue-toast> */}
+        {/* <glue-toast message="提示内容" show={this.open} type="icon" icon="https://img01.yzcdn.cn/vant/logo.png"></glue-toast> */}
+        {/* <glue-toast message="提示内容" show={this.open} loading-type="spinner" type="loading"></glue-toast> */}
+        {/* <glue-toast message="提示内容" show={this.open} type="text" position="bottom"></glue-toast> */}
+        <glue-toast message="倒计时 3 秒" show={this.open} type="loading"></glue-toast>
+        {/* <glue-popup show={this.open} onGlueClose={this.onGlueClose}>
           <div style={{ padding: '30px 50px' }}>内容</div>
         </glue-popup> */}
-        {/* <glue-popup show={true} position="left" style={{ height: '30%' }} /> */}
-        <glue-popup
-          show={this.open}
-          closeable
-          position="left"
-          close-icon="close"
-          width="50%"
-          height="100%"
-          close-icon-position="top-left"
-          duration={1000}
-          onGlueClose={this.onGlueClose}
-          transitionAppear={true}
-        ></glue-popup>
       </div>
     );
   }
