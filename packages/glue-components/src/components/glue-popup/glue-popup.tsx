@@ -29,7 +29,7 @@ export class GluePopup {
   @Prop() easing: string = EASING;
   @Prop() width: string;
   @Prop() height: string;
-  @Prop() teleport: string | HTMLElement;
+  @Prop() teleport: string | HTMLElement = 'body';
   @Prop() overlayStyle: object;
   @Prop() overlayClass = null;
   @Prop() transitionAppear: boolean;
