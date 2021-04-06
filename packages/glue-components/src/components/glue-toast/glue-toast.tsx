@@ -5,8 +5,8 @@ import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-toast');
 export type ToastType = 'text' | 'loading' | 'success' | 'fail' | 'html';
 export type ToastPosition = 'top' | 'middle' | 'bottom';
-import { enterAnimation } from './animation';
-import { EASING } from '../../global/constant/constant';
+import { enterAnimation, leaveAnimation } from './animation';
+import { EASING, DURATION } from '../../global/constant/constant';
 let timer = null;
 @Component({
   tag: 'glue-toast',
@@ -44,6 +44,19 @@ export class GlueToast {
     this.show = true;
     this.glueOpen.emit(true);
   };
+  @Event() glueClose: EventEmitter;
+  closeHandle = () => {
+    this.show = false;
+    // unlockScroll();
+    this.glueClose.emit(false);
+  };
+  @Event() glueOpened: EventEmitter;
+  openedHandle = () => {
+    this.show = true;
+    //打开动画完成后立马启动关闭动画
+    this.hiddenAnimation();
+    this.glueOpened.emit('opened');
+  };
   @Event() glueClosed: EventEmitter;
   closedHandle = () => {
     this.show = false;
@@ -73,11 +86,24 @@ export class GlueToast {
         this.openHandle();
       },
       () => {
+        this.openedHandle();
+      },
+    );
+  };
+  hiddenAnimation = () => {
+    leaveAnimation(
+      this.el,
+      this.duration,
+      this.easing,
+      () => {
+        this.closeHandle();
+      },
+      () => {
+        this.el.style.display = 'none';
         this.closedHandle();
       },
     );
   };
-
   renderIcon = () => {
     const { icon, type, iconPrefix, loadingType } = this;
     const hasIcon = icon || type === 'success' || type === 'fail' || type === 'icon';

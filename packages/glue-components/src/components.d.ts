@@ -2431,8 +2431,10 @@ declare namespace LocalJSX {
         "lockScroll"?: boolean;
         "message"?: string;
         "onClick"?: (event: CustomEvent<any>) => void;
+        "onGlueClose"?: (event: CustomEvent<any>) => void;
         "onGlueClosed"?: (event: CustomEvent<any>) => void;
         "onGlueOpen"?: (event: CustomEvent<any>) => void;
+        "onGlueOpened"?: (event: CustomEvent<any>) => void;
         "onToggle"?: (event: CustomEvent<any>) => void;
         "overlayClass"?: null;
         "overlayStyle"?: object;
