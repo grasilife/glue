@@ -31,7 +31,7 @@
     <DemoBlock :title="previewCover">
       <van-uploader v-model="previewCoverFiles">
         <template #preview-cover="{ file }">
-          <div class="preview-cover van-ellipsis">{{ file.name }}</div>
+          <div class="preview-cover glue-ellipsis">{{ file.name }}</div>
         </template>
       </van-uploader>
     </DemoBlock>

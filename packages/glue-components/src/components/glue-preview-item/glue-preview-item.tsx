@@ -90,7 +90,7 @@ export class GluePreviewItem {
     return (
       <div class="glue-preview-item__file" style={getSizeStyle(this.previewSize)}>
         <glue-icon class="glue-preview-item__file-icon" name="description" />
-        <div class="glue-preview-item__file-name van-ellipsis">{item.file ? item.file.name : item.url}</div>
+        <div class="glue-preview-item__file-name glue-ellipsis">{item.file ? item.file.name : item.url}</div>
         {this.renderCover()}
       </div>
     );

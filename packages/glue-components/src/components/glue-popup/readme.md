@@ -27,7 +27,7 @@
 | `round`               | `round`                  |             | `boolean`               | `true`        |
 | `safeAreaInsetBottom` | `safe-area-inset-bottom` |             | `boolean`               | `false`       |
 | `show`                | `show`                   |             | `boolean`               | `undefined`   |
-| `teleport`            | `teleport`               |             | `HTMLElement \| string` | `undefined`   |
+| `teleport`            | `teleport`               |             | `HTMLElement \| string` | `'body'`      |
 | `transitionAppear`    | `transition-appear`      |             | `boolean`               | `undefined`   |
 | `width`               | `width`                  |             | `string`                | `undefined`   |
 | `zIndex`              | `z-index`                |             | `string`                | `'2000'`      |
@@ -42,8 +42,8 @@
 | `glueClickOverlay`   |             | `CustomEvent<any>` |
 | `glueClose`          |             | `CustomEvent<any>` |
 | `glueClosed`         |             | `CustomEvent<any>` |
+| `glueOpen`           |             | `CustomEvent<any>` |
 | `glueOpened`         |             | `CustomEvent<any>` |
-| `open`               |             | `CustomEvent<any>` |
 
 
 ## Dependencies
@@ -52,7 +52,6 @@
 
  - [glue-action-sheet](../glue-action-sheet)
  - [glue-address-edit](../glue-address-edit)
- - [glue-demo](../glue-demo)
  - [glue-share-sheet](../glue-share-sheet)
 
 ### Depends on
@@ -68,7 +67,6 @@ graph TD;
   glue-icon --> glue-badge
   glue-action-sheet --> glue-popup
   glue-address-edit --> glue-popup
-  glue-demo --> glue-popup
   glue-share-sheet --> glue-popup
   style glue-popup fill:#f9f,stroke:#333,stroke-width:4px
 ```

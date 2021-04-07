@@ -64,7 +64,7 @@ export class GlueNavBar {
               {this.renderLeft()}
             </div>
           )}
-          <div class="glue-nav-bar__title van-ellipsis">{title}</div>
+          <div class="glue-nav-bar__title glue-ellipsis">{title}</div>
           {hasRight && (
             <div class="glue-nav-bar__right" onClick={this.onClickRight}>
               {this.renderRight()}

@@ -164,7 +164,7 @@ export default {
 ```html
 <van-uploader v-model="fileList">
   <template #preview-cover="{ file }">
-    <div class="preview-cover van-ellipsis">{{ file.name }}</div>
+    <div class="preview-cover glue-ellipsis">{{ file.name }}</div>
   </template>
 </van-uploader>
 

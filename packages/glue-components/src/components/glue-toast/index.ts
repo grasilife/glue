@@ -1,6 +1,5 @@
 import { isObject, inBrowser } from '../../utils/base';
 import { EASING } from '../../global/constant/constant';
-import { toLine } from '../../utils/format/string';
 const defaultOptions: any = {
   show: true,
   icon: '',
@@ -74,7 +73,7 @@ function parseOptions(message) {
 }
 function Toast(options: any = {}) {
   const toast = getInstance();
-
+  console.log(options, toast);
   // options = parseOptions(options);
   // options = {
   //   ...currentOptions,

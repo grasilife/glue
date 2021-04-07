@@ -1,5 +1,6 @@
 import anime from 'animejs/lib/anime.es.js';
 import { DURATION } from '../../global/constant/constant';
+console.log(anime, 'anime');
 //enter
 export const enterAnimation = (el, duration, easing, begin, complete) => {
   console.log(duration);

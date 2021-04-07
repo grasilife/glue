@@ -51,7 +51,7 @@ export class GlueNoticeBar {
           ref={el => (this.contentRef = el)}
           style={style}
           class={classNames('glue-notice-bar__content', {
-            'glue-notice-bar__van-ellipsis': ellipsis,
+            'glue-notice-bar__glue-ellipsis': ellipsis,
           })}
           onTransitionEnd={this.onTransitionEnd}
         >
