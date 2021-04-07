@@ -121,7 +121,7 @@ export namespace Components {
         "content": number | string;
         "dot": boolean;
         "max": number | string;
-        "offset": any;
+        "offset": [number, number];
         "slotContent": boolean;
     }
     interface GlueButton {
@@ -1637,7 +1637,7 @@ declare namespace LocalJSX {
         "content"?: number | string;
         "dot"?: boolean;
         "max"?: number | string;
-        "offset"?: any;
+        "offset"?: [number, number];
         "slotContent"?: boolean;
     }
     interface GlueButton {

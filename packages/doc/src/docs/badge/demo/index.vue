@@ -1,68 +1,72 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-badge content="5">
+      <glue-badge content="5" style="margin-left: 16px">
         <div class="child" />
-      </van-badge>
-      <van-badge content="10">
-        <div class="child" />
-      </van-badge>
-      <van-badge content="Hot">
-        <div class="child" />
-      </van-badge>
-      <van-badge dot>
-        <div class="child" />
-      </van-badge>
+      </glue-badge>
+      <glue-badge content="10">
+        <div class="child" style="margin-left: 16px" />
+      </glue-badge>
+      <glue-badge content="Hot">
+        <div class="child" style="margin-left: 16px" />
+      </glue-badge>
+      <glue-badge dot>
+        <div class="child" style="margin-left: 16px" />
+      </glue-badge>
     </DemoBlock>
 
     <DemoBlock :title="max">
-      <van-badge content="20" max="9">
+      <glue-badge content="20" max="9" style="margin-left: 16px">
         <div class="child" />
-      </van-badge>
-      <van-badge content="50" max="20">
+      </glue-badge>
+      <glue-badge content="50" max="20" style="margin-left: 16px">
         <div class="child" />
-      </van-badge>
-      <van-badge content="200" max="99">
+      </glue-badge>
+      <glue-badge content="200" max="99" style="margin-left: 16px">
         <div class="child" />
-      </van-badge>
+      </glue-badge>
     </DemoBlock>
 
     <DemoBlock :title="customColor">
-      <van-badge content="5" color="#1989fa">
+      <glue-badge content="5" color="#1989fa" style="margin-left: 16px">
         <div class="child" />
-      </van-badge>
-      <van-badge content="10" color="#1989fa">
+      </glue-badge>
+      <glue-badge content="10" color="#1989fa" style="margin-left: 16px">
         <div class="child" />
-      </van-badge>
-      <van-badge dot color="#1989fa">
+      </glue-badge>
+      <glue-badge dot color="#1989fa" style="margin-left: 16px">
         <div class="child" />
-      </van-badge>
+      </glue-badge>
     </DemoBlock>
 
     <DemoBlock :title="customContent">
-      <van-badge>
+      <glue-badge content="#slot" style="margin-left: 16px">
         <div class="child" />
-        <template #content>
-          <van-icon name="success" class="badge-icon" />
-        </template>
-      </van-badge>
-      <van-badge>
+        <div slot="content">
+          <glue-icon name="success" class="badge-icon" size="12" />
+        </div>
+      </glue-badge>
+      <glue-badge content="#slot" style="margin-left: 16px">
         <div class="child" />
-        <template #content>
-          <van-icon name="cross" class="badge-icon" />
-        </template>
-      </van-badge>
-      <van-badge>
+        <div slot="content">
+          <glue-icon name="cross" class="badge-icon" size="12" />
+        </div>
+      </glue-badge>
+      <glue-badge content="#slot" style="margin-left: 16px">
         <div class="child" />
-        <template #content>
-          <van-icon name="down" class="badge-icon" />
-        </template>
-      </van-badge>
+        <div slot="content">
+          <glue-icon name="down" class="badge-icon" size="12" />
+        </div>
+      </glue-badge>
     </DemoBlock>
 
     <DemoBlock :title="standalone">
-      <van-badge content="20" style="margin-left: 16px;" />
-      <van-badge content="200" max="99" style="margin-left: 12px;" />
+      <div style="display:inline-block">
+        <glue-badge content="20" style="margin-left: 32px" />
+      </div>
+      <div style="display:inline-block">
+        <glue-badge content="200" max="99" style="margin-left: 32px" />
+      </div>
     </DemoBlock>
   </DemoSection>
 </template>
@@ -86,10 +90,6 @@ export default {
 
 .demo-badge {
   background-color: @white;
-
-  .van-badge__wrapper {
-    margin-left: @padding-md;
-  }
 
   .child {
     width: 40px;

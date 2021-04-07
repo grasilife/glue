@@ -11,7 +11,7 @@ export class GlueBadge {
   @Prop() dot: boolean;
   @Prop() max: number | string;
   @Prop() color: string;
-  @Prop() offset: any;
+  @Prop() offset: [number, number];
   @Prop() content: number | string;
   @Prop() slotContent: boolean;
   @Element() el!: HTMLElement;
@@ -19,42 +19,29 @@ export class GlueBadge {
 
   renderContent = () => {
     const { dot, max, content } = this;
-
+    if (this.content == '#slot') {
+      return <slot name="content"></slot>;
+    }
     if (!dot && this.hasContent()) {
-      // if (slots.content) {
-      //   return slots.content();
-      // }
-
       if (isDef(max) && isNumeric(content!) && +content > max) {
         return `${max}+`;
       }
-
       return content;
     }
   };
-  renderSlotContent = () => {
-    return (
-      <div class="glue-badge__wrapper">
-        <slot></slot>
-        {this.renderBadge()}
-      </div>
-    );
-  };
+
   renderBadge = () => {
     if (this.hasContent() || this.dot) {
       const style = {
         background: this.color,
+        top: '0px',
+        right: '0px',
       };
 
       if (this.offset) {
-        // const [x, y] = this.offset;
-        // if (slots.default) {
-        //   style.top = `${y}px`;
-        //   style.right = `${-x}px`;
-        // } else {
-        //   style.marginTop = `${y}px`;
-        //   style.marginLeft = `${x}px`;
-        // }
+        const [x, y] = this.offset;
+        style.top = `${y}px`;
+        style.right = `${x}px`;
       }
 
       return (
@@ -63,7 +50,6 @@ export class GlueBadge {
             'glue-badge--dot': this.dot,
             'glue-badge': true,
             'glue-badge--fixed': true,
-            // 'glue-badge__wrapper': true,
           })}
           style={style}
         >
@@ -73,11 +59,11 @@ export class GlueBadge {
     }
   };
   render() {
-    console.log(this.el, this.slotContent, '元素');
-    if (this.slotContent) {
-      return <Host>{this.renderSlotContent()}</Host>;
-    } else {
-      return <Host>{this.renderBadge()}</Host>;
-    }
+    return (
+      <Host class="glue-badge__wrapper">
+        <slot></slot>
+        {this.renderBadge()}
+      </Host>
+    );
   }
 }
