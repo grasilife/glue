@@ -9,7 +9,7 @@
       <div class="glue-hairline--top" />
     </DemoBlock>
 
-    <DemoBlock :title="animation">
+    <DemoBlock :title="animation" card>
       <glue-cell is-link title="淡入" @click="animate('glue-fade')" />
       <glue-cell is-link title="上滑进入" @click="animate('glue-slide-up')" />
       <glue-cell is-link title="下滑进入" @click="animate('glue-slide-down')" />
