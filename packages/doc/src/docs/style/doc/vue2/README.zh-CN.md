@@ -68,7 +68,6 @@ import { anime } from "glue-components";
 
 ```
 
-
 ``` JS
 <script>
 import { anime } from "glue-components";
@@ -107,7 +106,7 @@ export default {
         if (this.slideUpAnime == null) {
           this.slideUpAnime = anime({
             targets: this.$refs.anime,
-            translateY: [100, 0],
+            translateY: ["100%", 0],
             easing: "easeInOutExpo",
             begin: anim => {
               this.show = true;
@@ -125,7 +124,7 @@ export default {
         if (this.slideDownAnime == null) {
           this.slideDownAnime = anime({
             targets: this.$refs.anime,
-            translateY: [-100, 0],
+            translateY: ["-100%", 0],
             easing: "easeInOutExpo",
             begin: anim => {
               this.show = true;
@@ -143,7 +142,7 @@ export default {
         if (this.slideLeftAnime == null) {
           this.slideLeftAnime = anime({
             targets: this.$refs.anime,
-            translateX: [-100, 0],
+            translateX: ["-100%", 0],
             easing: "easeInOutExpo",
             begin: anim => {
               this.show = true;
@@ -161,7 +160,7 @@ export default {
         if (this.slideRightAnime == null) {
           this.slideRightAnime = anime({
             targets: this.$refs.anime,
-            translateX: [100, 0],
+            translateX: ["100%", 0],
             easing: "easeInOutExpo",
             begin: anim => {
               this.show = true;
