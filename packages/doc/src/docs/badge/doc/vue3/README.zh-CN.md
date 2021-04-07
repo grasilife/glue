@@ -11,27 +11,18 @@
 设置 `content` 属性后，Badge 会在子元素的右上角显示对应的徽标，也可以通过 `dot` 来显示小红点。
 
 ```html
-<van-badge :content="5">
-  <div class="child" />
-</van-badge>
-<van-badge :content="10">
-  <div class="child" />
-</van-badge>
-<van-badge content="Hot">
-  <div class="child" />
-</van-badge>
-<van-badge dot>
-  <div class="child" />
-</van-badge>
-
-<style>
-  .child {
-    width: 40px;
-    height: 40px;
-    background: #f2f3f5;
-    border-radius: 4px;
-  }
-</style>
+<glue-badge content="5" style="margin-left: 16px">
+    <div class="child" />
+</glue-badge>
+<glue-badge content="10">
+    <div class="child" style="margin-left: 16px" />
+</glue-badge>
+<glue-badge content="Hot">
+    <div class="child" style="margin-left: 16px" />
+</glue-badge>
+<glue-badge dot>
+    <div class="child" style="margin-left: 16px" />
+</glue-badge>
 ```
 
 ### 最大值
@@ -39,15 +30,16 @@
 设置 `max` 属性后，当 `content` 的数值超过最大值时，会自动显示为 `{max}+`。
 
 ```html
-<van-badge :content="20" max="9">
-  <div class="child" />
-</van-badge>
-<van-badge :content="50" max="20">
-  <div class="child" />
-</van-badge>
-<van-badge :content="200" max="99">
-  <div class="child" />
-</van-badge>
+<glue-badge content="20" max="9" style="margin-left: 16px">
+    <div class="child" />
+</glue-badge>
+<glue-badge content="50" max="20" style="margin-left: 16px">
+    <div class="child" />
+</glue-badge>
+<glue-badge content="200" max="99" style="margin-left: 16px">
+    <div class="child" />
+</glue-badge>
+
 ```
 
 ### 自定义颜色
@@ -55,15 +47,16 @@
 通过 `color` 属性来设置徽标的颜色。
 
 ```html
-<van-badge :content="5" color="#1989fa">
-  <div class="child" />
-</van-badge>
-<van-badge :content="10" color="#1989fa">
-  <div class="child" />
-</van-badge>
-<van-badge dot color="#1989fa">
-  <div class="child" />
-</van-badge>
+<glue-badge content="5" color="#1989fa" style="margin-left: 16px">
+    <div class="child" />
+</glue-badge>
+<glue-badge content="10" color="#1989fa" style="margin-left: 16px">
+    <div class="child" />
+</glue-badge>
+<glue-badge dot color="#1989fa" style="margin-left: 16px">
+    <div class="child" />
+</glue-badge>
+
 ```
 
 ### 自定义徽标内容
@@ -71,32 +64,41 @@
 通过 `content` 插槽可以自定义徽标的内容，比如插入一个图标。
 
 ```html
-<van-badge>
-  <div class="child" />
-  <template #content>
-    <van-icon name="success" class="badge-icon" />
-  </template>
-</van-badge>
-<van-badge>
-  <div class="child" />
-  <template #content>
-    <van-icon name="cross" class="badge-icon" />
-  </template>
-</van-badge>
-<van-badge>
-  <div class="child" />
-  <template #content>
-    <van-icon name="down" class="badge-icon" />
-  </template>
-</van-badge>
+<glue-badge content="#slot" style="margin-left: 16px">
+    <div class="child" />
+        <div slot="content">
+        <glue-icon name="success" class="badge-icon" size="12" />
+    </div>
+</glue-badge>
+<glue-badge content="#slot" style="margin-left: 16px">
+    <div class="child" />
+    <div slot="content">
+        <glue-icon name="cross" class="badge-icon" size="12" />
+    </div>
+</glue-badge>
+<glue-badge content="#slot" style="margin-left: 16px">
+    <div class="child" />
+    <div slot="content">
+          <glue-icon name="down" class="badge-icon" size="12" />
+    </div>
+</glue-badge>
+
 ```
 
 ```css
-.badge-icon {
-  display: block;
-  font-size: 10px;
-  line-height: 16px;
-}
+<style>
+  .child {
+    width: 40px;
+    height: 40px;
+    background: #f2f3f5;
+    border-radius: 4px;
+  }
+   .badge-icon {
+    display: block;
+    font-size: 10px;
+    line-height: 16px;
+  }
+</style>
 ```
 
 ### 独立展示
@@ -104,22 +106,25 @@
 当 Badge 没有子元素时，会作为一个独立的元素进行展示。
 
 ```html
-<van-badge :content="20" />
-
-<van-badge :content="200" max="99" />
+<div style="display:inline-block">
+    <glue-badge content="20" style="margin-left: 32px" />
+</div>
+<div style="display:inline-block">
+    <glue-badge content="200" max="99" style="margin-left: 32px" />
+</div>
 ```
 
 ## API
 
 ### Props
 
-| 参数            | 说明                                                       | 类型               | 默认值    |
-|-----------------|----------------------------------------------------------|--------------------|-----------|
-| content         | 徽标内容                                                   | _number \| string_ | -         |
-| color           | 徽标背景颜色                                               | _string_           | `#ee0a24` |
-| dot             | 是否展示为小红点                                           | _boolean_          | `false`   |
-| max             | 最大值，超过最大值会显示 `{max}+`，仅当 content 为数字时有效 | _number \| string_ | -         |
-| offset `v3.0.5` | 设置徽标的偏移量，数组的两项分别对应水平和垂直方向的偏移量  | _[number, number]_ | -         |
+| 参数    | 说明                                                       | 类型               | 默认值    |
+|---------|----------------------------------------------------------|--------------------|-----------|
+| content | 徽标内容,使用#slot开启插槽                                 | _number \| string_ | -         |
+| color   | 徽标背景颜色                                               | _string_           | `#ee0a24` |
+| dot     | 是否展示为小红点                                           | _boolean_          | `false`   |
+| max     | 最大值，超过最大值会显示 `{max}+`，仅当 content 为数字时有效 | _number \| string_ | -         |
+| offset  | 设置徽标的偏移量，数组的两项分别对应水平和垂直方向的偏移量  | _[number, number]_ | -         |
 
 ### Slots
 
