@@ -9,7 +9,7 @@
 
 | Property        | Attribute        | Description | Type               | Default     |
 | --------------- | ---------------- | ----------- | ------------------ | ----------- |
-| `clockwise`     | `clockwise`      |             | `boolean`          | `true`      |
+| `clockwise`     | `clockwise`      |             | `boolean`          | `false`     |
 | `currentRate`   | `current-rate`   |             | `number`           | `0`         |
 | `fill`          | `fill`           |             | `string`           | `'none'`    |
 | `layerColor`    | `layer-color`    |             | `string`           | `undefined` |

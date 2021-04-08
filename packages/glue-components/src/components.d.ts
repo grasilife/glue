@@ -202,7 +202,7 @@ export namespace Components {
         "first": string;
     }
     interface GlueCircle {
-        "clockwise": boolean;
+        "clockwise"?: boolean;
         "currentRate": number;
         "fill": string;
         "layerColor": string;

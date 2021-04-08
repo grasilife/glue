@@ -10,6 +10,7 @@ function format(rate: string | number) {
 
 function getPath(clockwise: boolean, viewBoxSize: number) {
   const sweepFlag = clockwise ? 1 : 0;
+  console.log(sweepFlag, clockwise, 'sweepFlag');
   return `M ${viewBoxSize / 2} ${viewBoxSize / 2} m 0, -500 a 500, 500 0 1, ${sweepFlag} 0, 1000 a 500, 500 0 1, ${sweepFlag} 0, -1000`;
 }
 import classNames from 'classnames';
@@ -21,9 +22,7 @@ import classNames from 'classnames';
 })
 export class GlueCircle {
   @Prop() text: string;
-
   @Prop() size: string;
-
   @Prop() lineColor: string | object;
   @Prop() layerColor: string;
   @Prop() strokeLinecap: string;
@@ -32,10 +31,9 @@ export class GlueCircle {
   @Prop() fill = 'none';
   @Prop() rate = 100;
   @Prop() strokeWidth = 40;
-  @Prop() clockwise = true;
+  @Prop() clockwise?: boolean = false;
   @Event() glueChange: EventEmitter;
   changeHandle = event => {
-    console.log(event, 'ahuahuhuhaufuyabguhbghab');
     this.glueChange.emit(event);
   };
   @Watch('rate')

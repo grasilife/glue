@@ -41,7 +41,7 @@
         line-color="#07c160"
         :rate="rate"
         :speed="100"
-        :clockwise="false"
+        :clockwise="true"
         :text="counterClockwise"
         style="margin-top: 15px;"
       />
@@ -52,7 +52,7 @@
         :rate="rate"
         :speed="100"
         size="120px"
-        :clockwise="false"
+        :clockwise="true"
         :text="customSize"
         style="margin-top: 15px;"
       ></glue-circle>
