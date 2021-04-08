@@ -5,6 +5,7 @@
         :current-rate="currentRate1"
         :rate="rate"
         :speed="100"
+        @glueChange="change"
         :text="currentRate1.toFixed(0) + '%'"
       ></glue-circle>
     </DemoBlock>
@@ -20,7 +21,7 @@
 
       <glue-circle
         :current-rate="currentRate3"
-        lineColor="#ee0a24"
+        line-color="#ee0a24"
         :rate="rate"
         layer-color="#ebedf0"
         :speed="100"
@@ -31,13 +32,13 @@
         :current-rate="currentRate2"
         :rate="rate"
         :speed="100"
-        :lineColor="gradientColor"
+        :line-color="gradientColor"
         :text="gradient"
       ></glue-circle>
 
       <glue-circle
         :current-rate="currentRate4"
-        lineColor="#07c160"
+        line-color="#07c160"
         :rate="rate"
         :speed="100"
         :clockwise="false"
@@ -47,7 +48,7 @@
 
       <glue-circle
         :current-rate="currentRate4"
-        lineColor="#7232dd"
+        line-color="#7232dd"
         :rate="rate"
         :speed="100"
         size="120px"
@@ -95,7 +96,10 @@ export default {
     add() {
       this.rate = format(this.rate + 20);
     },
-
+    change(value) {
+      console.log(value, "value");
+      this.currentRate1 = value.detail;
+    },
     reduce() {
       this.rate = format(this.rate - 20);
     }

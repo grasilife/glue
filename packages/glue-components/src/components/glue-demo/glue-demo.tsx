@@ -19,6 +19,9 @@ export class GlueDemo {
   onGlueClose = () => {
     this.open = false;
   };
+  onGlueChange = e => {
+    console.log(e, 'hauhaihiuahihu');
+  };
   componentDidLoad() {
     Toast('提示内容');
   }
@@ -26,7 +29,8 @@ export class GlueDemo {
     return (
       <div class="container">
         <div onClick={this.handleClick}>1111</div>
-        <glue-circle current-rate={10} rate={this.currentRate} speed={100} text="text" lineColor={this.gradientColor} />
+        <glue-popup v-model:show="show" position="top" onGlueClick={ this.onGlueChange}/>
+        <glue-circle current-rate={10} rate={this.currentRate} speed={100} text="text" line-color={this.gradientColor} onGlueChange={this.onGlueChange} clockwise={ false}></glue-circle>
       </div>
     );
   }

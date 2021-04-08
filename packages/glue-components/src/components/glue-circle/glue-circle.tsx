@@ -34,6 +34,10 @@ export class GlueCircle {
   @Prop() strokeWidth = 40;
   @Prop() clockwise = true;
   @Event() glueChange: EventEmitter;
+  changeHandle = event => {
+    console.log(event, 'ahuahuhuhaufuyabguhbghab');
+    this.glueChange.emit(event);
+  };
   @Watch('rate')
   watchHandler(rate) {
     let rafId;
@@ -48,7 +52,7 @@ export class GlueCircle {
       const rate = progress * (endRate - startRate) + startRate;
       console.log(rate, 'rate');
       this.currentRate = format(parseFloat(rate.toFixed(1)));
-      this.glueChange.emit(this.currentRate);
+      this.changeHandle(this.currentRate);
       if (endRate > startRate ? rate < endRate : rate > endRate) {
         rafId = raf(animate);
       }
@@ -62,7 +66,7 @@ export class GlueCircle {
       console.log(rafId, 'rafId');
     } else {
       this.currentRate = endRate;
-      this.glueChange.emit(endRate);
+      this.changeHandle(endRate);
     }
   }
   viewBoxSize = () => this.strokeWidth + 1000;

@@ -206,7 +206,7 @@ export namespace Components {
         "currentRate": number;
         "fill": string;
         "layerColor": string;
-        "lineColor": any;
+        "lineColor": string | object;
         "rate": number;
         "size": string;
         "speed": number;
@@ -1724,7 +1724,7 @@ declare namespace LocalJSX {
         "currentRate"?: number;
         "fill"?: string;
         "layerColor"?: string;
-        "lineColor"?: any;
+        "lineColor"?: string | object;
         "onGlueChange"?: (event: CustomEvent<any>) => void;
         "rate"?: number;
         "size"?: string;
