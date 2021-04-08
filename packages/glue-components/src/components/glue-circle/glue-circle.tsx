@@ -1,11 +1,12 @@
 import { Component, Prop, h, Host, Watch, EventEmitter, Event } from '@stencil/core';
 import { getSizeStyle } from '../../utils/format/unit';
 import { isObject } from '../../utils/base';
+import { raf, cancelRaf } from '../../utils/animation';
 let uid = 0;
 const id = `glue-circle-${uid++}`;
-// function format(rate: string | number) {
-//   return Math.min(Math.max(+rate, 0), 100);
-// }
+function format(rate: string | number) {
+  return Math.min(Math.max(+rate, 0), 100);
+}
 
 function getPath(clockwise: boolean, viewBoxSize: number) {
   const sweepFlag = clockwise ? 1 : 0;
@@ -23,32 +24,59 @@ export class GlueCircle {
 
   @Prop() size: string;
 
-  @Prop() color: string;
+  @Prop() lineColor: string | object;
   @Prop() layerColor: string;
   @Prop() strokeLinecap: string;
-  @Prop() currentRate = 0;
+  @Prop({ mutable: true }) currentRate = 0;
   @Prop() speed = 0;
   @Prop() fill = 'none';
   @Prop() rate = 100;
   @Prop() strokeWidth = 40;
   @Prop() clockwise = true;
-  @Event() change: EventEmitter;
+  @Event() glueChange: EventEmitter;
   @Watch('rate')
-  watchHandler(newValue) {
-    this.change.emit(newValue);
+  watchHandler(rate) {
+    let rafId;
+    const startTime = Date.now();
+    const startRate = this.currentRate;
+    const endRate = format(rate);
+    const duration = Math.abs(((startRate - endRate) * 1000) / +this.speed);
+
+    const animate = () => {
+      const now = Date.now();
+      const progress = Math.min((now - startTime) / duration, 1);
+      const rate = progress * (endRate - startRate) + startRate;
+      console.log(rate, 'rate');
+      this.currentRate = format(parseFloat(rate.toFixed(1)));
+      this.glueChange.emit(this.currentRate);
+      if (endRate > startRate ? rate < endRate : rate > endRate) {
+        rafId = raf(animate);
+      }
+    };
+
+    if (this.speed) {
+      if (rafId) {
+        cancelRaf(rafId);
+      }
+      rafId = raf(animate);
+      console.log(rafId, 'rafId');
+    } else {
+      this.currentRate = endRate;
+      this.glueChange.emit(endRate);
+    }
   }
   viewBoxSize = () => this.strokeWidth + 1000;
   path = () => getPath(this.clockwise, this.viewBoxSize());
   renderGradient = () => {
-    const { color } = this;
+    const { lineColor } = this;
 
-    if (!isObject(color)) {
+    if (!isObject(lineColor)) {
       return;
     }
 
-    const Stops = Object.keys(color)
+    const Stops = Object.keys(lineColor)
       .sort((a, b) => parseFloat(a) - parseFloat(b))
-      .map((key, index) => <stop key={index} offset={key} stop-color={color[key]} />);
+      .map((key, index) => <stop key={index} offset={key} stop-color={lineColor[key]} />);
 
     return (
       <defs>
@@ -76,9 +104,9 @@ export class GlueCircle {
   renderHover = () => {
     const PERIMETER = 3140;
     const { strokeWidth, currentRate, strokeLinecap } = this;
-    let { color } = this;
+    let { lineColor } = this;
     const offset = (PERIMETER * currentRate) / 100;
-    color = isObject(color) ? `url(#${id})` : color;
+    let color = isObject(lineColor) ? `url(#${id})` : lineColor;
     const style = {
       stroke: `${color}`,
       strokeWidth: `${+strokeWidth + 1}px`,

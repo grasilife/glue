@@ -203,10 +203,10 @@ export namespace Components {
     }
     interface GlueCircle {
         "clockwise": boolean;
-        "color": string;
         "currentRate": number;
         "fill": string;
         "layerColor": string;
+        "lineColor": any;
         "rate": number;
         "size": string;
         "speed": number;
@@ -1721,11 +1721,11 @@ declare namespace LocalJSX {
     }
     interface GlueCircle {
         "clockwise"?: boolean;
-        "color"?: string;
         "currentRate"?: number;
         "fill"?: string;
         "layerColor"?: string;
-        "onChange"?: (event: CustomEvent<any>) => void;
+        "lineColor"?: any;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
         "rate"?: number;
         "size"?: string;
         "speed"?: number;

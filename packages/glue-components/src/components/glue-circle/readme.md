@@ -10,10 +10,10 @@
 | Property        | Attribute        | Description | Type      | Default     |
 | --------------- | ---------------- | ----------- | --------- | ----------- |
 | `clockwise`     | `clockwise`      |             | `boolean` | `true`      |
-| `color`         | `color`          |             | `string`  | `undefined` |
 | `currentRate`   | `current-rate`   |             | `number`  | `0`         |
 | `fill`          | `fill`           |             | `string`  | `'none'`    |
 | `layerColor`    | `layer-color`    |             | `string`  | `undefined` |
+| `lineColor`     | `line-color`     |             | `any`     | `undefined` |
 | `rate`          | `rate`           |             | `number`  | `100`       |
 | `size`          | `size`           |             | `string`  | `undefined` |
 | `speed`         | `speed`          |             | `number`  | `0`         |
@@ -24,10 +24,23 @@
 
 ## Events
 
-| Event    | Description | Type               |
-| -------- | ----------- | ------------------ |
-| `change` |             | `CustomEvent<any>` |
+| Event        | Description | Type               |
+| ------------ | ----------- | ------------------ |
+| `glueChange` |             | `CustomEvent<any>` |
 
+
+## Dependencies
+
+### Used by
+
+ - [glue-demo](../glue-demo)
+
+### Graph
+```mermaid
+graph TD;
+  glue-demo --> glue-circle
+  style glue-circle fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

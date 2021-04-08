@@ -21,14 +21,12 @@
 
 ### Used by
 
- - [glue-demo](../glue-demo)
  - [glue-icon](../glue-icon)
  - [glue-sidebar-item](../glue-sidebar-item)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-badge
   glue-icon --> glue-badge
   glue-sidebar-item --> glue-badge
   style glue-badge fill:#f9f,stroke:#333,stroke-width:4px

@@ -20,7 +20,7 @@
 
       <glue-circle
         :current-rate="currentRate3"
-        color="#ee0a24"
+        lineColor="#ee0a24"
         :rate="rate"
         layer-color="#ebedf0"
         :speed="100"
@@ -31,13 +31,13 @@
         :current-rate="currentRate2"
         :rate="rate"
         :speed="100"
-        :color="gradientColor"
+        :lineColor="gradientColor"
         :text="gradient"
       ></glue-circle>
 
       <glue-circle
         :current-rate="currentRate4"
-        color="#07c160"
+        lineColor="#07c160"
         :rate="rate"
         :speed="100"
         :clockwise="false"
@@ -47,7 +47,7 @@
 
       <glue-circle
         :current-rate="currentRate4"
-        color="#7232dd"
+        lineColor="#7232dd"
         :rate="rate"
         :speed="100"
         size="120px"

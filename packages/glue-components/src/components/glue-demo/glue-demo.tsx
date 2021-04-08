@@ -8,10 +8,13 @@ import Toast from '../glue-toast/index';
 })
 export class GlueDemo {
   @State() open: boolean = false;
-  @State() list = [1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1, 1, 1, 1, 1, 1, 1, 1, ,];
-
+  @State() gradientColor = {
+    '0%': '#3fecff',
+    '100%': '#6149f6',
+  };
+  @State() currentRate = 10;
   handleClick = () => {
-    this.open = true;
+    this.currentRate = this.currentRate + 10;
   };
   onGlueClose = () => {
     this.open = false;
@@ -22,13 +25,8 @@ export class GlueDemo {
   render() {
     return (
       <div class="container">
-        {/* <glue-badge content="5" offset={[5, 5]}>
-          <div class="child" />
-        </glue-badge> */}
-        <glue-badge content="#slot" offset={[5, 5]}>
-          <div class="child" />
-          <glue-icon name="success" class="badge-icon" slot="content" size="12" />
-        </glue-badge>
+        <div onClick={this.handleClick}>1111</div>
+        <glue-circle current-rate={10} rate={this.currentRate} speed={100} text="text" lineColor={this.gradientColor} />
       </div>
     );
   }
