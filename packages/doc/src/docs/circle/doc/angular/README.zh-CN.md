@@ -135,7 +135,7 @@ export default {
 | text                 | 文字                                      | _string_           | -         |
 | stroke-width         | 进度条宽度                                | _number \| string_ | `40`      |
 | stroke-linecap       | 进度条端点的形状，可选值为 `sqaure` `butt` | _string_           | `round`   |
-| clockwise            | 是否顺时针增加                            | _boolean_          | `true`    |
+| clockwise            | 是否顺时针增加                            | _boolean_          | `false`   |
 
 ### Slots
 
