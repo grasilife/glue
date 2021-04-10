@@ -38,6 +38,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [glue-demo](../glue-demo)
+
 ### Depends on
 
 - [glue-cell](../glue-cell)
@@ -48,6 +52,7 @@ graph TD;
   glue-collapse-item --> glue-cell
   glue-cell --> glue-icon
   glue-icon --> glue-badge
+  glue-demo --> glue-collapse-item
   style glue-collapse-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

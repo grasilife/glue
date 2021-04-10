@@ -28,9 +28,18 @@ export class GlueDemo {
   render() {
     return (
       <div class="container">
-        <div onClick={this.handleClick}>1111</div>
-        <glue-popup v-model:show="show" position="top" onGlueClick={ this.onGlueChange}/>
-        <glue-circle current-rate={10} rate={this.currentRate} speed={100} text="text" line-color={this.gradientColor} onGlueChange={this.onGlueChange} clockwise={ false}></glue-circle>
+        {/* <div onClick={this.handleClick}>1111</div> */}
+        <glue-collapse model-value={[]}>
+          <glue-collapse-item title="标题1" name="1" is-link>
+            代码是写出来给人看的，附带能在机器上运行
+          </glue-collapse-item>
+          <glue-collapse-item title="标题2" name="2" is-link>
+            代码是写出来给人看的，附带能在机器上运行
+          </glue-collapse-item>
+          <glue-collapse-item title="标题3" name="3" is-link>
+            代码是写出来给人看的，附带能在机器上运行
+          </glue-collapse-item>
+        </glue-collapse>
       </div>
     );
   }

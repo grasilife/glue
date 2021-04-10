@@ -9,18 +9,18 @@
 
 ### Depends on
 
-- [glue-popup](../glue-popup)
-- [glue-circle](../glue-circle)
+- [glue-collapse](../glue-collapse)
+- [glue-collapse-item](../glue-collapse-item)
 - [glue-toast](../glue-toast)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-popup
-  glue-demo --> glue-circle
+  glue-demo --> glue-collapse
+  glue-demo --> glue-collapse-item
   glue-demo --> glue-toast
-  glue-popup --> glue-icon
-  glue-popup --> glue-overlay
+  glue-collapse-item --> glue-cell
+  glue-cell --> glue-icon
   glue-icon --> glue-badge
   glue-toast --> glue-icon
   glue-toast --> glue-loading
