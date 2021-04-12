@@ -14,6 +14,13 @@
 | `modelValue` | --          |             | `any[]`   | `[]`        |
 
 
+## Events
+
+| Event        | Description | Type               |
+| ------------ | ----------- | ------------------ |
+| `glueToggle` |             | `CustomEvent<any>` |
+
+
 ## Methods
 
 ### `isExpanded(name: any) => Promise<boolean>`

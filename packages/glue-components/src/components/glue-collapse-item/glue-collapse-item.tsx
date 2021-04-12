@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, Event, EventEmitter, State, Element } from '@stencil/core';
+import { Component, Prop, h, Host, Event, EventEmitter, State, Element, Listen, Watch } from '@stencil/core';
 import classNames from 'classnames';
 import { CellArrowDirection } from '../glue-cell/glue-cell-interface';
 import { getElementParent, getAttribute } from '../../utils/base';
@@ -23,12 +23,21 @@ export class GlueCollapseItem {
   @Prop() titleClass = null;
   @Prop() valueClass = null;
   @Prop() tilabelClasstle = null;
-  @Prop() arrowDirection: CellArrowDirection;
+  @Prop() arrowDirection: CellArrowDirection = 'down';
   @Prop() border = true;
   @Prop() name: string;
 
   @Prop() disabled: boolean;
   @State() show = false;
+  @State() parentModelValue;
+  @Watch('parentModelValue')
+  parentModelValuehandle(newValue) {
+    console.log(newValue, 'newValue');
+  }
+  @Listen('glueToggle')
+  handleScroll(ev) {
+    console.log('the body was scrolled', ev);
+  }
   @Event() clickTitle: EventEmitter;
   clickTitleHandle = () => {
     if (!this.disabled) {
@@ -45,16 +54,24 @@ export class GlueCollapseItem {
       this.wrapperRef!.style.height = '';
     }
   };
-  expanded = () => {
+  async expanded() {
     let parentEl = getElementParent(this.el);
-    console.log(parentEl, 'parentEl');
-    console.log(parentEl.isExpanded(this.name), 'expanded');
-    return parentEl.isExpanded(this.name);
-  };
+    const isExpanded = await parentEl.isExpanded(this.name);
+    return isExpanded;
+  }
   toggle = () => {
+    // this.show = !this.show;
+    // this.arrowDirection = this.show ? 'up' : 'down';
+    // console.log(this.show, 'this.show');
+    //先传递到父组件
     let parentEl = getElementParent(this.el);
     console.log(parentEl, 'parentEl');
-    parentEl.toggle(this.name, this.expanded());
+
+    parentEl.isExpanded(this.name).then(expanded => {
+      // this.show = expanded;
+      parentEl.toggle(this.name, expanded);
+      console.log(this.show, 'this.show33');
+    });
   };
   getParentGutter() {
     let parentEl = getElementParent(this.el);
@@ -79,6 +96,7 @@ export class GlueCollapseItem {
         onClick={this.clickTitleHandle}
         title={title}
         is-link={isLink}
+        arrow-direction={this.arrowDirection}
       ></glue-cell>
     );
   };
@@ -102,6 +120,23 @@ export class GlueCollapseItem {
       </div>
     </div>
   );
+  async componentDidLoad() {
+    let parentEl = getElementParent(this.el);
+    const expanded = await parentEl.isExpanded(this.name);
+    this.show = expanded;
+    console.log(this.show, 'this.show');
+  }
+  async componentShouldUpdate() {
+    // console.log();
+    // let parentEl = getElementParent(this.el);
+    // const expanded = await parentEl.isExpanded(this.name);
+    // this.show = expanded;
+    // console.log(this.show, 'this.show2');
+  }
+  componentWillLoad() {
+    let parentEl = getElementParent(this.el);
+    this.parentModelValue = parentEl.modelValue;
+  }
   render() {
     console.log(this.contentRef);
     return (

@@ -26,18 +26,44 @@ export class GlueCollapse {
   border = false;
   @Method()
   async toggle(name, expanded) {
+    console.log(name, expanded, 'toggle');
     const { accordion, modelValue } = this;
 
+    // if (accordion) {
+    //   if (name === modelValue) {
+    //     name = '';
+    //   }
+    // } else if (expanded) {
+    //   name = modelValue.concat(name);
+    // } else {
+    //   name = modelValue.filter(activeName => activeName !== name);
+    // }
+    console.log(this.accordion, !expanded, 'fhiahufhuiai');
     if (accordion) {
-      if (name === modelValue) {
+      //只展开一个
+      if (!expanded) {
+        //展开
+        name = modelValue.filter(activeName => activeName === name);
+      } else {
+        //关闭
         name = '';
       }
-    } else if (expanded) {
-      name = modelValue.concat(name);
     } else {
-      name = modelValue.filter(activeName => activeName !== name);
+      if (!expanded) {
+        //展开
+        modelValue.push(name);
+      } else {
+        //关闭
+        let i = modelValue.length;
+        //删除掉传过来的值
+        while (i--) {
+          if (modelValue[i] === name) {
+            modelValue.splice(i, 1);
+          }
+        }
+      }
     }
-    console.log(name, 'change');
+    console.log(name, modelValue, 'change');
     // emit('change', name);
     // emit('update:modelValue', name);
   }
@@ -49,7 +75,7 @@ export class GlueCollapse {
       console.error('[Vant] Collapse: type of prop "modelValue" should be Array');
       return;
     }
-
+    console.log(modelValue, name, modelValue.indexOf(name), 'isExpanded');
     return accordion ? modelValue === name : modelValue.indexOf(name) !== -1;
   }
   render() {

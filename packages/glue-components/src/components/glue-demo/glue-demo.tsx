@@ -36,9 +36,6 @@ export class GlueDemo {
           <glue-collapse-item title="标题2" name="2" is-link>
             代码是写出来给人看的，附带能在机器上运行
           </glue-collapse-item>
-          <glue-collapse-item title="标题3" name="3" is-link>
-            代码是写出来给人看的，附带能在机器上运行
-          </glue-collapse-item>
         </glue-collapse>
       </div>
     );

@@ -9,7 +9,7 @@
 
 | Property          | Attribute          | Description | Type                                  | Default     |
 | ----------------- | ------------------ | ----------- | ------------------------------------- | ----------- |
-| `arrowDirection`  | `arrow-direction`  |             | `"down" \| "left" \| "right" \| "up"` | `undefined` |
+| `arrowDirection`  | `arrow-direction`  |             | `"down" \| "left" \| "right" \| "up"` | `'down'`    |
 | `border`          | `border`           |             | `boolean`                             | `true`      |
 | `center`          | `center`           |             | `boolean`                             | `undefined` |
 | `clickable`       | `clickable`        |             | `boolean`                             | `undefined` |
