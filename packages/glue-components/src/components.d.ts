@@ -277,8 +277,12 @@ export namespace Components {
     }
     interface GlueCountDown {
         "autoStart": boolean;
+        "custom": boolean;
         "format": string;
         "millisecond": boolean;
+        "pause": () => Promise<void>;
+        "reset": () => Promise<void>;
+        "start": () => Promise<void>;
         "time": number;
     }
     interface GlueCoupon {
@@ -1797,8 +1801,11 @@ declare namespace LocalJSX {
     }
     interface GlueCountDown {
         "autoStart"?: boolean;
+        "custom"?: boolean;
         "format"?: string;
         "millisecond"?: boolean;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueFinish"?: (event: CustomEvent<any>) => void;
         "time"?: number;
     }
     interface GlueCoupon {
