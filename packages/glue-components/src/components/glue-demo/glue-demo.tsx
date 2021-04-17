@@ -73,6 +73,7 @@ export class GlueDemo {
         <button onClick={this.start}>开始</button>
         <button onClick={this.pause}>暂停</button>
         <button onClick={this.reset}>重置</button>
+        <glue-divider />
       </div>
     );
   }
