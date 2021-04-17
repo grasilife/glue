@@ -5,8 +5,8 @@ import { getSizeStyle } from '../../utils/format/unit';
 import { isImageFile } from '../glue-uploader/utils';
 export type ImageFit = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
 @Component({
-  tag: 'glue-preview-item',
-  styleUrl: 'glue-preview-item.less',
+  tag: 'glue-uploader-preview-item',
+  styleUrl: 'glue-uploader-preview-item.less',
   shadow: false,
 })
 export class GluePreviewItem {
@@ -22,14 +22,15 @@ export class GluePreviewItem {
     const { status, message } = this.item;
 
     if (status === 'uploading' || status === 'failed') {
-      const MaskIcon = status === 'failed' ? <glue-icon name="close" class="glue-preview-item__mask-icon" /> : <glue-loading class="glue-preview-item__loading" />;
+      const MaskIcon =
+        status === 'failed' ? <glue-icon name="close" class="glue-uploader-preview-item__mask-icon" /> : <glue-loading class="glue-uploader-preview-item__loading" />;
 
       const showMessage = isDef(message) && message !== '';
 
       return (
-        <div class="glue-preview-item__mask">
+        <div class="glue-uploader-preview-item__mask">
           {MaskIcon}
-          {showMessage && <div class="glue-preview-item__mask-message">{message}</div>}
+          {showMessage && <div class="glue-uploader-preview-item__mask-message">{message}</div>}
         </div>
       );
     }
@@ -54,8 +55,8 @@ export class GluePreviewItem {
   renderDeleteIcon = () => {
     if (this.deletable && this.item.status !== 'uploading') {
       return (
-        <div class="glue-preview-item__preview-delete" onClick={this.onDelete}>
-          <glue-icon name="cross" class="glue-preview-item__preview-delete-icon" />
+        <div class="glue-uploader-preview-item__preview-delete" onClick={this.onDelete}>
+          <glue-icon name="cross" class="glue-uploader-preview-item__preview-delete-icon" />
         </div>
       );
     }
@@ -64,7 +65,7 @@ export class GluePreviewItem {
   renderCover = () => {
     // if (slots['preview-cover']) {
     //   const { index, item } = this;
-    //   return <div class="glue-preview-item__preview-cover">{/* {slots['preview-cover']({ index, ...item })} */}</div>;
+    //   return <div class="glue-uploader-preview-item__preview-cover">{/* {slots['preview-cover']({ index, ...item })} */}</div>;
     // }
   };
 
@@ -76,7 +77,7 @@ export class GluePreviewItem {
         <glue-image
           fit={this.imageFit}
           src={item.content || item.url}
-          class="glue-preview-item__preview-image"
+          class="glue-uploader-preview-item__preview-image"
           width={this.previewSize}
           height={this.previewSize}
           lazyLoad={this.lazyLoad}
@@ -88,16 +89,16 @@ export class GluePreviewItem {
     }
 
     return (
-      <div class="glue-preview-item__file" style={getSizeStyle(this.previewSize)}>
-        <glue-icon class="glue-preview-item__file-icon" name="description" />
-        <div class="glue-preview-item__file-name glue-ellipsis">{item.file ? item.file.name : item.url}</div>
+      <div class="glue-uploader-preview-item__file" style={getSizeStyle(this.previewSize)}>
+        <glue-icon class="glue-uploader-preview-item__file-icon" name="description" />
+        <div class="glue-uploader-preview-item__file-name glue-ellipsis">{item.file ? item.file.name : item.url}</div>
         {this.renderCover()}
       </div>
     );
   };
   render() {
     return (
-      <Host class="glue-preview-item__preview">
+      <Host class="glue-uploader-preview-item__preview">
         {this.renderPreview()}
         {this.renderMask()}
         {this.renderDeleteIcon()}
