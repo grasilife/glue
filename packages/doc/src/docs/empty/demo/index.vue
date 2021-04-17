@@ -28,9 +28,9 @@
 
     <DemoBlock :title="bottomContent">
       <glue-empty :description="description">
-        <van-button round type="danger" class="bottom-button">
+        <glue-button round type="danger" class="bottom-button">
           {{ button }}
-        </van-button>
+        </glue-button>
       </glue-empty>
     </DemoBlock>
   </DemoSection>
@@ -62,7 +62,7 @@ export default {
   background: @white;
 
   .custom-image {
-    .van-empty__image {
+    .glue-empty__image {
       width: 90px;
       height: 90px;
     }
