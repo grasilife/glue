@@ -1,5 +1,6 @@
-import { Component, Prop, h, Host, Event, EventEmitter, Element } from '@stencil/core';
+import { Component, Prop, h, Host, Event, EventEmitter, Element, Watch, Method } from '@stencil/core';
 // import classNames from 'classnames';
+import { isDef } from '../../utils/base';
 import { useRect } from '../../utils/useRect';
 import { useScrollParent } from '../../utils/useScrollParent';
 import { isHidden } from '../../utils/dom/style';
@@ -14,16 +15,32 @@ export class GlueList {
   @Prop({ mutable: true }) loading;
   @Prop() finished: boolean;
   @Prop() errorText: string;
-  @Prop() loadingText: string;
+  @Prop() loadingText: string = '加载中...';
   @Prop() finishedText: string;
   @Prop() offset = 300;
   @Prop() direction = 'down';
-  @Event() clickErrorText: EventEmitter;
-  @Prop()
-  immediateCheck = true;
+  @Event() glueClickErrorText: EventEmitter;
+  @Prop() immediateCheck = true;
   private root: HTMLElement;
   private placeholder: HTMLElement;
-  check = () => {
+  @Watch('loading')
+  loadingHandle() {
+    this._check();
+  }
+  @Watch('finished')
+  finishedHandle() {
+    this._check();
+  }
+  @Watch('error')
+  errorHandle() {
+    this._check();
+  }
+  @Event() glueLoad: EventEmitter;
+  @Method()
+  async check() {
+    this._check();
+  }
+  _check = () => {
     console.log(this.root, this.placeholder, 'ahgfyaufbabuf');
     if (this.loading || this.finished || this.error) {
       return;
@@ -47,16 +64,18 @@ export class GlueList {
     console.log(isReachEdge, 'isReachEdge');
     if (isReachEdge) {
       this.loading = true;
-      // emit('update:loading', true);
-      // emit('load');
+      this.glueLoad.emit();
     }
   };
   clickErrorTextHandle = () => {
-    this.clickErrorText.emit(false);
-    this.check();
+    this.glueClickErrorText.emit(false);
+    this._check();
   };
   renderErrorText = () => {
     if (this.error) {
+      if (this.errorText == '#slot') {
+        return <slot name="error-text"></slot>;
+      }
       const text = this.errorText;
       if (text) {
         return (
@@ -70,6 +89,9 @@ export class GlueList {
 
   renderLoading = () => {
     if (this.loading && !this.finished) {
+      if (this.loadingText == '#slot') {
+        return <slot name="loading-text"></slot>;
+      }
       return (
         <div class="glue-list__loading">
           <glue-loading size={16}>{this.loadingText}</glue-loading>
@@ -86,6 +108,9 @@ export class GlueList {
   };
   renderFinishedText = () => {
     if (this.finished) {
+      if (this.finishedText == '#slot') {
+        return <slot name="finished-text"></slot>;
+      }
       const text = this.finishedText;
       if (text) {
         return <div class="glue-list__finished-text">{text}</div>;
@@ -94,11 +119,14 @@ export class GlueList {
   };
   componentDidLoad() {
     let scrollParent = useScrollParent(this.el);
-    scrollParent.addEventListener('scroll', this.check);
+    scrollParent.addEventListener('scroll', this._check);
+    if (this.immediateCheck) {
+      this._check();
+    }
   }
   disconnectedCallback() {
     let scrollParent = useScrollParent(this.el);
-    scrollParent.removeEventListener('scroll', this.check);
+    scrollParent.removeEventListener('scroll', this._check);
   }
   render() {
     const Content = <slot></slot>;

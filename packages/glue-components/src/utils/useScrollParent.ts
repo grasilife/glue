@@ -23,6 +23,6 @@ export function getScrollParent(el: Element, root: ScrollElement = window) {
 }
 
 export function useScrollParent(el, root: ScrollElement = window) {
-  let scrollParent = getScrollParent(el.value, root);
+  let scrollParent = getScrollParent(el, root);
   return scrollParent;
 }

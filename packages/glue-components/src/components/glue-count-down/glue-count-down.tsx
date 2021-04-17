@@ -45,15 +45,15 @@ export class GlueCountDown {
     return parseFormat(this.format, currentTime);
   };
   @Method()
-  start() {
+  async start() {
     this.countDownVm.start();
   }
   @Method()
-  pause() {
+  async pause() {
     this.countDownVm.pause();
   }
   @Method()
-  reset() {
+  async reset() {
     this.countDownVm.reset(this.time);
     if (this.autoStart) {
       this.countDownVm.start();

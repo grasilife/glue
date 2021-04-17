@@ -493,6 +493,7 @@ export namespace Components {
         "first": string;
     }
     interface GlueList {
+        "check": () => Promise<void>;
         "direction": string;
         "error": boolean;
         "errorText": string;
@@ -2051,7 +2052,8 @@ declare namespace LocalJSX {
         "loading"?: any;
         "loadingText"?: string;
         "offset"?: number;
-        "onClickErrorText"?: (event: CustomEvent<any>) => void;
+        "onGlueClickErrorText"?: (event: CustomEvent<any>) => void;
+        "onGlueLoad"?: (event: CustomEvent<any>) => void;
     }
     interface GlueLoading {
         "color"?: string;
