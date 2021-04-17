@@ -23,24 +23,26 @@
 
  - [glue-action-sheet](../glue-action-sheet)
  - [glue-button](../glue-button)
+ - [glue-demo](../glue-demo)
  - [glue-key](../glue-key)
  - [glue-list](../glue-list)
- - [glue-preview-item](../glue-preview-item)
  - [glue-pull-refresh](../glue-pull-refresh)
  - [glue-switch](../glue-switch)
  - [glue-toast](../glue-toast)
+ - [glue-uploader-preview-item](../glue-uploader-preview-item)
 
 ### Graph
 ```mermaid
 graph TD;
   glue-action-sheet --> glue-loading
   glue-button --> glue-loading
+  glue-demo --> glue-loading
   glue-key --> glue-loading
   glue-list --> glue-loading
-  glue-preview-item --> glue-loading
   glue-pull-refresh --> glue-loading
   glue-switch --> glue-loading
   glue-toast --> glue-loading
+  glue-uploader-preview-item --> glue-loading
   style glue-loading fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

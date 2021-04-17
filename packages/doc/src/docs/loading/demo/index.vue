@@ -1,7 +1,7 @@
 <template>
   <DemoSection>
     <DemoBlock :title="type">
-      <g lue-loading />
+      <glue-loading />
       <glue-loading type="spinner" />
     </DemoBlock>
 

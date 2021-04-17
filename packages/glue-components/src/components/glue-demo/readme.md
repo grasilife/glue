@@ -9,13 +9,13 @@
 
 ### Depends on
 
-- [glue-count-down](../glue-count-down)
+- [glue-loading](../glue-loading)
 - [glue-toast](../glue-toast)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-count-down
+  glue-demo --> glue-loading
   glue-demo --> glue-toast
   glue-toast --> glue-icon
   glue-toast --> glue-loading

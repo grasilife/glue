@@ -34,11 +34,11 @@
  - [glue-nav-bar](../glue-nav-bar)
  - [glue-notice-bar](../glue-notice-bar)
  - [glue-popup](../glue-popup)
- - [glue-preview-item](../glue-preview-item)
  - [glue-rate](../glue-rate)
  - [glue-tag](../glue-tag)
  - [glue-toast](../glue-toast)
  - [glue-uploader](../glue-uploader)
+ - [glue-uploader-preview-item](../glue-uploader-preview-item)
 
 ### Depends on
 
@@ -60,11 +60,11 @@ graph TD;
   glue-nav-bar --> glue-icon
   glue-notice-bar --> glue-icon
   glue-popup --> glue-icon
-  glue-preview-item --> glue-icon
   glue-rate --> glue-icon
   glue-tag --> glue-icon
   glue-toast --> glue-icon
   glue-uploader --> glue-icon
+  glue-uploader-preview-item --> glue-icon
   style glue-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

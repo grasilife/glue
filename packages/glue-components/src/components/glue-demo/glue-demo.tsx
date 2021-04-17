@@ -78,11 +78,14 @@ export class GlueDemo {
         <button onClick={this.pause}>暂停</button>
         <button onClick={this.reset}>重置</button>
         <glue-divider /> */}
-        <glue-list loading={this.loading} finished={this.finished} finished-text="没有更多了" onLoad={this.onLoad}>
+        {/* <glue-list loading={this.loading} finished={this.finished} finished-text="没有更多了" onLoad={this.onLoad}>
           {this.list.map(item => {
             return <glue-cell title={item.toString()}></glue-cell>;
           })}
-        </glue-list>
+        </glue-list> */}
+        <glue-loading type="spinner" color="#1989fa" size="24" vertical text-color="#0094ff">
+          加载中...
+        </glue-loading>
       </div>
     );
   }

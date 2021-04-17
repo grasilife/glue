@@ -30,12 +30,12 @@
 ### Graph
 ```mermaid
 graph TD;
-  glue-preview-item --> glue-icon
-  glue-preview-item --> glue-loading
-  glue-preview-item --> glue-image
+  glue-uploader-preview-item --> glue-icon
+  glue-uploader-preview-item --> glue-loading
+  glue-uploader-preview-item --> glue-image
   glue-icon --> glue-badge
   glue-image --> glue-icon
-  style glue-preview-item fill:#f9f,stroke:#333,stroke-width:4px
+  style glue-uploader-preview-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

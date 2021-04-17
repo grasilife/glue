@@ -58,7 +58,6 @@ export class GlueLoading {
       </span>
     );
   };
-  //TODO:type==spinner时没动画效果
   render() {
     // const TagType = 'button';
     console.log(this.el, this.el.parentNode, this.el.parentElement, this.el.children, this, 'this.circularIcon');
@@ -81,7 +80,7 @@ export class GlueLoading {
         >
           {this.type === 'spinner' ? this.spinIcon() : this.circularIcon()}
         </span>
-        {/* {this.renderText()} */}
+        {this.renderText()}
       </Host>
     );
   }

@@ -15,7 +15,7 @@
 | `finished`       | `finished`        |             | `boolean` | `undefined` |
 | `finishedText`   | `finished-text`   |             | `string`  | `undefined` |
 | `immediateCheck` | `immediate-check` |             | `boolean` | `true`      |
-| `loading`        | `loading`         |             | `boolean` | `undefined` |
+| `loading`        | `loading`         |             | `any`     | `undefined` |
 | `loadingText`    | `loading-text`    |             | `string`  | `undefined` |
 | `offset`         | `offset`          |             | `number`  | `300`       |
 
