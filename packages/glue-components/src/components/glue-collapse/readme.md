@@ -14,13 +14,6 @@
 | `modelValue` | --          |             | `any[]`   | `[]`        |
 
 
-## Events
-
-| Event        | Description | Type               |
-| ------------ | ----------- | ------------------ |
-| `glueToggle` |             | `CustomEvent<any>` |
-
-
 ## Methods
 
 ### `isExpanded(name: any) => Promise<boolean>`
@@ -43,19 +36,6 @@ Type: `Promise<void>`
 
 
 
-
-## Dependencies
-
-### Used by
-
- - [glue-demo](../glue-demo)
-
-### Graph
-```mermaid
-graph TD;
-  glue-demo --> glue-collapse
-  style glue-collapse fill:#f9f,stroke:#333,stroke-width:4px
-```
 
 ----------------------------------------------
 

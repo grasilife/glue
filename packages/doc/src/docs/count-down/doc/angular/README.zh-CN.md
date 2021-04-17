@@ -11,14 +11,12 @@
 `time` 属性表示倒计时总时长，单位为毫秒。
 
 ```html
-<van-count-down :time="time" />
+<glue-count-down :time="time" auto-start/>
 ```
 
 ```js
-import { ref } from 'vue';
-
 export default {
-  setup() {
+  data() {
     const time = ref(30 * 60 * 60 * 1000);
     return { time };
   },
@@ -30,7 +28,16 @@ export default {
 通过 `format` 属性设置倒计时文本的内容。
 
 ```html
-<van-count-down :time="time" format="DD 天 HH 时 mm 分 ss 秒" />
+<glue-count-down :time="time" format="DD 天 HH 时 mm 分 ss 秒" auto-start/>
+```
+
+```js
+export default {
+  data() {
+    const time = ref(30 * 60 * 60 * 1000);
+    return { time };
+  },
+};
 ```
 
 ### 毫秒级渲染
@@ -38,7 +45,16 @@ export default {
 倒计时默认每秒渲染一次，设置 `millisecond` 属性可以开启毫秒级渲染。
 
 ```html
-<van-count-down millisecond :time="time" format="HH:mm:ss:SS" />
+<glue-count-down millisecond :time="time" format="HH:mm:ss:SS" auto-start/>
+```
+
+```js
+export default {
+  data() {
+    const time = ref(30 * 60 * 60 * 1000);
+    return { time };
+  },
+};
 ```
 
 ### 自定义样式
@@ -46,15 +62,13 @@ export default {
 通过插槽自定义倒计时的样式，`timeData` 对象格式见下方表格。
 
 ```html
-<van-count-down :time="time">
-  <template #default="timeData">
+<glue-count-down :time="time" @glueChange="glueChange">
     <span class="block">{{ timeData.hours }}</span>
     <span class="colon">:</span>
     <span class="block">{{ timeData.minutes }}</span>
     <span class="colon">:</span>
     <span class="block">{{ timeData.seconds }}</span>
-  </template>
-</van-count-down>
+</glue-count-down>
 
 <style>
   .colon {
@@ -69,8 +83,29 @@ export default {
     font-size: 12px;
     text-align: center;
     background-color: #ee0a24;
+    border-radius: 4px;
   }
 </style>
+```
+
+```js
+export default {
+    data() {
+    return {
+      currentTime: {
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      },
+      time: 30 * 60 * 60 * 1000
+    };
+  },
+    methods: {
+    glueChange(e) {
+      this.currentTime = { ...e.detail.currentTime };
+    }
+  }
+};
 ```
 
 ### 手动控制
@@ -78,7 +113,7 @@ export default {
 通过 ref 获取到组件实例后，可以调用 `start`、`pause`、`reset` 方法。
 
 ```html
-<van-count-down
+<glue-count-down
   ref="countDown"
   millisecond
   :time="3000"
@@ -94,31 +129,24 @@ export default {
 ```
 
 ```js
-import { Toast } from 'vant';
-
 export default {
-  setup() {
-    const countDown = ref(null);
-
-    const start = () => {
-      countDown.value.start();
-    };
-    const pause = () => {
-      countDown.value.pause();
-    };
-    const reset = () => {
-      countDown.value.reset();
-    };
-    const onFinish = () => Toast('倒计时结束');
-
-    return {
-      start,
-      pause,
-      reset,
-      onFinish,
-      countDown,
-    };
+  data() {
+    const time = ref(30 * 60 * 60 * 1000);
+    return { time };
   },
+    methods: {
+    start() {
+      this.$refs.countDown.start();
+    },
+
+    pause() {
+      this.$refs.countDown.pause();
+    },
+
+    reset() {
+      this.$refs.countDown.reset();
+    }
+  }
 };
 ```
 
@@ -130,8 +158,9 @@ export default {
 |-------------|-------------------|--------------------|------------|
 | time        | 倒计时时长，单位毫秒 | _number \| string_ | `0`        |
 | format      | 时间格式            | _string_           | `HH:mm:ss` |
-| auto-start  | 是否自动开始倒计时  | _boolean_          | `true`     |
+| auto-start  | 是否自动开始倒计时  | _boolean_          | `false`    |
 | millisecond | 是否开启毫秒级渲染  | _boolean_          | `false`    |
+| custom      | 自定义倒计时        | _boolean_          | `false`    |
 
 ### format 格式
 
@@ -147,10 +176,10 @@ export default {
 
 ### Events
 
-| 事件名 | 说明             | 回调参数                   |
-|--------|----------------|----------------------------|
-| finish | 倒计时结束时触发 | -                          |
-| change | 倒计时变化时触发 | _currentTime: CurrentTime_ |
+| 事件名     | 说明             | 回调参数                   |
+|------------|----------------|----------------------------|
+| glueFinish | 倒计时结束时触发 | -                          |
+| glueChange | 倒计时变化时触发 | _currentTime: CurrentTime_ |
 
 ### Slots
 
@@ -171,7 +200,7 @@ export default {
 
 ### 方法
 
-通过 ref 可以获取到 CountDown 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+通过 ref 可以获取到 CountDown 实例并调用实例方法
 
 | 方法名 | 说明                                                        | 参数 | 返回值 |
 |--------|-----------------------------------------------------------|------|--------|

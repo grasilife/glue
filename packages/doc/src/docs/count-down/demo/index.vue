@@ -1,31 +1,29 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-count-down :time="time" />
+      <glue-count-down :time="time" auto-start />
     </DemoBlock>
 
     <DemoBlock :title="customFormat">
-      <van-count-down :time="time" :format="formatWithDay" />
+      <glue-count-down :time="time" :format="formatWithDay" auto-start />
     </DemoBlock>
 
     <DemoBlock :title="millisecond">
-      <van-count-down millisecond :time="time" format="HH:mm:ss:SS" />
+      <glue-count-down millisecond :time="time" format="HH:mm:ss:SS" auto-start />
     </DemoBlock>
 
     <DemoBlock :title="customStyle">
-      <van-count-down :time="time">
-        <template #default="currentTime">
-          <span class="block">{{ currentTime.hours }}</span>
-          <span class="colon">:</span>
-          <span class="block">{{ currentTime.minutes }}</span>
-          <span class="colon">:</span>
-          <span class="block">{{ currentTime.seconds }}</span>
-        </template>
-      </van-count-down>
+      <glue-count-down :time="time" custom @glueChange="glueChange" auto-start>
+        <span class="block">{{ currentTime.hours }}</span>
+        <span class="colon">:</span>
+        <span class="block">{{ currentTime.minutes }}</span>
+        <span class="colon">:</span>
+        <span class="block">{{ currentTime.seconds }}</span>
+      </glue-count-down>
     </DemoBlock>
 
     <DemoBlock :title="manualControl">
-      <van-count-down
+      <glue-count-down
         ref="countDown"
         millisecond
         :time="3000"
@@ -46,6 +44,11 @@
 export default {
   data() {
     return {
+      currentTime: {
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      },
       basicUsage: "基础用法",
       millisecond: "毫秒级渲染",
       customStyle: "自定义样式",
@@ -61,6 +64,9 @@ export default {
   },
 
   methods: {
+    glueChange(e) {
+      this.currentTime = { ...e.detail.currentTime };
+    },
     start() {
       this.$refs.countDown.start();
     },
@@ -82,7 +88,7 @@ export default {
 .demo-count-down {
   background-color: @white;
 
-  .van-count-down {
+  glue-count-down {
     margin-left: @padding-md;
   }
 

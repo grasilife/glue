@@ -67,7 +67,6 @@ export class GlueCountDown {
   componentWillLoad() {
     this.countDownVm = this.useCountDown();
     this.currentTime = this.countDownVm.current();
-    //全部是函数
     if (this.autoStart) {
       this.countDownVm.start();
     }

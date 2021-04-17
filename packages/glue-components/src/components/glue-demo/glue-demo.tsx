@@ -54,6 +54,7 @@ export class GlueDemo {
           </glue-collapse-item>
         </glue-collapse> */}
         <glue-count-down
+          autoStart
           time={3000}
           millisecond
           format="HH:mm:ss:SS"
