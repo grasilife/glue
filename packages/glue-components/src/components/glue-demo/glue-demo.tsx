@@ -41,6 +41,10 @@ export class GlueDemo {
   reset = () => {
     this.timeRef.reset();
   };
+  @State() list = [1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1];
+  @State() loading = true;
+  @State() finished = false;
+  onLoad = () => {};
   render() {
     return (
       <div class="container">
@@ -53,7 +57,7 @@ export class GlueDemo {
             代码是写出来给人看的，附带能在机器上运行
           </glue-collapse-item>
         </glue-collapse> */}
-        <glue-count-down
+        {/* <glue-count-down
           autoStart
           time={3000}
           millisecond
@@ -73,7 +77,12 @@ export class GlueDemo {
         <button onClick={this.start}>开始</button>
         <button onClick={this.pause}>暂停</button>
         <button onClick={this.reset}>重置</button>
-        <glue-divider />
+        <glue-divider /> */}
+        <glue-list loading={this.loading} finished={this.finished} finished-text="没有更多了" onLoad={this.onLoad}>
+          {this.list.map(item => {
+            return <glue-cell title={item.toString()}></glue-cell>;
+          })}
+        </glue-list>
       </div>
     );
   }

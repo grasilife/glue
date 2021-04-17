@@ -11,10 +11,10 @@ import { GridDirection } from "./components/glue-grid/glue-grid";
 import { GridDirection as GridDirection1 } from "./components/glue-grid-item/glue-grid-item";
 import { ImageFit } from "./components/glue-image/glue-image";
 import { NoticeBarMode } from "./components/glue-notice-bar/glue-notice-bar";
-import { ImageFit as ImageFit1 } from "./components/glue-preview-item/glue-preview-item";
 import { RowAlign, RowJustify } from "./components/glue-row/glue-row";
 import { ToastType } from "./components/glue-toast/glue-toast";
 import { ResultType } from "./components/glue-uploader/glue-uploader";
+import { ImageFit as ImageFit1 } from "./components/glue-uploader-preview-item/glue-uploader-preview-item";
 export namespace Components {
     interface GlueActionBar {
         "safeAreaInsetBottom": true;
@@ -460,6 +460,12 @@ export namespace Components {
         "src": string;
         "width": string | number;
     }
+    interface GlueImagePreview {
+        "first": string;
+    }
+    interface GlueImagePreviewItem {
+        "first": string;
+    }
     interface GlueIndexAnchor {
         "active": boolean;
         "index": string | number;
@@ -493,7 +499,7 @@ export namespace Components {
         "finished": boolean;
         "finishedText": string;
         "immediateCheck": boolean;
-        "loading": boolean;
+        "loading": any;
         "loadingText": string;
         "offset": number;
     }
@@ -604,16 +610,6 @@ export namespace Components {
         "transitionAppear": boolean;
         "width": string;
         "zIndex": string;
-    }
-    interface GluePreviewItem {
-        "beforeDelete": any;
-        "deletable": boolean;
-        "imageFit": ImageFit;
-        "index": number;
-        "item": any;
-        "lazyLoad": boolean;
-        "name": string;
-        "previewSize": string | number;
     }
     interface GlueProgress {
         "color": string;
@@ -902,6 +898,16 @@ export namespace Components {
         "uploadIcon": string;
         "uploadText": string;
     }
+    interface GlueUploaderPreviewItem {
+        "beforeDelete": any;
+        "deletable": boolean;
+        "imageFit": ImageFit;
+        "index": number;
+        "item": any;
+        "lazyLoad": boolean;
+        "name": string;
+        "previewSize": string | number;
+    }
 }
 declare global {
     interface HTMLGlueActionBarElement extends Components.GlueActionBar, HTMLStencilElement {
@@ -1168,6 +1174,18 @@ declare global {
         prototype: HTMLGlueImageElement;
         new (): HTMLGlueImageElement;
     };
+    interface HTMLGlueImagePreviewElement extends Components.GlueImagePreview, HTMLStencilElement {
+    }
+    var HTMLGlueImagePreviewElement: {
+        prototype: HTMLGlueImagePreviewElement;
+        new (): HTMLGlueImagePreviewElement;
+    };
+    interface HTMLGlueImagePreviewItemElement extends Components.GlueImagePreviewItem, HTMLStencilElement {
+    }
+    var HTMLGlueImagePreviewItemElement: {
+        prototype: HTMLGlueImagePreviewItemElement;
+        new (): HTMLGlueImagePreviewItemElement;
+    };
     interface HTMLGlueIndexAnchorElement extends Components.GlueIndexAnchor, HTMLStencilElement {
     }
     var HTMLGlueIndexAnchorElement: {
@@ -1257,12 +1275,6 @@ declare global {
     var HTMLGluePopupElement: {
         prototype: HTMLGluePopupElement;
         new (): HTMLGluePopupElement;
-    };
-    interface HTMLGluePreviewItemElement extends Components.GluePreviewItem, HTMLStencilElement {
-    }
-    var HTMLGluePreviewItemElement: {
-        prototype: HTMLGluePreviewItemElement;
-        new (): HTMLGluePreviewItemElement;
     };
     interface HTMLGlueProgressElement extends Components.GlueProgress, HTMLStencilElement {
     }
@@ -1438,6 +1450,12 @@ declare global {
         prototype: HTMLGlueUploaderElement;
         new (): HTMLGlueUploaderElement;
     };
+    interface HTMLGlueUploaderPreviewItemElement extends Components.GlueUploaderPreviewItem, HTMLStencilElement {
+    }
+    var HTMLGlueUploaderPreviewItemElement: {
+        prototype: HTMLGlueUploaderPreviewItemElement;
+        new (): HTMLGlueUploaderPreviewItemElement;
+    };
     interface HTMLElementTagNameMap {
         "glue-action-bar": HTMLGlueActionBarElement;
         "glue-action-bar-button": HTMLGlueActionBarButtonElement;
@@ -1483,6 +1501,8 @@ declare global {
         "glue-grid-item": HTMLGlueGridItemElement;
         "glue-icon": HTMLGlueIconElement;
         "glue-image": HTMLGlueImageElement;
+        "glue-image-preview": HTMLGlueImagePreviewElement;
+        "glue-image-preview-item": HTMLGlueImagePreviewItemElement;
         "glue-index-anchor": HTMLGlueIndexAnchorElement;
         "glue-index-bar": HTMLGlueIndexBarElement;
         "glue-key": HTMLGlueKeyElement;
@@ -1498,7 +1518,6 @@ declare global {
         "glue-picker": HTMLGluePickerElement;
         "glue-popover": HTMLGluePopoverElement;
         "glue-popup": HTMLGluePopupElement;
-        "glue-preview-item": HTMLGluePreviewItemElement;
         "glue-progress": HTMLGlueProgressElement;
         "glue-pull-refresh": HTMLGluePullRefreshElement;
         "glue-radio": HTMLGlueRadioElement;
@@ -1528,6 +1547,7 @@ declare global {
         "glue-toast": HTMLGlueToastElement;
         "glue-tree-select": HTMLGlueTreeSelectElement;
         "glue-uploader": HTMLGlueUploaderElement;
+        "glue-uploader-preview-item": HTMLGlueUploaderPreviewItemElement;
     }
 }
 declare namespace LocalJSX {
@@ -1988,6 +2008,12 @@ declare namespace LocalJSX {
         "src"?: string;
         "width"?: string | number;
     }
+    interface GlueImagePreview {
+        "first"?: string;
+    }
+    interface GlueImagePreviewItem {
+        "first"?: string;
+    }
     interface GlueIndexAnchor {
         "active"?: boolean;
         "index"?: string | number;
@@ -2022,7 +2048,7 @@ declare namespace LocalJSX {
         "finished"?: boolean;
         "finishedText"?: string;
         "immediateCheck"?: boolean;
-        "loading"?: boolean;
+        "loading"?: any;
         "loadingText"?: string;
         "offset"?: number;
         "onClickErrorText"?: (event: CustomEvent<any>) => void;
@@ -2153,16 +2179,6 @@ declare namespace LocalJSX {
         "transitionAppear"?: boolean;
         "width"?: string;
         "zIndex"?: string;
-    }
-    interface GluePreviewItem {
-        "beforeDelete"?: any;
-        "deletable"?: boolean;
-        "imageFit"?: ImageFit;
-        "index"?: number;
-        "item"?: any;
-        "lazyLoad"?: boolean;
-        "name"?: string;
-        "previewSize"?: string | number;
     }
     interface GlueProgress {
         "color"?: string;
@@ -2478,6 +2494,16 @@ declare namespace LocalJSX {
         "uploadIcon"?: string;
         "uploadText"?: string;
     }
+    interface GlueUploaderPreviewItem {
+        "beforeDelete"?: any;
+        "deletable"?: boolean;
+        "imageFit"?: ImageFit;
+        "index"?: number;
+        "item"?: any;
+        "lazyLoad"?: boolean;
+        "name"?: string;
+        "previewSize"?: string | number;
+    }
     interface IntrinsicElements {
         "glue-action-bar": GlueActionBar;
         "glue-action-bar-button": GlueActionBarButton;
@@ -2523,6 +2549,8 @@ declare namespace LocalJSX {
         "glue-grid-item": GlueGridItem;
         "glue-icon": GlueIcon;
         "glue-image": GlueImage;
+        "glue-image-preview": GlueImagePreview;
+        "glue-image-preview-item": GlueImagePreviewItem;
         "glue-index-anchor": GlueIndexAnchor;
         "glue-index-bar": GlueIndexBar;
         "glue-key": GlueKey;
@@ -2538,7 +2566,6 @@ declare namespace LocalJSX {
         "glue-picker": GluePicker;
         "glue-popover": GluePopover;
         "glue-popup": GluePopup;
-        "glue-preview-item": GluePreviewItem;
         "glue-progress": GlueProgress;
         "glue-pull-refresh": GluePullRefresh;
         "glue-radio": GlueRadio;
@@ -2568,6 +2595,7 @@ declare namespace LocalJSX {
         "glue-toast": GlueToast;
         "glue-tree-select": GlueTreeSelect;
         "glue-uploader": GlueUploader;
+        "glue-uploader-preview-item": GlueUploaderPreviewItem;
     }
 }
 export { LocalJSX as JSX };
@@ -2618,6 +2646,8 @@ declare module "@stencil/core" {
             "glue-grid-item": LocalJSX.GlueGridItem & JSXBase.HTMLAttributes<HTMLGlueGridItemElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
             "glue-image": LocalJSX.GlueImage & JSXBase.HTMLAttributes<HTMLGlueImageElement>;
+            "glue-image-preview": LocalJSX.GlueImagePreview & JSXBase.HTMLAttributes<HTMLGlueImagePreviewElement>;
+            "glue-image-preview-item": LocalJSX.GlueImagePreviewItem & JSXBase.HTMLAttributes<HTMLGlueImagePreviewItemElement>;
             "glue-index-anchor": LocalJSX.GlueIndexAnchor & JSXBase.HTMLAttributes<HTMLGlueIndexAnchorElement>;
             "glue-index-bar": LocalJSX.GlueIndexBar & JSXBase.HTMLAttributes<HTMLGlueIndexBarElement>;
             "glue-key": LocalJSX.GlueKey & JSXBase.HTMLAttributes<HTMLGlueKeyElement>;
@@ -2633,7 +2663,6 @@ declare module "@stencil/core" {
             "glue-picker": LocalJSX.GluePicker & JSXBase.HTMLAttributes<HTMLGluePickerElement>;
             "glue-popover": LocalJSX.GluePopover & JSXBase.HTMLAttributes<HTMLGluePopoverElement>;
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
-            "glue-preview-item": LocalJSX.GluePreviewItem & JSXBase.HTMLAttributes<HTMLGluePreviewItemElement>;
             "glue-progress": LocalJSX.GlueProgress & JSXBase.HTMLAttributes<HTMLGlueProgressElement>;
             "glue-pull-refresh": LocalJSX.GluePullRefresh & JSXBase.HTMLAttributes<HTMLGluePullRefreshElement>;
             "glue-radio": LocalJSX.GlueRadio & JSXBase.HTMLAttributes<HTMLGlueRadioElement>;
@@ -2663,6 +2692,7 @@ declare module "@stencil/core" {
             "glue-toast": LocalJSX.GlueToast & JSXBase.HTMLAttributes<HTMLGlueToastElement>;
             "glue-tree-select": LocalJSX.GlueTreeSelect & JSXBase.HTMLAttributes<HTMLGlueTreeSelectElement>;
             "glue-uploader": LocalJSX.GlueUploader & JSXBase.HTMLAttributes<HTMLGlueUploaderElement>;
+            "glue-uploader-preview-item": LocalJSX.GlueUploaderPreviewItem & JSXBase.HTMLAttributes<HTMLGlueUploaderPreviewItemElement>;
         }
     }
 }
