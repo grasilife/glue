@@ -1,7 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-315a2c70"],{"9ceb":function(r,n,e){"use strict";e.d(n,"a",(function(){return c}));e("ef14");var t=e("e300");function o(r,n,e){return e={path:n,exports:{},require:function(r,n){return u()}},r(e,e.exports),e.exports}function u(){throw new Error("Dynamic requires are not currently supported by @rollup/plugin-commonjs")}var c=o((function(r){
-/*!
-    Copyright (c) 2017 Jed Watson.
-    Licensed under the MIT License (MIT), see
-    http://jedwatson.github.io/classnames
-  */
-(function(){var n={}.hasOwnProperty;function e(){for(var r=[],o=0;o<arguments.length;o++){var u=arguments[o];if(u){var c=Object(t["a"])(u);if("string"===c||"number"===c)r.push(u);else if(Array.isArray(u)&&u.length){var i=e.apply(null,u);i&&r.push(i)}else if("object"===c)for(var s in u)n.call(u,s)&&u[s]&&r.push(s)}}return r.join(" ")}r.exports?(e.default=e,r.exports=e):window.classNames=e})()}))},b9a2:function(r,n,e){"use strict";e.r(n),e.d(n,"glue_dialog",(function(){return s}));var t=e("f5f2"),o=e("30c6"),u=e("f556"),c=e("9ceb"),i="",s=function(){function r(n){Object(t["a"])(this,r),Object(u["g"])(this,n)}return Object(o["a"])(r,[{key:"render",value:function(){return Object(u["e"])("div",{class:Object(c["a"])("cunstom")},"Hello, World! I'm ",this.first)}}]),r}();s.style=i}}]);
