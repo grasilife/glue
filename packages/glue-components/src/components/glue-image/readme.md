@@ -30,7 +30,6 @@
 | ----------- | ----------- | ------------------ |
 | `glueError` |             | `CustomEvent<any>` |
 | `glueLoad`  |             | `CustomEvent<any>` |
-| `onError`   |             | `CustomEvent<any>` |
 
 
 ## Dependencies

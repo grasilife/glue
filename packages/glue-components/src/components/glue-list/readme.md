@@ -16,18 +16,36 @@
 | `finishedText`   | `finished-text`   |             | `string`  | `undefined` |
 | `immediateCheck` | `immediate-check` |             | `boolean` | `true`      |
 | `loading`        | `loading`         |             | `any`     | `undefined` |
-| `loadingText`    | `loading-text`    |             | `string`  | `undefined` |
+| `loadingText`    | `loading-text`    |             | `string`  | `'加载中...'`  |
 | `offset`         | `offset`          |             | `number`  | `300`       |
 
 
 ## Events
 
-| Event            | Description | Type               |
-| ---------------- | ----------- | ------------------ |
-| `clickErrorText` |             | `CustomEvent<any>` |
+| Event                | Description | Type               |
+| -------------------- | ----------- | ------------------ |
+| `glueClickErrorText` |             | `CustomEvent<any>` |
+| `glueLoad`           |             | `CustomEvent<any>` |
+
+
+## Methods
+
+### `check() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ## Dependencies
+
+### Used by
+
+ - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -37,6 +55,7 @@
 ```mermaid
 graph TD;
   glue-list --> glue-loading
+  glue-demo --> glue-list
   style glue-list fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

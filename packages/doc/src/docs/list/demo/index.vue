@@ -2,38 +2,38 @@
   <DemoSection>
     <van-tabs>
       <van-tab :title="basicUsage">
-        <van-list
-          v-model="list[0].loading"
+        <glue-list
+          :loading="list[0].loading"
           :finished="list[0].finished"
           :finished-text="finishedText"
-          @load="onLoad(0)"
+          @glueLoad="onLoad(0)"
         >
-          <van-cell v-for="item in list[0].items" :key="item" :title="item" />
-        </van-list>
+          <glue-cell v-for="item in list[0].items" :key="item" :title="item" />
+        </glue-list>
       </van-tab>
 
       <van-tab :title="errorInfo">
-        <van-list
-          v-model="list[1].loading"
+        <glue-list
+          :loading="list[1].loading"
           :finished="list[1].finished"
-          :error.sync="list[1].error"
+          :error="list[1].error"
           :error-text="errorText"
-          @load="onLoad(1)"
+          @glueLoad="onLoad(1)"
         >
-          <van-cell v-for="item in list[1].items" :key="item" :title="item" />
-        </van-list>
+          <glue-cell v-for="item in list[1].items" :key="item" :title="item" />
+        </glue-list>
       </van-tab>
 
       <van-tab :title="pullRefresh">
-        <van-pull-refresh v-model="list[2].refreshing" @refresh="onRefresh(2)">
-          <van-list
-            v-model="list[2].loading"
+        <van-pull-refresh :loading="list[2].refreshing" @refresh="onRefresh(2)">
+          <glue-list
+            :loading="list[2].loading"
             :finished="list[2].finished"
             :finished-text="finishedText"
-            @load="onLoad(2)"
+            @glueLoad="onLoad(2)"
           >
-            <van-cell v-for="item in list[2].items" :key="item" :title="item" />
-          </van-list>
+            <glue-cell v-for="item in list[2].items" :key="item" :title="item" />
+          </glue-list>
         </van-pull-refresh>
       </van-tab>
     </van-tabs>
@@ -92,6 +92,7 @@ export default {
         }
 
         list.loading = false;
+        console.log(list.loading, "list.loading");
         list.refreshing = false;
 
         // show error info in second demo
@@ -119,7 +120,7 @@ export default {
 @import "../../../common/style/var2.less";
 
 .demo-list {
-  .van-cell {
+  glue-cell {
     text-align: center;
   }
 
