@@ -1,6 +1,5 @@
 import { Component, Prop, h, Host, Event, EventEmitter, Element, Watch, Method } from '@stencil/core';
 // import classNames from 'classnames';
-import { isDef } from '../../utils/base';
 import { useRect } from '../../utils/useRect';
 import { useScrollParent } from '../../utils/useScrollParent';
 import { isHidden } from '../../utils/dom/style';

@@ -31,7 +31,6 @@ export class GlueImage {
   @State() errorState: boolean = false;
   @Event() glueLoad: EventEmitter;
   @Event() glueError: EventEmitter;
-  @Event() onError: EventEmitter;
   style = () => {
     const style = {
       width: '',
