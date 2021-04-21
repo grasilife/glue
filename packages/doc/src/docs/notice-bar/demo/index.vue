@@ -22,7 +22,7 @@
       <glue-notice-bar :text="shortText" color="#1989fa" background="#ecf9ff" left-icon="info-o" />
     </DemoBlock>
 
-    <DemoBlock :title="verticalScroll">
+    <!-- <DemoBlock :title="verticalScroll">
       <glue-notice-bar left-icon="volume-o" :scrollable="false">
         <van-swipe vertical class="notice-swipe" :autoplay="3000" :show-indicators="false">
           <van-swipe-item>{{ content }} 1</van-swipe-item>
@@ -30,7 +30,7 @@
           <van-swipe-item>{{ content }} 3</van-swipe-item>
         </van-swipe>
       </glue-notice-bar>
-    </DemoBlock>
+    </DemoBlock> -->
   </DemoSection>
 </template>
 

@@ -14,21 +14,26 @@
 | `delay`      | `delay`      |             | `number`                | `1`         |
 | `leftIcon`   | `left-icon`  |             | `string`                | `undefined` |
 | `mode`       | `mode`       |             | `"closeable" \| "link"` | `undefined` |
-| `scrollable` | `scrollable` |             | `any`                   | `null`      |
-| `speed`      | `speed`      |             | `number`                | `50`        |
+| `rightIcon`  | `right-icon` |             | `string`                | `undefined` |
+| `scrollable` | `scrollable` |             | `boolean`               | `false`     |
+| `speed`      | `speed`      |             | `number`                | `80`        |
 | `text`       | `text`       |             | `string`                | `undefined` |
-| `wrapable`   | `wrapable`   |             | `string`                | `undefined` |
+| `wrapable`   | `wrapable`   |             | `boolean`               | `false`     |
 
 
 ## Events
 
-| Event    | Description | Type               |
-| -------- | ----------- | ------------------ |
-| `close`  |             | `CustomEvent<any>` |
-| `replay` |             | `CustomEvent<any>` |
+| Event       | Description | Type               |
+| ----------- | ----------- | ------------------ |
+| `glueClose` |             | `CustomEvent<any>` |
+| `replay`    |             | `CustomEvent<any>` |
 
 
 ## Dependencies
+
+### Used by
+
+ - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -39,6 +44,7 @@
 graph TD;
   glue-notice-bar --> glue-icon
   glue-icon --> glue-badge
+  glue-demo --> glue-notice-bar
   style glue-notice-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

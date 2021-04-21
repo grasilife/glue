@@ -1,11 +1,8 @@
 import { Component, Prop, h, Host, State, Event, EventEmitter, Watch } from '@stencil/core';
-// import { isDef } from '../../utils/base';
-import { doubleRaf, raf } from '../../utils/dom/raf';
 export type NoticeBarMode = 'closeable' | 'link';
 import classNames from 'classnames';
 import { useRect } from '../../utils/useRect';
-// import { startAnimation } from './animation';
-import { DURATION, EASING } from '../../global/constant/constant';
+import { EASING } from '../../global/constant/constant';
 import anime from 'animejs/lib/anime.es.js';
 @Component({
   tag: 'glue-notice-bar',
@@ -19,7 +16,8 @@ export class GlueNoticeBar {
 
   @Prop() color: string;
   @Prop() leftIcon: string;
-  @Prop() wrapable: string;
+  @Prop() rightIcon: string;
+  @Prop() wrapable = false;
   @Prop() background: string;
   @Prop() scrollable = false;
   @Prop() delay = 1;
@@ -32,7 +30,7 @@ export class GlueNoticeBar {
   @State() wrapWidth = 0;
   @State() contentWidth = 0;
   @State() startTimer = null;
-  @Event() close: EventEmitter;
+  @Event() glueClose: EventEmitter;
   @Event() replay: EventEmitter;
   wrapRef: HTMLElement;
   contentRef: HTMLElement;
@@ -46,17 +44,22 @@ export class GlueNoticeBar {
   }
   renderLeftIcon = () => {
     if (this.leftIcon) {
-      return <glue-icon class="glue-notice-bar__left-icon" name={this.leftIcon} />;
+      if (this.leftIcon == '#slot') {
+        return <slot name="left-icon"></slot>;
+      } else {
+        return <glue-icon class="glue-notice-bar__left-icon" name={this.leftIcon} />;
+      }
     }
   };
   renderMarquee = () => {
     const ellipsis = this.scrollable === false && !this.wrapable;
+    console.log(ellipsis, 'ellipsis');
     return (
       <div ref={el => (this.wrapRef = el)} role="marquee" class="glue-notice-bar__wrap">
         <div
           ref={el => (this.contentRef = el)}
           class={classNames('glue-notice-bar__content', {
-            'glue-notice-bar__glue-ellipsis': ellipsis,
+            'glue-ellipsis': ellipsis,
           })}
         >
           {this.text}
@@ -72,33 +75,35 @@ export class GlueNoticeBar {
   };
 
   start = () => {
-    console.log(this.contentRef, 'this.contentRef');
-    const wrapRefWidth = useRect(this.wrapRef).width;
-    const contentRefWidth = useRect(this.contentRef).width;
-    //长度除以速度等于时间
-    console.log(wrapRefWidth, contentRefWidth, 'spenhg');
-    anime({
-      targets: this.contentRef,
-      easing: EASING,
-      translateX: [
-        {
-          duration: (contentRefWidth / this.speed) * 1000,
-          value: -contentRefWidth,
+    if (this.scrollable) {
+      console.log(this.contentRef, 'this.contentRef');
+      const wrapRefWidth = useRect(this.wrapRef).width;
+      const contentRefWidth = useRect(this.contentRef).width;
+      //长度除以速度等于时间
+      console.log(wrapRefWidth, contentRefWidth, 'spenhg');
+      anime({
+        targets: this.contentRef,
+        easing: EASING,
+        translateX: [
+          {
+            duration: (contentRefWidth / this.speed) * 1000,
+            value: -contentRefWidth,
+          },
+          {
+            duration: 0,
+            value: wrapRefWidth,
+          },
+          {
+            duration: (wrapRefWidth / this.speed) * 1000,
+            value: 0,
+          },
+        ],
+        begin: () => {},
+        complete: anim => {
+          anim.restart();
         },
-        {
-          duration: 0,
-          value: wrapRefWidth,
-        },
-        {
-          duration: (wrapRefWidth / this.speed) * 1000,
-          value: 0,
-        },
-      ],
-      begin: () => {},
-      complete: anim => {
-        anim.restart();
-      },
-    });
+      });
+    }
   };
   componentDidLoad() {
     this.start();
@@ -114,10 +119,13 @@ export class GlueNoticeBar {
   onClickRightIconHandle = (event: MouseEvent) => {
     if (this.mode === 'closeable') {
       this.state.show = false;
-      this.close.emit(event);
+      this.glueClose.emit(event);
     }
   };
   renderRightIcon = () => {
+    if (this.rightIcon == '#slot') {
+      return <slot name="right-icon"></slot>;
+    }
     const name = this.getRightIconName();
     if (name) {
       return <glue-icon name={name} class="glue-notice-bar__right-icon" onClick={this.onClickRightIconHandle} />;
@@ -130,7 +138,7 @@ export class GlueNoticeBar {
         hidden={this.state.show}
         role="alert"
         class={classNames('glue-notice-bar', {
-          'glue-notice-bar__wrapable': wrapable,
+          'glue-notice-bar--wrapable': wrapable,
         })}
         style={{ color, background }}
       >

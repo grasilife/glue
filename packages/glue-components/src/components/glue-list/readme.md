@@ -43,10 +43,6 @@ Type: `Promise<void>`
 
 ## Dependencies
 
-### Used by
-
- - [glue-demo](../glue-demo)
-
 ### Depends on
 
 - [glue-loading](../glue-loading)
@@ -55,7 +51,6 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   glue-list --> glue-loading
-  glue-demo --> glue-list
   style glue-list fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

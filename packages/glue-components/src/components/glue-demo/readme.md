@@ -9,18 +9,15 @@
 
 ### Depends on
 
-- [glue-list](../glue-list)
-- [glue-cell](../glue-cell)
+- [glue-notice-bar](../glue-notice-bar)
 - [glue-toast](../glue-toast)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-list
-  glue-demo --> glue-cell
+  glue-demo --> glue-notice-bar
   glue-demo --> glue-toast
-  glue-list --> glue-loading
-  glue-cell --> glue-icon
+  glue-notice-bar --> glue-icon
   glue-icon --> glue-badge
   glue-toast --> glue-icon
   glue-toast --> glue-loading

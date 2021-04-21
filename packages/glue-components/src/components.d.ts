@@ -529,10 +529,11 @@ export namespace Components {
         "delay": number;
         "leftIcon": string;
         "mode": NoticeBarMode;
+        "rightIcon": string;
         "scrollable": boolean;
         "speed": number;
         "text": string;
-        "wrapable": string;
+        "wrapable": boolean;
     }
     interface GlueNumberKeyboard {
         "blurOnClose": boolean;
@@ -2081,12 +2082,13 @@ declare namespace LocalJSX {
         "delay"?: number;
         "leftIcon"?: string;
         "mode"?: NoticeBarMode;
-        "onClose"?: (event: CustomEvent<any>) => void;
+        "onGlueClose"?: (event: CustomEvent<any>) => void;
         "onReplay"?: (event: CustomEvent<any>) => void;
+        "rightIcon"?: string;
         "scrollable"?: boolean;
         "speed"?: number;
         "text"?: string;
-        "wrapable"?: string;
+        "wrapable"?: boolean;
     }
     interface GlueNumberKeyboard {
         "blurOnClose"?: boolean;
