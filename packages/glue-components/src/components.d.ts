@@ -529,7 +529,7 @@ export namespace Components {
         "delay": number;
         "leftIcon": string;
         "mode": NoticeBarMode;
-        "scrollable": any;
+        "scrollable": boolean;
         "speed": number;
         "text": string;
         "wrapable": string;
@@ -2083,7 +2083,7 @@ declare namespace LocalJSX {
         "mode"?: NoticeBarMode;
         "onClose"?: (event: CustomEvent<any>) => void;
         "onReplay"?: (event: CustomEvent<any>) => void;
-        "scrollable"?: any;
+        "scrollable"?: boolean;
         "speed"?: number;
         "text"?: string;
         "wrapable"?: string;

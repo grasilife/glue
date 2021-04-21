@@ -1,8 +1,12 @@
-import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
-import { isDef } from '../../utils/base';
+import { Component, Prop, h, Host, State, Event, EventEmitter, Watch } from '@stencil/core';
+// import { isDef } from '../../utils/base';
 import { doubleRaf, raf } from '../../utils/dom/raf';
 export type NoticeBarMode = 'closeable' | 'link';
 import classNames from 'classnames';
+import { useRect } from '../../utils/useRect';
+// import { startAnimation } from './animation';
+import { DURATION, EASING } from '../../global/constant/constant';
+import anime from 'animejs/lib/anime.es.js';
 @Component({
   tag: 'glue-notice-bar',
   styleUrl: 'glue-notice-bar.less',
@@ -17,9 +21,9 @@ export class GlueNoticeBar {
   @Prop() leftIcon: string;
   @Prop() wrapable: string;
   @Prop() background: string;
-  @Prop() scrollable = null;
+  @Prop() scrollable = false;
   @Prop() delay = 1;
-  @Prop() speed = 50;
+  @Prop() speed = 80;
   @State() state = {
     show: true,
     offset: 0,
@@ -28,11 +32,18 @@ export class GlueNoticeBar {
   @State() wrapWidth = 0;
   @State() contentWidth = 0;
   @State() startTimer = null;
-  // @Event() onClickRightIcon: EventEmitter;
   @Event() close: EventEmitter;
   @Event() replay: EventEmitter;
   wrapRef: HTMLElement;
   contentRef: HTMLElement;
+  @Watch('text')
+  textStartHandle() {
+    this.start();
+  }
+  @Watch('scrollable')
+  scrollableStartHandle() {
+    this.start();
+  }
   renderLeftIcon = () => {
     if (this.leftIcon) {
       return <glue-icon class="glue-notice-bar__left-icon" name={this.leftIcon} />;
@@ -40,41 +51,18 @@ export class GlueNoticeBar {
   };
   renderMarquee = () => {
     const ellipsis = this.scrollable === false && !this.wrapable;
-    const style = {
-      transform: this.state.offset ? `translateX(${this.state.offset}px)` : '',
-      transitionDuration: `${this.state.duration}s`,
-    };
-    console.log(style, 'style');
     return (
       <div ref={el => (this.wrapRef = el)} role="marquee" class="glue-notice-bar__wrap">
         <div
           ref={el => (this.contentRef = el)}
-          style={style}
           class={classNames('glue-notice-bar__content', {
             'glue-notice-bar__glue-ellipsis': ellipsis,
           })}
-          onTransitionEnd={this.onTransitionEnd}
         >
           {this.text}
         </div>
       </div>
     );
-  };
-  onTransitionEnd = () => {
-    //TODO:动画有问题
-    this.state.offset = 0;
-    this.state.duration = 0;
-
-    // wait for Vue to render offset
-    // using nextTick won't work in iOS14
-    raf(() => {
-      // use double raf to ensure animation can start
-      doubleRaf(() => {
-        this.state.offset = -this.contentWidth;
-        this.state.duration = (this.contentWidth + this.wrapWidth) / +this.speed;
-        this.replay.emit('replay');
-      });
-    });
   };
   reset = () => {
     this.wrapWidth = 0;
@@ -84,31 +72,35 @@ export class GlueNoticeBar {
   };
 
   start = () => {
-    console.log(this.wrapRef, 'wrapRef');
-    const { delay, speed, scrollable } = this;
-    const ms = isDef(delay) ? +delay * 1000 : 0;
-
-    this.reset();
-
-    clearTimeout(this.startTimer);
-    this.startTimer = setTimeout(() => {
-      if (!this.wrapRef || !this.contentRef || scrollable === false) {
-        return;
-      }
-
-      const wrapRefWidth = this.wrapRef.offsetWidth;
-      const contentRefWidth = this.contentRef.offsetWidth;
-
-      if (scrollable || contentRefWidth > wrapRefWidth) {
-        this.wrapWidth = wrapRefWidth;
-        this.contentWidth = contentRefWidth;
-        this.state.offset = -this.contentWidth;
-        this.state.duration = this.contentWidth / +speed;
-      }
-    }, ms);
+    console.log(this.contentRef, 'this.contentRef');
+    const wrapRefWidth = useRect(this.wrapRef).width;
+    const contentRefWidth = useRect(this.contentRef).width;
+    //长度除以速度等于时间
+    console.log(wrapRefWidth, contentRefWidth, 'spenhg');
+    anime({
+      targets: this.contentRef,
+      easing: EASING,
+      translateX: [
+        {
+          duration: (contentRefWidth / this.speed) * 1000,
+          value: -contentRefWidth,
+        },
+        {
+          duration: 0,
+          value: wrapRefWidth,
+        },
+        {
+          duration: (wrapRefWidth / this.speed) * 1000,
+          value: 0,
+        },
+      ],
+      begin: () => {},
+      complete: anim => {
+        anim.restart();
+      },
+    });
   };
   componentDidLoad() {
-    console.log(this.wrapRef.offsetHeight, 'wrapRef');
     this.start();
   }
   getRightIconName = () => {

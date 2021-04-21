@@ -78,12 +78,13 @@ export class GlueDemo {
         <button onClick={this.pause}>暂停</button>
         <button onClick={this.reset}>重置</button>
         <glue-divider /> */}
-        <glue-list loading={this.loading} finished={this.finished} finished-text="没有更多了" onLoad={this.onLoad} loading-text="#slot">
+        {/* <glue-list loading={this.loading} finished={this.finished} finished-text="没有更多了" onLoad={this.onLoad} loading-text="#slot">
           <div slot="loading-text">自定义加载中</div>
           {this.list.map(item => {
             return <glue-cell title={item.toString()}></glue-cell>;
           })}
-        </glue-list>
+        </glue-list> */}
+        <glue-notice-bar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" scrollable={true} />
       </div>
     );
   }
