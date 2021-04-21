@@ -11,7 +11,7 @@
 通过 `text` 属性设置通知栏的内容，通过 `left-icon` 属性设置通知栏左侧的图标。
 
 ```html
-<van-notice-bar
+<glue-notice-bar
   left-icon="volume-o"
   text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
 />
@@ -23,10 +23,10 @@
 
 ```html
 <!-- 文字较短时，通过设置 scrollable 属性开启滚动播放 -->
-<van-notice-bar scrollable text="技术是开发它的人的共同灵魂。" />
+<glue-notice-bar scrollable text="技术是开发它的人的共同灵魂。" />
 
 <!-- 文字较长时，通过禁用 scrollable 属性关闭滚动播放 -->
-<van-notice-bar
+<glue-notice-bar
   :scrollable="false"
   text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
 />
@@ -37,7 +37,7 @@
 文字较长时，可以通过设置 `wrapable` 属性来开启多行展示。
 
 ```html
-<van-notice-bar
+<glue-notice-bar
   wrapable
   :scrollable="false"
   text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
@@ -50,10 +50,10 @@
 
 ```html
 <!-- closeable 模式，在右侧显示关闭按钮 -->
-<van-notice-bar mode="closeable">技术是开发它的人的共同灵魂。</van-notice-bar>
+<glue-notice-bar mode="closeable">技术是开发它的人的共同灵魂。</glue-notice-bar>
 
 <!-- link 模式，在右侧显示链接箭头 -->
-<van-notice-bar mode="link">技术是开发它的人的共同灵魂。</van-notice-bar>
+<glue-notice-bar mode="link">技术是开发它的人的共同灵魂。</glue-notice-bar>
 ```
 
 ### 自定义样式
@@ -61,60 +61,34 @@
 通过 `color` 属性设置文本颜色，通过 `background` 属性设置背景色。
 
 ```html
-<van-notice-bar color="#1989fa" background="#ecf9ff" left-icon="info-o">
+<glue-notice-bar color="#1989fa" background="#ecf9ff" left-icon="info-o">
   技术是开发它的人的共同灵魂。
-</van-notice-bar>
-```
-
-### 垂直滚动
-
-搭配 NoticeBar 和 Swipe 组件可以实现垂直滚动的效果。
-
-```html
-<van-notice-bar left-icon="volume-o" :scrollable="false">
-  <van-swipe
-    vertical
-    class="notice-swipe"
-    :autoplay="3000"
-    :show-indicators="false"
-  >
-    <van-swipe-item>内容 1</van-swipe-item>
-    <van-swipe-item>内容 2</van-swipe-item>
-    <van-swipe-item>内容 3</van-swipe-item>
-  </van-swipe>
-</van-notice-bar>
-
-<style>
-  .notice-swipe {
-    height: 40px;
-    line-height: 40px;
-  }
-</style>
+</glue-notice-bar>
 ```
 
 ## API
 
 ### Props
 
-| 参数       | 说明                                    | 类型               | 默认值    |
-|------------|---------------------------------------|--------------------|-----------|
-| mode       | 通知栏模式，可选值为 `closeable` `link`  | _string_           | `''`      |
-| text       | 通知文本内容                            | _string_           | `''`      |
-| color      | 通知文本颜色                            | _string_           | `#f60`    |
-| background | 滚动条背景                              | _string_           | `#fff7cc` |
-| left-icon  | 左侧[图标名称](#/zh-CN/icon)或图片链接  | _string_           | -         |
-| delay      | 动画延迟时间 (s)                        | _number \| string_ | `1`       |
-| speed      | 滚动速率 (px/s)                         | _number \| string_ | `50`      |
-| scrollable | 是否开启滚动播放，内容长度溢出时默认开启 | _boolean_          | -         |
-| wrapable   | 是否开启文本换行，只在禁用滚动时生效     | _boolean_          | `false`   |
+| 参数       | 说明                                                     | 类型               | 默认值    |
+|------------|--------------------------------------------------------|--------------------|-----------|
+| mode       | 通知栏模式，可选值为 `closeable` `link`                   | _string_           | `''`      |
+| text       | 通知文本内容                                             | _string_           | `''`      |
+| color      | 通知文本颜色                                             | _string_           | `#f60`    |
+| background | 滚动条背景                                               | _string_           | `#fff7cc` |
+| left-icon  | 左侧[图标名称](#/zh-CN/icon)或图片链接,使用#slot开启插槽 | _string_           | -         |
+| right-icon | 左侧[图标名称](#/zh-CN/icon)或图片链接,使用#slot开启插槽 | _string_           | -         |
+| delay      | 动画延迟时间 (s)                                         | _number \| string_ | `1`       |
+| speed      | 滚动速率 (px/s)                                          | _number \| string_ | `50`      |
+| scrollable | 是否开启滚动播放，内容长度溢出时默认开启                  | _boolean_          | `false`   |
+| wrapable   | 是否开启文本换行，只在禁用滚动时生效                      | _boolean_          | `false`   |
 
 ### Events
 
-| 事件名 | 说明                         | 回调参数       |
-|--------|----------------------------|----------------|
-| click  | 点击通知栏时触发             | _event: Event_ |
-| close  | 关闭通知栏时触发             | _event: Event_ |
-| replay | 每当滚动栏重新开始滚动时触发 | -              |
+| 事件名     | 说明                         | 回调参数       |
+|------------|----------------------------|----------------|
+| glueClose  | 关闭通知栏时触发             | _event: Event_ |
+| glueReplay | 每当滚动栏重新开始滚动时触发 | -              |
 
 ### Slots
 

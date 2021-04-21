@@ -31,7 +31,7 @@ export class GlueNoticeBar {
   @State() contentWidth = 0;
   @State() startTimer = null;
   @Event() glueClose: EventEmitter;
-  @Event() replay: EventEmitter;
+  @Event() glueReplay: EventEmitter;
   wrapRef: HTMLElement;
   contentRef: HTMLElement;
   @Watch('text')
@@ -100,6 +100,7 @@ export class GlueNoticeBar {
         ],
         begin: () => {},
         complete: anim => {
+          this.glueReplay.emit();
           anim.restart();
         },
       });
