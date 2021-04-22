@@ -615,12 +615,12 @@ export namespace Components {
     }
     interface GlueProgress {
         "color": string;
-        "inactive": string;
-        "percentage": string;
+        "inactive": boolean;
+        "percentage": number;
         "pivotColor": string;
         "pivotText": string;
         "showPivot": boolean;
-        "strokeWidth": string;
+        "strokeWidth": number;
         "textColor": string;
         "trackColor": string;
     }
@@ -2083,7 +2083,7 @@ declare namespace LocalJSX {
         "leftIcon"?: string;
         "mode"?: NoticeBarMode;
         "onGlueClose"?: (event: CustomEvent<any>) => void;
-        "onReplay"?: (event: CustomEvent<any>) => void;
+        "onGlueReplay"?: (event: CustomEvent<any>) => void;
         "rightIcon"?: string;
         "scrollable"?: boolean;
         "speed"?: number;
@@ -2185,12 +2185,12 @@ declare namespace LocalJSX {
     }
     interface GlueProgress {
         "color"?: string;
-        "inactive"?: string;
-        "percentage"?: string;
+        "inactive"?: boolean;
+        "percentage"?: number;
         "pivotColor"?: string;
         "pivotText"?: string;
         "showPivot"?: boolean;
-        "strokeWidth"?: string;
+        "strokeWidth"?: number;
         "textColor"?: string;
         "trackColor"?: string;
     }

@@ -23,17 +23,13 @@
 
 ## Events
 
-| Event       | Description | Type               |
-| ----------- | ----------- | ------------------ |
-| `glueClose` |             | `CustomEvent<any>` |
-| `replay`    |             | `CustomEvent<any>` |
+| Event        | Description | Type               |
+| ------------ | ----------- | ------------------ |
+| `glueClose`  |             | `CustomEvent<any>` |
+| `glueReplay` |             | `CustomEvent<any>` |
 
 
 ## Dependencies
-
-### Used by
-
- - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -44,7 +40,6 @@
 graph TD;
   glue-notice-bar --> glue-icon
   glue-icon --> glue-badge
-  glue-demo --> glue-notice-bar
   style glue-notice-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

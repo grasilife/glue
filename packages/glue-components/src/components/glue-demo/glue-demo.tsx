@@ -84,7 +84,8 @@ export class GlueDemo {
             return <glue-cell title={item.toString()}></glue-cell>;
           })}
         </glue-list> */}
-        <glue-notice-bar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" scrollable={true} wrapable={false}></glue-notice-bar>
+
+        <glue-progress percentage={50} stroke-width={8} inactive />
       </div>
     );
   }

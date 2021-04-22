@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, State } from '@stencil/core';
+import { Component, Prop, h, Host, State, Watch, Method } from '@stencil/core';
 import { addUnit } from '../../utils/format/unit';
 // import classNames from 'classnames';
 @Component({
@@ -8,32 +8,28 @@ import { addUnit } from '../../utils/format/unit';
 })
 export class GlueProgress {
   @Prop() color: string;
-
-  @Prop() inactive: string;
-
+  @Prop() inactive: boolean;
   @Prop() pivotText: string;
   @Prop() textColor: string;
   @Prop() pivotColor: string;
   @Prop() trackColor: string;
-  @Prop() strokeWidth: string;
-  @Prop() percentage: string;
-  @Prop() showPivot = true;
-  @State() state = {
-    rootWidth: 0,
-    pivotWidth: 0,
-  };
-  @State() portionStyle = {
-    background: '',
-    width: '0px',
-  };
-  @State() rootStyle = {
-    background: '',
-    height: '0px',
-  };
+  @Prop() strokeWidth: number;
+  @Prop() percentage: number;
+  @Prop() showPivot = false;
+  @State() rootWidth = 0;
+  @State() pivotWidth = 0;
   root: HTMLElement;
   pivotRef: HTMLElement;
+  @Watch('showPivot')
+  showPivotHandle() {
+    this._resize();
+  }
+  @Watch('pivotText')
+  pivotTextHandle() {
+    this._resize();
+  }
   renderPivot = () => {
-    const { rootWidth, pivotWidth } = this.state;
+    const { rootWidth, pivotWidth } = this;
     const { textColor, pivotText, pivotColor, percentage } = this;
     const text = pivotText ?? `${percentage}%`;
     const show = this.showPivot && text;
@@ -60,35 +56,36 @@ export class GlueProgress {
     }
   };
   background = () => (this.inactive ? '#cacaca' : this.color);
-  resize = () => {
-    this.state.rootWidth = this.root ? this.root.offsetWidth : 0;
-    this.state.pivotWidth = this.pivotRef ? this.pivotRef.offsetWidth : 0;
-    console.log(this.state.rootWidth, 'this.root');
-
-    this.rootStyle = {
-      background: this.trackColor,
-      height: addUnit(this.strokeWidth),
-    };
-    this.portionStyle = {
-      background: this.background(),
-      width: (this.state.rootWidth * +this.percentage) / 100 + 'px',
-    };
+  @Method()
+  async resize() {
+    this._resize();
+  }
+  _resize = () => {
+    this.rootWidth = this.root ? this.root.offsetWidth : 0;
+    this.pivotWidth = this.pivotRef ? this.pivotRef.offsetWidth : 0;
   };
   componentDidLoad() {
-    this.resize();
+    this._resize();
   }
   render() {
-    // const { trackColor, percentage, strokeWidth } = this;
-
+    const { trackColor, percentage, strokeWidth } = this;
+    const rootStyle = {
+      background: trackColor,
+      height: addUnit(strokeWidth),
+    };
+    const portionStyle = {
+      background: this.background(),
+      width: (this.rootWidth * +percentage) / 100 + 'px',
+    };
     return (
       <Host
         ref={dom => {
           this.root = dom;
         }}
         class="glue-progress"
-        style={this.rootStyle}
+        style={rootStyle}
       >
-        <span class="glue-progress__portion" style={this.portionStyle}>
+        <span class="glue-progress__portion" style={portionStyle}>
           {this.renderPivot()}
         </span>
       </Host>
