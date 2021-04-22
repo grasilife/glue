@@ -12,20 +12,18 @@ export class GlueSwitch {
   @Prop() size: string | number;
   @Prop() loading: boolean;
   @Prop() disabled: boolean;
-  @Prop() modelValue: boolean;
+  @Prop() value: boolean;
   @Prop() activeColor: string;
   @Prop() inactiveColor: string;
   @Prop() activeValue = true;
   @Prop() inactiveValue = false;
-  @Event() changeValue: EventEmitter;
-  @Event() change: EventEmitter;
-  isChecked = () => this.modelValue === this.activeValue;
+  @Event() glueChange: EventEmitter;
+  isChecked = () => this.value === this.activeValue;
 
   onClick = () => {
     if (!this.disabled && !this.loading) {
       const newValue = this.isChecked() ? this.inactiveValue : this.activeValue;
-      this.changeValue.emit(newValue);
-      this.change.emit(newValue);
+      this.glueChange.emit(newValue);
     }
   };
 
@@ -38,7 +36,7 @@ export class GlueSwitch {
   render() {
     const { size, loading, disabled, activeColor, inactiveColor } = this;
     const checked = this.isChecked();
-    console.log(checked, this.modelValue, this.activeValue, 'huhu');
+    console.log(checked, this.value, this.activeValue, 'huhu');
     const style = {
       fontSize: addUnit(size),
       backgroundColor: checked ? activeColor : inactiveColor,

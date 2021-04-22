@@ -85,7 +85,10 @@ export class GlueDemo {
           })}
         </glue-list> */}
 
-        <glue-progress percentage={50} stroke-width={8} inactive />
+        {/* <glue-progress percentage={50} stroke-width={8} inactive /> */}
+        <glue-skeleton title-state row={3} avatar avatar-shape="round" round avatar-size={80} loading={false}>
+          <div>实际内容</div>
+        </glue-skeleton>
       </div>
     );
   }

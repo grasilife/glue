@@ -13,12 +13,12 @@ export class GlueSkeleton {
 
   @Prop() round: boolean;
 
-  @Prop() avatar: string;
-  @Prop() avatarSize: string;
-  @Prop() titleWidth: string;
+  @Prop() avatar: boolean;
+  @Prop() avatarSize: number;
+  @Prop() titleWidth: string | number;
   @Prop() row: string | number = 0;
-  @Prop() loading = true;
-  @Prop() animateState = true;
+  @Prop() loading = false;
+  @Prop() animateState = false;
   @Prop() avatarShape = 'round';
   @Prop() rowWidth = DEFAULT_ROW_WIDTH;
   renderAvatar = () => {
@@ -26,7 +26,8 @@ export class GlueSkeleton {
       return (
         <div
           class={classNames({
-            'glue-skeleton__avatar': this.avatarShape,
+            'glue-skeleton__avatar': true,
+            'glue-skeleton__avatar--round': this.avatarShape == 'round',
           })}
           style={getSizeStyle(this.avatarSize)}
         />
@@ -64,20 +65,23 @@ export class GlueSkeleton {
     return Rows;
   };
   render() {
-    if (!this.loading) {
-      return <slot></slot>;
-    }
     return (
-      <Host
-        class={classNames('glue-skeleton', {
-          'glue-skeleton__animate': this.animateState,
-          'glue-skeleton__round': this.round,
-        })}
-      >
-        {this.renderAvatar()}
-        <div class="glue-skeleton__content">
-          {this.renderTitle()}
-          {this.renderRows()}
+      <Host>
+        <div
+          style={{ display: this.loading ? 'flex' : 'none' }}
+          class={classNames('glue-skeleton', {
+            'glue-skeleton--animate': this.animateState,
+            'glue-skeleton--round': this.round,
+          })}
+        >
+          {this.renderAvatar()}
+          <div class="glue-skeleton__content">
+            {this.renderTitle()}
+            {this.renderRows()}
+          </div>
+        </div>
+        <div style={{ display: !this.loading ? 'block' : 'none' }}>
+          <slot></slot>
         </div>
       </Host>
     );

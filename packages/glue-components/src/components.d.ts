@@ -619,6 +619,7 @@ export namespace Components {
         "percentage": number;
         "pivotColor": string;
         "pivotText": string;
+        "resize": () => Promise<void>;
         "showPivot": boolean;
         "strokeWidth": number;
         "textColor": string;
@@ -724,15 +725,15 @@ export namespace Components {
     }
     interface GlueSkeleton {
         "animateState": boolean;
-        "avatar": string;
+        "avatar": boolean;
         "avatarShape": string;
-        "avatarSize": string;
+        "avatarSize": number;
         "loading": boolean;
         "round": boolean;
         "row": string | number;
         "rowWidth": string;
         "titleState": boolean;
-        "titleWidth": string;
+        "titleWidth": string | number;
     }
     interface GlueSlider {
         "first": string;
@@ -810,8 +811,8 @@ export namespace Components {
         "inactiveColor": string;
         "inactiveValue": boolean;
         "loading": boolean;
-        "modelValue": boolean;
         "size": string | number;
+        "value": boolean;
     }
     interface GlueTab {
         "first": string;
@@ -2303,15 +2304,15 @@ declare namespace LocalJSX {
     }
     interface GlueSkeleton {
         "animateState"?: boolean;
-        "avatar"?: string;
+        "avatar"?: boolean;
         "avatarShape"?: string;
-        "avatarSize"?: string;
+        "avatarSize"?: number;
         "loading"?: boolean;
         "round"?: boolean;
         "row"?: string | number;
         "rowWidth"?: string;
         "titleState"?: boolean;
-        "titleWidth"?: string;
+        "titleWidth"?: string | number;
     }
     interface GlueSlider {
         "first"?: string;
@@ -2398,10 +2399,9 @@ declare namespace LocalJSX {
         "inactiveColor"?: string;
         "inactiveValue"?: boolean;
         "loading"?: boolean;
-        "modelValue"?: boolean;
-        "onChange"?: (event: CustomEvent<any>) => void;
-        "onChangeValue"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
         "size"?: string | number;
+        "value"?: boolean;
     }
     interface GlueTab {
         "first"?: string;

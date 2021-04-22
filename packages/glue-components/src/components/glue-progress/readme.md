@@ -20,18 +20,18 @@
 | `trackColor`  | `track-color`  |             | `string`  | `undefined` |
 
 
-## Dependencies
+## Methods
 
-### Used by
+### `resize() => Promise<void>`
 
- - [glue-demo](../glue-demo)
 
-### Graph
-```mermaid
-graph TD;
-  glue-demo --> glue-progress
-  style glue-progress fill:#f9f,stroke:#333,stroke-width:4px
-```
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 
 ----------------------------------------------
 

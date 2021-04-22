@@ -15,16 +15,15 @@
 | `inactiveColor` | `inactive-color` |             | `string`           | `undefined` |
 | `inactiveValue` | `inactive-value` |             | `boolean`          | `false`     |
 | `loading`       | `loading`        |             | `boolean`          | `undefined` |
-| `modelValue`    | `model-value`    |             | `boolean`          | `undefined` |
 | `size`          | `size`           |             | `number \| string` | `undefined` |
+| `value`         | `value`          |             | `boolean`          | `undefined` |
 
 
 ## Events
 
-| Event         | Description | Type               |
-| ------------- | ----------- | ------------------ |
-| `change`      |             | `CustomEvent<any>` |
-| `changeValue` |             | `CustomEvent<any>` |
+| Event        | Description | Type               |
+| ------------ | ----------- | ------------------ |
+| `glueChange` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

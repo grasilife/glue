@@ -9,13 +9,13 @@
 
 ### Depends on
 
-- [glue-progress](../glue-progress)
+- [glue-skeleton](../glue-skeleton)
 - [glue-toast](../glue-toast)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-progress
+  glue-demo --> glue-skeleton
   glue-demo --> glue-toast
   glue-toast --> glue-icon
   glue-toast --> glue-loading

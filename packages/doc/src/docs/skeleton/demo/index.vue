@@ -1,18 +1,18 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <glue-skeleton titleState :row="3"></glue-skeleton>
+      <glue-skeleton title-state :row="3" loading animate-state></glue-skeleton>
     </DemoBlock>
 
     <DemoBlock :title="showAvatar">
-      <glue-skeleton titleState avatar :row="3" />
+      <glue-skeleton title-state avatar :row="3" loading animate-state />
     </DemoBlock>
 
     <DemoBlock :title="showChildren">
-      <glue-switch v-model="show" size="24px" />
-      <glue-skeleton titleState avatar :row="3" :loading="!show">
+      <glue-switch :value="show" size="24px" @glueChange="show = !show" />
+      <glue-skeleton title-state avatar :row="3" :loading="!show" animate-state>
         <div class="demo-preview">
-          <img src="https://img.yzcdn.cn/vant/logo.png" />
+          <img src="https://grasilife.github.io/material/logo.svg" />
           <div class="demo-content">
             <h3>{{ title }}</h3>
             <p>{{ desc }}</p>
@@ -44,7 +44,7 @@ export default {
 .demo-skeleton {
   background-color: @white;
 
-  .van-switch {
+  glue-switch {
     margin: 0 @padding-md @padding-xs;
   }
 
