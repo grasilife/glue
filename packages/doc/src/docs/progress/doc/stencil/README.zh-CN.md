@@ -11,7 +11,7 @@
 进度条默认为蓝色，使用 `percentage` 属性来设置当前进度。
 
 ```html
-<glue-progress :percentage="50" />
+<glue-progress :percentage="50" show-pivot/>
 ```
 
 ### 线条粗细
