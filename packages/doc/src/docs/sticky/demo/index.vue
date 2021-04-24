@@ -1,29 +1,37 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-sticky>
-        <van-button type="primary" style="margin-left: 15px;">
+      <glue-sticky>
+        <glue-button type="primary" style="margin-left: 15px;">
           {{ basicUsage }}
-        </van-button>
-      </van-sticky>
+        </glue-button>
+      </glue-sticky>
     </DemoBlock>
 
     <DemoBlock :title="offsetTop">
-      <van-sticky :offset-top="50">
-        <van-button type="info" style="margin-left: 115px;">
+      <glue-sticky :offset-top-value="50">
+        <glue-button type="primary" style="margin-left: 115px;">
           {{ offsetTop }}
-        </van-button>
-      </van-sticky>
+        </glue-button>
+      </glue-sticky>
     </DemoBlock>
 
     <DemoBlock :title="setContainer">
       <div ref="container" style="height: 150px; background-color: #fff;">
-        <van-sticky :container="container">
-          <van-button type="warning" style="margin-left: 215px;">
+        <glue-sticky :container="container">
+          <glue-button type="warning" style="margin-left: 215px;">
             {{ setContainer }}
-          </van-button>
-        </van-sticky>
+          </glue-button>
+        </glue-sticky>
       </div>
+    </DemoBlock>
+    <DemoBlock :title="offsetBottom">
+      <div style="height: 200px"></div>
+      <glue-sticky :offset-bottom-value="50" position="bottom">
+        <glue-button type="primary" style="margin-left: 15px">
+          {{ offsetBottom }}
+        </glue-button>
+      </glue-sticky>
     </DemoBlock>
   </DemoSection>
 </template>
@@ -35,7 +43,8 @@ export default {
       basicUsage: "基础用法",
       offsetTop: "吸顶距离",
       setContainer: "指定容器",
-      container: null
+      container: null,
+      offsetBottom: "吸底距离"
     };
   },
 
@@ -51,7 +60,7 @@ export default {
 .demo-sticky {
   height: 200vh;
 
-  .van-button {
+  glue-button {
     margin-left: @padding-md;
   }
 }

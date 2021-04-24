@@ -778,13 +778,9 @@ export namespace Components {
     }
     interface GlueSticky {
         "container": any;
-        "fixed": boolean;
-        "height": number;
         "offsetBottomValue": number;
         "offsetTopValue": number;
         "position": string;
-        "transform": number;
-        "width": number;
         "zIndex": string;
     }
     interface GlueSubmitBar {
@@ -2363,13 +2359,9 @@ declare namespace LocalJSX {
     }
     interface GlueSticky {
         "container"?: any;
-        "fixed"?: boolean;
-        "height"?: number;
         "offsetBottomValue"?: number;
         "offsetTopValue"?: number;
         "position"?: string;
-        "transform"?: number;
-        "width"?: number;
         "zIndex"?: string;
     }
     interface GlueSubmitBar {

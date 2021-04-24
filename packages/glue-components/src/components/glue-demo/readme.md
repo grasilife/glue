@@ -9,16 +9,16 @@
 
 ### Depends on
 
-- [glue-skeleton](../glue-skeleton)
-- [glue-toast](../glue-toast)
+- [glue-sticky](../glue-sticky)
+- [glue-button](../glue-button)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-skeleton
-  glue-demo --> glue-toast
-  glue-toast --> glue-icon
-  glue-toast --> glue-loading
+  glue-demo --> glue-sticky
+  glue-demo --> glue-button
+  glue-button --> glue-loading
+  glue-button --> glue-icon
   glue-icon --> glue-badge
   style glue-demo fill:#f9f,stroke:#333,stroke-width:4px
 ```

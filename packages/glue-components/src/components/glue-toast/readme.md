@@ -40,10 +40,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [glue-demo](../glue-demo)
-
 ### Depends on
 
 - [glue-icon](../glue-icon)
@@ -55,7 +51,6 @@ graph TD;
   glue-toast --> glue-icon
   glue-toast --> glue-loading
   glue-icon --> glue-badge
-  glue-demo --> glue-toast
   style glue-toast fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

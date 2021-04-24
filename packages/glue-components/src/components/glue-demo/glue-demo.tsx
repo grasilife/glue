@@ -1,5 +1,5 @@
 import { Component, h, State } from '@stencil/core';
-import Toast from '../glue-toast/index';
+// import Toast from '../glue-toast/index';
 // import classNames from 'classnames';
 @Component({
   tag: 'glue-demo',
@@ -8,6 +8,7 @@ import Toast from '../glue-toast/index';
 })
 export class GlueDemo {
   timeRef;
+  container;
   @State() open: boolean = false;
   @State() gradientColor = {
     '0%': '#3fecff',
@@ -29,9 +30,6 @@ export class GlueDemo {
     console.log(e, 'hauhaihiuahihu');
     this.currentTime = { ...e.detail.currentTime };
   };
-  componentDidLoad() {
-    Toast('提示内容');
-  }
   start = () => {
     this.timeRef.start();
   };
@@ -45,6 +43,9 @@ export class GlueDemo {
   @State() loading = true;
   @State() finished = false;
   onLoad = () => {};
+  componentDidLoad() {
+    console.log(this.container, 'ahuhfauh');
+  }
   render() {
     return (
       <div class="container">
@@ -86,9 +87,19 @@ export class GlueDemo {
         </glue-list> */}
 
         {/* <glue-progress percentage={50} stroke-width={8} inactive /> */}
-        <glue-skeleton title-state row={3} avatar avatar-shape="round" round avatar-size={80} loading={false}>
+        {/* <glue-skeleton title-state row={3} avatar avatar-shape="round" round avatar-size={80} loading={false}>
           <div>实际内容</div>
-        </glue-skeleton>
+        </glue-skeleton> */}
+        <div
+          class="sticky"
+          ref={dom => {
+            this.container = dom;
+          }}
+        >
+          <glue-sticky offset-bottom-value={50} position="top">
+            <glue-button type="primary">基础用法</glue-button>
+          </glue-sticky>
+        </div>
       </div>
     );
   }
