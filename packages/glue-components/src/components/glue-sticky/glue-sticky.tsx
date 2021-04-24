@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, State, Element } from '@stencil/core';
+import { Component, Prop, h, Host, State, Element, Event, EventEmitter } from '@stencil/core';
 import { inBrowser } from '../../utils/base';
 import { getScrollTop } from '../../utils/dom/scroll';
 import { unitToPx } from '../../utils/format/unit';
@@ -29,7 +29,7 @@ export class GlueSticky {
   @State() offsetTopFormat = 0;
   @State() offsetBottomFormat = 0;
   @State() observer = null;
-
+  @Event() glueScroll: EventEmitter;
   style = () => {
     console.log(!this.fixed, 'hhhh');
     if (!this.fixed) {
@@ -104,10 +104,10 @@ export class GlueSticky {
   };
   emitScrollEvent = (scrollTop: number) => {
     console.log(scrollTop, 'scrollTop');
-    // emit('scroll', {
-    //   scrollTop,
-    //   isFixed: state.fixed,
-    // });
+    this.glueScroll.emit({
+      scrollTop,
+      isFixed: this.fixed,
+    });
   };
   componentWillLoad() {
     //为了只计算一次

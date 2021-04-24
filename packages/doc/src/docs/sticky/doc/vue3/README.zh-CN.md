@@ -11,9 +11,9 @@ Sticky 组件与 CSS 中`position: sticky`属性实现的效果一致，当组�
 将内容包裹在 `Sticky` 组件内即可。
 
 ```html
-<van-sticky>
-  <van-button type="primary">基础用法</van-button>
-</van-sticky>
+<glue-sticky>
+  <glue-button type="primary">基础用法</glue-button>
+</glue-sticky>
 ```
 
 ### 吸顶距离
@@ -21,9 +21,9 @@ Sticky 组件与 CSS 中`position: sticky`属性实现的效果一致，当组�
 通过 `offset-top` 属性可以设置组件在吸顶时与顶部的距离。
 
 ```html
-<van-sticky :offset-top="50">
-  <van-button type="primary">吸顶距离</van-button>
-</van-sticky>
+<glue-sticky :offset-top-value="50">
+  <glue-button type="primary">吸顶距离</glue-button>
+</glue-sticky>
 ```
 
 ### 指定容器
@@ -32,36 +32,38 @@ Sticky 组件与 CSS 中`position: sticky`属性实现的效果一致，当组�
 
 ```html
 <div ref="container" style="height: 150px;">
-  <van-sticky :container="container">
-    <van-button type="warning">指定容器</van-button>
-  </van-sticky>
+  <glue-sticky :container="this.$ref.container">
+    <glue-button type="warning">指定容器</glue-button>
+  </glue-sticky>
 </div>
 ```
 
-```js
-export default {
-  setup() {
-    const container = ref(null);
-    return { container };
-  },
-};
+### 吸底距离
+
+将 position 设置为 bottom 可以让组件吸附在底部。通过 offset-bottom 属性可以设置组件在吸底时与底部的距离。
+
+```html
+<van-sticky :offset-bottom-value="50" position="bottom">
+  <van-button type="primary">吸底距离</van-button>
+</van-sticky>
 ```
 
 ## API
 
 ### Props
 
-| 参数       | 说明                                                        | 类型               | 默认值 |
-|------------|-----------------------------------------------------------|--------------------|--------|
-| offset-top | 吸顶时与顶部的距离，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `0`    |
-| z-index    | 吸顶时的 z-index                                            | _number \| string_ | `99`   |
-| container  | 容器对应的 HTML 节点                                        | _Element_          | -      |
+| 参数                | 说明                                                        | 类型               | 默认值 |
+|---------------------|-----------------------------------------------------------|--------------------|--------|
+| offset-top-value    | 吸顶时与顶部的距离，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `0`    |
+| offset-bottom-value | 吸底时与底部的距离，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `0`    |
+| z-index             | 吸顶时的 z-index                                            | _number \| string_ | `99`   |
+| container           | 容器对应的 HTML 节点                                        | _Element_          | -      |
 
 ### Events
 
-| 事件名 | 说明       | 回调参数                                       |
-|--------|----------|--------------------------------------------|
-| scroll | 滚动时触发 | { scrollTop: 距离顶部位置, isFixed: 是否吸顶 } |
+| 事件名     | 说明       | 回调参数                                       |
+|------------|----------|--------------------------------------------|
+| glueScroll | 滚动时触发 | { scrollTop: 距离顶部位置, isFixed: 是否吸顶 } |
 
 ### 样式变量
 

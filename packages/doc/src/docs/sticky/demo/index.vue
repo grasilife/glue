@@ -27,7 +27,7 @@
     </DemoBlock>
     <DemoBlock :title="offsetBottom">
       <div style="height: 200px"></div>
-      <glue-sticky :offset-bottom-value="50" position="bottom">
+      <glue-sticky :offset-bottom-value="50" position="bottom" @glueScroll="glueScroll">
         <glue-button type="primary" style="margin-left: 15px">
           {{ offsetBottom }}
         </glue-button>
@@ -50,6 +50,11 @@ export default {
 
   mounted() {
     this.container = this.$refs.container;
+  },
+  methods: {
+    glueScroll({ scrollTop, isFixed }) {
+      console.log(scrollTop, isFixed, "scrollTop, isFixed");
+    }
   }
 };
 </script>

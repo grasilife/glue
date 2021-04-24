@@ -16,6 +16,13 @@
 | `zIndex`            | `z-index`             |             | `string` | `undefined` |
 
 
+## Events
+
+| Event        | Description | Type               |
+| ------------ | ----------- | ------------------ |
+| `glueScroll` |             | `CustomEvent<any>` |
+
+
 ## Dependencies
 
 ### Used by

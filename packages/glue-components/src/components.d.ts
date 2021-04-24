@@ -2361,6 +2361,7 @@ declare namespace LocalJSX {
         "container"?: any;
         "offsetBottomValue"?: number;
         "offsetTopValue"?: number;
+        "onGlueScroll"?: (event: CustomEvent<any>) => void;
         "position"?: string;
         "zIndex"?: string;
     }
