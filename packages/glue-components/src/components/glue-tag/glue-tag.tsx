@@ -11,6 +11,7 @@ export class GlueTag {
   @Prop() first: string;
 
   @Prop() size: string;
+
   @Prop() mark: boolean;
   @Prop() color: string;
   @Prop() plain: boolean;
@@ -18,10 +19,9 @@ export class GlueTag {
   @Prop() textColor: string;
   @Prop() closeable: boolean;
   @Prop() type = 'default';
-  @Prop() show = true;
-  @Event() onClick: EventEmitter;
-  onClose = event => {
-    this.onClick.emit(event);
+  @Event() glueIconClick: EventEmitter;
+  closeHandle = event => {
+    this.glueIconClick.emit(event);
   };
 
   getStyle = () => {
@@ -36,23 +36,14 @@ export class GlueTag {
     };
   };
   render() {
-    const { show, type, mark, plain, round, size, closeable } = this;
-    console.log(show);
+    const { type, mark, plain, round, size, closeable } = this;
     const classes = { mark, plain, round };
     if (size) {
       classes[size] = size;
     }
-
-    const CloseIcon = closeable && <glue-icon name="cross" class={classNames('glue-tag__close')} onClick={this.onClose} />;
+    const CloseIcon = closeable && <glue-icon name="cross" class={classNames('glue-tag__close')} onClick={this.closeHandle} size={12} />;
     return (
-      <Host
-        style={this.getStyle()}
-        class={classNames('glue-tag', bem([type]), {
-          'glue-tag--mark': mark,
-          'glue-tag--plain': plain,
-          'glue-tag--round': round,
-        })}
-      >
+      <Host style={this.getStyle()} class={classNames('glue-tag', bem([type, mark, plain, round, size]))}>
         <slot></slot>
         {CloseIcon}
       </Host>

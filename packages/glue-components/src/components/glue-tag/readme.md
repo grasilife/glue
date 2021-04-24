@@ -15,7 +15,6 @@
 | `mark`      | `mark`       |             | `boolean` | `undefined` |
 | `plain`     | `plain`      |             | `boolean` | `undefined` |
 | `round`     | `round`      |             | `boolean` | `undefined` |
-| `show`      | `show`       |             | `boolean` | `true`      |
 | `size`      | `size`       |             | `string`  | `undefined` |
 | `textColor` | `text-color` |             | `string`  | `undefined` |
 | `type`      | `type`       |             | `string`  | `'default'` |
@@ -23,9 +22,9 @@
 
 ## Events
 
-| Event     | Description | Type               |
-| --------- | ----------- | ------------------ |
-| `onClick` |             | `CustomEvent<any>` |
+| Event           | Description | Type               |
+| --------------- | ----------- | ------------------ |
+| `glueIconClick` |             | `CustomEvent<any>` |
 
 
 ## Dependencies
@@ -35,6 +34,7 @@
  - [glue-address-list-item](../glue-address-list-item)
  - [glue-card](../glue-card)
  - [glue-contact-list](../glue-contact-list)
+ - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -48,6 +48,7 @@ graph TD;
   glue-address-list-item --> glue-tag
   glue-card --> glue-tag
   glue-contact-list --> glue-tag
+  glue-demo --> glue-tag
   style glue-tag fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

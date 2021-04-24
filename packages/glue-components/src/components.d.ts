@@ -848,7 +848,6 @@ export namespace Components {
         "mark": boolean;
         "plain": boolean;
         "round": boolean;
-        "show": boolean;
         "size": string;
         "textColor": string;
         "type": string;
@@ -2432,10 +2431,9 @@ declare namespace LocalJSX {
         "color"?: string;
         "first"?: string;
         "mark"?: boolean;
-        "onOnClick"?: (event: CustomEvent<any>) => void;
+        "onGlueIconClick"?: (event: CustomEvent<any>) => void;
         "plain"?: boolean;
         "round"?: boolean;
-        "show"?: boolean;
         "size"?: string;
         "textColor"?: string;
         "type"?: string;

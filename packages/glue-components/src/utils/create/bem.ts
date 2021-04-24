@@ -45,8 +45,10 @@ export function createBEM(name: string) {
     } else {
       let obj = {};
       el.forEach(item => {
-        let stringClass = `${name}--${item}`;
-        obj[stringClass] = true;
+        if (item) {
+          let stringClass = `${name}--${item}`;
+          obj[stringClass] = true;
+        }
       });
       return obj;
     }

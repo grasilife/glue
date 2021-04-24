@@ -23,19 +23,6 @@
 | `glueScroll` |             | `CustomEvent<any>` |
 
 
-## Dependencies
-
-### Used by
-
- - [glue-demo](../glue-demo)
-
-### Graph
-```mermaid
-graph TD;
-  glue-demo --> glue-sticky
-  style glue-sticky fill:#f9f,stroke:#333,stroke-width:4px
-```
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

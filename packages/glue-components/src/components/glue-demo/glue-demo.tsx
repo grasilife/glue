@@ -90,7 +90,7 @@ export class GlueDemo {
         {/* <glue-skeleton title-state row={3} avatar avatar-shape="round" round avatar-size={80} loading={false}>
           <div>实际内容</div>
         </glue-skeleton> */}
-        <div
+        {/* <div
           class="sticky"
           ref={dom => {
             this.container = dom;
@@ -99,7 +99,10 @@ export class GlueDemo {
           <glue-sticky offset-bottom-value={50} position="top">
             <glue-button type="primary">基础用法</glue-button>
           </glue-sticky>
-        </div>
+        </div> */}
+        <glue-tag closeable type="primary">
+          标签
+        </glue-tag>
       </div>
     );
   }
