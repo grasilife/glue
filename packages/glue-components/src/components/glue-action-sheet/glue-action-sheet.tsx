@@ -17,47 +17,53 @@ export type ActionSheetAction = {
 })
 export class GlueActionSheet {
   @Prop() show: boolean;
-
-  @Prop() zIndex = '2000';
-
+  @Prop() actions: any;
+  @Prop() title: string;
+  @Prop() cancelText: string;
+  @Prop() description: boolean;
+  @Prop() closeable: boolean;
+  @Prop() closeIcon = 'cross';
   @Prop() duration: string;
-  @Prop() width: string;
-  @Prop() height: string;
-  @Prop() teleport: string | object;
-  @Prop() overlayStyle: object;
-  @Prop() overlayClass = null;
-
-  @Prop() transitionAppear: boolean;
+  @Prop() round = true;
   @Prop() overlay = true;
   @Prop() lockScroll = true;
   @Prop() lazyRender = true;
-  @Prop() closeOnClickOverlay = true;
-  @Prop() round = true;
-  @Prop() closeable: boolean;
-  @Prop() transition: string;
-  @Prop() closeOnPopstate: boolean;
-  @Prop() safeAreaInsetBottom = false;
-  @Prop() position = 'center';
-  @Prop() closeIcon = 'cross';
-  @Prop() closeIconPosition = 'top-right';
-  @Prop() title: string;
-
-  @Prop() actions: any;
-
-  @Prop() cancelText: string;
-  @Prop() description: boolean;
   @Prop() closeOnClickAction: boolean;
-  @Event() onCancel: EventEmitter;
-  @Event() onShow: EventEmitter;
+  @Prop() closeOnClickOverlay = true;
+  @Prop() safeAreaInsetBottom = false;
+
+  @Event() glueCancel: EventEmitter;
+  @Event() glueShow: EventEmitter;
+  @Event() glueOpen: EventEmitter;
+  openHandle = () => {
+    this.show = true;
+    this.glueOpen.emit(true);
+  };
+  @Event() glueClose: EventEmitter;
+  closeHandle = () => {
+    this.show = false;
+    // unlockScroll();
+    this.glueClose.emit(false);
+  };
+  @Event() glueOpened: EventEmitter;
+  openedHandle = () => {
+    this.show = true;
+    this.glueOpened.emit('opened');
+  };
+  @Event() glueClosed: EventEmitter;
+  closedHandle = () => {
+    this.show = false;
+    this.glueClosed.emit('closed');
+  };
   // popupPropKeys = Object.keys(popupSharedProps);
 
   onUpdateShow = (show: boolean) => {
-    this.onShow.emit(show);
+    this.glueShow.emit(show);
   };
 
   onCancelHandle = () => {
     this.onUpdateShow(false);
-    this.onCancel.emit();
+    this.glueCancel.emit();
   };
 
   renderHeader = () => {
@@ -137,16 +143,25 @@ export class GlueActionSheet {
     }
   };
   render() {
+    const { show, duration, closeable, closeIcon, round, overlay, lockScroll, lazyRender, closeOnClickOverlay, safeAreaInsetBottom } = this;
     return (
       <Host class="glue-action-sheet">
         <glue-popup
-          round={this.round}
+          round={round}
           position="bottom"
           safeAreaInsetBottom={this.safeAreaInsetBottom}
-          // {...{
-          //   ...pick(this, popupPropKeys),
-          //   'onUpdate:show': onUpdateShow,
-          // }}
+          show={show}
+          duration={duration}
+          closeable={closeable}
+          closeIcon={closeIcon}
+          overlay={overlay}
+          lockScroll={lockScroll}
+          lazyRender={lazyRender}
+          closeOnClickOverlay={closeOnClickOverlay}
+          onGlueOpen={this.openHandle}
+          onGlueClose={this.closeHandle}
+          onGlueOpened={this.openedHandle}
+          onGlueClosed={this.closedHandle}
         >
           {this.renderHeader()}
           {this.renderDescription()}

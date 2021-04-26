@@ -10,6 +10,7 @@ export class GlueDemo {
   timeRef;
   container;
   @State() open: boolean = false;
+  @State() show: boolean = false;
   @State() gradientColor = {
     '0%': '#3fecff',
     '100%': '#6149f6',
@@ -23,8 +24,8 @@ export class GlueDemo {
   handleClick = () => {
     this.currentRate = this.currentRate + 10;
   };
-  onGlueClose = () => {
-    this.open = false;
+  closedHandle = () => {
+    this.show = false;
   };
   onGlueChange = e => {
     console.log(e, 'hauhaihiuahihu');
@@ -46,6 +47,9 @@ export class GlueDemo {
   componentDidLoad() {
     console.log(this.container, 'ahuhfauh');
   }
+  click = () => {
+    this.show = true;
+  };
   render() {
     return (
       <div class="container">
@@ -100,9 +104,11 @@ export class GlueDemo {
             <glue-button type="primary">基础用法</glue-button>
           </glue-sticky>
         </div> */}
-        <glue-tag closeable type="primary">
+        {/* <glue-tag closeable type="primary">
           标签
-        </glue-tag>
+        </glue-tag> */}
+        <glue-cell is-link title="基础用法" onClick={this.click} />
+        <glue-action-sheet show={this.show} onGlueClosed={this.closedHandle} />
       </div>
     );
   }

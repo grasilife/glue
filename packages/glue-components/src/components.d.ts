@@ -39,29 +39,18 @@ export namespace Components {
         "actions": any;
         "cancelText": string;
         "closeIcon": string;
-        "closeIconPosition": string;
         "closeOnClickAction": boolean;
         "closeOnClickOverlay": boolean;
-        "closeOnPopstate": boolean;
         "closeable": boolean;
         "description": boolean;
         "duration": string;
-        "height": string;
         "lazyRender": boolean;
         "lockScroll": boolean;
         "overlay": boolean;
-        "overlayClass": any;
-        "overlayStyle": object;
-        "position": string;
         "round": boolean;
         "safeAreaInsetBottom": boolean;
         "show": boolean;
-        "teleport": string | object;
         "title": string;
-        "transition": string;
-        "transitionAppear": boolean;
-        "width": string;
-        "zIndex": string;
     }
     interface GlueAddressEdit {
         "addressInfo": { name: string; tel: string; country: string; province: string; city: string; county: string; areaCode: string; postalCode: string; addressDetail: string; isDefault: boolean; };
@@ -1574,31 +1563,24 @@ declare namespace LocalJSX {
         "actions"?: any;
         "cancelText"?: string;
         "closeIcon"?: string;
-        "closeIconPosition"?: string;
         "closeOnClickAction"?: boolean;
         "closeOnClickOverlay"?: boolean;
-        "closeOnPopstate"?: boolean;
         "closeable"?: boolean;
         "description"?: boolean;
         "duration"?: string;
-        "height"?: string;
         "lazyRender"?: boolean;
         "lockScroll"?: boolean;
-        "onOnCancel"?: (event: CustomEvent<any>) => void;
-        "onOnShow"?: (event: CustomEvent<any>) => void;
+        "onGlueCancel"?: (event: CustomEvent<any>) => void;
+        "onGlueClose"?: (event: CustomEvent<any>) => void;
+        "onGlueClosed"?: (event: CustomEvent<any>) => void;
+        "onGlueOpen"?: (event: CustomEvent<any>) => void;
+        "onGlueOpened"?: (event: CustomEvent<any>) => void;
+        "onGlueShow"?: (event: CustomEvent<any>) => void;
         "overlay"?: boolean;
-        "overlayClass"?: any;
-        "overlayStyle"?: object;
-        "position"?: string;
         "round"?: boolean;
         "safeAreaInsetBottom"?: boolean;
         "show"?: boolean;
-        "teleport"?: string | object;
         "title"?: string;
-        "transition"?: string;
-        "transitionAppear"?: boolean;
-        "width"?: string;
-        "zIndex"?: string;
     }
     interface GlueAddressEdit {
         "addressInfo"?: { name: string; tel: string; country: string; province: string; city: string; county: string; areaCode: string; postalCode: string; addressDetail: string; isDefault: boolean; };
