@@ -35,7 +35,7 @@ export const topEnterAnimation = (el, duration, easing, height, begin, complete)
     targets: el,
     duration: duration,
     easing: easing,
-    height: height ? height : '30%',
+    translateY: height ? height : '30%',
     begin: anim => {
       return begin(anim);
     },
@@ -44,11 +44,12 @@ export const topEnterAnimation = (el, duration, easing, height, begin, complete)
     },
   });
 };
-export const topLeaveAnimation = (el, duration, easing, begin, complete) => {
+export const topLeaveAnimation = (el, duration, easing, height, begin, complete) => {
   anime({
     targets: el,
     duration: duration,
-    height: '0%',
+    // height: '0%',
+    translateY: 0,
     easing: easing,
     begin: anim => {
       return begin(anim);
@@ -60,12 +61,14 @@ export const topLeaveAnimation = (el, duration, easing, begin, complete) => {
 };
 //bottom
 export const bottomEnterAnimation = (el, duration, easing, height, begin, complete) => {
+  console.log(height, 'heightheight');
   anime({
     targets: el,
     duration: duration,
 
     easing: easing,
-    height: height ? height : '30%',
+    // height: height ? height : '30%',
+    translateY: 0,
     begin: anim => {
       return begin(anim);
     },
@@ -74,11 +77,12 @@ export const bottomEnterAnimation = (el, duration, easing, height, begin, comple
     },
   });
 };
-export const bottomLeaveAnimation = (el, duration, easing, begin, complete) => {
+export const bottomLeaveAnimation = (el, duration, easing, height, begin, complete) => {
   anime({
     targets: el,
     duration: duration,
-    height: '0%',
+
+    translateY: height ? height : '30%',
     easing: easing,
     begin: anim => {
       return begin(anim);

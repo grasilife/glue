@@ -34,7 +34,6 @@
  - [glue-address-list-item](../glue-address-list-item)
  - [glue-card](../glue-card)
  - [glue-contact-list](../glue-contact-list)
- - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -48,7 +47,6 @@ graph TD;
   glue-address-list-item --> glue-tag
   glue-card --> glue-tag
   glue-contact-list --> glue-tag
-  glue-demo --> glue-tag
   style glue-tag fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

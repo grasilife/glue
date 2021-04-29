@@ -1,5 +1,6 @@
-import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, Host, Event, EventEmitter, State } from '@stencil/core';
 // import { pick } from '../../utils/base';
+import { getVisibleHeight } from '../../utils/dom/scroll';
 import classNames from 'classnames';
 export type ActionSheetAction = {
   name?: string;
@@ -16,11 +17,12 @@ export type ActionSheetAction = {
   shadow: false,
 })
 export class GlueActionSheet {
+  refContent: HTMLElement;
   @Prop() show: boolean;
   @Prop() actions: any;
   @Prop() title: string;
   @Prop() cancelText: string;
-  @Prop() description: boolean;
+  @Prop() description: string;
   @Prop() closeable: boolean;
   @Prop() closeIcon = 'cross';
   @Prop() duration: string;
@@ -31,7 +33,7 @@ export class GlueActionSheet {
   @Prop() closeOnClickAction: boolean;
   @Prop() closeOnClickOverlay = true;
   @Prop() safeAreaInsetBottom = false;
-
+  @State() height = '0';
   @Event() glueCancel: EventEmitter;
   @Event() glueShow: EventEmitter;
   @Event() glueOpen: EventEmitter;
@@ -142,8 +144,12 @@ export class GlueActionSheet {
       return this.actions.map(this.renderOption);
     }
   };
+  componentDidLoad() {
+    this.height = getVisibleHeight(this.refContent).toString() + 'px';
+    console.log(this.height, this.refContent.offsetHeight, 'this.height');
+  }
   render() {
-    const { show, duration, closeable, closeIcon, round, overlay, lockScroll, lazyRender, closeOnClickOverlay, safeAreaInsetBottom } = this;
+    const { show, duration, closeable, closeIcon, round, overlay, lockScroll, lazyRender, closeOnClickOverlay } = this;
     return (
       <Host class="glue-action-sheet">
         <glue-popup
@@ -151,6 +157,7 @@ export class GlueActionSheet {
           position="bottom"
           safeAreaInsetBottom={this.safeAreaInsetBottom}
           show={show}
+          height={this.height}
           duration={duration}
           closeable={closeable}
           closeIcon={closeIcon}
@@ -163,13 +170,18 @@ export class GlueActionSheet {
           onGlueOpened={this.openedHandle}
           onGlueClosed={this.closedHandle}
         >
-          {this.renderHeader()}
-          {this.renderDescription()}
-          <div class="glue-action-sheet__content">
+          <div
+            class="glue-action-sheet__content"
+            ref={dom => {
+              this.refContent = dom;
+            }}
+          >
+            {this.renderHeader()}
+            {this.renderDescription()}
             {this.renderOptions()}
             <slot></slot>
+            {this.renderCancel()}
           </div>
-          {this.renderCancel()}
         </glue-popup>
       </Host>
     );

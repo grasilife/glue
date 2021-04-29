@@ -23,7 +23,7 @@ const [bem] = createNamespace('glue-popup');
 export class GluePopup {
   @Element() el!: HTMLGluePopupElement;
   private popupRef: HTMLElement;
-  @Prop({ mutable: true }) show: boolean;
+  @Prop({ mutable: false }) show: boolean;
   @Prop() zIndex = '2000';
   @Prop() duration: number | string = DURATION;
   @Prop() easing: string = EASING;
@@ -114,13 +114,30 @@ export class GluePopup {
   renderPopup = () => {
     const { round, position, safeAreaInsetBottom } = this;
     console.log(position, bem([position]), 'position');
+    let style = {
+      zIndex: this.zIndex,
+      height: '0',
+      width: '0',
+      transform: 'translateY(0)',
+    };
+    if (this.position == 'top' || this.position == 'bottom') {
+      style['width'] = this.width || '100%';
+      style['height'] = this.height || '30%';
+      style.transform = `translateY(${this.height})`;
+    }
+
+    if (this.position == 'right' || this.position == 'left') {
+      style['width'] = this.width || '30%';
+      style['height'] = this.height || '100%';
+      style.transform = `translateX(${this.height})`;
+    }
     // if (this.show) {
     return (
       <div
         ref={dom => {
           this.popupRef = dom;
         }}
-        style={{ zIndex: this.zIndex }}
+        style={style}
         class={classNames(
           'glue-popup',
           {
@@ -241,7 +258,7 @@ export class GluePopup {
           this.closeHandle();
         },
         () => {
-          this.popupRef.style.display = 'none';
+          // this.popupRef.style.display = 'none';
           this.closedHandle();
         },
       );
@@ -251,11 +268,12 @@ export class GluePopup {
         this.popupRef,
         this.duration,
         this.easing,
+        this.height,
         () => {
           this.closeHandle();
         },
         () => {
-          this.popupRef.style.display = 'none';
+          // this.popupRef.style.display = 'none';
           this.closedHandle();
         },
       );
@@ -265,12 +283,13 @@ export class GluePopup {
         this.popupRef,
         this.duration,
         this.easing,
+        this.height,
         () => {
           this.closeHandle();
         },
         () => {
           console.log(this, 'this.popupRef.style');
-          this.popupRef.style.display = 'none';
+          // this.popupRef.style.display = 'none';
           this.closedHandle();
         },
       );
@@ -284,7 +303,7 @@ export class GluePopup {
           this.closeHandle();
         },
         () => {
-          this.popupRef.style.display = 'none';
+          // this.popupRef.style.display = 'none';
           this.closedHandle();
         },
       );
@@ -298,7 +317,7 @@ export class GluePopup {
           this.closeHandle();
         },
         () => {
-          this.popupRef.style.display = 'none';
+          // this.popupRef.style.display = 'none';
           this.closedHandle();
         },
       );
@@ -306,30 +325,37 @@ export class GluePopup {
   };
   renderTransitionAppear = () => {
     let style = this.popupRef.style;
-    if (this.position == 'top' || this.position == 'bottom') {
-      style['width'] = this.width || '100%';
-    }
+    // console.log(this.position, this.height, 'aghuohaugah');
+    // if (this.position == 'top' || this.position == 'bottom') {
+    //   style['width'] = this.width || '100%';
+    //   style['height'] = this.height || '30%';
+    // }
 
-    if (this.position == 'right' || this.position == 'left') {
-      style['height'] = this.height || '100%';
-    }
+    // if (this.position == 'right' || this.position == 'left') {
+    //   style['width'] = this.width || '30%';
+    //   style['height'] = this.height || '100%';
+    // }
+    console.log(style, 'stylestyle');
     if (this.show) {
       console.log(style, 'style');
       if (this.transitionAppear) {
-        this.showAnimation();
+        // this.showAnimation();
       } else {
         this.popupRef.style.display = 'block';
         this.popupRef.style.zIndex = this.zIndex;
         if (this.position == 'top' || this.position == 'bottom') {
           style['height'] = this.height || '30%';
+          // style.transform = `translateY($(this.height))`;
         }
 
         if (this.position == 'right' || this.position == 'left') {
           style['width'] = this.width || '30%';
         }
+        console.log(style, 'stylestylestyle');
       }
     } else {
-      style.display = 'none';
+      // style.display = 'none';
+      // style.transform = `translateY(${this.height})`;
     }
   };
   renderTeleport = () => {
@@ -347,7 +373,7 @@ export class GluePopup {
     console.log(e, 'componentShouldUpdate');
   }
   componentDidLoad() {
-    this.renderTransitionAppear();
+    // this.renderTransitionAppear();
     this.renderTeleport();
   }
   render() {

@@ -9,6 +9,11 @@ import { Component, h, State } from '@stencil/core';
 export class GlueDemo {
   timeRef;
   container;
+  @State() actions = [
+    { name: '选项一', color: '#ee0a24' },
+    { name: '选项二', disabled: true },
+    { name: '选项三', subname: '描述信息', loading: true },
+  ];
   @State() open: boolean = false;
   @State() show: boolean = false;
   @State() gradientColor = {
@@ -108,7 +113,7 @@ export class GlueDemo {
           标签
         </glue-tag> */}
         <glue-cell is-link title="基础用法" onClick={this.click} />
-        <glue-action-sheet show={this.show} onGlueClosed={this.closedHandle} />
+        <glue-action-sheet show={this.show} onGlueClosed={this.closedHandle} actions={this.actions} cancel-text="取消" description="这是一段描述信息" />
       </div>
     );
   }

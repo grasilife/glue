@@ -7,45 +7,42 @@
 
 ## Properties
 
-| Property              | Attribute                | Description | Type               | Default       |
-| --------------------- | ------------------------ | ----------- | ------------------ | ------------- |
-| `actions`             | `actions`                |             | `any`              | `undefined`   |
-| `cancelText`          | `cancel-text`            |             | `string`           | `undefined`   |
-| `closeIcon`           | `close-icon`             |             | `string`           | `'cross'`     |
-| `closeIconPosition`   | `close-icon-position`    |             | `string`           | `'top-right'` |
-| `closeOnClickAction`  | `close-on-click-action`  |             | `boolean`          | `undefined`   |
-| `closeOnClickOverlay` | `close-on-click-overlay` |             | `boolean`          | `true`        |
-| `closeOnPopstate`     | `close-on-popstate`      |             | `boolean`          | `undefined`   |
-| `closeable`           | `closeable`              |             | `boolean`          | `undefined`   |
-| `description`         | `description`            |             | `boolean`          | `undefined`   |
-| `duration`            | `duration`               |             | `string`           | `undefined`   |
-| `height`              | `height`                 |             | `string`           | `undefined`   |
-| `lazyRender`          | `lazy-render`            |             | `boolean`          | `true`        |
-| `lockScroll`          | `lock-scroll`            |             | `boolean`          | `true`        |
-| `overlay`             | `overlay`                |             | `boolean`          | `true`        |
-| `overlayClass`        | `overlay-class`          |             | `any`              | `null`        |
-| `overlayStyle`        | --                       |             | `object`           | `undefined`   |
-| `position`            | `position`               |             | `string`           | `'center'`    |
-| `round`               | `round`                  |             | `boolean`          | `true`        |
-| `safeAreaInsetBottom` | `safe-area-inset-bottom` |             | `boolean`          | `false`       |
-| `show`                | `show`                   |             | `boolean`          | `undefined`   |
-| `teleport`            | `teleport`               |             | `object \| string` | `undefined`   |
-| `title`               | `title`                  |             | `string`           | `undefined`   |
-| `transition`          | `transition`             |             | `string`           | `undefined`   |
-| `transitionAppear`    | `transition-appear`      |             | `boolean`          | `undefined`   |
-| `width`               | `width`                  |             | `string`           | `undefined`   |
-| `zIndex`              | `z-index`                |             | `string`           | `'2000'`      |
+| Property              | Attribute                | Description | Type      | Default     |
+| --------------------- | ------------------------ | ----------- | --------- | ----------- |
+| `actions`             | `actions`                |             | `any`     | `undefined` |
+| `cancelText`          | `cancel-text`            |             | `string`  | `undefined` |
+| `closeIcon`           | `close-icon`             |             | `string`  | `'cross'`   |
+| `closeOnClickAction`  | `close-on-click-action`  |             | `boolean` | `undefined` |
+| `closeOnClickOverlay` | `close-on-click-overlay` |             | `boolean` | `true`      |
+| `closeable`           | `closeable`              |             | `boolean` | `undefined` |
+| `description`         | `description`            |             | `boolean` | `undefined` |
+| `duration`            | `duration`               |             | `string`  | `undefined` |
+| `lazyRender`          | `lazy-render`            |             | `boolean` | `true`      |
+| `lockScroll`          | `lock-scroll`            |             | `boolean` | `true`      |
+| `overlay`             | `overlay`                |             | `boolean` | `true`      |
+| `round`               | `round`                  |             | `boolean` | `true`      |
+| `safeAreaInsetBottom` | `safe-area-inset-bottom` |             | `boolean` | `false`     |
+| `show`                | `show`                   |             | `boolean` | `undefined` |
+| `title`               | `title`                  |             | `string`  | `undefined` |
 
 
 ## Events
 
-| Event      | Description | Type               |
-| ---------- | ----------- | ------------------ |
-| `onCancel` |             | `CustomEvent<any>` |
-| `onShow`   |             | `CustomEvent<any>` |
+| Event        | Description | Type               |
+| ------------ | ----------- | ------------------ |
+| `glueCancel` |             | `CustomEvent<any>` |
+| `glueClose`  |             | `CustomEvent<any>` |
+| `glueClosed` |             | `CustomEvent<any>` |
+| `glueOpen`   |             | `CustomEvent<any>` |
+| `glueOpened` |             | `CustomEvent<any>` |
+| `glueShow`   |             | `CustomEvent<any>` |
 
 
 ## Dependencies
+
+### Used by
+
+ - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -62,6 +59,7 @@ graph TD;
   glue-icon --> glue-badge
   glue-popup --> glue-icon
   glue-popup --> glue-overlay
+  glue-demo --> glue-action-sheet
   style glue-action-sheet fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

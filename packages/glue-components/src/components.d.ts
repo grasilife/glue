@@ -42,7 +42,7 @@ export namespace Components {
         "closeOnClickAction": boolean;
         "closeOnClickOverlay": boolean;
         "closeable": boolean;
-        "description": boolean;
+        "description": string;
         "duration": string;
         "lazyRender": boolean;
         "lockScroll": boolean;
@@ -1566,7 +1566,7 @@ declare namespace LocalJSX {
         "closeOnClickAction"?: boolean;
         "closeOnClickOverlay"?: boolean;
         "closeable"?: boolean;
-        "description"?: boolean;
+        "description"?: string;
         "duration"?: string;
         "lazyRender"?: boolean;
         "lockScroll"?: boolean;
