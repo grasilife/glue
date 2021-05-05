@@ -6,7 +6,11 @@
     padding: @share-sheet-header-padding;
     text-align: center;
   }
-
+  &__content {
+    flex: 1 auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
   &__title {
     margin-top: @padding-xs;
     color: @share-sheet-title-color;

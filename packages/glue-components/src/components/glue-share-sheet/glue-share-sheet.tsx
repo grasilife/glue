@@ -1,6 +1,7 @@
-import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, Host, Event, EventEmitter, State } from '@stencil/core';
 import classNames from 'classnames';
 import { pick } from '../../utils/base';
+import { getVisibleHeight } from '../../utils/dom/scroll';
 const PRESET_ICONS = ['qq', 'link', 'weibo', 'wechat', 'poster', 'qrcode', 'weapp-qrcode', 'wechat-moments'];
 function getIconURL(icon: string) {
   if (PRESET_ICONS.indexOf(icon) !== -1) {
@@ -25,49 +26,56 @@ const [bem] = createNamespace('glue-share-sheet');
   shadow: false,
 })
 export class GlueShareSheet {
+  refContent: HTMLElement;
+  @Prop() show: boolean;
+  @Prop() options = [];
   @Prop() title: string;
   @Prop() cancelText: string;
   @Prop() description: string;
-  @Prop() options = [];
-  @Prop() closeOnPopstate = true;
-  @Prop() safeAreaInsetBottom = true;
-  //
-  @Prop() show: boolean;
-
-  @Prop() zIndex = '2000';
-
   @Prop() duration: string;
-  @Prop() width: string;
-  @Prop() height: string;
-  @Prop() teleport: string | object;
-  @Prop() overlayStyle: object;
-  @Prop() overlayClass = null;
-
-  @Prop() transitionAppear: boolean;
-  @Prop() overlay = true;
-  @Prop() lockScroll = true;
-  @Prop() lazyRender = true;
-  @Prop() closeOnClickOverlay = true;
   @Prop() round = true;
-  @Prop() closeable: boolean;
-  @Prop() transition: string;
-  @Prop() position = 'center';
-  @Prop() closeIcon = 'cross';
-  @Prop() closeIconPosition = 'top-right';
-  @Event() showChange: EventEmitter;
-  @Event() cancel: EventEmitter;
-  @Event() select: EventEmitter;
-  toggle = (value: boolean) => {
-    this.showChange.emit(value);
+  @Prop() overlay = false;
+  @Prop() lockScroll = false;
+  @Prop() lazyRender = false;
+  @Prop() closeOnPopstate = false;
+  @Prop() closeOnClickOverlay = true;
+  @Prop() safeAreaInsetBottom = true;
+  @Prop() teleport: string | object;
+  @State() height = '0';
+  @Event() glueCancel: EventEmitter;
+  @Event() glueSelect: EventEmitter;
+  @Event() glueOpen: EventEmitter;
+  @Event() glueShow: EventEmitter;
+  openHandle = () => {
+    this.show = true;
+    this.glueOpen.emit(true);
   };
-
+  @Event() glueClose: EventEmitter;
+  closeHandle = () => {
+    this.show = false;
+    // unlockScroll();
+    this.glueClose.emit(false);
+  };
+  @Event() glueOpened: EventEmitter;
+  openedHandle = () => {
+    this.show = true;
+    this.glueOpened.emit('opened');
+  };
+  @Event() glueClosed: EventEmitter;
+  closedHandle = () => {
+    this.show = false;
+    this.glueClosed.emit('closed');
+  };
+  toggle = (value: boolean) => {
+    this.glueShow.emit(value);
+  };
   onCancel = () => {
     this.toggle(false);
-    this.cancel.emit();
+    this.glueCancel.emit();
   };
 
   onSelect = (option: ShareSheetOption, index: number) => {
-    this.select.emit({ option, index });
+    this.glueSelect.emit({ option, index });
   };
 
   renderHeader = () => {
@@ -90,7 +98,7 @@ export class GlueShareSheet {
       <div
         role="button"
         tabindex={0}
-        class={(classNames('glue-share-sheet__option'), bem([className]))}
+        class={classNames('glue-share-sheet__option', bem([className]))}
         onClick={() => {
           this.onSelect(option, index);
         }}
@@ -102,7 +110,7 @@ export class GlueShareSheet {
     );
   };
 
-  renderOptions = (options: ShareSheetOption[], border?: boolean) => <div class={(classNames('glue-share-sheet__option'), bem([border]))}>{options.map(this.renderOption)}</div>;
+  renderOptions = (options: ShareSheetOption[], border?: boolean) => <div class={classNames('glue-share-sheet__options', bem([border]))}>{options.map(this.renderOption)}</div>;
 
   renderRows = () => {
     const { options } = this;
@@ -122,21 +130,41 @@ export class GlueShareSheet {
       );
     }
   };
+  componentDidLoad() {
+    this.height = getVisibleHeight(this.refContent).toString() + 'px';
+    console.log(this.height, this.refContent.offsetHeight, 'this.height');
+  }
   render() {
+    const { show, duration, round, overlay, lockScroll, lazyRender, closeOnClickOverlay } = this;
     return (
       <Host>
         <glue-popup
-          round
           class="glue-share-sheet"
+          round={round}
           position="bottom"
-          {...{
-            ...pick(this, popupKeys),
-          }}
+          safeAreaInsetBottom={this.safeAreaInsetBottom}
+          show={show}
+          height={this.height}
+          duration={duration}
+          overlay={overlay}
+          lockScroll={lockScroll}
+          lazyRender={lazyRender}
+          closeOnClickOverlay={closeOnClickOverlay}
+          onGlueOpen={this.openHandle}
+          onGlueClose={this.closeHandle}
+          onGlueOpened={this.openedHandle}
+          onGlueClosed={this.closedHandle}
         >
-          show={true}
-          {this.renderHeader()}
-          {this.renderRows()}
-          {this.renderCancelText()}
+          <div
+            class="glue-share-sheet__content"
+            ref={dom => {
+              this.refContent = dom;
+            }}
+          >
+            {this.renderHeader()}
+            {this.renderRows()}
+            {this.renderCancelText()}
+          </div>
         </glue-popup>
       </Host>
     );

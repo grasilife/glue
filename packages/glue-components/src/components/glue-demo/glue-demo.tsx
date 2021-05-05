@@ -14,6 +14,13 @@ export class GlueDemo {
     { name: '选项二', disabled: true },
     { name: '选项三', subname: '描述信息', loading: true },
   ];
+  @State() options = [
+    { name: '微信', icon: 'wechat' },
+    { name: '微博', icon: 'weibo' },
+    { name: '复制链接', icon: 'link' },
+    { name: '分享海报', icon: 'poster' },
+    { name: '二维码', icon: 'qrcode' },
+  ];
   @State() open: boolean = false;
   @State() show: boolean = false;
   @State() gradientColor = {
@@ -113,7 +120,8 @@ export class GlueDemo {
           标签
         </glue-tag> */}
         <glue-cell is-link title="基础用法" onClick={this.click} />
-        <glue-action-sheet show={this.show} onGlueClosed={this.closedHandle} actions={this.actions} cancel-text="取消" description="这是一段描述信息" />
+        {/* <glue-action-sheet show={this.show} onGlueClosed={this.closedHandle} actions={this.actions} cancel-text="取消" description="这是一段描述信息" overlay /> */}
+        <glue-share-sheet show={this.show} title="立即分享给好友" options={this.options} overlay onGlueClosed={this.closedHandle} />
       </div>
     );
   }

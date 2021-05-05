@@ -27,7 +27,7 @@ export class GlueActionSheet {
   @Prop() closeIcon = 'cross';
   @Prop() duration: string;
   @Prop() round = true;
-  @Prop() overlay = true;
+  @Prop() overlay = false;
   @Prop() lockScroll = true;
   @Prop() lazyRender = true;
   @Prop() closeOnClickAction: boolean;

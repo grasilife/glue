@@ -678,30 +678,19 @@ export namespace Components {
     }
     interface GlueShareSheet {
         "cancelText": string;
-        "closeIcon": string;
-        "closeIconPosition": string;
         "closeOnClickOverlay": boolean;
         "closeOnPopstate": boolean;
-        "closeable": boolean;
         "description": string;
         "duration": string;
-        "height": string;
         "lazyRender": boolean;
         "lockScroll": boolean;
         "options": any[];
         "overlay": boolean;
-        "overlayClass": any;
-        "overlayStyle": object;
-        "position": string;
         "round": boolean;
         "safeAreaInsetBottom": boolean;
         "show": boolean;
         "teleport": string | object;
         "title": string;
-        "transition": string;
-        "transitionAppear": boolean;
-        "width": string;
-        "zIndex": string;
     }
     interface GlueSidebar {
         "modelValue": number;
@@ -2241,33 +2230,26 @@ declare namespace LocalJSX {
     }
     interface GlueShareSheet {
         "cancelText"?: string;
-        "closeIcon"?: string;
-        "closeIconPosition"?: string;
         "closeOnClickOverlay"?: boolean;
         "closeOnPopstate"?: boolean;
-        "closeable"?: boolean;
         "description"?: string;
         "duration"?: string;
-        "height"?: string;
         "lazyRender"?: boolean;
         "lockScroll"?: boolean;
-        "onCancel"?: (event: CustomEvent<any>) => void;
-        "onSelect"?: (event: CustomEvent<any>) => void;
-        "onShowChange"?: (event: CustomEvent<any>) => void;
+        "onGlueCancel"?: (event: CustomEvent<any>) => void;
+        "onGlueClose"?: (event: CustomEvent<any>) => void;
+        "onGlueClosed"?: (event: CustomEvent<any>) => void;
+        "onGlueOpen"?: (event: CustomEvent<any>) => void;
+        "onGlueOpened"?: (event: CustomEvent<any>) => void;
+        "onGlueSelect"?: (event: CustomEvent<any>) => void;
+        "onGlueShow"?: (event: CustomEvent<any>) => void;
         "options"?: any[];
         "overlay"?: boolean;
-        "overlayClass"?: any;
-        "overlayStyle"?: object;
-        "position"?: string;
         "round"?: boolean;
         "safeAreaInsetBottom"?: boolean;
         "show"?: boolean;
         "teleport"?: string | object;
         "title"?: string;
-        "transition"?: string;
-        "transitionAppear"?: boolean;
-        "width"?: string;
-        "zIndex"?: string;
     }
     interface GlueSidebar {
         "modelValue"?: number;
