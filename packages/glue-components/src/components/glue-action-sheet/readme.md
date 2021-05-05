@@ -15,7 +15,7 @@
 | `closeOnClickAction`  | `close-on-click-action`  |             | `boolean` | `undefined` |
 | `closeOnClickOverlay` | `close-on-click-overlay` |             | `boolean` | `true`      |
 | `closeable`           | `closeable`              |             | `boolean` | `undefined` |
-| `description`         | `description`            |             | `boolean` | `undefined` |
+| `description`         | `description`            |             | `string`  | `undefined` |
 | `duration`            | `duration`               |             | `string`  | `undefined` |
 | `lazyRender`          | `lazy-render`            |             | `boolean` | `true`      |
 | `lockScroll`          | `lock-scroll`            |             | `boolean` | `true`      |

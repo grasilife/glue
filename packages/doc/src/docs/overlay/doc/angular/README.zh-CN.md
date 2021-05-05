@@ -9,19 +9,20 @@
 ### 基础用法
 
 ```html
-<van-button type="primary" text="显示遮罩层" @click="show = true" />
-<van-overlay :show="show" @click="show = false" />
+<glue-button type="primary"  @click="show = true" >显示遮罩层</glue-button>
+<glue-overlay :show="show" @click="show = false" />
 ```
 
 ```js
-import { ref } from 'vue';
-
+<script>
 export default {
-  setup() {
-    const show = ref(false);
-    return { show };
-  },
+  data() {
+    return {
+      show: false,
+    };
+  }
 };
+</script>
 ```
 
 ### 嵌入内容
@@ -29,11 +30,12 @@ export default {
 通过默认插槽可以在遮罩层上嵌入任意内容。
 
 ```html
-<van-overlay :show="show" @click="show = false">
+<glue-button type="primary" style="margin-left: 16px;" @click="showEmbedded = true">嵌入内容</glue-button>
+<glue-overlay :show="show" @click="show = false">
   <div class="wrapper" @click.stop>
     <div class="block" />
   </div>
-</van-overlay>
+</glue-overlay>
 
 <style>
   .wrapper {
@@ -66,9 +68,9 @@ export default {
 
 ### Events
 
-| 事件名 | 说明       | 回调参数       |
-|--------|----------|----------------|
-| click  | 点击时触发 | _event: Event_ |
+| 事件名  | 说明     | 回调参数       |
+|---------|--------|----------------|
+| default | 默认事件 | _event: Event_ |
 
 ### Slots
 

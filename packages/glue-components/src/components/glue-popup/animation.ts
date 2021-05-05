@@ -45,6 +45,7 @@ export const topEnterAnimation = (el, duration, easing, height, begin, complete)
   });
 };
 export const topLeaveAnimation = (el, duration, easing, height, begin, complete) => {
+  console.log(height);
   anime({
     targets: el,
     duration: duration,
