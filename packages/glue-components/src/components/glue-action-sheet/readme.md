@@ -19,7 +19,7 @@
 | `duration`            | `duration`               |             | `string`  | `undefined` |
 | `lazyRender`          | `lazy-render`            |             | `boolean` | `true`      |
 | `lockScroll`          | `lock-scroll`            |             | `boolean` | `true`      |
-| `overlay`             | `overlay`                |             | `boolean` | `true`      |
+| `overlay`             | `overlay`                |             | `boolean` | `false`     |
 | `round`               | `round`                  |             | `boolean` | `true`      |
 | `safeAreaInsetBottom` | `safe-area-inset-bottom` |             | `boolean` | `false`     |
 | `show`                | `show`                   |             | `boolean` | `undefined` |
@@ -40,10 +40,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [glue-demo](../glue-demo)
-
 ### Depends on
 
 - [glue-icon](../glue-icon)
@@ -59,7 +55,6 @@ graph TD;
   glue-icon --> glue-badge
   glue-popup --> glue-icon
   glue-popup --> glue-overlay
-  glue-demo --> glue-action-sheet
   style glue-action-sheet fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -11,7 +11,8 @@
     "build": "lerna run --stream --sort build",
     "start": "lerna run --stream --sort start",
     "test": "lerna run --stream --sort test",
-    "new": "plop"
+    "new": "plop",
+    "publish": "lerna publish"
   },
   "devDependencies": {
     "lerna": "^3.22.1",

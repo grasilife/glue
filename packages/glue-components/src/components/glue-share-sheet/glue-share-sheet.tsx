@@ -1,6 +1,6 @@
 import { Component, Prop, h, Host, Event, EventEmitter, State } from '@stencil/core';
 import classNames from 'classnames';
-import { pick } from '../../utils/base';
+// import { pick } from '../../utils/base';
 import { getVisibleHeight } from '../../utils/dom/scroll';
 const PRESET_ICONS = ['qq', 'link', 'weibo', 'wechat', 'poster', 'qrcode', 'weapp-qrcode', 'wechat-moments'];
 function getIconURL(icon: string) {
@@ -17,7 +17,7 @@ export type ShareSheetOption = {
 };
 
 export type ShareSheetOptions = ShareSheetOption[] | ShareSheetOption[][];
-const popupKeys = ['closeOnPopstate', 'safeAreaInsetBottom'];
+// const popupKeys = ['closeOnPopstate', 'safeAreaInsetBottom'];
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-share-sheet');
 @Component({
