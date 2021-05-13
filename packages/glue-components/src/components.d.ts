@@ -23,7 +23,9 @@ export namespace Components {
         "color": string;
         "disabled": boolean;
         "icon": string;
+        "leftRound": boolean;
         "loading": boolean;
+        "rightRound": boolean;
         "text": string;
         "type": string;
     }
@@ -1536,8 +1538,10 @@ declare namespace LocalJSX {
         "color"?: string;
         "disabled"?: boolean;
         "icon"?: string;
+        "leftRound"?: boolean;
         "loading"?: boolean;
         "onOnClick"?: (event: CustomEvent<any>) => void;
+        "rightRound"?: boolean;
         "text"?: string;
         "type"?: string;
     }

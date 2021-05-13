@@ -5,7 +5,7 @@
         <glue-action-bar-icon icon="chat-o" :text="icon1" @click="onClickIcon">{{ icon1 }}</glue-action-bar-icon>
         <glue-action-bar-icon icon="cart-o" :text="icon2" @click="onClickIcon">{{ icon2 }}</glue-action-bar-icon>
         <glue-action-bar-icon icon="shop-o" :text="icon3" @click="onClickIcon">{{ icon3 }}</glue-action-bar-icon>
-        <glue-action-bar-button type="danger" :text="button2" @click="onClickButton">{{
+        <glue-action-bar-button type="danger" @click="onClickButton" :left-round="true" :right-round="true">{{
           button2
         }}</glue-action-bar-button>
       </glue-action-bar>
@@ -16,27 +16,27 @@
         <glue-action-bar-icon icon="chat-o" dot :text="icon1">{{ icon1 }}</glue-action-bar-icon>
         <glue-action-bar-icon icon="cart-o" badge="5" :text="icon2">{{ icon2 }}</glue-action-bar-icon>
         <glue-action-bar-icon icon="shop-o" badge="12" :text="icon3">{{ icon3 }}</glue-action-bar-icon>
-        <glue-action-bar-button type="warning" :text="button1">{{ button1 }}</glue-action-bar-button>
-        <glue-action-bar-button type="danger" :text="button2">{{ button2 }}</glue-action-bar-button>
+        <glue-action-bar-button type="warning" :left-round="true">{{ button1 }}</glue-action-bar-button>
+        <glue-action-bar-button type="danger" :right-round="true">{{ button2 }}</glue-action-bar-button>
       </glue-action-bar>
     </DemoBlock>
 
     <DemoBlock :title="customIconColor">
       <glue-action-bar>
-        <glue-action-bar-icon icon="chat-o" :text="icon1" color="#ee0a24">{{ icon1 }}</glue-action-bar-icon>
-        <glue-action-bar-icon icon="cart-o" :text="icon2">{{ icon2 }}</glue-action-bar-icon>
-        <glue-action-bar-icon icon="star" :text="collected" color="#ff5000">{{ collected }}</glue-action-bar-icon>
-        <glue-action-bar-button type="warning" :text="button1">{{ button1 }}</glue-action-bar-button>
-        <glue-action-bar-button type="danger" :text="button2">{{ button2 }}</glue-action-bar-button>
+        <glue-action-bar-icon icon="chat-o" color="#ee0a24">{{ icon1 }}</glue-action-bar-icon>
+        <glue-action-bar-icon icon="cart-o">{{ icon2 }}</glue-action-bar-icon>
+        <glue-action-bar-icon icon="star" color="#ff5000">{{ collected }}</glue-action-bar-icon>
+        <glue-action-bar-button type="warning">{{ button1 }}</glue-action-bar-button>
+        <glue-action-bar-button type="danger">{{ button2 }}</glue-action-bar-button>
       </glue-action-bar>
     </DemoBlock>
 
     <DemoBlock :title="customButtonColor">
       <glue-action-bar>
-        <glue-action-bar-icon icon="chat-o" :text="icon1">{{ icon1 }}</glue-action-bar-icon>
-        <glue-action-bar-icon icon="cart-o" :text="icon2">{{ icon2 }}</glue-action-bar-icon>
-        <glue-action-bar-button color="#be99ff" type="warning" :text="button1">{{ button1 }}</glue-action-bar-button>
-        <glue-action-bar-button color="#7232dd" type="danger" :text="button2">{{ button2 }}</glue-action-bar-button>
+        <glue-action-bar-icon icon="chat-o">{{ icon1 }}</glue-action-bar-icon>
+        <glue-action-bar-icon icon="cart-o">{{ icon2 }}</glue-action-bar-icon>
+        <glue-action-bar-button color="#be99ff" type="warning" :left-round="true">{{ button1 }}</glue-action-bar-button>
+        <glue-action-bar-button color="#7232dd" type="danger" :right-round="true">{{ button2 }}</glue-action-bar-button>
       </glue-action-bar>
     </DemoBlock>
   </DemoSection>

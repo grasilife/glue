@@ -28,19 +28,6 @@
 | `glueOpenChange`  |             | `CustomEvent<any>` |
 
 
-## Dependencies
-
-### Used by
-
- - [glue-demo](../glue-demo)
-
-### Graph
-```mermaid
-graph TD;
-  glue-demo --> glue-swipe-cell
-  style glue-swipe-cell fill:#f9f,stroke:#333,stroke-width:4px
-```
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

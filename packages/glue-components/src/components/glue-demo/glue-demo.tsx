@@ -122,7 +122,7 @@ export class GlueDemo {
         {/* <glue-cell is-link title="基础用法" onClick={this.click} /> */}
         {/* <glue-action-sheet show={this.show} onGlueClosed={this.closedHandle} actions={this.actions} cancel-text="取消" description="这是一段描述信息" overlay /> */}
         {/* <glue-share-sheet show={this.show} title="立即分享给好友" options={this.options} overlay onGlueClosed={this.closedHandle} /> */}
-        <glue-swipe-cell left="#slot" right="#slot">
+        {/* <glue-swipe-cell left="#slot" right="#slot">
           <div slot="left">
             <glue-button square type="primary">
               选择
@@ -137,7 +137,18 @@ export class GlueDemo {
               收藏
             </glue-button>
           </div>
-        </glue-swipe-cell>
+        </glue-swipe-cell> */}
+        <glue-action-bar>
+          <glue-action-bar-icon icon="chat-o">客服</glue-action-bar-icon>
+          <glue-action-bar-icon icon="cart-o">购物车</glue-action-bar-icon>
+          <glue-action-bar-icon icon="shop-o">店铺</glue-action-bar-icon>
+          <glue-action-bar-button type="warning" left-round={true}>
+            加入购物车
+          </glue-action-bar-button>
+          <glue-action-bar-button type="danger" right-round={true}>
+            立即购买
+          </glue-action-bar-button>
+        </glue-action-bar>
       </div>
     );
   }

@@ -10,7 +10,8 @@ const [bem] = createNamespace('glue-action-bar-button');
 })
 export class GlueActionBarButton {
   @Prop() type: string;
-
+  @Prop() leftRound: boolean;
+  @Prop() rightRound: boolean;
   @Prop() text: string;
 
   @Prop() icon: string;
@@ -25,9 +26,8 @@ export class GlueActionBarButton {
       this.onClick.emit(event);
     }
   };
-  //TODO:又一个黄色的未知的边框,未修复
   render() {
-    const { type, icon, text, color, loading, disabled } = this;
+    const { type, icon, text, color, loading, disabled, leftRound, rightRound } = this;
     console.log(text);
     return (
       <Host>
@@ -39,8 +39,14 @@ export class GlueActionBarButton {
           loading={loading}
           disabled={disabled}
           onClick={this.handleClick}
-          round
-          class={classNames('glue-action-bar-button', bem([type]))}
+          class={classNames(
+            'glue-action-bar-button',
+            {
+              'glue-action-bar-button--first': leftRound,
+              'glue-action-bar-button--last': rightRound,
+            },
+            bem([type]),
+          )}
         >
           <slot></slot>
         </glue-button>

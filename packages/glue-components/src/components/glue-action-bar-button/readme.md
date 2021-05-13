@@ -7,14 +7,16 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default     |
-| ---------- | ---------- | ----------- | --------- | ----------- |
-| `color`    | `color`    |             | `string`  | `undefined` |
-| `disabled` | `disabled` |             | `boolean` | `undefined` |
-| `icon`     | `icon`     |             | `string`  | `undefined` |
-| `loading`  | `loading`  |             | `boolean` | `undefined` |
-| `text`     | `text`     |             | `string`  | `undefined` |
-| `type`     | `type`     |             | `string`  | `undefined` |
+| Property     | Attribute     | Description | Type      | Default     |
+| ------------ | ------------- | ----------- | --------- | ----------- |
+| `color`      | `color`       |             | `string`  | `undefined` |
+| `disabled`   | `disabled`    |             | `boolean` | `undefined` |
+| `icon`       | `icon`        |             | `string`  | `undefined` |
+| `leftRound`  | `left-round`  |             | `boolean` | `undefined` |
+| `loading`    | `loading`     |             | `boolean` | `undefined` |
+| `rightRound` | `right-round` |             | `boolean` | `undefined` |
+| `text`       | `text`        |             | `string`  | `undefined` |
+| `type`       | `type`        |             | `string`  | `undefined` |
 
 
 ## Events
@@ -25,6 +27,10 @@
 
 
 ## Dependencies
+
+### Used by
+
+ - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -37,6 +43,7 @@ graph TD;
   glue-button --> glue-loading
   glue-button --> glue-icon
   glue-icon --> glue-badge
+  glue-demo --> glue-action-bar-button
   style glue-action-bar-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
