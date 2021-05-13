@@ -95,6 +95,8 @@ export default {
 | icon  | 左侧[图标名称](#/zh-CN/icon)或图片链接                | _string_ | -         |
 | disabled | 是否禁用按钮 | _boolean_ | `false` | - |
 | loading | 是否显示为加载状态 | _boolean_ | `false` | - |
+| left-round  | 按钮是否为为左侧圆形按钮 | _boolean_ | `false` |
+| right-round  | 按钮是否为为右侧圆形按钮 | _boolean_ | `false` |
 
 ### ActionBarIcon Slots
 
