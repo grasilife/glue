@@ -2343,8 +2343,8 @@ declare namespace LocalJSX {
         "leftWidth"?: number;
         "name"?: string;
         "onClick"?: (event: CustomEvent<any>) => void;
-        "onCloseChange"?: (event: CustomEvent<any>) => void;
-        "onOpenChange"?: (event: CustomEvent<any>) => void;
+        "onGlueCloseChange"?: (event: CustomEvent<any>) => void;
+        "onGlueOpenChange"?: (event: CustomEvent<any>) => void;
         "right"?: string;
         "rightWidth"?: number;
         "stopPropagation"?: boolean;

@@ -28,8 +28,8 @@ export class GlueSwipeCell {
   @State() opened: boolean;
   @State() lockClick: boolean;
   @State() startOffset: number;
-  @Event() openChange: EventEmitter;
-  @Event() closeChange: EventEmitter;
+  @Event() glueOpenChange: EventEmitter;
+  @Event() glueCloseChange: EventEmitter;
   @Event() click: EventEmitter;
   root: HTMLElement;
   leftRef: HTMLElement;
@@ -46,7 +46,7 @@ export class GlueSwipeCell {
   open = (side: SwipeCellSide) => {
     this.opened = true;
     this.offset = side === 'left' ? this.leftWidth : -this.rightWidth;
-    this.openChange.emit({
+    this.glueOpenChange.emit({
       name: this.name,
       position: side,
     });
@@ -54,10 +54,9 @@ export class GlueSwipeCell {
 
   close = (position: SwipeCellPosition) => {
     this.offset = 0;
-
     if (this.opened) {
       this.opened = false;
-      this.closeChange.emit({
+      this.glueCloseChange.emit({
         name: this.name,
         position,
       });
@@ -78,7 +77,6 @@ export class GlueSwipeCell {
   };
 
   onTouchStart = (event: TouchEvent) => {
-    console.log(111111);
     if (!this.disabled) {
       this.startOffset = this.offset;
       console.log(this.startOffset, 'this.startOffset');
@@ -122,20 +120,9 @@ export class GlueSwipeCell {
   onClick = (position: SwipeCellPosition = 'outside') => {
     console.log(position, 'position');
     // this.click.emit(position);
-
     if (this.opened && !this.lockClick) {
-      // callInterceptor({
-      //   interceptor: this.beforeClose,
-      //   args: [
-      //     {
-      //       name: this.name,
-      //       position,
-      //     },
-      //   ],
-      //   done: () => {
-      //     this.close(position);
-      //   },
-      // });
+      this.close(position);
+      //这里的异步关闭没理解干嘛的
     }
   };
 
