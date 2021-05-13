@@ -1,11 +1,10 @@
 import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
+import '@vant/touch-emulator';
 import { useTouch } from '../../utils/composables/use-touch';
-import { createNamespace } from '../../utils/create/index';
 import { range } from '../../utils/format/number';
 import { preventDefault } from '../../utils/dom/event';
 import { isDef } from '../../utils/base';
-const [bem] = createNamespace('glue-swipe-celll');
 export type SwipeCellSide = 'left' | 'right';
 export type SwipeCellPosition = SwipeCellSide | 'cell' | 'outside';
 @Component({
@@ -13,13 +12,15 @@ export type SwipeCellPosition = SwipeCellSide | 'cell' | 'outside';
   styleUrl: 'glue-swipe-cell.less',
   shadow: false,
 })
-export class GlueSwipeell {
-  @Prop() disabled: boolean;
-  @Prop() leftWidth: any;
-  @Prop() rightWidth: string | number;
+export class GlueSwipeCell {
+  @Prop() disabled: boolean = false;
+  @Prop({ mutable: true }) leftWidth: number;
+  @Prop({ mutable: true }) rightWidth: number;
   @Prop() beforeClose;
   @Prop() stopPropagation: boolean;
   @Prop() name = '';
+  @Prop() left = '';
+  @Prop() right = '';
   @State() offset: any = 0;
   @State() dragging = false;
   @State() opened: boolean;
@@ -37,6 +38,7 @@ export class GlueSwipeell {
   componentDidLoad() {
     this.leftWidth = isDef(this.leftWidth) ? +this.leftWidth : this.getWidthByRef(this.leftRef);
     this.rightWidth = isDef(this.rightWidth) ? +this.rightWidth : this.getWidthByRef(this.rightRef);
+    console.log(this.leftWidth, this.rightWidth, 'agjhiauhuahu');
   }
 
   open = (side: SwipeCellSide) => {
@@ -74,9 +76,11 @@ export class GlueSwipeell {
   };
 
   onTouchStart = (event: TouchEvent) => {
+    console.log(111111);
     if (!this.disabled) {
       this.startOffset = this.offset;
-      this.touch.start(event);
+      console.log(this.startOffset, 'this.startOffset');
+      // this.touch.start(event);
     }
   };
 
@@ -84,10 +88,9 @@ export class GlueSwipeell {
     if (this.disabled) {
       return;
     }
-
     const { deltaX } = this.touch;
+    console.log(deltaX, 'deltaX');
     this.touch.move(event);
-
     if (this.touch.isHorizontal()) {
       this.lockClick = true;
       this.dragging = true;
@@ -114,7 +117,8 @@ export class GlueSwipeell {
   };
 
   onClick = (position: SwipeCellPosition = 'outside') => {
-    this.click.emit(position);
+    console.log(222);
+    // this.click.emit(position);
 
     if (this.opened && !this.lockClick) {
       // callInterceptor({
@@ -138,18 +142,34 @@ export class GlueSwipeell {
     }
     this.onClick(position);
   };
-
-  renderSideContent = (side, ref) => {
-    const contentSlot = true;
-    if (contentSlot) {
+  renderSideContentLeft = () => {
+    if (this.left == '#slot') {
       return (
-        <div ref={ref} class={classNames(bem([side]))} onClick={this.getClickHandler(side, true)}>
-          {/* {contentSlot()} */}
+        <div
+          class={classNames('glue-swipe-cell__left')}
+          onClick={this.getClickHandler('left', true)}
+          ref={dom => {
+            this.leftRef = dom;
+          }}
+        >
+          <slot name="left"></slot>
         </div>
       );
     }
   };
-
+  renderSideContentRight = () => {
+    return (
+      <div
+        class={classNames('glue-swipe-cell__right')}
+        onClick={this.getClickHandler('right', true)}
+        ref={dom => {
+          this.rightRef = dom;
+        }}
+      >
+        <slot name="right"></slot>
+      </div>
+    );
+  };
   render() {
     const wrapperStyle = {
       transform: `translate3d(${this.offset}px, 0, 0)`,
@@ -168,9 +188,9 @@ export class GlueSwipeell {
         onTouchcancel={this.onTouchEnd}
       >
         <div class="glue-swipe-cell__wrapper" style={wrapperStyle}>
-          {this.renderSideContent('left', this.leftRef)}
+          {this.renderSideContentLeft()}
           <slot></slot>
-          {this.renderSideContent('right', this.rightRef)}
+          {this.renderSideContentRight()}
         </div>
       </Host>
     );

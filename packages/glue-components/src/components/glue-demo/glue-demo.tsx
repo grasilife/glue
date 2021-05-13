@@ -119,9 +119,25 @@ export class GlueDemo {
         {/* <glue-tag closeable type="primary">
           标签
         </glue-tag> */}
-        <glue-cell is-link title="基础用法" onClick={this.click} />
+        {/* <glue-cell is-link title="基础用法" onClick={this.click} /> */}
         {/* <glue-action-sheet show={this.show} onGlueClosed={this.closedHandle} actions={this.actions} cancel-text="取消" description="这是一段描述信息" overlay /> */}
-        <glue-share-sheet show={this.show} title="立即分享给好友" options={this.options} overlay onGlueClosed={this.closedHandle} />
+        {/* <glue-share-sheet show={this.show} title="立即分享给好友" options={this.options} overlay onGlueClosed={this.closedHandle} /> */}
+        <glue-swipe-cell left="#slot" right="#slot">
+          <div slot="left">
+            <glue-button square type="primary">
+              选择
+            </glue-button>
+          </div>
+          <glue-cell border={false} title="单元格" value="内容" />
+          <div slot="right">
+            <glue-button square type="danger">
+              删除
+            </glue-button>
+            <glue-button square type="primary">
+              收藏
+            </glue-button>
+          </div>
+        </glue-swipe-cell>
       </div>
     );
   }

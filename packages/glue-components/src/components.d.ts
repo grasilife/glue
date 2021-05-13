@@ -770,9 +770,11 @@ export namespace Components {
     interface GlueSwipeCell {
         "beforeClose": any;
         "disabled": boolean;
-        "leftWidth": any;
+        "left": string;
+        "leftWidth": number;
         "name": string;
-        "rightWidth": string | number;
+        "right": string;
+        "rightWidth": number;
         "stopPropagation": boolean;
     }
     interface GlueSwipeItem {
@@ -2337,12 +2339,14 @@ declare namespace LocalJSX {
     interface GlueSwipeCell {
         "beforeClose"?: any;
         "disabled"?: boolean;
-        "leftWidth"?: any;
+        "left"?: string;
+        "leftWidth"?: number;
         "name"?: string;
         "onClick"?: (event: CustomEvent<any>) => void;
         "onCloseChange"?: (event: CustomEvent<any>) => void;
         "onOpenChange"?: (event: CustomEvent<any>) => void;
-        "rightWidth"?: string | number;
+        "right"?: string;
+        "rightWidth"?: number;
         "stopPropagation"?: boolean;
     }
     interface GlueSwipeItem {

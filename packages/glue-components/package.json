@@ -24,6 +24,8 @@
   },
   "dependencies": {
     "@stencil/core": "^2.5.2",
+    "@vant/markdown-loader": "^1.2.0",
+    "@vant/touch-emulator": "^1.2.0",
     "animejs": "^3.2.1",
     "intersection-observer": "^0.12.0"
   },

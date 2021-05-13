@@ -1,0 +1,12 @@
+{
+  "private": false,
+  "name": "@vant/touch-emulator",
+  "version": "1.2.0",
+  "description": "Vant touch emulator",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator"
+}
