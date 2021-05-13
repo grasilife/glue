@@ -8,7 +8,6 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CellArrowDirection } from "./components/glue-cell/glue-cell-interface";
 import { DividerContentPosition } from "./components/glue-divider/glue-divider";
 import { GridDirection } from "./components/glue-grid/glue-grid";
-import { GridDirection as GridDirection1 } from "./components/glue-grid-item/glue-grid-item";
 import { ImageFit } from "./components/glue-image/glue-image";
 import { NoticeBarMode } from "./components/glue-notice-bar/glue-notice-bar";
 import { RowAlign, RowJustify } from "./components/glue-row/glue-row";
@@ -414,17 +413,11 @@ export namespace Components {
     }
     interface GlueGridItem {
         "badge": string | number;
-        "border": boolean;
-        "center": boolean;
         "clickable": boolean;
-        "columnNum": number | string;
-        "direction": GridDirection;
+        "custom": string;
         "dot": boolean;
-        "gutter": number | string;
         "icon": string;
         "iconPrefix": string;
-        "iconSize": number;
-        "square"?: boolean;
         "text": string;
     }
     interface GlueIcon {
@@ -1943,17 +1936,11 @@ declare namespace LocalJSX {
     }
     interface GlueGridItem {
         "badge"?: string | number;
-        "border"?: boolean;
-        "center"?: boolean;
         "clickable"?: boolean;
-        "columnNum"?: number | string;
-        "direction"?: GridDirection;
+        "custom"?: string;
         "dot"?: boolean;
-        "gutter"?: number | string;
         "icon"?: string;
         "iconPrefix"?: string;
-        "iconSize"?: number;
-        "square"?: boolean;
         "text"?: string;
     }
     interface GlueIcon {

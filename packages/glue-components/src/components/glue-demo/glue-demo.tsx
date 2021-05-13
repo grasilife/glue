@@ -138,7 +138,7 @@ export class GlueDemo {
             </glue-button>
           </div>
         </glue-swipe-cell> */}
-        <glue-action-bar>
+        {/* <glue-action-bar>
           <glue-action-bar-icon icon="chat-o">客服</glue-action-bar-icon>
           <glue-action-bar-icon icon="cart-o">购物车</glue-action-bar-icon>
           <glue-action-bar-icon icon="shop-o">店铺</glue-action-bar-icon>
@@ -148,7 +148,19 @@ export class GlueDemo {
           <glue-action-bar-button type="danger" right-round={true}>
             立即购买
           </glue-action-bar-button>
-        </glue-action-bar>
+        </glue-action-bar> */}
+        <glue-grid column-num="4" center border={true} gutter="10" direction="horizontal">
+          {/* <glue-grid-item icon="photo-o" text="文字" custom="#slot">
+            <glue-image src="https://img01.yzcdn.cn/vant/apple-1.jpg" />
+          </glue-grid-item> */}
+          <glue-grid-item icon="home-o" text="文字" dot />
+          <glue-grid-item icon="search" text="文字" badge="99+" />
+          <glue-grid-item icon="photo-o" text="文字" />
+          <glue-grid-item icon="photo-o" text="文字" />
+          <glue-grid-item icon="photo-o" text="文字" />
+          <glue-grid-item icon="photo-o" text="文字" />
+          <glue-grid-item icon="photo-o" text="文字" />
+        </glue-grid>
       </div>
     );
   }

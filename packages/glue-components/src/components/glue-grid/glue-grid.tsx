@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Host } from '@stencil/core';
 import { addUnit } from '../../utils/format/unit';
 // import { BORDER_TOP } from '../../global/constant/';
 import classNames from 'classnames';
@@ -9,18 +9,42 @@ export type GridDirection = 'horizontal' | 'vertical';
   shadow: false,
 })
 export class GlueGrid {
-  @Prop() center: boolean;
-  @Prop() border: boolean;
-  @Prop() square: boolean;
-  @Prop() gutter: number | string;
-  @Prop() iconSize: number | string;
-  @Prop() columnNum: number | string;
-  @Prop() direction: GridDirection;
-  @Prop() clickable: boolean;
+  @Prop({
+    reflect: true,
+  })
+  center: boolean;
+  @Prop({
+    reflect: true,
+  })
+  border: boolean;
+  @Prop({
+    reflect: true,
+  })
+  square: boolean;
+  @Prop({
+    reflect: true,
+  })
+  gutter: number | string;
+  @Prop({
+    reflect: true,
+  })
+  iconSize: number | string = 28;
+  @Prop({
+    reflect: true,
+  })
+  columnNum: number | string = 4;
+  @Prop({
+    reflect: true,
+  })
+  direction: GridDirection;
+  @Prop({
+    reflect: true,
+  })
+  clickable: boolean;
 
   render() {
     return (
-      <div
+      <Host
         style={{ paddingLeft: addUnit(this.gutter) }}
         class={classNames('glue-grid', {
           'glue-grid__border': this.border,
@@ -28,7 +52,7 @@ export class GlueGrid {
         })}
       >
         <slot></slot>
-      </div>
+      </Host>
     );
   }
 }

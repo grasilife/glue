@@ -1,29 +1,47 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Element, State, Host } from '@stencil/core';
 import { addUnit } from '../../utils/format/unit';
 import classNames from 'classnames';
 export type GridDirection = 'horizontal' | 'vertical';
+import { getElementParent, getAttribute } from '../../utils/base';
+import { BORDER } from '../../global/constant/constant';
+import { getElementChildren } from '../../utils/base';
 @Component({
   tag: 'glue-grid-item',
   styleUrl: 'glue-grid-item.less',
   shadow: false,
 })
 export class GlueGridItem {
+  @Element() el!: HTMLElement;
   @Prop() dot: boolean;
+  @Prop() custom: string;
   @Prop() text: string;
   @Prop() icon: string;
   @Prop() badge: string | number;
   @Prop() iconPrefix: string;
-  @Prop() square?: boolean;
-  @Prop() gutter: number | string;
-  @Prop() columnNum: number | string;
-  @Prop() direction: GridDirection;
   @Prop() clickable: boolean;
-  @Prop() border: boolean;
-  @Prop() center: boolean;
-  @Prop() iconSize: number;
+  //父元素传过来的
+  @State() center: boolean;
+  @State() border: boolean;
+  @State() square: boolean;
+  @State() gutter: number | string;
+  @State() iconSize: number | string;
+  @State() columnNum: number | string;
+  @State() direction: number | string;
   rootStyle = () => {
-    const { square, gutter, columnNum } = this;
-    const percent = `${100 / +columnNum}%`;
+    let parentEl = getElementParent(this.el);
+    let children = getElementChildren(parentEl);
+    //下面的方法好像不行
+    // let index = null;
+    // for (let i = 0; i < children.length; i++) {
+    //   console.log(index, children[i], this.el, 'this.columnNum');
+    //   if (children[i] == this.el) {
+    //     index = i;
+    //   }
+    //   break;
+    // }
+    // console.log(index, children.length, 'index222');
+    const percent = `${100 / +this.columnNum}%`;
+    console.log(percent, 'percent');
     const style = {
       flexBasis: percent,
       paddingTop: '',
@@ -31,24 +49,23 @@ export class GlueGridItem {
       marginTop: '',
     };
 
-    if (square) {
+    if (this.square != undefined) {
       style.paddingTop = percent;
-    } else if (gutter) {
-      const gutterValue = addUnit(gutter);
+    } else if (this.gutter) {
+      const gutterValue = addUnit(this.gutter);
+      console.log(gutterValue, 'gutterValue');
       style.paddingRight = gutterValue;
-
-      // if (index.value >= columnNum) {
-      //   style.marginTop = gutterValue;
-      // }
+      //TODO:index为子元素的下标,不好获取
+      if (children.length >= this.columnNum) {
+        style.marginTop = gutterValue;
+      }
     }
 
     return style;
   };
   contentStyle = () => {
-    const { square, gutter } = this;
-
-    if (square && gutter) {
-      const gutterValue = addUnit(gutter);
+    if (this.square && this.gutter) {
+      const gutterValue = addUnit(this.gutter);
       return {
         right: gutterValue,
         bottom: gutterValue,
@@ -58,12 +75,8 @@ export class GlueGridItem {
   };
 
   renderIcon = () => {
-    // if (slots.icon) {
-    //   return (
-    //     <glue-badge dot={this.dot} content={this.badge}>
-    //       {slots.icon()}
-    //     </glue-badge>
-    //   );
+    // if ((this.icon = '#slot')) {
+    //   return <glue-badge dot={this.dot} content={this.badge}></glue-badge>;
     // }
 
     if (this.icon) {
@@ -77,32 +90,49 @@ export class GlueGridItem {
     }
   };
 
+  componentWillLoad() {
+    let parentEl = getElementParent(this.el);
+    this.center = getAttribute(parentEl, 'center');
+    this.square = getAttribute(parentEl, 'square');
+    this.gutter = getAttribute(parentEl, 'gutter');
+    this.iconSize = getAttribute(parentEl, 'icon-size');
+    this.columnNum = getAttribute(parentEl, 'column-num');
+    this.direction = getAttribute(parentEl, 'direction');
+    console.log(this.columnNum, 'this.columnNum');
+  }
   renderContent = () => {
+    if (this.custom == '#slot') {
+      return <slot></slot>;
+    }
     return [this.renderIcon(), this.renderText()];
   };
   render() {
     const { center, border, square, gutter, direction, clickable } = this;
+    console.log(center, 'center');
     return (
-      <div
-        class={classNames({
-          'glue-grid-item__direction': direction,
-          'glue-grid-item__square': square,
-          'glue-grid-item__center': center,
-          'glue-grid-item__clickable': clickable,
-          'glue-grid-item__surround': border && gutter,
+      <Host
+        class={classNames('glue-grid-item', {
+          'glue-grid-item--square': square != undefined,
         })}
         style={this.rootStyle()}
       >
         <div
-          class={classNames({
-            'glue-grid-item__square': square,
-          })}
+          class={classNames(
+            'glue-grid-item__content',
+            {
+              'glue-grid-item__content--horizontal': direction == 'horizontal',
+              'glue-grid-item__content--square': square != undefined,
+              'glue-grid-item__content--center': center != undefined,
+              'glue-grid-item__content--clickable': clickable,
+              'glue-grid-item__content--surround': border != undefined && gutter,
+            },
+            BORDER,
+          )}
           style={this.contentStyle()}
-          tabindex={clickable ? 0 : undefined}
         >
           {this.renderContent()}
         </div>
-      </div>
+      </Host>
     );
   }
 }
