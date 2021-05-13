@@ -11,16 +11,16 @@
 `SwipeCell` 组件提供了 `left` 和 `right` 两个插槽，用于定义两侧滑动区域的内容。
 
 ```html
-<van-swipe-cell>
-  <template #left>
-    <van-button square type="primary" text="选择" />
-  </template>
-  <van-cell :border="false" title="单元格" value="内容" />
-  <template #right>
-    <van-button square type="danger" text="删除" />
-    <van-button square type="primary" text="收藏" />
-  </template>
-</van-swipe-cell>
+<glue-swipe-cell left="#slot" right="#slot">
+    <div slot="left">
+      <glue-button square type="primary">选择</glue-button>
+    </div>
+    <glue-cell :border="false" title="单元格" value="内容" />
+    <div slot="right">
+      <glue-button square type="danger" :text="deleteTitle">删除</glue-button>
+      <glue-button square type="primary" :text="collect">{收藏</glue-button>
+    </div>
+</glue-swipe-cell>
 ```
 
 ### 自定义内容
@@ -28,7 +28,7 @@
 `SwipeCell` 可以嵌套任意内容，比如嵌套一个商品卡片。
 
 ```html
-<van-swipe-cell>
+<glue-swipe-cell left="#slot" right="#slot">
   <van-card
     num="2"
     price="2.00"
@@ -37,10 +37,10 @@
     class="goods-card"
     thumb="https://img01.yzcdn.cn/vant/cat.jpeg"
   />
-  <template #right>
-    <van-button square text="删除" type="danger" class="delete-button" />
-  </template>
-</van-swipe-cell>
+  <div slot="right" class="delete-button">
+    <glue-button square text="删除" type="danger" class="delete-button" />
+  </div>
+</glue-swipe-cell>
 
 <style>
   .goods-card {
@@ -52,48 +52,6 @@
     height: 100%;
   }
 </style>
-```
-
-### 异步关闭
-
-通过传入 `before-close` 回调函数，可以自定义两侧滑动内容关闭时的行为。
-
-```html
-<van-swipe-cell :before-close="beforeClose">
-  <template #left>
-    <van-button square type="primary" text="选择" />
-  </template>
-  <van-cell :border="false" title="单元格" value="内容" />
-  <template #right>
-    <van-button square type="danger" text="删除" />
-  </template>
-</van-swipe-cell>
-```
-
-```js
-import { Dialog } from 'vant';
-
-export default {
-  setup() {
-    // position 为关闭时点击的位置
-    const beforeClose = ({ position }) => {
-      switch (position) {
-        case 'left':
-        case 'cell':
-        case 'outside':
-          return true;
-        case 'right':
-          return new Promise((resolve) => {
-            Dialog.confirm({
-              title: '确定删除吗？',
-            }).then(resolve);
-          });
-      }
-    };
-
-    return { beforeClose };
-  },
-};
 ```
 
 ## API
@@ -108,6 +66,8 @@ export default {
 | before-close     | 关闭前的回调函数，返回 `false` 可阻止关闭，支持返回 Promise | _(args) => boolean \| Promise_ | -       |
 | disabled         | 是否禁用滑动                                              | _boolean_                      | `false` |
 | stop-propagation | 是否阻止滑动事件冒泡                                      | _boolean_                      | `false` |
+| left             | 使用#slot开启插槽                                         | _boolean_                      | `false` |
+| right            | 使用#slot开启插槽                                         | _boolean_                      | `false` |
 
 ### Slots
 
@@ -119,11 +79,10 @@ export default {
 
 ### Events
 
-| 事件名 | 说明       | 回调参数                                           |
-|--------|----------|----------------------------------------------------|
-| click  | 点击时触发 | 关闭时的点击位置 (`left` `right` `cell` `outside`) |
-| open   | 打开时触发 | { position: 'left' \| 'right' , name: string }     |
-| close  | 关闭时触发 | { position: string , name: string }                |
+| 事件名          | 说明       | 回调参数                                       |
+|-----------------|----------|------------------------------------------------|
+| glueOpenChange  | 打开时触发 | { position: 'left' \| 'right' , name: string } |
+| glueCloseChange | 关闭时触发 | { position: string , name: string }            |
 
 ### beforeClose 参数
 

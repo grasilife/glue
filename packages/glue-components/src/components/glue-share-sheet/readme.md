@@ -40,10 +40,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [glue-demo](../glue-demo)
-
 ### Depends on
 
 - [glue-popup](../glue-popup)
@@ -55,7 +51,6 @@ graph TD;
   glue-popup --> glue-icon
   glue-popup --> glue-overlay
   glue-icon --> glue-badge
-  glue-demo --> glue-share-sheet
   style glue-share-sheet fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

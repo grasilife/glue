@@ -2,37 +2,25 @@
   <div>
     <DemoSection>
       <DemoBlock :title="basicUsage">
-        <van-swipe-cell>
-          <template #left>
-            <van-button square type="primary" :text="select" />
-          </template>
-          <van-cell :border="false" :title="title" :value="content" />
-          <template #right>
-            <van-button square type="danger" :text="deleteTitle" />
-            <van-button square type="primary" :text="collect" />
-          </template>
-        </van-swipe-cell>
+        <glue-swipe-cell left="#slot" right="#slot">
+          <div slot="left">
+            <glue-button square type="primary">{{ select }}</glue-button>
+          </div>
+          <glue-cell :border="false" :title="title" :value="content" />
+          <div slot="right">
+            <glue-button square type="danger" :text="deleteTitle">{{ deleteTitle }}</glue-button>
+            <glue-button square type="primary" :text="collect">{{ collect }}</glue-button>
+          </div>
+        </glue-swipe-cell>
       </DemoBlock>
 
       <DemoBlock :title="customContent">
-        <van-swipe-cell>
+        <glue-swipe-cell left="#slot" right="#slot">
           <van-card num="2" price="2.00" :desc="desc" :title="cardTitle" :thumb="imageURL" />
-          <template #right>
-            <van-button square type="danger" class="delete-button" :text="deleteTitle" />
-          </template>
-        </van-swipe-cell>
-      </DemoBlock>
-
-      <DemoBlock :title="beforeCloseTitle">
-        <van-swipe-cell :before-close="beforeClose">
-          <template #left>
-            <van-button square type="primary" :text="select" />
-          </template>
-          <van-cell :border="false" :title="title" :value="content" />
-          <template #right>
-            <van-button square type="danger" :text="deleteTitle" />
-          </template>
-        </van-swipe-cell>
+          <div slot="right" class="delete-button">
+            <glue-button square type="danger" class="delete-button">{{ deleteTitle }}</glue-button>
+          </div>
+        </glue-swipe-cell>
       </DemoBlock>
     </DemoSection>
   </div>
@@ -51,32 +39,12 @@ export default {
       title: "单元格",
       confirm: "确定删除吗？",
       cardTitle: "商品标题",
-      beforeCloseTitle: "异步关闭",
       customContent: "自定义内容",
       imageURL: "https://img.yzcdn.cn/vant/ipad.jpeg"
     };
   },
 
-  methods: {
-    beforeClose({ position, instance }) {
-      switch (position) {
-        case "left":
-        case "cell":
-        case "outside":
-          instance.close();
-          break;
-        case "right":
-          this.$dialog
-            .confirm({
-              message: this.confirm
-            })
-            .then(() => {
-              instance.close();
-            });
-          break;
-      }
-    }
-  }
+  methods: {}
 };
 </script>
 
@@ -86,7 +54,7 @@ export default {
 .demo-swipe-cell {
   user-select: none;
 
-  .van-card {
+  .glue-card {
     margin: 0;
     background-color: @white;
   }
