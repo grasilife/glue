@@ -10,56 +10,40 @@ function getDirection(x: number, y: number) {
   return '';
 }
 
-export function useTouch() {
-  let startX = 0;
-  let startY = 0;
-  let deltaX = 0;
-  let deltaY = 0;
-  let offsetX = 0;
-  let offsetY = 0;
-  let direction = '';
+export class UseTouch {
+  startX = 0;
+  startY = 0;
+  deltaX = 0;
+  deltaY = 0;
+  offsetX = 0;
+  offsetY = 0;
+  direction = '';
 
-  const isVertical = () => direction === 'vertical';
-  const isHorizontal = () => direction === 'horizontal';
+  isVertical = () => this.direction === 'vertical';
+  isHorizontal = () => this.direction === 'horizontal';
 
-  const reset = () => {
-    deltaX = 0;
-    deltaY = 0;
-    offsetX = 0;
-    offsetY = 0;
-    direction = '';
+  reset = () => {
+    this.deltaX = 0;
+    this.deltaY = 0;
+    this.offsetX = 0;
+    this.offsetY = 0;
+    this.direction = '';
   };
 
-  const start = (event: TouchEvent) => {
-    reset();
-    startX = event.touches[0].clientX;
-    startY = event.touches[0].clientY;
+  start = (event: TouchEvent) => {
+    this.reset();
+    this.startX = event.touches[0].clientX;
+    this.startY = event.touches[0].clientY;
   };
 
-  const move = ((event: TouchEvent) => {
+  move = (event: TouchEvent) => {
     const touch = event.touches[0];
-    deltaX = touch.clientX - startX;
-    deltaY = touch.clientY - startY;
-    offsetX = Math.abs(deltaX);
-    offsetY = Math.abs(deltaY);
-
-    if (!direction) {
-      direction = getDirection(offsetX, offsetY);
+    this.deltaX = touch.clientX - this.startX;
+    this.deltaY = touch.clientY - this.startY;
+    this.offsetX = Math.abs(this.deltaX);
+    this.offsetY = Math.abs(this.deltaY);
+    if (!this.direction) {
+      this.direction = getDirection(this.offsetX, this.offsetY);
     }
-  }) as EventListener;
-
-  return {
-    move,
-    start,
-    reset,
-    startX,
-    startY,
-    deltaX,
-    deltaY,
-    offsetX,
-    offsetY,
-    direction,
-    isVertical,
-    isHorizontal,
   };
 }

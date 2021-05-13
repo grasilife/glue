@@ -1,12 +1,14 @@
 import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import '@vant/touch-emulator';
-import { useTouch } from '../../utils/composables/use-touch';
+import { UseTouch } from '../../utils/composables/use-touch';
 import { range } from '../../utils/format/number';
 import { preventDefault } from '../../utils/dom/event';
 import { isDef } from '../../utils/base';
 export type SwipeCellSide = 'left' | 'right';
 export type SwipeCellPosition = SwipeCellSide | 'cell' | 'outside';
+import { useRect } from '../../utils/useRect';
+let touch = new UseTouch();
 @Component({
   tag: 'glue-swipe-cell',
   styleUrl: 'glue-swipe-cell.less',
@@ -32,13 +34,13 @@ export class GlueSwipeCell {
   root: HTMLElement;
   leftRef: HTMLElement;
   rightRef: HTMLElement;
-  touch = useTouch();
 
-  getWidthByRef = ref => (ref.value ? ref.width : 0);
+  getWidthByRef = ref => (ref ? useRect(ref).width : 0);
   componentDidLoad() {
+    console.log(touch, 'touch');
     this.leftWidth = isDef(this.leftWidth) ? +this.leftWidth : this.getWidthByRef(this.leftRef);
     this.rightWidth = isDef(this.rightWidth) ? +this.rightWidth : this.getWidthByRef(this.rightRef);
-    console.log(this.leftWidth, this.rightWidth, 'agjhiauhuahu');
+    console.log(this.leftWidth, this.rightWidth, useRect(this.leftRef), 'agjhiauhuahu');
   }
 
   open = (side: SwipeCellSide) => {
@@ -80,7 +82,7 @@ export class GlueSwipeCell {
     if (!this.disabled) {
       this.startOffset = this.offset;
       console.log(this.startOffset, 'this.startOffset');
-      // this.touch.start(event);
+      touch.start(event);
     }
   };
 
@@ -88,10 +90,10 @@ export class GlueSwipeCell {
     if (this.disabled) {
       return;
     }
-    const { deltaX } = this.touch;
-    console.log(deltaX, 'deltaX');
-    this.touch.move(event);
-    if (this.touch.isHorizontal()) {
+    touch.move(event);
+    const { deltaX } = touch;
+    console.log(deltaX, 'deltaX11');
+    if (touch.isHorizontal()) {
       this.lockClick = true;
       this.dragging = true;
 
@@ -101,6 +103,7 @@ export class GlueSwipeCell {
       }
 
       this.offset = range(deltaX + this.startOffset, -this.rightWidth, this.leftWidth);
+      console.log(this.offset, deltaX, this.startOffset, -this.rightWidth, this.leftWidth, 'this.offset');
     }
   };
 
@@ -117,7 +120,7 @@ export class GlueSwipeCell {
   };
 
   onClick = (position: SwipeCellPosition = 'outside') => {
-    console.log(222);
+    console.log(position, 'position');
     // this.click.emit(position);
 
     if (this.opened && !this.lockClick) {

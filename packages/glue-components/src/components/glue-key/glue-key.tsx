@@ -1,8 +1,8 @@
 import { Component, Prop, h, Host } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
-import { useTouch } from '../../utils/composables/use-touch';
-const touch = useTouch();
+import { UseTouch } from '../../utils/composables/use-touch';
+const touch = new UseTouch();
 const [bem] = createNamespace('glue-key');
 const CollapseIcon = (
   <svg class={bem('collapse-icon')} viewBox="0 0 30 24">

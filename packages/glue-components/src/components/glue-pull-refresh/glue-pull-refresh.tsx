@@ -2,7 +2,7 @@ import { Component, Prop, h, Host, State, Watch, EventEmitter, Event } from '@st
 // import classNames from 'classnames';
 import { getScrollTop } from '../../utils/dom/scroll';
 import { preventDefault } from '../../utils/dom/event';
-import { useTouch } from '../../utils/composables/use-touch';
+import { UseTouch } from '../../utils/composables/use-touch';
 const DEFAULT_HEAD_HEIGHT = 50;
 const TEXT_STATUS = ['pulling', 'loosing', 'success'];
 @Component({
@@ -36,7 +36,7 @@ export class GluePullRefresh {
       this.setStatus(0, false);
     }
   }
-  touch = useTouch();
+  touch = new UseTouch();
   root: HTMLElement;
   scrollParent;
   ease = (distance: number) => {

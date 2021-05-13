@@ -1,7 +1,7 @@
 import { Component, Prop, h, Host, EventEmitter, Event, State } from '@stencil/core';
 import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
-import { useTouch } from '../../utils/composables/use-touch';
+import { UseTouch } from '../../utils/composables/use-touch';
 // import { createNamespace } from '../../utils/create/index';
 // const [bem] = createNamespace('glue-rate');
 @Component({
@@ -56,7 +56,7 @@ export class GlueRate {
     }
   };
   untouchable = () => this.readonly || this.disabled || !this.touchable;
-  touch = useTouch();
+  touch = new UseTouch();
   getScoreByPosition = x => {
     for (let i = this.ranges.length - 1; i > 0; i--) {
       if (x > this.ranges[i].left) {

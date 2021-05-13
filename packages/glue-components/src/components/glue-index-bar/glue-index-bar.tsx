@@ -1,7 +1,7 @@
 import { Component, Prop, h, State, EventEmitter, Event } from '@stencil/core';
 import { isDef } from '../../utils/base';
 // import { getRootScrollTop, setRootScrollTop } from '../../utils/dom/scroll';
-import { useTouch } from '../../utils/composables/use-touch';
+import { UseTouch } from '../../utils/composables/use-touch';
 let touchActiveIndex: string;
 import classNames from 'classnames';
 function genAlphabet() {
@@ -28,7 +28,7 @@ export class GlueIndexBar {
   @State() activeAnchor = '';
   @Event() clickSidebar: EventEmitter;
   root: HTMLElement;
-  touch = useTouch();
+  touch = new UseTouch();
   scrollTo = (index: string) => {
     if (!index) {
       return;
