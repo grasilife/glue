@@ -6,17 +6,17 @@
         :left-text="back"
         :right-text="button"
         left-arrow
-        @click-left="onClickLeft"
-        @click-right="onClickRight"
+        @glueLeft="glueLeft"
+        @glueRight="glueRight"
       ></glue-nav-bar>
     </DemoBlock>
 
     <DemoBlock :title="useSlot">
-      <van-nav-bar :title="title" :left-text="back" left-arrow>
-        <template #right>
-          <van-icon name="search" size="18" />
-        </template>
-      </van-nav-bar>
+      <glue-nav-bar :title="title" :left-text="back" left-arrow right-text="#slot">
+        <div slot="right-text" class="icon">
+          <glue-icon name="search" size="18" />
+        </div>
+      </glue-nav-bar>
     </DemoBlock>
   </DemoSection>
 </template>
@@ -33,12 +33,24 @@ export default {
     };
   },
   methods: {
-    onClickLeft() {
-      this.$toast(this.back);
-    },
-    onClickRight() {
-      this.$toast(this.button);
-    }
+    glueLeft() {},
+    glueRight() {}
   }
 };
 </script>
+<style lang="less">
+@import "../../../common/style/var2.less";
+
+.demo-nav-bar {
+  .icon {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+}
+</style>

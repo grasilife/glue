@@ -505,7 +505,7 @@ export namespace Components {
         "rightText": string;
         "safeAreaInsetTop": boolean;
         "title": string;
-        "zIndex": string | number;
+        "zIndex": string;
     }
     interface GlueNoticeBar {
         "background": string;
@@ -2028,13 +2028,13 @@ declare namespace LocalJSX {
         "fixed"?: boolean;
         "leftArrow"?: boolean;
         "leftText"?: string;
-        "onClickLeft"?: (event: CustomEvent<any>) => void;
-        "onClickRight"?: (event: CustomEvent<any>) => void;
+        "onGlueLeft"?: (event: CustomEvent<any>) => void;
+        "onGlueRight"?: (event: CustomEvent<any>) => void;
         "placeholder"?: boolean;
         "rightText"?: string;
         "safeAreaInsetTop"?: boolean;
         "title"?: string;
-        "zIndex"?: string | number;
+        "zIndex"?: string;
     }
     interface GlueNoticeBar {
         "background"?: string;

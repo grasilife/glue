@@ -5,28 +5,27 @@
 ### 基础用法
 
 ```html
-<van-nav-bar
+<glue-nav-bar
   title="标题"
   left-text="返回"
   right-text="按钮"
   left-arrow
-  @click-left="onClickLeft"
-  @click-right="onClickRight"
+  @glueLeft="glueLeft"
+  @glueRight="glueRight"
 />
 ```
 
 ```js
-import { Toast } from 'vant';
-
 export default {
-  setup() {
-    const onClickLeft = () => Toast('返回');
-    const onClickRight = () => Toast('按钮');
-    return {
-      onClickLeft,
-      onClickRight,
-    };
+  data() {
+    return {};
   },
+  methods: {
+    glueLeft() {
+    },
+    glueRight() {
+    }
+  }
 };
 ```
 
@@ -35,11 +34,24 @@ export default {
 通过插槽自定义导航栏两侧的内容。
 
 ```html
-<van-nav-bar title="标题" left-text="返回" left-arrow>
-  <template #right>
-    <van-icon name="search" size="18" />
-  </template>
-</van-nav-bar>
+<glue-nav-bar title="标题" left-text="返回" left-arrow>
+  <div slot="right-text" class="icon">
+    <glue-icon name="search" size="18" />
+  </div>
+</glue-nav-bar>
+
+<style>
+.icon {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+</style>
 ```
 
 ## API
@@ -49,8 +61,8 @@ export default {
 | 参数                | 说明                                                                      | 类型               | 默认值  |
 |---------------------|-------------------------------------------------------------------------|--------------------|---------|
 | title               | 标题                                                                      | _string_           | `''`    |
-| left-text           | 左侧文案                                                                  | _string_           | `''`    |
-| right-text          | 右侧文案                                                                  | _string_           | `''`    |
+| left-text           | 左侧文案,使用#slot开启插槽                                                | _string_           | `''`    |
+| right-text          | 右侧文案,使用#slot开启插槽                                                | _string_           | `''`    |
 | left-arrow          | 是否显示左侧箭头                                                          | _boolean_          | `false` |
 | border              | 是否显示下边框                                                            | _boolean_          | `true`  |
 | fixed               | 是否固定在顶部                                                            | _boolean_          | `false` |
@@ -60,18 +72,18 @@ export default {
 
 ### Slots
 
-| 名称  | 说明               |
-|-------|------------------|
-| title | 自定义标题         |
-| left  | 自定义左侧区域内容 |
-| right | 自定义右侧区域内容 |
+| 名称       | 说明               |
+|------------|------------------|
+| title      | 自定义标题         |
+| left-text  | 自定义左侧区域内容 |
+| right-text | 自定义右侧区域内容 |
 
 ### Events
 
-| 事件名      | 说明               | 回调参数 |
-|-------------|------------------|----------|
-| click-left  | 点击左侧按钮时触发 | -        |
-| click-right | 点击右侧按钮时触发 | -        |
+| 事件名    | 说明               | 回调参数 |
+|-----------|------------------|----------|
+| glueLeft  | 点击左侧按钮时触发 | -        |
+| glueRight | 点击右侧按钮时触发 | -        |
 
 ### 样式变量
 

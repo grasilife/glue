@@ -19,19 +19,6 @@
 | `square`    | `square`     |             | `boolean`                    | `undefined` |
 
 
-## Dependencies
-
-### Used by
-
- - [glue-demo](../glue-demo)
-
-### Graph
-```mermaid
-graph TD;
-  glue-demo --> glue-grid
-  style glue-grid fill:#f9f,stroke:#333,stroke-width:4px
-```
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

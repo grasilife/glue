@@ -20,10 +20,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [glue-demo](../glue-demo)
-
 ### Depends on
 
 - [glue-icon](../glue-icon)
@@ -33,7 +29,6 @@
 graph TD;
   glue-grid-item --> glue-icon
   glue-icon --> glue-badge
-  glue-demo --> glue-grid-item
   style glue-grid-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

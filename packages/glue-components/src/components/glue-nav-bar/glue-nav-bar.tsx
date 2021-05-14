@@ -1,8 +1,9 @@
-import { Component, Prop, h, Event, EventEmitter, Host } from '@stencil/core';
+import { Component, Prop, h, Event, EventEmitter, Host, State } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-nav-bar');
 import { BORDER_BOTTOM } from '../../global/constant/constant';
+import { useRect } from '../../utils/useRect';
 @Component({
   tag: 'glue-nav-bar',
   styleUrl: 'glue-nav-bar.less',
@@ -11,37 +12,46 @@ import { BORDER_BOTTOM } from '../../global/constant/constant';
 export class GlueNavBar {
   @Prop() title: string;
   @Prop() fixed: boolean;
-  @Prop() zIndex: string | number;
+  @Prop() zIndex: string;
   @Prop() leftText: string;
   @Prop() rightText: string;
   @Prop() leftArrow: boolean;
   @Prop() placeholder: boolean;
   @Prop() safeAreaInsetTop: boolean;
   @Prop() border = true;
-  @Event() clickLeft: EventEmitter;
-  @Event() clickRight: EventEmitter;
+  @State() height = 0;
+  @Event() glueLeft: EventEmitter;
+  @Event() glueRight: EventEmitter;
   navBarRef: HTMLElement;
-  // renderPlaceholder = this.usePlaceholder(navBarRef, bem);
-  renderPlaceholder = '';
   onClickLeft = (event: MouseEvent) => {
-    this.clickLeft.emit(event);
+    this.glueLeft.emit(event);
   };
-
+  renderPlaceholder = () => {
+    if (this.fixed && this.placeholder) {
+      return <div class={bem('placeholder')} style={{ height: this.height ? `${this.height}px` : undefined }}></div>;
+    }
+  };
   onClickRight = (event: MouseEvent) => {
-    this.clickRight.emit(event);
+    this.glueRight.emit(event);
   };
 
   renderLeft = () => {
+    if (this.leftText == '#slot') {
+      return <slot name="left-text"></slot>;
+    }
     return [this.leftArrow && <glue-icon class="glue-nav-bar__arrow" name="arrow-left" />, this.leftText && <span class="glue-nav-bar__text">{this.leftText}</span>];
   };
 
   renderRight = () => {
+    if (this.rightText == '#slot') {
+      return <slot name="right-text"></slot>;
+    }
     return <span class="glue-nav-bar__text">{this.rightText}</span>;
   };
   renderNavBar = () => {
-    const { title, fixed, border } = this;
+    const { title, fixed } = this;
     const style = {
-      // zIndex: (zIndex !== undefined ? +zIndex : undefined).toString(),
+      zIndex: this.zIndex,
     };
 
     const hasLeft = this.leftArrow || this.leftText;
@@ -52,9 +62,10 @@ export class GlueNavBar {
         ref={dom => {
           this.navBarRef = dom;
         }}
+        //TODO:border有问题
         class={classNames('safe-area-inset-top', bem([fixed]), {
           'glue-nav-bar__safeAreaInsetTop': this.safeAreaInsetTop,
-          [BORDER_BOTTOM]: border,
+          [BORDER_BOTTOM]: false,
         })}
         style={style}
       >
@@ -74,13 +85,17 @@ export class GlueNavBar {
       </div>
     );
   };
+  componentDidLoad() {
+    const { height } = useRect(this.navBarRef);
+    console.log(height, this.navBarRef, 'height');
+    this.height = height;
+  }
   render() {
-    return <Host class="glue-nav-bar">{this.renderNavBar()}</Host>;
-    // return () => {
-    //   // if (this.fixed && this.placeholder) {
-    //   //   return this.renderPlaceholder(this.renderNavBar);
-    //   // }
-    //   return this.renderNavBar();
-    // };
+    return (
+      <Host class="glue-nav-bar">
+        {this.renderPlaceholder()}
+        {this.renderNavBar()}
+      </Host>
+    );
   }
 }

@@ -149,10 +149,10 @@ export class GlueDemo {
             立即购买
           </glue-action-bar-button>
         </glue-action-bar> */}
-        <glue-grid column-num="4" center direction="horizontal">
-          {/* <glue-grid-item icon="photo-o" text="文字" custom="#slot">
+        {/* <glue-grid column-num="4" center direction="horizontal">
+          <glue-grid-item icon="photo-o" text="文字" custom="#slot">
             <glue-image src="https://img01.yzcdn.cn/vant/apple-1.jpg" />
-          </glue-grid-item> */}
+          </glue-grid-item>
           <glue-grid-item icon="home-o" text="文字" dot />
           <glue-grid-item icon="search" text="文字" badge="99+" />
           <glue-grid-item icon="photo-o" text="文字" />
@@ -160,7 +160,18 @@ export class GlueDemo {
           <glue-grid-item icon="photo-o" text="文字" />
           <glue-grid-item icon="photo-o" text="文字" />
           <glue-grid-item icon="photo-o" text="文字" />
-        </glue-grid>
+        </glue-grid> */}
+        {/* <glue-index-bar>
+          <glue-index-anchor index="A" />
+          <glue-cell title="文本" />
+          <glue-cell title="文本" />
+          <glue-cell title="文本" />
+          <glue-index-anchor index="B" />
+          <glue-cell title="文本" />
+          <glue-cell title="文本" />
+          <glue-cell title="文本" />
+        </glue-index-bar> */}
+        <glue-nav-bar title="标题" left-text="返回" right-text="按钮" left-arrow fixed placeholder border />
       </div>
     );
   }
