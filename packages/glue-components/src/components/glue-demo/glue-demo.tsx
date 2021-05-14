@@ -171,7 +171,10 @@ export class GlueDemo {
           <glue-cell title="文本" />
           <glue-cell title="文本" />
         </glue-index-bar> */}
-        <glue-nav-bar title="标题" left-text="返回" right-text="按钮" left-arrow fixed placeholder border />
+        {/* <glue-nav-bar title="标题" left-text="返回" right-text="按钮" left-arrow fixed placeholder border /> */}
+        <glue-pagination value={1} total-items="24" items-per-page="5" />
+        <glue-pagination value={1} page-count="12" mode="simple" />
+        <glue-pagination value={1} total-items="125" show-page-size="3" force-ellipses={true} />
       </div>
     );
   }

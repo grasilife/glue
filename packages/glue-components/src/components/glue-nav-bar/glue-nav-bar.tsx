@@ -49,7 +49,7 @@ export class GlueNavBar {
     return <span class="glue-nav-bar__text">{this.rightText}</span>;
   };
   renderNavBar = () => {
-    const { title, fixed } = this;
+    const { title, fixed, border } = this;
     const style = {
       zIndex: this.zIndex,
     };
@@ -65,7 +65,7 @@ export class GlueNavBar {
         //TODO:border有问题
         class={classNames('safe-area-inset-top', bem([fixed]), {
           'glue-nav-bar__safeAreaInsetTop': this.safeAreaInsetTop,
-          [BORDER_BOTTOM]: false,
+          [BORDER_BOTTOM]: border,
         })}
         style={style}
       >

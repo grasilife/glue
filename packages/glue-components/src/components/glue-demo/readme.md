@@ -9,14 +9,12 @@
 
 ### Depends on
 
-- [glue-nav-bar](../glue-nav-bar)
+- [glue-pagination](../glue-pagination)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-nav-bar
-  glue-nav-bar --> glue-icon
-  glue-icon --> glue-badge
+  glue-demo --> glue-pagination
   style glue-demo fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

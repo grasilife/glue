@@ -2,7 +2,7 @@
   <DemoSection>
     <DemoBlock :title="basicUsage">
       <glue-pagination
-        :model-value="currentPage1"
+        :value="currentPage1"
         :total-items="24"
         :items-per-page="5"
         :prev-text="prevText"
@@ -12,7 +12,7 @@
 
     <DemoBlock :title="title2">
       <glue-pagination
-        :model-value="currentPage2"
+        :value="currentPage2"
         :page-count="12"
         :prev-text="prevText"
         :next-text="nextText"
@@ -23,7 +23,7 @@
 
     <DemoBlock :title="title3">
       <glue-pagination
-        :model-value="currentPage3"
+        :value="currentPage3"
         force-ellipses
         :total-items="125"
         :show-page-size="3"
@@ -33,15 +33,14 @@
     </DemoBlock>
 
     <DemoBlock :title="title4">
-      <van-pagination v-model="currentPage4" :total-items="125" :show-page-size="5">
-        <template #prev-text>
-          <van-icon name="arrow-left" />
-        </template>
-        <template #next-text>
-          <van-icon name="arrow" />
-        </template>
-        <template #page="{ text }">{{ text }}</template>
-      </van-pagination>
+      <glue-pagination :value="currentPage4" :total-items="125" :show-page-size="5" prev-text="#slot" next-text="#slot">
+        <div slot="prev-text">
+          <glue-icon name="arrow-left" />
+        </div>
+        <div slot="next-text">
+          <glue-icon name="arrow" />
+        </div>
+      </glue-pagination>
     </DemoBlock>
   </DemoSection>
 </template>
@@ -69,16 +68,16 @@ export default {
 @import "../../../common/style/var2.less";
 
 .demo-pagination {
-  .van-pagination {
+  .glue-pagination {
     width: 100%;
     margin: 5px 0;
   }
 
-  .van-doc-demo-block {
+  .glue-doc-demo-block {
     padding: 0 @padding-md;
   }
 
-  .van-doc-demo-block__title {
+  .glue-doc-demo-block__title {
     padding-left: 0;
   }
 }

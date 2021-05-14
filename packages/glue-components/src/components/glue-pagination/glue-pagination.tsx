@@ -9,33 +9,33 @@ import { BORDER } from '../../global/constant/constant';
   shadow: false,
 })
 export class GluePagination {
-  @Prop() prevText = '上一页';
-  @Prop() nextText = '下一页';
+  @Prop({ mutable: true })
+  prevText = '上一页';
+  @Prop({ mutable: true }) pageText = '';
+  @Prop({ mutable: true }) nextText = '下一页';
   @Prop() forceEllipses: boolean;
   @Prop() mode = 'multi';
-  @Prop() modelValue = 0;
+  @Prop() value = 0;
   @Prop() pageCount = 0;
   @Prop() totalItems = 0;
-  @Prop() itemsPerPage = 0;
+  @Prop() itemsPerPage = 10;
   @Prop() showPageSize = 5;
   @State() text: string | number;
   @State() number: number;
   @State() active: boolean;
-  @Event() value: EventEmitter;
-  @Event() change: EventEmitter;
+  @Event() glueChange: EventEmitter;
   select = (page: number, emitChange?: boolean) => {
     page = Math.min(this.count(), Math.max(1, page));
-    this.modelValue = page;
-    if (this.modelValue !== page) {
-      this.value.emit(page);
+    this.value = page;
+    if (this.value !== page) {
       if (emitChange) {
-        this.change.emit(page);
+        this.glueChange.emit(page);
       }
     }
   };
   renderDesc = () => {
     if (this.mode !== 'multi') {
-      return <li class={bem('page-desc')}>{`${this.modelValue}/${this.count()}`}</li>;
+      return <li class={bem('page-desc')}>{`${this.value}/${this.count()}`}</li>;
     }
   };
   count = () => {
@@ -47,7 +47,7 @@ export class GluePagination {
     const items = [];
     const pageCount = this.count();
     const showPageSize = +this.showPageSize;
-    const { modelValue, forceEllipses } = this;
+    const { value, forceEllipses } = this;
 
     if (this.mode !== 'multi') {
       return items;
@@ -61,7 +61,7 @@ export class GluePagination {
     // recompute if showPageSize
     if (isMaxSized) {
       // Current page is displayed in the middle of the visible ones
-      startPage = Math.max(modelValue - Math.floor(showPageSize / 2), 1);
+      startPage = Math.max(value - Math.floor(showPageSize / 2), 1);
       endPage = startPage + showPageSize - 1;
 
       // Adjust if limit is exceeded
@@ -76,7 +76,7 @@ export class GluePagination {
       const page = {
         number,
         text: number,
-        active: number === modelValue,
+        active: number === value,
       };
       items.push(page);
     }
@@ -102,8 +102,27 @@ export class GluePagination {
 
     return items;
   };
+  renderText = page => {
+    //TODO:slot存在传值的问题
+    if (this.pageText == '#slot') {
+      return <slot name="page-text">{page.text}</slot>;
+    }
+    return page.text;
+  };
+  renderPrevText = () => {
+    if (this.prevText == '#slot') {
+      return <slot name="prev-text"></slot>;
+    }
+    return this.prevText;
+  };
+  renderNextText = () => {
+    if (this.nextText == '#slot') {
+      return <slot name="next-text"></slot>;
+    }
+    return this.nextText;
+  };
   render() {
-    const value = this.modelValue;
+    const value = this.value;
     const simple = this.mode !== 'multi';
 
     const onSelect = (value: number) => () => {
@@ -122,7 +141,7 @@ export class GluePagination {
             })}
             onClick={onSelect(value - 1)}
           >
-            {this.prevText}
+            {this.renderPrevText()}
           </li>
           {this.pages().map(page => (
             <li
@@ -131,17 +150,17 @@ export class GluePagination {
               })}
               onClick={onSelect(page.number)}
             >
-              {page.text}
+              {this.renderText(page)}
             </li>
           ))}
           {this.renderDesc()}
           <li
             class={classNames('glue-pagination__item', 'glue-pagination__next', BORDER, {
-              'glue-pagination__disabled': value === this.count(),
+              'glue-pagination__item--disabled': value === this.count(),
             })}
             onClick={onSelect(value + 1)}
           >
-            {this.nextText}
+            {this.renderNextText()}
           </li>
         </ul>
       </Host>

@@ -4,29 +4,19 @@
 
 ### 基础用法
 
-通过 `v-model` 来绑定当前页码。
+通过 `value` 来绑定当前页码。
 
 ```html
-<van-pagination v-model="currentPage" :total-items="24" :items-per-page="5" />
+<glue-pagination value="1" :total-items="24" :items-per-page="5" />
 ```
 
-```js
-import { ref } from 'vue';
-
-export default {
-  setup() {
-    const currentPage = ref(1);
-    return { currentPage };
-  },
-};
-```
 
 ### 简单模式
 
  将 `mode` 设置为 `simple` 来切换到简单模式，此时分页器不会展示具体的页码按钮。
 
 ```html
-<van-pagination v-model="currentPage" :page-count="12" mode="simple" />
+<glue-pagination value="1" :page-count="12" mode="simple" />
 ```
 
 ### 显示省略号
@@ -34,8 +24,8 @@ export default {
 设置 `force-ellipses` 后会展示省略号按钮，点击后可以快速跳转。
 
 ```html
-<van-pagination
-  v-model="currentPage"
+<glue-pagination
+  value="1"
   :total-items="125"
   :show-page-size="3"
   force-ellipses
@@ -47,44 +37,44 @@ export default {
 通过 `prev-text`、`next-text` 等插槽来自定义分页按钮的内容。
 
 ```html
-<van-pagination v-model="currentPage" :total-items="50" :show-page-size="5">
-  <template #prev-text>
-    <van-icon name="arrow-left" />
-  </template>
-  <template #next-text>
-    <van-icon name="arrow" />
-  </template>
-  <template #page="{ text }">{{ text }}</template>
-</van-pagination>
+<glue-pagination value="1" :total-items="50" :show-page-size="5" prev-text="#slot" next-text="#slot">
+  <div slot="prev-text">
+    <glue-icon name="arrow-left" />
+  </div>
+  <div slot="next-text">
+    <glue-icon name="arrow" />
+  </div>
+</glue-pagination>
 ```
 
 ## API
 
 ### Props
 
-| 参数           | 说明                       | 类型               | 默认值       |
-|----------------|--------------------------|--------------------|--------------|
-| v-model        | 当前页码                   | _number_           | -            |
-| mode           | 显示模式，可选值为 `simple` | _string_           | `multi`      |
-| prev-text      | 上一页按钮文字             | _string_           | `上一页`     |
-| next-text      | 下一页按钮文字             | _string_           | `下一页`     |
-| page-count     | 总页数                     | _number \| string_ | 根据页数计算 |
-| total-items    | 总记录数                   | _number \| string_ | `0`          |
-| items-per-page | 每页记录数                 | _number \| string_ | `10`         |
-| show-page-size | 显示的页码个数             | _number \| string_ | `5`          |
-| force-ellipses | 是否显示省略号             | _boolean_          | `false`      |
+| 参数           | 说明                             | 类型               | 默认值       |
+|----------------|--------------------------------|--------------------|--------------|
+| value          | 当前页码                         | _number_           | -            |
+| mode           | 显示模式，可选值为 `simple`       | _string_           | `multi`      |
+| prev-text      | 上一页按钮文字,使用#slot开启插槽 | _string_           | `上一页`     |
+| next-text      | 下一页按钮文字,使用#slot开启插槽 | _string_           | `下一页`     |
+| page-text      | 使用#slot开启插槽                | _string_           | ``           |
+| page-count     | 总页数                           | _number \| string_ | 根据页数计算 |
+| total-items    | 总记录数                         | _number \| string_ | `0`          |
+| items-per-page | 每页记录数                       | _number \| string_ | `10`         |
+| show-page-size | 显示的页码个数                   | _number \| string_ | `5`          |
+| force-ellipses | 是否显示省略号                   | _boolean_          | `false`      |
 
 ### Events
 
-| 事件名 | 说明           | 回调参数 |
-|--------|--------------|----------|
-| change | 页码改变时触发 | -        |
+| 事件名     | 说明           | 回调参数 |
+|------------|--------------|----------|
+| glueChange | 页码改变时触发 | -        |
 
 ### Slots
 
 | 名称      | 描述                 | 参数                                                |
 |-----------|--------------------|-----------------------------------------------------|
-| page      | 自定义页码           | _{ number: number, text: string, active: boolean }_ |
+| page-text | 自定义页码           | _{ number: number, text: string, active: boolean }_ |
 | prev-text | 自定义上一页按钮文字 | `-`                                                 |
 | next-text | 自定义下一页按钮文字 | `-`                                                 |
 

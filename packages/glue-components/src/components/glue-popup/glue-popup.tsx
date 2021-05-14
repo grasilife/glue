@@ -23,7 +23,7 @@ const [bem] = createNamespace('glue-popup');
 export class GluePopup {
   @Element() el!: HTMLGluePopupElement;
   private popupRef: HTMLElement;
-  @Prop({ mutable: false }) show: boolean;
+  @Prop({ mutable: true }) show: boolean;
   @Prop() zIndex = '2000';
   @Prop() duration: number | string = DURATION;
   @Prop() easing: string = EASING;

@@ -551,12 +551,13 @@ export namespace Components {
         "forceEllipses": boolean;
         "itemsPerPage": number;
         "mode": string;
-        "modelValue": number;
         "nextText": string;
         "pageCount": number;
+        "pageText": string;
         "prevText": string;
         "showPageSize": number;
         "totalItems": number;
+        "value": number;
     }
     interface GluePasswordInput {
         "errorInfo": string;
@@ -2087,14 +2088,14 @@ declare namespace LocalJSX {
         "forceEllipses"?: boolean;
         "itemsPerPage"?: number;
         "mode"?: string;
-        "modelValue"?: number;
         "nextText"?: string;
-        "onChange"?: (event: CustomEvent<any>) => void;
-        "onValue"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
         "pageCount"?: number;
+        "pageText"?: string;
         "prevText"?: string;
         "showPageSize"?: number;
         "totalItems"?: number;
+        "value"?: number;
     }
     interface GluePasswordInput {
         "errorInfo"?: string;
