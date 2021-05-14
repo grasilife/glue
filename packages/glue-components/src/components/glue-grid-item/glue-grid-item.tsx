@@ -75,10 +75,6 @@ export class GlueGridItem {
   };
 
   renderIcon = () => {
-    // if ((this.icon = '#slot')) {
-    //   return <glue-badge dot={this.dot} content={this.badge}></glue-badge>;
-    // }
-
     if (this.icon) {
       return <glue-icon dot={this.dot} name={this.icon} size={this.iconSize} badge={this.badge} class="glue-grid-item__icon" classPrefix={this.iconPrefix} />;
     }
@@ -93,6 +89,7 @@ export class GlueGridItem {
   componentWillLoad() {
     let parentEl = getElementParent(this.el);
     this.center = getAttribute(parentEl, 'center');
+    this.border = getAttribute(parentEl, 'border');
     this.square = getAttribute(parentEl, 'square');
     this.gutter = getAttribute(parentEl, 'gutter');
     this.iconSize = getAttribute(parentEl, 'icon-size');
@@ -117,17 +114,14 @@ export class GlueGridItem {
         style={this.rootStyle()}
       >
         <div
-          class={classNames(
-            'glue-grid-item__content',
-            {
-              'glue-grid-item__content--horizontal': direction == 'horizontal',
-              'glue-grid-item__content--square': square != undefined,
-              'glue-grid-item__content--center': center != undefined,
-              'glue-grid-item__content--clickable': clickable,
-              'glue-grid-item__content--surround': border != undefined && gutter,
-            },
-            BORDER,
-          )}
+          class={classNames('glue-grid-item__content', {
+            'glue-grid-item__content--horizontal': direction == 'horizontal',
+            'glue-grid-item__content--square': square != undefined,
+            'glue-grid-item__content--center': center != undefined,
+            'glue-grid-item__content--clickable': clickable,
+            'glue-grid-item__content--surround': border != undefined && gutter,
+            [BORDER]: border != undefined,
+          })}
           style={this.contentStyle()}
         >
           {this.renderContent()}

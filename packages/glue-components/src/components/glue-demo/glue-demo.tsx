@@ -149,7 +149,7 @@ export class GlueDemo {
             立即购买
           </glue-action-bar-button>
         </glue-action-bar> */}
-        <glue-grid column-num="4" center border={true} gutter="10" direction="horizontal">
+        <glue-grid column-num="4" center direction="horizontal">
           {/* <glue-grid-item icon="photo-o" text="文字" custom="#slot">
             <glue-image src="https://img01.yzcdn.cn/vant/apple-1.jpg" />
           </glue-grid-item> */}

@@ -11,12 +11,12 @@
 通过 `icon` 属性设置格子内的图标，`text` 属性设置文字内容。
 
 ```html
-<van-grid>
-  <van-grid-item icon="photo-o" text="文字" />
-  <van-grid-item icon="photo-o" text="文字" />
-  <van-grid-item icon="photo-o" text="文字" />
-  <van-grid-item icon="photo-o" text="文字" />
-</van-grid>
+<glue-grid center>
+  <glue-grid-item icon="photo-o" text="文字" />
+  <glue-grid-item icon="photo-o" text="文字" />
+  <glue-grid-item icon="photo-o" text="文字" />
+  <glue-grid-item icon="photo-o" text="文字" />
+</glue-grid>
 ```
 
 ### 自定义列数
@@ -24,9 +24,9 @@
 默认一行展示四个格子，可以通过 `column-num` 自定义列数。
 
 ```html
-<van-grid :column-num="3">
-  <van-grid-item v-for="value in 6" :key="value" icon="photo-o" text="文字" />
-</van-grid>
+<glue-grid :column-num="3" center border >
+  <glue-grid-item v-for="value in 6" :key="value" icon="photo-o" text="文字" />
+</glue-grid>
 ```
 
 ### 自定义内容
@@ -34,17 +34,17 @@
 通过插槽可以自定义格子展示的内容。
 
 ```html
-<van-grid :border="false" :column-num="3">
-  <van-grid-item>
-    <van-image src="https://img01.yzcdn.cn/vant/apple-1.jpg" />
-  </van-grid-item>
-  <van-grid-item>
-    <van-image src="https://img01.yzcdn.cn/vant/apple-2.jpg" />
-  </van-grid-item>
-  <van-grid-item>
-    <van-image src="https://img01.yzcdn.cn/vant/apple-3.jpg" />
-  </van-grid-item>
-</van-grid>
+<glue-grid :border="false" :column-num="3" center>
+  <glue-grid-item custom="#slot">
+    <glue-image src="https://img01.yzcdn.cn/vant/apple-1.jpg" />
+  </glue-grid-item>
+  <glue-grid-item custom="#slot">
+    <glue-image src="https://img01.yzcdn.cn/vant/apple-2.jpg" />
+  </glue-grid-item>
+  <glue-grid-item custom="#slot">
+    <glue-image src="https://img01.yzcdn.cn/vant/apple-3.jpg" />
+  </glue-grid-item>
+</glue-grid>
 ```
 
 ### 正方形格子
@@ -52,9 +52,9 @@
 设置 `square` 属性后，格子的高度会和宽度保持一致。
 
 ```html
-<van-grid square>
-  <van-grid-item v-for="value in 8" :key="value" icon="photo-o" text="文字" />
-</van-grid>
+<glue-grid square center>
+  <glue-grid-item v-for="value in 8" :key="value" icon="photo-o" text="文字" />
+</glue-grid>
 ```
 
 ### 格子间距
@@ -62,9 +62,9 @@
 通过 `gutter` 属性设置格子之间的距离。
 
 ```html
-<van-grid :gutter="10">
-  <van-grid-item v-for="value in 8" :key="value" icon="photo-o" text="文字" />
-</van-grid>
+<glue-grid :gutter="10" center>
+  <glue-grid-item v-for="value in 8" :key="value" icon="photo-o" text="文字" />
+</glue-grid>
 ```
 
 ### 内容横排
@@ -72,11 +72,11 @@
 将 `direction` 属性设置为 `horizontal`，可以让宫格的内容呈横向排列。
 
 ```html
-<van-grid direction="horizontal" :column-num="2">
-  <van-grid-item icon="photo-o" text="文字" />
-  <van-grid-item icon="photo-o" text="文字" />
-  <van-grid-item icon="photo-o" text="文字" />
-</van-grid>
+<glue-grid direction="horizontal" :column-num="2" center>
+  <glue-grid-item icon="photo-o" text="文字" />
+  <glue-grid-item icon="photo-o" text="文字" />
+  <glue-grid-item icon="photo-o" text="文字" />
+</glue-grid>
 ```
 
 ### 页面导航
@@ -84,10 +84,10 @@
 通过 `to` 属性设置 `vue-router` 跳转链接，通过 `url` 属性设置 URL 跳转链接。
 
 ```html
-<van-grid clickable :column-num="2">
-  <van-grid-item icon="home-o" text="路由跳转" to="/" />
-  <van-grid-item icon="search" text="URL 跳转" url="/vant/mobile.html" />
-</van-grid>
+<glue-grid clickable :column-num="2" center>
+  <glue-grid-item icon="home-o" text="路由跳转" to="/" />
+  <glue-grid-item icon="search" text="URL 跳转" url="/vant/mobile.html" />
+</glue-grid>
 ```
 
 ### 徽标提示
@@ -95,10 +95,10 @@
 设置 `dot` 属性后，会在图标右上角展示一个小红点。设置 `badge` 属性后，会在图标右上角展示相应的徽标。
 
 ```html
-<van-grid :column-num="2">
-  <van-grid-item icon="home-o" text="文字" dot />
-  <van-grid-item icon="search" text="文字" badge="99+" />
-</van-grid>
+<glue-grid :column-num="2" center>
+  <glue-grid-item icon="home-o" text="文字" dot />
+  <glue-grid-item icon="search" text="文字" badge="99+" />
+</glue-grid>
 ```
 
 ## API
@@ -118,22 +118,20 @@
 
 ### GridItem Props
 
-| 参数        | 说明                                                                                     | 类型               | 默认值     |
-|-------------|----------------------------------------------------------------------------------------|--------------------|------------|
-| text        | 文字                                                                                     | _string_           | -          |
-| icon        | [图标名称](#/zh-CN/icon)或图片链接                                                       | _string_           | -          |
-| icon-prefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props)                      | _string_           | `van-icon` |
-| dot         | 是否显示图标右上角小红点                                                                 | _boolean_          | `false`    |
-| badge       | 图标右上角徽标的内容                                                                     | _number \| string_ | -          |
-| url         | 点击后跳转的链接地址                                                                     | _string_           | -          |
-| to          | 点击后跳转的目标路由对象，同 vue-router 的 [to 属性](https://router.vuejs.org/zh/api/#to) | _string \| object_ | -          |
-| replace     | 是否在跳转时替换当前页面历史                                                             | _boolean_          | `false`    |
+| 参数        | 说明                                                                | 类型               | 默认值      |
+|-------------|-------------------------------------------------------------------|--------------------|-------------|
+| text        | 文字                                                                | _string_           | -           |
+| icon        | [图标名称](#/zh-CN/icon)或图片链接                                  | _string_           | -           |
+| icon-prefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_           | `glue-icon` |
+| dot         | 是否显示图标右上角小红点                                            | _boolean_          | `false`     |
+| badge       | 图标右上角徽标的内容                                                | _number \| string_ | -           |
+| custom      | 使用#slot开启插槽                                                   | _string_           | -           |
 
 ### GridItem Events
 
-| 事件名 | 说明           | 回调参数       |
-|--------|--------------|----------------|
-| click  | 点击格子时触发 | _event: Event_ |
+| 事件名  | 说明     | 回调参数       |
+|---------|--------|----------------|
+| default | 默认事件 | _event: Event_ |
 
 ### GridItem Slots
 

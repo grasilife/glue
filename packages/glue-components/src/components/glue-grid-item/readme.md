@@ -7,24 +7,22 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type                         | Default     |
-| ------------ | ------------- | ----------- | ---------------------------- | ----------- |
-| `badge`      | `badge`       |             | `number \| string`           | `undefined` |
-| `border`     | `border`      |             | `boolean`                    | `undefined` |
-| `center`     | `center`      |             | `boolean`                    | `undefined` |
-| `clickable`  | `clickable`   |             | `boolean`                    | `undefined` |
-| `columnNum`  | `column-num`  |             | `number \| string`           | `undefined` |
-| `direction`  | `direction`   |             | `"horizontal" \| "vertical"` | `undefined` |
-| `dot`        | `dot`         |             | `boolean`                    | `undefined` |
-| `gutter`     | `gutter`      |             | `number \| string`           | `undefined` |
-| `icon`       | `icon`        |             | `string`                     | `undefined` |
-| `iconPrefix` | `icon-prefix` |             | `string`                     | `undefined` |
-| `iconSize`   | `icon-size`   |             | `number`                     | `undefined` |
-| `square`     | `square`      |             | `boolean`                    | `undefined` |
-| `text`       | `text`        |             | `string`                     | `undefined` |
+| Property     | Attribute     | Description | Type               | Default     |
+| ------------ | ------------- | ----------- | ------------------ | ----------- |
+| `badge`      | `badge`       |             | `number \| string` | `undefined` |
+| `clickable`  | `clickable`   |             | `boolean`          | `undefined` |
+| `custom`     | `custom`      |             | `string`           | `undefined` |
+| `dot`        | `dot`         |             | `boolean`          | `undefined` |
+| `icon`       | `icon`        |             | `string`           | `undefined` |
+| `iconPrefix` | `icon-prefix` |             | `string`           | `undefined` |
+| `text`       | `text`        |             | `string`           | `undefined` |
 
 
 ## Dependencies
+
+### Used by
+
+ - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -35,6 +33,7 @@
 graph TD;
   glue-grid-item --> glue-icon
   glue-icon --> glue-badge
+  glue-demo --> glue-grid-item
   style glue-grid-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

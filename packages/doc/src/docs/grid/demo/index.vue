@@ -1,63 +1,63 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-grid>
-        <van-grid-item v-for="i in 4" :key="i" icon="photo-o" :text="text" />
-      </van-grid>
+      <glue-grid center>
+        <glue-grid-item v-for="i in 4" :key="i" icon="photo-o" :text="text" />
+      </glue-grid>
     </DemoBlock>
 
     <DemoBlock :title="columnNum">
-      <van-grid :column-num="3">
-        <van-grid-item v-for="i in 6" :key="i" icon="photo-o" :text="text" />
-      </van-grid>
+      <glue-grid :column-num="3" center border>
+        <glue-grid-item v-for="i in 6" :key="i" icon="photo-o" :text="text" />
+      </glue-grid>
     </DemoBlock>
 
     <DemoBlock :title="customContent">
-      <van-grid :border="false" :column-num="3">
-        <van-grid-item>
-          <van-image fit="contain" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
-        </van-grid-item>
-        <van-grid-item>
-          <van-image fit="contain" src="https://img.yzcdn.cn/vant/apple-2.jpg" />
-        </van-grid-item>
-        <van-grid-item>
-          <van-image fit="contain" src="https://img.yzcdn.cn/vant/apple-3.jpg" />
-        </van-grid-item>
-      </van-grid>
+      <glue-grid :border="false" :column-num="3" center>
+        <glue-grid-item custom="#slot">
+          <glue-image fit="contain" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+        </glue-grid-item>
+        <glue-grid-item custom="#slot">
+          <glue-image fit="contain" src="https://img.yzcdn.cn/vant/apple-2.jpg" />
+        </glue-grid-item>
+        <glue-grid-item custom="#slot">
+          <glue-image fit="contain" src="https://img.yzcdn.cn/vant/apple-3.jpg" />
+        </glue-grid-item>
+      </glue-grid>
     </DemoBlock>
 
     <DemoBlock :title="square">
-      <van-grid square>
-        <van-grid-item v-for="i in 8" :key="i" icon="photo-o" :text="text" />
-      </van-grid>
+      <glue-grid square center>
+        <glue-grid-item v-for="i in 8" :key="i" icon="photo-o" :text="text" />
+      </glue-grid>
     </DemoBlock>
 
     <DemoBlock :title="gutter">
-      <van-grid :gutter="10">
-        <van-grid-item v-for="i in 8" :key="i" icon="photo-o" :text="text" />
-      </van-grid>
+      <glue-grid :gutter="10" center>
+        <glue-grid-item v-for="i in 8" :key="i" icon="photo-o" :text="text" />
+      </glue-grid>
     </DemoBlock>
 
     <DemoBlock :title="horizontal">
-      <van-grid direction="horizontal" :column-num="3">
-        <van-grid-item icon="photo-o" :text="text" />
-        <van-grid-item icon="photo-o" :text="text" />
-        <van-grid-item icon="photo-o" :text="text" />
-      </van-grid>
+      <glue-grid direction="horizontal" :column-num="3" center>
+        <glue-grid-item icon="photo-o" :text="text" />
+        <glue-grid-item icon="photo-o" :text="text" />
+        <glue-grid-item icon="photo-o" :text="text" />
+      </glue-grid>
     </DemoBlock>
 
     <DemoBlock :title="route">
-      <van-grid clickable :column-num="2">
-        <van-grid-item icon="home-o" :text="vueRoute" to="/" />
-        <van-grid-item icon="search" :text="urlRoute" url="/vant/mobile.html" />
-      </van-grid>
+      <glue-grid clickable :column-num="2" center>
+        <glue-grid-item icon="home-o" :text="vueRoute" to="/" />
+        <glue-grid-item icon="search" :text="urlRoute" url="/vant/mobile.html" />
+      </glue-grid>
     </DemoBlock>
 
     <DemoBlock :title="showBadge">
-      <van-grid :column-num="2">
-        <van-grid-item icon="home-o" :text="text" dot />
-        <van-grid-item icon="search" :text="text" badge="99+" />
-      </van-grid>
+      <glue-grid :column-num="2" center>
+        <glue-grid-item icon="home-o" :text="text" dot />
+        <glue-grid-item icon="search" :text="text" badge="99+" />
+      </glue-grid>
     </DemoBlock>
   </DemoSection>
 </template>

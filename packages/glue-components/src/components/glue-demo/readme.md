@@ -9,21 +9,16 @@
 
 ### Depends on
 
-- [glue-action-bar](../glue-action-bar)
-- [glue-action-bar-icon](../glue-action-bar-icon)
-- [glue-action-bar-button](../glue-action-bar-button)
+- [glue-grid](../glue-grid)
+- [glue-grid-item](../glue-grid-item)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-action-bar
-  glue-demo --> glue-action-bar-icon
-  glue-demo --> glue-action-bar-button
-  glue-action-bar-icon --> glue-icon
+  glue-demo --> glue-grid
+  glue-demo --> glue-grid-item
+  glue-grid-item --> glue-icon
   glue-icon --> glue-badge
-  glue-action-bar-button --> glue-button
-  glue-button --> glue-loading
-  glue-button --> glue-icon
   style glue-demo fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
