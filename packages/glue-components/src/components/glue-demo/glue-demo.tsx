@@ -56,9 +56,7 @@ export class GlueDemo {
   @State() loading = true;
   @State() finished = false;
   onLoad = () => {};
-  componentDidLoad() {
-    console.log(this.container, 'ahuhfauh');
-  }
+  componentDidLoad() {}
   click = () => {
     this.show = true;
   };
@@ -176,6 +174,9 @@ export class GlueDemo {
         <glue-pagination value={1} page-count="12" mode="simple" />
         <glue-pagination value={1} total-items="125" show-page-size="3" force-ellipses={true} /> */}
         <glue-rate vlaue={1} touchable count={10} color="#ffd21e" void-color="#eee" allow-half />
+        <div class="silder">
+          <glue-slider value={1} range />
+        </div>
       </div>
     );
   }

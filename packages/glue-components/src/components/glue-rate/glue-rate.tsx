@@ -1,8 +1,8 @@
 import { Component, Prop, h, Host, EventEmitter, Event, State, Element } from '@stencil/core';
+import '@vant/touch-emulator';
 import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
 import { UseTouch } from '../../utils/composables/use-touch';
-import '@vant/touch-emulator';
 import { preventDefault } from '../../utils/dom/event';
 let touch = new UseTouch();
 import { getElementChildren } from '../../utils/base';
@@ -95,6 +95,7 @@ export class GlueRate {
   };
 
   onTouchMove = event => {
+    console.log(434343);
     if (this.untouchable()) {
       return;
     }

@@ -710,7 +710,19 @@ export namespace Components {
         "titleWidth": string | number;
     }
     interface GlueSlider {
+        "activeColor": string;
+        "barHeight": number | string;
+        "buttonSize": number | string;
+        "disabled": boolean;
         "first": string;
+        "inactiveColor": string;
+        "max": number | string;
+        "min": number | string;
+        "range": boolean;
+        "readonly": boolean;
+        "step": number | string;
+        "value": number;
+        "vertical": boolean;
     }
     interface GlueStep {
         "first": number;
@@ -2268,7 +2280,22 @@ declare namespace LocalJSX {
         "titleWidth"?: string | number;
     }
     interface GlueSlider {
+        "activeColor"?: string;
+        "barHeight"?: number | string;
+        "buttonSize"?: number | string;
+        "disabled"?: boolean;
         "first"?: string;
+        "inactiveColor"?: string;
+        "max"?: number | string;
+        "min"?: number | string;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueDragEnd"?: (event: CustomEvent<any>) => void;
+        "onGlueDragStart"?: (event: CustomEvent<any>) => void;
+        "range"?: boolean;
+        "readonly"?: boolean;
+        "step"?: number | string;
+        "value"?: number;
+        "vertical"?: boolean;
     }
     interface GlueStep {
         "first"?: number;

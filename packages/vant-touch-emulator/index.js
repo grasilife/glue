@@ -185,7 +185,7 @@ function getActiveTouches(mouseEv) {
  */
 function TouchEmulator() {
   window.addEventListener("mousedown", onMouse("touchstart"), true);
-  window.addEventListener("mousemove", onMouse("touchmove"), true);
+  window.addEventListener("mousemove", onMouse("touchmove1"), true);
   window.addEventListener("mouseup", onMouse("touchend"), true);
 }
 
