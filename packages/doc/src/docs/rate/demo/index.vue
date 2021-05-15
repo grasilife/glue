@@ -1,35 +1,35 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <glue-rate :model-value="value1"></glue-rate>
+      <glue-rate :vlaue="value1"></glue-rate>
     </DemoBlock>
 
     <DemoBlock :title="customIcon">
-      <glue-rate :model-value="value2" icon="like" void-icon="like-o" />
+      <glue-rate :vlaue="value2" icon="like" void-icon="like-o" />
     </DemoBlock>
 
     <DemoBlock :title="customStyle">
-      <glue-rate :model-value="value3" :size="25" color="#ffd21e" void-icon="star" void-color="#eee" />
+      <glue-rate :vlaue="value3" :size="25" color="#ffd21e" void-icon="star" void-color="#eee" />
     </DemoBlock>
 
     <DemoBlock :title="halfStar">
-      <glue-rate :model-value="value4" :size="25" allow-half void-icon="star" void-color="#eee" />
+      <glue-rate :vlaue="value4" :size="25" allow-half void-icon="star" void-color="#eee" />
     </DemoBlock>
 
     <DemoBlock :title="customCount">
-      <glue-rate :model-value="value5" :count="6" />
+      <glue-rate :vlaue="value5" :count="6" />
     </DemoBlock>
 
     <DemoBlock :title="disabled">
-      <glue-rate :model-value="value6" disabled />
+      <glue-rate :vlaue="value6" disabled />
     </DemoBlock>
 
     <DemoBlock :title="readonly">
-      <glue-rate :model-value="value6" readonly />
+      <glue-rate :vlaue="value6" readonly />
     </DemoBlock>
 
     <DemoBlock :title="changeEvent">
-      <glue-rate :model-value="value7" @change="onChange" />
+      <glue-rate :vlaue="value7" @glueChange="onChange" />
     </DemoBlock>
   </DemoSection>
 </template>
@@ -59,8 +59,9 @@ export default {
 
   methods: {
     onChange(value) {
-      this.value7 = value;
-      this.$toast(this.toastContent(value));
+      console.log(value.detail, "value");
+      this.value7 = value.detail;
+      this.$toast(this.toastContent(this.value7));
     }
   }
 };

@@ -648,10 +648,10 @@ export namespace Components {
         "gutter": string;
         "icon": string;
         "iconPrefix": string;
-        "modelValue": number;
         "readonly": boolean;
         "size": number;
-        "touchable": string;
+        "touchable": boolean;
+        "vlaue": number;
         "voidColor": string;
         "voidIcon": string;
     }
@@ -2194,11 +2194,11 @@ declare namespace LocalJSX {
         "gutter"?: string;
         "icon"?: string;
         "iconPrefix"?: string;
-        "modelValue"?: number;
-        "onSelect"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
         "readonly"?: boolean;
         "size"?: number;
-        "touchable"?: string;
+        "touchable"?: boolean;
+        "vlaue"?: number;
         "voidColor"?: string;
         "voidIcon"?: string;
     }

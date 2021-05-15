@@ -1,17 +1,19 @@
-import { Component, Prop, h, Host, EventEmitter, Event, State } from '@stencil/core';
+import { Component, Prop, h, Host, EventEmitter, Event, State, Element } from '@stencil/core';
 import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
 import { UseTouch } from '../../utils/composables/use-touch';
-// import { createNamespace } from '../../utils/create/index';
-// const [bem] = createNamespace('glue-rate');
+import '@vant/touch-emulator';
+import { preventDefault } from '../../utils/dom/event';
+let touch = new UseTouch();
+import { getElementChildren } from '../../utils/base';
 @Component({
   tag: 'glue-rate',
   styleUrl: 'glue-rate.less',
   shadow: false,
 })
 export class GlueRate {
+  @Element() el!: HTMLElement;
   @Prop() first: string;
-
   @Prop() size: number;
   @Prop() color: string;
   @Prop() gutter: string;
@@ -21,12 +23,13 @@ export class GlueRate {
   @Prop() voidColor: string;
   @Prop() iconPrefix: string;
   @Prop() disabledColor: string;
-  @Prop() modelValue = 0;
+  @Prop({ mutable: true }) vlaue = 0;
   @Prop() icon = 'star';
   @Prop() voidIcon = 'star-o';
   @Prop() count = 5;
-  @Prop() touchable = '';
+  @Prop() touchable: boolean;
   @State() ranges = [];
+  @Event() glueChange: EventEmitter;
   getRateStatus = (value, index, allowHalf) => {
     console.log(value, index, allowHalf, 'value, index, allowHalf');
     if (value >= index) {
@@ -40,23 +43,23 @@ export class GlueRate {
 
   list = () => {
     const list = [];
-    console.log(this.count, this.modelValue, 'this.count');
+    console.log(this.count, this.vlaue, 'this.count');
     for (let i = 1; i <= this.count; i++) {
-      list.push(this.getRateStatus(this.modelValue, i, this.allowHalf));
+      list.push(this.getRateStatus(this.vlaue, i, this.allowHalf));
     }
     console.log(list, 'list');
     return list;
   };
-  @Event() select: EventEmitter;
 
   selectHandle = index => {
-    if (!this.disabled && !this.readonly && index !== this.modelValue) {
-      this.select.emit(index);
-      this.select.emit(index);
+    if (!this.disabled && !this.readonly && index !== this.vlaue) {
+      console.log(index, 'index');
+      this.vlaue = index;
+      this.glueChange.emit(index);
     }
   };
   untouchable = () => this.readonly || this.disabled || !this.touchable;
-  touch = new UseTouch();
+
   getScoreByPosition = x => {
     for (let i = this.ranges.length - 1; i > 0; i--) {
       if (x > this.ranges[i].left) {
@@ -65,32 +68,30 @@ export class GlueRate {
     }
     return this.allowHalf ? 0.5 : 1;
   };
-  componentDidRender() {
-    console.log(this.count, this.modelValue, this.size, 'this.count');
-    // this.opened;
-    // if (this.show) {
-    //   this.openHandle();
-    // } else {
-    //   this.closeHandle();
-    // }
-  }
   onTouchStart = event => {
+    console.log(1111);
     if (this.untouchable()) {
       return;
     }
 
-    this.touch.start(event);
-
-    // const rects = itemRefs.map(item => item.getBoundingClientRect());
-
-    // this.ranges = [];
-    // rects.forEach((rect, index) => {
-    //   if (this.allowHalf) {
-    //     this.ranges.push({ score: index + 0.5, left: rect.left }, { score: index + 1, left: rect.left + rect.width / 2 });
-    //   } else {
-    //     this.ranges.push({ score: index + 1, left: rect.left });
-    //   }
-    // });
+    touch.start(event);
+    let children = getElementChildren(this.el);
+    const rects = [];
+    for (let i = 0; i < children.length; i++) {
+      let rect = children[i].getBoundingClientRect();
+      rects.push(rect);
+      console.log(rect, 'rect');
+    }
+    console.log(rects, 'getElementChildren');
+    console.log(rects, 'rects');
+    this.ranges = [];
+    rects.forEach((rect, index) => {
+      if (this.allowHalf) {
+        this.ranges.push({ score: index + 0.5, left: rect.left }, { score: index + 1, left: rect.left + rect.width / 2 });
+      } else {
+        this.ranges.push({ score: index + 1, left: rect.left });
+      }
+    });
   };
 
   onTouchMove = event => {
@@ -98,11 +99,12 @@ export class GlueRate {
       return;
     }
 
-    this.touch.move(event);
+    touch.move(event);
 
-    if (this.touch.isHorizontal()) {
+    if (touch.isHorizontal()) {
       const { clientX } = event.touches[0];
-      // preventDefault(event);
+      console.log(clientX, 'clientX');
+      preventDefault(event);
       this.selectHandle(this.getScoreByPosition(clientX));
     }
   };

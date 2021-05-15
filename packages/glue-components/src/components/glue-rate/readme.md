@@ -18,22 +18,26 @@
 | `gutter`        | `gutter`         |             | `string`  | `undefined` |
 | `icon`          | `icon`           |             | `string`  | `'star'`    |
 | `iconPrefix`    | `icon-prefix`    |             | `string`  | `undefined` |
-| `modelValue`    | `model-value`    |             | `number`  | `0`         |
 | `readonly`      | `readonly`       |             | `boolean` | `undefined` |
 | `size`          | `size`           |             | `number`  | `undefined` |
-| `touchable`     | `touchable`      |             | `string`  | `''`        |
+| `touchable`     | `touchable`      |             | `boolean` | `undefined` |
+| `vlaue`         | `vlaue`          |             | `number`  | `0`         |
 | `voidColor`     | `void-color`     |             | `string`  | `undefined` |
 | `voidIcon`      | `void-icon`      |             | `string`  | `'star-o'`  |
 
 
 ## Events
 
-| Event    | Description | Type               |
-| -------- | ----------- | ------------------ |
-| `select` |             | `CustomEvent<any>` |
+| Event        | Description | Type               |
+| ------------ | ----------- | ------------------ |
+| `glueChange` |             | `CustomEvent<any>` |
 
 
 ## Dependencies
+
+### Used by
+
+ - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -44,6 +48,7 @@
 graph TD;
   glue-rate --> glue-icon
   glue-icon --> glue-badge
+  glue-demo --> glue-rate
   style glue-rate fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
