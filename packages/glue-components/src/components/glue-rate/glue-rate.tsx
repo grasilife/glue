@@ -1,5 +1,5 @@
 import { Component, Prop, h, Host, EventEmitter, Event, State, Element } from '@stencil/core';
-import '@vant/touch-emulator';
+import '@glue/touch-emulator';
 import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
 import { UseTouch } from '../../utils/composables/use-touch';

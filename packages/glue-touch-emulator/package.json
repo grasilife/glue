@@ -1,0 +1,11 @@
+{
+  "private": false,
+  "name": "@glue/touch-emulator",
+  "version": "0.0.2-alpha.0",
+  "description": "Glue touch emulator",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}

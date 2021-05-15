@@ -5,7 +5,7 @@ import router from "./router";
 import "./plugins/element-ui";
 import "./plugins/vant";
 import "../common/style/base.less";
-import "@vant/touch-emulator";
+import "@glue/touch-emulator";
 import DemoBlock from "./components/DemoBlock.vue";
 import DemoSection from "./components/DemoSection.vue";
 import "glue-components/dist/glue-components/glue-components.css";

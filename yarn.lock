@@ -2550,18 +2550,6 @@
   resolved "https://registry.npm.taobao.org/@vant/icons/download/@vant/icons-1.5.2.tgz#3f3ea353a0eacd38c113757bd31836489facb10b"
   integrity sha1-Pz6jU6DqzTjBE3V70xg2SJ+ssQs=
 
-"@vant/markdown-loader@^1.2.0":
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/@vant/markdown-loader/-/markdown-loader-4.1.0.tgz#d8568d52b33eacb252b165135749e3fba269ae86"
-  integrity sha512-rO0kmXQWO7SnxFvaDNaXdJArgiiS8vNSap9fW3keEnHzbeuTE2AVNU3y6VbkfCDSh75C1kgVxKjqeH0H+0sDgQ==
-  dependencies:
-    front-matter "^4.0.2"
-    highlight.js "^10.7.1"
-    loader-utils "^2.0.0"
-    markdown-it "^12.0.4"
-    markdown-it-anchor "^7.1.0"
-    transliteration "^2.2.0"
-
 "@vant/popperjs@^1.0.0":
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/@vant/popperjs/download/@vant/popperjs-1.0.2.tgz#522d71656235125a3ae08e9c701a3bae6fd88d7b"
@@ -7088,11 +7076,6 @@ highlight.js@^10.0.0, highlight.js@^10.3.1:
   resolved "https://registry.npm.taobao.org/highlight.js/download/highlight.js-10.5.0.tgz#3f09fede6a865757378f2d9ebdcbc15ba268f98f"
   integrity sha1-Pwn+3mqGV1c3jy2evcvBW6Jo+Y8=
 
-highlight.js@^10.7.1:
-  version "10.7.2"
-  resolved "https://registry.npmjs.org/highlight.js/-/highlight.js-10.7.2.tgz#89319b861edc66c48854ed1e6da21ea89f847360"
-  integrity sha512-oFLl873u4usRM9K63j4ME9u3etNF0PLiJhSQ8rdfuL51Wn3zkD6drf9ZW0dOzjnZI22YYG24z30JcmfCZjMgYg==
-
 hmac-drbg@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/hmac-drbg/download/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"
@@ -9138,26 +9121,10 @@ markdown-it-anchor@^6.0.0:
   resolved "https://registry.npm.taobao.org/markdown-it-anchor/download/markdown-it-anchor-6.0.1.tgz#f54b78757d0b61455faf8ced775b39498bd6d6f9"
   integrity sha1-9Ut4dX0LYUVfr4ztd1s5SYvW1vk=
 
-markdown-it-anchor@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.npmjs.org/markdown-it-anchor/-/markdown-it-anchor-7.1.0.tgz#30fb21497bf59e83ff4d1ddc052d821962e2489e"
-  integrity sha512-loQggrwsIkkP7TOrESvmYkV2ikbQNNKhHcWyqC7/C2CmfHl1tkUizJJU8C5aGgg7J6oXVQJx17gk7i47tNn/lQ==
-
 markdown-it@^12.0.1:
   version "12.0.4"
   resolved "https://registry.npm.taobao.org/markdown-it/download/markdown-it-12.0.4.tgz#eec8247d296327eac3ba9746bdeec9cfcc751e33"
   integrity sha1-7sgkfSljJ+rDupdGve7Jz8x1HjM=
-  dependencies:
-    argparse "^2.0.1"
-    entities "~2.1.0"
-    linkify-it "^3.0.1"
-    mdurl "^1.0.1"
-    uc.micro "^1.0.5"
-
-markdown-it@^12.0.4:
-  version "12.0.6"
-  resolved "https://registry.npmjs.org/markdown-it/-/markdown-it-12.0.6.tgz#adcc8e5fe020af292ccbdf161fe84f1961516138"
-  integrity sha512-qv3sVLl4lMT96LLtR7xeRJX11OUFjsaD5oVat2/SNBIb21bJXwal2+SklcRbTwGwqWpWH/HRtYavOoJE+seL8w==
   dependencies:
     argparse "^2.0.1"
     entities "~2.1.0"
@@ -12959,7 +12926,7 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
-transliteration@^2.1.11, transliteration@^2.2.0:
+transliteration@^2.1.11:
   version "2.2.0"
   resolved "https://registry.npm.taobao.org/transliteration/download/transliteration-2.2.0.tgz#e6333cc74b25ef4465bc27086ed8465c9a19211d"
   integrity sha1-5jM8x0sl70RlvCcIbthGXJoZIR0=

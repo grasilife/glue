@@ -7,13 +7,13 @@
 #### NPM
 
 ```shell
-npm i @vant/touch-emulator -S
+npm i @glue/touch-emulator -S
 ```
 
 #### YARN
 
 ```shell
-yarn add @vant/touch-emulator
+yarn add @glue/touch-emulator
 ```
 
 ## 使用指南
@@ -21,11 +21,11 @@ yarn add @vant/touch-emulator
 直接在代码中引入模块即可，模块会自动完成初始化并生效
 
 ```js
-import '@vant/touch-emulator';
+import '@glue/touch-emulator';
 ```
 
 ## CDN 引入
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@vant/touch-emulator"></script>
+<script src="https://cdn.jsdelivr.net/npm/@glue/touch-emulator"></script>
 ```
