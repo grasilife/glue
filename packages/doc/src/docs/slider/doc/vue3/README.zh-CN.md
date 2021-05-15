@@ -9,22 +9,17 @@
 ### 基础用法
 
 ```html
-<van-slider v-model="value" @change="onChange" />
+<glue-slider :value="value" @glueChange="onChange" />
 ```
 
 ```js
-import { ref } from 'vue';
-import { Toast } from 'vant';
-
 export default {
-  setup() {
-    const value = ref(50);
-    const onChange = (value) => Toast('当前值：' + value);
-    return {
-      value,
-      onChange,
-    };
+  data() {
+    return {};
   },
+  methods: {
+    onChange(value) {}
+  }
 };
 ```
 
@@ -33,58 +28,52 @@ export default {
 添加 `range` 属性就可以开启双滑块模式，确保 `value` 的值是一个数组。
 
 ```html
-<van-slider v-model="value" range @change="onChange" />
+<glue-slider :value="value" range @glueChange="onChange" />
 ```
 
 ```js
-import { ref } from 'vue';
-import { Toast } from 'vant';
-
 export default {
-  setup() {
-    // 双滑块模式时，值必须是数组
-    const value = ref([10, 50]);
-    const onChange = (value) => Toast('当前值：' + value);
-    return {
-      value,
-      onChange,
-    };
+  data() {
+    return {};
   },
+  methods: {
+    onChange(value) {}
+  }
 };
 ```
 
 ### 指定选择范围
 
 ```html
-<van-slider v-model="value" :min="-50" :max="50" />
+<glue-slider :value="value" :min="-50" :max="50" />
 ```
 
 ### 禁用
 
 ```html
-<van-slider v-model="value" disabled />
+<glue-slider :value="value" disabled />
 ```
 
 ### 指定步长
 
 ```html
-<van-slider v-model="value" :step="10" />
+<glue-slider :value="value" :step="10" />
 ```
 
 ### 自定义样式
 
 ```html
-<van-slider v-model="value" bar-height="4px" active-color="#ee0a24" />
+<glue-slider :value="value" bar-height="4px" active-color="#ee0a24" />
 ```
 
 ### 自定义按钮
 
 ```html
-<van-slider v-model="value" active-color="#ee0a24">
-  <template #button>
+<glue-slider :value="value" active-color="#ee0a24" button-block="#slot">
+  <div slot="button-block">
     <div class="custom-button">{{ value }}</div>
-  </template>
-</van-slider>
+  </div>
+</glue-slider>
 
 <style>
   .custom-button {
@@ -105,32 +94,25 @@ export default {
 
 ```html
 <div :style="{ height: '150px' }">
-  <van-slider v-model="value" vertical @change="onChange" />
-  <van-slider
-    v-model="value2"
+  <glue-slider :value="value" vertical @glueChange="onChange" />
+  <glue-slider
+    :value="value2"
     range
     vertical
     style="margin-left: 100px;"
-    @change="onChange"
+    @glueChange="onChange"
   />
 </div>
 ```
 
 ```js
-import { ref } from 'vue';
-import { Toast } from 'vant';
-
 export default {
-  setup() {
-    const value = ref(50);
-    const value2 = ref([10, 50]);
-    const onChange = (value) => Toast('当前值：' + value);
-    return {
-      value,
-      value2,
-      onChange,
-    };
+  data() {
+    return {};
   },
+  methods: {
+    onChange(value) {}
+  }
 };
 ```
 
@@ -140,7 +122,8 @@ export default {
 
 | 参数              | 说明                                      | 类型                 | 默认值    |
 |-------------------|-----------------------------------------|----------------------|-----------|
-| v-model           | 当前进度百分比                            | _number \| number[]_ | `0`       |
+| button-block      | 使用#slot开启插槽                         | string_              | ``        |
+| value             | 当前进度百分比                            | _number \| number[]_ | `0`       |
 | max               | 最大值                                    | _number \| string_   | `100`     |
 | min               | 最小值                                    | _number \| string_   | `0`       |
 | step              | 步长                                      | _number \| string_   | `1`       |
@@ -155,18 +138,17 @@ export default {
 
 ### Events
 
-| 事件名             | 说明                     | 回调参数        |
-|--------------------|------------------------|-----------------|
-| update:model-value | 进度变化时实时触发       | value: 当前进度 |
-| change             | 进度变化且结束拖动后触发 | value: 当前进度 |
-| drag-start         | 开始拖动时触发           | -               |
-| drag-end           | 结束拖动时触发           | -               |
+| 事件名        | 说明                     | 回调参数        |
+|---------------|------------------------|-----------------|
+| glueChange    | 进度变化且结束拖动后触发 | value: 当前进度 |
+| glueDragStart | 开始拖动时触发           | -               |
+| glueDragEnd   | 结束拖动时触发           | -               |
 
 ### Slots
 
-| 名称   | 说明           |
-|--------|--------------|
-| button | 自定义滑动按钮 |
+| 名称         | 说明           |
+|--------------|--------------|
+| button-block | 自定义滑动按钮 |
 
 ### 样式变量
 

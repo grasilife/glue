@@ -712,6 +712,7 @@ export namespace Components {
     interface GlueSlider {
         "activeColor": string;
         "barHeight": number | string;
+        "buttonBlock": string;
         "buttonSize": number | string;
         "disabled": boolean;
         "first": string;
@@ -721,7 +722,7 @@ export namespace Components {
         "range": boolean;
         "readonly": boolean;
         "step": number | string;
-        "value": number;
+        "value"?: any;
         "vertical": boolean;
     }
     interface GlueStep {
@@ -2282,6 +2283,7 @@ declare namespace LocalJSX {
     interface GlueSlider {
         "activeColor"?: string;
         "barHeight"?: number | string;
+        "buttonBlock"?: string;
         "buttonSize"?: number | string;
         "disabled"?: boolean;
         "first"?: string;
@@ -2294,7 +2296,7 @@ declare namespace LocalJSX {
         "range"?: boolean;
         "readonly"?: boolean;
         "step"?: number | string;
-        "value"?: number;
+        "value"?: any;
         "vertical"?: boolean;
     }
     interface GlueStep {

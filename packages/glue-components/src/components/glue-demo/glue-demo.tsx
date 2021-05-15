@@ -175,7 +175,7 @@ export class GlueDemo {
         <glue-pagination value={1} total-items="125" show-page-size="3" force-ellipses={true} /> */}
         <glue-rate vlaue={1} touchable count={10} color="#ffd21e" void-color="#eee" allow-half />
         <div class="silder">
-          <glue-slider value={1} range />
+          <glue-slider value={10} min="-50" max="50" step="10" bar-height="4px" active-color="#ee0a24" vertical={true} />
         </div>
       </div>
     );

@@ -10,11 +10,13 @@
 ### Depends on
 
 - [glue-rate](../glue-rate)
+- [glue-slider](../glue-slider)
 
 ### Graph
 ```mermaid
 graph TD;
   glue-demo --> glue-rate
+  glue-demo --> glue-slider
   glue-rate --> glue-icon
   glue-icon --> glue-badge
   style glue-demo fill:#f9f,stroke:#333,stroke-width:4px

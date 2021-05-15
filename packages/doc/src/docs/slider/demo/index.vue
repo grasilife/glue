@@ -1,41 +1,41 @@
 <template>
   <DemoSection>
     <DemoBlock :title="title1">
-      <van-slider v-model="value1" @change="onChange" />
+      <glue-slider :value="value1" @glueChange="onChange" />
     </DemoBlock>
 
     <DemoBlock :title="title2">
-      <van-slider range v-model="value2" @change="onChange" />
+      <glue-slider range :value="value2" @glueChange="onChange" />
     </DemoBlock>
 
     <DemoBlock :title="title3">
-      <van-slider v-model="value3" :min="-50" :max="50" @change="onChange" />
+      <glue-slider :value="value3" :min="-50" :max="50" @glueChange="onChange" />
     </DemoBlock>
 
     <DemoBlock :title="title4">
-      <van-slider v-model="value4" disabled />
+      <glue-slider :value="value4" disabled />
     </DemoBlock>
 
     <DemoBlock :title="title5">
-      <van-slider v-model="value5" :step="10" @change="onChange" />
+      <glue-slider :value="value5" :step="10" @glueChange="onChange" />
     </DemoBlock>
 
     <DemoBlock :title="customStyle">
-      <van-slider v-model="value6" bar-height="4px" active-color="#ee0a24" @change="onChange" />
+      <glue-slider :value="value6" bar-height="4px" active-color="#ee0a24" @glueChange="onChange" />
     </DemoBlock>
 
     <DemoBlock :title="customButton">
-      <van-slider v-model="value7" active-color="#ee0a24">
-        <template #button>
+      <glue-slider :value="value7" active-color="#ee0a24" button-block="#slot">
+        <div slot="button-block">
           <div class="custom-button">{{ value7 }}</div>
-        </template>
-      </van-slider>
+        </div>
+      </glue-slider>
     </DemoBlock>
 
     <DemoBlock :title="vertical">
       <div :style="{ height: '150px', paddingLeft: '30px' }">
-        <van-slider v-model="value8" vertical @change="onChange" />
-        <van-slider v-model="value9" range vertical style="margin-left: 100px;" @change="onChange" />
+        <glue-slider :value="value8" vertical @glueChange="onChange" />
+        <glue-slider :value="value9" range vertical style="margin-left: 100px;" @glueChange="onChange" />
       </div>
     </DemoBlock>
   </DemoSection>
@@ -67,7 +67,8 @@ export default {
   },
   methods: {
     onChange(value) {
-      this.$toast(this.text + value);
+      console.log(value, "valuevaluevalue");
+      this.$toast(this.text + value.detail);
     }
   }
 };
@@ -84,7 +85,7 @@ export default {
     padding: 0 @padding-md 20px;
   }
 
-  .van-doc-demo-block__title {
+  .glue-doc-demo-block__title {
     padding-left: 0;
   }
 

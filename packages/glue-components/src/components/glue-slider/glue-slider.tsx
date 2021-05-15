@@ -8,13 +8,13 @@ let touch = new UseTouch();
 import { preventDefault } from '../../utils/dom/event';
 import { addUnit } from '../../utils/format/unit';
 import { useRect } from '../../utils/useRect';
-
 @Component({
   tag: 'glue-slider',
   styleUrl: 'glue-slider.less',
   shadow: false,
 })
 export class GlueSlider {
+  @Prop() buttonBlock: string;
   @Prop() first: string;
   @Prop() range: boolean;
   @Prop() disabled: boolean;
@@ -27,10 +27,11 @@ export class GlueSlider {
   @Prop() min: number | string = 0;
   @Prop() max: number | string = 100;
   @Prop() step: number | string = 1;
-  @Prop({ mutable: true }) value: number = 0;
+  //TODO:value传数组类型报错
+  @Prop({ mutable: true }) value?: any = 0;
   @State() buttonIndex;
-  @State() startValue;
-  @State() currentValue;
+  @State() startValue: any;
+  @State() currentValue: any;
   @State() dragStatus;
   @Event() glueChange: EventEmitter;
   @Event() glueDragStart: EventEmitter;
@@ -41,16 +42,20 @@ export class GlueSlider {
 
   wrapperStyle = () => {
     const crossAxis = this.vertical ? 'width' : 'height';
+    console.log(this.barHeight, 'this.barHeight');
     return {
       background: this.inactiveColor,
       [crossAxis]: addUnit(this.barHeight),
     };
   };
-  isRange = (val: unknown): val is number[] => !!this.range && Array.isArray(val);
+  isRange = val => {
+    return !!this.range && Array.isArray(val);
+  };
 
   // 计算选中条的长度百分比
   calcMainAxis = () => {
     const { value, min } = this;
+    console.log(this.isRange(value), 'ahgiahigganhgjani');
     if (this.isRange(value)) {
       return `${((value[1] - value[0]) * 100) / this.scope()}%`;
     }
@@ -139,11 +144,11 @@ export class GlueSlider {
     }
   };
 
-  onTouchStart = event => {
-    console.log(event, 'ahuahu');
-    // if (typeof index === 'number') {
-    //   this.buttonIndex = index;
-    // }
+  onTouchStart = (event, index) => {
+    console.log(event, index, typeof index === 'number', 'ahuahu22');
+    if (typeof index === 'number') {
+      this.buttonIndex = index;
+    }
     if (this.disabled || this.readonly) {
       return;
     }
@@ -184,6 +189,7 @@ export class GlueSlider {
     } else {
       this.currentValue = this.startValue + diff;
     }
+    console.log(this.buttonIndex, this.currentValue, this.startValue, 'ghihihgagi');
     this.updateValue(this.currentValue);
   };
 
@@ -199,7 +205,12 @@ export class GlueSlider {
 
     this.dragStatus = '';
   };
-
+  renderButtonBlock = () => {
+    if (this.buttonBlock == '#slot') {
+      return <slot name="button-block"></slot>;
+    }
+    return <div class="glue-slider__button" style={getSizeStyle(this.buttonSize)} />;
+  };
   renderButton = (index?: number) => {
     const getClassName = () => {
       if (typeof index === 'number') {
@@ -220,13 +231,13 @@ export class GlueSlider {
         aria-valuenow={currentValue}
         aria-valuemax={+this.max}
         aria-orientation={this.vertical ? 'vertical' : 'horizontal'}
-        onTouchStart={this.onTouchStart}
+        onTouchStart={e => this.onTouchStart(e, index)}
         onTouchMove={this.onTouchMove}
         onTouchEnd={this.onTouchEnd}
         onTouchCancel={this.onTouchEnd}
         onClick={stopPropagation}
       >
-        <div class="glue-slider__button" style={getSizeStyle(this.buttonSize)} />
+        {this.renderButtonBlock()}
       </div>
     );
   };
@@ -238,8 +249,8 @@ export class GlueSlider {
         }}
         style={this.wrapperStyle()}
         class={classNames('glue-slider', {
-          'glue-slider__vertical': this.vertical,
-          'glue-slider__disabled': this.disabled,
+          'glue-slider--vertical': this.vertical,
+          'glue-slider--disabled': this.disabled,
         })}
         onClick={this.onClick}
       >

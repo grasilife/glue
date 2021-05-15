@@ -34,7 +34,7 @@ module.exports = {
   configureWebpack: config => {
     config.module.rules.push({
       test: /\.md$/,
-      use: [{ loader: "vue-loader" }, { loader: "@vant/markdown-loader" }]
+      use: [{ loader: "vue-loader" }, { loader: "@glue/markdown-loader" }]
     });
   },
   pages: {
