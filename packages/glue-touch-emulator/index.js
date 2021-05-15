@@ -184,9 +184,9 @@ function getActiveTouches(mouseEv) {
  * TouchEmulator initializer
  */
 function TouchEmulator() {
-  window.addEventListener("mousedown", onMouse("touchstart"), true);
-  window.addEventListener("mousemove", onMouse("touchmove1"), true);
-  window.addEventListener("mouseup", onMouse("touchend"), true);
+  window.addEventListener("mousedown", onMouse("touchStart"), true);
+  window.addEventListener("mousemove", onMouse("touchMove"), true);
+  window.addEventListener("mouseup", onMouse("touchEnd"), true);
 }
 
 // start distance when entering the multitouch mode

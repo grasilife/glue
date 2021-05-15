@@ -172,9 +172,9 @@ export class GlueSwipeCell {
         }}
         class="glue-swipe-cell"
         onClick={this.getClickHandler('cell')}
-        onTouchstart={this.onTouchStart}
-        onTouchmove={this.onTouchMove}
-        onTouchend={this.onTouchEnd}
+        onTouchStart={this.onTouchStart}
+        onTouchMove={this.onTouchMove}
+        onTouchEnd={this.onTouchEnd}
         onTouchcancel={this.onTouchEnd}
       >
         <div class="glue-swipe-cell__wrapper" style={wrapperStyle}>

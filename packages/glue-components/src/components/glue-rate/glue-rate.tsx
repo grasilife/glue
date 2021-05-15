@@ -168,8 +168,8 @@ export class GlueRate {
           'glue-rate--disabled': this.disabled,
         })}
         tabindex="0"
-        onTouchstart={this.onTouchStart}
-        onTouchmove={this.onTouchMove}
+        onTouchStart={this.onTouchStart}
+        onTouchMove={this.onTouchMove}
       >
         {this.list().map(this.renderStar)}
       </Host>

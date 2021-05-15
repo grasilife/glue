@@ -169,7 +169,7 @@ export class GlueNumberKeyboard {
           'glue-number-keyboard__unfit': !this.safeAreaInsetBottom,
           'glue-number-keyboard__with-title': !!Title,
         })}
-        onTouchstart={stopPropagation}
+        onTouchStart={stopPropagation}
         onAnimationend={this.onAnimationEnd}
         onWebkitAnimationEnd={this.onAnimationEnd}
       >

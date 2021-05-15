@@ -82,9 +82,9 @@ export class GlueKey {
         class={classNames('glue-key__wrapper', {
           'glue-key--wider': this.wider,
         })}
-        onTouchstart={this.onTouchStart}
-        onTouchmove={this.onTouchMove}
-        onTouchend={this.onTouchEnd}
+        onTouchStart={this.onTouchStart}
+        onTouchMove={this.onTouchMove}
+        onTouchEnd={this.onTouchEnd}
         onTouchcancel={this.onTouchEnd}
       >
         <div

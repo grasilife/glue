@@ -213,7 +213,7 @@ export class GlueStepper {
       actionType = type;
       this.onChange();
     },
-    onTouchstart: () => {
+    onTouchStart: () => {
       actionType = type;
       this.onTouchStart();
     },
