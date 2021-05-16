@@ -8,29 +8,20 @@
 
 ### 基础用法
 
-通过 `v-model` 绑定输入值，可以通过 `change` 事件监听到输入值的变化。
+通过 `model-value` 绑定输入值，可以通过 `glueChange` 事件监听到输入值的变化。
 
 ```html
-<van-stepper v-model="value" />
+<glue-stepper :model-value="1" />
 ```
 
-```js
-import { ref } from 'vue';
 
-export default {
-  setup() {
-    const value = ref(1);
-    return { value };
-  },
-};
-```
 
 ### 步长设置
 
 通过 `step` 属性设置每次点击增加或减少按钮时变化的值，默认为 `1`。
 
 ```html
-<van-stepper v-model="value" step="2" />
+<glue-stepper :model-value="1" step="2" />
 ```
 
 ### 限制输入范围
@@ -38,7 +29,7 @@ export default {
 通过 `min` 和 `max` 属性限制输入值的范围。
 
 ```html
-<van-stepper v-model="value" min="5" max="8" />
+<glue-stepper :model-value="1" min="5" max="8" />
 ```
 
 ### 限制输入整数
@@ -46,7 +37,7 @@ export default {
 设置 `integer` 属性后，输入框将限制只能输入整数。
 
 ```html
-<van-stepper v-model="value" integer />
+<glue-stepper :model-value="1" integer />
 ```
 
 ### 禁用状态
@@ -54,7 +45,7 @@ export default {
 通过设置 `disabled` 属性来禁用步进器，禁用状态下无法点击按钮或修改输入框。
 
 ```html
-<van-stepper v-model="value" disabled />
+<glue-stepper :model-value="1" disabled />
 ```
 
 ### 禁用输入框
@@ -62,7 +53,7 @@ export default {
 通过设置 `disable-input` 属性来禁用输入框，此时按钮仍然可以点击。
 
 ```html
-<van-stepper v-model="value" disable-input />
+<glue-stepper :model-value="1" disable-input />
 ```
 
 ### 固定小数位数
@@ -70,7 +61,7 @@ export default {
 通过设置 `decimal-length` 属性可以保留固定的小数位数。
 
 ```html
-<van-stepper v-model="value" step="0.2" :decimal-length="1" />
+<glue-stepper :model-value="1" step="0.2" :decimal-length="1" />
 ```
 
 ### 自定义大小
@@ -78,7 +69,7 @@ export default {
 通过 `input-width` 属性设置输入框宽度，通过 `button-size` 属性设置按钮大小和输入框高度。
 
 ```html
-<van-stepper v-model="value" input-width="40px" button-size="32px" />
+<glue-stepper :model-value="1" input-width="40px" button-size="32px" />
 ```
 
 ### 异步变更
@@ -86,34 +77,25 @@ export default {
 通过 `before-change` 属性可以在
 
 ```html
-<van-stepper v-model="value" :before-change="beforeChange" />
+<glue-stepper :model-value="1" :before-change="beforeChange" />
 ```
 
 ```js
-import { ref } from 'vue';
-import { Toast } from 'vant';
-
 export default {
-  setup() {
-    const value = ref(1);
-
-    const beforeChange = (value) => {
-      Toast.loading({ forbidClick: true });
-
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          Toast.clear();
-          // 在 resolve 函数中返回 true 或 false
-          resolve(true);
-        }, 500);
-      });
-    };
-
-    return {
-      value,
-      beforeChange,
-    };
+  data() {
+    return {};
   },
+
+  methods: {
+    onChange(value) {
+      this.$toast.loading({ forbidClick: true });
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.stepper6 = value;
+        this.$toast.clear();
+      }, 500);
+    }
+  }
 };
 ```
 
@@ -122,7 +104,7 @@ export default {
 将 `theme` 设置为 `round` 来展示圆角风格的步进器。
 
 ```html
-<van-stepper v-model="value" theme="round" button-size="22" disable-input />
+<glue-stepper :model-value="value" theme="round" button-size="22" disable-input />
 ```
 
 ## API
@@ -131,10 +113,10 @@ export default {
 
 | 参数           | 说明                                                            | 类型                            | 默认值  |
 |----------------|---------------------------------------------------------------|---------------------------------|---------|
-| v-model        | 当前输入的值                                                    | _number \| string_              | -       |
+| :model-value   | 当前输入的值                                                    | _number \| string_              | -       |
 | min            | 最小值                                                          | _number \| string_              | `1`     |
 | max            | 最大值                                                          | _number \| string_              | -       |
-| default-value  | 初始值，当 v-model 为空时生效                                    | _number \| string_              | `1`     |
+| default-value  | 初始值，当 :model-value 为空时生效                               | _number \| string_              | `1`     |
 | step           | 步长，每次点击时改变的值                                         | _number \| string_              | `1`     |
 | name           | 标识符，可以在 `change` 事件回调参数中获取                       | _number \| string_              | -       |
 | input-width    | 输入框宽度，默认单位为 `px`                                      | _number \| string_              | `32px`  |
@@ -156,14 +138,14 @@ export default {
 
 ### Events
 
-| 事件名    | 说明                     | 回调参数                                  |
-|-----------|------------------------|-------------------------------------------|
-| change    | 当绑定值变化时触发的事件 | _value: string, detail: { name: string }_ |
-| overlimit | 点击不可用的按钮时触发   | -                                         |
-| plus      | 点击增加按钮时触发       | -                                         |
-| minus     | 点击减少按钮时触发       | -                                         |
-| focus     | 输入框聚焦时触发         | _event: Event_                            |
-| blur      | 输入框失焦时触发         | _event: Event_                            |
+| 事件名        | 说明                     | 回调参数                                  |
+|---------------|------------------------|-------------------------------------------|
+| glueChange    | 当绑定值变化时触发的事件 | _value: string, detail: { name: string }_ |
+| glueOverlimit | 点击不可用的按钮时触发   | -                                         |
+| gluePlus      | 点击增加按钮时触发       | -                                         |
+| glueMinus     | 点击减少按钮时触发       | -                                         |
+| glueFocus     | 输入框聚焦时触发         | _event: Event_                            |
+| glueBlur      | 输入框失焦时触发         | _event: Event_                            |
 
 ### 样式变量
 
@@ -186,14 +168,3 @@ export default {
 | @stepper-input-disabled-background-color | `@active-color`     | -    |
 | @stepper-border-radius                   | `@border-radius-md` | -    |
 
-## 常见问题
-
-### 为什么 value 有时候会变成 string 类型？
-
-这是因为用户输入过程中可能出现小数点或空值，比如 `1.`，这种情况下组件会抛出字符串类型。
-
-如果希望 value 保持 number 类型，可以在 v-model 上添加 `number` 修饰符：
-
-```html
-<van-stepper v-model.number="value" />
-```

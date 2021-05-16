@@ -52,6 +52,15 @@ export class GlueDemo {
   reset = () => {
     this.timeRef.reset();
   };
+  beforeChange = value => {
+    console.log(value, 'ahfuahu');
+    return new Promise(resolve => {
+      setTimeout(() => {
+        // 在 resolve 函数中返回 true 或 false
+        resolve(true);
+      }, 500);
+    });
+  };
   @State() list = [1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1];
   @State() loading = true;
   @State() finished = false;
@@ -173,10 +182,11 @@ export class GlueDemo {
         {/* <glue-pagination value={1} total-items="24" items-per-page="5" />
         <glue-pagination value={1} page-count="12" mode="simple" />
         <glue-pagination value={1} total-items="125" show-page-size="3" force-ellipses={true} /> */}
-        <glue-rate vlaue={1} touchable count={10} color="#ffd21e" void-color="#eee" allow-half />
+        {/* <glue-rate vlaue={1} touchable count={10} color="#ffd21e" void-color="#eee" allow-half />
         <div class="silder">
           <glue-slider value={10} min="-50" max="50" step="10" bar-height="4px" active-color="#ee0a24" vertical={true} />
-        </div>
+        </div> */}
+        <glue-stepper model-value={1} step={2} min={5} max={8} decimal-length="1" input-width="40px" button-size="32px" theme="round" before-change={this.beforeChange} />
       </div>
     );
   }

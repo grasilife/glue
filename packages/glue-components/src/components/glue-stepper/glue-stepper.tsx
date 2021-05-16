@@ -1,8 +1,10 @@
-import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, Host, Event, EventEmitter, State } from '@stencil/core';
 import classNames from 'classnames';
+import '@glue/touch-emulator';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-stepper');
 import { preventDefault } from '../../utils/dom/event';
+import { callInterceptor } from '../../utils/interceptor';
 import { resetScroll } from '../../utils/dom/scroll';
 import { isDef } from '../../utils/base';
 import { formatNumber } from '../../utils/format/number';
@@ -42,18 +44,21 @@ export class GlueStepper {
   @Prop() beforeChange: any;
   @Prop() decimalLength: string | number;
   @Prop() name = '';
-  @Prop() min = 1;
-  @Prop() max = Infinity;
-  @Prop() step = 1;
+  @Prop() min: number = 1;
+  @Prop() max: number = Infinity;
+  @Prop() step: number = 1;
   @Prop() defaultValue = 1;
   @Prop() showPlus = true;
   @Prop() showMinus = true;
   @Prop() showInput = true;
   @Prop() longPress = true;
-  @Event() overlimit: EventEmitter;
-  @Event() focus: EventEmitter;
-  @Event() blur: EventEmitter;
-  @Event() changeValue: EventEmitter;
+  @State() current: number | string;
+  @Event() glueOverlimit: EventEmitter;
+  @Event() glueFocus: EventEmitter;
+  @Event() glueBlur: EventEmitter;
+  @Event() glueChange: EventEmitter;
+  @Event() gluePlus: EventEmitter;
+  @Event() glueMinus: EventEmitter;
   inputRef: HTMLElement;
   format = (value: string | number) => {
     const { min, max, allowEmpty, decimalLength } = this;
@@ -80,12 +85,11 @@ export class GlueStepper {
     const value = this.format(defaultValue);
 
     if (!equal(value, this.modelValue)) {
-      this.changeValue.emit(value);
+      this.glueChange.emit(value);
     }
 
     return value;
   };
-  current = this.getInitialValue();
   minusDisabled = () => this.disabled || this.disableMinus || this.current <= +this.min;
 
   plusDisabled = () => this.disabled || this.disablePlus || this.current >= +this.max;
@@ -105,21 +109,24 @@ export class GlueStepper {
 
   setValue = (value: string | number) => {
     if (this.beforeChange) {
-      // callInterceptor({
-      //   args: [value],
-      //   interceptor: this.beforeChange,
-      //   done() {
-      //     this.current.value = value;
-      //   },
-      // });
+      //TODO:异步加载有问题
+      callInterceptor({
+        args: [value],
+        interceptor: this.beforeChange,
+        done() {
+          this.current = value;
+        },
+      });
     } else {
       this.current = value;
     }
   };
-
+  componentWillLoad() {
+    this.current = this.getInitialValue();
+  }
   onChange = () => {
     if ((actionType === 'plus' && this.plusDisabled()) || (actionType === 'minus' && this.minusDisabled())) {
-      this.overlimit.emit(actionType);
+      this.glueOverlimit.emit(actionType);
 
       return;
     }
@@ -128,7 +135,12 @@ export class GlueStepper {
     const value = this.format(add(+this.current, diff));
 
     this.setValue(value);
-    // emit(actionType);
+    if (actionType === 'plus') {
+      this.gluePlus.emit();
+    }
+    if (actionType === 'minus') {
+      this.glueMinus.emit();
+    }
   };
 
   onInput = (event: Event) => {
@@ -160,7 +172,7 @@ export class GlueStepper {
     if (this.disableInput && this.inputRef) {
       this.inputRef.blur();
     } else {
-      this.focus.emit(event);
+      this.glueFocus.emit(event);
     }
   };
 
@@ -169,7 +181,7 @@ export class GlueStepper {
     const value = this.format(input.value);
     input.value = String(value);
     this.current = value;
-    this.blur.emit(event);
+    this.glueBlur.emit(event);
     resetScroll();
   };
   longPressStep = () => {
@@ -229,7 +241,7 @@ export class GlueStepper {
           type="button"
           style={this.buttonStyle()}
           class={classNames('glue-stepper__minus', {
-            'glue-stepper__disabled': this.minusDisabled(),
+            'glue-stepper__minus--disabled': this.minusDisabled(),
           })}
           {...this.createListeners('minus')}
         />
@@ -261,7 +273,7 @@ export class GlueStepper {
           type="button"
           style={this.buttonStyle()}
           class={classNames('glue-stepper__plus', {
-            'glue-stepper__disabled': this.plusDisabled(),
+            'glue-stepper__minus--disabled': this.plusDisabled(),
           })}
           {...this.createListeners('plus')}
         />

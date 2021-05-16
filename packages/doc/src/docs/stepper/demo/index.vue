@@ -1,44 +1,44 @@
 <template>
   <DemoSection>
-    <van-cell center :title="basicUsage">
-      <van-stepper v-model="stepper1" />
-    </van-cell>
+    <glue-cell center :title="basicUsage">
+      <glue-stepper :model-value="stepper1" />
+    </glue-cell>
 
-    <van-cell center :title="step">
-      <van-stepper v-model="stepper2" step="2" />
-    </van-cell>
+    <glue-cell center :title="step">
+      <glue-stepper :model-value="stepper2" step="2" />
+    </glue-cell>
 
-    <van-cell center :title="range">
-      <van-stepper v-model="stepper3" :min="5" :max="8" />
-    </van-cell>
+    <glue-cell center :title="range">
+      <glue-stepper :model-value="stepper3" :min="5" :max="8" />
+    </glue-cell>
 
-    <van-cell center :title="integer">
-      <van-stepper v-model="stepper4" integer />
-    </van-cell>
+    <glue-cell center :title="integer">
+      <glue-stepper :model-value="stepper4" integer />
+    </glue-cell>
 
-    <van-cell center :title="disabled">
-      <van-stepper v-model="stepper5" disabled />
-    </van-cell>
+    <glue-cell center :title="disabled">
+      <glue-stepper :model-value="stepper5" disabled />
+    </glue-cell>
 
-    <van-cell center :title="disableInput">
-      <van-stepper v-model="disabledInput" disable-input />
-    </van-cell>
+    <glue-cell center :title="disableInput">
+      <glue-stepper :model-value="disabledInput" disable-input />
+    </glue-cell>
 
-    <van-cell center :title="decimalLength">
-      <van-stepper v-model="stepper8" :decimal-length="1" step="0.2" />
-    </van-cell>
+    <glue-cell center :title="decimalLength">
+      <glue-stepper :model-value="stepper8" :decimal-length="1" step="0.2" />
+    </glue-cell>
 
-    <van-cell center :title="customSize">
-      <van-stepper v-model="stepper7" button-size="32px" input-width="40px" />
-    </van-cell>
+    <glue-cell center :title="customSize">
+      <glue-stepper :model-value="stepper7" button-size="32px" input-width="40px" />
+    </glue-cell>
 
-    <van-cell center :title="asyncChange">
-      <van-stepper :value="stepper6" async-change @change="onChange" />
-    </van-cell>
+    <glue-cell center :title="asyncChange">
+      <glue-stepper :value="stepper6" async-change @glueChange="onChange" />
+    </glue-cell>
 
-    <van-cell center :title="roundTheme">
-      <van-stepper v-model="stepperRound" theme="round" button-size="22" disable-input />
-    </van-cell>
+    <glue-cell center :title="roundTheme">
+      <glue-stepper :model-value="stepperRound" theme="round" button-size="22" disable-input />
+    </glue-cell>
   </DemoSection>
 </template>
 
@@ -73,7 +73,6 @@ export default {
   methods: {
     onChange(value) {
       this.$toast.loading({ forbidClick: true });
-
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
         this.stepper6 = value;

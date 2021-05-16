@@ -2322,10 +2322,12 @@ declare namespace LocalJSX {
         "min"?: number;
         "modelValue"?: string | number;
         "name"?: string;
-        "onBlur"?: (event: CustomEvent<any>) => void;
-        "onChangeValue"?: (event: CustomEvent<any>) => void;
-        "onFocus"?: (event: CustomEvent<any>) => void;
-        "onOverlimit"?: (event: CustomEvent<any>) => void;
+        "onGlueBlur"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueFocus"?: (event: CustomEvent<any>) => void;
+        "onGlueMinus"?: (event: CustomEvent<any>) => void;
+        "onGlueOverlimit"?: (event: CustomEvent<any>) => void;
+        "onGluePlus"?: (event: CustomEvent<any>) => void;
         "placeholder"?: string;
         "showInput"?: boolean;
         "showMinus"?: boolean;

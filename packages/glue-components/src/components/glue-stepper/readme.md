@@ -35,13 +35,28 @@
 
 ## Events
 
-| Event         | Description | Type               |
-| ------------- | ----------- | ------------------ |
-| `blur`        |             | `CustomEvent<any>` |
-| `changeValue` |             | `CustomEvent<any>` |
-| `focus`       |             | `CustomEvent<any>` |
-| `overlimit`   |             | `CustomEvent<any>` |
+| Event           | Description | Type               |
+| --------------- | ----------- | ------------------ |
+| `glueBlur`      |             | `CustomEvent<any>` |
+| `glueChange`    |             | `CustomEvent<any>` |
+| `glueFocus`     |             | `CustomEvent<any>` |
+| `glueMinus`     |             | `CustomEvent<any>` |
+| `glueOverlimit` |             | `CustomEvent<any>` |
+| `gluePlus`      |             | `CustomEvent<any>` |
 
+
+## Dependencies
+
+### Used by
+
+ - [glue-demo](../glue-demo)
+
+### Graph
+```mermaid
+graph TD;
+  glue-demo --> glue-stepper
+  style glue-stepper fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 
