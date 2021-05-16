@@ -1,35 +1,36 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-switch v-model="checked" />
+      <glue-switch :value="checked" @glueChange="checked = !checked" />
     </DemoBlock>
 
     <DemoBlock :title="disabled">
-      <van-switch v-model="checked" disabled />
+      <glue-switch :value="checked" disabled @glueChange="checked = !checked" />
     </DemoBlock>
 
     <DemoBlock :title="loadingStatus">
-      <van-switch v-model="checked" loading />
+      <glue-switch :value="checked" loading @glueChange="checked = !checked" />
     </DemoBlock>
 
     <DemoBlock :title="customSize">
-      <van-switch v-model="checked2" size="24px" />
+      <glue-switch :value="checked2" size="24px" @glueChange="checked2 = !checked2" />
     </DemoBlock>
 
     <DemoBlock :title="customColor">
-      <van-switch v-model="checked3" active-color="#ee0a24" inactive-color="#dcdee0" />
-    </DemoBlock>
-
-    <DemoBlock :title="asyncControl">
-      <van-switch :value="checked4" @input="onInput" />
+      <glue-switch
+        :value="checked3"
+        active-color="#ee0a24"
+        inactive-color="#dcdee0"
+        @glueChange="checked3 = !checked3"
+      />
     </DemoBlock>
 
     <DemoBlock :title="withCell">
-      <van-cell center :title="title">
-        <template #right-icon>
-          <van-switch v-model="checked5" size="24" />
-        </template>
-      </van-cell>
+      <glue-cell center :title="title" right-icon="#slot">
+        <div slot="rightIcon">
+          <glue-switch :value="checked5" size="24" @glueChange="checked5 = !checked5" />
+        </div>
+      </glue-cell>
     </DemoBlock>
   </DemoSection>
 </template>
@@ -76,7 +77,7 @@ export default {
 @import "../../../common/style/var2.less";
 
 .demo-switch {
-  .van-switch {
+  .glue-switch {
     margin-left: @padding-md;
   }
 }

@@ -491,6 +491,7 @@ export namespace Components {
     interface GlueLoading {
         "color": string;
         "size": string | number;
+        "text": string;
         "textColor": string;
         "textSize": string | number;
         "type": string;
@@ -2032,6 +2033,7 @@ declare namespace LocalJSX {
     interface GlueLoading {
         "color"?: string;
         "size"?: string | number;
+        "text"?: string;
         "textColor"?: string;
         "textSize"?: string | number;
         "type"?: string;

@@ -93,7 +93,7 @@ export class GlueList {
       }
       return (
         <div class="glue-list__loading">
-          <glue-loading size={16}>{this.loadingText}</glue-loading>
+          <glue-loading size={16} text={this.loadingText}></glue-loading>
         </div>
       );
     }

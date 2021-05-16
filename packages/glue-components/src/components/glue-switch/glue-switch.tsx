@@ -2,7 +2,7 @@ import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
 import { createNamespace } from '../../utils/create/index';
-const [bem] = createNamespace('glue-switc');
+const [bem] = createNamespace('glue-switch');
 @Component({
   tag: 'glue-switch',
   styleUrl: 'glue-switch.less',
@@ -30,7 +30,7 @@ export class GlueSwitch {
   renderLoading = () => {
     if (this.loading) {
       const color = this.isChecked() ? this.activeColor : this.inactiveColor;
-      return <glue-loading class={bem('loading')} color={color} />;
+      return <glue-loading class={bem('loading')} color={color} size="12" />;
     }
   };
   render() {

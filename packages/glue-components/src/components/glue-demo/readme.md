@@ -9,12 +9,15 @@
 
 ### Depends on
 
-- [glue-stepper](../glue-stepper)
+- [glue-switch](../glue-switch)
+- [glue-loading](../glue-loading)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-stepper
+  glue-demo --> glue-switch
+  glue-demo --> glue-loading
+  glue-switch --> glue-loading
   style glue-demo fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -45,19 +45,6 @@
 | `gluePlus`      |             | `CustomEvent<any>` |
 
 
-## Dependencies
-
-### Used by
-
- - [glue-demo](../glue-demo)
-
-### Graph
-```mermaid
-graph TD;
-  glue-demo --> glue-stepper
-  style glue-stepper fill:#f9f,stroke:#333,stroke-width:4px
-```
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

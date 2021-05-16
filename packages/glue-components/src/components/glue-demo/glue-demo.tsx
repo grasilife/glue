@@ -186,7 +186,9 @@ export class GlueDemo {
         <div class="silder">
           <glue-slider value={10} min="-50" max="50" step="10" bar-height="4px" active-color="#ee0a24" vertical={true} />
         </div> */}
-        <glue-stepper model-value={1} step={2} min={5} max={8} decimal-length="1" input-width="40px" button-size="32px" theme="round" before-change={this.beforeChange} />
+        {/* <glue-stepper model-value={1} step={2} min={5} max={8} decimal-length="1" input-width="40px" button-size="32px" theme="round" before-change={this.beforeChange} /> */}
+        <glue-switch value={true} loading size="24px" active-color="#ee0a24" inactive-color="#dcdee0" />
+        <glue-loading />
       </div>
     );
   }

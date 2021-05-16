@@ -41,7 +41,7 @@
 可以使用默认插槽在图标的右侧插入加载文案。
 
 ```html
-<glue-loading size="24px">加载中...</glue-loading>
+<glue-loading size="24px" text="加载中..."></glue-loading>
 ```
 
 ### 垂直排列
@@ -49,7 +49,7 @@
 设置 `vertical` 属性后，图标和文案会垂直排列。
 
 ```html
-<glue-loading size="24px" vertical>加载中...</glue-loading>
+<glue-loading size="24px" vertical text="加载中..."></glue-loading>
 ```
 
 ### 自定义文案颜色
@@ -58,10 +58,10 @@
 
 ```html
 <!-- 可修改文案和加载图标的颜色 -->
-<glue-loading color="#0094ff" />
+<glue-loading color="#0094ff" text="加载中..."/>
 
 <!-- 只修改文案颜色 -->
-<glue-loading text-color="#0094ff" />
+<glue-loading text-color="#0094ff" text="加载中..."/>
 ```
 
 ## API
@@ -71,6 +71,7 @@
 | 参数       | 说明                         | 类型               | 默认值     |
 |------------|----------------------------|--------------------|------------|
 | color      | 颜色                         | _string_           | `#c9c9c9`  |
+| text       | 文字,使用#slot开启插槽       | _string_           | ``         |
 | type       | 类型，可选值为 `spinner`      | _string_           | `circular` |
 | size       | 加载图标大小，默认单位为 `px` | _number \| string_ | `30px`     |
 | text-size  | 文字大小，默认单位为 `px`     | _number \| string_ | `14px`     |
@@ -79,9 +80,9 @@
 
 ### Slots
 
-| 名称    | 说明     |
-|---------|--------|
-| default | 加载文案 |
+| 名称 | 说明     |
+|------|--------|
+| text | 加载文案 |
 
 ### 样式变量
 

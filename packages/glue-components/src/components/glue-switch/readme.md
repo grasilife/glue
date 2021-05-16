@@ -32,6 +32,7 @@
 
  - [glue-address-edit](../glue-address-edit)
  - [glue-contact-edit](../glue-contact-edit)
+ - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -43,6 +44,7 @@ graph TD;
   glue-switch --> glue-loading
   glue-address-edit --> glue-switch
   glue-contact-edit --> glue-switch
+  glue-demo --> glue-switch
   style glue-switch fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

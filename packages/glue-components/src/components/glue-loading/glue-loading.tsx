@@ -13,9 +13,8 @@ export type LoadingType = 'circular' | 'spinner';
 export class GlueLoading {
   @Element() el!: HTMLElement;
   @Prop() size: string | number;
-
   @Prop() color: string;
-
+  @Prop() text: string;
   @Prop() vertical: boolean;
   @Prop() textSize: string | number;
   @Prop() textColor: string;
@@ -44,19 +43,27 @@ export class GlueLoading {
     );
   };
   renderText = () => {
-    return (
-      <span
-        class={classNames({
-          'glue-loading__text': true,
-        })}
-        style={{
-          fontSize: addUnit(this.textSize),
-          color: this.color,
-        }}
-      >
-        <slot></slot>
-      </span>
-    );
+    if (this.text == '#slot') {
+      return <slot name="text"></slot>;
+    }
+    return this.text;
+  };
+  renderloadText = () => {
+    if (this.text) {
+      return (
+        <span
+          class={classNames({
+            'glue-loading__text': true,
+          })}
+          style={{
+            fontSize: addUnit(this.textSize),
+            color: this.color,
+          }}
+        >
+          {this.renderText()}
+        </span>
+      );
+    }
   };
   render() {
     // const TagType = 'button';
@@ -80,7 +87,7 @@ export class GlueLoading {
         >
           {this.type === 'spinner' ? this.spinIcon() : this.circularIcon()}
         </span>
-        {this.renderText()}
+        {this.renderloadText()}
       </Host>
     );
   }

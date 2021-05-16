@@ -16,24 +16,16 @@
     </DemoBlock>
 
     <DemoBlock :title="text">
-      <glue-loading size="24px">
-        {{ loading }}
-      </glue-loading>
+      <glue-loading size="24px" :text="loading"> </glue-loading>
     </DemoBlock>
 
     <DemoBlock :title="vertical">
-      <glue-loading size="24px" vertical>
-        {{ loading }}
-      </glue-loading>
+      <glue-loading size="24px" vertical :text="loading"> </glue-loading>
     </DemoBlock>
 
     <DemoBlock :title="textColor">
-      <glue-loading size="24px" vertical color="#0094ff">
-        {{ loading }}
-      </glue-loading>
-      <glue-loading size="24px" vertical text-color="#0094ff">
-        {{ loading }}
-      </glue-loading>
+      <glue-loading size="24px" vertical color="#0094ff" :text="loading"> </glue-loading>
+      <glue-loading size="24px" vertical text-color="#0094ff" :text="loading"> </glue-loading>
     </DemoBlock>
   </DemoSection>
 </template>

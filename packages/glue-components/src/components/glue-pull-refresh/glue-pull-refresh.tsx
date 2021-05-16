@@ -93,7 +93,7 @@ export class GluePullRefresh {
       nodes.push(<div class="glue-pull-refresh__text">{this.getStatusText()}</div>);
     }
     if (status === 'loading') {
-      nodes.push(<glue-loading size="16">{this.getStatusText()}</glue-loading>);
+      nodes.push(<glue-loading size="16" text={this.getStatusText()}></glue-loading>);
     }
 
     return nodes;
