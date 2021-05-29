@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, State } from '@stencil/core';
+import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import { getSizeStyle } from '../../utils/format/unit';
 import { pick } from '../../utils/base';
@@ -25,19 +25,25 @@ export class GlueUploader {
   @Prop() previewOptions: object;
   @Prop() name = '';
   @Prop() accept = 'image/*';
-  @Prop() modelValue: [];
+  @Prop() value = [];
   @Prop() maxSize = Number.MAX_VALUE;
   @Prop() maxCount = Number.MAX_VALUE;
-  @Prop() deletable = true;
-  @Prop() showUpload = true;
-  @Prop() previewImage = true;
-  @Prop() previewFullImage = true;
+  @Prop() deletable = false;
+  @Prop() showUpload = false;
+  @Prop() previewImage = false;
+  @Prop() previewFullImage = false;
   @Prop() imageFit = 'cover';
   @Prop() resultType: ResultType = 'dataUrl';
   @Prop() uploadIcon = 'photograph';
+  @Prop() customUpload = '';
+  @Prop() previewCover = '';
+  @Event() glueDelete: EventEmitter;
+  @Event() gluePreview: EventEmitter;
+  @Event() glueClosePreview: EventEmitter;
+  @Event() glueOversize: EventEmitter;
   @State() items;
   inputRef: HTMLElement;
-  getDetail = (index = this.modelValue.length) => ({
+  getDetail = (index = this.value.length) => ({
     name: this.name,
     index,
   });
@@ -55,28 +61,32 @@ export class GlueUploader {
       if (Array.isArray(items)) {
         const result = filterFiles(items, this.maxSize);
         items = result.valid;
-        // emit('oversize', result.invalid, this.getDetail());
-
+        this.glueOversize.emit({
+          item: result.invalid,
+          detail: this.getDetail(),
+        });
         if (!items.length) {
           return;
         }
       } else {
-        // emit('oversize', items, this.getDetail());
+        this.glueOversize.emit({
+          item: items,
+          detail: this.getDetail(),
+        });
         return;
       }
     }
-    // emit('update:modelValue', [...this.modelValue, ...toArray(items)]);
-
+    this.value = [...this.value, ...toArray(items)];
     if (this.afterRead) {
       this.afterRead(items, this.getDetail());
     }
   };
 
   readFile = files => {
-    const { maxCount, modelValue, resultType } = this;
+    const { maxCount, value, resultType } = this;
 
     if (Array.isArray(files)) {
-      const remainCount = maxCount - modelValue.length;
+      const remainCount = maxCount - value.length;
 
       if (files.length > remainCount) {
         files = files.slice(0, remainCount);
@@ -85,9 +95,9 @@ export class GlueUploader {
       Promise.all(files.map(file => readFileContent(file, resultType))).then(contents => {
         const fileList = files.map((file, index) => {
           const result = { file, status: '', message: '' };
-
+          console.log(result, 'result');
           if (contents[index]) {
-            // result.content = contents[index];
+            result['content'] = contents[index];
           }
 
           return result;
@@ -97,10 +107,11 @@ export class GlueUploader {
       });
     } else {
       readFileContent(files, resultType).then(content => {
+        //content为base64格式数据
         const result = { file: files, status: '', message: '' };
-
+        console.log(result, 'result2');
         if (content) {
-          // result.content = content;
+          result['content'] = content;
         }
 
         this.onAfterRead(result);
@@ -138,29 +149,31 @@ export class GlueUploader {
         return;
       }
     }
-
+    console.log(files, 'files');
     this.readFile(files);
   };
 
   // let imagePreview;
 
   onClosePreview = () => {
-    // emit('close-preview');
+    this.glueClosePreview.emit();
   };
 
-  // previewImage = item => {
-  //   if (this.previewFullImage) {
-  //     const imageFiles = this.modelValue.filter(isImageFile);
-  //     const images = imageFiles.map(item => item.content || item.url);
+  renderPreviewImage = item => {
+    console.log('预览');
+    if (this.previewFullImage) {
+      const imageFiles = this.value.filter(isImageFile);
+      console.log(imageFiles, 'imageFiles');
 
-  //     imagePreview = ImagePreview({
-  //       images,
-  //       startPosition: imageFiles.indexOf(item),
-  //       onClose: onClosePreview,
-  //       ...this.previewOptions,
-  //     });
-  //   }
-  // };
+      // const images = imageFiles.map(item => item.content || item.url);
+      // imagePreview = ImagePreview({
+      //   images,
+      //   startPosition: imageFiles.indexOf(item),
+      //   onClose: onClosePreview,
+      //   ...this.previewOptions,
+      // });
+    }
+  };
 
   closeImagePreview = () => {
     if (imagePreview) {
@@ -170,54 +183,60 @@ export class GlueUploader {
 
   deleteFile = (item, index) => {
     console.log(item);
-    const fileList = this.modelValue.slice(0);
+    const fileList = this.value.slice(0);
     fileList.splice(index, 1);
-
-    // emit('update:modelValue', fileList);
-    // emit('delete', item, getDetail(index));
+    this.value = fileList;
+    this.glueDelete.emit({
+      item: item,
+      detail: this.getDetail(index),
+    });
   };
 
   renderPreviewItem = (item, index) => {
-    console.log(index);
+    console.log(item, index, 'item, index');
     const needPickData = ['imageFit', 'deletable', 'previewSize', 'beforeDelete'];
 
     const previewData = pick(this, needPickData);
     const previewProp = pick(item, needPickData);
-
+    console.log(previewData, 'previewData');
     Object.keys(previewProp).forEach(item => {
       if (previewProp[item] !== undefined) {
         previewData[item] = previewProp[item];
       }
     });
-
-    // return (
-    //   <PreviewItem
-    //     v-slots={{ 'preview-cover': slots['preview-cover'] }}
-    //     item={item}
-    //     index={index}
-    //     onClick={() => {
-    //       emit('click-preview', item, getDetail(index));
-    //     }}
-    //     onDelete={() => {
-    //       deleteFile(item, index);
-    //     }}
-    //     onPreview={() => {
-    //       previewImage(item);
-    //     }}
-    //     {...pick(this, ['name', 'lazyLoad'])}
-    //     {...previewData}
-    //   />
-    // );
+    console.log(item, 'item数据');
+    return (
+      <glue-uploader-preview-item
+        item={item}
+        index={index}
+        onClick={() => {
+          this.gluePreview.emit({
+            item: item,
+            detail: this.getDetail(index),
+          });
+        }}
+        onGlueDelete={() => {
+          this.deleteFile(item, index);
+        }}
+        onGluePreview={() => {
+          this.renderPreviewImage(item);
+        }}
+        previewCover={this.previewCover}
+        {...pick(this, ['name', 'lazyLoad'])}
+        {...previewData}
+      />
+    );
   };
 
   renderPreviewList = () => {
     if (this.previewImage) {
-      return this.modelValue.map(this.renderPreviewItem);
+      return this.value.map(this.renderPreviewItem);
     }
   };
 
   renderUpload = () => {
-    if (this.modelValue.length >= this.maxCount || !this.showUpload) {
+    console.log(this.value, this.maxCount, this.showUpload, 'this.value');
+    if (this.value.length >= this.maxCount || !this.showUpload) {
       return;
     }
 
@@ -236,18 +255,18 @@ export class GlueUploader {
       />
     );
 
-    // if (slots.default) {
-    //   return (
-    //     <div class={bem('input-wrapper')}>
-    //       <slot></slot>
-    //       {Input}
-    //     </div>
-    //   );
-    // }
+    if (this.customUpload == '#slot') {
+      return (
+        <div class="glue-uploader__input-wrapper">
+          <slot></slot>
+          {Input}
+        </div>
+      );
+    }
 
     return (
       <div class="glue-uploader__upload" style={getSizeStyle(this.previewSize)}>
-        <glue-icon name={this.uploadIcon} class="glue-uploader__upload-icon" />
+        <glue-icon name={this.uploadIcon} class="glue-uploader__upload-icon" size="24" />
         {this.uploadText && <span class="glue-uploader__upload-text">{this.uploadText}</span>}
         {Input}
       </div>

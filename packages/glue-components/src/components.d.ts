@@ -868,15 +868,16 @@ export namespace Components {
         "beforeDelete": any;
         "beforeRead": any;
         "capture": string;
+        "customUpload": string;
         "deletable": boolean;
         "disabled": boolean;
         "imageFit": string;
         "lazyLoad": boolean;
         "maxCount": number;
         "maxSize": number;
-        "modelValue": [];
         "multiple": boolean;
         "name": string;
+        "previewCover": string;
         "previewFullImage": boolean;
         "previewImage": boolean;
         "previewOptions": object;
@@ -885,6 +886,7 @@ export namespace Components {
         "showUpload": boolean;
         "uploadIcon": string;
         "uploadText": string;
+        "value": any[];
     }
     interface GlueUploaderPreviewItem {
         "beforeDelete": any;
@@ -894,6 +896,7 @@ export namespace Components {
         "item": any;
         "lazyLoad": boolean;
         "name": string;
+        "previewCover": string;
         "previewSize": string | number;
     }
 }
@@ -2463,15 +2466,20 @@ declare namespace LocalJSX {
         "beforeDelete"?: any;
         "beforeRead"?: any;
         "capture"?: string;
+        "customUpload"?: string;
         "deletable"?: boolean;
         "disabled"?: boolean;
         "imageFit"?: string;
         "lazyLoad"?: boolean;
         "maxCount"?: number;
         "maxSize"?: number;
-        "modelValue"?: [];
         "multiple"?: boolean;
         "name"?: string;
+        "onGlueClosePreview"?: (event: CustomEvent<any>) => void;
+        "onGlueDelete"?: (event: CustomEvent<any>) => void;
+        "onGlueOversize"?: (event: CustomEvent<any>) => void;
+        "onGluePreview"?: (event: CustomEvent<any>) => void;
+        "previewCover"?: string;
         "previewFullImage"?: boolean;
         "previewImage"?: boolean;
         "previewOptions"?: object;
@@ -2480,6 +2488,7 @@ declare namespace LocalJSX {
         "showUpload"?: boolean;
         "uploadIcon"?: string;
         "uploadText"?: string;
+        "value"?: any[];
     }
     interface GlueUploaderPreviewItem {
         "beforeDelete"?: any;
@@ -2489,6 +2498,9 @@ declare namespace LocalJSX {
         "item"?: any;
         "lazyLoad"?: boolean;
         "name"?: string;
+        "onGlueDelete"?: (event: CustomEvent<any>) => void;
+        "onGluePreview"?: (event: CustomEvent<any>) => void;
+        "previewCover"?: string;
         "previewSize"?: string | number;
     }
     interface IntrinsicElements {

@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host } from '@stencil/core';
+import { Component, Prop, h, Host, EventEmitter, Event } from '@stencil/core';
 // import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { getSizeStyle } from '../../utils/format/unit';
@@ -18,6 +18,9 @@ export class GluePreviewItem {
   @Prop() deletable: boolean;
   @Prop() previewSize: string | number;
   @Prop() beforeDelete: any;
+  @Prop() previewCover = '';
+  @Event() glueDelete: EventEmitter;
+  @Event() gluePreview: EventEmitter;
   renderMask = () => {
     const { status, message } = this.item;
 
@@ -37,47 +40,47 @@ export class GluePreviewItem {
   };
 
   onDelete = event => {
-    // const { name, item, index, beforeDelete } = this;
+    //TODO:需要完善
     event.stopPropagation();
-    // callInterceptor({
-    //   interceptor: beforeDelete,
-    //   args: [item, { name, index }],
-    //   done() {
-    //     // emit('delete');
-    //   },
-    // });
+    this.glueDelete.emit();
   };
 
   onPreview = () => {
-    // emit('preview');
+    this.gluePreview.emit();
   };
 
   renderDeleteIcon = () => {
     if (this.deletable && this.item.status !== 'uploading') {
       return (
-        <div class="glue-uploader-preview-item__preview-delete" onClick={this.onDelete}>
-          <glue-icon name="cross" class="glue-uploader-preview-item__preview-delete-icon" />
+        <div class="glue-uploader-preview-item-delete" onClick={this.onDelete}>
+          <glue-icon name="cross" class="glue-uploader-preview-item-delete-icon" />
         </div>
       );
     }
   };
 
   renderCover = () => {
-    // if (slots['preview-cover']) {
-    //   const { index, item } = this;
-    //   return <div class="glue-uploader-preview-item__preview-cover">{/* {slots['preview-cover']({ index, ...item })} */}</div>;
-    // }
+    //TODO:需要完善
+    if (this.previewCover == '#slot') {
+      // const { index, item } = this;
+      return (
+        <div class="glue-uploader-preview-item__preview-cover">
+          <slot name="preview-cover"></slot>
+        </div>
+      );
+    }
   };
 
   renderPreview = () => {
+    //TODO:isImageFile没太看懂
     const { item } = this;
-
+    console.log(isImageFile(item), 'isImageFile(item)');
     if (isImageFile(item)) {
       return (
         <glue-image
           fit={this.imageFit}
           src={item.content || item.url}
-          class="glue-uploader-preview-item__preview-image"
+          class="glue-uploader-preview-item-image"
           width={this.previewSize}
           height={this.previewSize}
           lazyLoad={this.lazyLoad}
@@ -98,7 +101,7 @@ export class GluePreviewItem {
   };
   render() {
     return (
-      <Host class="glue-uploader-preview-item__preview">
+      <Host class="glue-uploader-preview-item">
         {this.renderPreview()}
         {this.renderMask()}
         {this.renderDeleteIcon()}

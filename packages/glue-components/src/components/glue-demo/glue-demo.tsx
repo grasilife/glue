@@ -27,6 +27,12 @@ export class GlueDemo {
     '0%': '#3fecff',
     '100%': '#6149f6',
   };
+  @State() fileList = [
+    { url: 'https://img01.yzcdn.cn/vant/leaf.jpg' },
+    // Uploader 根据文件后缀来判断是否为图片文件
+    // 如果图片 URL 中不包含类型信息，可以添加 isImage 标记来声明
+    { url: 'https://img01.yzcdn.cn/vant/tree.jpg', isImage: true },
+  ];
   @State() currentRate = 10;
   @State() currentTime = {
     hours: 0,
@@ -187,8 +193,10 @@ export class GlueDemo {
           <glue-slider value={10} min="-50" max="50" step="10" bar-height="4px" active-color="#ee0a24" vertical={true} />
         </div> */}
         {/* <glue-stepper model-value={1} step={2} min={5} max={8} decimal-length="1" input-width="40px" button-size="32px" theme="round" before-change={this.beforeChange} /> */}
-        <glue-switch value={true} loading size="24px" active-color="#ee0a24" inactive-color="#dcdee0" />
-        <glue-loading />
+        {/* <glue-switch value={true} loading size="24px" active-color="#ee0a24" inactive-color="#dcdee0" />
+        <glue-loading /> */}
+        {/* <glue-uploader value={[]} show-upload /> */}
+        <glue-uploader show-upload value={this.fileList} multiple preview-image deletable />
       </div>
     );
   }

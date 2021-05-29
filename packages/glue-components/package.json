@@ -23,8 +23,8 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^2.5.2",
     "@glue/markdown-loader": "0.0.2-alpha.0",
+    "@stencil/core": "^2.5.2",
     "animejs": "^3.2.1",
     "intersection-observer": "^0.12.0"
   },
