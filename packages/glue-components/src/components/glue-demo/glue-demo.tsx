@@ -222,7 +222,7 @@ export class GlueDemo {
         {/* <glue-switch value={true} loading size="24px" active-color="#ee0a24" inactive-color="#dcdee0" />
         <glue-loading /> */}
         {/* <glue-uploader value={[]} show-upload /> */}
-        <glue-uploader
+        {/* <glue-uploader
           show-upload
           value={this.fileList}
           multiple
@@ -234,7 +234,8 @@ export class GlueDemo {
           max-size={50000000}
           onGlueOversize={this.onOversize}
           disabled
-        ></glue-uploader>
+        ></glue-uploader> */}
+        <glue-calendar />
       </div>
     );
   }
