@@ -329,7 +329,7 @@ export class GlueCascader {
   renderMonth = (date, index) => {
     const showMonthTitle = index !== 0 || !this.showSubtitle;
     return (
-      <glue-mouth
+      <glue-cascader-month
         date={date}
         currentDate={this.currentDate}
         showMonthTitle={showMonthTitle}
@@ -359,7 +359,7 @@ export class GlueCascader {
   renderFooter = () => <div class="glue-cascader__footer">{this.renderFooterButton()}</div>;
   renderCalendar = () => (
     <div class="glue-cascader__popup">
-      <glue-header title={this.title} showTitle={this.showTitle} subtitle={this.subtitle} showSubtitle={this.showSubtitle} firstDayOfWeek={this.dayOffset()} />
+      <glue-cascader-header title={this.title} showTitle={this.showTitle} subtitle={this.subtitle} showSubtitle={this.showSubtitle} firstDayOfWeek={this.dayOffset()} />
       <div class="glue-cascader__body" onScroll={this.onScroll}>
         {this.months().map(this.renderMonth)}
       </div>
