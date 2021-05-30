@@ -1,11 +1,11 @@
 import { Component, Prop, h, Host } from '@stencil/core';
 // import classNames from 'classnames';
 @Component({
-  tag: 'glue-cascader-header',
-  styleUrl: 'glue-cascader-header.less',
+  tag: 'glue-calendar-header',
+  styleUrl: 'glue-calendar-header.less',
   shadow: false,
 })
-export class GlueCascaderHeader {
+export class GlueCalendarHeader {
   @Prop() first: string;
   @Prop() title: string;
   @Prop() subtitle: string;
@@ -16,13 +16,13 @@ export class GlueCascaderHeader {
     if (this.showTitle) {
       const text = this.title || 'title';
       const title = text;
-      return <div class="glue-cascader-header__header-title">{title}</div>;
+      return <div class="glue-calendar-header__header-title">{title}</div>;
     }
   };
 
   renderSubtitle = () => {
     if (this.showSubtitle) {
-      return <div class="glue-cascader-header__header-subtitle">{this.subtitle}</div>;
+      return <div class="glue-calendar-header__header-subtitle">{this.subtitle}</div>;
     }
   };
 
@@ -32,16 +32,16 @@ export class GlueCascaderHeader {
     const renderWeekDays = [...weekdays.slice(firstDayOfWeek, 7), ...weekdays.slice(0, firstDayOfWeek)];
 
     return (
-      <div class="glue-cascader-header__weekdays">
+      <div class="glue-calendar-header__weekdays">
         {renderWeekDays.map(text => (
-          <span class="glue-cascader-header__weekday">{text}</span>
+          <span class="glue-calendar-header__weekday">{text}</span>
         ))}
       </div>
     );
   };
   render() {
     return (
-      <Host class="glue-cascader-header__header">
+      <Host class="glue-calendar-header__header">
         {this.renderTitle()}
         {this.renderSubtitle()}
         {this.renderWeekDays()}

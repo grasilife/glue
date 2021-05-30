@@ -1,11 +1,11 @@
 import { Component, Prop, h, Host } from '@stencil/core';
 // import classNames from 'classnames';
 @Component({
-  tag: 'glue-cascader-day',
-  styleUrl: 'glue-cascader-day.less',
+  tag: 'glue-calendar-day',
+  styleUrl: 'glue-calendar-day.less',
   shadow: false,
 })
-export class GlueCascaderDay {
+export class GlueCalendarDay {
   @Prop() first: string;
   @Prop() item: any;
   @Prop() color: string;
@@ -59,16 +59,16 @@ export class GlueCascaderDay {
     const { item, color, rowHeight } = this;
     const { type, text, topInfo, bottomInfo } = item;
 
-    const TopInfo = topInfo && <div class="glue-cascader-day__top-info">{topInfo}</div>;
+    const TopInfo = topInfo && <div class="glue-calendar-day__top-info">{topInfo}</div>;
 
-    const BottomInfo = bottomInfo && <div class="glue-cascader-day__bottom-info">{bottomInfo}</div>;
+    const BottomInfo = bottomInfo && <div class="glue-calendar-day__bottom-info">{bottomInfo}</div>;
 
     const Nodes = [TopInfo, text, BottomInfo];
 
     if (type === 'selected') {
       return (
         <div
-          class="glue-cascader-day__selected-day"
+          class="glue-calendar-day__selected-day"
           style={{
             width: rowHeight,
             height: rowHeight,
@@ -85,7 +85,7 @@ export class GlueCascaderDay {
   render() {
     const { type, className } = this.item;
     return (
-      <Host role="gridcell" style={this.style()} class="glue-cascader-day__day" tabindex={type === 'disabled' ? null : -1} onClick={this.onClick}>
+      <Host role="gridcell" style={this.style()} class="glue-calendar-day__day" tabindex={type === 'disabled' ? null : -1} onClick={this.onClick}>
         {this.renderContent()}
       </Host>
     );

@@ -2,14 +2,14 @@ import { Component, Prop, h, Host, State } from '@stencil/core';
 // import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
 import { setScrollTop } from '../../utils/dom/scroll';
-import { compareDay, getPrevDay, getNextDay, formatMonthTitle } from '../glue-cascader/utils';
+import { compareDay, getPrevDay, getNextDay, formatMonthTitle } from '../glue-calendar/utils';
 import { getMonthEndDay } from '../glue-datetime-picker/utils';
 @Component({
-  tag: 'glue-cascader-month',
-  styleUrl: 'glue-cascader-month.less',
+  tag: 'glue-calendar-month',
+  styleUrl: 'glue-calendar-month.less',
   shadow: false,
 })
-export class GlueCascaderMonth {
+export class GlueCalendarMonth {
   @Prop() first: string;
   @Prop() date: any;
   @Prop() type: string;
@@ -142,13 +142,13 @@ export class GlueCascaderMonth {
 
   renderTitle = () => {
     if (this.showMonthTitle) {
-      return <div class="glue-cascader-month__month-title">{this.title()}</div>;
+      return <div class="glue-calendar-month__month-title">{this.title()}</div>;
     }
   };
 
   renderMark = () => {
     if (this.showMark && this.shouldRender()) {
-      return <div class="glue-cascader-month__month-mark">{this.date.getMonth() + 1}</div>;
+      return <div class="glue-calendar-month__month-mark">{this.date.getMonth() + 1}</div>;
     }
   };
 
@@ -188,7 +188,7 @@ export class GlueCascaderMonth {
   };
 
   renderDay = (item, index) => (
-    <glue-cascader-day
+    <glue-calendar-day
       item={item}
       index={index}
       color={this.color}
@@ -203,7 +203,7 @@ export class GlueCascaderMonth {
 
   renderDays = () => {
     return (
-      <div role="grid" class="glue-cascader-month__days">
+      <div role="grid" class="glue-calendar-month__days">
         {this.renderMark()}
         {(this.shouldRender() ? this.days() : this.placeholders()).map(this.renderDay)}
       </div>
@@ -211,7 +211,7 @@ export class GlueCascaderMonth {
   };
   render() {
     return (
-      <Host class="glue-cascader-month__month">
+      <Host class="glue-calendar-month__month">
         {this.renderTitle()}
         {this.renderDays()}
       </Host>

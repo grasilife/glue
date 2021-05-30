@@ -1,9 +1,9 @@
 import { Component, Prop, h, Host, State } from '@stencil/core';
 import classNames from 'classnames';
 import { pick } from '../../utils/base';
-import { getRootScrollTop, getScrollTop } from '../../utils/dom/scroll';
-import { raf, cancelRaf } from '../../utils/animation';
-import { copyDate, copyDates, getPrevDay, getNextDay, compareDay, calcDateNum, compareMonth, getDayByOffset } from './utils';
+import { getScrollTop } from '../../utils/dom/scroll';
+import { raf } from '../../utils/animation';
+import { copyDate, copyDates, getPrevDay, getNextDay, compareDay, calcDateNum, compareMonth, getDayByOffset } from '../glue-calendar/utils';
 @Component({
   tag: 'glue-cascader',
   styleUrl: 'glue-cascader.less',
@@ -24,18 +24,18 @@ export class GlueCascader {
   @Prop() allowSameDay: boolean;
   @Prop() confirmDisabledText: string;
   @Prop() type: string = 'single';
-  @Prop() round: boolean = true;
+  @Prop() round: boolean = false;
   @Prop() position: string = 'bottom';
-  @Prop() poppable: boolean = true;
+  @Prop() poppable: boolean = false;
   @Prop() maxRange: any;
-  @Prop() lazyRender: boolean = true;
-  @Prop() showMark: boolean = true;
-  @Prop() showTitle: boolean = true;
-  @Prop() showConfirm: boolean = true;
-  @Prop() showSubtitle: boolean = true;
-  @Prop() closeOnPopstate: boolean = true;
-  @Prop() closeOnClickOverlay: boolean = true;
-  @Prop() safeAreaInsetBottom: boolean = true;
+  @Prop() lazyRender: boolean = false;
+  @Prop() showMark: boolean = false;
+  @Prop() showTitle: boolean = false;
+  @Prop() showConfirm: boolean = false;
+  @Prop() showSubtitle: boolean = false;
+  @Prop() closeOnPopstate: boolean = false;
+  @Prop() closeOnClickOverlay: boolean = false;
+  @Prop() safeAreaInsetBottom: boolean = false;
   @Prop() minDate = new Date();
   @Prop() maxDate = new Date(new Date().getFullYear(), new Date().getMonth() + 6, new Date().getDate());
   @Prop() firstDayOfWeek: any = 0;
