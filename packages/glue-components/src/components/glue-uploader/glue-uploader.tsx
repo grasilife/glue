@@ -26,6 +26,7 @@ export class GlueUploader {
   @Prop() previewOptions: object;
   @Prop() name = '';
   @Prop() accept = 'image/*';
+  //数组失效
   @Prop() value = [];
   @Prop() maxSize = Number.MAX_VALUE;
   @Prop() maxCount = Number.MAX_VALUE;
@@ -165,7 +166,7 @@ export class GlueUploader {
   };
 
   renderPreviewImage = item => {
-    console.log('预览');
+    console.log(item, '预览');
     if (this.previewFullImage) {
       const imageFiles = this.value.filter(isImageFile);
       console.log(imageFiles, 'imageFiles');

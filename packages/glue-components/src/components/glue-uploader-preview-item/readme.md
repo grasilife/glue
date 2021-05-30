@@ -16,10 +16,23 @@
 | `item`         | `item`          |             | `any`                                                      | `undefined` |
 | `lazyLoad`     | `lazy-load`     |             | `boolean`                                                  | `undefined` |
 | `name`         | `name`          |             | `string`                                                   | `undefined` |
+| `previewCover` | `preview-cover` |             | `string`                                                   | `''`        |
 | `previewSize`  | `preview-size`  |             | `number \| string`                                         | `undefined` |
 
 
+## Events
+
+| Event         | Description | Type               |
+| ------------- | ----------- | ------------------ |
+| `glueDelete`  |             | `CustomEvent<any>` |
+| `gluePreview` |             | `CustomEvent<any>` |
+
+
 ## Dependencies
+
+### Used by
+
+ - [glue-uploader](../glue-uploader)
 
 ### Depends on
 
@@ -35,6 +48,7 @@ graph TD;
   glue-uploader-preview-item --> glue-image
   glue-icon --> glue-badge
   glue-image --> glue-icon
+  glue-uploader --> glue-uploader-preview-item
   style glue-uploader-preview-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

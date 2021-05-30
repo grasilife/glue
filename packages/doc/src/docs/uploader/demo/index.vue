@@ -1,51 +1,58 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-uploader :after-read="afterRead" />
+      <glue-uploader show-upload preview-image :after-read="afterRead" />
     </DemoBlock>
 
     <DemoBlock :title="preview">
-      <van-uploader v-model="fileList" multiple accept="*" />
+      <glue-uploader :value="fileList" multiple accept="*" show-upload preview-image />
     </DemoBlock>
 
     <DemoBlock :title="status">
-      <van-uploader v-model="statusFileList" :after-read="afterReadFailed" />
+      <glue-uploader :value="statusFileList" :after-read="afterReadFailed" show-upload preview-image />
     </DemoBlock>
 
     <DemoBlock :title="maxCount">
-      <van-uploader v-model="fileList2" multiple :max-count="2" />
+      <glue-uploader :value="fileList2" multiple :max-count="2" show-upload preview-image />
     </DemoBlock>
 
     <DemoBlock :title="maxSize">
-      <van-uploader v-model="fileList4" multiple :max-size="500 * 1024" @oversize="onOversize" />
+      <glue-uploader
+        :value="fileList4"
+        multiple
+        :max-size="500 * 1024"
+        @oversize="onOversize"
+        show-upload
+        preview-image
+      />
     </DemoBlock>
 
     <DemoBlock :title="customUpload">
-      <van-uploader>
-        <van-button type="primary" icon="plus">
+      <glue-uploader show-upload preview-image>
+        <glue-button type="primary" icon="plus">
           {{ upload }}
-        </van-button>
-      </van-uploader>
+        </glue-button>
+      </glue-uploader>
     </DemoBlock>
 
     <DemoBlock :title="previewCover">
-      <van-uploader v-model="previewCoverFiles">
+      <glue-uploader :value="previewCoverFiles" show-upload preview-image>
         <template #preview-cover="{ file }">
           <div class="preview-cover glue-ellipsis">{{ file.name }}</div>
         </template>
-      </van-uploader>
+      </glue-uploader>
     </DemoBlock>
 
     <DemoBlock :title="beforeReadTitle">
-      <van-uploader v-model="fileList3" :before-read="beforeRead" />
+      <glue-uploader :value="fileList3" :before-read="beforeRead" show-upload preview-image />
     </DemoBlock>
 
     <DemoBlock :title="disabled">
-      <van-uploader :after-read="afterRead" disabled />
+      <glue-uploader :after-read="afterRead" disabled show-upload preview-image />
     </DemoBlock>
 
     <DemoBlock :title="customPreviewImage">
-      <van-uploader v-model="fileList5" multiple accept="*" :deletable="false" />
+      <glue-uploader :value="fileList5" multiple accept="*" :deletable="false" show-upload preview-image />
     </DemoBlock>
   </DemoSection>
 </template>
@@ -156,7 +163,7 @@ export default {
 .demo-uploader {
   background-color: @white;
 
-  .van-uploader {
+  glue-uploader {
     margin-left: @padding-md;
   }
 
