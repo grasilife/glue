@@ -18,6 +18,7 @@ export class GlueUploader {
   @Prop() disabled: boolean;
   @Prop() lazyLoad: boolean;
   @Prop() uploadText: string;
+  //TODO:props不能传递函数afterRead,beforeRead,beforeDelete
   @Prop() afterRead: any;
   @Prop() beforeRead: any;
   @Prop() beforeDelete: any;
@@ -36,6 +37,7 @@ export class GlueUploader {
   @Prop() resultType: ResultType = 'dataUrl';
   @Prop() uploadIcon = 'photograph';
   @Prop() customUpload = '';
+  //TODO:previewCover因为不支持slot传参,所以还未实现
   @Prop() previewCover = '';
   @Event() glueDelete: EventEmitter;
   @Event() gluePreview: EventEmitter;
@@ -50,7 +52,8 @@ export class GlueUploader {
 
   resetInput = () => {
     if (this.inputRef) {
-      // this.inputRef = '';
+      console.log(this.inputRef, 'this.inputRef');
+      this.inputRef['value'] = '';
     }
   };
 
@@ -77,6 +80,7 @@ export class GlueUploader {
       }
     }
     this.value = [...this.value, ...toArray(items)];
+    console.log(this.afterRead, 'this.afterRead');
     if (this.afterRead) {
       this.afterRead(items, this.getDetail());
     }
@@ -120,6 +124,7 @@ export class GlueUploader {
   };
 
   onChange = event => {
+    console.log(event.target, 'event');
     let { files } = event.target;
 
     if (this.disabled || !files.length) {
@@ -127,10 +132,10 @@ export class GlueUploader {
     }
 
     files = files.length === 1 ? files[0] : [].slice.call(files);
-
+    console.log(this.beforeRead, this.afterRead, 'this.beforeRead');
     if (this.beforeRead) {
       const response = this.beforeRead(files, this.getDetail());
-
+      console.log(response, 'responseresponse');
       if (!response) {
         this.resetInput();
         return;

@@ -60,47 +60,6 @@
     }
   }
 
-  &__preview {
-    position: relative;
-    margin: 0 @padding-xs @padding-xs 0;
-    cursor: pointer;
-
-    &-image {
-      display: block;
-      width: @uploader-size;
-      height: @uploader-size;
-      overflow: hidden;
-    }
-
-    &-delete {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: @uploader-delete-icon-size;
-      height: @uploader-delete-icon-size;
-      background-color: @uploader-delete-background-color;
-      border-radius: 0 0 0 12px;
-
-      &-icon {
-        position: absolute;
-        top: -2px;
-        right: -2px;
-        color: #fff;
-        color: @uploader-delete-color;
-        font-size: 16px;
-        transform: scale(0.5);
-      }
-    }
-
-    &-cover {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-    }
-  }
-
   &__mask {
     position: absolute;
     top: 0;

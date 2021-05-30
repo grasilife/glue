@@ -28,11 +28,18 @@ export class GlueDemo {
     '100%': '#6149f6',
   };
   @State() fileList = [
-    { url: 'https://img01.yzcdn.cn/vant/leaf.jpg' },
-    // Uploader 根据文件后缀来判断是否为图片文件
-    // 如果图片 URL 中不包含类型信息，可以添加 isImage 标记来声明
-    { url: 'https://img01.yzcdn.cn/vant/tree.jpg', isImage: true },
+    {
+      url: 'https://img01.yzcdn.cn/vant/leaf.jpg',
+      status: 'uploading',
+      message: '上传中...',
+    },
+    {
+      url: 'https://img01.yzcdn.cn/vant/tree.jpg',
+      status: 'failed',
+      message: '上传失败',
+    },
   ];
+  @State() fileList2 = [];
   @State() currentRate = 10;
   @State() currentTime = {
     hours: 0,
@@ -74,6 +81,25 @@ export class GlueDemo {
   componentDidLoad() {}
   click = () => {
     this.show = true;
+  };
+  afterRead = file => {
+    file.status = 'uploading';
+    file.message = '上传中...';
+
+    setTimeout(() => {
+      file.status = 'failed';
+      file.message = '上传失败';
+    }, 1000);
+  };
+  onOversize = file => {
+    console.log(file, 'onOversize');
+  };
+  beforeRead = file => {
+    if (file.type !== 'image/jpeg') {
+      console.log('请上传 jpg 格式图片');
+      return false;
+    }
+    return true;
   };
   render() {
     return (
@@ -196,7 +222,19 @@ export class GlueDemo {
         {/* <glue-switch value={true} loading size="24px" active-color="#ee0a24" inactive-color="#dcdee0" />
         <glue-loading /> */}
         {/* <glue-uploader value={[]} show-upload /> */}
-        <glue-uploader show-upload value={this.fileList} multiple preview-image deletable />
+        <glue-uploader
+          show-upload
+          value={this.fileList}
+          multiple
+          preview-image
+          deletable
+          after-read={this.afterRead}
+          before-read={this.beforeRead}
+          max-count="4"
+          max-size={50000000}
+          onGlueOversize={this.onOversize}
+          disabled
+        ></glue-uploader>
       </div>
     );
   }
