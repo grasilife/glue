@@ -235,7 +235,7 @@ export class GlueDemo {
           onGlueOversize={this.onOversize}
           disabled
         ></glue-uploader> */}
-        <glue-calendar show={true} />
+        <glue-calendar show={true} show-title show-subtitle />
       </div>
     );
   }

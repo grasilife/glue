@@ -9,6 +9,7 @@ export function formatMonthTitle(date: Date) {
 }
 
 export function compareMonth(date1: Date, date2: Date) {
+  console.log(date1, date2, 'compareMonth');
   const year1 = date1.getFullYear();
   const year2 = date2.getFullYear();
   const month1 = date1.getMonth();

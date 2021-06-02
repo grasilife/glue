@@ -243,39 +243,6 @@ export namespace Components {
         "title": string;
         "type": string;
     }
-    interface GlueCascaderDay {
-        "color": string;
-        "first": string;
-        "index": number;
-        "item": any;
-        "offset": number;
-        "rowHeight": string;
-    }
-    interface GlueCascaderHeader {
-        "first": string;
-        "firstDayOfWeek": number;
-        "showSubtitle": boolean;
-        "showTitle": boolean;
-        "subtitle": string;
-        "title": string;
-    }
-    interface GlueCascaderMonth {
-        "allowSameDay": boolean;
-        "color": string;
-        "currentDate": any;
-        "date": any;
-        "first": string;
-        "firstDayOfWeek": number;
-        "formatter": any;
-        "lazyRender": boolean;
-        "maxDate": any;
-        "minDate": any;
-        "rowHeight": string;
-        "showMark": boolean;
-        "showMonthTitle": boolean;
-        "showSubtitle": boolean;
-        "type": string;
-    }
     interface GlueCell {
         "arrowDirection": CellArrowDirection;
         "border": boolean;
@@ -1125,24 +1092,6 @@ declare global {
         prototype: HTMLGlueCascaderElement;
         new (): HTMLGlueCascaderElement;
     };
-    interface HTMLGlueCascaderDayElement extends Components.GlueCascaderDay, HTMLStencilElement {
-    }
-    var HTMLGlueCascaderDayElement: {
-        prototype: HTMLGlueCascaderDayElement;
-        new (): HTMLGlueCascaderDayElement;
-    };
-    interface HTMLGlueCascaderHeaderElement extends Components.GlueCascaderHeader, HTMLStencilElement {
-    }
-    var HTMLGlueCascaderHeaderElement: {
-        prototype: HTMLGlueCascaderHeaderElement;
-        new (): HTMLGlueCascaderHeaderElement;
-    };
-    interface HTMLGlueCascaderMonthElement extends Components.GlueCascaderMonth, HTMLStencilElement {
-    }
-    var HTMLGlueCascaderMonthElement: {
-        prototype: HTMLGlueCascaderMonthElement;
-        new (): HTMLGlueCascaderMonthElement;
-    };
     interface HTMLGlueCellElement extends Components.GlueCell, HTMLStencilElement {
     }
     var HTMLGlueCellElement: {
@@ -1623,9 +1572,6 @@ declare global {
         "glue-calendar-month": HTMLGlueCalendarMonthElement;
         "glue-card": HTMLGlueCardElement;
         "glue-cascader": HTMLGlueCascaderElement;
-        "glue-cascader-day": HTMLGlueCascaderDayElement;
-        "glue-cascader-header": HTMLGlueCascaderHeaderElement;
-        "glue-cascader-month": HTMLGlueCascaderMonthElement;
         "glue-cell": HTMLGlueCellElement;
         "glue-cell-group": HTMLGlueCellGroupElement;
         "glue-checkbox": HTMLGlueCheckboxElement;
@@ -1945,39 +1891,6 @@ declare namespace LocalJSX {
         "showTitle"?: boolean;
         "teleport"?: any;
         "title"?: string;
-        "type"?: string;
-    }
-    interface GlueCascaderDay {
-        "color"?: string;
-        "first"?: string;
-        "index"?: number;
-        "item"?: any;
-        "offset"?: number;
-        "rowHeight"?: string;
-    }
-    interface GlueCascaderHeader {
-        "first"?: string;
-        "firstDayOfWeek"?: number;
-        "showSubtitle"?: boolean;
-        "showTitle"?: boolean;
-        "subtitle"?: string;
-        "title"?: string;
-    }
-    interface GlueCascaderMonth {
-        "allowSameDay"?: boolean;
-        "color"?: string;
-        "currentDate"?: any;
-        "date"?: any;
-        "first"?: string;
-        "firstDayOfWeek"?: number;
-        "formatter"?: any;
-        "lazyRender"?: boolean;
-        "maxDate"?: any;
-        "minDate"?: any;
-        "rowHeight"?: string;
-        "showMark"?: boolean;
-        "showMonthTitle"?: boolean;
-        "showSubtitle"?: boolean;
         "type"?: string;
     }
     interface GlueCell {
@@ -2807,9 +2720,6 @@ declare namespace LocalJSX {
         "glue-calendar-month": GlueCalendarMonth;
         "glue-card": GlueCard;
         "glue-cascader": GlueCascader;
-        "glue-cascader-day": GlueCascaderDay;
-        "glue-cascader-header": GlueCascaderHeader;
-        "glue-cascader-month": GlueCascaderMonth;
         "glue-cell": GlueCell;
         "glue-cell-group": GlueCellGroup;
         "glue-checkbox": GlueCheckbox;
@@ -2910,9 +2820,6 @@ declare module "@stencil/core" {
             "glue-calendar-month": LocalJSX.GlueCalendarMonth & JSXBase.HTMLAttributes<HTMLGlueCalendarMonthElement>;
             "glue-card": LocalJSX.GlueCard & JSXBase.HTMLAttributes<HTMLGlueCardElement>;
             "glue-cascader": LocalJSX.GlueCascader & JSXBase.HTMLAttributes<HTMLGlueCascaderElement>;
-            "glue-cascader-day": LocalJSX.GlueCascaderDay & JSXBase.HTMLAttributes<HTMLGlueCascaderDayElement>;
-            "glue-cascader-header": LocalJSX.GlueCascaderHeader & JSXBase.HTMLAttributes<HTMLGlueCascaderHeaderElement>;
-            "glue-cascader-month": LocalJSX.GlueCascaderMonth & JSXBase.HTMLAttributes<HTMLGlueCascaderMonthElement>;
             "glue-cell": LocalJSX.GlueCell & JSXBase.HTMLAttributes<HTMLGlueCellElement>;
             "glue-cell-group": LocalJSX.GlueCellGroup & JSXBase.HTMLAttributes<HTMLGlueCellGroupElement>;
             "glue-checkbox": LocalJSX.GlueCheckbox & JSXBase.HTMLAttributes<HTMLGlueCheckboxElement>;

@@ -1,5 +1,4 @@
 @import '../../global/styles/var';
-@import '../style/var';
 
 .g lue-calendar {
   display: flex;
@@ -23,41 +22,15 @@
     }
   }
 
-  &__header {
-    flex-shrink: 0;
-    box-shadow: @calendar-header-box-shadow;
-  }
-
-  &__month-title,
-  &__header-title,
-  &__header-subtitle {
+  &__month-title {
     height: @calendar-header-title-height;
     font-weight: @font-weight-bold;
     line-height: @calendar-header-title-height;
     text-align: center;
   }
 
-  &__header-title {
-    font-size: @calendar-header-title-font-size;
-  }
-
-  &__header-subtitle {
-    font-size: @calendar-header-subtitle-font-size;
-  }
-
   &__month-title {
     font-size: @calendar-month-title-font-size;
-  }
-
-  &__weekdays {
-    display: flex;
-  }
-
-  &__weekday {
-    flex: 1;
-    font-size: @calendar-weekdays-font-size;
-    line-height: @calendar-weekdays-height;
-    text-align: center;
   }
 
   &__body {

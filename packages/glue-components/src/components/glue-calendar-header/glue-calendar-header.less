@@ -1,3 +1,30 @@
 @import '../../global/styles/var';
-glue-calendar-header {
+
+.glue-calendar-header {
+  flex-shrink: 0;
+  box-shadow: @calendar-header-box-shadow;
+  &-title {
+    font-size: @calendar-header-title-font-size;
+  }
+
+  &-subtitle {
+    font-size: @calendar-header-subtitle-font-size;
+  }
+  &-title,
+  &-subtitle {
+    height: @calendar-header-title-height;
+    font-weight: @font-weight-bold;
+    line-height: @calendar-header-title-height;
+    text-align: center;
+  }
+  &__weekdays {
+    display: flex;
+  }
+
+  &__weekday {
+    flex: 1;
+    font-size: @calendar-weekdays-font-size;
+    line-height: @calendar-weekdays-height;
+    text-align: center;
+  }
 }

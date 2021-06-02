@@ -54,6 +54,7 @@ export class GlueCalendarMonth {
   };
 
   getMultipleDayType = day => {
+    console.log(this.currentDate, 'this.currentDate');
     const isSelected = date => this.currentDate.some(item => compareDay(item, date) === 0);
 
     if (isSelected(day)) {
@@ -83,13 +84,13 @@ export class GlueCalendarMonth {
     if (!startDay) {
       return '';
     }
-
+    console.log(day, startDay, 'day, startDay');
     const compareToStart = compareDay(day, startDay);
 
     if (!endDay) {
       return compareToStart === 0 ? 'start' : '';
     }
-
+    console.log(day, endDay, 'day, startendDayDay');
     const compareToEnd = compareDay(day, endDay);
 
     if (this.allowSameDay && compareToStart === 0 && compareToEnd === 0) {
@@ -108,7 +109,7 @@ export class GlueCalendarMonth {
 
   getDayType = day => {
     const { type, minDate, maxDate, currentDate } = this;
-
+    console.log(day, minDate, maxDate, 'anifai');
     if (compareDay(day, minDate) < 0 || compareDay(day, maxDate) > 0) {
       return 'disabled';
     }
@@ -125,6 +126,8 @@ export class GlueCalendarMonth {
         return this.getRangeDayType(day);
       }
     } else if (type === 'single') {
+      //TODO:undefined
+      console.log(day, currentDate, 'day, currentDate');
       return compareDay(day, currentDate) === 0 ? 'selected' : '';
     }
   };

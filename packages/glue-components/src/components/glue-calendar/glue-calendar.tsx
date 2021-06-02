@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import { pick } from '../../utils/base';
 import { getScrollTop } from '../../utils/dom/scroll';
 import { raf } from '../../utils/animation';
+const now = new Date();
+console.log(now.getFullYear(), 'now.getFullYear()');
 import { copyDate, copyDates, getPrevDay, getNextDay, compareDay, calcDateNum, compareMonth, getDayByOffset } from './utils';
 @Component({
   tag: 'glue-calendar',
@@ -37,7 +39,7 @@ export class GlueCalendar {
   @Prop() closeOnClickOverlay: boolean = false;
   @Prop() safeAreaInsetBottom: boolean = false;
   @Prop() minDate = new Date();
-  @Prop() maxDate = new Date(new Date().getFullYear(), new Date().getMonth() + 6, new Date().getDate());
+  @Prop() maxDate = new Date(now.getFullYear(), now.getMonth() + 6, now.getDate());
   @Prop() firstDayOfWeek: any = 0;
   @State() subtitle;
   @State() currentDate: any;
@@ -46,6 +48,7 @@ export class GlueCalendar {
   monthRefs;
   setMonthRefs;
   limitDateRange = (date, minDate = this.minDate, maxDate = this.maxDate) => {
+    console.log(date, minDate, 'date, minDate');
     if (compareDay(date, minDate) === -1) {
       return minDate;
     }
@@ -97,7 +100,7 @@ export class GlueCalendar {
     const cursor = new Date(this.minDate);
 
     cursor.setDate(1);
-
+    console.log(cursor, this.maxDate, 'cursor, this.maxDate');
     do {
       months.push(new Date(cursor));
       cursor.setMonth(cursor.getMonth() + 1);
@@ -177,6 +180,7 @@ export class GlueCalendar {
   scrollToDate = targetDate => {
     raf(() => {
       this.months().some((month, index) => {
+        console.log(month, targetDate, 'month, targetDate');
         if (compareMonth(month, targetDate) === 0) {
           // monthRefs.value[index].scrollIntoView(bodyRef.value);
           return true;
@@ -282,6 +286,7 @@ export class GlueCalendar {
       const [startDay, endDay] = currentDate;
 
       if (startDay && !endDay) {
+        console.log(date, startDay, 'date, startDay');
         const compareToStart = compareDay(date, startDay);
 
         if (compareToStart === 1) {
@@ -302,6 +307,7 @@ export class GlueCalendar {
 
       let selectedIndex;
       const selected = this.currentDate.some((dateItem, index) => {
+        console.log(dateItem, date, 'date, startDay2');
         const equal = compareDay(dateItem, date) === 0;
         if (equal) {
           selectedIndex = index;
@@ -358,7 +364,7 @@ export class GlueCalendar {
 
   renderFooter = () => <div class="glue-calendar__footer">{this.renderFooterButton()}</div>;
   renderCalendar = () => (
-    <div class="glue-calendar__popup">
+    <div class="glue-calendar">
       <glue-calendar-header title={this.title} showTitle={this.showTitle} subtitle={this.subtitle} showSubtitle={this.showSubtitle} firstDayOfWeek={this.dayOffset()} />
       <div class="glue-calendar__body" onScroll={this.onScroll}>
         {this.months().map(this.renderMonth)}

@@ -16,19 +16,19 @@ export class GlueCalendarHeader {
     if (this.showTitle) {
       const text = this.title || 'title';
       const title = text;
-      return <div class="glue-calendar-header__header-title">{title}</div>;
+      return <div class="glue-calendar-header-title">{title}</div>;
     }
   };
 
   renderSubtitle = () => {
     if (this.showSubtitle) {
-      return <div class="glue-calendar-header__header-subtitle">{this.subtitle}</div>;
+      return <div class="glue-calendar-header-subtitle">{this.subtitle}</div>;
     }
   };
 
   renderWeekDays = () => {
     const { firstDayOfWeek } = this;
-    const weekdays = 'weekdays';
+    const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
     const renderWeekDays = [...weekdays.slice(firstDayOfWeek, 7), ...weekdays.slice(0, firstDayOfWeek)];
 
     return (
@@ -41,7 +41,7 @@ export class GlueCalendarHeader {
   };
   render() {
     return (
-      <Host class="glue-calendar-header__header">
+      <Host class="glue-calendar-header">
         {this.renderTitle()}
         {this.renderSubtitle()}
         {this.renderWeekDays()}
