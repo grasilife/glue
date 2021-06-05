@@ -14,6 +14,9 @@ export class GlueCalendarHeader {
   @Prop() firstDayOfWeek: number;
   renderTitle = () => {
     if (this.showTitle) {
+      if ((this.title = '#slot')) {
+        return <slot name="title"></slot>;
+      }
       const text = this.title || 'title';
       const title = text;
       return <div class="glue-calendar-header-title">{title}</div>;

@@ -145,6 +145,7 @@ export namespace Components {
         "defaultDate": any;
         "first": string;
         "firstDayOfWeek": any;
+        "footer": string;
         "formatter": any;
         "lazyRender": boolean;
         "maxDate": Date;
@@ -1795,13 +1796,18 @@ declare namespace LocalJSX {
         "defaultDate"?: any;
         "first"?: string;
         "firstDayOfWeek"?: any;
+        "footer"?: string;
         "formatter"?: any;
         "lazyRender"?: boolean;
         "maxDate"?: Date;
         "maxRange"?: any;
         "minDate"?: Date;
+        "onGlueClose"?: (event: CustomEvent<any>) => void;
+        "onGlueClosed"?: (event: CustomEvent<any>) => void;
         "onGlueConfirm"?: (event: CustomEvent<any>) => void;
         "onGlueMonthShow"?: (event: CustomEvent<any>) => void;
+        "onGlueOpen"?: (event: CustomEvent<any>) => void;
+        "onGlueOpened"?: (event: CustomEvent<any>) => void;
         "onGlueSelect"?: (event: CustomEvent<any>) => void;
         "onGlueUnselect"?: (event: CustomEvent<any>) => void;
         "poppable"?: boolean;

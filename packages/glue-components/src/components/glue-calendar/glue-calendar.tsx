@@ -42,6 +42,7 @@ export class GlueCalendar {
   @Prop() minDate = new Date();
   @Prop() maxDate = new Date(now.getFullYear(), now.getMonth() + 6, now.getDate());
   @Prop() firstDayOfWeek: any = 0;
+  @Prop() footer: string = '';
   @State() subtitle;
   @State() currentDate: any;
   @State() bodyHeight: any;
@@ -50,7 +51,26 @@ export class GlueCalendar {
   @Event() glueUnselect: EventEmitter;
   @Event() glueConfirm: EventEmitter;
   @Event() glueMonthShow: EventEmitter;
-
+  @Event() glueOpen: EventEmitter;
+  openHandle = () => {
+    this.show = true;
+    this.glueOpen.emit(true);
+  };
+  @Event() glueClose: EventEmitter;
+  closeHandle = () => {
+    this.show = false;
+    this.glueClose.emit(false);
+  };
+  @Event() glueOpened: EventEmitter;
+  openedHandle = () => {
+    this.show = true;
+    this.glueOpened.emit('opened');
+  };
+  @Event() glueClosed: EventEmitter;
+  closedHandle = () => {
+    this.show = false;
+    this.glueClosed.emit('closed');
+  };
   bodyRef;
   setMonthRefs = (dom, _index) => {
     this.monthRefs.push(dom);
@@ -95,8 +115,6 @@ export class GlueCalendar {
     }
     return this.limitDateRange(defaultDate);
   };
-
-  // const [monthRefs, setMonthRefs] = useRefs();
 
   dayOffset = () => {
     return this.firstDayOfWeek ? this.firstDayOfWeek % 7 : 0;
@@ -369,9 +387,9 @@ export class GlueCalendar {
   };
 
   renderFooterButton = () => {
-    // if (slots.footer) {
-    //   return slots.footer();
-    // }
+    if ((this.footer = '#slot')) {
+      return <slot name="footer"></slot>;
+    }
     console.log(this.showConfirm, 'this.showConfirm');
     if (this.showConfirm) {
       const text = this.buttonDisabled() ? this.confirmDisabledText : this.confirmText;
@@ -387,7 +405,13 @@ export class GlueCalendar {
   renderFooter = () => <div class="glue-calendar__footer">{this.renderFooterButton()}</div>;
   renderCalendar = () => (
     <div class="glue-calendar">
-      <glue-calendar-header title={this.title} showTitle={this.showTitle} subtitle={this.subtitle} showSubtitle={this.showSubtitle} firstDayOfWeek={this.dayOffset()} />
+      <glue-calendar-header
+        title={this.title}
+        showTitle={this.showTitle}
+        subtitle={this.subtitle}
+        showSubtitle={this.showSubtitle}
+        firstDayOfWeek={this.dayOffset()}
+      ></glue-calendar-header>
       <div
         class="glue-calendar__body"
         onScroll={this.onScroll}
@@ -413,6 +437,10 @@ export class GlueCalendar {
           teleport={this.teleport}
           closeOnPopstate={this.closeOnPopstate}
           closeOnClickOverlay={this.closeOnClickOverlay}
+          onGlueOpen={this.openHandle}
+          onGlueClose={this.closeHandle}
+          onGlueOpened={this.openedHandle}
+          onGlueClosed={this.closedHandle}
         >
           {this.renderCalendar()}
         </glue-popup>
