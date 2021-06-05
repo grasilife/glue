@@ -8,7 +8,7 @@ export const sharedProps = {
   columnsOrder: Array,
   formatter: {
     type: Function,
-    default: (type: string, value: unknown) => value,
+    default: (_type: string, value: unknown) => value,
   },
 };
 

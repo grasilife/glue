@@ -215,35 +215,7 @@ export namespace Components {
         "title": string;
     }
     interface GlueCascader {
-        "allowSameDay": boolean;
-        "closeOnClickOverlay": boolean;
-        "closeOnPopstate": boolean;
-        "color": string;
-        "confirmDisabledText": string;
-        "confirmText": string;
-        "defaultDate": any;
         "first": string;
-        "firstDayOfWeek": any;
-        "formatter": any;
-        "lazyRender": boolean;
-        "maxDate": Date;
-        "maxRange": any;
-        "minDate": Date;
-        "poppable": boolean;
-        "position": string;
-        "rangePrompt": string;
-        "readonly": boolean;
-        "round": boolean;
-        "rowHeight": number | string;
-        "safeAreaInsetBottom": boolean;
-        "show": boolean;
-        "showConfirm": boolean;
-        "showMark": boolean;
-        "showSubtitle": boolean;
-        "showTitle": boolean;
-        "teleport": any;
-        "title": string;
-        "type": string;
     }
     interface GlueCell {
         "arrowDirection": CellArrowDirection;
@@ -1876,35 +1848,7 @@ declare namespace LocalJSX {
         "title"?: string;
     }
     interface GlueCascader {
-        "allowSameDay"?: boolean;
-        "closeOnClickOverlay"?: boolean;
-        "closeOnPopstate"?: boolean;
-        "color"?: string;
-        "confirmDisabledText"?: string;
-        "confirmText"?: string;
-        "defaultDate"?: any;
         "first"?: string;
-        "firstDayOfWeek"?: any;
-        "formatter"?: any;
-        "lazyRender"?: boolean;
-        "maxDate"?: Date;
-        "maxRange"?: any;
-        "minDate"?: Date;
-        "poppable"?: boolean;
-        "position"?: string;
-        "rangePrompt"?: string;
-        "readonly"?: boolean;
-        "round"?: boolean;
-        "rowHeight"?: number | string;
-        "safeAreaInsetBottom"?: boolean;
-        "show"?: boolean;
-        "showConfirm"?: boolean;
-        "showMark"?: boolean;
-        "showSubtitle"?: boolean;
-        "showTitle"?: boolean;
-        "teleport"?: any;
-        "title"?: string;
-        "type"?: string;
     }
     interface GlueCell {
         "arrowDirection"?: CellArrowDirection;

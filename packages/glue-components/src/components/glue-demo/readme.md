@@ -9,19 +9,22 @@
 
 ### Depends on
 
-- [glue-uploader](../glue-uploader)
+- [glue-calendar](../glue-calendar)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-uploader
-  glue-uploader --> glue-uploader-preview-item
-  glue-uploader --> glue-icon
-  glue-uploader-preview-item --> glue-icon
-  glue-uploader-preview-item --> glue-loading
-  glue-uploader-preview-item --> glue-image
+  glue-demo --> glue-calendar
+  glue-calendar --> glue-calendar-month
+  glue-calendar --> glue-button
+  glue-calendar --> glue-calendar-header
+  glue-calendar --> glue-popup
+  glue-calendar-month --> glue-calendar-day
+  glue-button --> glue-loading
+  glue-button --> glue-icon
   glue-icon --> glue-badge
-  glue-image --> glue-icon
+  glue-popup --> glue-icon
+  glue-popup --> glue-overlay
   style glue-demo fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

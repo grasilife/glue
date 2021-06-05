@@ -47,10 +47,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [glue-demo](../glue-demo)
-
 ### Depends on
 
 - [glue-uploader-preview-item](../glue-uploader-preview-item)
@@ -66,7 +62,6 @@ graph TD;
   glue-uploader-preview-item --> glue-image
   glue-icon --> glue-badge
   glue-image --> glue-icon
-  glue-demo --> glue-uploader
   style glue-uploader fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -52,6 +52,7 @@
 
  - [glue-action-sheet](../glue-action-sheet)
  - [glue-address-edit](../glue-address-edit)
+ - [glue-calendar](../glue-calendar)
  - [glue-share-sheet](../glue-share-sheet)
 
 ### Depends on
@@ -67,6 +68,7 @@ graph TD;
   glue-icon --> glue-badge
   glue-action-sheet --> glue-popup
   glue-address-edit --> glue-popup
+  glue-calendar --> glue-popup
   glue-share-sheet --> glue-popup
   style glue-popup fill:#f9f,stroke:#333,stroke-width:4px
 ```

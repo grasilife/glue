@@ -44,6 +44,7 @@
  - [glue-action-bar-button](../glue-action-bar-button)
  - [glue-address-edit](../glue-address-edit)
  - [glue-address-list](../glue-address-list)
+ - [glue-calendar](../glue-calendar)
  - [glue-contact-edit](../glue-contact-edit)
  - [glue-contact-list](../glue-contact-list)
  - [glue-coupon-list](../glue-coupon-list)
@@ -62,6 +63,7 @@ graph TD;
   glue-action-bar-button --> glue-button
   glue-address-edit --> glue-button
   glue-address-list --> glue-button
+  glue-calendar --> glue-button
   glue-contact-edit --> glue-button
   glue-contact-list --> glue-button
   glue-coupon-list --> glue-button
