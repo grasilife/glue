@@ -235,7 +235,7 @@ export class GlueDemo {
           onGlueOversize={this.onOversize}
           disabled
         ></glue-uploader> */}
-        <glue-calendar show={true} show-title show-subtitle show-confirm show-mark title="选择单个日期" />
+        <glue-calendar show={true} show-title show-subtitle show-confirm={true} show-mark title="选择单个日期" type="range" color="#1989fa" max-range="3" first-day-of-week="1" />
       </div>
     );
   }

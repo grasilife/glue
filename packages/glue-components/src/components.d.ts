@@ -1800,6 +1800,8 @@ declare namespace LocalJSX {
         "maxDate"?: Date;
         "maxRange"?: any;
         "minDate"?: Date;
+        "onGlueConfirm"?: (event: CustomEvent<any>) => void;
+        "onGlueMonthShow"?: (event: CustomEvent<any>) => void;
         "onGlueSelect"?: (event: CustomEvent<any>) => void;
         "onGlueUnselect"?: (event: CustomEvent<any>) => void;
         "poppable"?: boolean;

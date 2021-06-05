@@ -14,7 +14,7 @@ import { copyDate, copyDates, getPrevDay, getNextDay, compareDay, calcDateNum, c
 })
 export class GlueCalendar {
   @Prop() first: string;
-  @Prop() show: boolean;
+  @Prop({ mutable: true }) show: boolean;
   @Prop() title: string;
   @Prop() color: string;
   @Prop() readonly: boolean;
@@ -48,15 +48,14 @@ export class GlueCalendar {
   @State() monthRefs: any = [];
   @Event() glueSelect: EventEmitter;
   @Event() glueUnselect: EventEmitter;
+  @Event() glueConfirm: EventEmitter;
+  @Event() glueMonthShow: EventEmitter;
+
   bodyRef;
-  // setMonthRefs;
-  setMonthRefs = (dom, index) => {
-    // console.log(dom, index, 'dom, index');
+  setMonthRefs = (dom, _index) => {
     this.monthRefs.push(dom);
-    // console.log(this.monthRefs, 'this.monthRefs');
   };
   limitDateRange = (date, minDate = this.minDate, maxDate = this.maxDate) => {
-    // console.log(date, minDate, 'date, minDate');
     if (compareDay(date, minDate) === -1) {
       return minDate;
     }
@@ -131,20 +130,17 @@ export class GlueCalendar {
     return !currentDate;
   };
 
-  // calculate the position of the elements
-  // and find the elements that needs to be rendered
   onScroll = () => {
     let vm = this;
     const top = getScrollTop(this.bodyRef);
     const bottom = top + this.bodyHeight;
     console.log(top, bottom, this.bodyHeight, this.months(), 'bottom2');
-    const heights = this.months().map((item, index) => {
-      // console.log(this.monthRefs, index, this.monthRefs[index].offsetHeight, 'agiajijfaij');
+    const heights = this.months().map((_item, index) => {
       return this.monthRefs[index].offsetHeight;
     });
     const heightSum = heights.reduce((a, b) => a + b, 0);
     console.log(heights, heightSum, 'heightSumheightSumheightSum');
-    // iOS scroll bounce may exceed the range
+    // iOS滚动反弹可能超出范围
     if (bottom > heightSum && top > 0) {
       return;
     }
@@ -167,23 +163,21 @@ export class GlueCalendar {
 
         if (!this.monthRefs[i].showed) {
           this.monthRefs[i].showed = true;
-          // emit('month-show', {
-          //   date: month.date,
-          //   title: month.title,
-          // });
+          this.glueMonthShow.emit({
+            date: month.date,
+            title: month.title,
+          });
         }
       }
 
       height += heights[i];
     }
 
-    this.months().forEach((month, index) => {
+    this.months().forEach((_month, index) => {
       const visible = index >= visibleRange[0] - 1 && index <= visibleRange[1] + 1;
       this.monthRefs[index].setAttribute('visible', visible);
     });
 
-    /* istanbul ignore else */
-    //TODO,不知道要干嘛
     if (currentMonth) {
       currentMonth.getTitle().then(item => {
         vm.subtitle = item;
@@ -196,7 +190,7 @@ export class GlueCalendar {
       this.months().some((month, index) => {
         console.log(month, targetDate, 'month, targetDate');
         if (compareMonth(month, targetDate) === 0) {
-          // monthRefs.value[index].scrollIntoView(this.bodyRef);
+          this.monthRefs[index].scrollIntoView(this.bodyRef);
           return true;
         }
 
@@ -218,7 +212,7 @@ export class GlueCalendar {
       const targetDate = this.type === 'single' ? currentDate : currentDate[0];
       this.scrollToDate(targetDate);
     } else {
-      // raf(onScroll);
+      raf(this.onScroll);
     }
   };
 
@@ -245,6 +239,10 @@ export class GlueCalendar {
     const { maxRange, rangePrompt } = this;
 
     if (maxRange && calcDateNum(date) > maxRange) {
+      //使用下面提示语
+      //TODO:编写提示信息
+      console.log(`日期区间最多可选${maxRange}天`);
+      console.log(`选择天数不能超过${rangePrompt}天`);
       // Toast(rangePrompt || t('rangePrompt', maxRange));
       return false;
     }
@@ -253,13 +251,15 @@ export class GlueCalendar {
   };
 
   onConfirm = () => {
-    // emit('confirm', copyDates(this.currentDate));
+    console.log(copyDates(this.currentDate), 'copyDates(this.currentDate)');
+    this.glueConfirm.emit(copyDates(this.currentDate));
   };
 
   select = (date, complete) => {
     const setCurrentDate = date => {
       console.log(date, 'datedatedate');
       this.currentDate = date;
+      console.log(copyDates(this.currentDate), 'copyDates(this.currentDate)');
       this.glueSelect.emit(copyDates(this.currentDate));
     };
 
@@ -325,7 +325,6 @@ export class GlueCalendar {
 
       let selectedIndex;
       const selected = this.currentDate.some((dateItem, index) => {
-        // console.log(dateItem, date, 'date, startDay2');
         const equal = compareDay(dateItem, date) === 0;
         if (equal) {
           selectedIndex = index;
@@ -337,6 +336,8 @@ export class GlueCalendar {
         const [unselectedDate] = this.currentDate.splice(selectedIndex, 1);
         this.glueUnselect.emit(copyDate(unselectedDate));
       } else if (this.maxRange && currentDate.length >= this.maxRange) {
+        //TODO:编写提示信息
+        console.log(`日期区间最多可选${this.maxRange}天`);
         // Toast(this.rangePrompt || t('rangePrompt', this.maxRange));
       } else {
         this.select([...currentDate, date], null);
@@ -347,7 +348,7 @@ export class GlueCalendar {
   };
 
   togglePopup = val => {
-    // emit('update:show', val);
+    this.show = val;
   };
 
   renderMonth = (date, index) => {
@@ -371,7 +372,7 @@ export class GlueCalendar {
     // if (slots.footer) {
     //   return slots.footer();
     // }
-
+    console.log(this.showConfirm, 'this.showConfirm');
     if (this.showConfirm) {
       const text = this.buttonDisabled() ? this.confirmDisabledText : this.confirmText;
 

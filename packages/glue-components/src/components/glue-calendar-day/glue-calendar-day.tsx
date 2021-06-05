@@ -91,7 +91,13 @@ export class GlueCalendarDay {
   render() {
     const { type, className } = this.item;
     return (
-      <Host role="gridcell" style={this.style()} class={classNames(bem([type]), 'glue-calendar-day')} tabindex={type === 'disabled' ? null : -1} onClick={this.clickHandle}>
+      <Host
+        role="gridcell"
+        style={this.style()}
+        class={classNames(bem([type, className]), 'glue-calendar-day')}
+        tabindex={type === 'disabled' ? null : -1}
+        onClick={this.clickHandle}
+      >
         {this.renderContent()}
       </Host>
     );

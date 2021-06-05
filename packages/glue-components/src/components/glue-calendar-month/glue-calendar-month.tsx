@@ -142,8 +142,11 @@ export class GlueCalendarMonth {
 
   getBottomInfo = dayType => {
     if (this.type === 'range') {
-      if (dayType === 'start' || dayType === 'end') {
-        return dayType;
+      if (dayType === 'end') {
+        return '结束';
+      }
+      if (dayType === 'start') {
+        return '开始';
       }
       if (dayType === 'start-end') {
         return 'startEnd';
@@ -177,7 +180,7 @@ export class GlueCalendarMonth {
     const days = [];
     const year = this.date.getFullYear();
     const month = this.date.getMonth();
-
+    console.log(this.totalDay(), 'this.totalDay()');
     for (let day = 1; day <= this.totalDay(); day++) {
       const date = new Date(year, month, day);
       const type = this.getDayType(date);
