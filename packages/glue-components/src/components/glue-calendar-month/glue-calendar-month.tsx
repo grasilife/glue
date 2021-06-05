@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, State } from '@stencil/core';
+import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
 // import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
 import { setScrollTop } from '../../utils/dom/scroll';
@@ -26,6 +26,11 @@ export class GlueCalendarMonth {
   @Prop() showMonthTitle: boolean;
   @Prop() firstDayOfWeek: number;
   @State() visible: boolean;
+  @Event() glueMonthClick: EventEmitter;
+  clickHandle = item => {
+    console.log(item, 'itemitemitemitemitem11');
+    this.glueMonthClick.emit(item);
+  };
   monthRef;
   daysRef;
   title = () => formatMonthTitle(this.date);
@@ -109,7 +114,7 @@ export class GlueCalendarMonth {
 
   getDayType = day => {
     const { type, minDate, maxDate, currentDate } = this;
-    console.log(day, minDate, maxDate, 'anifai');
+    // console.log(day, minDate, maxDate, 'anifai');
     if (compareDay(day, minDate) < 0 || compareDay(day, maxDate) > 0) {
       return 'disabled';
     }
@@ -127,7 +132,7 @@ export class GlueCalendarMonth {
       }
     } else if (type === 'single') {
       //TODO:undefined
-      console.log(day, currentDate, 'day, currentDate');
+      // console.log(day, currentDate, 'day, currentDate');
       return compareDay(day, currentDate) === 0 ? 'selected' : '';
     }
   };
@@ -150,6 +155,7 @@ export class GlueCalendarMonth {
   };
 
   renderMark = () => {
+    console.log(this.showMark, this.date, 'this.showMark');
     if (this.showMark && this.shouldRender()) {
       return <div class="glue-calendar-month__month-mark">{this.date.getMonth() + 1}</div>;
     }
@@ -189,20 +195,22 @@ export class GlueCalendarMonth {
 
     return days;
   };
-
-  renderDay = (item, index) => (
-    <glue-calendar-day
-      item={item}
-      index={index}
-      color={this.color}
-      offset={this.offset()}
-      rowHeight={this.rowHeightCom()}
-      onClick={item => {
-        console.log(item);
-        // emit('click', item);
-      }}
-    />
-  );
+  renderDay = (item, index) => {
+    // console.log(item, 'itemitemitem');
+    return (
+      <glue-calendar-day
+        item={item}
+        index={index}
+        color={this.color}
+        offset={this.offset()}
+        rowHeight={this.rowHeightCom()}
+        onGlueDayClick={() => {
+          console.log(item, 'wef');
+          this.clickHandle(item);
+        }}
+      />
+    );
+  };
 
   renderDays = () => {
     return (
@@ -214,7 +222,7 @@ export class GlueCalendarMonth {
   };
   render() {
     return (
-      <Host class="glue-calendar-month__month">
+      <Host class="glue-calendar-month">
         {this.renderTitle()}
         {this.renderDays()}
       </Host>

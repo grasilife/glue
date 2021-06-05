@@ -1,3 +1,20 @@
 @import '../../global/styles/var';
-glue-calendar-month {
+.glue-calendar-month {
+  display: block;
+  &__days {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    user-select: none;
+  }
+  &__month-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    color: @calendar-month-mark-color;
+    font-size: @calendar-month-mark-font-size;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
 }

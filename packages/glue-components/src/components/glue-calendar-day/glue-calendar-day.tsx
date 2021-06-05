@@ -1,5 +1,7 @@
-import { Component, Prop, h, Host } from '@stencil/core';
-// import classNames from 'classnames';
+import { Component, Prop, h, Host, EventEmitter, Event } from '@stencil/core';
+import classNames from 'classnames';
+import { createNamespace } from '../../utils/create/index';
+const [bem] = createNamespace('glue-calendar-day');
 @Component({
   tag: 'glue-calendar-day',
   styleUrl: 'glue-calendar-day.less',
@@ -12,6 +14,13 @@ export class GlueCalendarDay {
   @Prop() index: number;
   @Prop() offset: number;
   @Prop() rowHeight: string;
+  @Event() glueDayClick: EventEmitter;
+  clickHandle = event => {
+    console.log(this.item.type, 'this.item.type');
+    if (this.item.type !== 'disabled') {
+      this.glueDayClick.emit(event);
+    }
+  };
   style = () => {
     const { item, index, color, offset, rowHeight } = this;
     const style = {
@@ -49,12 +58,6 @@ export class GlueCalendarDay {
     return style;
   };
 
-  onClick = () => {
-    if (this.item.type !== 'disabled') {
-      // emit('click', this.item);
-    }
-  };
-
   renderContent = () => {
     const { item, color, rowHeight } = this;
     const { type, text, topInfo, bottomInfo } = item;
@@ -64,7 +67,7 @@ export class GlueCalendarDay {
     const BottomInfo = bottomInfo && <div class="glue-calendar-day__bottom-info">{bottomInfo}</div>;
 
     const Nodes = [TopInfo, text, BottomInfo];
-
+    // console.log(type, 'type');
     if (type === 'selected') {
       return (
         <div
@@ -82,10 +85,13 @@ export class GlueCalendarDay {
 
     return Nodes;
   };
+  componentDidLoad() {
+    console.log(this.item, 'dayhsihsuh');
+  }
   render() {
     const { type, className } = this.item;
     return (
-      <Host role="gridcell" style={this.style()} class="glue-calendar-day__day" tabindex={type === 'disabled' ? null : -1} onClick={this.onClick}>
+      <Host role="gridcell" style={this.style()} class={classNames(bem([type]), 'glue-calendar-day')} tabindex={type === 'disabled' ? null : -1} onClick={this.clickHandle}>
         {this.renderContent()}
       </Host>
     );

@@ -1,8 +1,9 @@
-import { Component, Prop, h, Host, State } from '@stencil/core';
+import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import { pick } from '../../utils/base';
 import { getScrollTop } from '../../utils/dom/scroll';
 import { raf } from '../../utils/animation';
+import { useRect } from '../../utils/useRect';
 const now = new Date();
 console.log(now.getFullYear(), 'now.getFullYear()');
 import { copyDate, copyDates, getPrevDay, getNextDay, compareDay, calcDateNum, compareMonth, getDayByOffset } from './utils';
@@ -20,7 +21,7 @@ export class GlueCalendar {
   @Prop() teleport: any;
   @Prop() formatter: any;
   @Prop() rowHeight: number | string;
-  @Prop() confirmText: string;
+  @Prop() confirmText: string = '确定';
   @Prop() rangePrompt: string;
   @Prop() defaultDate: any;
   @Prop() allowSameDay: boolean;
@@ -43,12 +44,19 @@ export class GlueCalendar {
   @Prop() firstDayOfWeek: any = 0;
   @State() subtitle;
   @State() currentDate: any;
+  @State() bodyHeight: any;
+  @State() monthRefs: any = [];
+  @Event() glueSelect: EventEmitter;
+  @Event() glueUnselect: EventEmitter;
   bodyRef;
-  bodyHeight;
-  monthRefs;
-  setMonthRefs;
+  // setMonthRefs;
+  setMonthRefs = (dom, index) => {
+    // console.log(dom, index, 'dom, index');
+    this.monthRefs.push(dom);
+    // console.log(this.monthRefs, 'this.monthRefs');
+  };
   limitDateRange = (date, minDate = this.minDate, maxDate = this.maxDate) => {
-    console.log(date, minDate, 'date, minDate');
+    // console.log(date, minDate, 'date, minDate');
     if (compareDay(date, minDate) === -1) {
       return minDate;
     }
@@ -100,7 +108,7 @@ export class GlueCalendar {
     const cursor = new Date(this.minDate);
 
     cursor.setDate(1);
-    console.log(cursor, this.maxDate, 'cursor, this.maxDate');
+    // console.log(cursor, this.maxDate, 'cursor, this.maxDate');
     do {
       months.push(new Date(cursor));
       cursor.setMonth(cursor.getMonth() + 1);
@@ -111,7 +119,6 @@ export class GlueCalendar {
 
   buttonDisabled = () => {
     const { currentDate } = this;
-
     if (currentDate) {
       if (this.type === 'range') {
         return !currentDate[0] || !currentDate[1];
@@ -129,10 +136,13 @@ export class GlueCalendar {
   onScroll = () => {
     const top = getScrollTop(this.bodyRef);
     const bottom = top + this.bodyHeight;
-
-    const heights = this.months().map((item, index) => this.monthRefs[index].getHeight());
+    console.log(top, bottom, this.bodyHeight, this.months(), 'bottom2');
+    const heights = this.months().map((item, index) => {
+      // console.log(this.monthRefs, index, this.monthRefs[index].offsetHeight, 'agiajijfaij');
+      return this.monthRefs[index].offsetHeight;
+    });
     const heightSum = heights.reduce((a, b) => a + b, 0);
-
+    console.log(heights, heightSum, 'heightSumheightSumheightSum');
     // iOS scroll bounce may exceed the range
     if (bottom > heightSum && top > 0) {
       return;
@@ -168,12 +178,14 @@ export class GlueCalendar {
 
     this.months().forEach((month, index) => {
       const visible = index >= visibleRange[0] - 1 && index <= visibleRange[1] + 1;
-      this.monthRefs[index].setVisible(visible);
+      this.monthRefs[index].setAttribute('visible', visible);
     });
 
     /* istanbul ignore else */
+    //TODO,不知道要干嘛
     if (currentMonth) {
-      this.subtitle = currentMonth.getTitle();
+      // console.log(currentMonth, 'currentMonth');
+      // this.subtitle = currentMonth.getTitle();
     }
   };
 
@@ -182,7 +194,7 @@ export class GlueCalendar {
       this.months().some((month, index) => {
         console.log(month, targetDate, 'month, targetDate');
         if (compareMonth(month, targetDate) === 0) {
-          // monthRefs.value[index].scrollIntoView(bodyRef.value);
+          // monthRefs.value[index].scrollIntoView(this.bodyRef);
           return true;
         }
 
@@ -216,7 +228,8 @@ export class GlueCalendar {
     raf(() => {
       // add Math.floor to avoid decimal height issues
       // https://github.com/youzan/vant/issues/5640
-      // bodyHeight = Math.floor(useRect(bodyRef).height);
+      this.bodyHeight = Math.floor(useRect(this.bodyRef).height);
+      console.log(this.bodyRef, this.bodyHeight, useRect(this.bodyRef), 'agunajnai');
       this.scrollIntoView();
     });
   };
@@ -243,8 +256,9 @@ export class GlueCalendar {
 
   select = (date, complete) => {
     const setCurrentDate = date => {
+      console.log(date, 'datedatedate');
       this.currentDate = date;
-      // emit('select', copyDates(this.currentDate));
+      this.glueSelect.emit(copyDates(this.currentDate));
     };
 
     if (complete && this.type === 'range') {
@@ -268,7 +282,9 @@ export class GlueCalendar {
     }
   };
 
-  onClickDay = item => {
+  onClickDay = event => {
+    console.log(event, 'eventfaea');
+    let item = event.detail;
     if (this.readonly) {
       return;
     }
@@ -279,35 +295,35 @@ export class GlueCalendar {
 
     if (type === 'range') {
       if (!currentDate) {
-        // select([date, null]);
+        this.select([date, null], null);
         return;
       }
 
       const [startDay, endDay] = currentDate;
 
       if (startDay && !endDay) {
-        console.log(date, startDay, 'date, startDay');
+        // console.log(date, startDay, 'date, startDay');
         const compareToStart = compareDay(date, startDay);
 
         if (compareToStart === 1) {
-          // select([startDay, date], true);
+          this.select([startDay, date], true);
         } else if (compareToStart === -1) {
-          // select([date, null]);
+          this.select([date, null], null);
         } else if (this.allowSameDay) {
-          // select([date, date], true);
+          this.select([date, date], true);
         }
       } else {
-        // select([date, null]);
+        this.select([date, null], null);
       }
     } else if (type === 'multiple') {
       if (!currentDate) {
-        // select([date]);
+        this.select([date], null);
         return;
       }
 
       let selectedIndex;
       const selected = this.currentDate.some((dateItem, index) => {
-        console.log(dateItem, date, 'date, startDay2');
+        // console.log(dateItem, date, 'date, startDay2');
         const equal = compareDay(dateItem, date) === 0;
         if (equal) {
           selectedIndex = index;
@@ -317,11 +333,11 @@ export class GlueCalendar {
 
       if (selected) {
         const [unselectedDate] = this.currentDate.splice(selectedIndex, 1);
-        // emit('unselect', copyDate(unselectedDate));
+        this.glueUnselect.emit(copyDate(unselectedDate));
       } else if (this.maxRange && currentDate.length >= this.maxRange) {
         // Toast(this.rangePrompt || t('rangePrompt', this.maxRange));
       } else {
-        // this.select([...currentDate, date]);
+        this.select([...currentDate, date], null);
       }
     } else {
       this.select(date, true);
@@ -336,12 +352,15 @@ export class GlueCalendar {
     const showMonthTitle = index !== 0 || !this.showSubtitle;
     return (
       <glue-calendar-month
+        ref={dom => {
+          this.setMonthRefs(dom, index);
+        }}
         date={date}
         currentDate={this.currentDate}
         showMonthTitle={showMonthTitle}
         firstDayOfWeek={this.dayOffset()}
         {...pick(this, ['type', 'color', 'minDate', 'maxDate', 'showMark', 'formatter', 'rowHeight', 'lazyRender', 'showSubtitle', 'allowSameDay'])}
-        onClick={this.onClickDay}
+        onGlueMonthClick={this.onClickDay}
       />
     );
   };
@@ -366,7 +385,14 @@ export class GlueCalendar {
   renderCalendar = () => (
     <div class="glue-calendar">
       <glue-calendar-header title={this.title} showTitle={this.showTitle} subtitle={this.subtitle} showSubtitle={this.showSubtitle} firstDayOfWeek={this.dayOffset()} />
-      <div class="glue-calendar__body" onScroll={this.onScroll}>
+      <div
+        class="glue-calendar__body"
+        onScroll={this.onScroll}
+        ref={dom => {
+          this.bodyRef = dom;
+        }}
+      >
+        {console.log(this.months(), 'this.months()')}
         {this.months().map(this.renderMonth)}
       </div>
       {this.renderFooter()}
@@ -392,6 +418,13 @@ export class GlueCalendar {
 
     return this.renderCalendar();
   };
+  componentWillLoad() {
+    this.currentDate = this.getInitialDate();
+    console.log(this.currentDate, 'this.currentDate');
+  }
+  componentDidLoad() {
+    this.init();
+  }
   render() {
     return <Host class={classNames('cunstom')}>{this.renderContent()}</Host>;
   }

@@ -39,7 +39,7 @@ export type Mods = Mod | Mod[];
 // }
 export function createBEM(name: string) {
   return function(el) {
-    console.log(el, typeof el, 'typeof el');
+    // console.log(el, typeof el, 'typeof el');
     if (typeof el == 'string') {
       return `${name}__${el}`;
     } else {

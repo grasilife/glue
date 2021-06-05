@@ -1,6 +1,6 @@
 @import '../../global/styles/var';
 
-.g lue-calendar {
+.glue-calendar {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -39,13 +39,6 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  &__days {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    user-select: none;
-  }
-
   &__month-mark {
     position: absolute;
     top: 50%;
@@ -55,64 +48,6 @@
     font-size: @calendar-month-mark-font-size;
     transform: translate(-50%, -50%);
     pointer-events: none;
-  }
-
-  &__day,
-  &__selected-day {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  &__day {
-    position: relative;
-    width: 14.285%;
-    height: @calendar-day-height;
-    font-size: @calendar-day-font-size;
-    cursor: pointer;
-
-    &--end,
-    &--start,
-    &--start-end,
-    &--multiple-middle,
-    &--multiple-selected {
-      color: @calendar-range-edge-color;
-      background-color: @calendar-range-edge-background-color;
-    }
-
-    &--start {
-      border-radius: @border-radius-md 0 0 @border-radius-md;
-    }
-
-    &--end {
-      border-radius: 0 @border-radius-md @border-radius-md 0;
-    }
-
-    &--start-end,
-    &--multiple-selected {
-      border-radius: @border-radius-md;
-    }
-
-    &--middle {
-      color: @calendar-range-middle-color;
-
-      &::after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-color: currentColor;
-        opacity: @calendar-range-middle-background-opacity;
-        content: '';
-      }
-    }
-
-    &--disabled {
-      color: @calendar-day-disabled-color;
-      cursor: default;
-    }
   }
 
   &__top-info,
@@ -134,14 +69,6 @@
 
   &__bottom-info {
     bottom: 6px;
-  }
-
-  &__selected-day {
-    width: @calendar-selected-day-size;
-    height: @calendar-selected-day-size;
-    color: @calendar-selected-day-color;
-    background-color: @calendar-selected-day-background-color;
-    border-radius: @border-radius-md;
   }
 
   &__footer {

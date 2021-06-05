@@ -1799,6 +1799,8 @@ declare namespace LocalJSX {
         "maxDate"?: Date;
         "maxRange"?: any;
         "minDate"?: Date;
+        "onGlueSelect"?: (event: CustomEvent<any>) => void;
+        "onGlueUnselect"?: (event: CustomEvent<any>) => void;
         "poppable"?: boolean;
         "position"?: string;
         "rangePrompt"?: string;
@@ -1821,6 +1823,7 @@ declare namespace LocalJSX {
         "index"?: number;
         "item"?: any;
         "offset"?: number;
+        "onGlueDayClick"?: (event: CustomEvent<any>) => void;
         "rowHeight"?: string;
     }
     interface GlueCalendarHeader {
@@ -1842,6 +1845,7 @@ declare namespace LocalJSX {
         "lazyRender"?: boolean;
         "maxDate"?: any;
         "minDate"?: any;
+        "onGlueMonthClick"?: (event: CustomEvent<any>) => void;
         "rowHeight"?: string;
         "showMark"?: boolean;
         "showMonthTitle"?: boolean;
