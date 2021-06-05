@@ -153,7 +153,7 @@ export class GlueCalendarMonth {
 
   renderTitle = () => {
     if (this.showMonthTitle) {
-      return <div class="glue-calendar-month__month-title">{this.title()}</div>;
+      return <div class="glue-calendar-month__title">{this.title()}</div>;
     }
   };
 
