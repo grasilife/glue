@@ -5,7 +5,7 @@
 // export { createComponent, bem, t };
 
 export function formatMonthTitle(date: Date) {
-  // return t('monthTitle', date.getFullYear(), date.getMonth() + 1);
+  return date.getFullYear() + '年' + (date.getMonth() + 1) + '月';
 }
 
 export function compareMonth(date1: Date, date2: Date) {

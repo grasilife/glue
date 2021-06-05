@@ -134,6 +134,7 @@ export class GlueCalendar {
   // calculate the position of the elements
   // and find the elements that needs to be rendered
   onScroll = () => {
+    let vm = this;
     const top = getScrollTop(this.bodyRef);
     const bottom = top + this.bodyHeight;
     console.log(top, bottom, this.bodyHeight, this.months(), 'bottom2');
@@ -184,8 +185,9 @@ export class GlueCalendar {
     /* istanbul ignore else */
     //TODO,不知道要干嘛
     if (currentMonth) {
-      // console.log(currentMonth, 'currentMonth');
-      // this.subtitle = currentMonth.getTitle();
+      currentMonth.getTitle().then(item => {
+        vm.subtitle = item;
+      });
     }
   };
 

@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, Host, State, Event, EventEmitter, Method } from '@stencil/core';
 // import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
 import { setScrollTop } from '../../utils/dom/scroll';
@@ -31,6 +31,11 @@ export class GlueCalendarMonth {
     console.log(item, 'itemitemitemitemitem11');
     this.glueMonthClick.emit(item);
   };
+  @Method()
+  async getTitle() {
+    console.log(this.title(), 'this.title()');
+    return this.title();
+  }
   monthRef;
   daysRef;
   title = () => formatMonthTitle(this.date);
@@ -47,8 +52,6 @@ export class GlueCalendarMonth {
   totalDay = () => getMonthEndDay(this.date.getFullYear(), this.date.getMonth() + 1);
 
   shouldRender = () => this.visible || !this.lazyRender;
-
-  getTitle = () => this.title();
 
   scrollIntoView = body => {
     const el = this.showSubtitle ? this.daysRef : this.monthRef;

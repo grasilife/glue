@@ -190,6 +190,7 @@ export namespace Components {
         "first": string;
         "firstDayOfWeek": number;
         "formatter": any;
+        "getTitle": () => Promise<string>;
         "lazyRender": boolean;
         "maxDate": any;
         "minDate": any;

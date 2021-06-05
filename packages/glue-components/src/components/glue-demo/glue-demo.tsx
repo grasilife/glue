@@ -235,7 +235,7 @@ export class GlueDemo {
           onGlueOversize={this.onOversize}
           disabled
         ></glue-uploader> */}
-        <glue-calendar show={true} show-title show-subtitle show-confirm show-mark />
+        <glue-calendar show={true} show-title show-subtitle show-confirm show-mark title="选择单个日期" />
       </div>
     );
   }
