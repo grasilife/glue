@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Element } from '@stencil/core';
+import { Component, Prop, h, State, Element, Host } from '@stencil/core';
 // import classNames from 'classnames';
 import { getElementParent, getAttribute } from '../../utils/base';
 @Component({
@@ -51,8 +51,8 @@ export class GlueSwipeItem {
     this.parentVertical = getAttribute(parentEl, 'vertical');
     this.parentSize = getAttribute(parentEl, 'size');
     this.parentLoop = getAttribute(parentEl, 'loop');
-    this.parentLazyRender = getAttribute(parentEl, 'lazyRender');
-    this.parentActiveIndicator = getAttribute(parentEl, 'activeIndicator');
+    this.parentLazyRender = getAttribute(parentEl, 'lazy-render');
+    this.parentActiveIndicator = getAttribute(parentEl, 'active-indicator');
     this.parentCount = getAttribute(parentEl, 'count');
     this.shouldRender();
   }
@@ -71,9 +71,9 @@ export class GlueSwipeItem {
       style.transform = `translate${this.parentVertical ? 'Y' : 'X'}(${this.offset}px)`;
     }
     return (
-      <div class="glue-swipe-item" style={style}>
+      <Host class="glue-swipe-item" style={style}>
         {this.contentRender()}
-      </div>
+      </Host>
     );
   }
 }
