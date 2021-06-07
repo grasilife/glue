@@ -16,6 +16,7 @@ export class GlueTabsContent {
   @Prop() currentIndex = false;
   swipeRef;
   onChange = (index: number) => {
+    console.log(index, 'index');
     // emit('change', index);
   };
 
