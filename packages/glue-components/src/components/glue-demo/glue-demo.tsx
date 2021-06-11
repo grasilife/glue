@@ -27,6 +27,19 @@ export class GlueDemo {
     '0%': '#3fecff',
     '100%': '#6149f6',
   };
+  @State() columns = ['杭州', '宁波', '温州', '绍兴', '湖州', '嘉兴', '金华'];
+  @State() columns2 = [
+    // 第一列
+    {
+      values: ['周一', '周二', '周三', '周四', '周五'],
+      defaultIndex: 2,
+    },
+    // 第二列
+    {
+      values: ['上午', '下午', '晚上'],
+      defaultIndex: 1,
+    },
+  ];
   @State() fileList = [
     {
       url: 'https://img01.yzcdn.cn/vant/leaf.jpg',
@@ -52,10 +65,10 @@ export class GlueDemo {
   closedHandle = () => {
     this.show = false;
   };
-  onGlueChange = e => {
-    console.log(e, 'hauhaihiuahihu');
-    this.currentTime = { ...e.detail.currentTime };
-  };
+  // onGlueChange = e => {
+  //   console.log(e, 'hauhaihiuahihu');
+  //   this.currentTime = { ...e.detail.currentTime };
+  // };
   start = () => {
     this.timeRef.start();
   };
@@ -100,6 +113,15 @@ export class GlueDemo {
       return false;
     }
     return true;
+  };
+  onGlueConfirm = event => {
+    console.log(event, 'event1');
+  };
+  onGlueCancel = event => {
+    console.log(event, 'event2');
+  };
+  onGlueChange = event => {
+    console.log(event, 'event3');
   };
   render() {
     return (
@@ -235,7 +257,8 @@ export class GlueDemo {
           onGlueOversize={this.onOversize}
           disabled
         ></glue-uploader> */}
-        <glue-calendar show={true} show-title show-subtitle show-confirm={true} show-mark title="选择单个日期" type="range" color="#1989fa" max-range="3" first-day-of-week="1" />
+        {/* <glue-calendar show={true} show-title show-subtitle show-confirm={true} show-mark title="选择单个日期" type="range" color="#1989fa" max-range="3" first-day-of-week="1" /> */}
+        <glue-picker title="标题" columns={this.columns2} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" />
       </div>
     );
   }

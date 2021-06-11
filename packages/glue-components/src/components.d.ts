@@ -373,8 +373,30 @@ export namespace Components {
         "showCount": boolean;
         "showExchangeBar": boolean;
     }
-    interface GlueDatetimePicker {
+    interface GlueDatePicker {
         "first": string;
+    }
+    interface GlueDatetimePicker {
+        "allowHtml": boolean;
+        "cancelButtonText": string;
+        "confirmButtonText": string;
+        "filter": any;
+        "fimaxMinuterst": string | number;
+        "formatter": any;
+        "itemHeight": number;
+        "loading": boolean;
+        "maxDate": Date;
+        "maxHour": string | number;
+        "minDate": Date;
+        "minHour": string | number;
+        "minMinute": string | number;
+        "modelValue": any;
+        "readonly": boolean;
+        "showToolbar": boolean;
+        "swipeDuration": number;
+        "title": string;
+        "type": string;
+        "visibleItemCount": number;
     }
     interface GlueDemo {
     }
@@ -633,7 +655,35 @@ export namespace Components {
         "value": string;
     }
     interface GluePicker {
+        "allowHtml": boolean;
+        "cancelButtonText": string;
+        "columns": any[];
+        "columnsFieldNames": any[];
+        "confirmButtonText": string;
+        "defaultIndex": number;
         "first": string;
+        "itemHeight": number;
+        "loading": boolean;
+        "readonly": boolean;
+        "showToolbar": boolean;
+        "swipeDuration": number;
+        "title": string;
+        "toolbarPosition": string;
+        "valueKey": string;
+        "visibleItemCount": number;
+    }
+    interface GluePickerColumn {
+        "allowHtml": boolean;
+        "className": string;
+        "defaultIndex": number;
+        "first": string;
+        "getColumnsList": () => Promise<any>;
+        "initialOptions": any[];
+        "itemHeight": number;
+        "readonly": boolean;
+        "swipeDuration": number | string;
+        "textKey": string;
+        "visibleItemCount": number;
     }
     interface GluePopover {
         "first": string;
@@ -838,7 +888,18 @@ export namespace Components {
         "first": string;
     }
     interface GlueSwipe {
-        "first": string;
+        "autoplay": number;
+        "duration": string | number;
+        "height": number;
+        "indicatorColor": string;
+        "initialSwipe": number;
+        "lazyRender": boolean;
+        "loop": boolean;
+        "showIndicators": boolean;
+        "stopPropagation": boolean;
+        "touchable": boolean;
+        "vertical": boolean;
+        "width": number;
     }
     interface GlueSwipeCell {
         "beforeClose": any;
@@ -864,7 +925,14 @@ export namespace Components {
         "value": boolean;
     }
     interface GlueTab {
+        "badge": string | number;
+        "disabled": boolean;
+        "dot": boolean;
         "first": string;
+        "name": string | number;
+        "title": string;
+        "titleClass": null;
+        "titleStyle": null;
     }
     interface GlueTabbar {
         "first": string;
@@ -881,17 +949,39 @@ export namespace Components {
         "color": string;
         "duration": number;
         "ellipsis": boolean;
-        "first": string;
         "lazyRender": boolean;
         "lineHeight": string | number;
         "lineWidth": string | number;
-        "offsetTopValue": number;
+        "offsetTopVlaue": number;
         "scrollspy": boolean;
         "sticky": boolean;
         "swipeThreshold": number;
         "swipeable": boolean;
         "titleActiveColor": string;
         "titleInactiveColor": string;
+        "type": string;
+    }
+    interface GlueTabsContent {
+        "animated": boolean;
+        "count": boolean;
+        "currentIndex": boolean;
+        "duration": boolean;
+        "first": string;
+        "inited": boolean;
+        "lazyRender": boolean;
+        "swipeable": boolean;
+    }
+    interface GlueTabsTitle {
+        "activeColor": string;
+        "badge": string | number;
+        "color": string;
+        "disabled": boolean;
+        "dot": boolean;
+        "inactiveColor": string;
+        "isActive": boolean;
+        "renderTitle": any;
+        "scrollable": boolean;
+        "title": string;
         "type": string;
     }
     interface GlueTag {
@@ -904,6 +994,9 @@ export namespace Components {
         "size": string;
         "textColor": string;
         "type": string;
+    }
+    interface GlueTimePicker {
+        "first": string;
     }
     interface GlueToast {
         "closeOnClick": boolean;
@@ -1168,6 +1261,12 @@ declare global {
         prototype: HTMLGlueCouponListElement;
         new (): HTMLGlueCouponListElement;
     };
+    interface HTMLGlueDatePickerElement extends Components.GlueDatePicker, HTMLStencilElement {
+    }
+    var HTMLGlueDatePickerElement: {
+        prototype: HTMLGlueDatePickerElement;
+        new (): HTMLGlueDatePickerElement;
+    };
     interface HTMLGlueDatetimePickerElement extends Components.GlueDatetimePicker, HTMLStencilElement {
     }
     var HTMLGlueDatetimePickerElement: {
@@ -1336,6 +1435,12 @@ declare global {
         prototype: HTMLGluePickerElement;
         new (): HTMLGluePickerElement;
     };
+    interface HTMLGluePickerColumnElement extends Components.GluePickerColumn, HTMLStencilElement {
+    }
+    var HTMLGluePickerColumnElement: {
+        prototype: HTMLGluePickerColumnElement;
+        new (): HTMLGluePickerColumnElement;
+    };
     interface HTMLGluePopoverElement extends Components.GluePopover, HTMLStencilElement {
     }
     var HTMLGluePopoverElement: {
@@ -1498,11 +1603,29 @@ declare global {
         prototype: HTMLGlueTabsElement;
         new (): HTMLGlueTabsElement;
     };
+    interface HTMLGlueTabsContentElement extends Components.GlueTabsContent, HTMLStencilElement {
+    }
+    var HTMLGlueTabsContentElement: {
+        prototype: HTMLGlueTabsContentElement;
+        new (): HTMLGlueTabsContentElement;
+    };
+    interface HTMLGlueTabsTitleElement extends Components.GlueTabsTitle, HTMLStencilElement {
+    }
+    var HTMLGlueTabsTitleElement: {
+        prototype: HTMLGlueTabsTitleElement;
+        new (): HTMLGlueTabsTitleElement;
+    };
     interface HTMLGlueTagElement extends Components.GlueTag, HTMLStencilElement {
     }
     var HTMLGlueTagElement: {
         prototype: HTMLGlueTagElement;
         new (): HTMLGlueTagElement;
+    };
+    interface HTMLGlueTimePickerElement extends Components.GlueTimePicker, HTMLStencilElement {
+    }
+    var HTMLGlueTimePickerElement: {
+        prototype: HTMLGlueTimePickerElement;
+        new (): HTMLGlueTimePickerElement;
     };
     interface HTMLGlueToastElement extends Components.GlueToast, HTMLStencilElement {
     }
@@ -1563,6 +1686,7 @@ declare global {
         "glue-coupon": HTMLGlueCouponElement;
         "glue-coupon-cell": HTMLGlueCouponCellElement;
         "glue-coupon-list": HTMLGlueCouponListElement;
+        "glue-date-picker": HTMLGlueDatePickerElement;
         "glue-datetime-picker": HTMLGlueDatetimePickerElement;
         "glue-demo": HTMLGlueDemoElement;
         "glue-dialog": HTMLGlueDialogElement;
@@ -1591,6 +1715,7 @@ declare global {
         "glue-pagination": HTMLGluePaginationElement;
         "glue-password-input": HTMLGluePasswordInputElement;
         "glue-picker": HTMLGluePickerElement;
+        "glue-picker-column": HTMLGluePickerColumnElement;
         "glue-popover": HTMLGluePopoverElement;
         "glue-popup": HTMLGluePopupElement;
         "glue-progress": HTMLGlueProgressElement;
@@ -1618,7 +1743,10 @@ declare global {
         "glue-tabbar": HTMLGlueTabbarElement;
         "glue-tabbar-item": HTMLGlueTabbarItemElement;
         "glue-tabs": HTMLGlueTabsElement;
+        "glue-tabs-content": HTMLGlueTabsContentElement;
+        "glue-tabs-title": HTMLGlueTabsTitleElement;
         "glue-tag": HTMLGlueTagElement;
+        "glue-time-picker": HTMLGlueTimePickerElement;
         "glue-toast": HTMLGlueToastElement;
         "glue-tree-select": HTMLGlueTreeSelectElement;
         "glue-uploader": HTMLGlueUploaderElement;
@@ -2005,8 +2133,30 @@ declare namespace LocalJSX {
         "showCount"?: boolean;
         "showExchangeBar"?: boolean;
     }
-    interface GlueDatetimePicker {
+    interface GlueDatePicker {
         "first"?: string;
+    }
+    interface GlueDatetimePicker {
+        "allowHtml"?: boolean;
+        "cancelButtonText"?: string;
+        "confirmButtonText"?: string;
+        "filter"?: any;
+        "fimaxMinuterst"?: string | number;
+        "formatter"?: any;
+        "itemHeight"?: number;
+        "loading"?: boolean;
+        "maxDate"?: Date;
+        "maxHour"?: string | number;
+        "minDate"?: Date;
+        "minHour"?: string | number;
+        "minMinute"?: string | number;
+        "modelValue"?: any;
+        "readonly"?: boolean;
+        "showToolbar"?: boolean;
+        "swipeDuration"?: number;
+        "title"?: string;
+        "type"?: string;
+        "visibleItemCount"?: number;
     }
     interface GlueDemo {
     }
@@ -2282,7 +2432,38 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface GluePicker {
+        "allowHtml"?: boolean;
+        "cancelButtonText"?: string;
+        "columns"?: any[];
+        "columnsFieldNames"?: any[];
+        "confirmButtonText"?: string;
+        "defaultIndex"?: number;
         "first"?: string;
+        "itemHeight"?: number;
+        "loading"?: boolean;
+        "onGlueCancel"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueConfirm"?: (event: CustomEvent<any>) => void;
+        "readonly"?: boolean;
+        "showToolbar"?: boolean;
+        "swipeDuration"?: number;
+        "title"?: string;
+        "toolbarPosition"?: string;
+        "valueKey"?: string;
+        "visibleItemCount"?: number;
+    }
+    interface GluePickerColumn {
+        "allowHtml"?: boolean;
+        "className"?: string;
+        "defaultIndex"?: number;
+        "first"?: string;
+        "initialOptions"?: any[];
+        "itemHeight"?: number;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "readonly"?: boolean;
+        "swipeDuration"?: number | string;
+        "textKey"?: string;
+        "visibleItemCount"?: number;
     }
     interface GluePopover {
         "first"?: string;
@@ -2518,7 +2699,18 @@ declare namespace LocalJSX {
         "first"?: string;
     }
     interface GlueSwipe {
-        "first"?: string;
+        "autoplay"?: number;
+        "duration"?: string | number;
+        "height"?: number;
+        "indicatorColor"?: string;
+        "initialSwipe"?: number;
+        "lazyRender"?: boolean;
+        "loop"?: boolean;
+        "showIndicators"?: boolean;
+        "stopPropagation"?: boolean;
+        "touchable"?: boolean;
+        "vertical"?: boolean;
+        "width"?: number;
     }
     interface GlueSwipeCell {
         "beforeClose"?: any;
@@ -2548,7 +2740,14 @@ declare namespace LocalJSX {
         "value"?: boolean;
     }
     interface GlueTab {
+        "badge"?: string | number;
+        "disabled"?: boolean;
+        "dot"?: boolean;
         "first"?: string;
+        "name"?: string | number;
+        "title"?: string;
+        "titleClass"?: null;
+        "titleStyle"?: null;
     }
     interface GlueTabbar {
         "first"?: string;
@@ -2565,17 +2764,39 @@ declare namespace LocalJSX {
         "color"?: string;
         "duration"?: number;
         "ellipsis"?: boolean;
-        "first"?: string;
         "lazyRender"?: boolean;
         "lineHeight"?: string | number;
         "lineWidth"?: string | number;
-        "offsetTopValue"?: number;
+        "offsetTopVlaue"?: number;
         "scrollspy"?: boolean;
         "sticky"?: boolean;
         "swipeThreshold"?: number;
         "swipeable"?: boolean;
         "titleActiveColor"?: string;
         "titleInactiveColor"?: string;
+        "type"?: string;
+    }
+    interface GlueTabsContent {
+        "animated"?: boolean;
+        "count"?: boolean;
+        "currentIndex"?: boolean;
+        "duration"?: boolean;
+        "first"?: string;
+        "inited"?: boolean;
+        "lazyRender"?: boolean;
+        "swipeable"?: boolean;
+    }
+    interface GlueTabsTitle {
+        "activeColor"?: string;
+        "badge"?: string | number;
+        "color"?: string;
+        "disabled"?: boolean;
+        "dot"?: boolean;
+        "inactiveColor"?: string;
+        "isActive"?: boolean;
+        "renderTitle"?: any;
+        "scrollable"?: boolean;
+        "title"?: string;
         "type"?: string;
     }
     interface GlueTag {
@@ -2589,6 +2810,9 @@ declare namespace LocalJSX {
         "size"?: string;
         "textColor"?: string;
         "type"?: string;
+    }
+    interface GlueTimePicker {
+        "first"?: string;
     }
     interface GlueToast {
         "closeOnClick"?: boolean;
@@ -2694,6 +2918,7 @@ declare namespace LocalJSX {
         "glue-coupon": GlueCoupon;
         "glue-coupon-cell": GlueCouponCell;
         "glue-coupon-list": GlueCouponList;
+        "glue-date-picker": GlueDatePicker;
         "glue-datetime-picker": GlueDatetimePicker;
         "glue-demo": GlueDemo;
         "glue-dialog": GlueDialog;
@@ -2722,6 +2947,7 @@ declare namespace LocalJSX {
         "glue-pagination": GluePagination;
         "glue-password-input": GluePasswordInput;
         "glue-picker": GluePicker;
+        "glue-picker-column": GluePickerColumn;
         "glue-popover": GluePopover;
         "glue-popup": GluePopup;
         "glue-progress": GlueProgress;
@@ -2749,7 +2975,10 @@ declare namespace LocalJSX {
         "glue-tabbar": GlueTabbar;
         "glue-tabbar-item": GlueTabbarItem;
         "glue-tabs": GlueTabs;
+        "glue-tabs-content": GlueTabsContent;
+        "glue-tabs-title": GlueTabsTitle;
         "glue-tag": GlueTag;
+        "glue-time-picker": GlueTimePicker;
         "glue-toast": GlueToast;
         "glue-tree-select": GlueTreeSelect;
         "glue-uploader": GlueUploader;
@@ -2794,6 +3023,7 @@ declare module "@stencil/core" {
             "glue-coupon": LocalJSX.GlueCoupon & JSXBase.HTMLAttributes<HTMLGlueCouponElement>;
             "glue-coupon-cell": LocalJSX.GlueCouponCell & JSXBase.HTMLAttributes<HTMLGlueCouponCellElement>;
             "glue-coupon-list": LocalJSX.GlueCouponList & JSXBase.HTMLAttributes<HTMLGlueCouponListElement>;
+            "glue-date-picker": LocalJSX.GlueDatePicker & JSXBase.HTMLAttributes<HTMLGlueDatePickerElement>;
             "glue-datetime-picker": LocalJSX.GlueDatetimePicker & JSXBase.HTMLAttributes<HTMLGlueDatetimePickerElement>;
             "glue-demo": LocalJSX.GlueDemo & JSXBase.HTMLAttributes<HTMLGlueDemoElement>;
             "glue-dialog": LocalJSX.GlueDialog & JSXBase.HTMLAttributes<HTMLGlueDialogElement>;
@@ -2822,6 +3052,7 @@ declare module "@stencil/core" {
             "glue-pagination": LocalJSX.GluePagination & JSXBase.HTMLAttributes<HTMLGluePaginationElement>;
             "glue-password-input": LocalJSX.GluePasswordInput & JSXBase.HTMLAttributes<HTMLGluePasswordInputElement>;
             "glue-picker": LocalJSX.GluePicker & JSXBase.HTMLAttributes<HTMLGluePickerElement>;
+            "glue-picker-column": LocalJSX.GluePickerColumn & JSXBase.HTMLAttributes<HTMLGluePickerColumnElement>;
             "glue-popover": LocalJSX.GluePopover & JSXBase.HTMLAttributes<HTMLGluePopoverElement>;
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
             "glue-progress": LocalJSX.GlueProgress & JSXBase.HTMLAttributes<HTMLGlueProgressElement>;
@@ -2849,7 +3080,10 @@ declare module "@stencil/core" {
             "glue-tabbar": LocalJSX.GlueTabbar & JSXBase.HTMLAttributes<HTMLGlueTabbarElement>;
             "glue-tabbar-item": LocalJSX.GlueTabbarItem & JSXBase.HTMLAttributes<HTMLGlueTabbarItemElement>;
             "glue-tabs": LocalJSX.GlueTabs & JSXBase.HTMLAttributes<HTMLGlueTabsElement>;
+            "glue-tabs-content": LocalJSX.GlueTabsContent & JSXBase.HTMLAttributes<HTMLGlueTabsContentElement>;
+            "glue-tabs-title": LocalJSX.GlueTabsTitle & JSXBase.HTMLAttributes<HTMLGlueTabsTitleElement>;
             "glue-tag": LocalJSX.GlueTag & JSXBase.HTMLAttributes<HTMLGlueTagElement>;
+            "glue-time-picker": LocalJSX.GlueTimePicker & JSXBase.HTMLAttributes<HTMLGlueTimePickerElement>;
             "glue-toast": LocalJSX.GlueToast & JSXBase.HTMLAttributes<HTMLGlueToastElement>;
             "glue-tree-select": LocalJSX.GlueTreeSelect & JSXBase.HTMLAttributes<HTMLGlueTreeSelectElement>;
             "glue-uploader": LocalJSX.GlueUploader & JSXBase.HTMLAttributes<HTMLGlueUploaderElement>;

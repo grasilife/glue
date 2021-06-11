@@ -1,7 +1,7 @@
-import { Component, Prop, h, Host, State, Element } from '@stencil/core';
+import { Component, Prop, h, Host, State, Element, Watch, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
-const [bem] = createNamespace('glue-picke');
+const [bem] = createNamespace('glue-picker');
 import { BORDER_UNSET_TOP_BOTTOM } from '../../global/constant/constant';
 import { preventDefault } from '../../utils/dom/event';
 import { unitToPx } from '../../utils/format/unit';
@@ -32,13 +32,26 @@ export class GluePicker {
   @Prop() toolbarPosition = 'top';
   @State() valuesKey = 'values';
   @State() formattedColumns = [];
+  pickerColumnRef;
   // @deprecated
   // should be removed in next major version
   @Prop() valueKey = 'text';
   @State() children = [];
+  @Event() glueConfirm: EventEmitter;
+  @Event() glueCancel: EventEmitter;
+  @Event() glueChange: EventEmitter;
+  @Watch('columns')
+  watchHandler() {
+    this.format();
+  }
+  componentWillLoad() {
+    this.format();
+  }
   componentDidLoad() {
-    console.log('Component has been rendered');
-    this.children = getElementChildren(this.el);
+    this.pickerColumnRef.getColumnsList().then(columnsList => {
+      this.children = columnsList;
+      console.log(columnsList, 'columnsList');
+    });
   }
   itemHeightFn = () => unitToPx(this.itemHeight);
 
@@ -58,35 +71,37 @@ export class GluePicker {
   formatCascade = () => {
     const formatted = [];
 
-    let cursor = { ['children']: this.columns };
+    let cursor = { children: this.columns, defaultIndex: 0, className: '' };
 
-    while (cursor && cursor['children']) {
-      // const children = cursor['children'];
-      // let defaultIndex = cursor.defaultIndex ?? +this.defaultIndex;
-      // while (children[defaultIndex] && children[defaultIndex].disabled) {
-      //   if (defaultIndex < children.length - 1) {
-      //     defaultIndex++;
-      //   } else {
-      //     defaultIndex = 0;
-      //     break;
-      //   }
-      // }
-      // formatted.push({
-      //   [this.valuesKey]: cursor['children'],
-      //   // className: cursor.className,
-      //   defaultIndex,
-      // });
-      // cursor = children[defaultIndex];
+    while (cursor && cursor.children) {
+      const children = cursor.children;
+      let defaultIndex = cursor.defaultIndex ?? +this.defaultIndex;
+      while (children[defaultIndex] && children[defaultIndex].disabled) {
+        if (defaultIndex < children.length - 1) {
+          defaultIndex++;
+        } else {
+          defaultIndex = 0;
+          break;
+        }
+      }
+      formatted.push({
+        [this.valuesKey]: cursor['children'],
+        className: cursor.className,
+        defaultIndex,
+      });
+      cursor = children[defaultIndex];
     }
 
     this.formattedColumns = formatted;
+    console.log(this.formattedColumns, 'this.formattedColumns4');
   };
 
   format = () => {
     const { columns } = this;
-
+    console.log(this.dataType(), 'this.dataType()');
     if (this.dataType() === 'text') {
       this.formattedColumns = [{ [this.valuesKey]: columns }];
+      console.log(this.formattedColumns, 'this.formattedColumns2');
     } else if (this.dataType() === 'cascade') {
       this.formatCascade();
     } else {
@@ -95,7 +110,11 @@ export class GluePicker {
   };
 
   // get indexes of all columns
-  getIndexes = () => this.children.map(child => child.state.index);
+  getIndexes = () =>
+    this.children.map(child => {
+      console.log(child, 'childchild');
+      return child;
+    });
 
   // set options of column by index
   setColumnValues = (index, options) => {
@@ -126,9 +145,16 @@ export class GluePicker {
   // get column value by index
   getColumnValue = index => {
     const column = this.getColumn(index);
-    return column && column.getValue();
-  };
+    console.log(column, 'columncolumn');
 
+    return column && this.getValue(column);
+  };
+  getValue = el => {
+    console.log(getElementChildren(el), 'getElementChildren(el)');
+    let value = getElementChildren(el)[0].innerText;
+    console.log(value, 'value');
+    return value;
+  };
   // set column value by index
   setColumnValue = (index, value) => {
     const column = this.getColumn(index);
@@ -143,7 +169,10 @@ export class GluePicker {
   };
 
   // get column option index by column index
-  getColumnIndex = index => (this.getColumn(index) || {}).state.index;
+  getColumnIndex = index => {
+    console.log(this.getColumn(index).value, 'this.getColumn(index)');
+    return (this.getColumn(index) || {}).value;
+  };
 
   // set column option index by column index
   setColumnIndex = (columnIndex, optionIndex) => {
@@ -161,7 +190,7 @@ export class GluePicker {
   getColumnValues = index => (this.children[index] || {}).state.options;
 
   // get values of all columns
-  getValues = () => this.children.map(child => child.getValue());
+  getValues = () => this.children.map(child => this.getValue(child));
 
   // set values of all columns
   setValues = values => {
@@ -177,33 +206,31 @@ export class GluePicker {
     });
   };
 
-  emitAction = event => {
-    if (this.dataType() === 'text') {
-      // emit(event, getColumnValue(0), getColumnIndex(0));
-    } else {
-      // emit(event, getValues(), getIndexes());
-    }
-  };
-
   onChange = columnIndex => {
     if (this.dataType() === 'cascade') {
       this.onCascadeChange(columnIndex);
     }
 
     if (this.dataType() === 'text') {
-      // emit('change', getColumnValue(0), getColumnIndex(0));
+      this.glueChange.emit({
+        columnValue: this.getColumnValue(0),
+        columnIndex: this.getColumnIndex(0),
+      });
     } else {
-      // emit('change', getValues(), columnIndex);
+      this.glueChange.emit({
+        columnValue: this.getValues(),
+        columnIndex: columnIndex,
+      });
     }
   };
 
   confirm = () => {
     this.children.forEach(child => child.stopMomentum());
-    // emitAction('confirm');
+    this.glueConfirm.emit();
   };
 
   cancel = () => {
-    // emitAction('cancel');
+    this.glueCancel.emit();
   };
 
   renderTitle = () => {
@@ -211,12 +238,12 @@ export class GluePicker {
     //   return slots.title();
     // }
     if (this.title) {
-      return <div class="glue-picker__title van-ellipsis">{this.title}</div>;
+      return <div class="glue-picker__title glue-ellipsis">{this.title}</div>;
     }
   };
 
   renderCancel = () => {
-    const text = this.cancelButtonText || 'cancel';
+    const text = this.cancelButtonText || '取消';
     return (
       <button type="button" class={bem('cancel')} onClick={this.cancel}>
         {text}
@@ -225,7 +252,7 @@ export class GluePicker {
   };
 
   renderConfirm = () => {
-    const text = this.confirmButtonText || 'confirm';
+    const text = this.confirmButtonText || '确认';
     return (
       <button type="button" class={bem('confirm')} onClick={this.confirm}>
         {text}
@@ -242,9 +269,13 @@ export class GluePicker {
     }
   };
 
-  renderColumnItems = () =>
-    this.formattedColumns.map((item, columnIndex) => (
+  renderColumnItems = () => {
+    console.log(this.formattedColumns, 'this.formattedColumns');
+    return this.formattedColumns.map((item, columnIndex) => (
       <glue-picker-column
+        ref={dom => {
+          this.pickerColumnRef = dom;
+        }}
         textKey={this.valueKey}
         readonly={this.readonly}
         allowHtml={this.allowHtml}
@@ -254,11 +285,12 @@ export class GluePicker {
         swipeDuration={this.swipeDuration}
         visibleItemCount={this.visibleItemCount}
         initialOptions={item[this.valuesKey]}
-        onChange={() => {
+        onGlueChange={() => {
           this.onChange(columnIndex);
         }}
       />
     ));
+  };
 
   renderColumns = () => {
     const wrapHeight = this.itemHeightFn() * this.visibleItemCount;
@@ -272,7 +304,7 @@ export class GluePicker {
       <div class={bem('columns')} style={columnsStyle} onTouchMove={preventDefault}>
         {this.renderColumnItems()}
         <div class={bem('mask')} style={maskStyle} />
-        <div class={classNames(bem([BORDER_UNSET_TOP_BOTTOM, 'frame']))} style={frameStyle} />
+        <div class={classNames(BORDER_UNSET_TOP_BOTTOM, 'glue-picker__frame')} style={frameStyle} />
       </div>
     );
   };

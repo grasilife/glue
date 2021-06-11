@@ -1,6 +1,7 @@
-import { Component, Prop, h, Host, State } from '@stencil/core';
+import { Component, Prop, h, Host, State, Event, EventEmitter, Method } from '@stencil/core';
 import classNames from 'classnames';
 import { range } from '../../utils/format/number';
+import { getElementChildren } from '../../utils/base';
 import { preventDefault } from '../../utils/dom/event';
 import '@glue/touch-emulator';
 import { UseTouch } from '../../utils/composables/use-touch';
@@ -52,13 +53,17 @@ export class GluePickerColumn {
   @State() touchStartTime: any;
   @State() momentumOffset: any;
   @State() transitionEndTrigger: any;
+  @Event() glueChange: EventEmitter;
   componentWillLoad() {
     this.index = this.defaultIndex;
     this.options = deepClone(this.initialOptions);
     console.log('Component is about to be rendered');
   }
   wrapper;
-
+  @Method()
+  async getColumnsList() {
+    return getElementChildren(this.wrapper);
+  }
   count = () => this.options.length;
 
   baseOffset = () => (this.itemHeight * (this.visibleItemCount - 1)) / 2;
@@ -83,7 +88,7 @@ export class GluePickerColumn {
         this.index = index;
 
         if (emitChange) {
-          // emit('change', index);
+          this.glueChange.emit(index);
         }
       }
     };
@@ -221,26 +226,25 @@ export class GluePickerColumn {
       const text = this.getOptionText(option);
       const disabled = isOptionDisabled(option);
 
-      const data = {
-        role: 'button',
-        style: optionStyle,
-        tabindex: disabled ? -1 : 0,
-        // class: bem('item', {
-        //   disabled,
-        //   selected: index === this.index,
-        // }),
-        onClick: () => {
-          this.onClickItem(index);
-        },
-      };
-
       const childData = {
-        class: 'van-ellipsis',
+        class: 'glue-ellipsis',
         [this.allowHtml ? 'innerHTML' : 'textContent']: text,
       };
 
       return (
-        <li {...data}>
+        <li
+          role="button"
+          style={optionStyle}
+          tabindex={disabled ? -1 : 0}
+          value={index}
+          class={classNames('glue-picker-column__item', {
+            'glue-picker-column__item--disabled': disabled,
+            'glue-picker-column__item--selected': index === this.index,
+          })}
+          onClick={() => {
+            this.onClickItem(index);
+          }}
+        >
           <div {...childData} />
         </li>
       );

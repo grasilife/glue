@@ -34,7 +34,7 @@ export class GlueTabs {
   @Prop() active = 0;
   @Prop() ellipsis = true;
   @Prop() duration = 0.3;
-  @Prop() offsetTop = 0;
+  @Prop() offsetTopVlaue = 0;
   @Prop() lazyRender = true;
   @Prop() swipeThreshold = 5;
   @State() children = [];
@@ -72,7 +72,7 @@ export class GlueTabs {
     }
   };
 
-  offsetTopPx = () => unitToPx(this.offsetTop);
+  offsetTopPx = () => unitToPx(this.offsetTopVlaue);
 
   scrollOffset = () => {
     if (this.sticky) {
@@ -303,14 +303,14 @@ export class GlueTabs {
           this.renderHeader()
         )}
         <glue-tabs-content
-          count={this.children.length}
-          inited={this.inited}
-          animated={this.animated}
-          duration={this.duration}
-          swipeable={this.swipeable}
-          lazyRender={this.lazyRender}
-          currentIndex={this.currentIndex}
-          onChange={this.setCurrentIndex}
+        // count={this.children.length}
+        // inited={this.inited}
+        // animated={this.animated}
+        // duration={this.duration}
+        // swipeable={this.swipeable}
+        // lazyRender={this.lazyRender}
+        // currentIndex={this.currentIndex}
+        // onChange={this.setCurrentIndex}
         >
           <slot></slot>
         </glue-tabs-content>
