@@ -55,7 +55,9 @@ function getRoutes() {
                 name: `/${type.label}/${lang}/${element2.title}`,
                 path: `/${type.label}/${type.label}/${lang}/${element2.path}`,
                 meta: {
-                  name: element2.title
+                  path: element2.path,
+                  lang,
+                  type: type.label
                 },
                 //这个地方不能使用下面的方法
                 // component: () => import(imortPath),
@@ -74,7 +76,9 @@ function getRoutes() {
 
                 path: `/${type.label}/${lang}/${element2.path}`,
                 meta: {
-                  name: element2.title
+                  path: element2.path,
+                  lang,
+                  type: type.label
                 },
                 //这个地方不能使用下面的方法
                 // component: () => import(imortPath),
@@ -90,7 +94,7 @@ function getRoutes() {
     path: "*",
     component: () => import("./components/DemoHome.vue")
   });
-  console.log(routes, "routes");
+  console.log(routes, "routes2");
   return routes;
 }
 export default router;

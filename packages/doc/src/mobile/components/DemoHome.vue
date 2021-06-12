@@ -7,7 +7,7 @@
     <h2 v-if="config.description" class="demo-home__desc">
       {{ config.description }}
     </h2>
-    <DemoHomeNav v-for="(group, index) in config.nav" :key="index" :lang="lang" :group="group" />
+    <DemoHomeNav v-for="(group, index) in config.nav" :key="index" :lang="lang" :type="type" :group="group" />
   </div>
 </template>
 
@@ -26,7 +26,12 @@ export default {
       console.log(lang, "lang");
       return lang || "";
     },
-
+    type() {
+      const { type } = this.$route.meta;
+      console.log(this.$route, "this.$routethis.$routethis.$route222");
+      console.log(type, "type");
+      return type || "Vue2";
+    },
     config() {
       const { locales } = config.site;
       console.log(locales, "locales");

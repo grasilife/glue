@@ -25,6 +25,7 @@ export default {
 
   props: {
     lang: String,
+    type: String,
     group: Object
   },
 
@@ -36,7 +37,8 @@ export default {
 
   computed: {
     base() {
-      return this.lang ? `/${this.lang}` : "";
+      console.log(this.type, this.lang, "ahuhauhuahu");
+      return `/${this.type}/${this.lang}`;
     }
   }
 };

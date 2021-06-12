@@ -38,11 +38,6 @@ function getRoutes() {
       if (element.items) {
         element.items.forEach(element2 => {
           types.forEach(type => {
-            // console.log(type, "typetypetypetypetype");
-            // console.log(
-            //   `/${type.label}/${lang}/${element2.path}`,
-            //   "../docs/" + element2.path + "/" + "README." + lang + ".md"
-            // );
             routes.push({
               name: `/${type.label}/${lang}/${element2.title}`,
               path: `/${type.label}/${lang}/${element2.path}`,
