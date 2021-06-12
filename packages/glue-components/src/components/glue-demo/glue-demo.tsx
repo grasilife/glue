@@ -69,7 +69,40 @@ export class GlueDemo {
       ],
     },
   ];
-  @State() fileList = [
+  @State() columns4 = [
+    {
+      cityName: '浙江',
+      cities: [
+        {
+          cityName: '杭州',
+          cities: [{ cityName: '西湖区' }, { cityName: '余杭区' }],
+        },
+        {
+          cityName: '温州',
+          cities: [{ cityName: '鹿城区' }, { cityName: '瓯海区' }],
+        },
+      ],
+    },
+    {
+      cityName: '福建',
+      cities: [
+        {
+          cityName: '福州',
+          cities: [{ cityName: '鼓楼区' }, { cityName: '台江区' }],
+        },
+        {
+          cityName: '厦门',
+          cities: [{ cityName: '思明区' }, { cityName: '海沧区' }],
+        },
+      ],
+    },
+  ];
+  @State() customFieldName = {
+    text: 'cityName',
+    children: 'cities',
+  };
+  @State()
+  fileList = [
     {
       url: 'https://img01.yzcdn.cn/vant/leaf.jpg',
       status: 'uploading',
@@ -289,7 +322,17 @@ export class GlueDemo {
         {/* <glue-calendar show={true} show-title show-subtitle show-confirm={true} show-mark title="选择单个日期" type="range" color="#1989fa" max-range="3" first-day-of-week="1" /> */}
         {/* <glue-picker title="标题" columns={this.columns} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" /> */}
         {/* <glue-picker title="标题" columns={this.columns2} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" /> */}
-        <glue-picker title="标题" columns={this.columns3} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} loading={false} />
+        {/* <glue-picker title="标题" columns={this.columns3} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} loading={false} /> */}
+        <glue-picker
+          title="标题"
+          columns={this.columns4}
+          onGlueConfirm={this.onGlueConfirm}
+          onGlueCancel={this.onGlueCancel}
+          onGlueChange={this.onGlueChange}
+          loading={false}
+          text-key="cityName"
+          children-key="cities"
+        />
       </div>
     );
   }

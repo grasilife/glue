@@ -26,17 +26,14 @@ export class GluePicker {
   @Prop() visibleItemCount = 6;
   @Prop() swipeDuration = 1000;
   //props
-  @Prop() columnsFieldNames = {
-    text: '',
-    values: '',
-    children: '',
-  };
+  //props不能是对象
+
   @Prop() columns = [];
   @Prop() defaultIndex = 0;
   @Prop() toolbarPosition = 'top';
-  @State() textKey = 'text';
-  @State() valuesKey = 'values';
-  @State() childrenKey = 'children';
+  @Prop() textKey = 'text';
+  @Prop() valuesKey = 'values';
+  @Prop() childrenKey = 'children';
   @State() formattedColumns = [];
   @State() pickerColumnRef = [];
   @State() columnIndex = 0;
@@ -53,15 +50,7 @@ export class GluePicker {
     this.format();
   }
   componentWillLoad() {
-    if (this.columnsFieldNames.text) {
-      this.textKey = this.columnsFieldNames.text;
-    }
-    if (this.columnsFieldNames.values) {
-      this.valuesKey = this.columnsFieldNames.values;
-    }
-    if (this.columnsFieldNames.children) {
-      this.childrenKey = this.columnsFieldNames.children;
-    }
+    console.log(this.textKey, this.valuesKey, this.childrenKey, 'ahiahii');
     this.format();
   }
   componentDidLoad() {
@@ -71,8 +60,9 @@ export class GluePicker {
 
   dataType = () => {
     const { columns } = this;
-    const firstColumn = columns[0] || {};
 
+    const firstColumn = columns[0] || {};
+    console.log(firstColumn, this.childrenKey, 'firstColumn');
     if (firstColumn[this.childrenKey]) {
       return 'cascade';
     }
@@ -100,7 +90,7 @@ export class GluePicker {
         }
       }
       formatted.push({
-        [this.valuesKey]: cursor['children'],
+        [this.valuesKey]: cursor[this.childrenKey],
         className: cursor.className,
         defaultIndex,
       });

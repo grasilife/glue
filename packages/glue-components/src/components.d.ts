@@ -657,8 +657,8 @@ export namespace Components {
     interface GluePicker {
         "allowHtml": boolean;
         "cancelButtonText": string;
+        "childrenKey": string;
         "columns": any[];
-        "columnsFieldNames": { text: string; values: string; children: string; };
         "confirmButtonText": string;
         "defaultIndex": number;
         "first": string;
@@ -667,9 +667,11 @@ export namespace Components {
         "readonly": boolean;
         "showToolbar": boolean;
         "swipeDuration": number;
+        "textKey": string;
         "title": string;
         "toolbarPosition": string;
         "valueKey": string;
+        "valuesKey": string;
         "visibleItemCount": number;
     }
     interface GluePickerColumn {
@@ -2437,8 +2439,8 @@ declare namespace LocalJSX {
     interface GluePicker {
         "allowHtml"?: boolean;
         "cancelButtonText"?: string;
+        "childrenKey"?: string;
         "columns"?: any[];
-        "columnsFieldNames"?: { text: string; values: string; children: string; };
         "confirmButtonText"?: string;
         "defaultIndex"?: number;
         "first"?: string;
@@ -2450,9 +2452,11 @@ declare namespace LocalJSX {
         "readonly"?: boolean;
         "showToolbar"?: boolean;
         "swipeDuration"?: number;
+        "textKey"?: string;
         "title"?: string;
         "toolbarPosition"?: string;
         "valueKey"?: string;
+        "valuesKey"?: string;
         "visibleItemCount"?: number;
     }
     interface GluePickerColumn {
