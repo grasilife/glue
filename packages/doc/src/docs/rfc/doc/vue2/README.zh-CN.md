@@ -11,3 +11,7 @@ RFC" (request for comments)就是一个提案，大家可以尽情讨论，稳�
 #### 关于slot传参数的问题
 
 web components目前没有slot传参的api
+#### 多语言的支持
+
+暂时没有实现多语言的支持
+
