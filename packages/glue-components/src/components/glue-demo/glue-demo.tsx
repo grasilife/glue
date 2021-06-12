@@ -288,8 +288,8 @@ export class GlueDemo {
         ></glue-uploader> */}
         {/* <glue-calendar show={true} show-title show-subtitle show-confirm={true} show-mark title="选择单个日期" type="range" color="#1989fa" max-range="3" first-day-of-week="1" /> */}
         {/* <glue-picker title="标题" columns={this.columns} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" /> */}
-        <glue-picker title="标题" columns={this.columns2} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" />
-        {/* <glue-picker title="标题" columns={this.columns3} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} loading={true} /> */}
+        {/* <glue-picker title="标题" columns={this.columns2} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" /> */}
+        <glue-picker title="标题" columns={this.columns3} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} loading={false} />
       </div>
     );
   }

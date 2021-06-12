@@ -658,7 +658,7 @@ export namespace Components {
         "allowHtml": boolean;
         "cancelButtonText": string;
         "columns": any[];
-        "columnsFieldNames": any[];
+        "columnsFieldNames": { text: string; values: string; children: string; };
         "confirmButtonText": string;
         "defaultIndex": number;
         "first": string;
@@ -2438,7 +2438,7 @@ declare namespace LocalJSX {
         "allowHtml"?: boolean;
         "cancelButtonText"?: string;
         "columns"?: any[];
-        "columnsFieldNames"?: any[];
+        "columnsFieldNames"?: { text: string; values: string; children: string; };
         "confirmButtonText"?: string;
         "defaultIndex"?: number;
         "first"?: string;

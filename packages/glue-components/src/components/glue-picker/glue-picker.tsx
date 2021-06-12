@@ -26,11 +26,17 @@ export class GluePicker {
   @Prop() visibleItemCount = 6;
   @Prop() swipeDuration = 1000;
   //props
-  @Prop() columnsFieldNames = [];
+  @Prop() columnsFieldNames = {
+    text: '',
+    values: '',
+    children: '',
+  };
   @Prop() columns = [];
   @Prop() defaultIndex = 0;
   @Prop() toolbarPosition = 'top';
+  @State() textKey = 'text';
   @State() valuesKey = 'values';
+  @State() childrenKey = 'children';
   @State() formattedColumns = [];
   @State() pickerColumnRef = [];
   @State() columnIndex = 0;
@@ -38,6 +44,7 @@ export class GluePicker {
   // should be removed in next major version
   @Prop() valueKey = 'text';
   @State() children = [];
+
   @Event() glueConfirm: EventEmitter;
   @Event() glueCancel: EventEmitter;
   @Event() glueChange: EventEmitter;
@@ -46,17 +53,19 @@ export class GluePicker {
     this.format();
   }
   componentWillLoad() {
+    if (this.columnsFieldNames.text) {
+      this.textKey = this.columnsFieldNames.text;
+    }
+    if (this.columnsFieldNames.values) {
+      this.valuesKey = this.columnsFieldNames.values;
+    }
+    if (this.columnsFieldNames.children) {
+      this.childrenKey = this.columnsFieldNames.children;
+    }
     this.format();
   }
   componentDidLoad() {
     console.log(this.pickerColumnRef, '33dwdw');
-    // this.pickerColumnRef.map((item, index) => {
-    //   console.log(item, index, 'item,index');
-    //   item.getColumnsList().then(columnsList => {
-    //     this.pickerColumnRef[index] = columnsList;
-    //     console.log(this.pickerColumnRef, 'this.pickerColumnRef');
-    //   });
-    // });
   }
   itemHeightFn = () => unitToPx(this.itemHeight);
 
@@ -64,7 +73,7 @@ export class GluePicker {
     const { columns } = this;
     const firstColumn = columns[0] || {};
 
-    if (firstColumn['children']) {
+    if (firstColumn[this.childrenKey]) {
       return 'cascade';
     }
     if (firstColumn[this.valuesKey]) {
@@ -76,10 +85,11 @@ export class GluePicker {
   formatCascade = () => {
     const formatted = [];
 
-    let cursor = { children: this.columns, defaultIndex: 0, className: '' };
-
-    while (cursor && cursor.children) {
-      const children = cursor.children;
+    let cursor = { [this.childrenKey]: this.columns, defaultIndex: 0, className: '' };
+    console.log(cursor, 'cursorcursor');
+    while (cursor && cursor[this.childrenKey]) {
+      const children: any = cursor[this.childrenKey];
+      console.log(children, 'childrenchildren');
       let defaultIndex = cursor.defaultIndex ?? +this.defaultIndex;
       while (children[defaultIndex] && children[defaultIndex].disabled) {
         if (defaultIndex < children.length - 1) {
@@ -102,6 +112,17 @@ export class GluePicker {
   };
 
   format = () => {
+    //统一将数据格式化为下面这种
+    // const columns = [
+    //   // 第一列
+    //   {
+    //     values: ['周一', '周二', '周三', '周四', '周五'],
+    //   },
+    //   // 第二列
+    //   {
+    //     values: ['上午', '下午', '晚上'],
+    //   },
+    // ];
     const { columns } = this;
     console.log(this.dataType(), 'this.dataType()');
     if (this.dataType() === 'text') {
@@ -130,17 +151,17 @@ export class GluePicker {
   };
 
   onCascadeChange = columnIndex => {
-    let cursor = { ['children']: this.columns };
+    let cursor = { [this.childrenKey]: this.columns };
     const indexes = this.getIndexes();
 
     for (let i = 0; i <= columnIndex; i++) {
-      cursor = cursor['children'][indexes[i]];
+      cursor = cursor[this.childrenKey][indexes[i]];
     }
-
-    while (cursor && cursor['children']) {
+    console.log(cursor, 'cursorcursor');
+    while (cursor && cursor[this.childrenKey]) {
       columnIndex++;
-      this.setColumnValues(columnIndex, cursor['children']);
-      // cursor = cursor['children'][cursor.defaultIndex || 0];
+      this.setColumnValues(columnIndex, cursor[this.childrenKey]);
+      // cursor = cursor[this.childrenKey][cursor.defaultIndex || 0];
     }
   };
 
@@ -235,7 +256,11 @@ export class GluePicker {
     console.log(this.dataType(), columnIndex, values, 'this.dataType()');
 
     if (this.dataType() === 'cascade') {
-      this.onCascadeChange(columnIndex);
+      // this.onCascadeChange(columnIndex);
+      this.glueChange.emit({
+        columnValue: values,
+        columnIndex: columnIndex,
+      });
     }
 
     if (this.dataType() === 'text') {
@@ -326,7 +351,7 @@ export class GluePicker {
           this.pickerColumnRef[columnIndex] = dom;
           console.log(this.pickerColumnRef, 'this.pickerColumnRef');
         }}
-        textKey={this.valueKey}
+        textKey={this.textKey}
         readonly={this.readonly}
         allowHtml={this.allowHtml}
         className={item.className}
@@ -335,7 +360,7 @@ export class GluePicker {
         swipeDuration={this.swipeDuration}
         visibleItemCount={this.visibleItemCount}
         initialOptions={item[this.valuesKey]}
-        onGlueChange={event => {
+        onGlueChange={() => {
           this.onChange(columnIndex);
         }}
       />
@@ -358,11 +383,21 @@ export class GluePicker {
       </div>
     );
   };
+  renderloading = () => {
+    if (this.loading) {
+      return (
+        <div class="glue-picker__loading">
+          <glue-loading />
+        </div>
+      );
+    }
+  };
   render() {
     return (
       <Host class="glue-picker">
         {this.toolbarPosition === 'top' ? this.renderToolbar() : null}
-        {this.loading ? <glue-loading class="glue-picker__loading" /> : null}
+        {this.renderloading()}
+
         <slot></slot>
         {this.renderColumns()}
         <slot></slot>
