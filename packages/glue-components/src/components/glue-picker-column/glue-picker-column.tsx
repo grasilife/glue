@@ -118,13 +118,13 @@ export class GluePickerColumn {
 
     this.offset = offset;
   };
-
-  setOptions = options => {
+  @Method()
+  setOptions(options) {
     if (JSON.stringify(options) !== JSON.stringify(this.options)) {
       this.options = deepClone(options);
       this.setIndex(this.defaultIndex);
     }
-  };
+  }
 
   onClickItem = index => {
     console.log(index, 'indexindex');

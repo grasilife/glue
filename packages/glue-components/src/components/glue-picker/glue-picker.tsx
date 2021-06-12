@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, State, Element, Watch, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, Host, State, Element, Watch, Event, EventEmitter, Method } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-picker');
@@ -123,34 +123,42 @@ export class GluePicker {
   };
 
   // get indexes of all columns
-  getIndexes = () =>
+  @Method()
+  async getIndexes() {
     this.pickerColumnRef.map(child => {
       console.log(child, 'childchild');
       return child;
     });
+  }
 
   // set options of column by index
-  setColumnValues = (index, options) => {
+  @Method()
+  async setColumnValues(index, options) {
     const column = this.pickerColumnRef[index];
+    console.log(column, 'columncolumn');
     if (column) {
       column.setOptions(options);
     }
-  };
+  }
 
-  onCascadeChange = columnIndex => {
+  async onCascadeChange(columnIndex) {
     let cursor = { [this.childrenKey]: this.columns };
-    const indexes = this.getIndexes();
+    console.log(cursor, columnIndex, 'cursor22');
+    const indexes = await this.getIndexs();
 
     for (let i = 0; i <= columnIndex; i++) {
+      console.log(cursor, this.childrenKey, indexes, 'ghuaugau');
       cursor = cursor[this.childrenKey][indexes[i]];
     }
-    console.log(cursor, 'cursorcursor');
+    console.log(cursor, columnIndex, cursor[this.childrenKey], 'cursorcursor');
+    //级连的情况下,前面的选项变动,需要重置后面的选项
     while (cursor && cursor[this.childrenKey]) {
       columnIndex++;
       this.setColumnValues(columnIndex, cursor[this.childrenKey]);
-      // cursor = cursor[this.childrenKey][cursor.defaultIndex || 0];
+      let defaultIndex: any = cursor.defaultIndex;
+      cursor = cursor[this.childrenKey][defaultIndex || 0];
     }
-  };
+  }
 
   // get column instance by index
   getColumn = index => this.pickerColumnRef[index];
@@ -162,7 +170,8 @@ export class GluePicker {
     return value;
   };
   // set column value by index
-  setColumnValue = (index, value) => {
+  @Method()
+  async setColumnValue(index, value) {
     const column = this.getColumn(index);
 
     if (column) {
@@ -172,16 +181,18 @@ export class GluePicker {
         this.onCascadeChange(index);
       }
     }
-  };
+  }
 
   // get column option index by column index
-  getColumnIndex = index => {
+  @Method()
+  async getColumnIndex(index) {
     console.log(this.getColumn(index).value, 'this.getColumn(index)');
     return (this.getColumn(index) || {}).value;
-  };
+  }
 
   // set column option index by column index
-  setColumnIndex = (columnIndex, optionIndex) => {
+  @Method()
+  async setColumnIndex(columnIndex, optionIndex) {
     const column = this.getColumn(columnIndex);
 
     if (column) {
@@ -190,12 +201,16 @@ export class GluePicker {
         this.onCascadeChange(columnIndex);
       }
     }
-  };
+  }
 
   // get options of column by index
-  getColumnValues = index => (this.pickerColumnRef[index] || {}).state.options;
+  @Method()
+  async getColumnValues(index) {
+    return (this.pickerColumnRef[index] || {}).state.options;
+  }
 
   // get values of all columns
+  @Method()
   async getValues() {
     console.log(this.pickerColumnRef, '222323');
     let values = [];
@@ -222,18 +237,24 @@ export class GluePicker {
     return values;
   }
   // set values of all columns
-  setValues = values => {
+  @Method()
+  async setValues(values) {
     values.forEach((value, index) => {
       this.setColumnValue(index, value);
     });
-  };
-
+  }
+  @Method()
+  async getColumnValue(index) {
+    const column = this.getColumn(index);
+    return column && column.getValue();
+  }
   // set indexes of all columns
-  setIndexes = indexes => {
+  @Method()
+  async setIndexes(indexes) {
     indexes.forEach((optionIndex, columnIndex) => {
       this.setColumnIndex(columnIndex, optionIndex);
     });
-  };
+  }
 
   async onChange(columnIndex) {
     this.columnIndex = columnIndex;
@@ -243,11 +264,11 @@ export class GluePicker {
     console.log(this.dataType(), columnIndex, values, 'this.dataType()');
 
     if (this.dataType() === 'cascade') {
-      // this.onCascadeChange(columnIndex);
-      this.glueChange.emit({
-        columnValue: values,
-        columnIndex: columnIndex,
-      });
+      this.onCascadeChange(columnIndex);
+      // this.glueChange.emit({
+      //   columnValue: values,
+      //   columnIndex: columnIndex,
+      // });
     }
 
     if (this.dataType() === 'text') {
@@ -262,7 +283,7 @@ export class GluePicker {
       });
     }
   }
-
+  @Method()
   async confirm() {
     let values = await this.getValues();
     let indexs = await this.getIndexs();
