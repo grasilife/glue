@@ -2,9 +2,9 @@
 
 ### 介绍
 
-感谢你使用 Vant。
+感谢你使用 Glue
 
-以下是关于向 Vant 提交反馈或代码的指南。在向 Vant 提交 issue 或者 PR 之前，请先花几分钟时间阅读以下文字。
+以下是关于向 Glue 提交反馈或代码的指南。在向 Glue 提交 issue 或者 PR 之前，请先花几分钟时间阅读以下文字。
 
 ### Issue 规范
 
@@ -15,19 +15,19 @@
 
 ### 本地开发
 
-按照下面的步骤操作，即可在本地开发 Vant 组件。
+按照下面的步骤操作，即可在本地开发 Glue 组件。
 
 ```bash
 # 克隆仓库
-# 默认为 dev 分支，包含 Vant 3 的代码
-# 如果需要在 Vant 2 上进行更改，请基于 2.x 分支进行开发
-git clone git@github.com:youzan/vant.git
+# 默认为 dev 分支，包含 Glue的代码
+git clone git@github.com:grasilife/glue.git
 
 # 安装依赖
-cd vant && yarn
+cd glue && yarn
 
-# 进入开发模式，浏览器访问 http://localhost:8080
-npm run dev
+# 进入glue-components，浏览器访问 http://localhost:3333
+# 进入doc，浏览器访问 http://localhost:3001
+yarn start
 ```
 
 ### 目录结构
@@ -38,28 +38,25 @@ npm run dev
 项目主要目录如下：
 
 ```
-vant
-├─ build     # 构建
-├─ docs      # 文档
-├─ src       # 组件
-├─ packages  # 子包
-├─ test      # 单测
-└─ types     # 类型
+packages
+├─ doc                  # 文档
+├─ glue-components      # glue组件库
+├─ glue-markdown-loader # markdown-loader
+├─ glue-touch-emulator  # 桌面端支持的触摸库
 ```
 
-### 添加新组件
+### 添加新组件,使用plop创建组件模版
 
-添加新组件时，请按照下面的目录结构组织文件，并在 `vant.config.js` 中配置组件名称。
+```bash
+yarn new
+```
+添加新组件时，请按照下面的目录结构组织文件，并在 `doc/common/config.js` 中配置组件名称。
 
 ```
-src
-└─ button
-   ├─ demo             # 示例代码
-   ├─ test             # 单元测试
-   ├─ index.js         # 组件入口
-   ├─ index.less       # 组件样式
-   ├─ README.md        # 英文文档
-   └─ README.zh-CN.md  # 中文文档
+components
+└─ glue-button
+   ├─ glue-button.less            # 样式
+   ├─ glue-button.tsx             # 组件
 ```
 
 ## 提交 PR
@@ -76,7 +73,7 @@ src
 2. 基于 fork 后仓库的 dev 分支新建一个分支，比如`feature/button_color`
 3. 在新分支上进行开发，开发完成后，提 Pull Request 到主仓库的 dev 分支
 4. Pull Request 会在 Review 通过后被合并到主仓库
-5. 等待 Vant 发布版本，一般是每周一次
+5. 等待 Glue 发布版本，一般是每周一次
 
 ### 同步最新代码
 
@@ -84,7 +81,7 @@ src
 
 ```bash
 # 添加主仓库到 remote，作为 fork 后仓库的上游仓库
-git remote add upstream https://github.com/youzan/vant.git
+git remote add upstream git@github.com:grasilife/glue.git
 
 # 拉取主仓库最新代码
 git fetch upstream
