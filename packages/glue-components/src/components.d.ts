@@ -670,7 +670,6 @@ export namespace Components {
         "textKey": string;
         "title": string;
         "toolbarPosition": string;
-        "valueKey": string;
         "valuesKey": string;
         "visibleItemCount": number;
     }
@@ -2455,7 +2454,6 @@ declare namespace LocalJSX {
         "textKey"?: string;
         "title"?: string;
         "toolbarPosition"?: string;
-        "valueKey"?: string;
         "valuesKey"?: string;
         "visibleItemCount"?: number;
     }

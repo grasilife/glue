@@ -324,7 +324,7 @@ export class GlueDemo {
         {/* <glue-picker title="标题" columns={this.columns2} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" /> */}
         {/* <glue-picker title="标题" columns={this.columns3} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} loading={false} /> */}
         <glue-picker
-          title="标题"
+          title="#slot"
           columns={this.columns4}
           onGlueConfirm={this.onGlueConfirm}
           onGlueCancel={this.onGlueCancel}
@@ -332,7 +332,14 @@ export class GlueDemo {
           loading={false}
           text-key="cityName"
           children-key="cities"
-        />
+          toolbar-position="top"
+          show-toolbar={true}
+          item-height={80}
+          visible-item-count={6}
+          swipe-duration={1000}
+        >
+          <span slot="title">确认1</span>
+        </glue-picker>
       </div>
     );
   }

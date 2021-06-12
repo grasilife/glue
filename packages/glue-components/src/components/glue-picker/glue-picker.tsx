@@ -22,12 +22,11 @@ export class GluePicker {
   @Prop() cancelButtonText: string;
   @Prop() confirmButtonText: string;
   @Prop() itemHeight = 44;
-  @Prop() showToolbar = true;
+  @Prop() showToolbar = false;
   @Prop() visibleItemCount = 6;
   @Prop() swipeDuration = 1000;
   //props
   //props不能是对象
-
   @Prop() columns = [];
   @Prop() defaultIndex = 0;
   @Prop() toolbarPosition = 'top';
@@ -37,9 +36,7 @@ export class GluePicker {
   @State() formattedColumns = [];
   @State() pickerColumnRef = [];
   @State() columnIndex = 0;
-  // @deprecated
-  // should be removed in next major version
-  @Prop() valueKey = 'text';
+
   @State() children = [];
 
   @Event() glueConfirm: EventEmitter;
@@ -286,16 +283,23 @@ export class GluePicker {
   }
 
   renderTitle = () => {
-    // if (slots.title) {
-    //   return slots.title();
-    // }
+    if (this.title == '#slot') {
+      return <slot name="title"></slot>;
+    }
     if (this.title) {
       return <div class="glue-picker__title glue-ellipsis">{this.title}</div>;
     }
   };
-
-  renderCancel = () => {
+  renderCancelButtonText = () => {
     const text = this.cancelButtonText || '取消';
+    if (this.cancelButtonText == '#slot') {
+      return <slot name="concel-button-text"></slot>;
+    }
+    if (this.cancelButtonText) {
+      return text;
+    }
+  };
+  renderCancel = () => {
     return (
       <button
         type="button"
@@ -304,13 +308,21 @@ export class GluePicker {
           this.cancel();
         }}
       >
-        {text}
+        {this.renderCancelButtonText()}
       </button>
     );
   };
 
-  renderConfirm = () => {
+  renderConfirmButtonText = () => {
     const text = this.confirmButtonText || '确认';
+    if (this.confirmButtonText == '#slot') {
+      return <slot name="confirm-button-text"></slot>;
+    }
+    if (this.confirmButtonText) {
+      return text;
+    }
+  };
+  renderConfirm = () => {
     return (
       <button
         type="button"
@@ -319,12 +331,11 @@ export class GluePicker {
           this.confirm();
         }}
       >
-        {text}
+        {this.renderConfirmButtonText()}
       </button>
     );
   };
   renderOther = () => {
-    //TODO:判断slot
     return [this.renderCancel(), this.renderTitle(), this.renderConfirm()];
   };
   renderToolbar = () => {
