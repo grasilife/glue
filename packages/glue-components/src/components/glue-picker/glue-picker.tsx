@@ -33,6 +33,7 @@ export class GluePicker {
   @State() valuesKey = 'values';
   @State() formattedColumns = [];
   @State() pickerColumnRef = [];
+  @State() columnIndex = 0;
   // @deprecated
   // should be removed in next major version
   @Prop() valueKey = 'text';
@@ -146,13 +147,6 @@ export class GluePicker {
   // get column instance by index
   getColumn = index => this.pickerColumnRef[index];
 
-  // // get column value by index
-  // getColumnValue = index => {
-  //   const column = this.getColumn(index);
-  //   console.log(column, 'columncolumn');
-
-  //   return column && this.getValue(column);
-  // };
   getValue = el => {
     console.log(getElementChildren(el), 'getElementChildren(el)');
     let value = getElementChildren(el)[0].innerText;
@@ -207,6 +201,18 @@ export class GluePicker {
     console.log(values, 'valuesvalues');
     return values;
   }
+  async getIndexs() {
+    let values = [];
+    for (let i = 0; i < this.pickerColumnRef.length; i++) {
+      let child = this.pickerColumnRef[i];
+      console.log(child, 'childchild');
+      let value = await child.getIndex();
+      console.log(value, 'valuevaluevaluevalue');
+      values.push(value);
+    }
+    console.log(values, 'valuesvalues');
+    return values;
+  }
   // set values of all columns
   setValues = values => {
     values.forEach((value, index) => {
@@ -222,8 +228,10 @@ export class GluePicker {
   };
 
   async onChange(columnIndex) {
+    this.columnIndex = columnIndex;
     //columnValue当前值,columnIndex当前索引
     let values = await this.getValues();
+
     console.log(this.dataType(), columnIndex, values, 'this.dataType()');
 
     if (this.dataType() === 'cascade') {
@@ -243,14 +251,24 @@ export class GluePicker {
     }
   }
 
-  confirm = () => {
+  async confirm() {
+    let values = await this.getValues();
+    let indexs = await this.getIndexs();
     this.pickerColumnRef.forEach(child => child.stopMomentum());
-    this.glueConfirm.emit();
-  };
+    this.glueConfirm.emit({
+      columnValue: values,
+      columnIndex: indexs,
+    });
+  }
 
-  cancel = () => {
-    this.glueCancel.emit();
-  };
+  async cancel() {
+    let values = await this.getValues();
+    let indexs = await this.getIndexs();
+    this.glueCancel.emit({
+      columnValue: values,
+      columnIndex: indexs,
+    });
+  }
 
   renderTitle = () => {
     // if (slots.title) {
@@ -264,7 +282,13 @@ export class GluePicker {
   renderCancel = () => {
     const text = this.cancelButtonText || '取消';
     return (
-      <button type="button" class={bem('cancel')} onClick={this.cancel}>
+      <button
+        type="button"
+        class={bem('cancel')}
+        onClick={() => {
+          this.cancel();
+        }}
+      >
         {text}
       </button>
     );
@@ -273,7 +297,13 @@ export class GluePicker {
   renderConfirm = () => {
     const text = this.confirmButtonText || '确认';
     return (
-      <button type="button" class={bem('confirm')} onClick={this.confirm}>
+      <button
+        type="button"
+        class={bem('confirm')}
+        onClick={() => {
+          this.confirm();
+        }}
+      >
         {text}
       </button>
     );

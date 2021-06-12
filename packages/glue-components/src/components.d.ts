@@ -678,10 +678,12 @@ export namespace Components {
         "defaultIndex": number;
         "first": string;
         "getColumnsList": () => Promise<any>;
+        "getIndex": () => Promise<number>;
         "getValue": () => Promise<any>;
         "initialOptions": any[];
         "itemHeight": number;
         "readonly": boolean;
+        "stopMomentum": () => Promise<void>;
         "swipeDuration": number | string;
         "textKey": string;
         "visibleItemCount": number;

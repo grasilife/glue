@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, State, Event, EventEmitter, Method } from '@stencil/core';
+import { Component, Prop, h, Host, State, Event, EventEmitter, Method, Watch } from '@stencil/core';
 import classNames from 'classnames';
 import { range } from '../../utils/format/number';
 import { getElementChildren } from '../../utils/base';
@@ -54,10 +54,17 @@ export class GluePickerColumn {
   @State() momentumOffset: any;
   @State() transitionEndTrigger: any;
   @Event() glueChange: EventEmitter;
+  @Watch('defaultIndex')
+  watchHandler(value) {
+    this.setIndex(value);
+  }
   componentWillLoad() {
-    this.index = this.defaultIndex;
+    console.log(this.initialOptions, this.defaultIndex, 'this.initialOptions');
+
     this.options = deepClone(this.initialOptions);
-    console.log('Component is about to be rendered');
+    console.log(this.options, 'Component is about to be rendered');
+    this.index = this.defaultIndex;
+    this.setIndex(this.index);
   }
   wrapper;
   @Method()
@@ -67,6 +74,10 @@ export class GluePickerColumn {
   @Method()
   async getValue() {
     return this.options[this.index];
+  }
+  @Method()
+  async getIndex() {
+    return this.index;
   }
   count = () => this.options.length;
 
@@ -146,8 +157,8 @@ export class GluePickerColumn {
     this.duration = +this.swipeDuration;
     this.setIndex(index, true);
   };
-
-  stopMomentum = () => {
+  @Method()
+  async stopMomentum() {
     this.moving = false;
     this.duration = 0;
 
@@ -155,7 +166,7 @@ export class GluePickerColumn {
       this.transitionEndTrigger();
       this.transitionEndTrigger = null;
     }
-  };
+  }
 
   onTouchStart = event => {
     if (this.readonly) {
