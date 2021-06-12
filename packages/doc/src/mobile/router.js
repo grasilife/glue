@@ -10,7 +10,7 @@ const list = [
   "home",
   "quickstart",
   "advanced-usage",
-  "changelog-v3",
+  "changelog",
   "migrate-from-v2",
   "theme",
   "contribution",

@@ -221,7 +221,7 @@ export default {
   }
 
   &--changelog,
-  &--changelog-v3 {
+  &--changelog {
     strong {
       display: block;
       margin: 24px 0 12px;

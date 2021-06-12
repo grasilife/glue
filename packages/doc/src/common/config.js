@@ -76,7 +76,7 @@ export default {
                 title: "进阶用法"
               },
               {
-                path: "changelog-v3",
+                path: "changelog",
                 title: "更新日志"
               },
               {
@@ -445,7 +445,7 @@ export default {
       //             title: "Advanced Usage"
       //           },
       //           {
-      //             path: "changelog-v3",
+      //             path: "changelog",
       //             title: "Changelog"
       //           },
       //           {

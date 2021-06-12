@@ -155,7 +155,7 @@ glue 也支持按需引入、CDN 引入等方式，详细说明见 [快速上手
 ## 链接
 
 - [详细文档](https://grasilife.github.io/glue/#/zh-CN/home)
-- [更新日志](https://grasilife.github.io/glue/#/zh-CN/changelog-v3)
+- [更新日志](https://grasilife.github.io/glue/#/zh-CN/changelog)
 
 ## 手机预览
 
