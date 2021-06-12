@@ -54,7 +54,13 @@ graph TD;
   glue-icon --> glue-badge
   glue-button --> glue-loading
   glue-button --> glue-icon
+  glue-tab --> glue-swipe-item
   glue-coupon --> glue-checkbox
+  glue-tabs --> glue-tabs-title
+  glue-tabs --> glue-sticky
+  glue-tabs --> glue-tabs-content
+  glue-tabs-title --> glue-badge
+  glue-tabs-content --> glue-swipe
   style glue-coupon-list fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

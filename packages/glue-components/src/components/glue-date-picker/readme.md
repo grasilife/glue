@@ -1,4 +1,4 @@
-# glue-swipe-item
+# glue-date-picker
 
 
 
@@ -16,13 +16,13 @@
 
 ### Used by
 
- - [glue-tab](../glue-tab)
+ - [glue-datetime-picker](../glue-datetime-picker)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-tab --> glue-swipe-item
-  style glue-swipe-item fill:#f9f,stroke:#333,stroke-width:4px
+  glue-datetime-picker --> glue-date-picker
+  style glue-date-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

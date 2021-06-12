@@ -274,6 +274,8 @@ export class GlueSwipe {
   };
 
   swipeTo = (index, options = {}) => {
+    console.log(index, options);
+
     this.correctPosition();
     touch.reset();
 

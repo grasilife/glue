@@ -26,6 +26,7 @@
  - [glue-button](../glue-button)
  - [glue-key](../glue-key)
  - [glue-list](../glue-list)
+ - [glue-picker](../glue-picker)
  - [glue-pull-refresh](../glue-pull-refresh)
  - [glue-switch](../glue-switch)
  - [glue-toast](../glue-toast)
@@ -38,6 +39,7 @@ graph TD;
   glue-button --> glue-loading
   glue-key --> glue-loading
   glue-list --> glue-loading
+  glue-picker --> glue-loading
   glue-pull-refresh --> glue-loading
   glue-switch --> glue-loading
   glue-toast --> glue-loading

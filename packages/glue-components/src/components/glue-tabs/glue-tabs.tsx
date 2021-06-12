@@ -11,6 +11,8 @@ import { callInterceptor } from '../../utils/interceptor';
 import { scrollLeftTo, scrollTopTo } from './utils';
 import { useScrollParent } from '../../utils/useScrollParent';
 import { isHidden } from '../../utils/dom/style';
+console.log(getElementTop, scrollTopTo);
+
 @Component({
   tag: 'glue-tabs',
   styleUrl: 'glue-tabs.less',
@@ -163,6 +165,8 @@ export class GlueTabs {
   };
 
   scrollToCurrentContent = (immediate = false) => {
+    console.log(immediate);
+
     if (this.scrollspy) {
       const target = this.children[this.currentIndex].$el;
 

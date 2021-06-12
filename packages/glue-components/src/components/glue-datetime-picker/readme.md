@@ -7,10 +7,44 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `first`  | `first`   |             | `string` | `undefined` |
+| Property            | Attribute             | Description | Type               | Default                              |
+| ------------------- | --------------------- | ----------- | ------------------ | ------------------------------------ |
+| `allowHtml`         | `allow-html`          |             | `boolean`          | `undefined`                          |
+| `cancelButtonText`  | `cancel-button-text`  |             | `string`           | `undefined`                          |
+| `confirmButtonText` | `confirm-button-text` |             | `string`           | `undefined`                          |
+| `filter`            | `filter`              |             | `any`              | `undefined`                          |
+| `fimaxMinuterst`    | `fimax-minuterst`     |             | `number \| string` | `59`                                 |
+| `formatter`         | `formatter`           |             | `any`              | `undefined`                          |
+| `itemHeight`        | `item-height`         |             | `number`           | `44`                                 |
+| `loading`           | `loading`             |             | `boolean`          | `undefined`                          |
+| `maxDate`           | --                    |             | `Date`             | `new Date(currentYear + 10, 11, 31)` |
+| `maxHour`           | `max-hour`            |             | `number \| string` | `23`                                 |
+| `minDate`           | --                    |             | `Date`             | `new Date(currentYear - 10, 0, 1)`   |
+| `minHour`           | `min-hour`            |             | `number \| string` | `0`                                  |
+| `minMinute`         | `min-minute`          |             | `number \| string` | `0`                                  |
+| `modelValue`        | `model-value`         |             | `any`              | `null`                               |
+| `readonly`          | `readonly`            |             | `boolean`          | `undefined`                          |
+| `showToolbar`       | `show-toolbar`        |             | `boolean`          | `true`                               |
+| `swipeDuration`     | `swipe-duration`      |             | `number`           | `1000`                               |
+| `title`             | `title`               |             | `string`           | `undefined`                          |
+| `type`              | `type`                |             | `string`           | `'datetime'`                         |
+| `visibleItemCount`  | `visible-item-count`  |             | `number`           | `6`                                  |
 
+
+## Dependencies
+
+### Depends on
+
+- [glue-time-picker](../glue-time-picker)
+- [glue-date-picker](../glue-date-picker)
+
+### Graph
+```mermaid
+graph TD;
+  glue-datetime-picker --> glue-time-picker
+  glue-datetime-picker --> glue-date-picker
+  style glue-datetime-picker fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 
