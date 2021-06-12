@@ -25,22 +25,20 @@ Glue是一个基于web components构建的组件库,可以在react,vue2,vue3,ang
 
 ```bash
 npm i glue-components -S
-
 ```
 
 ## 快速上手
 
-### vue中使用
-
+### vue中使用,参考[stencil的Vue中使用使用指南](<https://stenciljs.com/docs/vue/>)
 ```js
 import Vue from 'vue';
 import App from './App.vue';
 import "glue-components/dist/glue-components/glue-components.css";
-import { applyPolyfills, defineCustomElements } from 'test-components/loader';
+import { applyPolyfills, defineCustomElements } from 'glue-components/loader';
 
 Vue.config.productionTip = false;
 
-// Tell Vue to ignore all components defined in the test-components
+// Tell Vue to ignore all components defined in the glue-components
 // package. The regex assumes all components names are prefixed
 // 'test'
 Vue.config.ignoredElements = [/test-\w*/];
@@ -65,7 +63,7 @@ render() {
 }
 ```
 
-### React中使用
+### React中使用,参考[stencil的React使用指南](<https://stenciljs.com/docs/react/>)
 
 ```js
 import React from 'react';
@@ -77,7 +75,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 // test-component is the name of our made up web components that we have
 // published to npm:
-import { applyPolyfills, defineCustomElements } from 'test-components/loader';
+import { applyPolyfills, defineCustomElements } from 'glue-components/loader';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
@@ -95,6 +93,51 @@ render() {
     </div>
   )
 }
+```
+### Angular中使用,参考[stencil的Angular使用指南](<https://stenciljs.com/docs/angular/>)
+
+```js
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+
+// Note: loader import location set using "esmLoaderPath" within the output target config
+import { defineCustomElements } from 'glue-components/loader';
+
+if (environment.production) {
+  enableProdMode();
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.log(err));
+defineCustomElements();
+```
+
+```js
+import {Component, ElementRef, ViewChild} from '@angular/core';
+
+import 'glue-components';
+
+@Component({
+    selector: 'app-home',
+    template: `<glue-button #test></glue-button>`,
+    styleUrls: ['./home.component.scss'],
+})
+export class HomeComponent {
+
+    @ViewChild('test') myGlueButtonComponent: ElementRef<HTMLTestComponentElement>;
+
+    async onAction() {
+        await this.myGlueButtonComponent.nativeElement.testComponentMethod();
+    }
+}
+```
+### Ember中使用,参考[stencil的Ember使用指南](<https://stenciljs.com/docs/ember/>)
+
+```bash
+ember install ember-cli-stencil
 ```
 
 glue 也支持按需引入、CDN 引入等方式，详细说明见 [快速上手](https://grasilife.github.io/glue/#/zh-CN/quickstart).
