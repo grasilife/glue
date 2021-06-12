@@ -17,7 +17,7 @@ export default {
 @import "../../common/style/var";
 
 .van-doc-container {
-  width: calc(100% - 220px - 384px);
+  width: calc(100% - 220px - @van-doc-simulator-width);
   height: 100%;
   box-sizing: border-box;
   overflow: auto;

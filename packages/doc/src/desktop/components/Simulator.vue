@@ -43,10 +43,10 @@ export default {
 @import "../../common/style/var";
 
 .van-doc-simulator {
+  float: left;
   position: relative;
   top: @van-doc-padding;
   z-index: 1;
-  width: 385px;
   float: left;
   box-sizing: border-box;
   width: @van-doc-simulator-width;
