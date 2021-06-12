@@ -24,7 +24,7 @@ Vue.config.productionTip = false;
 // Tell Vue to ignore all components defined in the glue-components
 // package. The regex assumes all components names are prefixed
 // 'test'
-Vue.config.ignoredElements = [/test-\w*/];
+Vue.config.ignoredElements = [/glue-\w*/];
 
 // Bind the custom elements to the window object
 applyPolyfills().then(() => {
