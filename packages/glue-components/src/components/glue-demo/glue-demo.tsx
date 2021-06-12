@@ -40,6 +40,35 @@ export class GlueDemo {
       defaultIndex: 1,
     },
   ];
+  @State() columns3 = [
+    {
+      text: '浙江',
+      disabled: true,
+      children: [
+        {
+          text: '杭州',
+          children: [{ text: '西湖区' }, { text: '余杭区' }],
+        },
+        {
+          text: '温州',
+          children: [{ text: '鹿城区' }, { text: '瓯海区' }],
+        },
+      ],
+    },
+    {
+      text: '福建',
+      children: [
+        {
+          text: '福州',
+          children: [{ text: '鼓楼区' }, { text: '台江区' }],
+        },
+        {
+          text: '厦门',
+          children: [{ text: '思明区' }, { text: '海沧区' }],
+        },
+      ],
+    },
+  ];
   @State() fileList = [
     {
       url: 'https://img01.yzcdn.cn/vant/leaf.jpg',
@@ -258,7 +287,9 @@ export class GlueDemo {
           disabled
         ></glue-uploader> */}
         {/* <glue-calendar show={true} show-title show-subtitle show-confirm={true} show-mark title="选择单个日期" type="range" color="#1989fa" max-range="3" first-day-of-week="1" /> */}
+        {/* <glue-picker title="标题" columns={this.columns} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" /> */}
         <glue-picker title="标题" columns={this.columns2} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" />
+        {/* <glue-picker title="标题" columns={this.columns3} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} loading={true} /> */}
       </div>
     );
   }

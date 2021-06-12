@@ -64,6 +64,10 @@ export class GluePickerColumn {
   async getColumnsList() {
     return getElementChildren(this.wrapper);
   }
+  @Method()
+  async getValue() {
+    return this.options[this.index];
+  }
   count = () => this.options.length;
 
   baseOffset = () => (this.itemHeight * (this.visibleItemCount - 1)) / 2;
@@ -80,6 +84,7 @@ export class GluePickerColumn {
   };
 
   setIndex = (index, emitChange?) => {
+    console.log(index, emitChange, 'index2');
     index = this.adjustIndex(index) || 0;
 
     const offset = -index * this.itemHeight;
@@ -88,11 +93,11 @@ export class GluePickerColumn {
         this.index = index;
 
         if (emitChange) {
+          console.log(index, 'indexindex3');
           this.glueChange.emit(index);
         }
       }
     };
-
     // trigger the change event after transitionend when this.moving
     if (this.moving && offset !== this.offset) {
       this.transitionEndTrigger = trigger;
@@ -111,6 +116,8 @@ export class GluePickerColumn {
   };
 
   onClickItem = index => {
+    console.log(index, 'indexindex');
+
     if (this.moving || this.readonly) {
       return;
     }
@@ -260,7 +267,6 @@ export class GluePickerColumn {
     }
   };
 
-  getValue = () => this.options[this.index];
   render() {
     const wrapperStyle = {
       transform: `translate3d(0, ${this.offset + this.baseOffset()}px, 0)`,

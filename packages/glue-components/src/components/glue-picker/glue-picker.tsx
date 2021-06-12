@@ -32,7 +32,7 @@ export class GluePicker {
   @Prop() toolbarPosition = 'top';
   @State() valuesKey = 'values';
   @State() formattedColumns = [];
-  pickerColumnRef;
+  @State() pickerColumnRef = [];
   // @deprecated
   // should be removed in next major version
   @Prop() valueKey = 'text';
@@ -48,10 +48,14 @@ export class GluePicker {
     this.format();
   }
   componentDidLoad() {
-    this.pickerColumnRef.getColumnsList().then(columnsList => {
-      this.children = columnsList;
-      console.log(columnsList, 'columnsList');
-    });
+    console.log(this.pickerColumnRef, '33dwdw');
+    // this.pickerColumnRef.map((item, index) => {
+    //   console.log(item, index, 'item,index');
+    //   item.getColumnsList().then(columnsList => {
+    //     this.pickerColumnRef[index] = columnsList;
+    //     console.log(this.pickerColumnRef, 'this.pickerColumnRef');
+    //   });
+    // });
   }
   itemHeightFn = () => unitToPx(this.itemHeight);
 
@@ -111,14 +115,14 @@ export class GluePicker {
 
   // get indexes of all columns
   getIndexes = () =>
-    this.children.map(child => {
+    this.pickerColumnRef.map(child => {
       console.log(child, 'childchild');
       return child;
     });
 
   // set options of column by index
   setColumnValues = (index, options) => {
-    const column = this.children[index];
+    const column = this.pickerColumnRef[index];
     if (column) {
       column.setOptions(options);
     }
@@ -140,15 +144,15 @@ export class GluePicker {
   };
 
   // get column instance by index
-  getColumn = index => this.children[index];
+  getColumn = index => this.pickerColumnRef[index];
 
-  // get column value by index
-  getColumnValue = index => {
-    const column = this.getColumn(index);
-    console.log(column, 'columncolumn');
+  // // get column value by index
+  // getColumnValue = index => {
+  //   const column = this.getColumn(index);
+  //   console.log(column, 'columncolumn');
 
-    return column && this.getValue(column);
-  };
+  //   return column && this.getValue(column);
+  // };
   getValue = el => {
     console.log(getElementChildren(el), 'getElementChildren(el)');
     let value = getElementChildren(el)[0].innerText;
@@ -187,11 +191,22 @@ export class GluePicker {
   };
 
   // get options of column by index
-  getColumnValues = index => (this.children[index] || {}).state.options;
+  getColumnValues = index => (this.pickerColumnRef[index] || {}).state.options;
 
   // get values of all columns
-  getValues = () => this.children.map(child => this.getValue(child));
-
+  async getValues() {
+    console.log(this.pickerColumnRef, '222323');
+    let values = [];
+    for (let i = 0; i < this.pickerColumnRef.length; i++) {
+      let child = this.pickerColumnRef[i];
+      console.log(child, 'childchild');
+      let value = await child.getValue();
+      console.log(value, 'valuevaluevaluevalue');
+      values.push(value);
+    }
+    console.log(values, 'valuesvalues');
+    return values;
+  }
   // set values of all columns
   setValues = values => {
     values.forEach((value, index) => {
@@ -206,26 +221,30 @@ export class GluePicker {
     });
   };
 
-  onChange = columnIndex => {
+  async onChange(columnIndex) {
+    //columnValue当前值,columnIndex当前索引
+    let values = await this.getValues();
+    console.log(this.dataType(), columnIndex, values, 'this.dataType()');
+
     if (this.dataType() === 'cascade') {
       this.onCascadeChange(columnIndex);
     }
 
     if (this.dataType() === 'text') {
       this.glueChange.emit({
-        columnValue: this.getColumnValue(0),
-        columnIndex: this.getColumnIndex(0),
+        columnValue: values,
+        columnIndex: columnIndex,
       });
     } else {
       this.glueChange.emit({
-        columnValue: this.getValues(),
+        columnValue: values,
         columnIndex: columnIndex,
       });
     }
-  };
+  }
 
   confirm = () => {
-    this.children.forEach(child => child.stopMomentum());
+    this.pickerColumnRef.forEach(child => child.stopMomentum());
     this.glueConfirm.emit();
   };
 
@@ -274,7 +293,8 @@ export class GluePicker {
     return this.formattedColumns.map((item, columnIndex) => (
       <glue-picker-column
         ref={dom => {
-          this.pickerColumnRef = dom;
+          this.pickerColumnRef[columnIndex] = dom;
+          console.log(this.pickerColumnRef, 'this.pickerColumnRef');
         }}
         textKey={this.valueKey}
         readonly={this.readonly}
@@ -285,7 +305,7 @@ export class GluePicker {
         swipeDuration={this.swipeDuration}
         visibleItemCount={this.visibleItemCount}
         initialOptions={item[this.valuesKey]}
-        onGlueChange={() => {
+        onGlueChange={event => {
           this.onChange(columnIndex);
         }}
       />

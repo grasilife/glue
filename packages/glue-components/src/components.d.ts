@@ -678,6 +678,7 @@ export namespace Components {
         "defaultIndex": number;
         "first": string;
         "getColumnsList": () => Promise<any>;
+        "getValue": () => Promise<any>;
         "initialOptions": any[];
         "itemHeight": number;
         "readonly": boolean;
