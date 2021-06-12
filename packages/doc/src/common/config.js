@@ -80,8 +80,8 @@ export default {
                 title: "更新日志"
               },
               {
-                path: "migrate-from-v2",
-                title: "从 v2 升级"
+                path: "rfc",
+                title: "RFC"
               },
               {
                 path: "theme",

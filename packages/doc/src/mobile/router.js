@@ -11,7 +11,7 @@ const list = [
   "quickstart",
   "advanced-usage",
   "changelog",
-  "migrate-from-v2",
+  "rfc",
   "theme",
   "contribution",
   "design",
