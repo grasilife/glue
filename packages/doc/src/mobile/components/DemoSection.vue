@@ -13,8 +13,9 @@ export default {
   computed: {
     demoName() {
       const { meta } = this.$route || {};
-      if (meta && meta.name) {
-        return `demo-${decamelize(meta.name)}`;
+      console.log(meta, "metameta");
+      if (meta && meta.path) {
+        return `demo-${decamelize(meta.path)}`;
       }
 
       return "";
