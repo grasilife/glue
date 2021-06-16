@@ -906,6 +906,8 @@ export namespace Components {
     interface GlueSwipe {
         "autoplay": number;
         "duration": string | number;
+        "getActiveIndicator": () => Promise<number>;
+        "getCount": () => Promise<number>;
         "getSize": () => Promise<number>;
         "height": number;
         "indicatorColor": string;

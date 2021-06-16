@@ -47,18 +47,18 @@ export class GlueSwipeItem {
   };
   componentDidLoad() {
     this.mounted = true;
+    this.getState();
+  }
+  async getState() {
     let trackParentEl = getElementParent(this.el);
     let parentEl = getElementParent(trackParentEl);
     console.log(parentEl, 'parentEl');
     this.parentVertical = getAttribute(parentEl, 'vertical');
-    parentEl.getSize().then(value => {
-      this.parentSize = value;
-      console.log(value, this.parentVertical, 'valuevaluevaluevalue');
-    });
+    this.parentSize = await parentEl.getSize();
     this.parentLoop = getAttribute(parentEl, 'loop');
+    this.parentActiveIndicator = await parentEl.getAttribute();
     this.parentLazyRender = getAttribute(parentEl, 'lazy-render');
-    this.parentActiveIndicator = getAttribute(parentEl, 'active-indicator');
-    this.parentCount = getAttribute(parentEl, 'count');
+    this.parentCount = await parentEl.getCount();
     this.shouldRender();
   }
   render() {

@@ -58,7 +58,10 @@ export class GlueSwipe {
     this.initialize();
   }
   count = () => this.children.length;
-
+  @Method()
+  async getCount() {
+    return this.count();
+  }
   size = () => {
     if (this.vertical) {
       return this.height;
@@ -84,7 +87,10 @@ export class GlueSwipe {
     console.log(this.active, this.count(), (this.active + this.count()) % this.count(), 'agiuaui');
     return (this.active + this.count()) % this.count();
   };
-
+  @Method()
+  async getActiveIndicator() {
+    return this.activeIndicator();
+  }
   isCorrectDirection = () => {
     const expect = this.vertical ? 'vertical' : 'horizontal';
     return touch.direction === expect;
