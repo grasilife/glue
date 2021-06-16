@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, State, Element, Watch, Method } from '@stencil/core';
+import { Component, Prop, h, Host, State, Element, Watch, Method, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import { useRect } from '../../utils/useRect';
 import { doubleRaf } from '../../utils/animation';
@@ -21,12 +21,12 @@ export class GlueSwipe {
   @Prop() autoplay: number;
   @Prop({ mutable: true }) vertical: boolean = false;
   @Prop({ mutable: true }) lazyRender: boolean;
-  @Prop() indicatorColor: string;
+  @Prop() indicatorColor: string = '#1989fa';
   @Prop({ mutable: true }) loop = false;
   @Prop() duration: string | number = 500;
   @Prop() touchable = false;
   @Prop() initialSwipe = 0;
-  @Prop() showIndicators = false;
+  @Prop() showIndicators: any = false;
   @Prop() stopPropagation = false;
   @State() rect = null;
   @State() touchStartTime;
@@ -37,6 +37,8 @@ export class GlueSwipe {
   @State() active = 0;
   @State() swiping = false;
   @State() children = [];
+  @Event() glueChange: EventEmitter;
+
   trackRef;
   @Watch('autoplay')
   autoplayHandle(value) {
@@ -161,7 +163,8 @@ export class GlueSwipe {
     this.offset = targetOffset;
 
     if (emitChange && targetActive !== active) {
-      // emit('change', activeIndicator.value);
+      console.log(this.activeIndicator(), 'this.activeIndicator()');
+      this.glueChange.emit(this.activeIndicator());
     }
   };
 
@@ -346,9 +349,9 @@ export class GlueSwipe {
   };
 
   renderIndicator = () => {
-    // if (slots.indicator) {
-    //   return slots.indicator();
-    // }
+    if ((this.showIndicators = '#slot')) {
+      return <slot name="show-indicators"></slot>;
+    }
     if (this.showIndicators && this.count() > 1) {
       return (
         <div

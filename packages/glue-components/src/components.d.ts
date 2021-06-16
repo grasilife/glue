@@ -912,7 +912,7 @@ export namespace Components {
         "initialSwipe": number;
         "lazyRender": boolean;
         "loop": boolean;
-        "showIndicators": boolean;
+        "showIndicators": any;
         "stopPropagation": boolean;
         "touchable": boolean;
         "vertical": boolean;
@@ -2725,7 +2725,8 @@ declare namespace LocalJSX {
         "initialSwipe"?: number;
         "lazyRender"?: boolean;
         "loop"?: boolean;
-        "showIndicators"?: boolean;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "showIndicators"?: any;
         "stopPropagation"?: boolean;
         "touchable"?: boolean;
         "vertical"?: boolean;

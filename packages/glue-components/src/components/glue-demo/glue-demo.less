@@ -62,3 +62,29 @@ glue-cell {
   height: 150px;
   padding-left: 30px;
 }
+.my-swipe .glue-swipe-item {
+  color: #fff;
+  font-size: 20px;
+  line-height: 300px;
+  text-align: center;
+  background-color: #39a9ed;
+
+  img {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 300px;
+    padding: 30px 60px;
+    background-color: #fff;
+    pointer-events: none;
+  }
+  &:nth-child(even) {
+    //nth-child(even)：偶数
+    background-color: #39a9ed;
+  }
+
+  &:nth-child(odd) {
+    //nth-child(odd)：奇数
+    background-color: #66c6f2;
+  }
+}
