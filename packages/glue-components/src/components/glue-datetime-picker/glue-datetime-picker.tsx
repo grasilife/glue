@@ -21,6 +21,7 @@ export class GlueDatetimePicker {
   //sharedProps
   @Prop() filter;
   @Prop() modelValue = null;
+  @Prop() columnsOrder: [];
   @Prop() formatter;
   //pickerProps
   @Prop() title: string;

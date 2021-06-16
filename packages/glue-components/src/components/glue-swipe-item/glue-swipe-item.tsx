@@ -56,7 +56,7 @@ export class GlueSwipeItem {
     this.parentVertical = getAttribute(parentEl, 'vertical');
     this.parentSize = await parentEl.getSize();
     this.parentLoop = getAttribute(parentEl, 'loop');
-    this.parentActiveIndicator = await parentEl.getAttribute();
+    this.parentActiveIndicator = await parentEl.getActiveIndicator();
     this.parentLazyRender = getAttribute(parentEl, 'lazy-render');
     this.parentCount = await parentEl.getCount();
     this.shouldRender();

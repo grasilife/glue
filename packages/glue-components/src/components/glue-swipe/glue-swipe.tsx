@@ -16,13 +16,13 @@ import { getElementChildren } from '../../utils/base';
 })
 export class GlueSwipe {
   @Element() el!: HTMLElement;
-  @Prop() width: number;
-  @Prop() height: number;
+  @Prop({ mutable: true }) width: number;
+  @Prop({ mutable: true }) height: number;
   @Prop() autoplay: number;
-  @Prop({ mutable: true }) vertical: boolean = false;
-  @Prop({ mutable: true }) lazyRender: boolean;
+  @Prop({ reflect: true }) vertical: boolean = false;
+  @Prop({ reflect: true }) lazyRender: boolean;
   @Prop() indicatorColor: string = '#1989fa';
-  @Prop({ mutable: true }) loop = false;
+  @Prop({ reflect: true }) loop = false;
   @Prop() duration: string | number = 500;
   @Prop() touchable = false;
   @Prop() initialSwipe = 0;
@@ -355,7 +355,7 @@ export class GlueSwipe {
   };
 
   renderIndicator = () => {
-    if ((this.showIndicators = '#slot')) {
+    if (this.showIndicators == '#slot') {
       return <slot name="show-indicators"></slot>;
     }
     if (this.showIndicators && this.count() > 1) {

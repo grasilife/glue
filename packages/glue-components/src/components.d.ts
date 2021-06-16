@@ -374,11 +374,28 @@ export namespace Components {
         "showExchangeBar": boolean;
     }
     interface GlueDatePicker {
-        "first": string;
+        "allowHtml": boolean;
+        "cancelButtonText": string;
+        "columnsOrder": [];
+        "confirmButtonText": string;
+        "filter": any;
+        "formatter": any;
+        "itemHeight": number;
+        "loading": boolean;
+        "maxDate": Date;
+        "minDate": Date;
+        "modelValue": any;
+        "readonly": boolean;
+        "showToolbar": boolean;
+        "swipeDuration": number;
+        "title": string;
+        "type": string;
+        "visibleItemCount": number;
     }
     interface GlueDatetimePicker {
         "allowHtml": boolean;
         "cancelButtonText": string;
+        "columnsOrder": [];
         "confirmButtonText": string;
         "filter": any;
         "fimaxMinuterst": string | number;
@@ -2154,11 +2171,28 @@ declare namespace LocalJSX {
         "showExchangeBar"?: boolean;
     }
     interface GlueDatePicker {
-        "first"?: string;
+        "allowHtml"?: boolean;
+        "cancelButtonText"?: string;
+        "columnsOrder"?: [];
+        "confirmButtonText"?: string;
+        "filter"?: any;
+        "formatter"?: any;
+        "itemHeight"?: number;
+        "loading"?: boolean;
+        "maxDate"?: Date;
+        "minDate"?: Date;
+        "modelValue"?: any;
+        "readonly"?: boolean;
+        "showToolbar"?: boolean;
+        "swipeDuration"?: number;
+        "title"?: string;
+        "type"?: string;
+        "visibleItemCount"?: number;
     }
     interface GlueDatetimePicker {
         "allowHtml"?: boolean;
         "cancelButtonText"?: string;
+        "columnsOrder"?: [];
         "confirmButtonText"?: string;
         "filter"?: any;
         "fimaxMinuterst"?: string | number;

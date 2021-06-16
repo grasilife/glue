@@ -12,7 +12,7 @@ export const sharedProps = {
   },
 };
 
-export function times(n: number, iteratee: (index: number) => any[]) {
+export function times(n: number, iteratee) {
   let index = -1;
   const result = Array(n);
 
