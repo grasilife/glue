@@ -179,6 +179,7 @@ export class GlueDatePicker {
           return null;
       }
     });
+    console.log(values);
 
     // nextTick(() => {
     //   picker.value.setValues(values);

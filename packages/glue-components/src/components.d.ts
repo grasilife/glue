@@ -1033,7 +1033,24 @@ export namespace Components {
         "type": string;
     }
     interface GlueTimePicker {
-        "first": string;
+        "allowHtml": boolean;
+        "cancelButtonText": string;
+        "columnsOrder": [];
+        "confirmButtonText": string;
+        "filter": any;
+        "formatter": any;
+        "itemHeight": number;
+        "loading": boolean;
+        "maxHour": number;
+        "maxMinute": number;
+        "minHour": number;
+        "minMinute": number;
+        "modelValue": any;
+        "readonly": boolean;
+        "showToolbar": boolean;
+        "swipeDuration": number;
+        "title": string;
+        "visibleItemCount": number;
     }
     interface GlueToast {
         "closeOnClick": boolean;
@@ -2868,7 +2885,24 @@ declare namespace LocalJSX {
         "type"?: string;
     }
     interface GlueTimePicker {
-        "first"?: string;
+        "allowHtml"?: boolean;
+        "cancelButtonText"?: string;
+        "columnsOrder"?: [];
+        "confirmButtonText"?: string;
+        "filter"?: any;
+        "formatter"?: any;
+        "itemHeight"?: number;
+        "loading"?: boolean;
+        "maxHour"?: number;
+        "maxMinute"?: number;
+        "minHour"?: number;
+        "minMinute"?: number;
+        "modelValue"?: any;
+        "readonly"?: boolean;
+        "showToolbar"?: boolean;
+        "swipeDuration"?: number;
+        "title"?: string;
+        "visibleItemCount"?: number;
     }
     interface GlueToast {
         "closeOnClick"?: boolean;
