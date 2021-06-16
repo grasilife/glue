@@ -1,6 +1,7 @@
-import { Component, Prop, h, Host, State, Element } from '@stencil/core';
+import { Component, Prop, h, Host, State, Element, Watch, Method } from '@stencil/core';
 import classNames from 'classnames';
 import { useRect } from '../../utils/useRect';
+import { doubleRaf } from '../../utils/animation';
 import { range } from '../../utils/format/number';
 import { isHidden } from '../../utils/dom/style';
 import { preventDefault } from '../../utils/dom/event';
@@ -18,10 +19,10 @@ export class GlueSwipe {
   @Prop() width: number;
   @Prop() height: number;
   @Prop() autoplay: number;
-  @Prop() vertical: boolean;
-  @Prop() lazyRender: boolean;
+  @Prop({ mutable: true }) vertical: boolean = false;
+  @Prop({ mutable: true }) lazyRender: boolean;
   @Prop() indicatorColor: string;
-  @Prop() loop = false;
+  @Prop({ mutable: true }) loop = false;
   @Prop() duration: string | number = 500;
   @Prop() touchable = false;
   @Prop() initialSwipe = 0;
@@ -36,9 +37,24 @@ export class GlueSwipe {
   @State() active = 0;
   @State() swiping = false;
   @State() children = [];
-  //   const windowSize = useWindowSize();
-  // const { children, linkChildren } = useChildren(SWIPE_KEY);
-
+  trackRef;
+  @Watch('autoplay')
+  autoplayHandle(value) {
+    if (value > 0) {
+      this.autoplayFn();
+    } else {
+      this.stopAutoplay();
+    }
+  }
+  @Watch('children.length')
+  childrenHandle() {
+    const active = Math.min(this.children.length - 1, this.active);
+    this.initialize(active);
+  }
+  @Watch('initialSwipe')
+  initialSwipeHandle() {
+    this.initialize();
+  }
   count = () => this.children.length;
 
   size = () => {
@@ -48,7 +64,10 @@ export class GlueSwipe {
       return this.width;
     }
   };
-
+  @Method()
+  async getSize() {
+    return this.size();
+  }
   delta = () => (this.vertical ? touch.deltaY : touch.deltaX);
 
   minOffset = () => {
@@ -59,7 +78,10 @@ export class GlueSwipe {
 
   trackSize = () => this.count() * this.size();
 
-  activeIndicator = () => (this.active + this.count()) % this.count();
+  activeIndicator = () => {
+    console.log(this.active, this.count(), (this.active + this.count()) % this.count(), 'agiuaui');
+    return (this.active + this.count()) % this.count();
+  };
 
   isCorrectDirection = () => {
     const expect = this.vertical ? 'vertical' : 'horizontal';
@@ -73,7 +95,7 @@ export class GlueSwipe {
       transitionDuration: `${this.swiping ? 0 : this.duration}ms`,
       transform: `translate${this.vertical ? 'Y' : 'X'}(${this.offset}px)`,
     };
-
+    console.log(this.trackSize(), this[crossAxis], 'this.trackSize()');
     if (this.size()) {
       style[mainAxis] = `${this.trackSize()}px`;
       style[crossAxis] = this[crossAxis] ? `${this[crossAxis]}px` : '';
@@ -83,14 +105,18 @@ export class GlueSwipe {
   };
 
   getTargetActive = pace => {
+    console.log(pace, 'pace');
+
     const { active } = this;
 
     if (pace) {
       if (this.loop) {
+        console.log(range(active + pace, -1, this.count()), active, pace, this.count(), 'active111');
         return range(active + pace, -1, this.count());
       }
       return range(active + pace, 0, this.maxCount());
     }
+
     return active;
   };
 
@@ -118,6 +144,7 @@ export class GlueSwipe {
     const targetOffset = this.getTargetOffset(targetActive, offset);
 
     // auto move first and last swipe in loop mode
+    console.log(this.loop, 'this.loop');
     if (this.loop) {
       if (this.children[0] && targetOffset !== this.minOffset()) {
         const outRightBound = targetOffset < this.minOffset();
@@ -129,7 +156,7 @@ export class GlueSwipe {
         this.children[this.count() - 1].setOffset(outLeftBound ? -this.trackSize() : 0);
       }
     }
-
+    console.log(targetActive, 'targetActive');
     this.active = targetActive;
     this.offset = targetOffset;
 
@@ -142,10 +169,10 @@ export class GlueSwipe {
     this.swiping = true;
 
     if (this.active <= -1) {
-      // move({ pace: count.value });
+      this.move({ pace: this.count(), emitChange: false });
     }
     if (this.active >= this.count()) {
-      // move({ pace: -count.value });
+      this.move({ pace: -this.count(), emitChange: false });
     }
   };
 
@@ -153,26 +180,26 @@ export class GlueSwipe {
     this.correctPosition();
     touch.reset();
 
-    // doubleRaf(() => {
-    //   this.swiping = false;
-    //   this.move({
-    //     pace: -1,
-    //     emitChange: true,
-    //   });
-    // });
+    doubleRaf(() => {
+      this.swiping = false;
+      this.move({
+        pace: -1,
+        emitChange: true,
+      });
+    });
   };
 
   next = () => {
     this.correctPosition();
     touch.reset();
 
-    // doubleRaf(() => {
-    //   this.swiping = false;
-    //   this.move({
-    //     pace: 1,
-    //     emitChange: true,
-    //   });
-    // });
+    doubleRaf(() => {
+      this.swiping = false;
+      this.move({
+        pace: 1,
+        emitChange: true,
+      });
+    });
   };
 
   // let autoplayTimer;
@@ -196,7 +223,7 @@ export class GlueSwipe {
     if (!this.el || isHidden(this.el)) {
       return;
     }
-
+    console.log('initialize22w2w2');
     this.stopAutoplay();
 
     const rect = useRect(this.el);
@@ -207,9 +234,11 @@ export class GlueSwipe {
     this.width = +this.width || rect.width;
     this.height = +this.height || rect.height;
     this.offset = this.getTargetOffset(active);
-    // this.children.forEach(swipe => {
-    //   swipe.setOffset(0);
-    // });
+    for (let i = 0; i < this.children.length; i++) {
+      let swipe = this.children[i];
+      console.log(swipe, 'swipeswipe');
+      swipe.setOffset(0);
+    }
 
     this.autoplayFn();
   };
@@ -273,43 +302,44 @@ export class GlueSwipe {
     this.autoplayFn();
   };
 
-  swipeTo = (index, options = {}) => {
+  swipeTo = (index, options: any = {}) => {
     console.log(index, options);
 
     this.correctPosition();
     touch.reset();
 
-    // doubleRaf(() => {
-    //   let targetIndex;
-    //   if (this.loop && index === this.count()) {
-    //     targetIndex = this.active === 0 ? 0 : index;
-    //   } else {
-    //     targetIndex = index % this.count();
-    //   }
+    doubleRaf(() => {
+      let targetIndex;
+      if (this.loop && index === this.count()) {
+        targetIndex = this.active === 0 ? 0 : index;
+      } else {
+        targetIndex = index % this.count();
+      }
 
-    //   if (options.immediate) {
-    //     doubleRaf(() => {
-    //       this.swiping = false;
-    //     });
-    //   } else {
-    //     this.swiping = false;
-    //   }
+      if (options.immediate) {
+        doubleRaf(() => {
+          this.swiping = false;
+        });
+      } else {
+        this.swiping = false;
+      }
 
-    //   this.move({
-    //     pace: targetIndex - this.active,
-    //     emitChange: true,
-    //   });
-    // });
+      this.move({
+        pace: targetIndex - this.active,
+        emitChange: true,
+      });
+    });
   };
 
   renderDot = (_, index) => {
+    //指示器
     const active = index === this.activeIndicator();
     const style = active ? { backgroundColor: this.indicatorColor } : null;
     return (
       <i
         style={style}
-        class={classNames({
-          'glue-swipe__indicators--active': active,
+        class={classNames('glue-swipe__indicator', {
+          'glue-swipe__indicator--active': active,
         })}
       />
     );
@@ -322,7 +352,7 @@ export class GlueSwipe {
     if (this.showIndicators && this.count() > 1) {
       return (
         <div
-          class={classNames({
+          class={classNames('glue-swipe__indicators', {
             'glue-swipe__indicators--vertical': this.vertical,
           })}
         >
@@ -333,14 +363,19 @@ export class GlueSwipe {
   };
   componentDidLoad() {
     console.log('Component has been rendered');
-    this.children = getElementChildren(this.el);
+    this.children = getElementChildren(this.trackRef);
+    console.log(this.children, 'this.children');
+    this.initialize();
   }
   render() {
     return (
       <Host class="glue-swipe">
         <div
+          ref={dom => {
+            this.trackRef = dom;
+          }}
           style={this.trackStyle()}
-          class={classNames({
+          class={classNames('glue-swipe__track', {
             'glue-swipe__track--vertical': this.vertical,
           })}
           onTouchStart={this.onTouchStart}

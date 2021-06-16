@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Element, Host } from '@stencil/core';
+import { Component, Prop, h, State, Element, Host, Method } from '@stencil/core';
 // import classNames from 'classnames';
 import { getElementParent, getAttribute } from '../../utils/base';
 @Component({
@@ -36,10 +36,10 @@ export class GlueSwipeItem {
     console.log(prevActive, nextActive);
     // this.rendered = index.value === active || index.value === prevActive || index.value === nextActive;
   };
-
-  setOffset = offset => {
+  @Method()
+  async setOffset(offset) {
     this.offset = offset;
-  };
+  }
   contentRender = () => {
     if (this.rendered) {
       return <slot></slot>;
@@ -47,9 +47,14 @@ export class GlueSwipeItem {
   };
   componentDidLoad() {
     this.mounted = true;
-    let parentEl = getElementParent(this.el);
+    let trackParentEl = getElementParent(this.el);
+    let parentEl = getElementParent(trackParentEl);
+    console.log(parentEl, 'parentEl');
     this.parentVertical = getAttribute(parentEl, 'vertical');
-    this.parentSize = getAttribute(parentEl, 'size');
+    parentEl.getSize().then(value => {
+      this.parentSize = value;
+      console.log(value, this.parentVertical, 'valuevaluevaluevalue');
+    });
     this.parentLoop = getAttribute(parentEl, 'loop');
     this.parentLazyRender = getAttribute(parentEl, 'lazy-render');
     this.parentActiveIndicator = getAttribute(parentEl, 'active-indicator');
@@ -63,11 +68,11 @@ export class GlueSwipeItem {
       width: '',
     };
 
-    if (this.parentSize && this.parentVertical) {
+    if (this.parentSize) {
       style[this.parentVertical ? 'height' : 'width'] = `${this.parentSize}px`;
     }
 
-    if (this.offset && this.parentVertical) {
+    if (this.offset) {
       style.transform = `translate${this.parentVertical ? 'Y' : 'X'}(${this.offset}px)`;
     }
     return (

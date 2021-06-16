@@ -906,6 +906,7 @@ export namespace Components {
     interface GlueSwipe {
         "autoplay": number;
         "duration": string | number;
+        "getSize": () => Promise<number>;
         "height": number;
         "indicatorColor": string;
         "initialSwipe": number;
@@ -929,6 +930,7 @@ export namespace Components {
     }
     interface GlueSwipeItem {
         "first": string;
+        "setOffset": (offset: any) => Promise<void>;
     }
     interface GlueSwitch {
         "activeColor": string;

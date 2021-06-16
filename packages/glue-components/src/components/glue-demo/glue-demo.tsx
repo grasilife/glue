@@ -323,7 +323,7 @@ export class GlueDemo {
         {/* <glue-picker title="标题" columns={this.columns} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" /> */}
         {/* <glue-picker title="标题" columns={this.columns2} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" /> */}
         {/* <glue-picker title="标题" columns={this.columns3} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} loading={false} /> */}
-        <glue-picker
+        {/* <glue-picker
           title="#slot"
           columns={this.columns4}
           onGlueConfirm={this.onGlueConfirm}
@@ -339,7 +339,15 @@ export class GlueDemo {
           swipe-duration={1000}
         >
           <span slot="title">确认1</span>
-        </glue-picker>
+        </glue-picker> */}
+        <div class="sswipeClass">
+          <glue-swipe class="my-swipe" autoplay={3000} indicator-color="white" show-indicators={true} loop={true}>
+            <glue-swipe-item>1</glue-swipe-item>
+            <glue-swipe-item>2</glue-swipe-item>
+            <glue-swipe-item>3</glue-swipe-item>
+            <glue-swipe-item>4</glue-swipe-item>
+          </glue-swipe>
+        </div>
       </div>
     );
   }
