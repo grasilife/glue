@@ -11,6 +11,7 @@
 | ------------------- | --------------------- | ----------- | ------------------ | ------------------------------------ |
 | `allowHtml`         | `allow-html`          |             | `boolean`          | `undefined`                          |
 | `cancelButtonText`  | `cancel-button-text`  |             | `string`           | `undefined`                          |
+| `columnsOrder`      | --                    |             | `[]`               | `undefined`                          |
 | `confirmButtonText` | `confirm-button-text` |             | `string`           | `undefined`                          |
 | `filter`            | `filter`              |             | `any`              | `undefined`                          |
 | `fimaxMinuterst`    | `fimax-minuterst`     |             | `number \| string` | `59`                                 |
@@ -43,6 +44,10 @@
 graph TD;
   glue-datetime-picker --> glue-time-picker
   glue-datetime-picker --> glue-date-picker
+  glue-time-picker --> glue-picker
+  glue-picker --> glue-picker-column
+  glue-picker --> glue-loading
+  glue-date-picker --> glue-picker
   style glue-datetime-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -48,11 +48,11 @@ export class GlueSwipe {
       this.stopAutoplay();
     }
   }
-  @Watch('children.length')
-  childrenHandle() {
-    const active = Math.min(this.children.length - 1, this.active);
-    this.initialize(active);
-  }
+  // @Watch('children.length')
+  // childrenHandle() {
+  //   const active = Math.min(this.children.length - 1, this.active);
+  //   this.initialize(active);
+  // }
   @Watch('initialSwipe')
   initialSwipeHandle() {
     this.initialize();

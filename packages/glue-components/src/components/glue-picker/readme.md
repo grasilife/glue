@@ -154,7 +154,8 @@ Type: `Promise<void>`
 
 ### Used by
 
- - [glue-demo](../glue-demo)
+ - [glue-date-picker](../glue-date-picker)
+ - [glue-time-picker](../glue-time-picker)
 
 ### Depends on
 
@@ -166,7 +167,8 @@ Type: `Promise<void>`
 graph TD;
   glue-picker --> glue-picker-column
   glue-picker --> glue-loading
-  glue-demo --> glue-picker
+  glue-date-picker --> glue-picker
+  glue-time-picker --> glue-picker
   style glue-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
