@@ -379,7 +379,7 @@ export namespace Components {
         "columnsOrder": [];
         "confirmButtonText": string;
         "filter": any;
-        "formatter": any;
+        "formatter": Function;
         "itemHeight": number;
         "loading": boolean;
         "maxDate": Date;
@@ -403,10 +403,10 @@ export namespace Components {
         "itemHeight": number;
         "loading": boolean;
         "maxDate": Date;
-        "maxHour": string | number;
+        "maxHour": number;
         "minDate": Date;
-        "minHour": string | number;
-        "minMinute": string | number;
+        "minHour": number;
+        "minMinute": number;
         "modelValue": any;
         "readonly": boolean;
         "showToolbar": boolean;
@@ -2193,7 +2193,7 @@ declare namespace LocalJSX {
         "columnsOrder"?: [];
         "confirmButtonText"?: string;
         "filter"?: any;
-        "formatter"?: any;
+        "formatter"?: Function;
         "itemHeight"?: number;
         "loading"?: boolean;
         "maxDate"?: Date;
@@ -2217,10 +2217,10 @@ declare namespace LocalJSX {
         "itemHeight"?: number;
         "loading"?: boolean;
         "maxDate"?: Date;
-        "maxHour"?: string | number;
+        "maxHour"?: number;
         "minDate"?: Date;
-        "minHour"?: string | number;
-        "minMinute"?: string | number;
+        "minHour"?: number;
+        "minMinute"?: number;
         "modelValue"?: any;
         "readonly"?: boolean;
         "showToolbar"?: boolean;

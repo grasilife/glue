@@ -9,9 +9,9 @@ const currentYear = new Date().getFullYear();
 })
 export class GlueDatetimePicker {
   //TimePicker
-  @Prop() minHour: string | number = 0;
-  @Prop() maxHour: string | number = 23;
-  @Prop() minMinute: string | number = 0;
+  @Prop() minHour: number = 0;
+  @Prop() maxHour: number = 23;
+  @Prop() minMinute: number = 0;
   @Prop() fimaxMinuterst: string | number = 59;
 
   //DatePicker
@@ -34,14 +34,15 @@ export class GlueDatetimePicker {
   @Prop() showToolbar = true;
   @Prop() visibleItemCount = 6;
   @Prop() swipeDuration = 1000;
-
-  render() {
+  renderComponent = () => {
     const isTimePicker = this.type === 'time';
-    const Component = isTimePicker ? <glue-time-picker></glue-time-picker> : <glue-date-picker></glue-date-picker>;
-    return (
-      <Host class={classNames('cunstom')}>
-        <Component class="glue-datetime-picker" {...this} />
-      </Host>
-    );
+    if (isTimePicker) {
+      return <glue-time-picker {...this}></glue-time-picker>;
+    } else {
+      return <glue-date-picker {...this}></glue-date-picker>;
+    }
+  };
+  render() {
+    return <Host class={classNames('cunstom')}>{this.renderComponent()}</Host>;
   }
 }

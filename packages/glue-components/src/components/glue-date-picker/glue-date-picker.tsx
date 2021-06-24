@@ -14,7 +14,7 @@ export class GlueDatePicker {
   @Prop() filter;
   @Prop() modelValue = null;
   @Prop() columnsOrder: [];
-  @Prop() formatter;
+  @Prop() formatter: Function = (type: string, value: unknown) => value;
   //pickerProps
   @Prop() title: string;
   @Prop() loading: boolean;
@@ -84,9 +84,9 @@ export class GlueDatePicker {
   };
 
   ranges = () => {
-    const { maxYear, maxDate, maxMonth, maxHour, maxMinute } = this.getBoundary('max', this.currentDate());
+    const { maxYear, maxDate, maxMonth, maxHour, maxMinute } = this.getBoundary('max', this.currentDate);
 
-    const { minYear, minDate, minMonth, minHour, minMinute } = this.getBoundary('min', this.currentDate());
+    const { minYear, minDate, minMonth, minHour, minMinute } = this.getBoundary('min', this.currentDate);
 
     let result = [
       {

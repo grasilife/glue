@@ -121,6 +121,9 @@ export class GlueDemo {
     minutes: 0,
     seconds: 0,
   };
+  @State() currentDate = new Date();
+  @State() minDate = new Date(2020, 0, 1);
+  @State() maxDate = new Date(2025, 10, 1);
   handleClick = () => {
     this.currentRate = this.currentRate + 10;
   };
@@ -340,16 +343,14 @@ export class GlueDemo {
         >
           <span slot="title">确认1</span>
         </glue-picker> */}
-        <div class="sswipeClass">
+        {/* <div class="sswipeClass">
           <glue-swipe class="my-swipe" autoplay={3000} indicator-color="white" show-indicators={true} loop={true} touchable={true} vertical={false} width={200}>
             <glue-swipe-item>1</glue-swipe-item>
             <glue-swipe-item>2</glue-swipe-item>
             <glue-swipe-item>3</glue-swipe-item>
-            {/* <glue-swipe-item>
-              <img src="https://img01.yzcdn.cn/vant/apple-1.jpg" />
-            </glue-swipe-item> */}
           </glue-swipe>
-        </div>
+        </div> */}
+        <glue-datetime-picker model-value={this.currentDate} type="date" title="选择年月日" min-date={this.minDate} max-date={this.maxDate}></glue-datetime-picker>
       </div>
     );
   }

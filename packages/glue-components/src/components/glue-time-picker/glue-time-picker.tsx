@@ -27,7 +27,7 @@ export class GlueTimePicker {
   @Prop() swipeDuration = 1000;
   @Prop() minHour = 0;
   @Prop() maxHour = 23;
-  @Prop() minMinute = 0;
+  @Prop() minMinute: number = 0;
   @Prop() maxMinute = 59;
   @State() currentDate;
   componentWillLoad() {
