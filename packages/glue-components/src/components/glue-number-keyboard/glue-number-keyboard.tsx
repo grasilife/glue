@@ -17,6 +17,7 @@ export class GlueNumberKeyboard {
   @Prop() closeButtonLoading: boolean;
   @Prop() theme = 'default';
   @Prop() modelValue = '';
+  //TODO:当extraKey为""时出现关闭键盘图标
   @Prop() extraKey = '';
   @Prop() maxlength = Number.MAX_VALUE;
   @Prop() transition = true;
@@ -56,6 +57,8 @@ export class GlueNumberKeyboard {
   genCustomKeys = () => {
     const keys = this.genBasicKeys();
     const { extraKey } = this;
+    //TODO:extraKey数组居然不能赋值
+    console.log(extraKey, 'extraKeyextraKey');
     const extraKeys = Array.isArray(extraKey) ? extraKey : [extraKey];
 
     if (extraKeys.length === 1) {
@@ -108,15 +111,15 @@ export class GlueNumberKeyboard {
     }
   };
 
-  renderTitle = () => {
+  renderHeader = () => {
     const { title, theme, closeButtonText } = this;
     // const leftSlot = slots['title-left'];
     const showClose = closeButtonText && theme === 'default';
-    // const showTitle = title || showClose || leftSlot;
+    const showTitle = title || showClose;
 
-    // if (!showTitle) {
-    //   return;
-    // }
+    if (!showTitle) {
+      return;
+    }
 
     return (
       <div class="glue-number-keyboard__header">
@@ -142,7 +145,7 @@ export class GlueNumberKeyboard {
         // keySlots.default = slots['extra-key'];
       }
 
-      // return <Key v-slots={keySlots} key={key.text} text={key.text} type={key.type} wider={key.wider} color={key.color} onPress={onPress} />;
+      return <glue-key key={key.text} text={key.text} type={key.type} wider={key.wider} color={key.color} />;
     });
   };
 
@@ -150,14 +153,13 @@ export class GlueNumberKeyboard {
     if (this.theme === 'custom') {
       return (
         <div class="glue-number-keyboard__sidebar">
-          {/* {this.showDeleteKey && <Key v-slots={{ delete: slots.delete }} large text={this.deleteButtonText} type="delete" onPress={onPress} />}
-          <Key large text={this.closeButtonText} type="close" color="blue" loading={this.closeButtonLoading} onPress={onPress} /> */}
+          {this.showDeleteKey && <glue-key large text={this.deleteButtonText} type="delete" />}
+          <glue-key large text={this.closeButtonText} type="close" color="blue" loading={this.closeButtonLoading} />
         </div>
       );
     }
   };
   render() {
-    const Title = this.renderTitle();
     return (
       <Host
         v-show={this.show}
@@ -165,15 +167,15 @@ export class GlueNumberKeyboard {
           this.root = dom;
         }}
         style={{ zIndex: this.zIndex }}
-        class={classNames({
+        class={classNames('glue-number-keyboard', {
           'glue-number-keyboard__unfit': !this.safeAreaInsetBottom,
-          'glue-number-keyboard__with-title': !!Title,
+          'glue-number-keyboard__with-title': this.title,
         })}
         onTouchStart={stopPropagation}
         onAnimationend={this.onAnimationEnd}
         onWebkitAnimationEnd={this.onAnimationEnd}
       >
-        {Title}
+        {this.renderHeader()}
         <div class="glue-number-keyboard__body">
           <div class="glue-number-keyboard__keys">{this.renderKeys()}</div>
           {this.renderSidebar()}

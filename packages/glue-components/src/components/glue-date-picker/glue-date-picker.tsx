@@ -14,7 +14,7 @@ export class GlueDatePicker {
   @Prop() filter;
   @Prop() modelValue = null;
   @Prop() columnsOrder: [];
-  @Prop() formatter: Function = (type: string, value: unknown) => value;
+  @Prop() formatter: Function = (_type: string, value: unknown) => value;
   //pickerProps
   @Prop() title: string;
   @Prop() loading: boolean;

@@ -1,5 +1,6 @@
-import { Component, Prop, h, Host } from '@stencil/core';
+import { Component, Prop, h, Host, State } from '@stencil/core';
 import classNames from 'classnames';
+import '@glue/touch-emulator';
 import { createNamespace } from '../../utils/create/index';
 import { UseTouch } from '../../utils/composables/use-touch';
 const touch = new UseTouch();
@@ -33,17 +34,17 @@ export class GlueKey {
   @Prop() wider: boolean;
   @Prop() large: boolean;
   @Prop() loading: boolean;
-  active: HTMLElement;
+  @State() active = false;
   onTouchStart = (event: TouchEvent) => {
     touch.start(event);
-    // this.active = true;
+    this.active = true;
   };
 
   onTouchMove = (event: TouchEvent) => {
     touch.move(event);
 
     if (touch.direction) {
-      // this.active = false;
+      this.active = false;
     }
   };
 
@@ -55,7 +56,7 @@ export class GlueKey {
       // if (!slots.default) {
       //   event.preventDefault();
       // }
-      // this.active = false;
+      this.active = false;
       // emit('press', this.text, this.type);
     }
   };
@@ -90,7 +91,7 @@ export class GlueKey {
         <div
           role="button"
           tabindex={0}
-          class={classNames('glue-key__wrapper', bem([this.color]), {
+          class={classNames('glue-key', bem([this.color]), {
             'glue-key--large': this.large,
             'glue-key--active': this.active,
             'glue-key--delete': this.type === 'delete',

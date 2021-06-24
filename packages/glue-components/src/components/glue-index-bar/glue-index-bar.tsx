@@ -1,5 +1,6 @@
 import { Component, Prop, h, State, EventEmitter, Event } from '@stencil/core';
 import { isDef } from '../../utils/base';
+import '@glue/touch-emulator';
 // import { getRootScrollTop, setRootScrollTop } from '../../utils/dom/scroll';
 import { UseTouch } from '../../utils/composables/use-touch';
 let touchActiveIndex: string;

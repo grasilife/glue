@@ -350,7 +350,13 @@ export class GlueDemo {
             <glue-swipe-item>3</glue-swipe-item>
           </glue-swipe>
         </div> */}
-        <glue-datetime-picker model-value={this.currentDate} type="date" title="选择年月日" min-date={this.minDate} max-date={this.maxDate}></glue-datetime-picker>
+        {/* <glue-datetime-picker model-value={this.currentDate} type="date" title="选择年月日" min-date={this.minDate} max-date={this.maxDate}></glue-datetime-picker> */}
+        {/* <glue-number-keyboard show={true} /> */}
+        {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="." theme="custom" /> */}
+        {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="X" theme="custom" /> */}
+        {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="." title="键盘标题" theme="default" /> */}
+        {/* <glue-number-keyboard show={true} close-button-text="完成" title="键盘标题" theme="custom" extra-key={['00', '.']} /> */}
+        <glue-number-keyboard show={true} random-key-order theme="default" extra-key={[]} />
       </div>
     );
   }
