@@ -356,7 +356,9 @@ export class GlueDemo {
         {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="X" theme="custom" /> */}
         {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="." title="键盘标题" theme="default" /> */}
         {/* <glue-number-keyboard show={true} close-button-text="完成" title="键盘标题" theme="custom" extra-key={['00', '.']} /> */}
-        <glue-number-keyboard show={true} random-key-order theme="default" extra-key={[]} />
+
+        <glue-password-input value="123" focused />
+        <glue-number-keyboard show={true} random-key-order theme="default" />
       </div>
     );
   }

@@ -38,7 +38,7 @@ export class GluePasswordInput {
       Points.push(
         <li
           class={classNames('glue-password-input__item', {
-            ['glue-password-input__' + BORDER_LEFT]: showBorder,
+            [BORDER_LEFT]: showBorder,
             'glue-password-input__focus': showCursor,
           })}
           style={style}
@@ -57,7 +57,7 @@ export class GluePasswordInput {
       <Host class="glue-password-input">
         <ul
           class={classNames('glue-password-input__security', {
-            ['glue-password-input__' + BORDER_SURROUND]: !this.gutter,
+            [BORDER_SURROUND]: !this.gutter,
           })}
           onTouchStart={this.onTouchStart}
         >
@@ -66,7 +66,7 @@ export class GluePasswordInput {
         {info && (
           <div
             class={classNames('glue-password-input__security', {
-              ['glue-password-input__' + BORDER_SURROUND]: !this.gutter,
+              [BORDER_SURROUND]: !this.gutter,
               ['glue-password-input__' + this.errorInfo]: this.errorInfo,
               ['glue-password-input__info']: !this.errorInfo,
             })}
