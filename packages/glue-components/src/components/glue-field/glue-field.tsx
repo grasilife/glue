@@ -16,7 +16,7 @@ const [bem] = createNamespace('glue-field');
   shadow: false,
 })
 export class GlueField {
-  @Prop() rows: string | number;
+  @Prop() rows: number;
   @Prop() name: string;
   @Prop() rules: any;
   @Prop() autosize: any;
@@ -367,22 +367,22 @@ export class GlueField {
 
     const inputProps = {
       // ref: inputRef,
-      // name: this.name,
-      // rows: this.rows,
-      // class: bem('control', inputAlign),
-      // value: this.modelValue,
+      name: this.name,
+      rows: this.rows,
+      class: bem('control'),
+      value: this.modelValue,
       disabled,
       readonly,
-      // placeholder: this.placeholder,
-      // autocomplete: this.autocomplete,
-      // onBlur,
-      // onFocus,
-      // onInput,
-      // onClick: onClickInput,
-      // onChange: onCompositionEnd,
-      // onKeypress,
-      // onCompositionend: onCompositionEnd,
-      // onCompositionstart: onCompositionStart,
+      placeholder: this.placeholder,
+      autocomplete: this.autocomplete,
+      onBlur: this.onBlur,
+      onFocus: this.onFocus,
+      onInput: this.onInput,
+      onClick: this.onClickInput,
+      onChange: this.onCompositionEnd,
+      onKeypress: this.onKeypress,
+      onCompositionend: this.onCompositionEnd,
+      onCompositionstart: this.onCompositionStart,
     };
 
     const { type } = this;
@@ -474,16 +474,13 @@ export class GlueField {
   render() {
     const disabled = this.getProp('disabled');
     const labelAlign = this.getProp('labelAlign');
-    const Label = this.renderLabel();
-    const LeftIcon = this.renderLeftIcon();
+    // const Label = this.renderLabel();
+    // const LeftIcon = this.renderLeftIcon();
     return (
       <Host>
         <glue-cell
-          v-slots={{
-            icon: LeftIcon ? () => LeftIcon : null,
-            title: Label ? () => Label : null,
-            // extra: slots.extra,
-          }}
+          title="#slot"
+          value="#slot"
           size={this.size}
           icon={this.leftIcon}
           class={classNames({
@@ -498,18 +495,27 @@ export class GlueField {
           required={this.required}
           clickable={this.clickable}
           titleStyle={this.labelStyle()}
-          // valueClass={bem('value')}
-          // titleClass={[bem('label', this.labelAlign), this.labelClass]}
+          titleClass={{
+            'glue-field__label': true,
+            ...this.labelClass,
+            ...labelAlign,
+          }}
+          valueClass={{
+            'glue-field__value': true,
+          }}
           arrowDirection={this.arrowDirection}
         >
-          <div class={bem('body')}>
-            {this.renderInput()}
-            {this.showClear() && <glue-icon name="clear" class="glue-field__clear" onTouchStart={this.onClear} />}
-            {this.renderRightIcon()}
-            {/* {slots.button && <div class="glue-field__button" >{slots.button()}</div>} */}
+          <div slot="title">{this.renderLabel()}</div>
+          <div slot="value">
+            <div class={bem('body')}>
+              {this.renderInput()}
+              {this.showClear() && <glue-icon name="clear" class="glue-field__clear" onTouchStart={this.onClear} />}
+              {this.renderRightIcon()}
+              {/* {slots.button && <div class="glue-field__button" >{slots.button()}</div>} */}
+            </div>
+            {this.renderWordLimit()}
+            {this.renderMessage()}
           </div>
-          {this.renderWordLimit()}
-          {this.renderMessage()}
         </glue-cell>
       </Host>
     );

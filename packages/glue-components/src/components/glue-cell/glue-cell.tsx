@@ -46,9 +46,8 @@ export class GlueCell {
     if (this.title == '#slot' || isDef(this.title)) {
       return (
         <div
-          class={classNames({
+          class={classNames(this.titleClass, {
             'glue-cell__title': true,
-            'glue-cell--titleClass': this.titleClass,
           })}
           style={this.titleStyle}
         >
@@ -66,7 +65,7 @@ export class GlueCell {
     if (hasValue) {
       return (
         <div
-          class={classNames({
+          class={classNames(this.valueClass, {
             'glue-cell__value': true,
             'glue-cell__value--alone': !hasTitle,
           })}

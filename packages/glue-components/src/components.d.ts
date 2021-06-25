@@ -476,7 +476,7 @@ export namespace Components {
         "readonly": any;
         "required": boolean;
         "rightIcon": string;
-        "rows": string | number;
+        "rows": number;
         "rules": any;
         "showWordLimit": boolean;
         "size": string;
@@ -2290,7 +2290,7 @@ declare namespace LocalJSX {
         "readonly"?: any;
         "required"?: boolean;
         "rightIcon"?: string;
-        "rows"?: string | number;
+        "rows"?: number;
         "rules"?: any;
         "showWordLimit"?: boolean;
         "size"?: string;

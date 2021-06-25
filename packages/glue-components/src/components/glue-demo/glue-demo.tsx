@@ -357,8 +357,11 @@ export class GlueDemo {
         {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="." title="键盘标题" theme="default" /> */}
         {/* <glue-number-keyboard show={true} close-button-text="完成" title="键盘标题" theme="custom" extra-key={['00', '.']} /> */}
 
-        <glue-password-input value="123" focused />
-        <glue-number-keyboard show={true} random-key-order theme="default" />
+        {/* <glue-password-input value="123" focused /> */}
+        {/* <glue-number-keyboard show={true} random-key-order theme="default" /> */}
+        <glue-cell-group>
+          <glue-field model-value="" label="文本" placeholder="请输入用户名" />
+        </glue-cell-group>
       </div>
     );
   }

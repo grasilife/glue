@@ -95,7 +95,7 @@ export class GlueAddressEditDetail {
             autosize
             ref={dom => (this.field = dom)}
             class="glue-address-edit-detail"
-            rows={this.detailRows}
+            // rows={this.detailRows}
             type="textarea"
             label="标题"
             border={!this.showSearchResultState()}
