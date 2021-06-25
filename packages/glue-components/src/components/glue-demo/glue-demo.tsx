@@ -363,15 +363,14 @@ export class GlueDemo {
           <glue-field model-value="" label="文本" placeholder="请输入用户名" />
         </glue-cell-group> */}
 
-        <glue-field model-value="" label="文本" placeholder="请输入文本" />
-
-        <glue-field model-value="" type="tel" label="手机号" placeholder="请输入手机号" />
-
+        <glue-field model-value="11" label="文本" placeholder="请输入文本" readonly />
+        <glue-field model-value="" type="tel" label="手机号" placeholder="请输入手机号" disabled />
         <glue-field model-value="" type="digit" label="整数" placeholder="请输入整数" />
-
         <glue-field model-value="" type="number" label="数字" placeholder="请输入数字(支持小数)" />
-
         <glue-field model-value="" type="password" label="密码" placeholder="请输入密码" />
+        <glue-field model-value="11" label="显示图标" placeholder="请输入文本" left-icon="smile-o" right-icon="warning-o" />
+        <glue-field model-value="11" label="显示图标" placeholder="请输入文本" left-icon="smile-o" clearable />
+        <glue-field model-value="" label="文本" placeholder="请输入文本" error required error-message="手机号格式错误" />
       </div>
     );
   }

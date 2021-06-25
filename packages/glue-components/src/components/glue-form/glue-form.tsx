@@ -10,19 +10,58 @@ const { children } = {
   shadow: false,
 })
 export class GlueForm {
-  @Prop() colon: boolean;
-  @Prop() disabled: boolean;
-  @Prop() readonly: boolean;
-  @Prop() showError: boolean;
-  @Prop() labelWidth: string | number;
-  @Prop() labelAlign: string;
-  @Prop() inputAlign: string;
-  @Prop() scrollToError: boolean;
-  @Prop() validateFirst: boolean;
-  @Prop() errorMessageAlign: string;
-  @Prop() submitOnEnter = true;
-  @Prop() validateTrigger = 'onBlur';
-  @Prop() showErrorMessage = true;
+  @Prop({
+    reflect: true,
+  })
+  colon: boolean;
+  @Prop({
+    reflect: true,
+  })
+  disabled: boolean;
+  @Prop({
+    reflect: true,
+  })
+  readonly: boolean;
+  @Prop({
+    reflect: true,
+  })
+  showError: boolean;
+  @Prop({
+    reflect: true,
+  })
+  labelWidth: string | number;
+  @Prop({
+    reflect: true,
+  })
+  labelAlign: string;
+  @Prop({
+    reflect: true,
+  })
+  inputAlign: string;
+  @Prop({
+    reflect: true,
+  })
+  scrollToError: boolean;
+  @Prop({
+    reflect: true,
+  })
+  validateFirst: boolean;
+  @Prop({
+    reflect: true,
+  })
+  errorMessageAlign: string;
+  @Prop({
+    reflect: true,
+  })
+  submitOnEnter = true;
+  @Prop({
+    reflect: true,
+  })
+  validateTrigger = 'onBlur';
+  @Prop({
+    reflect: true,
+  })
+  showErrorMessage = true;
   @Event() submitChange: EventEmitter;
   @Event() failed: EventEmitter;
 

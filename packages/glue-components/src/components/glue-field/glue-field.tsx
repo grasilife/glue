@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, State } from '@stencil/core';
+import { Component, Prop, h, Host, State, Element } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { createNamespace } from '../../utils/create/index';
@@ -10,12 +10,14 @@ import { runSyncRule } from './utils';
 import { CellArrowDirection } from '../glue-cell/glue-cell-interface';
 import { trigger, preventDefault } from '../../utils/dom/event';
 const [bem] = createNamespace('glue-field');
+import { getElementParent, getAttribute } from '../../utils/base';
 @Component({
   tag: 'glue-field',
   styleUrl: 'glue-field.less',
   shadow: false,
 })
 export class GlueField {
+  @Element() el!: HTMLElement;
   @Prop() rows: number;
   @Prop() name: string;
   @Prop() rules: any;
@@ -62,21 +64,31 @@ export class GlueField {
   @State() focused = false;
   @State() validateFailed = false;
   @State() validateMessage = '';
+  @State() parentReadonly;
+  @State() parentLabelWidth;
+  @State() parentSubmitOnEnter;
+  @State() parentDisabled;
+  @State() parentInputAlign;
+  @State() parentErrorMessageAlign;
+  @State() parentLabelAlign;
+  @State() parentColon;
   inputRef: HTMLElement;
   childFieldValue: HTMLElement;
-  form: HTMLElement;
-
-  getProp = key => {
-    if (isDef(this[key])) {
-      return this[key];
-    }
-    // if (form && isDef(form.this[key])) {
-    //   return form.this[key];
-    // }
-  };
+  componentDidLoad() {
+    console.log('Component has been rendered');
+    let parentEl = getElementParent(this.el);
+    this.parentReadonly = getAttribute(parentEl, 'readonly');
+    this.parentLabelWidth = getAttribute(parentEl, 'label-width');
+    this.parentSubmitOnEnter = getAttribute(parentEl, 'submit-on-enter');
+    this.parentDisabled = getAttribute(parentEl, 'disabled');
+    this.parentInputAlign = getAttribute(parentEl, 'input-align');
+    this.parentErrorMessageAlign = getAttribute(parentEl, 'error-message-align');
+    this.parentLabelAlign = getAttribute(parentEl, 'label-align');
+    this.parentColon = getAttribute(parentEl, 'colon');
+  }
 
   showClear = () => {
-    const readonly = this.getProp('readonly');
+    const readonly = this.parentReadonly;
 
     if (this.clearable && !readonly) {
       const hasValue = isDef(this.modelValue) && this.modelValue !== '';
@@ -245,7 +257,7 @@ export class GlueField {
     // emit('focus', event);
 
     // readonly not work in lagacy mobile safari
-    const readonly = this.getProp('readonly');
+    const readonly = this.parentReadonly;
     if (readonly) {
       blur();
     }
@@ -285,13 +297,14 @@ export class GlueField {
     if (typeof this.error === 'boolean') {
       return this.error;
     }
-    // if (form && form.this.showError && this.validateFailed) {
-    //   return true;
-    // }
+    // && form.this.showError
+    if (this.validateFailed) {
+      return true;
+    }
   };
 
   labelStyle = () => {
-    const labelWidth = this.getProp('labelWidth');
+    const labelWidth = this.parentLabelWidth;
     if (labelWidth) {
       return { width: addUnit(labelWidth) };
     }
@@ -301,7 +314,7 @@ export class GlueField {
     const ENTER_CODE = 13;
 
     if (event.keyCode === ENTER_CODE) {
-      const submitOnEnter = this.getProp('submitOnEnter');
+      const submitOnEnter = this.parentSubmitOnEnter;
       if (!submitOnEnter && this.type !== 'textarea') {
         preventDefault(event);
       }
@@ -353,9 +366,9 @@ export class GlueField {
   };
 
   renderInput = () => {
-    const disabled = this.getProp('disabled');
-    const readonly = this.getProp('readonly');
-    // const inputAlign = this.getProp('inputAlign');
+    const disabled = this.parentDisabled;
+    const readonly = this.parentReadonly;
+    // const inputAlign = this.parentInputAlign;
 
     // if (slots.input) {
     //   return (
@@ -415,7 +428,7 @@ export class GlueField {
     if (this.leftIcon) {
       return (
         <div class="glue-field__left-icon" onClick={this.onClickLeftIcon}>
-          {/* {leftIconSlot ? leftIconSlot() : <glue-icon name={this.leftIcon} classPrefix={this.iconPrefix} />} */}
+          <glue-icon name={this.leftIcon} classPrefix={this.iconPrefix} />
         </div>
       );
     }
@@ -427,7 +440,7 @@ export class GlueField {
     if (this.rightIcon) {
       return (
         <div class="glue-field__right-icon" onClick={this.onClickRightIcon}>
-          {/* {rightIconSlot ? rightIconSlot() : <glue-icon name={this.rightIcon} classPrefix={this.iconPrefix} />} */}
+          <glue-icon name={this.rightIcon} classPrefix={this.iconPrefix} />
         </div>
       );
     }
@@ -452,13 +465,14 @@ export class GlueField {
     const message = this.errorMessage || this.validateMessage;
 
     if (message) {
-      const errorMessageAlign = this.getProp('errorMessageAlign');
-      return <div class={(classNames('glue-field__error-message'), bem([errorMessageAlign]))}>{message}</div>;
+      const errorMessageAlign = this.parentErrorMessageAlign;
+      console.log(errorMessageAlign, 'errorMessageAlign');
+      return <div class={classNames('glue-field__error-message')}>{message}</div>;
     }
   };
 
   renderLabel = () => {
-    const colon = this.getProp('colon') ? ':' : '';
+    const colon = this.parentColon ? ':' : '';
 
     // if (slots.label) {
     //   return [slots.label(), colon];
@@ -472,8 +486,8 @@ export class GlueField {
 
   // provide(FIELD_KEY, { childFieldValue, resetValidation, validateWithTrigger });
   render() {
-    const disabled = this.getProp('disabled');
-    const labelAlign = this.getProp('labelAlign');
+    const disabled = this.parentDisabled;
+    const labelAlign = this.parentLabelAlign;
     // const Label = this.renderLabel();
     // const LeftIcon = this.renderLeftIcon();
     return (
