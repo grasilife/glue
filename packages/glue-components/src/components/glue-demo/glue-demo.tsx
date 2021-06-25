@@ -359,9 +359,19 @@ export class GlueDemo {
 
         {/* <glue-password-input value="123" focused /> */}
         {/* <glue-number-keyboard show={true} random-key-order theme="default" /> */}
-        <glue-cell-group>
+        {/* <glue-cell-group>
           <glue-field model-value="" label="文本" placeholder="请输入用户名" />
-        </glue-cell-group>
+        </glue-cell-group> */}
+
+        <glue-field model-value="" label="文本" placeholder="请输入文本" />
+
+        <glue-field model-value="" type="tel" label="手机号" placeholder="请输入手机号" />
+
+        <glue-field model-value="" type="digit" label="整数" placeholder="请输入整数" />
+
+        <glue-field model-value="" type="number" label="数字" placeholder="请输入数字(支持小数)" />
+
+        <glue-field model-value="" type="password" label="密码" placeholder="请输入密码" />
       </div>
     );
   }

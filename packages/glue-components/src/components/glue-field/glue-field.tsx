@@ -477,7 +477,7 @@ export class GlueField {
     // const Label = this.renderLabel();
     // const LeftIcon = this.renderLeftIcon();
     return (
-      <Host>
+      <Host class="glue-field">
         <glue-cell
           title="#slot"
           value="#slot"

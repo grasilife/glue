@@ -1,6 +1,12 @@
 @import '../../global/styles/var';
-
+@import '../../global/styles/mixins/hairline';
 .glue-field {
+  outline: none;
+  position: relative;
+  display: block;
+  &::after {
+    .hairline-bottom(@cell-border-color, @padding-md, @padding-md);
+  }
   &__label {
     flex: none !important;
     box-sizing: border-box;
