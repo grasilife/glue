@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host } from '@stencil/core';
+import { Component, Prop, h, Host, Method, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import { BORDER_TOP_BOTTOM } from '../../global/constant/constant';
 import { isDef } from '../../utils/base';
@@ -17,10 +17,11 @@ export class GlueTabbar {
   @Prop() activeColor: string;
   @Prop() beforeChange: any;
   @Prop() inactiveColor: string;
-  @Prop() modelValue = 0;
+  @Prop({ mutable: true }) modelValue = 0;
   @Prop() border = false;
   @Prop() fixed = false;
   @Prop() safeAreaInsetBottom: boolean;
+  @Event() glueChange: EventEmitter;
   root;
   isUnfit = () => {
     if (isDef(this.safeAreaInsetBottom)) {
@@ -51,18 +52,20 @@ export class GlueTabbar {
     );
   };
 
-  setActive = active => {
+  @Method()
+  async setActive(active) {
+    let _this = this;
     if (active !== this.modelValue) {
       callInterceptor({
         interceptor: this.beforeChange,
         args: [active],
         done() {
-          // emit('update:modelValue', active);
-          // emit('change', active);
+          _this.modelValue = active;
+          _this.glueChange.emit(active);
         },
       });
     }
-  };
+  }
   render() {
     return <Host class={classNames('cunstom')}>{this.renderTabbar()}</Host>;
   }

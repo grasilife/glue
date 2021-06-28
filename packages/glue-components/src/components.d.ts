@@ -982,10 +982,15 @@ export namespace Components {
         "modelValue": number;
         "placeholder": boolean;
         "safeAreaInsetBottom": boolean;
+        "setActive": (active: any) => Promise<void>;
         "zIndex": string;
     }
     interface GlueTabbarItem {
-        "first": string;
+        "badge": string;
+        "dot": boolean;
+        "icon": string;
+        "iconPrefix": string;
+        "name": string;
     }
     interface GlueTabs {
         "active": number;
@@ -2841,12 +2846,18 @@ declare namespace LocalJSX {
         "fixed"?: boolean;
         "inactiveColor"?: string;
         "modelValue"?: number;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
         "placeholder"?: boolean;
         "safeAreaInsetBottom"?: boolean;
         "zIndex"?: string;
     }
     interface GlueTabbarItem {
-        "first"?: string;
+        "badge"?: string;
+        "dot"?: boolean;
+        "icon"?: string;
+        "iconPrefix"?: string;
+        "name"?: string;
+        "onGlueClick"?: (event: CustomEvent<any>) => void;
     }
     interface GlueTabs {
         "active"?: number;
