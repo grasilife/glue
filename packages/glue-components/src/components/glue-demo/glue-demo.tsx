@@ -384,9 +384,9 @@ export class GlueDemo {
         <glue-field model-value="11" label="文本" placeholder="请输入文本" formatter={this.formatter} autosize type="textarea" rows={2} show-word-limit maxlength={50} />
         <glue-field model-value="11" label="文本" placeholder="请输入文本" input-align="right" /> */}
         <glue-sidebar model-value="1">
-          <glue-sidebar-item title="标签名称" value={'1'} />
-          <glue-sidebar-item title="标签名称" value={'2'} />
-          <glue-sidebar-item title="标签名称" value={'3'} />
+          <glue-sidebar-item title="标签名称" value={'1'} dot />
+          <glue-sidebar-item title="标签名称" value={'2'} badge="5" />
+          <glue-sidebar-item title="标签名称" value={'3'} disabled />
         </glue-sidebar>
       </div>
     );

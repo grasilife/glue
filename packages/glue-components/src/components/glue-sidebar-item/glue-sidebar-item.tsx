@@ -56,7 +56,7 @@ export class GlueSidebarItem {
       <Host
         class={classNames('glue-sidebar-item', {
           'glue-sidebar-item--select': this.selected,
-          'glue-sidebar-item__disabled': disabled,
+          'glue-sidebar-item--disabled': disabled,
         })}
         onClick={() => {
           this.onClick();
