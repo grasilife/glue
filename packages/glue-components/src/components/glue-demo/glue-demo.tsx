@@ -371,6 +371,13 @@ export class GlueDemo {
         <glue-field model-value="11" label="显示图标" placeholder="请输入文本" left-icon="smile-o" right-icon="warning-o" />
         <glue-field model-value="11" label="显示图标" placeholder="请输入文本" left-icon="smile-o" clearable />
         <glue-field model-value="" label="文本" placeholder="请输入文本" error required error-message="手机号格式错误" />
+        <glue-field model-value="sms" center clearable label="短信验证码" placeholder="请输入短信验证码" button="#slot">
+          <div slot="button">
+            <glue-button size="small" type="primary">
+              发送验证码
+            </glue-button>
+          </div>
+        </glue-field>
       </div>
     );
   }

@@ -449,6 +449,7 @@ export namespace Components {
         "autocomplete": string;
         "autosize": any;
         "border": boolean;
+        "button": string;
         "center": boolean;
         "clearTrigger": string;
         "clearable": boolean;
@@ -2263,6 +2264,7 @@ declare namespace LocalJSX {
         "autocomplete"?: string;
         "autosize"?: any;
         "border"?: boolean;
+        "button"?: string;
         "center"?: boolean;
         "clearTrigger"?: string;
         "clearable"?: boolean;

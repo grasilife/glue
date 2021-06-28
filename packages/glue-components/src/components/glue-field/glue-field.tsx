@@ -20,6 +20,7 @@ export class GlueField {
   @Element() el!: HTMLElement;
   @Prop() rows: number;
   @Prop() name: string;
+  @Prop() button: string;
   @Prop() rules: any;
   @Prop() autosize: any;
   @Prop() leftIcon: string;
@@ -481,7 +482,15 @@ export class GlueField {
       return <span>{this.label + colon}</span>;
     }
   };
-
+  buttonRender = () => {
+    if (this.button == '#slot') {
+      return (
+        <div class="glue-field__button">
+          <slot name="button"></slot>
+        </div>
+      );
+    }
+  };
   // useExpose({ blur, focus, validate, formValue, resetValidation });
 
   // provide(FIELD_KEY, { childFieldValue, resetValidation, validateWithTrigger });
@@ -525,7 +534,7 @@ export class GlueField {
               {this.renderInput()}
               {this.showClear() && <glue-icon name="clear" class="glue-field__clear" onTouchStart={this.onClear} />}
               {this.renderRightIcon()}
-              {/* {slots.button && <div class="glue-field__button" >{slots.button()}</div>} */}
+              {this.buttonRender()}
             </div>
             {this.renderWordLimit()}
             {this.renderMessage()}
