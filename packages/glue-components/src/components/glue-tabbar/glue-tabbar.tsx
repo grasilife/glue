@@ -11,13 +11,12 @@ const [bem] = createNamespace('glue-tabbar');
   shadow: false,
 })
 export class GlueTabbar {
-  @Prop() first: string;
   @Prop() zIndex: string;
   @Prop() placeholder: boolean;
   @Prop() activeColor: string;
   @Prop() beforeChange: any;
   @Prop() inactiveColor: string;
-  @Prop({ mutable: true }) modelValue = 0;
+  @Prop({ mutable: true, reflect: true }) modelValue = 0;
   @Prop() border = false;
   @Prop() fixed = false;
   @Prop() safeAreaInsetBottom: boolean;

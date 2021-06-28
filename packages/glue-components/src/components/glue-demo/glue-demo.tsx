@@ -366,7 +366,7 @@ export class GlueDemo {
           <glue-field model-value="" label="文本" placeholder="请输入用户名" />
         </glue-cell-group> */}
 
-        <glue-field model-value="11" label="文本" placeholder="请输入文本" readonly />
+        {/* <glue-field model-value="11" label="文本" placeholder="请输入文本" readonly />
         <glue-field model-value="" type="tel" label="手机号" placeholder="请输入手机号" disabled />
         <glue-field model-value="" type="digit" label="整数" placeholder="请输入整数" />
         <glue-field model-value="" type="number" label="数字" placeholder="请输入数字(支持小数)" />
@@ -382,7 +382,12 @@ export class GlueDemo {
           </div>
         </glue-field>
         <glue-field model-value="11" label="文本" placeholder="请输入文本" formatter={this.formatter} autosize type="textarea" rows={2} show-word-limit maxlength={50} />
-        <glue-field model-value="11" label="文本" placeholder="请输入文本" input-align="right" />
+        <glue-field model-value="11" label="文本" placeholder="请输入文本" input-align="right" /> */}
+        <glue-sidebar model-value={'1'}>
+          <glue-sidebar-item title="标签名称" value="1" />
+          <glue-sidebar-item title="标签名称" value="2" />
+          <glue-sidebar-item title="标签名称" value="3" />
+        </glue-sidebar>
       </div>
     );
   }

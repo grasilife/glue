@@ -15,18 +15,19 @@ export class GlueTabbarItem {
   @Prop() iconPrefix: string;
   @State() parentActiveColor;
   @State() parentInactiveColor;
-  @State() modelValue;
+  @State() parentModelValue;
   @Event() glueClick: EventEmitter;
 
   componentDidLoad() {
     let parentEl = getElementParent(this.el);
     this.parentActiveColor = getAttribute(parentEl, 'active-color');
     this.parentActiveColor = getAttribute(parentEl, 'inactive-color');
-    this.parentActiveColor = getAttribute(parentEl, 'model-value');
+    this.parentModelValue = getAttribute(parentEl, 'model-value');
+    console.log(this.parentModelValue, parentEl, 'this.parentModelValue');
   }
 
   active = () => {
-    return this.name === this.modelValue;
+    return this.name === this.parentModelValue;
   };
 
   onClick = () => {
