@@ -1,4 +1,36 @@
 @import '../../global/styles/var';
-glue-tabbar-item {
 
+.glue-tabbar-item {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: @tabbar-item-text-color;
+  font-size: @tabbar-item-font-size;
+  line-height: @tabbar-item-line-height;
+  cursor: pointer;
+
+  &__icon {
+    margin-bottom: @tabbar-item-margin-bottom;
+    font-size: @tabbar-item-icon-size;
+
+    .glue-icon {
+      display: block;
+    }
+
+    img {
+      display: block;
+      height: 20px;
+    }
+  }
+
+  &--active {
+    color: @tabbar-item-active-color;
+    background-color: @tabbar-item-active-background-color;
+  }
+
+  .glue-badge {
+    margin-top: @padding-base;
+  }
 }

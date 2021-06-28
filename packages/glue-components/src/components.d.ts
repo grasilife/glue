@@ -973,7 +973,16 @@ export namespace Components {
         "titleStyle": null;
     }
     interface GlueTabbar {
+        "activeColor": string;
+        "beforeChange": any;
+        "border": boolean;
         "first": string;
+        "fixed": boolean;
+        "inactiveColor": string;
+        "modelValue": number;
+        "placeholder": boolean;
+        "safeAreaInsetBottom": boolean;
+        "zIndex": string;
     }
     interface GlueTabbarItem {
         "first": string;
@@ -2825,7 +2834,16 @@ declare namespace LocalJSX {
         "titleStyle"?: null;
     }
     interface GlueTabbar {
+        "activeColor"?: string;
+        "beforeChange"?: any;
+        "border"?: boolean;
         "first"?: string;
+        "fixed"?: boolean;
+        "inactiveColor"?: string;
+        "modelValue"?: number;
+        "placeholder"?: boolean;
+        "safeAreaInsetBottom"?: boolean;
+        "zIndex"?: string;
     }
     interface GlueTabbarItem {
         "first"?: string;
