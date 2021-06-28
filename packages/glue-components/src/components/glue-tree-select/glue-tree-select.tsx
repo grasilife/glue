@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-tree-select');
@@ -10,12 +10,14 @@ import { addUnit } from '../../utils/format/unit';
 })
 export class GlueTreeSelect {
   @Prop() first: string;
-  max: number;
-  items: any = [];
-  height = 300300;
-  activeId = '0';
-  selectedIcon = 'success';
-  mainActiveIndex = 0;
+  @Prop() max: number;
+  @Prop() items: any = [];
+  @Prop() height = 300300;
+  @Prop({ mutable: true }) activeId = '0';
+  @Prop() selectedIcon = 'success';
+  @Prop({ mutable: true }) mainActiveIndex = 0;
+  @Event() glueClickItem: EventEmitter;
+  @Event() glueClickNav: EventEmitter;
   isMultiple = () => Array.isArray(this.activeId);
 
   isActiveItem = id => {
@@ -43,8 +45,8 @@ export class GlueTreeSelect {
         activeId = item.id;
       }
 
-      // emit('update:activeId', activeId);
-      // emit('click-item', item);
+      this.activeId = activeId;
+      this.glueClickItem.emit(item);
     };
 
     return (
@@ -66,8 +68,8 @@ export class GlueTreeSelect {
   };
 
   onSidebarChange = index => {
-    // emit('update:mainActiveIndex', index);
-    // emit('click-nav', index);
+    this.mainActiveIndex = index;
+    this.glueClickNav.emit(index);
   };
 
   renderSidebar = () => {
