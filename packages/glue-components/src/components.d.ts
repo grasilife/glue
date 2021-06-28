@@ -982,6 +982,7 @@ export namespace Components {
         "beforeChange": any;
         "border": boolean;
         "fixed": boolean;
+        "getActive": () => Promise<number>;
         "inactiveColor": string;
         "modelValue": number;
         "placeholder": boolean;
@@ -995,6 +996,9 @@ export namespace Components {
         "icon": string;
         "iconPrefix": string;
         "name": string;
+        "setActive": () => Promise<void>;
+        "setParentActive": () => Promise<void>;
+        "title": string;
     }
     interface GlueTabs {
         "active": number;
@@ -2869,6 +2873,7 @@ declare namespace LocalJSX {
         "iconPrefix"?: string;
         "name"?: string;
         "onGlueClick"?: (event: CustomEvent<any>) => void;
+        "title"?: string;
     }
     interface GlueTabs {
         "active"?: number;

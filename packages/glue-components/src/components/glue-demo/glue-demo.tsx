@@ -383,11 +383,17 @@ export class GlueDemo {
         </glue-field>
         <glue-field model-value="11" label="文本" placeholder="请输入文本" formatter={this.formatter} autosize type="textarea" rows={2} show-word-limit maxlength={50} />
         <glue-field model-value="11" label="文本" placeholder="请输入文本" input-align="right" /> */}
-        <glue-sidebar model-value="1">
+        {/* <glue-sidebar model-value="1">
           <glue-sidebar-item title="标签名称" value={'1'} dot />
           <glue-sidebar-item title="标签名称" value={'2'} badge="5" />
           <glue-sidebar-item title="标签名称" value={'3'} disabled />
-        </glue-sidebar>
+        </glue-sidebar> */}
+        <glue-tabbar model-value="1" fixed={true} border>
+          <glue-tabbar-item icon="home-o" name={'1'} title="标签"></glue-tabbar-item>
+          <glue-tabbar-item icon="search" name={'2'} title="标签"></glue-tabbar-item>
+          <glue-tabbar-item icon="friends-o" name={'3'} title="标签"></glue-tabbar-item>
+          <glue-tabbar-item icon="setting-o" name={'4'} title="标签"></glue-tabbar-item>
+        </glue-tabbar>
       </div>
     );
   }

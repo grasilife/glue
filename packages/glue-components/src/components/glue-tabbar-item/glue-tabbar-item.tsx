@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, State, Element, EventEmitter, Event } from '@stencil/core';
+import { Component, Prop, h, Host, State, Element, EventEmitter, Event, Method } from '@stencil/core';
 import classNames from 'classnames';
 import { getElementParent, getAttribute } from '../../utils/base';
 @Component({
@@ -11,31 +11,42 @@ export class GlueTabbarItem {
   @Prop() dot: boolean;
   @Prop() icon: string;
   @Prop() name: string;
+  @Prop() title: string;
   @Prop() badge: string;
   @Prop() iconPrefix: string;
   @State() parentActiveColor;
   @State() parentInactiveColor;
   @State() parentModelValue;
+  @State() selected: boolean;
+  @State() parentEl: any;
   @Event() glueClick: EventEmitter;
 
   componentDidLoad() {
-    let parentEl = getElementParent(this.el);
-    this.parentActiveColor = getAttribute(parentEl, 'active-color');
-    this.parentActiveColor = getAttribute(parentEl, 'inactive-color');
-    this.parentModelValue = getAttribute(parentEl, 'model-value');
-    console.log(this.parentModelValue, parentEl, 'this.parentModelValue');
+    this.parentEl = getElementParent(this.el);
+    this.parentActiveColor = getAttribute(this.parentEl, 'active-color');
+    this.parentActiveColor = getAttribute(this.parentEl, 'inactive-color');
+    this.parentModelValue = getAttribute(this.parentEl, 'model-value');
+    this.selected = this.parentModelValue === this.name;
+    console.log(this.parentActiveColor, this.parentActiveColor, this.parentModelValue, 'this.parentModelValue22');
   }
-
-  active = () => {
-    return this.name === this.parentModelValue;
-  };
 
   onClick = () => {
     let parentEl = getElementParent(this.el);
     parentEl.setActive(this.name);
     this.glueClick.emit();
   };
-
+  @Method()
+  async setParentActive() {
+    await this.parentEl.setActive(this.name);
+    console.log(this.name, 'parentModelValue333');
+  }
+  @Method()
+  async setActive() {
+    //由父元素触发
+    let parentModelValue = await this.parentEl.getActive();
+    console.log(this.parentModelValue, this.name, 'this.parentModelValue2222');
+    this.selected = parentModelValue === this.name;
+  }
   renderIcon = () => {
     if (this.icon == '#slot') {
       return <slot name="icon"></slot>;
@@ -46,19 +57,22 @@ export class GlueTabbarItem {
   };
   render() {
     const { dot, badge, parentActiveColor, parentInactiveColor } = this;
-    const color = this.active() ? parentActiveColor : parentInactiveColor;
+    const color = this.selected ? parentActiveColor : parentInactiveColor;
     return (
       <Host
-        class={classNames({
-          'glue-tabbar-item__active': this.active(),
+        class={classNames('glue-tabbar-item', {
+          'glue-tabbar-item--active': this.selected,
         })}
         style={{ color }}
-        onClick={this.onClick}
+        onClick={() => {
+          this.onClick();
+          this.setParentActive();
+        }}
       >
         <glue-badge dot={dot} content={badge} class="glue-tabbar-item__icon">
           {this.renderIcon()}
         </glue-badge>
-        <div class="glue-tabbar-item__text">{this.active()}</div>
+        <div class="glue-tabbar-item__text">{this.title}</div>
       </Host>
     );
   }
