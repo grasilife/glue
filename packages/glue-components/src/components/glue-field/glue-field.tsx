@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, State, Element } from '@stencil/core';
+import { Component, Prop, h, Host, State, Element, Watch } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { createNamespace } from '../../utils/create/index';
@@ -42,7 +42,10 @@ export class GlueField {
   @Prop() colon = null;
   @Prop() disabled = null;
   @Prop() readonly = null;
-  @Prop() modelValue: string;
+  @Prop({
+    mutable: true,
+  })
+  modelValue: string;
   @Prop() clearTrigger = 'focus';
   @Prop() formatTrigger = 'onChange';
   //cell this
@@ -75,7 +78,15 @@ export class GlueField {
   @State() parentColon;
   inputRef: HTMLElement;
   childFieldValue: HTMLElement;
+  @Watch('modelValue')
+  watchShowHandler(value) {
+    // this.updateValue(value);
+    // this.resetValidation();
+    // this.validateWithTrigger('onChange');
+    this.adjustSize();
+  }
   componentDidLoad() {
+    this.adjustSize();
     console.log('Component has been rendered');
     let parentEl = getElementParent(this.el);
     this.parentReadonly = getAttribute(parentEl, 'readonly');
@@ -221,21 +232,25 @@ export class GlueField {
     }
 
     if (this.formatter && trigger === this.formatTrigger) {
+      console.log('112121212', this.formatter, this.formatter(value));
       value = this.formatter(value);
     }
 
-    if (this.inputRef && value !== this.inputRef) {
-      this.inputRef = value;
-    }
+    // if (this.inputRef && value !== this.inputRef) {
+    //   this.inputRef = value;
+    // }
 
     if (value !== this.modelValue) {
-      // emit('update:modelValue', value);
+      //TODO:居然赋值不成功
+      this.modelValue = value;
+      console.log(this.modelValue, 'this.modelValue');
     }
   };
 
   onInput = event => {
     // skip update value when composing
     if (!event.target.composing) {
+      console.log(event, event.target.value, 'eventeventevent');
       this.updateValue(event.target.value);
     }
   };
@@ -290,6 +305,7 @@ export class GlueField {
 
   onClear = event => {
     preventDefault(event);
+    this.modelValue = '';
     // emit('update:modelValue', '');
     // emit('clear', event);
   };
@@ -343,7 +359,7 @@ export class GlueField {
 
   adjustSize = () => {
     const input = this.inputRef;
-
+    console.log(input, 'inputinputinput');
     if (!(this.type === 'textarea' && this.autosize) || !input) {
       return;
     }
@@ -351,6 +367,7 @@ export class GlueField {
     input.style.height = 'auto';
 
     let height = input.scrollHeight;
+    console.log(height, input, 'height');
     if (isObject(this.autosize)) {
       const { maxHeight, minHeight } = this.autosize;
       if (maxHeight) {
@@ -380,7 +397,6 @@ export class GlueField {
     // }
 
     const inputProps = {
-      // ref: inputRef,
       name: this.name,
       rows: this.rows,
       class: bem('control'),
@@ -402,7 +418,14 @@ export class GlueField {
     const { type } = this;
 
     if (type === 'textarea') {
-      return <textarea {...inputProps} />;
+      return (
+        <textarea
+          {...inputProps}
+          ref={dom => {
+            this.inputRef = dom;
+          }}
+        />
+      );
     }
 
     let inputType = type;
@@ -419,8 +442,17 @@ export class GlueField {
       inputType = 'tel';
       inputMode = 'numeric';
     }
-
-    return <input type={inputType} inputmode={inputMode} {...inputProps} />;
+    console.log(this.modelValue, 'this.modelValue111');
+    return (
+      <input
+        type={inputType}
+        inputmode={inputMode}
+        {...inputProps}
+        ref={dom => {
+          this.inputRef = dom;
+        }}
+      />
+    );
   };
 
   renderLeftIcon = () => {

@@ -179,6 +179,9 @@ export class GlueDemo {
     }
     return true;
   };
+  formatter = value => {
+    return value.replace(/\d/g, '');
+  };
   onGlueConfirm = event => {
     console.log(event, 'event1');
   };
@@ -378,6 +381,7 @@ export class GlueDemo {
             </glue-button>
           </div>
         </glue-field>
+        <glue-field model-value="11" label="文本" placeholder="请输入文本" formatter={this.formatter} autosize type="textarea" rows={1} />
       </div>
     );
   }
