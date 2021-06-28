@@ -27,7 +27,7 @@ export class GlueField {
   @Prop() rightIcon: string;
   @Prop() clearable: boolean;
   @Prop() formatter: any;
-  @Prop() maxlength: string | number;
+  @Prop() maxlength: string | number = 50;
   @Prop() labelWidth: string | number;
   @Prop() labelClass = null;
   @Prop() labelAlign: string;
@@ -386,8 +386,8 @@ export class GlueField {
   renderInput = () => {
     const disabled = this.parentDisabled;
     const readonly = this.parentReadonly;
-    // const inputAlign = this.parentInputAlign;
-
+    const inputAlign = this.parentInputAlign || this.inputAlign;
+    console.log(inputAlign, 'inputAlign');
     // if (slots.input) {
     //   return (
     //     <div class={(classNames('glue-field__control', 'glue-field--custom'), bem([inputAlign]), {})} onClick={this.onClickInput}>
@@ -399,7 +399,9 @@ export class GlueField {
     const inputProps = {
       name: this.name,
       rows: this.rows,
-      class: bem('control'),
+      class: classNames('glue-field__control', {
+        ['glue-field__control--' + inputAlign]: inputAlign,
+      }),
       value: this.modelValue,
       disabled,
       readonly,

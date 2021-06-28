@@ -381,7 +381,8 @@ export class GlueDemo {
             </glue-button>
           </div>
         </glue-field>
-        <glue-field model-value="11" label="文本" placeholder="请输入文本" formatter={this.formatter} autosize type="textarea" rows={1} />
+        <glue-field model-value="11" label="文本" placeholder="请输入文本" formatter={this.formatter} autosize type="textarea" rows={2} show-word-limit maxlength={50} />
+        <glue-field model-value="11" label="文本" placeholder="请输入文本" input-align="right" />
       </div>
     );
   }
