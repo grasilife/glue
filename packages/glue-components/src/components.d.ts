@@ -837,8 +837,8 @@ export namespace Components {
         "title": string;
     }
     interface GlueSidebar {
-        "getActive": () => Promise<number>;
-        "modelValue": number;
+        "getActive": () => Promise<string | number>;
+        "modelValue": string | number;
         "setActive": (value: any) => Promise<void>;
     }
     interface GlueSidebarItem {
@@ -848,7 +848,7 @@ export namespace Components {
         "setActive": () => Promise<void>;
         "setParentActive": () => Promise<void>;
         "title": string;
-        "value": string | number;
+        "value": number | string;
     }
     interface GlueSkeleton {
         "animateState": boolean;
@@ -2699,7 +2699,7 @@ declare namespace LocalJSX {
         "title"?: string;
     }
     interface GlueSidebar {
-        "modelValue"?: number;
+        "modelValue"?: string | number;
         "onGlueChange"?: (event: CustomEvent<any>) => void;
     }
     interface GlueSidebarItem {
@@ -2708,7 +2708,7 @@ declare namespace LocalJSX {
         "dot"?: boolean;
         "onGlueClick"?: (event: CustomEvent<any>) => void;
         "title"?: string;
-        "value"?: string | number;
+        "value"?: number | string;
     }
     interface GlueSkeleton {
         "animateState"?: boolean;

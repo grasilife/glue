@@ -11,7 +11,7 @@ export class GlueSidebarItem {
   @Prop() dot: boolean;
   @Prop() title: string;
   @Prop() badge: string;
-  @Prop() value: string | number;
+  @Prop() value: number | string;
   @Prop() disabled: boolean;
   @State() selected: boolean;
   @State() parentEl: any;
@@ -28,8 +28,8 @@ export class GlueSidebarItem {
     if (this.disabled) {
       return;
     }
-    let parentModelValue = await this.parentEl.setActive(this.value);
-    console.log(parentModelValue, parentModelValue === this.value, 'parentModelValue22');
+    await this.parentEl.setActive(this.value);
+    console.log(this.value, 'parentModelValue333');
   }
   @Method()
   async setActive() {
@@ -37,14 +37,14 @@ export class GlueSidebarItem {
     if (this.disabled) {
       return;
     }
-    let parentModelValue = await this.parentEl.setActive(this.value);
-    console.log(parentModelValue, parentModelValue === this.value, 'parentModelValue22');
+    let parentModelValue = await this.parentEl.getActive();
+    console.log(parentModelValue, parentModelValue === this.value, this.value, 'parentModelValue22');
     this.selected = parentModelValue === this.value;
   }
 
   //TODO:样式错乱,应该是selected引起的
   componentDidLoad() {
-    console.log('Component has been rendered');
+    console.log(this.value, 'Component has been rendered');
     this.parentEl = getElementParent(this.el);
     let parentModelValue = getAttribute(this.parentEl, 'model-value');
     console.log(parentModelValue, 'parentModelValue');
@@ -60,6 +60,7 @@ export class GlueSidebarItem {
         })}
         onClick={() => {
           this.onClick();
+          this.setParentActive();
         }}
       >
         <glue-badge dot={dot} content={badge} class="glue-sidebar-item__text">
