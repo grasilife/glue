@@ -15,12 +15,12 @@ export class GlueSidebarItem {
   @Prop() disabled: boolean;
   @State() selected: boolean;
   @State() parentEl: any;
-  @Event() glueClick: EventEmitter;
+  @Event() glueChange: EventEmitter;
   onClick = () => {
     if (this.disabled) {
       return;
     }
-    this.glueClick.emit(true);
+    this.glueChange.emit(this.value);
   };
   @Method()
   async setParentActive() {
@@ -39,7 +39,7 @@ export class GlueSidebarItem {
     }
     let parentModelValue = await this.parentEl.getActive();
     console.log(parentModelValue, parentModelValue === this.value, this.value, 'parentModelValue22');
-    this.selected = parentModelValue === this.value;
+    this.selected = parentModelValue == this.value;
   }
 
   //TODO:样式错乱,应该是selected引起的
@@ -47,8 +47,8 @@ export class GlueSidebarItem {
     console.log(this.value, 'Component has been rendered');
     this.parentEl = getElementParent(this.el);
     let parentModelValue = getAttribute(this.parentEl, 'model-value');
-    console.log(parentModelValue, 'parentModelValue');
-    this.selected = parentModelValue === this.value;
+    console.log(parentModelValue, this.value, 'parentModelValue');
+    this.selected = parentModelValue == this.value;
   }
   render() {
     const { dot, badge, title, disabled } = this;

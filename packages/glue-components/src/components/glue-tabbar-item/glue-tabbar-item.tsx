@@ -26,7 +26,7 @@ export class GlueTabbarItem {
     this.parentActiveColor = getAttribute(this.parentEl, 'active-color');
     this.parentInactiveColor = getAttribute(this.parentEl, 'inactive-color');
     this.parentModelValue = getAttribute(this.parentEl, 'model-value');
-    this.selected = this.parentModelValue === this.name;
+    this.selected = this.parentModelValue == this.name;
     console.log(this.parentActiveColor, this.parentActiveColor, this.parentModelValue, 'this.parentModelValue22');
   }
 
@@ -42,7 +42,7 @@ export class GlueTabbarItem {
   async setActive(parentModelValue) {
     //由父元素触发
     console.log(parentModelValue, this.name, 'parentModelValue111');
-    this.selected = parentModelValue === this.name;
+    this.selected = parentModelValue == this.name;
   }
   renderIcon = () => {
     if (this.icon == '#slot') {

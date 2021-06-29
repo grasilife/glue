@@ -15,13 +15,13 @@ export class GlueTreeSelect {
   @Prop() height = 300300;
   @Prop({ mutable: true }) activeId = '0';
   @Prop() selectedIcon = 'success';
-  @Prop({ mutable: true }) mainActiveIndex = 0;
+  @Prop({ mutable: true }) mainActiveIndex: any;
   @Event() glueClickItem: EventEmitter;
   @Event() glueClickNav: EventEmitter;
   isMultiple = () => Array.isArray(this.activeId);
 
   isActiveItem = id => {
-    return this.isMultiple() ? this.activeId.indexOf(id) !== -1 : this.activeId === id;
+    return this.isMultiple() ? this.activeId.indexOf(id) !== -1 : this.activeId == id;
   };
 
   renderSubItem = item => {
@@ -48,17 +48,14 @@ export class GlueTreeSelect {
       this.activeId = activeId;
       this.glueClickItem.emit(item);
     };
-
+    console.log(this.isActiveItem(item.id), item.id, 'this.isActiveItem(item.id)');
     return (
       <div
         key={item.id}
-        class={
-          (classNames('glue-ellipsis', 'glue-tree-select__item'),
-          {
-            'glue-tree-select__active': this.isActiveItem(item.id),
-            'glue-tree-select__disabled': item.disabled,
-          })
-        }
+        class={classNames('glue-ellipsis', 'glue-tree-select__item', {
+          'glue-tree-select__item--active': this.isActiveItem(item.id),
+          'glue-tree-select__item--disabled': item.disabled,
+        })}
         onClick={onClick}
       >
         {item.text}
@@ -67,18 +64,28 @@ export class GlueTreeSelect {
     );
   };
 
-  onSidebarChange = index => {
+  onSidebarChange = event => {
+    let index = event.detail;
+    console.log(index, event, 'indexindexindex');
     this.mainActiveIndex = index;
     this.glueClickNav.emit(index);
   };
 
   renderSidebar = () => {
+    console.log(this.mainActiveIndex, 'this.mainActiveIndex');
     const Items = this.items.map(item => (
-      <glue-sidebar-item dot={item.dot} title={item.text} badge={item.badge} class={classNames('glue-tree-select__nav-item', bem([item.className]))} disabled={item.disabled} />
+      <glue-sidebar-item
+        dot={item.dot}
+        title={item.text}
+        badge={item.badge}
+        class={classNames('glue-tree-select__nav-item', bem([item.className]))}
+        disabled={item.disabled}
+        value={item.id}
+      />
     ));
 
     return (
-      <glue-sidebar class="glue-tree-select__nav" modelValue={this.mainActiveIndex} onChange={this.onSidebarChange}>
+      <glue-sidebar class="glue-tree-select__nav" model-value={this.mainActiveIndex} onGlueChange={this.onSidebarChange}>
         {Items}
       </glue-sidebar>
     );
@@ -88,10 +95,13 @@ export class GlueTreeSelect {
     // if (slots.content) {
     //   return slots.content();
     // }
-
-    const selected = this.items[+this.mainActiveIndex] || {};
-    if (selected.children) {
-      return selected.children.map(this.renderSubItem);
+    //获取这个节点
+    const selected = this.items.filter(item => {
+      return item.id == this.mainActiveIndex;
+    });
+    console.log(selected, this.mainActiveIndex, 'selectedselected');
+    if (selected.length != 0 && selected[0].children) {
+      return selected[0].children.map(this.renderSubItem);
     }
   };
   render() {

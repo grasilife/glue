@@ -1097,7 +1097,7 @@ export namespace Components {
         "first": string;
         "height": number;
         "items": any;
-        "mainActiveIndex": number;
+        "mainActiveIndex": any;
         "max": number;
         "selectedIcon": string;
     }
@@ -2710,7 +2710,7 @@ declare namespace LocalJSX {
         "badge"?: string;
         "disabled"?: boolean;
         "dot"?: boolean;
-        "onGlueClick"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
         "title"?: string;
         "value"?: number | string;
     }
@@ -2979,7 +2979,7 @@ declare namespace LocalJSX {
         "first"?: string;
         "height"?: number;
         "items"?: any;
-        "mainActiveIndex"?: number;
+        "mainActiveIndex"?: any;
         "max"?: number;
         "onGlueClickItem"?: (event: CustomEvent<any>) => void;
         "onGlueClickNav"?: (event: CustomEvent<any>) => void;

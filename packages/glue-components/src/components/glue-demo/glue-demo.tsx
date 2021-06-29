@@ -155,6 +155,26 @@ export class GlueDemo {
   @State() list = [1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1];
   @State() loading = true;
   @State() finished = false;
+  @State() items = [
+    {
+      text: '浙江',
+      dot: true,
+      id: 7,
+      children: [
+        { text: '杭州', id: 1 },
+        { text: '温州', id: 2 },
+      ],
+    },
+    {
+      text: '江苏',
+      id: 8,
+      badge: 5,
+      children: [
+        { text: '南京', id: 5 },
+        { text: '无锡', id: 6 },
+      ],
+    },
+  ];
   onLoad = () => {};
   componentDidLoad() {}
   click = () => {
@@ -388,12 +408,13 @@ export class GlueDemo {
           <glue-sidebar-item title="标签名称" value={'2'} badge="5" />
           <glue-sidebar-item title="标签名称" value={'3'} disabled />
         </glue-sidebar> */}
-        <glue-tabbar model-value={'3'} fixed={true} border active-color="#ee0a24" inactive-color="#000">
+        {/* <glue-tabbar model-value={'3'} fixed={true} border active-color="#ee0a24" inactive-color="#000">
           <glue-tabbar-item icon="home-o" name={'1'} title="标签" dot></glue-tabbar-item>
           <glue-tabbar-item icon="search" name={'2'} title="标签" badge="5"></glue-tabbar-item>
           <glue-tabbar-item icon="friends-o" name={'3'} title="标签"></glue-tabbar-item>
           <glue-tabbar-item icon="setting-o" name={'4'} title="标签"></glue-tabbar-item>
-        </glue-tabbar>
+        </glue-tabbar> */}
+        <glue-tree-select active-id={1} main-active-index={7} items={this.items} />
       </div>
     );
   }
