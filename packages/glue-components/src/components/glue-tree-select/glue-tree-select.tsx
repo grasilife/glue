@@ -14,16 +14,16 @@ export class GlueTreeSelect {
   @Prop() items: any = [];
   @Prop() height = 300300;
   //TODO：active如果为activeId，居然取不到值，很奇怪
-  @Prop({ mutable: true }) active: any;
+  @Prop({ mutable: true }) activeId: any;
   @Prop() selectedIcon = 'success';
   @Prop({ mutable: true }) mainActiveIndex: any;
   @Event() glueClickItem: EventEmitter;
   @Event() glueClickNav: EventEmitter;
-  isMultiple = () => Array.isArray(this.active);
+  isMultiple = () => Array.isArray(this.activeId);
 
   isActiveItem = id => {
-    console.log(this.isMultiple(), this.active, id, 'agjhuahiu');
-    return this.isMultiple() ? this.active.indexOf(id) != -1 : this.active == id;
+    console.log(this.isMultiple(), this.activeId, id, 'agjhuahiu');
+    return this.isMultiple() ? this.activeId.indexOf(id) != -1 : this.activeId == id;
   };
 
   renderSubItem = item => {
@@ -34,8 +34,8 @@ export class GlueTreeSelect {
 
       let activeSelect;
       if (this.isMultiple()) {
-        activeSelect = this.active.slice();
-        console.log(activeSelect, this.active, 'this.active');
+        activeSelect = this.activeId.slice();
+        console.log(activeSelect, this.activeId, 'this.activeId');
         const index = activeSelect.indexOf(item.id);
 
         if (index !== -1) {
@@ -47,7 +47,7 @@ export class GlueTreeSelect {
         activeSelect = item.id;
       }
       console.log(activeSelect, 'activeactiveactive');
-      this.active = activeSelect;
+      this.activeId = activeSelect;
       this.glueClickItem.emit(item);
     };
     console.log(this.isActiveItem(item.id), item.id, 'this.isActiveItem(item.id)');

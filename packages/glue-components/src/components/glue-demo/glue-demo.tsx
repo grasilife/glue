@@ -415,7 +415,7 @@ export class GlueDemo {
           <glue-tabbar-item icon="friends-o" name={'3'} title="标签"></glue-tabbar-item>
           <glue-tabbar-item icon="setting-o" name={'4'} title="标签"></glue-tabbar-item>
         </glue-tabbar> */}
-        <glue-tree-select active={this.activeId} main-active-index={7} items={this.items} />
+        <glue-tree-select activeId={this.activeId} mainActiveIndex={7} items={this.items} />
       </div>
     );
   }
