@@ -8,7 +8,7 @@ import { getElementChildren } from '../../utils/base';
 })
 export class GlueSidebar {
   @Element() el!: HTMLElement;
-  @Prop({ reflect: true }) modelValue: string | number = 0;
+  @Prop({ reflect: true }) modelValue: any;
   componentDidLoad() {
     let children = getElementChildren(this.el);
     console.log(children, 'children');

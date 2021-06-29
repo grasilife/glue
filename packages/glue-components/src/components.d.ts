@@ -837,8 +837,8 @@ export namespace Components {
         "title": string;
     }
     interface GlueSidebar {
-        "getActive": () => Promise<string | number>;
-        "modelValue": string | number;
+        "getActive": () => Promise<any>;
+        "modelValue": any;
         "setActive": (value: any) => Promise<void>;
     }
     interface GlueSidebarItem {
@@ -982,9 +982,9 @@ export namespace Components {
         "beforeChange": any;
         "border": boolean;
         "fixed": boolean;
-        "getActive": () => Promise<number>;
+        "getActive": () => Promise<any>;
         "inactiveColor": string;
-        "modelValue": number;
+        "modelValue": any;
         "placeholder": boolean;
         "safeAreaInsetBottom": boolean;
         "setActive": (active: any) => Promise<void>;
@@ -996,7 +996,7 @@ export namespace Components {
         "icon": string;
         "iconPrefix": string;
         "name": string;
-        "setActive": () => Promise<void>;
+        "setActive": (parentModelValue: any) => Promise<void>;
         "setParentActive": () => Promise<void>;
         "title": string;
     }
@@ -2703,7 +2703,7 @@ declare namespace LocalJSX {
         "title"?: string;
     }
     interface GlueSidebar {
-        "modelValue"?: string | number;
+        "modelValue"?: any;
         "onGlueChange"?: (event: CustomEvent<any>) => void;
     }
     interface GlueSidebarItem {
@@ -2860,7 +2860,7 @@ declare namespace LocalJSX {
         "border"?: boolean;
         "fixed"?: boolean;
         "inactiveColor"?: string;
-        "modelValue"?: number;
+        "modelValue"?: any;
         "onGlueChange"?: (event: CustomEvent<any>) => void;
         "placeholder"?: boolean;
         "safeAreaInsetBottom"?: boolean;

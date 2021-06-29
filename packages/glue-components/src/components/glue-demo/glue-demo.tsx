@@ -388,7 +388,7 @@ export class GlueDemo {
           <glue-sidebar-item title="标签名称" value={'2'} badge="5" />
           <glue-sidebar-item title="标签名称" value={'3'} disabled />
         </glue-sidebar> */}
-        <glue-tabbar model-value="1" fixed={true} border>
+        <glue-tabbar model-value={'1'} fixed={true} border>
           <glue-tabbar-item icon="home-o" name={'1'} title="标签"></glue-tabbar-item>
           <glue-tabbar-item icon="search" name={'2'} title="标签"></glue-tabbar-item>
           <glue-tabbar-item icon="friends-o" name={'3'} title="标签"></glue-tabbar-item>

@@ -31,8 +31,6 @@ export class GlueTabbarItem {
   }
 
   onClick = () => {
-    let parentEl = getElementParent(this.el);
-    parentEl.setActive(this.name);
     this.glueClick.emit();
   };
   @Method()
@@ -41,10 +39,9 @@ export class GlueTabbarItem {
     console.log(this.name, 'parentModelValue333');
   }
   @Method()
-  async setActive() {
+  async setActive(parentModelValue) {
     //由父元素触发
-    let parentModelValue = await this.parentEl.getActive();
-    console.log(this.parentModelValue, this.name, 'this.parentModelValue2222');
+    console.log(parentModelValue, this.name, 'parentModelValue111');
     this.selected = parentModelValue === this.name;
   }
   renderIcon = () => {

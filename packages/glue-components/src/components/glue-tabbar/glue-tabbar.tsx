@@ -16,7 +16,7 @@ export class GlueTabbar {
   @Prop({ reflect: true }) activeColor: string;
   @Prop() beforeChange: any;
   @Prop({ reflect: true }) inactiveColor: string;
-  @Prop({ mutable: true, reflect: true }) modelValue = 0;
+  @Prop({ mutable: true, reflect: true }) modelValue: any;
   @Prop() border = false;
   @Prop() fixed = false;
   @Prop() safeAreaInsetBottom: boolean;
@@ -60,7 +60,7 @@ export class GlueTabbar {
     let children = getElementChildren(this.el);
     for (let i = 0; i < children.length; i++) {
       console.log(children[i], this.modelValue, 'children[i]');
-      children[i].setActive();
+      children[i].setActive(this.modelValue);
     }
   }
   @Method()
