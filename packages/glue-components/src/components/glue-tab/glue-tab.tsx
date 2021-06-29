@@ -8,14 +8,13 @@ import { getElementParent, getAttribute } from '../../utils/base';
 })
 export class GlueTab {
   @Element() el!: HTMLElement;
-  @Prop() first: string;
-  @Prop() dot: boolean;
-  @Prop() name: string | number;
-  @Prop() badge: string | number;
-  @Prop() title: string;
-  @Prop() titleStyle: null;
-  @Prop() titleClass: null;
-  @Prop() disabled: boolean;
+  @Prop({ reflect: true }) dot: boolean;
+  @Prop({ reflect: true }) name: string | number;
+  @Prop({ reflect: true }) badge: string | number;
+  @Prop({ reflect: true }) title: string;
+  @Prop({ reflect: true }) titleStyle: null;
+  @Prop({ reflect: true }) titleClass: null;
+  @Prop({ reflect: true }) disabled: boolean;
   @State() inited: boolean;
   @State() animated;
   @State() swipeable;

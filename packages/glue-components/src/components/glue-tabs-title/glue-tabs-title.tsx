@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Host } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 @Component({
@@ -71,18 +71,19 @@ export class GlueTabsTitle {
     return Text;
   };
   render() {
+    console.log(this.isActive, 'this.isActive');
     return (
-      <div
+      <Host
         role="tab"
-        class={classNames({
-          'glue-tabs-title__active': this.isActive,
-          'glue-tabs-title__disabled': this.disabled,
+        class={classNames('glue-tabs-title', {
+          'glue-tabs-title--active': this.isActive,
+          'glue-tabs-title--disabled': this.disabled,
         })}
         style={this.style()}
         aria-selected={this.isActive}
       >
         {this.renderText()}
-      </div>
+      </Host>
     );
   }
 }

@@ -971,7 +971,6 @@ export namespace Components {
         "badge": string | number;
         "disabled": boolean;
         "dot": boolean;
-        "first": string;
         "name": string | number;
         "title": string;
         "titleClass": null;
@@ -2848,7 +2847,6 @@ declare namespace LocalJSX {
         "badge"?: string | number;
         "disabled"?: boolean;
         "dot"?: boolean;
-        "first"?: string;
         "name"?: string | number;
         "title"?: string;
         "titleClass"?: null;

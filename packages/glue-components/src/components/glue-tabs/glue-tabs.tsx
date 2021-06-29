@@ -1,9 +1,9 @@
-import { Component, Prop, h, State, Element, Host } from '@stencil/core';
+import { Component, Prop, h, State, Element, Host, Watch } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { addUnit } from '../../utils/format/unit';
-import { getVisibleHeight, getElementTop } from '../../utils/dom/scroll';
-import { getElementChildren } from '../../utils/base';
+import { getVisibleHeight, getElementTop, setRootScrollTop } from '../../utils/dom/scroll';
+import { getElementChildren, getAttribute } from '../../utils/base';
 import { BORDER_TOP_BOTTOM } from '../../global/constant/constant';
 import { unitToPx } from '../../utils/format/unit';
 import { getVisibleTop } from '../../utils/dom/scroll';
@@ -60,6 +60,16 @@ export class GlueTabs {
   wrapRef;
   navRef;
   titleRefs;
+  @Watch('currentIndex')
+  currentIndexHandle() {
+    this.scrollIntoView(false);
+    this.setLine();
+
+    // scroll to correct position
+    if (this.stickyFixed && !this.scrollspy) {
+      setRootScrollTop(Math.ceil(getElementTop(this.el) - this.offsetTopPx()));
+    }
+  }
   scrollable = () => this.children.length > this.swipeThreshold || !this.ellipsis;
   scroller = () => useScrollParent(this.el);
   navStyle = () => ({
@@ -235,7 +245,10 @@ export class GlueTabs {
       this.setCurrentIndex(index);
     }
   };
-
+  getProp = (el, type) => {
+    let prop = getAttribute(el, type);
+    return prop;
+  };
   renderNav = () => {
     let list = [];
     console.log(this.children, 'this.children22');
@@ -243,22 +256,32 @@ export class GlueTabs {
     for (let i = 0; i < this.children.length; i++) {
       let item = this.children[i];
       let index = i;
+      let dot = this.getProp(item, 'dot');
+      let type = this.getProp(item, 'type');
+      let badge = this.getProp(item, 'badge');
+      let title = this.getProp(item, 'title');
+      let color = this.getProp(item, 'color');
+      let titleStyle = this.getProp(item, 'titleStyle');
+      let titleClass = this.getProp(item, 'titleClass');
+      let disabled = this.getProp(item, 'disabled');
+      let titleActiveColor = this.getProp(item, 'titleActiveColor');
+      let titleInactiveColor = this.getProp(item, 'titleInactiveColor');
+      console.log(index, this.currentIndex, 'this.currentIndex');
       list.push(
         <glue-tabs-title
           // ref={this.setTitleRefs(index)}
-          dot={item.dot}
-          type={this.type}
-          badge={item.badge}
-          title={item.title}
-          color={this.color}
-          style={item.titleStyle}
-          class={item.titleClass}
+          dot={dot}
+          type={type}
+          badge={badge}
+          title={title}
+          color={color}
+          style={titleStyle}
+          class={titleClass}
           isActive={index === this.currentIndex}
-          disabled={item.disabled}
+          disabled={disabled}
           scrollable={this.scrollable()}
-          renderTitle={item.$slots.title}
-          activeColor={this.titleActiveColor}
-          inactiveColor={this.titleInactiveColor}
+          activeColor={titleActiveColor}
+          inactiveColor={titleInactiveColor}
           onClick={() => {
             this.onClick(item, index);
           }}
@@ -311,6 +334,7 @@ export class GlueTabs {
     console.log(this.contentRef, 'Component has been rendered');
     this.children = getElementChildren(this.contentRef);
     console.log(this.children, 'this.children');
+    this.setLine();
   }
   render() {
     return (
