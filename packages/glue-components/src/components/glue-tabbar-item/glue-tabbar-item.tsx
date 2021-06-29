@@ -24,7 +24,7 @@ export class GlueTabbarItem {
   componentDidLoad() {
     this.parentEl = getElementParent(this.el);
     this.parentActiveColor = getAttribute(this.parentEl, 'active-color');
-    this.parentActiveColor = getAttribute(this.parentEl, 'inactive-color');
+    this.parentInactiveColor = getAttribute(this.parentEl, 'inactive-color');
     this.parentModelValue = getAttribute(this.parentEl, 'model-value');
     this.selected = this.parentModelValue === this.name;
     console.log(this.parentActiveColor, this.parentActiveColor, this.parentModelValue, 'this.parentModelValue22');
@@ -49,7 +49,7 @@ export class GlueTabbarItem {
       return <slot name="icon"></slot>;
     }
     if (this.icon) {
-      return <glue-icon name={this.icon} classPrefix={this.iconPrefix} />;
+      return <glue-icon name={this.icon} classPrefix={this.iconPrefix} size={24} />;
     }
   };
   render() {
