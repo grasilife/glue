@@ -155,6 +155,7 @@ export class GlueDemo {
   @State() list = [1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1];
   @State() loading = true;
   @State() finished = false;
+  @State() activeId = [1, 2];
   @State() items = [
     {
       text: '浙江',
@@ -414,7 +415,7 @@ export class GlueDemo {
           <glue-tabbar-item icon="friends-o" name={'3'} title="标签"></glue-tabbar-item>
           <glue-tabbar-item icon="setting-o" name={'4'} title="标签"></glue-tabbar-item>
         </glue-tabbar> */}
-        <glue-tree-select active-id={1} main-active-index={7} items={this.items} />
+        <glue-tree-select active={this.activeId} main-active-index={7} items={this.items} />
       </div>
     );
   }
