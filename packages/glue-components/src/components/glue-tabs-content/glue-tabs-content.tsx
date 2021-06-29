@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Host } from '@stencil/core';
 import classNames from 'classnames';
 @Component({
   tag: 'glue-tabs-content',
@@ -53,13 +53,13 @@ export class GlueTabsContent {
   };
   render() {
     return (
-      <div
-        class={classNames({
-          'glue-tabs-title__content--animated': this.animated || this.swipeable,
+      <Host
+        class={classNames('glue-tabs-content', {
+          'glue-tabs-content--animated': this.animated || this.swipeable,
         })}
       >
         {this.renderChildren()}
-      </div>
+      </Host>
     );
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Element } from '@stencil/core';
+import { Component, Prop, h, State, Element, Host } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { addUnit } from '../../utils/format/unit';
@@ -12,6 +12,8 @@ import { scrollLeftTo, scrollTopTo } from './utils';
 import { useScrollParent } from '../../utils/useScrollParent';
 import { isHidden } from '../../utils/dom/style';
 console.log(getElementTop, scrollTopTo);
+import { createNamespace } from '../../utils/create/index';
+const [bem] = createNamespace('glue-tabs');
 
 @Component({
   tag: 'glue-tabs',
@@ -54,6 +56,7 @@ export class GlueTabs {
   @State() tabHeight;
   @State() lockScroll;
   @State() stickyFixed;
+  contentRef;
   wrapRef;
   navRef;
   titleRefs;
@@ -233,37 +236,49 @@ export class GlueTabs {
     }
   };
 
-  renderNav = () =>
-    this.children.map((item, index) => (
-      <glue-tabs-title
-        // ref={this.setTitleRefs(index)}
-        dot={item.dot}
-        type={this.type}
-        badge={item.badge}
-        title={item.title}
-        color={this.color}
-        style={item.titleStyle}
-        class={item.titleClass}
-        isActive={index === this.currentIndex}
-        disabled={item.disabled}
-        scrollable={this.scrollable()}
-        renderTitle={item.$slots.title}
-        activeColor={this.titleActiveColor}
-        inactiveColor={this.titleInactiveColor}
-        onClick={() => {
-          this.onClick(item, index);
-        }}
-      />
-    ));
+  renderNav = () => {
+    let list = [];
+    console.log(this.children, 'this.children22');
+
+    for (let i = 0; i < this.children.length; i++) {
+      let item = this.children[i];
+      let index = i;
+      list.push(
+        <glue-tabs-title
+          // ref={this.setTitleRefs(index)}
+          dot={item.dot}
+          type={this.type}
+          badge={item.badge}
+          title={item.title}
+          color={this.color}
+          style={item.titleStyle}
+          class={item.titleClass}
+          isActive={index === this.currentIndex}
+          disabled={item.disabled}
+          scrollable={this.scrollable()}
+          renderTitle={item.$slots.title}
+          activeColor={this.titleActiveColor}
+          inactiveColor={this.titleInactiveColor}
+          onClick={() => {
+            this.onClick(item, index);
+          }}
+        />,
+      );
+    }
+    console.log(list, 'listlistlist');
+    return list;
+  };
 
   renderHeader = () => {
     const { type, border } = this;
+    console.log(this.scrollable(), BORDER_TOP_BOTTOM, border, type, 'afbabiufanini');
+
     return (
       <div
         ref={dom => {
           this.wrapRef = dom;
         }}
-        class={classNames({
+        class={classNames('glue-tabs__wrap', {
           'glue-tabs__wrap--scrollable': this.scrollable(),
           [BORDER_TOP_BOTTOM]: type === 'line' && border,
         })}
@@ -273,8 +288,8 @@ export class GlueTabs {
             this.navRef = dom;
           }}
           role="tablist"
-          class={classNames({
-            'glue-tabs__nav--type': this.scrollable(),
+          class={classNames('glue-tabs__nav', {
+            ['glue-tabs__nav--' + this.type]: this.type,
           })}
           style={this.navStyle()}
         >
@@ -293,12 +308,13 @@ export class GlueTabs {
     this.scrollIntoView(true);
   };
   componentDidLoad() {
-    console.log('Component has been rendered');
-    this.children = getElementChildren(this.el);
+    console.log(this.contentRef, 'Component has been rendered');
+    this.children = getElementChildren(this.contentRef);
+    console.log(this.children, 'this.children');
   }
   render() {
     return (
-      <div class={classNames('cunstom')}>
+      <Host class={classNames('glue-tabs', bem([this.type]))}>
         {this.sticky ? (
           <glue-sticky container={this.el} offset-top={this.offsetTopPx()} onScroll={this.onStickyScroll}>
             {this.renderHeader()}
@@ -307,18 +323,21 @@ export class GlueTabs {
           this.renderHeader()
         )}
         <glue-tabs-content
-        // count={this.children.length}
-        // inited={this.inited}
-        // animated={this.animated}
-        // duration={this.duration}
-        // swipeable={this.swipeable}
-        // lazyRender={this.lazyRender}
-        // currentIndex={this.currentIndex}
-        // onChange={this.setCurrentIndex}
+          ref={dom => {
+            this.contentRef = dom;
+          }}
+          // count={this.children.length}
+          // inited={this.inited}
+          // animated={this.animated}
+          // duration={this.duration}
+          // swipeable={this.swipeable}
+          // lazyRender={this.lazyRender}
+          // currentIndex={this.currentIndex}
+          // onChange={this.setCurrentIndex}
         >
           <slot></slot>
         </glue-tabs-content>
-      </div>
+      </Host>
     );
   }
 }

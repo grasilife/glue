@@ -415,7 +415,13 @@ export class GlueDemo {
           <glue-tabbar-item icon="friends-o" name={'3'} title="标签"></glue-tabbar-item>
           <glue-tabbar-item icon="setting-o" name={'4'} title="标签"></glue-tabbar-item>
         </glue-tabbar> */}
-        <glue-tree-select activeId={this.activeId} mainActiveIndex={7} items={this.items} />
+        {/* <glue-tree-select activeId={this.activeId} mainActiveIndex={7} items={this.items} /> */}
+        <glue-tabs>
+          <glue-tab title="标签 1">内容 1</glue-tab>
+          <glue-tab title="标签 2">内容 2</glue-tab>
+          <glue-tab title="标签 3">内容 3</glue-tab>
+          <glue-tab title="标签 4">内容 4</glue-tab>
+        </glue-tabs>
       </div>
     );
   }
