@@ -80,6 +80,7 @@ export class GlueField {
   childFieldValue: HTMLElement;
   @Watch('modelValue')
   watchShowHandler(value) {
+    console.log(value);
     // this.updateValue(value);
     // this.resetValidation();
     // this.validateWithTrigger('onChange');

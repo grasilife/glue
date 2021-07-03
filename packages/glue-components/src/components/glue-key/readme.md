@@ -19,6 +19,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [glue-number-keyboard](../glue-number-keyboard)
+
 ### Depends on
 
 - [glue-loading](../glue-loading)
@@ -27,6 +31,7 @@
 ```mermaid
 graph TD;
   glue-key --> glue-loading
+  glue-number-keyboard --> glue-key
   style glue-key fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

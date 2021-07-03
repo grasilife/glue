@@ -12,7 +12,6 @@
 | `badge`      | `badge`    |             | `number \| string` | `undefined` |
 | `disabled`   | `disabled` |             | `boolean`          | `undefined` |
 | `dot`        | `dot`      |             | `boolean`          | `undefined` |
-| `first`      | `first`    |             | `string`           | `undefined` |
 | `name`       | `name`     |             | `number \| string` | `undefined` |
 | `title`      | `title`    |             | `string`           | `undefined` |
 | `titleClass` | --         |             | `null`             | `undefined` |
@@ -24,6 +23,7 @@
 ### Used by
 
  - [glue-coupon-list](../glue-coupon-list)
+ - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -34,6 +34,7 @@
 graph TD;
   glue-tab --> glue-swipe-item
   glue-coupon-list --> glue-tab
+  glue-demo --> glue-tab
   style glue-tab fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

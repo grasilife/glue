@@ -54,8 +54,8 @@ graph TD;
   glue-switch --> glue-loading
   glue-cell --> glue-icon
   glue-icon --> glue-badge
-  glue-field --> glue-cell
   glue-field --> glue-icon
+  glue-field --> glue-cell
   glue-button --> glue-loading
   glue-button --> glue-icon
   glue-popup --> glue-icon

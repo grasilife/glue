@@ -41,8 +41,8 @@ graph TD;
   glue-icon --> glue-badge
   glue-switch --> glue-loading
   glue-cell --> glue-icon
-  glue-field --> glue-cell
   glue-field --> glue-icon
+  glue-field --> glue-cell
   style glue-contact-edit fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

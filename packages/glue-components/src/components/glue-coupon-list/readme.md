@@ -48,10 +48,10 @@ graph TD;
   glue-coupon-list --> glue-tab
   glue-coupon-list --> glue-coupon
   glue-coupon-list --> glue-tabs
-  glue-field --> glue-cell
   glue-field --> glue-icon
-  glue-cell --> glue-icon
+  glue-field --> glue-cell
   glue-icon --> glue-badge
+  glue-cell --> glue-icon
   glue-button --> glue-loading
   glue-button --> glue-icon
   glue-tab --> glue-swipe-item

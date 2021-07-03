@@ -45,6 +45,7 @@ export class GlueTabs {
   @State() inited = false;
   @State() position = '';
   @State() currentIndex = -1;
+  @State() titleRefs = [];
   @State() lineStyle = {
     width: '',
     transitionDuration: '',
@@ -59,7 +60,6 @@ export class GlueTabs {
   contentRef;
   wrapRef;
   navRef;
-  titleRefs;
   @Watch('currentIndex')
   currentIndexHandle() {
     this.scrollIntoView(false);
@@ -69,6 +69,11 @@ export class GlueTabs {
     if (this.stickyFixed && !this.scrollspy) {
       setRootScrollTop(Math.ceil(getElementTop(this.el) - this.offsetTopPx()));
     }
+  }
+  @Watch('children')
+  titleRefsHandle() {
+    console.log(this.children, 'aghviahiai');
+    // this.setLine();
   }
   scrollable = () => this.children.length > this.swipeThreshold || !this.ellipsis;
   scroller = () => useScrollParent(this.el);
@@ -99,7 +104,7 @@ export class GlueTabs {
   // scroll active tab into view
   scrollIntoView = immediate => {
     const nav = this.navRef;
-    const titles = this.titleRefs.value;
+    const titles = this.titleRefs;
 
     if (!this.scrollable() || !titles || !titles[this.currentIndex]) {
       return;
@@ -115,6 +120,7 @@ export class GlueTabs {
   setLine = () => {
     const shouldAnimate = this.inited;
     const titles = this.titleRefs;
+    console.log(titles, 'titlestitles');
     if (!titles || !titles[this.currentIndex] || this.type !== 'line' || isHidden(this.el)) {
       return;
     }
@@ -133,6 +139,7 @@ export class GlueTabs {
       this.lineStyle.height = height;
       this.lineStyle.borderRadius = height;
     }
+    console.log(this.lineStyle, 'this.lineStyle');
   };
 
   findAvailableTab = index => {
@@ -249,53 +256,64 @@ export class GlueTabs {
     let prop = getAttribute(el, type);
     return prop;
   };
+  setTitleRefs = dom => {
+    let mydata = [];
+    mydata.push(dom);
+    console.log(dom, 'domdomdom');
+    // this.titleRefs = [...mydata];
+  };
   renderNav = () => {
-    let list = [];
+    // let list = [];
     console.log(this.children, 'this.children22');
-
-    for (let i = 0; i < this.children.length; i++) {
-      let item = this.children[i];
-      let index = i;
-      let dot = this.getProp(item, 'dot');
-      let type = this.getProp(item, 'type');
-      let badge = this.getProp(item, 'badge');
+    return this.children.map((item, index) => {
       let title = this.getProp(item, 'title');
-      let color = this.getProp(item, 'color');
-      let titleStyle = this.getProp(item, 'titleStyle');
-      let titleClass = this.getProp(item, 'titleClass');
-      let disabled = this.getProp(item, 'disabled');
-      let titleActiveColor = this.getProp(item, 'titleActiveColor');
-      let titleInactiveColor = this.getProp(item, 'titleInactiveColor');
-      console.log(index, this.currentIndex, 'this.currentIndex');
-      list.push(
+      return (
         <glue-tabs-title
+          ref={dom => {
+            this.setTitleRefs(dom);
+          }}
           // ref={this.setTitleRefs(index)}
-          dot={dot}
-          type={type}
-          badge={badge}
+          // dot={dot}
+          // type={this.type}
+          // badge={badge}
           title={title}
-          color={color}
-          style={titleStyle}
-          class={titleClass}
-          isActive={index === this.currentIndex}
-          disabled={disabled}
-          scrollable={this.scrollable()}
-          activeColor={titleActiveColor}
-          inactiveColor={titleInactiveColor}
+          // color={color}
+          // style={titleStyle}
+          // class={titleClass}
+          // isActive={index === this.currentIndex}
+          // disabled={disabled}
+          // scrollable={this.scrollable()}
+          // activeColor={titleActiveColor}
+          // inactiveColor={titleInactiveColor}
           onClick={() => {
             this.onClick(item, index);
           }}
-        />,
+        />
       );
-    }
-    console.log(list, 'listlistlist');
-    return list;
+    });
+    // for (let i = 0; i < this.children.length; i++) {
+    //   let item = this.children[i];
+    //   let index = i;
+    //   // let dot = this.getProp(item, 'dot');
+    //   // let badge = this.getProp(item, 'badge');
+    //   // let title = this.getProp(item, 'title');
+    //   // let color = this.getProp(item, 'color');
+    //   // let titleStyle = this.getProp(item, 'titleStyle');
+    //   // let titleClass = this.getProp(item, 'titleClass');
+    //   // let disabled = this.getProp(item, 'disabled');
+    //   // let titleActiveColor = this.getProp(item, 'titleActiveColor');
+    //   // let titleInactiveColor = this.getProp(item, 'titleInactiveColor');
+    //   // console.log(index, this.currentIndex, dot, 'this.currentIndex');
+    //   list.push();
+    // }
+    // console.log(list, 'listlistlist');
+    // return list;
   };
 
   renderHeader = () => {
     const { type, border } = this;
     console.log(this.scrollable(), BORDER_TOP_BOTTOM, border, type, 'afbabiufanini');
-
+    this.setLine();
     return (
       <div
         ref={dom => {
@@ -330,12 +348,21 @@ export class GlueTabs {
     this.tabHeight = getVisibleHeight(this.wrapRef);
     this.scrollIntoView(true);
   };
+  componentShouldUpdate() {
+    console.log(this.children, this.titleRefs, 'hfuanfuanin11');
+    if (this.children.length == this.titleRefs.length) {
+      // this.setLine();
+    }
+  }
   componentDidLoad() {
     console.log(this.contentRef, 'Component has been rendered');
-    this.children = getElementChildren(this.contentRef);
+    let htmlCollection = getElementChildren(this.contentRef);
+    //转成数组
+    this.children = [].slice.call(htmlCollection);
     console.log(this.children, 'this.children');
     this.setLine();
   }
+
   render() {
     return (
       <Host class={classNames('glue-tabs', bem([this.type]))}>

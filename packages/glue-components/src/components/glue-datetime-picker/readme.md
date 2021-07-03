@@ -19,10 +19,10 @@
 | `itemHeight`        | `item-height`         |             | `number`           | `44`                                 |
 | `loading`           | `loading`             |             | `boolean`          | `undefined`                          |
 | `maxDate`           | --                    |             | `Date`             | `new Date(currentYear + 10, 11, 31)` |
-| `maxHour`           | `max-hour`            |             | `number \| string` | `23`                                 |
+| `maxHour`           | `max-hour`            |             | `number`           | `23`                                 |
 | `minDate`           | --                    |             | `Date`             | `new Date(currentYear - 10, 0, 1)`   |
-| `minHour`           | `min-hour`            |             | `number \| string` | `0`                                  |
-| `minMinute`         | `min-minute`          |             | `number \| string` | `0`                                  |
+| `minHour`           | `min-hour`            |             | `number`           | `0`                                  |
+| `minMinute`         | `min-minute`          |             | `number`           | `0`                                  |
 | `modelValue`        | `model-value`         |             | `any`              | `null`                               |
 | `readonly`          | `readonly`            |             | `boolean`          | `undefined`                          |
 | `showToolbar`       | `show-toolbar`        |             | `boolean`          | `true`                               |

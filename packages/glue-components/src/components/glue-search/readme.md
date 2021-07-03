@@ -40,10 +40,10 @@
 ```mermaid
 graph TD;
   glue-search --> glue-field
-  glue-field --> glue-cell
   glue-field --> glue-icon
-  glue-cell --> glue-icon
+  glue-field --> glue-cell
   glue-icon --> glue-badge
+  glue-cell --> glue-icon
   style glue-search fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

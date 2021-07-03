@@ -35,8 +35,10 @@
  - [glue-notice-bar](../glue-notice-bar)
  - [glue-popup](../glue-popup)
  - [glue-rate](../glue-rate)
+ - [glue-tabbar-item](../glue-tabbar-item)
  - [glue-tag](../glue-tag)
  - [glue-toast](../glue-toast)
+ - [glue-tree-select](../glue-tree-select)
  - [glue-uploader](../glue-uploader)
  - [glue-uploader-preview-item](../glue-uploader-preview-item)
 
@@ -61,8 +63,10 @@ graph TD;
   glue-notice-bar --> glue-icon
   glue-popup --> glue-icon
   glue-rate --> glue-icon
+  glue-tabbar-item --> glue-icon
   glue-tag --> glue-icon
   glue-toast --> glue-icon
+  glue-tree-select --> glue-icon
   glue-uploader --> glue-icon
   glue-uploader-preview-item --> glue-icon
   style glue-icon fill:#f9f,stroke:#333,stroke-width:4px

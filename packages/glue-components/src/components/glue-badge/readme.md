@@ -23,6 +23,7 @@
 
  - [glue-icon](../glue-icon)
  - [glue-sidebar-item](../glue-sidebar-item)
+ - [glue-tabbar-item](../glue-tabbar-item)
  - [glue-tabs-title](../glue-tabs-title)
 
 ### Graph
@@ -30,6 +31,7 @@
 graph TD;
   glue-icon --> glue-badge
   glue-sidebar-item --> glue-badge
+  glue-tabbar-item --> glue-badge
   glue-tabs-title --> glue-badge
   style glue-badge fill:#f9f,stroke:#333,stroke-width:4px
 ```

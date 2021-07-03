@@ -39,6 +39,20 @@
 | `input`       |             | `CustomEvent<any>` |
 
 
+## Dependencies
+
+### Depends on
+
+- [glue-key](../glue-key)
+
+### Graph
+```mermaid
+graph TD;
+  glue-number-keyboard --> glue-key
+  glue-key --> glue-loading
+  style glue-number-keyboard fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

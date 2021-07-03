@@ -13,6 +13,7 @@
 | `autocomplete`      | `autocomplete`        |             | `string`                              | `undefined`  |
 | `autosize`          | `autosize`            |             | `any`                                 | `undefined`  |
 | `border`            | `border`              |             | `boolean`                             | `true`       |
+| `button`            | `button`              |             | `string`                              | `undefined`  |
 | `center`            | `center`              |             | `boolean`                             | `undefined`  |
 | `clearTrigger`      | `clear-trigger`       |             | `string`                              | `'focus'`    |
 | `clearable`         | `clearable`           |             | `boolean`                             | `undefined`  |
@@ -33,14 +34,14 @@
 | `labelClass`        | `label-class`         |             | `any`                                 | `null`       |
 | `labelWidth`        | `label-width`         |             | `number \| string`                    | `undefined`  |
 | `leftIcon`          | `left-icon`           |             | `string`                              | `undefined`  |
-| `maxlength`         | `maxlength`           |             | `number \| string`                    | `undefined`  |
+| `maxlength`         | `maxlength`           |             | `number \| string`                    | `50`         |
 | `modelValue`        | `model-value`         |             | `string`                              | `undefined`  |
 | `name`              | `name`                |             | `string`                              | `undefined`  |
 | `placeholder`       | `placeholder`         |             | `string`                              | `undefined`  |
 | `readonly`          | `readonly`            |             | `any`                                 | `null`       |
 | `required`          | `required`            |             | `boolean`                             | `undefined`  |
 | `rightIcon`         | `right-icon`          |             | `string`                              | `undefined`  |
-| `rows`              | `rows`                |             | `number \| string`                    | `undefined`  |
+| `rows`              | `rows`                |             | `number`                              | `undefined`  |
 | `rules`             | `rules`               |             | `any`                                 | `undefined`  |
 | `showWordLimit`     | `show-word-limit`     |             | `boolean`                             | `undefined`  |
 | `size`              | `size`                |             | `string`                              | `undefined`  |
@@ -65,16 +66,16 @@
 
 ### Depends on
 
-- [glue-cell](../glue-cell)
 - [glue-icon](../glue-icon)
+- [glue-cell](../glue-cell)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-field --> glue-cell
   glue-field --> glue-icon
-  glue-cell --> glue-icon
+  glue-field --> glue-cell
   glue-icon --> glue-badge
+  glue-cell --> glue-icon
   glue-address-edit --> glue-field
   glue-address-edit-detail --> glue-field
   glue-contact-edit --> glue-field

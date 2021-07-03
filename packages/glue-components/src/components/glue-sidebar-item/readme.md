@@ -7,22 +7,50 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default     |
-| ---------- | ---------- | ----------- | --------- | ----------- |
-| `badge`    | `badge`    |             | `string`  | `undefined` |
-| `disabled` | `disabled` |             | `boolean` | `undefined` |
-| `dot`      | `dot`      |             | `boolean` | `undefined` |
-| `title`    | `title`    |             | `string`  | `undefined` |
+| Property   | Attribute  | Description | Type               | Default     |
+| ---------- | ---------- | ----------- | ------------------ | ----------- |
+| `badge`    | `badge`    |             | `string`           | `undefined` |
+| `disabled` | `disabled` |             | `boolean`          | `undefined` |
+| `dot`      | `dot`      |             | `boolean`          | `undefined` |
+| `title`    | `title`    |             | `string`           | `undefined` |
+| `value`    | `value`    |             | `number \| string` | `undefined` |
 
 
 ## Events
 
-| Event   | Description | Type               |
-| ------- | ----------- | ------------------ |
-| `click` |             | `CustomEvent<any>` |
+| Event        | Description | Type               |
+| ------------ | ----------- | ------------------ |
+| `glueChange` |             | `CustomEvent<any>` |
+
+
+## Methods
+
+### `setActive() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `setParentActive() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ## Dependencies
+
+### Used by
+
+ - [glue-tree-select](../glue-tree-select)
 
 ### Depends on
 
@@ -32,6 +60,7 @@
 ```mermaid
 graph TD;
   glue-sidebar-item --> glue-badge
+  glue-tree-select --> glue-sidebar-item
   style glue-sidebar-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

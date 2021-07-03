@@ -67,13 +67,11 @@ Type: `Promise<number>`
 
 ### Used by
 
- - [glue-demo](../glue-demo)
  - [glue-tabs-content](../glue-tabs-content)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-demo --> glue-swipe
   glue-tabs-content --> glue-swipe
   style glue-swipe fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -43,8 +43,8 @@ graph TD;
   glue-address-edit-detail --> glue-field
   glue-cell --> glue-icon
   glue-icon --> glue-badge
-  glue-field --> glue-cell
   glue-field --> glue-icon
+  glue-field --> glue-cell
   style glue-address-edit-detail fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
