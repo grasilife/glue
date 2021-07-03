@@ -35,7 +35,7 @@ export const topEnterAnimation = (el, duration, easing, height, begin, complete)
     targets: el,
     duration: duration,
     easing: easing,
-    translateY: height ? height : '30%',
+    translateY: '0',
     begin: anim => {
       return begin(anim);
     },
@@ -49,8 +49,7 @@ export const topLeaveAnimation = (el, duration, easing, height, begin, complete)
   anime({
     targets: el,
     duration: duration,
-    // height: '0%',
-    translateY: 0,
+    translateY: '-100%',
     easing: easing,
     begin: anim => {
       return begin(anim);
@@ -66,9 +65,7 @@ export const bottomEnterAnimation = (el, duration, easing, height, begin, comple
   anime({
     targets: el,
     duration: duration,
-
     easing: easing,
-    // height: height ? height : '30%',
     translateY: 0,
     begin: anim => {
       return begin(anim);
@@ -79,11 +76,11 @@ export const bottomEnterAnimation = (el, duration, easing, height, begin, comple
   });
 };
 export const bottomLeaveAnimation = (el, duration, easing, height, begin, complete) => {
+  console.log(height, 'heightheightheight');
   anime({
     targets: el,
     duration: duration,
-
-    translateY: height ? height : '30%',
+    translateY: '100%',
     easing: easing,
     begin: anim => {
       return begin(anim);
@@ -100,6 +97,7 @@ export const leftEnterAnimation = (el, duration, easing, width, begin, complete)
     duration: duration,
     easing: easing,
     width: width ? width : '30%',
+    translateX: '0',
     begin: anim => {
       return begin(anim);
     },
@@ -112,8 +110,8 @@ export const leftLeaveAnimation = (el, duration, easing, begin, complete) => {
   anime({
     targets: el,
     duration: duration,
-    width: '0',
     easing: easing,
+    translateX: '-100%',
     begin: anim => {
       return begin(anim);
     },
@@ -129,6 +127,7 @@ export const rightEnterAnimation = (el, duration, easing, width, begin, complete
     targets: el,
     duration: duration,
     width: width ? width : '30%',
+    translateX: '0',
     easing: easing,
     begin: anim => {
       return begin(anim);
@@ -142,8 +141,8 @@ export const rightLeaveAnimation = (el, duration, easing, begin, complete) => {
   anime({
     targets: el,
     duration: duration,
-    width: '0%',
     easing: easing,
+    translateX: '100%',
     begin: anim => {
       return begin(anim);
     },

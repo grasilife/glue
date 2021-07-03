@@ -101,6 +101,10 @@ export class GlueDemo {
     text: 'cityName',
     children: 'cities',
   };
+  @State() showBasic = false;
+  popupClose = () => {
+    this.showBasic = false;
+  };
   @State()
   fileList = [
     {
@@ -189,6 +193,9 @@ export class GlueDemo {
       file.status = 'failed';
       file.message = '上传失败';
     }, 1000);
+  };
+  popupCell = () => {
+    this.showBasic = true;
   };
   onOversize = file => {
     console.log(file, 'onOversize');
@@ -416,12 +423,21 @@ export class GlueDemo {
           <glue-tabbar-item icon="setting-o" name={'4'} title="标签"></glue-tabbar-item>
         </glue-tabbar> */}
         {/* <glue-tree-select activeId={this.activeId} mainActiveIndex={7} items={this.items} /> */}
-        <glue-tabs>
+        {/* <glue-tabs>
           <glue-tab title="标签 1">内容 1</glue-tab>
           <glue-tab title="标签 2">内容 2</glue-tab>
           <glue-tab title="标签 3">内容 3</glue-tab>
           <glue-tab title="标签 4">内容 4</glue-tab>
-        </glue-tabs>
+        </glue-tabs> */}
+        <glue-cell is-link onClick={this.popupCell}>
+          展示弹出层
+        </glue-cell>
+        <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="30%" height="100%" position="right">
+          <div>内容</div>
+        </glue-popup>
+        {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="100%" height="30%" position="top">
+          <div>内容</div>
+        </glue-popup> */}
       </div>
     );
   }

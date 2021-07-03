@@ -118,18 +118,50 @@ export class GluePopup {
       zIndex: this.zIndex,
       height: '0',
       width: '0',
-      transform: 'translateY(0)',
+      transform: '',
     };
     if (this.position == 'top' || this.position == 'bottom') {
+      console.log(this.width, 'this.width');
       style['width'] = this.width || '100%';
       style['height'] = this.height || '30%';
-      style.transform = `translateY(${this.height})`;
+
+      // style.transform = `translateY(0)`;
     }
 
     if (this.position == 'right' || this.position == 'left') {
       style['width'] = this.width || '30%';
       style['height'] = this.height || '100%';
-      style.transform = `translateX(${this.height})`;
+      // style.transform = `translateX(${this.height})`;
+    }
+    console.log(style, 'style');
+    if (this.show) {
+      console.log(style, 'style');
+      if (this.transitionAppear) {
+        this.showAnimation();
+      } else {
+        if (this.position == 'top' || this.position == 'bottom') {
+          style.transform = `translateY($(this.height))`;
+          console.log(style.transform, this.height, 'style.transformstyle.transform');
+        }
+        if (this.position == 'right' || this.position == 'left') {
+          style.transform = `translateX($(this.width))`;
+        }
+      }
+    } else {
+      if (this.position == 'bottom') {
+        style.transform = `translateY(100%)`;
+        console.log(style.transform, 'style.transform');
+      }
+      if (this.position == 'top') {
+        style.transform = `translateY(-100%)`;
+      }
+      if (this.position == 'left') {
+        style.transform = `translateX(-100%)`;
+        console.log(style.transform, 'style.transform');
+      }
+      if (this.position == 'right') {
+        style.transform = `translateX(100%)`;
+      }
     }
     // if (this.show) {
     return (
@@ -325,37 +357,31 @@ export class GluePopup {
   };
   renderTransitionAppear = () => {
     let style = this.popupRef.style;
-    // console.log(this.position, this.height, 'aghuohaugah');
-    // if (this.position == 'top' || this.position == 'bottom') {
-    //   style['width'] = this.width || '100%';
-    //   style['height'] = this.height || '30%';
-    // }
-
-    // if (this.position == 'right' || this.position == 'left') {
-    //   style['width'] = this.width || '30%';
-    //   style['height'] = this.height || '100%';
-    // }
     console.log(style, 'stylestyle');
     if (this.show) {
       console.log(style, 'style');
       if (this.transitionAppear) {
-        // this.showAnimation();
+        this.showAnimation();
       } else {
         this.popupRef.style.display = 'block';
         this.popupRef.style.zIndex = this.zIndex;
         if (this.position == 'top' || this.position == 'bottom') {
-          style['height'] = this.height || '30%';
-          // style.transform = `translateY($(this.height))`;
+          style.transform = `translateY($(this.height))`;
+          console.log(style.transform, this.height, 'style.transformstyle.transform');
         }
-
         if (this.position == 'right' || this.position == 'left') {
-          style['width'] = this.width || '30%';
+          style.transform = `translateX($(this.width))`;
         }
-        console.log(style, 'stylestylestyle');
       }
     } else {
-      // style.display = 'none';
-      // style.transform = `translateY(${this.height})`;
+      if (this.position == 'bottom') {
+        // style.transform = `translateY(100%)`;
+        this.popupRef.setAttribute('transform', `translateY(100%)`);
+        console.log(style.transform, 'style.transform');
+      }
+      if (this.position == 'top') {
+        style.transform = `translateY(-100%)`;
+      }
     }
   };
   renderTeleport = () => {
