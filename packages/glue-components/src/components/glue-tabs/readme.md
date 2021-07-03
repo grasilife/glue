@@ -35,7 +35,6 @@
 ### Used by
 
  - [glue-coupon-list](../glue-coupon-list)
- - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -52,7 +51,6 @@ graph TD;
   glue-tabs-title --> glue-badge
   glue-tabs-content --> glue-swipe
   glue-coupon-list --> glue-tabs
-  glue-demo --> glue-tabs
   style glue-tabs fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

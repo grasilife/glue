@@ -116,9 +116,10 @@ export class GluePopup {
     console.log(position, bem([position]), 'position');
     let style = {
       zIndex: this.zIndex,
-      height: '0',
-      width: '0',
+      height: '',
+      width: '',
       transform: '',
+      display: 'block',
     };
     if (this.position == 'top' || this.position == 'bottom') {
       console.log(this.width, 'this.width');
@@ -135,6 +136,7 @@ export class GluePopup {
     }
     console.log(style, 'style');
     if (this.show) {
+      style.display = 'block';
       console.log(style, 'style');
       if (this.transitionAppear) {
         this.showAnimation();
@@ -148,6 +150,7 @@ export class GluePopup {
         }
       }
     } else {
+      style.display = 'none';
       if (this.position == 'bottom') {
         style.transform = `translateY(100%)`;
         console.log(style.transform, 'style.transform');
@@ -163,7 +166,6 @@ export class GluePopup {
         style.transform = `translateX(100%)`;
       }
     }
-    // if (this.show) {
     return (
       <div
         ref={dom => {
@@ -184,7 +186,6 @@ export class GluePopup {
         {this.renderCloseIcon()}
       </div>
     );
-    // }
   };
 
   renderOverlay = () => {
@@ -223,7 +224,6 @@ export class GluePopup {
         this.popupRef,
         this.duration,
         this.easing,
-        this.height,
         () => {
           this.popupRef.style.display = 'block';
           this.openHandle();
@@ -392,6 +392,7 @@ export class GluePopup {
         document.querySelector(this.teleport).appendChild(this.el);
       } else {
         this.teleport.appendChild(this.el);
+        this.el.remove();
       }
     }
   };
@@ -401,6 +402,10 @@ export class GluePopup {
   componentDidLoad() {
     // this.renderTransitionAppear();
     this.renderTeleport();
+  }
+  disconnectedCallback() {
+    this.show = false;
+    // this.el.remove();
   }
   render() {
     console.log(this.show, 'hgyag');

@@ -30,7 +30,7 @@ export const centerLeaveAnimation = (el, duration, easing, begin, complete) => {
   });
 };
 //top
-export const topEnterAnimation = (el, duration, easing, height, begin, complete) => {
+export const topEnterAnimation = (el, duration, easing, begin, complete) => {
   anime({
     targets: el,
     duration: duration,

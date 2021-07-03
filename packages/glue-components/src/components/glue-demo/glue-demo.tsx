@@ -432,7 +432,7 @@ export class GlueDemo {
         <glue-cell is-link onClick={this.popupCell}>
           展示弹出层
         </glue-cell>
-        <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="30%" height="100%" position="right">
+        <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="30%" height="100%" position="left">
           <div>内容</div>
         </glue-popup>
         {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="100%" height="30%" position="top">
