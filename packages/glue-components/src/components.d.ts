@@ -143,7 +143,6 @@ export namespace Components {
         "confirmDisabledText": string;
         "confirmText": string;
         "defaultDate": any;
-        "first": string;
         "firstDayOfWeek": any;
         "footer": string;
         "formatter": any;
@@ -169,7 +168,6 @@ export namespace Components {
     }
     interface GlueCalendarDay {
         "color": string;
-        "first": string;
         "index": number;
         "item": any;
         "offset": number;
@@ -188,7 +186,6 @@ export namespace Components {
         "color": string;
         "currentDate": any;
         "date": any;
-        "first": string;
         "firstDayOfWeek": number;
         "formatter": any;
         "getTitle": () => Promise<string>;
@@ -1976,7 +1973,6 @@ declare namespace LocalJSX {
         "confirmDisabledText"?: string;
         "confirmText"?: string;
         "defaultDate"?: any;
-        "first"?: string;
         "firstDayOfWeek"?: any;
         "footer"?: string;
         "formatter"?: any;
@@ -2010,7 +2006,6 @@ declare namespace LocalJSX {
     }
     interface GlueCalendarDay {
         "color"?: string;
-        "first"?: string;
         "index"?: number;
         "item"?: any;
         "offset"?: number;
@@ -2030,7 +2025,6 @@ declare namespace LocalJSX {
         "color"?: string;
         "currentDate"?: any;
         "date"?: any;
-        "first"?: string;
         "firstDayOfWeek"?: number;
         "formatter"?: any;
         "lazyRender"?: boolean;

@@ -33,11 +33,11 @@ export class GluePopup {
   @Prop() overlayStyle: object;
   @Prop() overlayClass = null;
   @Prop() transitionAppear: boolean;
-  @Prop() overlay = true;
-  @Prop() lockScroll = true;
-  @Prop() lazyRender = true;
-  @Prop() closeOnClickOverlay = true;
-  @Prop() round = true;
+  @Prop() overlay = false;
+  @Prop() lockScroll = false;
+  @Prop() lazyRender = false;
+  @Prop() closeOnClickOverlay = false;
+  @Prop() round = false;
   @Prop() closeable: boolean;
   @Prop() closeOnPopstate: boolean;
   @Prop() safeAreaInsetBottom = false;

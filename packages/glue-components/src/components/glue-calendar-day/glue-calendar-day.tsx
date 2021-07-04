@@ -8,7 +8,6 @@ const [bem] = createNamespace('glue-calendar-day');
   shadow: false,
 })
 export class GlueCalendarDay {
-  @Prop() first: string;
   @Prop() item: any;
   @Prop() color: string;
   @Prop() index: number;
@@ -86,7 +85,7 @@ export class GlueCalendarDay {
     return Nodes;
   };
   componentDidLoad() {
-    console.log(this.item, 'dayhsihsuh');
+    // console.log(this.item, 'dayhsihsuh');
   }
   render() {
     const { type, className } = this.item;

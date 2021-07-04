@@ -13,7 +13,6 @@ import { copyDate, copyDates, getPrevDay, getNextDay, compareDay, calcDateNum, c
   shadow: false,
 })
 export class GlueCalendar {
-  @Prop() first: string;
   @Prop({ mutable: true }) show: boolean;
   @Prop() title: string;
   @Prop() color: string;
@@ -42,7 +41,7 @@ export class GlueCalendar {
   @Prop() minDate = new Date();
   @Prop() maxDate = new Date(now.getFullYear(), now.getMonth() + 6, now.getDate());
   @Prop() firstDayOfWeek: any = 0;
-  @Prop() footer: string = '';
+  @Prop({ mutable: true }) footer: string = '';
   @State() subtitle;
   @State() currentDate: any;
   @State() bodyHeight: any;
@@ -427,9 +426,11 @@ export class GlueCalendar {
   );
   renderContent = () => {
     if (this.poppable) {
+      console.log(this.show, 'this.show');
       return (
         <glue-popup
           show={this.show}
+          overlay={true}
           class="glue-calendar__popup"
           round={this.round}
           position={this.position}
@@ -441,6 +442,8 @@ export class GlueCalendar {
           onGlueClose={this.closeHandle}
           onGlueOpened={this.openedHandle}
           onGlueClosed={this.closedHandle}
+          width="100%"
+          height="30%"
         >
           {this.renderCalendar()}
         </glue-popup>

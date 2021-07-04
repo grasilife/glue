@@ -10,7 +10,6 @@ import { getMonthEndDay } from '../glue-datetime-picker/utils';
   shadow: false,
 })
 export class GlueCalendarMonth {
-  @Prop() first: string;
   @Prop() date: any;
   @Prop() type: string;
   @Prop() color: string;
@@ -92,13 +91,13 @@ export class GlueCalendarMonth {
     if (!startDay) {
       return '';
     }
-    console.log(day, startDay, 'day, startDay');
+    // console.log(day, startDay, 'day, startDay');
     const compareToStart = compareDay(day, startDay);
 
     if (!endDay) {
       return compareToStart === 0 ? 'start' : '';
     }
-    console.log(day, endDay, 'day, startendDayDay');
+    // console.log(day, endDay, 'day, startendDayDay');
     const compareToEnd = compareDay(day, endDay);
 
     if (this.allowSameDay && compareToStart === 0 && compareToEnd === 0) {
@@ -161,7 +160,7 @@ export class GlueCalendarMonth {
   };
 
   renderMark = () => {
-    console.log(this.showMark, this.date, 'this.showMark');
+    // console.log(this.showMark, this.date, 'this.showMark');
     if (this.showMark && this.shouldRender()) {
       return <div class="glue-calendar-month__month-mark">{this.date.getMonth() + 1}</div>;
     }

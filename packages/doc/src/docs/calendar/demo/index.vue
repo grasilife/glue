@@ -1,111 +1,110 @@
 <template>
   <DemoSection>
     <DemoBlock card :title="basicUsage">
-      <van-cell
+      <glue-cell
         is-link
         :title="selectSingle"
         :value="formatFullDate(date.selectSingle)"
-        @click="show('single', 'selectSingle')"
+        @glueClick="show('single', 'selectSingle')"
       />
 
-      <van-cell
+      <glue-cell
         is-link
         :title="selectMultiple"
         :value="formatMultiple(date.selectMultiple)"
-        @click="show('multiple', 'selectMultiple')"
+        @glueClick="show('multiple', 'selectMultiple')"
       />
 
-      <van-cell
+      <glue-cell
         is-link
         :title="selectRange"
         :value="formatRange(date.selectRange)"
-        @click="show('range', 'selectRange')"
+        @glueClick="show('range', 'selectRange')"
       />
     </DemoBlock>
 
     <DemoBlock card :title="quickSelect">
-      <van-cell
+      <glue-cell
         is-link
         :title="selectSingle"
         :value="formatFullDate(date.quickSelect1)"
-        @click="show('single', 'quickSelect1')"
+        @glueClick="show('single', 'quickSelect1')"
       />
 
-      <van-cell
+      <glue-cell
         is-link
         :title="selectRange"
         :value="formatRange(date.quickSelect2)"
-        @click="show('range', 'quickSelect2')"
+        @glueClick="show('range', 'quickSelect2')"
       />
     </DemoBlock>
 
     <DemoBlock card :title="customCalendar">
-      <van-cell
+      <glue-cell
         is-link
         :title="customColor"
         :value="formatRange(date.customColor)"
-        @click="show('range', 'customColor')"
+        @glueClick="show('range', 'customColor')"
       />
 
-      <van-cell
+      <glue-cell
         is-link
         :title="customRange"
         :value="formatFullDate(date.customRange)"
-        @click="show('single', 'customRange')"
+        @glueClick="show('single', 'customRange')"
       />
 
-      <van-cell
+      <glue-cell
         is-link
         :title="customConfirm"
         :value="formatRange(date.customConfirm)"
-        @click="show('range', 'customConfirm')"
+        @glueClick="show('range', 'customConfirm')"
       />
 
-      <van-cell
+      <glue-cell
         is-link
         :title="customDayText"
         :value="formatRange(date.customDayText)"
-        @click="show('range', 'customDayText')"
+        @glueClick="show('range', 'customDayText')"
       />
 
-      <van-cell
+      <glue-cell
         is-link
         :title="customPosition"
         :value="formatFullDate(date.customPosition)"
-        @click="show('single', 'customPosition')"
+        @glueClick="show('single', 'customPosition')"
       />
 
-      <van-cell
+      <glue-cell
         is-link
         :title="maxRangeaTitle"
         :value="formatRange(date.maxRange)"
-        @click="show('range', 'maxRange')"
+        @glueClick="show('range', 'maxRange')"
       />
 
-      <van-cell is-link :title="firstDayOfWeekTitle" @click="show('single', 'firstDayOfWeek')" />
+      <glue-cell is-link :title="firstDayOfWeekTitle" @glueClick="show('single', 'firstDayOfWeek')" />
     </DemoBlock>
 
-    <DemoBlock card :title="tiledDisplay">
-      <van-calendar
+    <!-- <DemoBlock card :title="tiledDisplay">
+      <glue-calendar
         :title="calendar"
+        show-title
+        show-subtitle
         :poppable="false"
         :show-confirm="false"
-        :min-date="tiledMinDate"
-        :max-date="tiledMaxDate"
-        :default-date="tiledMinDate"
         :style="{ height: '500px' }"
       />
-    </DemoBlock>
+    </DemoBlock> -->
 
-    <van-calendar
-      v-model="showCalendar"
+    <glue-calendar
+      :poppable="true"
+      show-title
+      show-subtitle
+      :show="true"
       :type="type"
       :color="color"
       :round="round"
       :position="position"
-      :min-date="minDate"
-      :max-date="maxDate"
-      :max-range="maxRange"
       :formatter="formatter"
       :show-confirm="showConfirm"
       :confirm-text="confirmText"

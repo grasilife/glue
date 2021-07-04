@@ -353,7 +353,19 @@ export class GlueDemo {
           onGlueOversize={this.onOversize}
           disabled
         ></glue-uploader> */}
-        {/* <glue-calendar show={true} show-title show-subtitle show-confirm={true} show-mark title="选择单个日期" type="range" color="#1989fa" max-range="3" first-day-of-week="1" /> */}
+        <glue-calendar
+          show={true}
+          show-title
+          show-subtitle
+          show-confirm={true}
+          show-mark
+          title="选择单个日期"
+          type="range"
+          color="#1989fa"
+          max-range="3"
+          first-day-of-week="1"
+          poppable={true}
+        />
         {/* <glue-picker title="标题" columns={this.columns} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" /> */}
         {/* <glue-picker title="标题" columns={this.columns2} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" /> */}
         {/* <glue-picker title="标题" columns={this.columns3} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} loading={false} /> */}
@@ -429,12 +441,12 @@ export class GlueDemo {
           <glue-tab title="标签 3">内容 3</glue-tab>
           <glue-tab title="标签 4">内容 4</glue-tab>
         </glue-tabs> */}
-        <glue-cell is-link onClick={this.popupCell}>
+        {/* <glue-cell is-link onClick={this.popupCell}>
           展示弹出层
         </glue-cell>
         <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="30%" height="100%" position="left">
           <div>内容</div>
-        </glue-popup>
+        </glue-popup> */}
         {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="100%" height="30%" position="top">
           <div>内容</div>
         </glue-popup> */}
