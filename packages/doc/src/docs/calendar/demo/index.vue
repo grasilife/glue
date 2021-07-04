@@ -5,21 +5,21 @@
         is-link
         :title="selectSingle"
         :value="formatFullDate(date.selectSingle)"
-        @glueClick="show('single', 'selectSingle')"
+        @click="show('single', 'selectSingle')"
       />
 
       <glue-cell
         is-link
         :title="selectMultiple"
         :value="formatMultiple(date.selectMultiple)"
-        @glueClick="show('multiple', 'selectMultiple')"
+        @click="show('multiple', 'selectMultiple')"
       />
 
       <glue-cell
         is-link
         :title="selectRange"
         :value="formatRange(date.selectRange)"
-        @glueClick="show('range', 'selectRange')"
+        @click="show('range', 'selectRange')"
       />
     </DemoBlock>
 
@@ -28,14 +28,14 @@
         is-link
         :title="selectSingle"
         :value="formatFullDate(date.quickSelect1)"
-        @glueClick="show('single', 'quickSelect1')"
+        @click="show('single', 'quickSelect1')"
       />
 
       <glue-cell
         is-link
         :title="selectRange"
         :value="formatRange(date.quickSelect2)"
-        @glueClick="show('range', 'quickSelect2')"
+        @click="show('range', 'quickSelect2')"
       />
     </DemoBlock>
 
@@ -44,45 +44,45 @@
         is-link
         :title="customColor"
         :value="formatRange(date.customColor)"
-        @glueClick="show('range', 'customColor')"
+        @click="show('range', 'customColor')"
       />
 
       <glue-cell
         is-link
         :title="customRange"
         :value="formatFullDate(date.customRange)"
-        @glueClick="show('single', 'customRange')"
+        @click="show('single', 'customRange')"
       />
 
       <glue-cell
         is-link
         :title="customConfirm"
         :value="formatRange(date.customConfirm)"
-        @glueClick="show('range', 'customConfirm')"
+        @click="show('range', 'customConfirm')"
       />
 
       <glue-cell
         is-link
         :title="customDayText"
         :value="formatRange(date.customDayText)"
-        @glueClick="show('range', 'customDayText')"
+        @click="show('range', 'customDayText')"
       />
 
       <glue-cell
         is-link
         :title="customPosition"
         :value="formatFullDate(date.customPosition)"
-        @glueClick="show('single', 'customPosition')"
+        @click="show('single', 'customPosition')"
       />
 
       <glue-cell
         is-link
         :title="maxRangeaTitle"
         :value="formatRange(date.maxRange)"
-        @glueClick="show('range', 'maxRange')"
+        @click="show('range', 'maxRange')"
       />
 
-      <glue-cell is-link :title="firstDayOfWeekTitle" @glueClick="show('single', 'firstDayOfWeek')" />
+      <glue-cell is-link :title="firstDayOfWeekTitle" @click="show('single', 'firstDayOfWeek')" />
     </DemoBlock>
 
     <!-- <DemoBlock card :title="tiledDisplay">
@@ -98,19 +98,21 @@
 
     <glue-calendar
       :poppable="true"
-      show-title
-      show-subtitle
-      :show="true"
+      :show-title="true"
+      :show-subtitle="true"
+      title="选择日期"
+      :show="showCalendar"
       :type="type"
       :color="color"
       :round="round"
       :position="position"
       :formatter="formatter"
-      :show-confirm="showConfirm"
+      :show-confirm="true"
       :confirm-text="confirmText"
       :confirm-disabled-text="confirmDisabledText"
       :first-day-of-week="firstDayOfWeek"
       @confirm="onConfirm"
+      @glueClose="this.glueClose"
     />
   </DemoSection>
 </template>
@@ -163,7 +165,7 @@ export default {
       maxRange: undefined,
       position: undefined,
       formatter: undefined,
-      showConfirm: false,
+      showConfirm: true,
       showCalendar: false,
       tiledMinDate: new Date(2012, 0, 10),
       tiledMaxDate: new Date(2012, 2, 20),
@@ -172,6 +174,9 @@ export default {
   },
 
   methods: {
+    glueClose() {
+      this.showCalendar = false;
+    },
     resetSettings() {
       this.round = true;
       this.color = undefined;
@@ -191,7 +196,7 @@ export default {
       this.id = id;
       this.type = type;
       this.showCalendar = true;
-
+      console.log(this.type, "this.type");
       switch (id) {
         case "quickSelect1":
         case "quickSelect2":

@@ -10,7 +10,6 @@
 | Property    | Attribute    | Description | Type     | Default     |
 | ----------- | ------------ | ----------- | -------- | ----------- |
 | `color`     | `color`      |             | `string` | `undefined` |
-| `first`     | `first`      |             | `string` | `undefined` |
 | `index`     | `index`      |             | `number` | `undefined` |
 | `item`      | `item`       |             | `any`    | `undefined` |
 | `offset`    | `offset`     |             | `number` | `undefined` |

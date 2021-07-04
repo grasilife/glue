@@ -16,7 +16,6 @@
 | `confirmDisabledText` | `confirm-disabled-text`  |             | `string`           | `undefined`                                                      |
 | `confirmText`         | `confirm-text`           |             | `string`           | `'确定'`                                                           |
 | `defaultDate`         | `default-date`           |             | `any`              | `undefined`                                                      |
-| `first`               | `first`                  |             | `string`           | `undefined`                                                      |
 | `firstDayOfWeek`      | `first-day-of-week`      |             | `any`              | `0`                                                              |
 | `footer`              | `footer`                 |             | `string`           | `''`                                                             |
 | `formatter`           | `formatter`              |             | `any`              | `undefined`                                                      |
@@ -37,7 +36,7 @@
 | `showSubtitle`        | `show-subtitle`          |             | `boolean`          | `false`                                                          |
 | `showTitle`           | `show-title`             |             | `boolean`          | `false`                                                          |
 | `teleport`            | `teleport`               |             | `any`              | `undefined`                                                      |
-| `title`               | `title`                  |             | `string`           | `undefined`                                                      |
+| `title`               | `title`                  |             | `string`           | `'日期选择'`                                                         |
 | `type`                | `type`                   |             | `string`           | `'single'`                                                       |
 
 
@@ -56,6 +55,10 @@
 
 
 ## Dependencies
+
+### Used by
+
+ - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -77,6 +80,7 @@ graph TD;
   glue-icon --> glue-badge
   glue-popup --> glue-icon
   glue-popup --> glue-overlay
+  glue-demo --> glue-calendar
   style glue-calendar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

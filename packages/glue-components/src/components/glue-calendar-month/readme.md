@@ -13,7 +13,6 @@
 | `color`          | `color`             |             | `string`  | `undefined` |
 | `currentDate`    | `current-date`      |             | `any`     | `undefined` |
 | `date`           | `date`              |             | `any`     | `undefined` |
-| `first`          | `first`             |             | `string`  | `undefined` |
 | `firstDayOfWeek` | `first-day-of-week` |             | `number`  | `undefined` |
 | `formatter`      | `formatter`         |             | `any`     | `undefined` |
 | `lazyRender`     | `lazy-render`       |             | `boolean` | `undefined` |

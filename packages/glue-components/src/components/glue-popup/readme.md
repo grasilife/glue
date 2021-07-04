@@ -11,20 +11,20 @@
 | --------------------- | ------------------------ | ----------- | ----------------------- | ------------- |
 | `closeIcon`           | `close-icon`             |             | `string`                | `'cross'`     |
 | `closeIconPosition`   | `close-icon-position`    |             | `string`                | `'top-right'` |
-| `closeOnClickOverlay` | `close-on-click-overlay` |             | `boolean`               | `true`        |
+| `closeOnClickOverlay` | `close-on-click-overlay` |             | `boolean`               | `false`       |
 | `closeOnPopstate`     | `close-on-popstate`      |             | `boolean`               | `undefined`   |
 | `closeable`           | `closeable`              |             | `boolean`               | `undefined`   |
 | `content`             | `content`                |             | `string`                | `''`          |
 | `duration`            | `duration`               |             | `number \| string`      | `DURATION`    |
 | `easing`              | `easing`                 |             | `string`                | `EASING`      |
 | `height`              | `height`                 |             | `string`                | `undefined`   |
-| `lazyRender`          | `lazy-render`            |             | `boolean`               | `true`        |
-| `lockScroll`          | `lock-scroll`            |             | `boolean`               | `true`        |
-| `overlay`             | `overlay`                |             | `boolean`               | `true`        |
+| `lazyRender`          | `lazy-render`            |             | `boolean`               | `false`       |
+| `lockScroll`          | `lock-scroll`            |             | `boolean`               | `false`       |
+| `overlay`             | `overlay`                |             | `boolean`               | `false`       |
 | `overlayClass`        | `overlay-class`          |             | `any`                   | `null`        |
 | `overlayStyle`        | --                       |             | `object`                | `undefined`   |
 | `position`            | `position`               |             | `string`                | `'center'`    |
-| `round`               | `round`                  |             | `boolean`               | `true`        |
+| `round`               | `round`                  |             | `boolean`               | `false`       |
 | `safeAreaInsetBottom` | `safe-area-inset-bottom` |             | `boolean`               | `false`       |
 | `show`                | `show`                   |             | `boolean`               | `undefined`   |
 | `teleport`            | `teleport`               |             | `HTMLElement \| string` | `'body'`      |
@@ -53,7 +53,6 @@
  - [glue-action-sheet](../glue-action-sheet)
  - [glue-address-edit](../glue-address-edit)
  - [glue-calendar](../glue-calendar)
- - [glue-demo](../glue-demo)
  - [glue-share-sheet](../glue-share-sheet)
 
 ### Depends on
@@ -70,7 +69,6 @@ graph TD;
   glue-action-sheet --> glue-popup
   glue-address-edit --> glue-popup
   glue-calendar --> glue-popup
-  glue-demo --> glue-popup
   glue-share-sheet --> glue-popup
   style glue-popup fill:#f9f,stroke:#333,stroke-width:4px
 ```

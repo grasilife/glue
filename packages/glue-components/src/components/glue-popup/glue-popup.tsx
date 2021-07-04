@@ -401,7 +401,7 @@ export class GluePopup {
   }
   componentDidLoad() {
     // this.renderTransitionAppear();
-    this.renderTeleport();
+    // this.renderTeleport();
   }
   disconnectedCallback() {
     this.show = false;

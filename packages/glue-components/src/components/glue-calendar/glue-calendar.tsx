@@ -14,7 +14,7 @@ import { copyDate, copyDates, getPrevDay, getNextDay, compareDay, calcDateNum, c
 })
 export class GlueCalendar {
   @Prop({ mutable: true }) show: boolean;
-  @Prop() title: string;
+  @Prop() title: string = '日期选择';
   @Prop() color: string;
   @Prop() readonly: boolean;
   @Prop() teleport: any;
@@ -443,7 +443,7 @@ export class GlueCalendar {
           onGlueOpened={this.openedHandle}
           onGlueClosed={this.closedHandle}
           width="100%"
-          height="30%"
+          height="70%"
         >
           {this.renderCalendar()}
         </glue-popup>
