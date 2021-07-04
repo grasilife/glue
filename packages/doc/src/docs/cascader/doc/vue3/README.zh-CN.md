@@ -11,7 +11,7 @@
 级联选择组件可以搭配 Field 和 Popup 组件使用，示例如下：
 
 ```html
-<van-field
+<glue-field
   v-model="state.fieldValue"
   is-link
   readonly
@@ -19,15 +19,15 @@
   placeholder="请选择所在地区"
   @click="state.show = true"
 />
-<van-popup v-model:show="state.show" round position="bottom">
-  <van-cascader
+<glue-popup v-model:show="state.show" round position="bottom">
+  <glue-cascader
     v-model="state.cascaderValue"
     title="请选择所在地区"
     :options="options"
     @close="state.show = false"
     @finish="onFinish"
   />
-</van-popup>
+</glue-popup>
 ```
 
 ```js
@@ -73,7 +73,7 @@ export default {
 通过 `active-color` 属性来设置选中状态的高亮颜色。
 
 ```html
-<van-cascader
+<glue-cascader
   v-model="state.cascaderValue"
   title="请选择所在地区"
   :options="options"
@@ -88,7 +88,7 @@ export default {
 可以监听 `change` 事件并动态设置 `options`，实现异步加载选项。
 
 ```html
-<van-field
+<glue-field
   v-model="state.fieldValue"
   is-link
   readonly
@@ -96,8 +96,8 @@ export default {
   placeholder="请选择所在地区"
   @click="state.show = true"
 />
-<van-popup v-model:show="state.show" round position="bottom">
-  <van-cascader
+<glue-popup v-model:show="state.show" round position="bottom">
+  <glue-cascader
     v-model="state.cascaderValue"
     title="请选择所在地区"
     :options="state.options"
@@ -105,7 +105,7 @@ export default {
     @change="onChange"
     @finish="onFinish"
   />
-</van-popup>
+</glue-popup>
 ```
 
 ```js
@@ -154,7 +154,7 @@ export default {
 通过 `field-names` 属性可以自定义 `options` 里的字段名称。
 
 ```html
-<van-cascader
+<glue-cascader
   v-model="code"
   title="请选择所在地区"
   :options="options"
