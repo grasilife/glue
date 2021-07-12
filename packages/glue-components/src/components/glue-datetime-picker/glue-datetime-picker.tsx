@@ -31,7 +31,7 @@ export class GlueDatetimePicker {
   @Prop() cancelButtonText: string;
   @Prop() confirmButtonText: string;
   @Prop() itemHeight: number = 44;
-  @Prop() showToolbar = true;
+  @Prop() showToolbar = false;
   @Prop() visibleItemCount = 6;
   @Prop() swipeDuration = 1000;
   renderComponent = () => {

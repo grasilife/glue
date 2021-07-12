@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, Host, State, Event, EventEmitter, Watch } from '@stencil/core';
 import classNames from 'classnames';
 import { pick } from '../../utils/base';
 import { getScrollTop } from '../../utils/dom/scroll';
@@ -51,6 +51,23 @@ export class GlueCalendar {
   @Event() glueConfirm: EventEmitter;
   @Event() glueMonthShow: EventEmitter;
   @Event() glueOpen: EventEmitter;
+  @Watch('show')
+  showHandle() {
+    this.init();
+  }
+  @Watch('minDate')
+  minDateHandle() {
+    this.reset(this.getInitialDate(this.currentDate));
+  }
+  @Watch('maxDate')
+  maxDateHandle() {
+    this.reset(this.getInitialDate(this.currentDate));
+  }
+  @Watch('defaultDate')
+  defaultDateHandle(value) {
+    this.currentDate = value;
+    this.scrollIntoView();
+  }
   openHandle = () => {
     this.show = true;
     this.glueOpen.emit(true);
@@ -197,6 +214,7 @@ export class GlueCalendar {
 
     if (currentMonth) {
       currentMonth.getTitle().then(item => {
+        console.log(item, 'itemitem');
         vm.subtitle = item;
       });
     }
@@ -460,6 +478,8 @@ export class GlueCalendar {
     this.init();
   }
   render() {
+    console.log(this.showTitle, 'showTitle');
+    console.log(this.showSubtitle, this.subtitle, 'this.subtitle2');
     return <Host class={classNames('cunstom')}>{this.renderContent()}</Host>;
   }
 }

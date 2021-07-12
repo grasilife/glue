@@ -61,7 +61,7 @@ export class GlueCalendarMonth {
   };
 
   getMultipleDayType = day => {
-    console.log(this.currentDate, 'this.currentDate');
+    // console.log(this.currentDate, 'this.currentDate');
     const isSelected = date => this.currentDate.some(item => compareDay(item, date) === 0);
 
     if (isSelected(day)) {

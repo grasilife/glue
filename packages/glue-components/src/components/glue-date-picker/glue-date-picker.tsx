@@ -23,7 +23,7 @@ export class GlueDatePicker {
   @Prop() cancelButtonText: string;
   @Prop() confirmButtonText: string;
   @Prop() itemHeight: number = 44;
-  @Prop() showToolbar = true;
+  @Prop() showToolbar = false;
   @Prop() visibleItemCount = 6;
   @Prop() swipeDuration = 1000;
   // props
@@ -250,6 +250,7 @@ export class GlueDatePicker {
     // });
   };
   render() {
+    console.log(this.showToolbar, 'fjaifuai');
     return (
       <Host class={classNames('cunstom')}>
         <glue-picker
@@ -257,6 +258,7 @@ export class GlueDatePicker {
             this.picker = dom;
           }}
           columns={this.columns()}
+          {...this}
           readonly={this.readonly}
           onGlueChange={this.onChange}
           onGlueCancel={this.onCancel}

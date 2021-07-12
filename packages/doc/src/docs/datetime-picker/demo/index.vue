@@ -1,12 +1,19 @@
 <template>
   <DemoSection>
     <DemoBlock card :title="dateType">
-      <van-datetime-picker v-model="value.date" type="date" :title="dateType" :min-date="minDate" :max-date="maxDate" />
+      <glue-datetime-picker
+        :model-value="value.date"
+        type="date"
+        :show-toolbar="true"
+        :title="dateType"
+        :min-date="minDate"
+        :max-date="maxDate"
+      />
     </DemoBlock>
 
-    <DemoBlock card :title="yearMonthType">
-      <van-datetime-picker
-        v-model="value.yearMonth"
+    <!-- <DemoBlock card :title="yearMonthType">
+      <glue-datetime-picker
+        :model-value="value.yearMonth"
         type="year-month"
         :title="yearMonthType"
         :min-date="minDate"
@@ -16,8 +23,8 @@
     </DemoBlock>
 
     <DemoBlock card :title="monthDayType">
-      <van-datetime-picker
-        v-model="value.monthDayType"
+      <glue-datetime-picker
+        :model-value="value.monthDayType"
         type="month-day"
         :title="monthDayType"
         :min-date="minDate"
@@ -27,12 +34,12 @@
     </DemoBlock>
 
     <DemoBlock card :title="timeType">
-      <van-datetime-picker v-model="value.time" type="time" :title="timeType" :min-hour="10" :max-hour="20" />
+      <glue-datetime-picker :model-value="value.time" type="time" :title="timeType" :min-hour="10" :max-hour="20" />
     </DemoBlock>
 
     <DemoBlock card :title="datetimeType">
-      <van-datetime-picker
-        v-model="value.datetime"
+      <glue-datetime-picker
+        :model-value="value.datetime"
         type="datetime"
         :title="datetimeType"
         :min-date="minDate"
@@ -41,8 +48,8 @@
     </DemoBlock>
 
     <DemoBlock card :title="datehourType">
-      <van-datetime-picker
-        v-model="value.datehour"
+      <glue-datetime-picker
+        :model-value="value.datehour"
         type="datehour"
         :title="datehourType"
         :min-date="minDate"
@@ -51,12 +58,12 @@
     </DemoBlock>
 
     <DemoBlock card :title="optionFilter">
-      <van-datetime-picker v-model="value.optionFilter" type="time" :title="optionFilter" :filter="filter" />
+      <glue-datetime-picker :model-value="value.optionFilter" type="time" :title="optionFilter" :filter="filter" />
     </DemoBlock>
 
     <DemoBlock card :title="sortColumns">
-      <van-datetime-picker
-        v-model="value.sortColumnsDate"
+      <glue-datetime-picker
+        :model-value="value.sortColumnsDate"
         type="date"
         :title="sortColumns"
         :columns-order="['month', 'day', 'year']"
@@ -64,7 +71,7 @@
         :max-date="maxDate"
         :formatter="formatter"
       />
-    </DemoBlock>
+    </DemoBlock> -->
   </DemoSection>
 </template>
 

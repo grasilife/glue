@@ -22,7 +22,7 @@ export class GlueTimePicker {
   @Prop() cancelButtonText: string;
   @Prop() confirmButtonText: string;
   @Prop() itemHeight: number = 44;
-  @Prop() showToolbar = true;
+  @Prop() showToolbar = false;
   @Prop() visibleItemCount = 6;
   @Prop() swipeDuration = 1000;
   @Prop() minHour = 0;
@@ -127,6 +127,7 @@ export class GlueTimePicker {
           ref={dom => {
             this.picker = dom;
           }}
+          {...this}
           columns={this.columns()}
           readonly={this.readonly}
           onGlueChange={this.onChange}

@@ -34,6 +34,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [glue-demo](../glue-demo)
+
 ### Depends on
 
 - [glue-time-picker](../glue-time-picker)
@@ -48,6 +52,7 @@ graph TD;
   glue-picker --> glue-picker-column
   glue-picker --> glue-loading
   glue-date-picker --> glue-picker
+  glue-demo --> glue-datetime-picker
   style glue-datetime-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

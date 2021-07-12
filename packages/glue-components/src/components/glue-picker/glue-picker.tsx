@@ -360,6 +360,7 @@ export class GluePicker {
     return [this.renderCancel(), this.renderTitle(), this.renderConfirm()];
   };
   renderToolbar = () => {
+    console.log(this.showToolbar, 'this.showToolbar');
     if (this.showToolbar) {
       return <div class={bem('toolbar')}>{this.renderOther()}</div>;
     }
