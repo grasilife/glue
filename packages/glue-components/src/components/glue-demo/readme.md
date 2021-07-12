@@ -10,14 +10,12 @@
 ### Depends on
 
 - [glue-calendar](../glue-calendar)
-- [glue-datetime-picker](../glue-datetime-picker)
 - [glue-cell](../glue-cell)
 
 ### Graph
 ```mermaid
 graph TD;
   glue-demo --> glue-calendar
-  glue-demo --> glue-datetime-picker
   glue-demo --> glue-cell
   glue-calendar --> glue-calendar-month
   glue-calendar --> glue-button
@@ -29,12 +27,6 @@ graph TD;
   glue-icon --> glue-badge
   glue-popup --> glue-icon
   glue-popup --> glue-overlay
-  glue-datetime-picker --> glue-time-picker
-  glue-datetime-picker --> glue-date-picker
-  glue-time-picker --> glue-picker
-  glue-picker --> glue-picker-column
-  glue-picker --> glue-loading
-  glue-date-picker --> glue-picker
   glue-cell --> glue-icon
   style glue-demo fill:#f9f,stroke:#333,stroke-width:4px
 ```

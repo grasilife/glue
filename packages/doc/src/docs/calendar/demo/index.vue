@@ -85,16 +85,22 @@
       <glue-cell is-link :title="firstDayOfWeekTitle" @click="show('single', 'firstDayOfWeek')" />
     </DemoBlock>
 
-    <!-- <DemoBlock card :title="tiledDisplay">
-      <glue-calendar
-        :title="calendar"
+    <DemoBlock card :title="tiledDisplay">
+      <!-- <glue-calendar
+        :show="true"
         show-title
         show-subtitle
-        :poppable="false"
-        :show-confirm="false"
-        :style="{ height: '500px' }"
-      />
-    </DemoBlock> -->
+        show-confirm="{true}"
+        show-mark
+        round
+        title="选择单个日期"
+        type="multiple"
+        color="#1989fa"
+        max-range="3"
+        first-day-of-week="1"
+        :poppable="true"
+      /> -->
+    </DemoBlock>
 
     <glue-calendar
       :poppable="true"

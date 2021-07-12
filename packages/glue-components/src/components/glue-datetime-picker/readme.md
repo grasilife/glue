@@ -25,7 +25,7 @@
 | `minMinute`         | `min-minute`          |             | `number`           | `0`                                  |
 | `modelValue`        | `model-value`         |             | `any`              | `null`                               |
 | `readonly`          | `readonly`            |             | `boolean`          | `undefined`                          |
-| `showToolbar`       | `show-toolbar`        |             | `boolean`          | `true`                               |
+| `showToolbar`       | `show-toolbar`        |             | `boolean`          | `false`                              |
 | `swipeDuration`     | `swipe-duration`      |             | `number`           | `1000`                               |
 | `title`             | `title`               |             | `string`           | `undefined`                          |
 | `type`              | `type`                |             | `string`           | `'datetime'`                         |
@@ -33,10 +33,6 @@
 
 
 ## Dependencies
-
-### Used by
-
- - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -52,7 +48,6 @@ graph TD;
   glue-picker --> glue-picker-column
   glue-picker --> glue-loading
   glue-date-picker --> glue-picker
-  glue-demo --> glue-datetime-picker
   style glue-datetime-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

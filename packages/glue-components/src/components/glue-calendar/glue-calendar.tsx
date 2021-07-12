@@ -55,6 +55,10 @@ export class GlueCalendar {
   showHandle() {
     this.init();
   }
+  @Watch('type')
+  typeHandle() {
+    this.reset(this.getInitialDate(this.currentDate));
+  }
   @Watch('minDate')
   minDateHandle() {
     this.reset(this.getInitialDate(this.currentDate));
@@ -145,6 +149,7 @@ export class GlueCalendar {
     do {
       months.push(new Date(cursor));
       cursor.setMonth(cursor.getMonth() + 1);
+      // console.log(months, cursor, this.minDate, 'ahufhuauaaiaiu');
     } while (compareMonth(cursor, this.maxDate) !== 1);
 
     return months;
@@ -222,6 +227,7 @@ export class GlueCalendar {
 
   scrollToDate = targetDate => {
     raf(() => {
+      console.log(this.months(), 'this.months()');
       this.months().some((month, index) => {
         console.log(month, targetDate, 'month, targetDate');
         if (compareMonth(month, targetDate) === 0) {
@@ -245,6 +251,7 @@ export class GlueCalendar {
     const { currentDate } = this;
     if (currentDate) {
       const targetDate = this.type === 'single' ? currentDate : currentDate[0];
+      console.log(targetDate, this.type, currentDate, currentDate[0], 'ahguhuaiguia');
       this.scrollToDate(targetDate);
     } else {
       raf(this.onScroll);
@@ -369,12 +376,15 @@ export class GlueCalendar {
 
       if (selected) {
         const [unselectedDate] = this.currentDate.splice(selectedIndex, 1);
+        this.select([...currentDate, date], null);
+        console.log(this.currentDate, selectedIndex, this.currentDate.splice(selectedIndex, 1), 'selectedIndexselectedIndex');
         this.glueUnselect.emit(copyDate(unselectedDate));
       } else if (this.maxRange && currentDate.length >= this.maxRange) {
         //TODO:编写提示信息
         console.log(`日期区间最多可选${this.maxRange}天`);
         // Toast(this.rangePrompt || t('rangePrompt', this.maxRange));
       } else {
+        console.log([...currentDate, date], 'ajfiajoifa');
         this.select([...currentDate, date], null);
       }
     } else {
@@ -474,9 +484,7 @@ export class GlueCalendar {
     this.currentDate = this.getInitialDate();
     console.log(this.currentDate, 'this.currentDate');
   }
-  componentDidLoad() {
-    this.init();
-  }
+  componentDidLoad() {}
   render() {
     console.log(this.showTitle, 'showTitle');
     console.log(this.showSubtitle, this.subtitle, 'this.subtitle2');

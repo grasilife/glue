@@ -21,7 +21,7 @@
 | `minDate`           | --                    |             | `Date`     | `new Date(currentYear - 10, 0, 1)`         |
 | `modelValue`        | `model-value`         |             | `any`      | `null`                                     |
 | `readonly`          | `readonly`            |             | `boolean`  | `undefined`                                |
-| `showToolbar`       | `show-toolbar`        |             | `boolean`  | `true`                                     |
+| `showToolbar`       | `show-toolbar`        |             | `boolean`  | `false`                                    |
 | `swipeDuration`     | `swipe-duration`      |             | `number`   | `1000`                                     |
 | `title`             | `title`               |             | `string`   | `undefined`                                |
 | `type`              | `type`                |             | `string`   | `'datetime'`                               |
