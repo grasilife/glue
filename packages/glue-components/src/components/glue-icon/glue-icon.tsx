@@ -32,7 +32,8 @@ export class GlueIcon {
         <glue-badge dot={dot} content={badge} slot-content>
           <i
             style={{
-              color,
+              borderColor: color,
+              backgroundColor: color,
               fontSize: addUnit(size),
             }}
             class={classNames(classPrefix, 'glue-icon', {

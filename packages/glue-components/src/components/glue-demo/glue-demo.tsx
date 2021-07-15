@@ -452,6 +452,7 @@ export class GlueDemo {
         {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="100%" height="30%" position="top">
           <div>内容</div>
         </glue-popup> */}
+        <glue-checkbox modelValue={true} label="复选框" shape="square" checked-color="#ee0a24" icon-size="24"></glue-checkbox>
       </div>
     );
   }

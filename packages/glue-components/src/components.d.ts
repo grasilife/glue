@@ -238,18 +238,41 @@ export namespace Components {
         "title": string;
     }
     interface GlueCheckbox {
+        "bindGroup": boolean;
         "checkedColor": string;
         "disabled": boolean;
-        "first": string;
-        "iconSize": string | number;
+        "iconSize": number | string;
+        "label": string;
         "labelDisabled": boolean;
         "labelPosition": string;
-        "modelValue": null;
+        "modelValue": any;
         "name": null;
         "shape": string;
     }
     interface GlueCheckboxGroup {
+        "checkedColor": string;
+        "direction": string;
+        "disabled": boolean;
         "first": string;
+        "iconSize": number | string;
+        "max": number | string;
+        "modelValue": any;
+    }
+    interface GlueChecker {
+        "bem": boolean;
+        "bindGroup": boolean;
+        "checked": boolean;
+        "checkedColor": string;
+        "disabled": boolean;
+        "iconSize": number | string;
+        "label": string;
+        "labelDisabled": boolean;
+        "labelPosition": string;
+        "modelValue": any;
+        "name": null;
+        "parent": any;
+        "role": string;
+        "shape": string;
     }
     interface GlueCircle {
         "clockwise"?: boolean;
@@ -1262,6 +1285,12 @@ declare global {
         prototype: HTMLGlueCheckboxGroupElement;
         new (): HTMLGlueCheckboxGroupElement;
     };
+    interface HTMLGlueCheckerElement extends Components.GlueChecker, HTMLStencilElement {
+    }
+    var HTMLGlueCheckerElement: {
+        prototype: HTMLGlueCheckerElement;
+        new (): HTMLGlueCheckerElement;
+    };
     interface HTMLGlueCircleElement extends Components.GlueCircle, HTMLStencilElement {
     }
     var HTMLGlueCircleElement: {
@@ -1752,6 +1781,7 @@ declare global {
         "glue-cell-group": HTMLGlueCellGroupElement;
         "glue-checkbox": HTMLGlueCheckboxElement;
         "glue-checkbox-group": HTMLGlueCheckboxGroupElement;
+        "glue-checker": HTMLGlueCheckerElement;
         "glue-circle": HTMLGlueCircleElement;
         "glue-col": HTMLGlueColElement;
         "glue-collapse": HTMLGlueCollapseElement;
@@ -2078,18 +2108,44 @@ declare namespace LocalJSX {
         "title"?: string;
     }
     interface GlueCheckbox {
+        "bindGroup"?: boolean;
         "checkedColor"?: string;
         "disabled"?: boolean;
-        "first"?: string;
-        "iconSize"?: string | number;
+        "iconSize"?: number | string;
+        "label"?: string;
         "labelDisabled"?: boolean;
         "labelPosition"?: string;
-        "modelValue"?: null;
+        "modelValue"?: any;
         "name"?: null;
+        "onGlueCilck"?: (event: CustomEvent<any>) => void;
         "shape"?: string;
     }
     interface GlueCheckboxGroup {
+        "checkedColor"?: string;
+        "direction"?: string;
+        "disabled"?: boolean;
         "first"?: string;
+        "iconSize"?: number | string;
+        "max"?: number | string;
+        "modelValue"?: any;
+    }
+    interface GlueChecker {
+        "bem"?: boolean;
+        "bindGroup"?: boolean;
+        "checked"?: boolean;
+        "checkedColor"?: string;
+        "disabled"?: boolean;
+        "iconSize"?: number | string;
+        "label"?: string;
+        "labelDisabled"?: boolean;
+        "labelPosition"?: string;
+        "modelValue"?: any;
+        "name"?: null;
+        "onGlueCilck"?: (event: CustomEvent<any>) => void;
+        "onGlueToggle"?: (event: CustomEvent<any>) => void;
+        "parent"?: any;
+        "role"?: string;
+        "shape"?: string;
     }
     interface GlueCircle {
         "clockwise"?: boolean;
@@ -3042,6 +3098,7 @@ declare namespace LocalJSX {
         "glue-cell-group": GlueCellGroup;
         "glue-checkbox": GlueCheckbox;
         "glue-checkbox-group": GlueCheckboxGroup;
+        "glue-checker": GlueChecker;
         "glue-circle": GlueCircle;
         "glue-col": GlueCol;
         "glue-collapse": GlueCollapse;
@@ -3147,6 +3204,7 @@ declare module "@stencil/core" {
             "glue-cell-group": LocalJSX.GlueCellGroup & JSXBase.HTMLAttributes<HTMLGlueCellGroupElement>;
             "glue-checkbox": LocalJSX.GlueCheckbox & JSXBase.HTMLAttributes<HTMLGlueCheckboxElement>;
             "glue-checkbox-group": LocalJSX.GlueCheckboxGroup & JSXBase.HTMLAttributes<HTMLGlueCheckboxGroupElement>;
+            "glue-checker": LocalJSX.GlueChecker & JSXBase.HTMLAttributes<HTMLGlueCheckerElement>;
             "glue-circle": LocalJSX.GlueCircle & JSXBase.HTMLAttributes<HTMLGlueCircleElement>;
             "glue-col": LocalJSX.GlueCol & JSXBase.HTMLAttributes<HTMLGlueColElement>;
             "glue-collapse": LocalJSX.GlueCollapse & JSXBase.HTMLAttributes<HTMLGlueCollapseElement>;
