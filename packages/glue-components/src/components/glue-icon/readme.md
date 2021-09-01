@@ -27,6 +27,7 @@
  - [glue-address-list-item](../glue-address-list-item)
  - [glue-button](../glue-button)
  - [glue-cell](../glue-cell)
+ - [glue-checker](../glue-checker)
  - [glue-contact-list](../glue-contact-list)
  - [glue-field](../glue-field)
  - [glue-grid-item](../glue-grid-item)
@@ -55,6 +56,7 @@ graph TD;
   glue-address-list-item --> glue-icon
   glue-button --> glue-icon
   glue-cell --> glue-icon
+  glue-checker --> glue-icon
   glue-contact-list --> glue-icon
   glue-field --> glue-icon
   glue-grid-item --> glue-icon

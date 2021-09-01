@@ -11,12 +11,14 @@
 
 - [glue-calendar](../glue-calendar)
 - [glue-cell](../glue-cell)
+- [glue-checkbox](../glue-checkbox)
 
 ### Graph
 ```mermaid
 graph TD;
   glue-demo --> glue-calendar
   glue-demo --> glue-cell
+  glue-demo --> glue-checkbox
   glue-calendar --> glue-calendar-month
   glue-calendar --> glue-button
   glue-calendar --> glue-calendar-header
@@ -28,6 +30,8 @@ graph TD;
   glue-popup --> glue-icon
   glue-popup --> glue-overlay
   glue-cell --> glue-icon
+  glue-checkbox --> glue-checker
+  glue-checker --> glue-icon
   style glue-demo fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -1,7 +1,7 @@
 import { Component, Prop, h, Host, Element, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
-import { getElementParent, getAttribute } from '../../utils/base';
+// import { getElementParent, getAttribute } from '../../utils/base';
 @Component({
   tag: 'glue-checker',
   styleUrl: 'glue-checker.less',

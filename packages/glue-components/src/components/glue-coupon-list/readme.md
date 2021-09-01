@@ -56,6 +56,8 @@ graph TD;
   glue-button --> glue-icon
   glue-tab --> glue-swipe-item
   glue-coupon --> glue-checkbox
+  glue-checkbox --> glue-checker
+  glue-checker --> glue-icon
   glue-tabs --> glue-tabs-title
   glue-tabs --> glue-sticky
   glue-tabs --> glue-tabs-content

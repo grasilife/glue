@@ -29,6 +29,9 @@
 ```mermaid
 graph TD;
   glue-coupon --> glue-checkbox
+  glue-checkbox --> glue-checker
+  glue-checker --> glue-icon
+  glue-icon --> glue-badge
   glue-coupon-list --> glue-coupon
   style glue-coupon fill:#f9f,stroke:#333,stroke-width:4px
 ```

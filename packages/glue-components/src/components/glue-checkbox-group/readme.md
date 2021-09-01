@@ -7,9 +7,15 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `first`  | `first`   |             | `string` | `undefined` |
+| Property       | Attribute       | Description | Type               | Default     |
+| -------------- | --------------- | ----------- | ------------------ | ----------- |
+| `checkedColor` | `checked-color` |             | `string`           | `undefined` |
+| `direction`    | `direction`     |             | `string`           | `undefined` |
+| `disabled`     | `disabled`      |             | `boolean`          | `undefined` |
+| `first`        | `first`         |             | `string`           | `undefined` |
+| `iconSize`     | `icon-size`     |             | `number \| string` | `undefined` |
+| `max`          | `max`           |             | `number \| string` | `undefined` |
+| `modelValue`   | `model-value`   |             | `any`              | `undefined` |
 
 
 ----------------------------------------------

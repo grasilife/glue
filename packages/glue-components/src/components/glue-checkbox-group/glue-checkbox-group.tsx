@@ -23,6 +23,7 @@ export class GlueCheckboxGroup {
     this.toggleAll();
   }
   toggleAll = (options = { checked: '', skipDisabled: '' }) => {
+    console.log(options);
     // const { checked, skipDisabled } = options;
 
     const checkedChildren = this.children.filter(item => {

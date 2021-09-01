@@ -1,4 +1,4 @@
-# glue-checkbox
+# glue-checker
 
 
 
@@ -9,45 +9,47 @@
 
 | Property        | Attribute        | Description | Type               | Default     |
 | --------------- | ---------------- | ----------- | ------------------ | ----------- |
-| `bindGroup`     | `bind-group`     |             | `boolean`          | `false`     |
+| `bem`           | `bem`            |             | `boolean`          | `true`      |
+| `bindGroup`     | `bind-group`     |             | `boolean`          | `true`      |
+| `checked`       | `checked`        |             | `boolean`          | `undefined` |
 | `checkedColor`  | `checked-color`  |             | `string`           | `undefined` |
 | `disabled`      | `disabled`       |             | `boolean`          | `undefined` |
-| `iconSize`      | `icon-size`      |             | `number \| string` | `16`        |
+| `iconSize`      | `icon-size`      |             | `number \| string` | `undefined` |
 | `label`         | `label`          |             | `string`           | `undefined` |
 | `labelDisabled` | `label-disabled` |             | `boolean`          | `undefined` |
 | `labelPosition` | `label-position` |             | `string`           | `undefined` |
 | `modelValue`    | `model-value`    |             | `any`              | `null`      |
 | `name`          | --               |             | `null`             | `undefined` |
+| `parent`        | `parent`         |             | `any`              | `undefined` |
+| `role`          | `role`           |             | `string`           | `undefined` |
 | `shape`         | `shape`          |             | `string`           | `'round'`   |
 
 
 ## Events
 
-| Event       | Description | Type               |
-| ----------- | ----------- | ------------------ |
-| `glueCilck` |             | `CustomEvent<any>` |
+| Event        | Description | Type               |
+| ------------ | ----------- | ------------------ |
+| `glueCilck`  |             | `CustomEvent<any>` |
+| `glueToggle` |             | `CustomEvent<any>` |
 
 
 ## Dependencies
 
 ### Used by
 
- - [glue-coupon](../glue-coupon)
- - [glue-demo](../glue-demo)
+ - [glue-checkbox](../glue-checkbox)
 
 ### Depends on
 
-- [glue-checker](../glue-checker)
+- [glue-icon](../glue-icon)
 
 ### Graph
 ```mermaid
 graph TD;
-  glue-checkbox --> glue-checker
   glue-checker --> glue-icon
   glue-icon --> glue-badge
-  glue-coupon --> glue-checkbox
-  glue-demo --> glue-checkbox
-  style glue-checkbox fill:#f9f,stroke:#333,stroke-width:4px
+  glue-checkbox --> glue-checker
+  style glue-checker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
