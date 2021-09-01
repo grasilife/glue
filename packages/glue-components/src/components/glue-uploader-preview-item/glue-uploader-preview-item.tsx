@@ -7,7 +7,7 @@ export type ImageFit = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
 @Component({
   tag: 'glue-uploader-preview-item',
   styleUrl: 'glue-uploader-preview-item.less',
-  shadow: false,
+  shadow: false
 })
 export class GluePreviewItem {
   @Prop() name: string;
@@ -26,20 +26,32 @@ export class GluePreviewItem {
 
     if (status === 'uploading' || status === 'failed') {
       const MaskIcon =
-        status === 'failed' ? <glue-icon name="close" size="24" class="glue-uploader-preview-item__mask-icon" /> : <glue-loading class="glue-uploader-preview-item__loading" />;
+        status === 'failed' ? (
+          <glue-icon
+            name="close"
+            size="24"
+            class="glue-uploader-preview-item__mask-icon"
+          />
+        ) : (
+          <glue-loading class="glue-uploader-preview-item__loading" />
+        );
 
       const showMessage = isDef(message) && message !== '';
 
       return (
         <div class="glue-uploader-preview-item__mask">
           {MaskIcon}
-          {showMessage && <div class="glue-uploader-preview-item__mask-message">{message}</div>}
+          {showMessage && (
+            <div class="glue-uploader-preview-item__mask-message">
+              {message}
+            </div>
+          )}
         </div>
       );
     }
   };
 
-  onDelete = event => {
+  onDelete = (event) => {
     //TODO:需要完善
     event.stopPropagation();
     this.glueDelete.emit();
@@ -53,7 +65,11 @@ export class GluePreviewItem {
     if (this.deletable && this.item.status !== 'uploading') {
       return (
         <div class="glue-uploader-preview-item-delete" onClick={this.onDelete}>
-          <glue-icon name="cross" class="glue-uploader-preview-item-delete-icon" size="24" />
+          <glue-icon
+            name="cross"
+            class="glue-uploader-preview-item-delete-icon"
+            size="24"
+          />
         </div>
       );
     }
@@ -92,9 +108,18 @@ export class GluePreviewItem {
     }
 
     return (
-      <div class="glue-uploader-preview-item__file" style={getSizeStyle(this.previewSize)}>
-        <glue-icon class="glue-uploader-preview-item__file-icon" name="description" size="24" />
-        <div class="glue-uploader-preview-item__file-name glue-ellipsis">{item.file ? item.file.name : item.url}</div>
+      <div
+        class="glue-uploader-preview-item__file"
+        style={getSizeStyle(this.previewSize)}
+      >
+        <glue-icon
+          class="glue-uploader-preview-item__file-icon"
+          name="description"
+          size="24"
+        />
+        <div class="glue-uploader-preview-item__file-name glue-ellipsis">
+          {item.file ? item.file.name : item.url}
+        </div>
         {this.renderCover()}
       </div>
     );

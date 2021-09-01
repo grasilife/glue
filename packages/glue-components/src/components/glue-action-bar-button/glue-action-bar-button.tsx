@@ -6,7 +6,7 @@ const [bem] = createNamespace('glue-action-bar-button');
 @Component({
   tag: 'glue-action-bar-button',
   styleUrl: 'glue-action-bar-button.less',
-  shadow: false,
+  shadow: false
 })
 export class GlueActionBarButton {
   @Prop() type: string;
@@ -19,15 +19,23 @@ export class GlueActionBarButton {
   @Prop() color: string;
   @Prop() loading: boolean;
   @Prop() disabled: boolean;
-  @Event()
-  onClick: EventEmitter;
-  handleClick = event => {
+  @Event() onClick: EventEmitter;
+  handleClick = (event) => {
     if (!this.loading && !this.disabled) {
       this.onClick.emit(event);
     }
   };
   render() {
-    const { type, icon, text, color, loading, disabled, leftRound, rightRound } = this;
+    const {
+      type,
+      icon,
+      text,
+      color,
+      loading,
+      disabled,
+      leftRound,
+      rightRound
+    } = this;
     console.log(text);
     return (
       <Host>
@@ -43,9 +51,9 @@ export class GlueActionBarButton {
             'glue-action-bar-button',
             {
               'glue-action-bar-button--first': leftRound,
-              'glue-action-bar-button--last': rightRound,
+              'glue-action-bar-button--last': rightRound
             },
-            bem([type]),
+            bem([type])
           )}
         >
           <slot></slot>

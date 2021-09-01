@@ -7,5 +7,9 @@ module.exports = {
       version: 'detect'
     }
   },
-  extends: ['plugin:@stencil/recommended', 'prettier']
+  extends: ['plugin:@stencil/recommended', 'prettier'],
+  rules: {
+    camelcase: ['error', { properties: 'never' }],
+    '@stencil/required-jsdoc': 0
+  }
 };
