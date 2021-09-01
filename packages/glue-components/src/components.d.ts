@@ -238,12 +238,12 @@ export namespace Components {
         "title": string;
     }
     interface GlueCheckbox {
-        "bindGroup": boolean;
+        "bindGroup": string;
         "checkedColor": string;
-        "disabled": boolean;
+        "disabled": string;
         "iconSize": number | string;
         "label": string;
-        "labelDisabled": boolean;
+        "labelDisabled": string;
         "labelPosition": string;
         "modelValue": any;
         "name": number | string;
@@ -252,22 +252,22 @@ export namespace Components {
     interface GlueCheckboxGroup {
         "checkedColor": string;
         "direction": string;
-        "disabled": boolean;
+        "disabled": string;
         "first": string;
         "iconSize": number | string;
         "max": number | string;
         "modelValue": any;
     }
     interface GlueChecker {
-        "bem": boolean;
-        "bindGroup": boolean;
-        "checked": boolean;
+        "bem": string;
+        "bindGroup": string;
+        "checked": string;
         "checkedColor": string;
-        "disabled": boolean;
+        "disabled": string;
         "icon": string;
         "iconSize": number | string;
         "label": string;
-        "labelDisabled": boolean;
+        "labelDisabled": string;
         "labelPosition": string;
         "modelValue": any;
         "name": number | string;
@@ -2109,12 +2109,12 @@ declare namespace LocalJSX {
         "title"?: string;
     }
     interface GlueCheckbox {
-        "bindGroup"?: boolean;
+        "bindGroup"?: string;
         "checkedColor"?: string;
-        "disabled"?: boolean;
+        "disabled"?: string;
         "iconSize"?: number | string;
         "label"?: string;
-        "labelDisabled"?: boolean;
+        "labelDisabled"?: string;
         "labelPosition"?: string;
         "modelValue"?: any;
         "name"?: number | string;
@@ -2125,22 +2125,22 @@ declare namespace LocalJSX {
     interface GlueCheckboxGroup {
         "checkedColor"?: string;
         "direction"?: string;
-        "disabled"?: boolean;
+        "disabled"?: string;
         "first"?: string;
         "iconSize"?: number | string;
         "max"?: number | string;
         "modelValue"?: any;
     }
     interface GlueChecker {
-        "bem"?: boolean;
-        "bindGroup"?: boolean;
-        "checked"?: boolean;
+        "bem"?: string;
+        "bindGroup"?: string;
+        "checked"?: string;
         "checkedColor"?: string;
-        "disabled"?: boolean;
+        "disabled"?: string;
         "icon"?: string;
         "iconSize"?: number | string;
         "label"?: string;
-        "labelDisabled"?: boolean;
+        "labelDisabled"?: string;
         "labelPosition"?: string;
         "modelValue"?: any;
         "name"?: number | string;

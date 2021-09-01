@@ -12,20 +12,20 @@ export class GlueChecker {
   //checkerProps
   @Prop() label: string;
   @Prop() name: number | string;
-  @Prop() disabled: boolean;
+  @Prop() disabled: string;
   @Prop() iconSize: number | string;
   @Prop() modelValue;
   @Prop() checkedColor: string;
   @Prop() labelPosition: string;
-  @Prop() labelDisabled: boolean;
-  @Prop() shape = 'round';
-  @Prop() icon = '';
+  @Prop() labelDisabled: string;
+  @Prop() shape: string = 'round';
+  @Prop() icon: string = '';
   // this
   @Prop() role: string;
   @Prop() parent: any;
-  @Prop() checked: boolean;
-  @Prop() bindGroup = true;
-  @Prop() bem = true;
+  @Prop() checked: string;
+  @Prop() bindGroup: string = 'true';
+  @Prop() bem: string = 'true';
   @Event() glueToggle: EventEmitter;
   @Event() glueCilck: EventEmitter;
   componentDidLoad() {}
@@ -70,7 +70,7 @@ export class GlueChecker {
         class={classNames('glue-checker__icon', {
           ['glue-checker__icon--' + shape]: shape,
           ['glue-checker__icon--disabled']: this.disabledFn(),
-          ['glue-checker__icon--checked']: checked,
+          ['glue-checker__icon--checked']: checked == 'true',
         })}
         style={{ fontSize: addUnit(iconSize) }}
       >

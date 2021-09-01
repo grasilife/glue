@@ -12,7 +12,7 @@ export class GlueCheckboxGroup {
   @Element() el!: HTMLElement;
   @Prop() first: string;
   @Prop() max: number | string;
-  @Prop() disabled: boolean;
+  @Prop() disabled: string;
   @Prop() direction: string;
   @Prop() iconSize: number | string;
   @Prop() checkedColor: string;

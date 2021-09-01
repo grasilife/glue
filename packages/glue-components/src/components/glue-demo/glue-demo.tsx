@@ -453,7 +453,7 @@ export class GlueDemo {
           <div>内容</div>
         </glue-popup> */}
         {/* <glue-checkbox modelValue={true} label="复选框" shape="square" checked-color="#ee0a24" icon-size="24"></glue-checkbox> */}
-        <glue-checkbox model-value={true} label="复选框"></glue-checkbox>
+        <glue-checkbox model-value="true" label="复选框"></glue-checkbox>
         {/* <glue-icon name="cart-o" color="#1989fa" size="32" />
         <glue-icon name="fire-o" color="#ee0a24" size="32" /> */}
         {/* <glue-checkbox-group modelValue={['a', 'b']}>
