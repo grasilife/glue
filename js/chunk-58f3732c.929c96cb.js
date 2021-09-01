@@ -1,7 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-58f3732c"],{"9ceb":function(r,e,n){"use strict";n.d(e,"a",(function(){return c}));n("ef14");var t=n("e300");function o(r,e,n){return n={path:e,exports:{},require:function(r,e){return u()}},r(n,n.exports),n.exports}function u(){throw new Error("Dynamic requires are not currently supported by @rollup/plugin-commonjs")}var c=o((function(r){
-/*!
-    Copyright (c) 2017 Jed Watson.
-    Licensed under the MIT License (MIT), see
-    http://jedwatson.github.io/classnames
-  */
-(function(){var e={}.hasOwnProperty;function n(){for(var r=[],o=0;o<arguments.length;o++){var u=arguments[o];if(u){var c=Object(t["a"])(u);if("string"===c||"number"===c)r.push(u);else if(Array.isArray(u)&&u.length){var i=n.apply(null,u);i&&r.push(i)}else if("object"===c)for(var s in u)e.call(u,s)&&u[s]&&r.push(s)}}return r.join(" ")}r.exports?(n.default=n,r.exports=n):window.classNames=n})()}))},ad89:function(r,e,n){"use strict";n.r(e),n.d(e,"glue_checkbox",(function(){return s}));var t=n("f5f2"),o=n("30c6"),u=n("b8e1"),c=n("9ceb"),i="",s=function(){function r(e){Object(t["a"])(this,r),Object(u["g"])(this,e),this.shape="round"}return Object(o["a"])(r,[{key:"render",value:function(){return Object(u["e"])("div",{class:Object(c["a"])("cunstom")},"Hello, World! I'm ",this.first)}}]),r}();s.style=i}}]);
