@@ -10,7 +10,7 @@ import { getElementChildren } from '../../utils/base';
   shadow: false,
 })
 export class GlueTabbar {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueTabbarElement;
   @Prop() zIndex: string;
   @Prop() placeholder: boolean;
   @Prop({ reflect: true }) activeColor: string;

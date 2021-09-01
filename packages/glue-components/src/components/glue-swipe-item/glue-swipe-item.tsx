@@ -7,7 +7,7 @@ import { getElementParent, getAttribute } from '../../utils/base';
   shadow: false,
 })
 export class GlueSwipeItem {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueSwipeItemElement;
   @Prop() first: string;
   @State() offset = 0;
   @State() inited = false;

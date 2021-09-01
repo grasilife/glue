@@ -7,7 +7,7 @@ import { getElementParent, getAttribute } from '../../utils/base';
   shadow: false,
 })
 export class GlueCheckbox {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueCheckboxElement;
   //checkerProps
   @Prop({ reflect: true }) label: string;
   @Prop({ reflect: true }) name: number | string;

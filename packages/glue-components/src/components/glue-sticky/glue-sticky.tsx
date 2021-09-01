@@ -14,7 +14,7 @@ import { isHidden } from '../../utils/dom/style';
   shadow: false,
 })
 export class GlueSticky {
-  @Element() el: HTMLElement;
+  @Element() el: HTMLGlueStickyElement;
   @Prop() zIndex: string;
 
   @Prop() container = null;

@@ -7,7 +7,7 @@ import { getElementParent, getAttribute } from '../../utils/base';
   shadow: false,
 })
 export class GlueTab {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueTabElement;
   @Prop({ reflect: true }) dot: boolean;
   @Prop({ reflect: true }) name: string | number;
   @Prop({ reflect: true }) badge: string | number;

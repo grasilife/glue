@@ -12,7 +12,7 @@ import { getElementChildren } from '../../utils/base';
   shadow: false,
 })
 export class GluePicker {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGluePickerElement;
   //pickerProps
   @Prop() first: string;
   @Prop() title: string;

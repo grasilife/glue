@@ -7,7 +7,7 @@ import { getElementParent, getAttribute } from '../../utils/base';
   shadow: false,
 })
 export class GlueTabbarItem {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueTabbarItemElement;
   @Prop() dot: boolean;
   @Prop() icon: string;
   @Prop() name: string;

@@ -11,7 +11,7 @@ import { getElementChildren } from '../../utils/base';
   shadow: false,
 })
 export class GlueGridItem {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueGridItemElement;
   @Prop() dot: boolean;
   @Prop() custom: string;
   @Prop() text: string;

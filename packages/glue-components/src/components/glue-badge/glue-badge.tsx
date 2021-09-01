@@ -14,7 +14,7 @@ export class GlueBadge {
   @Prop() offset: [number, number];
   @Prop() content: number | string;
   @Prop() slotContent: boolean;
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueBadgeElement;
   hasContent = () => !!(isDef(this.content) && this.content !== '');
 
   renderContent = () => {

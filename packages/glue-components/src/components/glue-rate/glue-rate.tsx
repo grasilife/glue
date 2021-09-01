@@ -12,7 +12,7 @@ import { getElementChildren } from '../../utils/base';
   shadow: false,
 })
 export class GlueRate {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueRateElement;
   @Prop() first: string;
   @Prop() size: number;
   @Prop() color: string;

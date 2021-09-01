@@ -21,7 +21,7 @@ const [bem] = createNamespace('glue-tabs');
   shadow: false,
 })
 export class GlueTabs {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueTabsElement;
   @Prop() color: string;
   @Prop() border: boolean;
   @Prop() sticky: boolean;

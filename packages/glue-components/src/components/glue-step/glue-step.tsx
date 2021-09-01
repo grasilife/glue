@@ -8,7 +8,7 @@ import classNames from 'classnames';
   shadow: false,
 })
 export class GlueStep {
-  @Element() el: HTMLElement;
+  @Element() el: HTMLGlueStepElement;
   @Prop() first = 1;
 
   @Prop() middle: string;

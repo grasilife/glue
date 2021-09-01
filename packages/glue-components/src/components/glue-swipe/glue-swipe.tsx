@@ -15,7 +15,7 @@ import { getElementChildren } from '../../utils/base';
   shadow: false,
 })
 export class GlueSwipe {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueSwipeElement;
   @Prop({ mutable: true }) width: number;
   @Prop({ mutable: true }) height: number;
   @Prop() autoplay: number;

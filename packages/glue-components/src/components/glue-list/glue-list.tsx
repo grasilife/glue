@@ -9,7 +9,7 @@ import { isHidden } from '../../utils/dom/style';
   shadow: false,
 })
 export class GlueList {
-  @Element() el: HTMLElement;
+  @Element() el: HTMLGlueListElement;
   @Prop() error: boolean;
   @Prop({ mutable: true }) loading;
   @Prop() finished: boolean;

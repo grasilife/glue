@@ -24,7 +24,7 @@ let timer = null;
   shadow: false
 })
 export class GlueToast {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueToastElement;
   @Prop() icon: string;
   @Prop({ mutable: true }) show: boolean;
   @Prop() message: string;

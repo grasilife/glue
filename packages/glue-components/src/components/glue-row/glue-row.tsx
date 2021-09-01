@@ -12,7 +12,7 @@ const [bem] = createNamespace('glue-row');
   shadow: false,
 })
 export class GlueRow {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueRowElement;
   @Prop() align: RowAlign;
 
   @Prop() justify: RowJustify;

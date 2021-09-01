@@ -16,7 +16,7 @@ import { addUnit } from '../../utils/format/unit';
   shadow: false
 })
 export class GlueChecker {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueCheckerElement;
   //checkerProps
   @Prop() label: string;
   @Prop() name: number | string;

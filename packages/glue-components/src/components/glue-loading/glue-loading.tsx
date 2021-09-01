@@ -11,7 +11,7 @@ export type LoadingType = 'circular' | 'spinner';
   shadow: false,
 })
 export class GlueLoading {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueLoadingElement;
   @Prop() size: string | number;
   @Prop() color: string;
   @Prop() text: string;

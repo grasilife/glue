@@ -6,7 +6,7 @@ const [bem] = createNamespace('glue-button');
 @Component({
   tag: 'glue-button',
   styleUrl: 'glue-button.less',
-  shadow: false,
+  shadow: false
 })
 export class GlueButton {
   @Prop() text: string;
@@ -33,7 +33,7 @@ export class GlueButton {
 
   @Event()
   glueClick: EventEmitter;
-  handleClick = event => {
+  handleClick = (event) => {
     if (this.loading) {
       event.preventDefault();
     }
@@ -48,7 +48,7 @@ export class GlueButton {
         color: '',
         background: '',
         border: '0px',
-        borderColor: '',
+        borderColor: ''
       };
 
       style.color = plain ? color : 'white';
@@ -72,7 +72,7 @@ export class GlueButton {
     return (
       <glue-loading
         class={classNames({
-          'glue-button__loading': true,
+          'glue-button__loading': true
         })}
         size={this.loadingSize}
         type={this.loadingType}
@@ -90,7 +90,7 @@ export class GlueButton {
         <glue-icon
           name={this.icon}
           class={classNames({
-            'glue-button__icon': true,
+            'glue-button__icon': true
           })}
           classPrefix={this.iconPrefix}
         />
@@ -104,7 +104,7 @@ export class GlueButton {
       return (
         <span
           class={classNames({
-            'glue-button__text': true,
+            'glue-button__text': true
           })}
         >
           {this.loadingText}
@@ -115,7 +115,18 @@ export class GlueButton {
     }
   };
   render() {
-    const { type, size, block, round, plain, square, loading, disabled, hairline, iconPosition } = this;
+    const {
+      type,
+      size,
+      block,
+      round,
+      plain,
+      square,
+      loading,
+      disabled,
+      hairline,
+      iconPosition
+    } = this;
     console.log(bem([type, size]), type, block, 'ahuhauhauhu');
     const classes = [classNames(bem([type, size]))];
     return (
@@ -128,14 +139,14 @@ export class GlueButton {
           'glue-button--loading': loading,
           'glue-button--disabled': disabled,
           'glue-button--hairline': hairline,
-          [BORDER_SURROUND]: hairline,
+          [BORDER_SURROUND]: hairline
         })}
         onClick={this.handleClick}
         style={this.getStyle()}
       >
         <div
           class={classNames({
-            'glue-button__content': true,
+            'glue-button__content': true
           })}
         >
           {iconPosition === 'left' && this.renderIcon()}

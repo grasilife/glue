@@ -8,7 +8,7 @@ import { getElementParent, getAttribute } from '../../utils/base';
   shadow: false,
 })
 export class GlueCollapseItem {
-  @Element() el: HTMLElement;
+  @Element() el: HTMLGlueCollapseItemElement;
   @Prop() icon: string;
   @Prop() size: string;
   @Prop() title: string;

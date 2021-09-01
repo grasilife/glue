@@ -17,7 +17,7 @@ import { getElementParent, getAttribute } from '../../utils/base';
   shadow: false,
 })
 export class GlueField {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueFieldElement;
   @Prop() rows: number;
   @Prop() name: string;
   @Prop() button: string;

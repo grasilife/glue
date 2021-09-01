@@ -9,7 +9,7 @@ import { getElementChildren, getAttribute } from '../../utils/base';
   shadow: false
 })
 export class GlueCheckboxGroup {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueCheckboxGroupElement;
   @Prop() first: string;
   @Prop() max: number | string;
   @Prop() disabled: string;

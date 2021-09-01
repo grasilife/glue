@@ -118,8 +118,9 @@ export class GluePickerColumn {
 
     this.offset = offset;
   };
+  
   @Method()
-  setOptions(options) {
+async  setOptions(options) {
     if (JSON.stringify(options) !== JSON.stringify(this.options)) {
       this.options = deepClone(options);
       this.setIndex(this.defaultIndex);

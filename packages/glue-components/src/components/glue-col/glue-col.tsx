@@ -9,7 +9,7 @@ import { getElementParent, getAttribute } from '../../utils/base';
   shadow: false,
 })
 export class GlueCol {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueColElement;
   @Prop() offset: string | number = 0;
 
   @Prop() span: string | number = 0;

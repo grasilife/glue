@@ -7,7 +7,7 @@ import { getElementParent, getAttribute } from '../../utils/base';
   shadow: false,
 })
 export class GlueSidebarItem {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLGlueSidebarItemElement;
   @Prop() dot: boolean;
   @Prop() title: string;
   @Prop() badge: string;

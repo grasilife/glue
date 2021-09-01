@@ -21,7 +21,7 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "lint:eslint": "eslint src/**/*{.ts,.tsx}",
+    "lint:eslint": "eslint src/**/*{.ts,.tsx} --ignore-path .gitignore  --fix",
     "lint:prettier": "prettier --ignore-path .gitignore --write .",
     "lint": "yarn lint:eslint && yarn lint:prettier"
   },

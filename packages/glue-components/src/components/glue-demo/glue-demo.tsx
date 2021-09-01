@@ -4,7 +4,7 @@ import { Component, h, State } from '@stencil/core';
 @Component({
   tag: 'glue-demo',
   styleUrl: 'glue-demo.less',
-  shadow: false,
+  shadow: false
 })
 export class GlueDemo {
   timeRef;
@@ -12,33 +12,33 @@ export class GlueDemo {
   @State() actions = [
     { name: '选项一', color: '#ee0a24' },
     { name: '选项二', disabled: true },
-    { name: '选项三', subname: '描述信息', loading: true },
+    { name: '选项三', subname: '描述信息', loading: true }
   ];
   @State() options = [
     { name: '微信', icon: 'wechat' },
     { name: '微博', icon: 'weibo' },
     { name: '复制链接', icon: 'link' },
     { name: '分享海报', icon: 'poster' },
-    { name: '二维码', icon: 'qrcode' },
+    { name: '二维码', icon: 'qrcode' }
   ];
   @State() open: boolean = false;
   @State() show: boolean = false;
   @State() gradientColor = {
     '0%': '#3fecff',
-    '100%': '#6149f6',
+    '100%': '#6149f6'
   };
   @State() columns = ['杭州', '宁波', '温州', '绍兴', '湖州', '嘉兴', '金华'];
   @State() columns2 = [
     // 第一列
     {
       values: ['周一', '周二', '周三', '周四', '周五'],
-      defaultIndex: 2,
+      defaultIndex: 2
     },
     // 第二列
     {
       values: ['上午', '下午', '晚上'],
-      defaultIndex: 1,
-    },
+      defaultIndex: 1
+    }
   ];
   @State() columns3 = [
     {
@@ -47,27 +47,27 @@ export class GlueDemo {
       children: [
         {
           text: '杭州',
-          children: [{ text: '西湖区' }, { text: '余杭区' }],
+          children: [{ text: '西湖区' }, { text: '余杭区' }]
         },
         {
           text: '温州',
-          children: [{ text: '鹿城区' }, { text: '瓯海区' }],
-        },
-      ],
+          children: [{ text: '鹿城区' }, { text: '瓯海区' }]
+        }
+      ]
     },
     {
       text: '福建',
       children: [
         {
           text: '福州',
-          children: [{ text: '鼓楼区' }, { text: '台江区' }],
+          children: [{ text: '鼓楼区' }, { text: '台江区' }]
         },
         {
           text: '厦门',
-          children: [{ text: '思明区' }, { text: '海沧区' }],
-        },
-      ],
-    },
+          children: [{ text: '思明区' }, { text: '海沧区' }]
+        }
+      ]
+    }
   ];
   @State() columns4 = [
     {
@@ -75,31 +75,31 @@ export class GlueDemo {
       cities: [
         {
           cityName: '杭州',
-          cities: [{ cityName: '西湖区' }, { cityName: '余杭区' }],
+          cities: [{ cityName: '西湖区' }, { cityName: '余杭区' }]
         },
         {
           cityName: '温州',
-          cities: [{ cityName: '鹿城区' }, { cityName: '瓯海区' }],
-        },
-      ],
+          cities: [{ cityName: '鹿城区' }, { cityName: '瓯海区' }]
+        }
+      ]
     },
     {
       cityName: '福建',
       cities: [
         {
           cityName: '福州',
-          cities: [{ cityName: '鼓楼区' }, { cityName: '台江区' }],
+          cities: [{ cityName: '鼓楼区' }, { cityName: '台江区' }]
         },
         {
           cityName: '厦门',
-          cities: [{ cityName: '思明区' }, { cityName: '海沧区' }],
-        },
-      ],
-    },
+          cities: [{ cityName: '思明区' }, { cityName: '海沧区' }]
+        }
+      ]
+    }
   ];
   @State() customFieldName = {
     text: 'cityName',
-    children: 'cities',
+    children: 'cities'
   };
   @State() showBasic = false;
   popupClose = () => {
@@ -110,20 +110,20 @@ export class GlueDemo {
     {
       url: 'https://img01.yzcdn.cn/vant/leaf.jpg',
       status: 'uploading',
-      message: '上传中...',
+      message: '上传中...'
     },
     {
       url: 'https://img01.yzcdn.cn/vant/tree.jpg',
       status: 'failed',
-      message: '上传失败',
-    },
+      message: '上传失败'
+    }
   ];
   @State() fileList2 = [];
   @State() currentRate = 10;
   @State() currentTime = {
     hours: 0,
     minutes: 0,
-    seconds: 0,
+    seconds: 0
   };
   @State() currentDate = new Date();
   @State() minDate = new Date(2020, 0, 1);
@@ -147,16 +147,57 @@ export class GlueDemo {
   reset = () => {
     this.timeRef.reset();
   };
-  beforeChange = value => {
+  beforeChange = (value) => {
     console.log(value, 'ahfuahu');
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         // 在 resolve 函数中返回 true 或 false
         resolve(true);
       }, 500);
     });
   };
-  @State() list = [1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, , 1, 1];
+  @State() list = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    11,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    ,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    11,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    ,
+    1,
+    1
+  ];
   @State() loading = true;
   @State() finished = false;
   @State() activeId = [1, 2];
@@ -167,8 +208,8 @@ export class GlueDemo {
       id: 7,
       children: [
         { text: '杭州', id: 1 },
-        { text: '温州', id: 2 },
-      ],
+        { text: '温州', id: 2 }
+      ]
     },
     {
       text: '江苏',
@@ -176,16 +217,16 @@ export class GlueDemo {
       badge: 5,
       children: [
         { text: '南京', id: 5 },
-        { text: '无锡', id: 6 },
-      ],
-    },
+        { text: '无锡', id: 6 }
+      ]
+    }
   ];
   onLoad = () => {};
   componentDidLoad() {}
   click = () => {
     this.show = true;
   };
-  afterRead = file => {
+  afterRead = (file) => {
     file.status = 'uploading';
     file.message = '上传中...';
 
@@ -197,26 +238,26 @@ export class GlueDemo {
   popupCell = () => {
     this.showBasic = true;
   };
-  onOversize = file => {
+  onOversize = (file) => {
     console.log(file, 'onOversize');
   };
-  beforeRead = file => {
+  beforeRead = (file) => {
     if (file.type !== 'image/jpeg') {
       console.log('请上传 jpg 格式图片');
       return false;
     }
     return true;
   };
-  formatter = value => {
+  formatter = (value) => {
     return value.replace(/\d/g, '');
   };
-  onGlueConfirm = event => {
+  onGlueConfirm = (event) => {
     console.log(event, 'event1');
   };
-  onGlueCancel = event => {
+  onGlueCancel = (event) => {
     console.log(event, 'event2');
   };
-  onGlueChange = event => {
+  onGlueChange = (event) => {
     console.log(event, 'event3');
   };
   render() {
@@ -460,6 +501,9 @@ export class GlueDemo {
           <glue-checkbox name="a">复选框 a</glue-checkbox>
           <glue-checkbox name="b">复选框 b</glue-checkbox>
         </glue-checkbox-group>
+        <glue-button square type="primary">
+          收藏
+        </glue-button>
       </div>
     );
   }

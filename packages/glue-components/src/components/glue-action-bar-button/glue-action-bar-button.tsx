@@ -19,7 +19,8 @@ export class GlueActionBarButton {
   @Prop() color: string;
   @Prop() loading: boolean;
   @Prop() disabled: boolean;
-  @Event() onClick: EventEmitter;
+  @Event()
+  onClick: EventEmitter;
   handleClick = (event) => {
     if (!this.loading && !this.disabled) {
       this.onClick.emit(event);
