@@ -1,11 +1,19 @@
-import { Component, Prop, h, Host, Element, Event, EventEmitter } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  Element,
+  Event,
+  EventEmitter
+} from '@stencil/core';
 import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
 // import { getElementParent, getAttribute } from '../../utils/base';
 @Component({
   tag: 'glue-checker',
   styleUrl: 'glue-checker.less',
-  shadow: false,
+  shadow: false
 })
 export class GlueChecker {
   @Element() el!: HTMLElement;
@@ -30,7 +38,7 @@ export class GlueChecker {
   @Event() glueCilck: EventEmitter;
   componentDidLoad() {}
   iconRef;
-  getParentProp = name => {
+  getParentProp = (name) => {
     console.log(this.parent, 'this.parentthis.parent');
     if (this.parent && this.bindGroup) {
       return this.parent.this[name];
@@ -52,11 +60,13 @@ export class GlueChecker {
     }
     this.glueCilck.emit(event);
   };
-  renderGlueIcon = iconSize => {
+  renderGlueIcon = (iconSize) => {
     if (this.icon == '#slot') {
       return <slot name="icon"></slot>;
     }
-    return <glue-icon name="success" color={this.checkedColor} size={iconSize} />;
+    return (
+      <glue-icon name="success" color={this.checkedColor} size={iconSize} />
+    );
   };
   renderIcon = () => {
     const { shape, checked } = this;
@@ -64,13 +74,13 @@ export class GlueChecker {
 
     return (
       <div
-        ref={dom => {
+        ref={(dom) => {
           this.iconRef = dom;
         }}
         class={classNames('glue-checker__icon', {
           ['glue-checker__icon--' + shape]: shape,
           ['glue-checker__icon--disabled']: this.disabledFn(),
-          ['glue-checker__icon--checked']: checked == 'true',
+          ['glue-checker__icon--checked']: checked == 'true'
         })}
         style={{ fontSize: addUnit(iconSize) }}
       >
@@ -87,7 +97,7 @@ export class GlueChecker {
         style={{ fontSize: addUnit(iconSize) }}
         class={classNames('glue-checker__label', {
           ['glue-checker__icon' + this.labelPosition]: this.labelPosition,
-          ['glue-checker__icon--disabled']: this.disabledFn(),
+          ['glue-checker__icon--disabled']: this.disabledFn()
         })}
       >
         {this.label}
@@ -107,7 +117,7 @@ export class GlueChecker {
         role={this.role}
         class={classNames({
           ['glue-checker__disabled']: this.disabledFn(),
-          ['glue-checker__label-disabled']: this.labelDisabled,
+          ['glue-checker__label-disabled']: this.labelDisabled
         })}
         tabindex={this.disabledFn() ? -1 : 0}
         aria-checked={this.checked}

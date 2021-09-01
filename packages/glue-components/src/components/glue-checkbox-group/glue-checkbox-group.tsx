@@ -6,7 +6,7 @@ import { getElementChildren, getAttribute } from '../../utils/base';
 @Component({
   tag: 'glue-checkbox-group',
   styleUrl: 'glue-checkbox-group.less',
-  shadow: false,
+  shadow: false
 })
 export class GlueCheckboxGroup {
   @Element() el!: HTMLElement;
