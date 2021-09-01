@@ -14,12 +14,13 @@
 | `checked`       | `checked`        |             | `boolean`          | `undefined` |
 | `checkedColor`  | `checked-color`  |             | `string`           | `undefined` |
 | `disabled`      | `disabled`       |             | `boolean`          | `undefined` |
+| `icon`          | `icon`           |             | `string`           | `''`        |
 | `iconSize`      | `icon-size`      |             | `number \| string` | `undefined` |
 | `label`         | `label`          |             | `string`           | `undefined` |
 | `labelDisabled` | `label-disabled` |             | `boolean`          | `undefined` |
 | `labelPosition` | `label-position` |             | `string`           | `undefined` |
-| `modelValue`    | `model-value`    |             | `any`              | `null`      |
-| `name`          | --               |             | `null`             | `undefined` |
+| `modelValue`    | `model-value`    |             | `any`              | `undefined` |
+| `name`          | `name`           |             | `number \| string` | `undefined` |
 | `parent`        | `parent`         |             | `any`              | `undefined` |
 | `role`          | `role`           |             | `string`           | `undefined` |
 | `shape`         | `shape`          |             | `string`           | `'round'`   |

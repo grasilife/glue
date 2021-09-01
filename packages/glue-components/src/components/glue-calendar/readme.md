@@ -56,10 +56,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [glue-demo](../glue-demo)
-
 ### Depends on
 
 - [glue-calendar-month](../glue-calendar-month)
@@ -80,7 +76,6 @@ graph TD;
   glue-icon --> glue-badge
   glue-popup --> glue-icon
   glue-popup --> glue-overlay
-  glue-demo --> glue-calendar
   style glue-calendar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

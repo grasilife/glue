@@ -16,16 +16,17 @@
 | `label`         | `label`          |             | `string`           | `undefined` |
 | `labelDisabled` | `label-disabled` |             | `boolean`          | `undefined` |
 | `labelPosition` | `label-position` |             | `string`           | `undefined` |
-| `modelValue`    | `model-value`    |             | `any`              | `null`      |
-| `name`          | --               |             | `null`             | `undefined` |
+| `modelValue`    | `model-value`    |             | `any`              | `undefined` |
+| `name`          | `name`           |             | `number \| string` | `undefined` |
 | `shape`         | `shape`          |             | `string`           | `'round'`   |
 
 
 ## Events
 
-| Event       | Description | Type               |
-| ----------- | ----------- | ------------------ |
-| `glueCilck` |             | `CustomEvent<any>` |
+| Event        | Description | Type               |
+| ------------ | ----------- | ------------------ |
+| `glueChange` |             | `CustomEvent<any>` |
+| `glueCilck`  |             | `CustomEvent<any>` |
 
 
 ## Dependencies

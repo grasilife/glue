@@ -6,6 +6,20 @@ export const inBrowser = typeof window !== 'undefined';
 export function isDef<T>(val: T): val is NonNullable<T> {
   return val !== undefined && val !== null;
 }
+export function resetBoolean(val) {
+  if (val == '') {
+    return true;
+  }
+  if (val == undefined) {
+    return false;
+  }
+  if (val === false) {
+    return false;
+  }
+  if (val === true) {
+    return true;
+  }
+}
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function isFunction(val: unknown): val is Function {
@@ -44,7 +58,7 @@ export const getElementParent = (el: any) => {
   return el.parentElement != null ? el.parentElement : el.parentNode;
 };
 export const getAttribute = (el: any, prop: string) => {
-  console.log(el.hasAttribute(prop), el, 'el.hasAttribute(prop)');
+  console.log(el, 'el.hasAttribute(prop)');
   if (el.hasAttribute(prop)) {
     return el.getAttribute(prop);
   }

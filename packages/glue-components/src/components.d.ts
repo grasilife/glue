@@ -246,7 +246,7 @@ export namespace Components {
         "labelDisabled": boolean;
         "labelPosition": string;
         "modelValue": any;
-        "name": null;
+        "name": number | string;
         "shape": string;
     }
     interface GlueCheckboxGroup {
@@ -264,12 +264,13 @@ export namespace Components {
         "checked": boolean;
         "checkedColor": string;
         "disabled": boolean;
+        "icon": string;
         "iconSize": number | string;
         "label": string;
         "labelDisabled": boolean;
         "labelPosition": string;
         "modelValue": any;
-        "name": null;
+        "name": number | string;
         "parent": any;
         "role": string;
         "shape": string;
@@ -2116,7 +2117,8 @@ declare namespace LocalJSX {
         "labelDisabled"?: boolean;
         "labelPosition"?: string;
         "modelValue"?: any;
-        "name"?: null;
+        "name"?: number | string;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
         "onGlueCilck"?: (event: CustomEvent<any>) => void;
         "shape"?: string;
     }
@@ -2135,12 +2137,13 @@ declare namespace LocalJSX {
         "checked"?: boolean;
         "checkedColor"?: string;
         "disabled"?: boolean;
+        "icon"?: string;
         "iconSize"?: number | string;
         "label"?: string;
         "labelDisabled"?: boolean;
         "labelPosition"?: string;
         "modelValue"?: any;
-        "name"?: null;
+        "name"?: number | string;
         "onGlueCilck"?: (event: CustomEvent<any>) => void;
         "onGlueToggle"?: (event: CustomEvent<any>) => void;
         "parent"?: any;

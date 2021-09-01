@@ -1,5 +1,7 @@
 import { Component, Prop, h, Host, State, Element, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
+// import judge from 'judgejs';
+import { isDef, resetBoolean } from '../../utils/base';
 import { getElementParent, getAttribute } from '../../utils/base';
 @Component({
   tag: 'glue-checkbox',
@@ -10,10 +12,10 @@ export class GlueCheckbox {
   @Element() el!: HTMLElement;
   //checkerProps
   @Prop({ reflect: true }) label: string;
-  @Prop({ reflect: true }) name: null;
+  @Prop({ reflect: true }) name: number | string;
   @Prop({ reflect: true }) disabled: boolean;
   @Prop({ reflect: true }) iconSize: number | string = 16;
-  @Prop({ mutable: true, reflect: true }) modelValue = null;
+  @Prop({ mutable: true, reflect: true }) modelValue;
   @Prop({ reflect: true }) checkedColor: string;
   @Prop({ reflect: true }) labelPosition: string;
   @Prop({ reflect: true }) labelDisabled: boolean;
@@ -23,11 +25,28 @@ export class GlueCheckbox {
   @State() parentMax: any;
   @State() parentModelValue;
   @Event() glueCilck: EventEmitter;
+  @Event() glueChange: EventEmitter;
   // const { parent } = useParent(CHECKBOX_KEY);
+  componentWillLoad() {
+    console.log(typeof this.modelValue, '11efefe');
+    if (!Array.isArray(this.modelValue)) {
+      this.modelValue = resetBoolean(this.modelValue);
+    }
+    this.labelDisabled = resetBoolean(this.labelDisabled);
+    this.disabled = resetBoolean(this.disabled);
+    this.bindGroup = resetBoolean(this.bindGroup);
+    console.log(this.modelValue, 'Component is about to be rendered');
+  }
   componentDidLoad() {
-    this.parent = getElementParent(this.el);
-    this.modelValue = getAttribute(parent, 'model-value');
-    this.parentMax = getAttribute(parent, 'max');
+    let parent = getElementParent(this.el);
+    //如果没有group就不获取
+    if (parent.tagName == 'GLUE-CHECKBOX-GROUP') {
+      this.parent = parent;
+      console.log(this.parent, 'this.parent');
+      this.modelValue = getAttribute(this.parent, 'model-value');
+      this.parentMax = getAttribute(this.parent, 'max');
+      console.log(this.modelValue, 'this.modelValue');
+    }
   }
   setParentValue = checked => {
     const { name } = this;
@@ -58,30 +77,40 @@ export class GlueCheckbox {
   };
 
   checked = () => {
-    if (parent && this.bindGroup) {
+    console.log(this.parent, this.bindGroup, 'this.bindGroup');
+    if (this.parent && this.bindGroup) {
       return this.parentModelValue.indexOf(this.name) !== -1;
     }
-    return this.modelValue;
+    console.log(this.modelValue, 'this.modelValue1');
+    if (isDef(this.modelValue)) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   toggle = newValue => {
+    console.log('fjhuahiguiangi');
     if (parent && this.bindGroup) {
       this.setParentValue(newValue);
     } else {
-      // emit('update:modelValue', newValue);
+      this.modelValue = !this.modelValue;
+      console.log(this.modelValue, 'this.modelValue');
+      this.glueChange.emit(this.modelValue);
     }
   };
-  click = () => {
+  click = e => {
+    console.log(e, 'hauhauhua');
     this.glueCilck.emit();
   };
   render() {
-    console.log(this.label, 'fjaijfia');
+    console.log(this.label, this.checked(), this.modelValue, 'fjaijfia');
     return (
       <Host class={classNames('glue-checkbox')}>
         <glue-checker
           class="glue-checkbox"
           role="checkbox"
-          parent={parent}
+          parent={this.parent}
           checked={this.checked()}
           bindGroup={this.bindGroup}
           onGlueToggle={this.toggle}

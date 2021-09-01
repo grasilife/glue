@@ -11,14 +11,15 @@ export class GlueChecker {
   @Element() el!: HTMLElement;
   //checkerProps
   @Prop() label: string;
-  @Prop() name: null;
+  @Prop() name: number | string;
   @Prop() disabled: boolean;
   @Prop() iconSize: number | string;
-  @Prop() modelValue = null;
+  @Prop() modelValue;
   @Prop() checkedColor: string;
   @Prop() labelPosition: string;
   @Prop() labelDisabled: boolean;
   @Prop() shape = 'round';
+  @Prop() icon = '';
   // this
   @Prop() role: string;
   @Prop() parent: any;
@@ -29,7 +30,8 @@ export class GlueChecker {
   @Event() glueCilck: EventEmitter;
   componentDidLoad() {}
   iconRef;
-  getParentProp = (name: string) => {
+  getParentProp = name => {
+    console.log(this.parent, 'this.parentthis.parent');
     if (this.parent && this.bindGroup) {
       return this.parent.this[name];
     }
@@ -50,7 +52,12 @@ export class GlueChecker {
     }
     this.glueCilck.emit(event);
   };
-
+  renderGlueIcon = iconSize => {
+    if (this.icon == '#slot') {
+      return <slot name="icon"></slot>;
+    }
+    return <glue-icon name="success" color={this.checkedColor} size={iconSize} />;
+  };
   renderIcon = () => {
     const { shape, checked } = this;
     const iconSize = this.iconSize || this.getParentProp('iconSize');
@@ -67,7 +74,7 @@ export class GlueChecker {
         })}
         style={{ fontSize: addUnit(iconSize) }}
       >
-        <glue-icon name="success" color={this.checkedColor} size={iconSize} />
+        {this.renderGlueIcon(iconSize)}
       </div>
     );
   };

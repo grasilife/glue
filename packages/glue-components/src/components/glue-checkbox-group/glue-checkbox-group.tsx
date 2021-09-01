@@ -1,8 +1,8 @@
-import { Component, Prop, h, Element, State } from '@stencil/core';
+import { Component, Prop, h, Element, State, Host } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-action-bar-button');
-import { getElementChildren } from '../../utils/base';
+import { getElementChildren, getAttribute } from '../../utils/base';
 @Component({
   tag: 'glue-checkbox-group',
   styleUrl: 'glue-checkbox-group.less',
@@ -16,36 +16,37 @@ export class GlueCheckboxGroup {
   @Prop() direction: string;
   @Prop() iconSize: number | string;
   @Prop() checkedColor: string;
-  @Prop() modelValue: any;
+  @Prop({ reflect: true }) modelValue: any;
   @State() children;
   componentDidLoad() {
     this.children = getElementChildren(this.el);
+    console.log(this.children, 'this.children');
     this.toggleAll();
   }
   toggleAll = (options = { checked: '', skipDisabled: '' }) => {
     console.log(options);
-    // const { checked, skipDisabled } = options;
-
-    const checkedChildren = this.children.filter(item => {
-      console.log(item, 'itemitem');
-      // if (!item.props.bindGroup) {
-      //   return false;
-      // }
-      // if (item.props.disabled && skipDisabled) {
-      //   return item.checked.value;
-      // }
-      // return checked ?? !item.checked.value;
-    });
-
-    const names = checkedChildren.map(item => item.name);
-    console.log(names, 'names');
-    // emit('update:modelValue', names);
+    const { checked, skipDisabled } = options;
+    let checkedChildren = [];
+    for (let i = 0; i < this.children.length; i++) {
+      console.log(this.children[i], 'ejfiheiuj');
+      let item = this.children[i];
+      if (!getAttribute(item, 'bind-group')) {
+        break;
+      }
+      if (getAttribute(item, 'disabled') && skipDisabled) {
+        checkedChildren.push(getAttribute(item, 'name'));
+      }
+      if (checked) {
+        checkedChildren.push(getAttribute(item, 'name'));
+      }
+    }
+    console.log(checkedChildren, 'checkedChildren');
   };
   render() {
     return (
-      <div class={classNames(bem([this.direction]))}>
+      <Host class={classNames(bem([this.direction]))}>
         <slot></slot>
-      </div>
+      </Host>
     );
   }
 }

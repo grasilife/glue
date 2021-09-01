@@ -353,7 +353,7 @@ export class GlueDemo {
           onGlueOversize={this.onOversize}
           disabled
         ></glue-uploader> */}
-        <glue-calendar
+        {/* <glue-calendar
           show={this.showBasic}
           show-title
           show-subtitle
@@ -367,7 +367,7 @@ export class GlueDemo {
           first-day-of-week="1"
           poppable={true}
           onGlueClose={this.popupClose}
-        />
+        /> */}
         {/* <glue-picker title="标题" columns={this.columns} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" /> */}
         {/* <glue-picker title="标题" columns={this.columns2} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} default-index="2" /> */}
         {/* <glue-picker title="标题" columns={this.columns3} onGlueConfirm={this.onGlueConfirm} onGlueCancel={this.onGlueCancel} onGlueChange={this.onGlueChange} loading={false} /> */}
@@ -443,18 +443,23 @@ export class GlueDemo {
           <glue-tab title="标签 3">内容 3</glue-tab>
           <glue-tab title="标签 4">内容 4</glue-tab>
         </glue-tabs> */}
-        <glue-cell is-link onClick={this.popupCell}>
+        {/* <glue-cell is-link onClick={this.popupCell}>
           展示弹出层
-        </glue-cell>
+        </glue-cell> */}
         {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="30%" height="100%" position="left">
           <div>内容</div>
         </glue-popup> */}
         {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="100%" height="30%" position="top">
           <div>内容</div>
         </glue-popup> */}
-        <glue-checkbox modelValue={true} label="复选框" shape="square" checked-color="#ee0a24" icon-size="24"></glue-checkbox>
+        {/* <glue-checkbox modelValue={true} label="复选框" shape="square" checked-color="#ee0a24" icon-size="24"></glue-checkbox> */}
+        <glue-checkbox model-value={true} label="复选框"></glue-checkbox>
         {/* <glue-icon name="cart-o" color="#1989fa" size="32" />
         <glue-icon name="fire-o" color="#ee0a24" size="32" /> */}
+        {/* <glue-checkbox-group modelValue={['a', 'b']}>
+          <glue-checkbox name="a">复选框 a</glue-checkbox>
+          <glue-checkbox name="b">复选框 b</glue-checkbox>
+        </glue-checkbox-group> */}
       </div>
     );
   }
