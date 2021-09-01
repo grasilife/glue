@@ -16,9 +16,10 @@ export class GlueCheckboxGroup {
   @Prop() direction: string;
   @Prop() iconSize: number | string;
   @Prop() checkedColor: string;
-  @Prop({ reflect: true }) modelValue: any;
+  @Prop({ reflect: true }) model_value: any;
   @State() children;
   componentDidLoad() {
+    console.log(this.model_value, 'mmmmmm');
     this.children = getElementChildren(this.el);
     console.log(this.children, 'this.children');
     this.toggleAll();

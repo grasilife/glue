@@ -1,7 +1,5 @@
 import { Component, Prop, h, Host, State, Element, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
-// import judge from 'judgejs';
-import { resetBoolean } from '../../utils/base';
 import { getElementParent, getAttribute } from '../../utils/base';
 @Component({
   tag: 'glue-checkbox',
@@ -29,6 +27,7 @@ export class GlueCheckbox {
   // const { parent } = useParent(CHECKBOX_KEY);
   componentDidLoad() {
     let parent = getElementParent(this.el);
+    console.log(parent.tagName, 'parent111');
     //如果没有group就不获取
     if (parent.tagName == 'GLUE-CHECKBOX-GROUP') {
       this.parent = parent;
@@ -41,6 +40,7 @@ export class GlueCheckbox {
   setParentValue = checked => {
     const { name } = this;
     const { parentMax, modelValue } = this;
+    console.log(modelValue, 'modelValue');
     const value = modelValue.slice();
 
     if (checked) {

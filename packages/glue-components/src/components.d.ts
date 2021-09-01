@@ -256,7 +256,7 @@ export namespace Components {
         "first": string;
         "iconSize": number | string;
         "max": number | string;
-        "modelValue": any;
+        "model_value": any;
     }
     interface GlueChecker {
         "bem": string;
@@ -2129,7 +2129,7 @@ declare namespace LocalJSX {
         "first"?: string;
         "iconSize"?: number | string;
         "max"?: number | string;
-        "modelValue"?: any;
+        "model_value"?: any;
     }
     interface GlueChecker {
         "bem"?: string;
