@@ -1,7 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-46a9bada"],{"3fad":function(r,e,n){"use strict";n.r(e),n.d(e,"glue_area",(function(){return i}));var t=n("f5f2"),u=n("30c6"),o=n("b8e1"),a=n("9ceb"),c="",i=function(){function r(e){Object(t["a"])(this,r),Object(o["g"])(this,e)}return Object(u["a"])(r,[{key:"render",value:function(){return Object(o["e"])("div",{class:Object(a["a"])("cunstom")},"Hello, World! I'm ",this.first)}}]),r}();i.style=c},"9ceb":function(r,e,n){"use strict";n.d(e,"a",(function(){return a}));n("ef14");var t=n("e300");function u(r,e,n){return n={path:e,exports:{},require:function(r,e){return o()}},r(n,n.exports),n.exports}function o(){throw new Error("Dynamic requires are not currently supported by @rollup/plugin-commonjs")}var a=u((function(r){
-/*!
-    Copyright (c) 2017 Jed Watson.
-    Licensed under the MIT License (MIT), see
-    http://jedwatson.github.io/classnames
-  */
-(function(){var e={}.hasOwnProperty;function n(){for(var r=[],u=0;u<arguments.length;u++){var o=arguments[u];if(o){var a=Object(t["a"])(o);if("string"===a||"number"===a)r.push(o);else if(Array.isArray(o)&&o.length){var c=n.apply(null,o);c&&r.push(c)}else if("object"===a)for(var i in o)e.call(o,i)&&o[i]&&r.push(i)}}return r.join(" ")}r.exports?(n.default=n,r.exports=n):window.classNames=n})()}))}}]);
