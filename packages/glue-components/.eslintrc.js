@@ -1,12 +1,12 @@
 module.exports = {
   parserOptions: {
     project: './tsconfig.json',
-    tsconfigRootDir: __dirname
+    tsconfigRootDir: __dirname,
   },
   settings: {
     react: {
-      version: 'detect'
-    }
+      version: 'detect',
+    },
   },
   extends: ['plugin:@stencil/recommended', 'prettier'],
   rules: {
@@ -17,6 +17,6 @@ module.exports = {
     '@stencil/strict-boolean-conditions': 0,
     'react/jsx-no-bind': 0,
     '@stencil/reserved-member-name': 0,
-    '@stencil/own-methods-must-be-private': 0
-  }
+    '@stencil/own-methods-must-be-private': 0,
+  },
 };
