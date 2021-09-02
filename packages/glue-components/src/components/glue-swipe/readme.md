@@ -1,9 +1,6 @@
 # glue-swipe
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -22,60 +19,46 @@
 | `vertical`        | `vertical`         |             | `boolean`          | `false`     |
 | `width`           | `width`            |             | `number`           | `undefined` |
 
-
 ## Events
 
 | Event        | Description | Type               |
 | ------------ | ----------- | ------------------ |
 | `glueChange` |             | `CustomEvent<any>` |
 
-
 ## Methods
 
 ### `getActiveIndicator() => Promise<number>`
 
-
-
 #### Returns
 
 Type: `Promise<number>`
-
-
 
 ### `getCount() => Promise<number>`
 
-
-
 #### Returns
 
 Type: `Promise<number>`
-
-
 
 ### `getSize() => Promise<number>`
 
-
-
 #### Returns
 
 Type: `Promise<number>`
-
-
-
 
 ## Dependencies
 
 ### Used by
 
- - [glue-tabs-content](../glue-tabs-content)
+- [glue-tabs-content](../glue-tabs-content)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-tabs-content --> glue-swipe
   style glue-swipe fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

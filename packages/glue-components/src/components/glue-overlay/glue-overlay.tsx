@@ -35,7 +35,7 @@ export class GlueOverlay {
       () => {
         this.overlayRef.style.display = 'block';
       },
-      () => {},
+      () => {}
     );
   };
   hiddenAnimation = () => {
@@ -46,7 +46,7 @@ export class GlueOverlay {
       () => {},
       () => {
         this.overlayRef.style.display = 'none';
-      },
+      }
     );
   };
   preventTouchMove = (event: TouchEvent) => {
@@ -67,7 +67,7 @@ export class GlueOverlay {
     return (
       <div
         style={style}
-        ref={dom => {
+        ref={(dom) => {
           this.overlayRef = dom;
         }}
         class={classNames({
@@ -75,7 +75,7 @@ export class GlueOverlay {
           // 'glue-slot__hidden': !this.show,
           // 'glue-image--className': this.className,
         })}
-        onTouchMove={this.lockScroll ? el => this.preventTouchMove(el) : noop}
+        onTouchMove={this.lockScroll ? (el) => this.preventTouchMove(el) : noop}
       >
         <slot></slot>
       </div>

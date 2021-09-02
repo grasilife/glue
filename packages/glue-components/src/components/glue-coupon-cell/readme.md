@@ -1,9 +1,6 @@
 # glue-coupon-cell
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -16,7 +13,6 @@
 | `editable`     | `editable`      |             | `boolean` | `true`      |
 | `title`        | `title`         |             | `string`  | `undefined` |
 
-
 ## Dependencies
 
 ### Depends on
@@ -24,6 +20,7 @@
 - [glue-cell](../glue-cell)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-coupon-cell --> glue-cell
@@ -32,6 +29,6 @@ graph TD;
   style glue-coupon-cell fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

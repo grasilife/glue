@@ -1,4 +1,15 @@
-import { Component, Prop, h, Host, State, Element, Watch, Method, Event, EventEmitter } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Element,
+  Watch,
+  Method,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { useRect } from '../../utils/useRect';
 import { doubleRaf } from '../../utils/animation';
@@ -58,6 +69,7 @@ export class GlueSwipe {
     this.initialize();
   }
   count = () => this.children.length;
+
   @Method()
   async getCount() {
     return this.count();
@@ -69,6 +81,7 @@ export class GlueSwipe {
       return this.width;
     }
   };
+
   @Method()
   async getSize() {
     return this.size();
@@ -76,7 +89,10 @@ export class GlueSwipe {
   delta = () => (this.vertical ? touch.deltaY : touch.deltaX);
 
   minOffset = () => {
-    return (this.vertical ? this.rect.height : this.rect.width) - this.size() * this.count();
+    return (
+      (this.vertical ? this.rect.height : this.rect.width) -
+      this.size() * this.count()
+    );
   };
 
   maxCount = () => Math.ceil(Math.abs(this.minOffset()) / this.size());
@@ -84,9 +100,15 @@ export class GlueSwipe {
   trackSize = () => this.count() * this.size();
 
   activeIndicator = () => {
-    console.log(this.active, this.count(), (this.active + this.count()) % this.count(), 'agiuaui');
+    console.log(
+      this.active,
+      this.count(),
+      (this.active + this.count()) % this.count(),
+      'agiuaui'
+    );
     return (this.active + this.count()) % this.count();
   };
+
   @Method()
   async getActiveIndicator() {
     return this.activeIndicator();
@@ -112,14 +134,20 @@ export class GlueSwipe {
     return style;
   };
 
-  getTargetActive = pace => {
+  getTargetActive = (pace) => {
     console.log(pace, 'pace');
 
     const { active } = this;
 
     if (pace) {
       if (this.loop) {
-        console.log(range(active + pace, -1, this.count()), active, pace, this.count(), 'active111');
+        console.log(
+          range(active + pace, -1, this.count()),
+          active,
+          pace,
+          this.count(),
+          'active111'
+        );
         return range(active + pace, -1, this.count());
       }
       return range(active + pace, 0, this.maxCount());
@@ -161,7 +189,9 @@ export class GlueSwipe {
 
       if (this.children[this.count() - 1] && targetOffset !== 0) {
         const outLeftBound = targetOffset > 0;
-        this.children[this.count() - 1].setOffset(outLeftBound ? -this.trackSize() : 0);
+        this.children[this.count() - 1].setOffset(
+          outLeftBound ? -this.trackSize() : 0
+        );
       }
     }
     console.log(targetActive, 'targetActive');
@@ -258,7 +288,7 @@ export class GlueSwipe {
 
   // let touchStartTime;
 
-  onTouchStart = event => {
+  onTouchStart = (event) => {
     if (!this.touchable) return;
 
     touch.start(event);
@@ -268,7 +298,7 @@ export class GlueSwipe {
     this.correctPosition();
   };
 
-  onTouchMove = event => {
+  onTouchMove = (event) => {
     if (this.touchable && this.swiping) {
       touch.move(event);
 
@@ -286,7 +316,8 @@ export class GlueSwipe {
 
     const duration = Date.now() - this.touchStartTime;
     const speed = this.delta() / duration;
-    const shouldSwipe = Math.abs(speed) > 0.25 || Math.abs(this.delta()) > this.size() / 2;
+    const shouldSwipe =
+      Math.abs(speed) > 0.25 || Math.abs(this.delta()) > this.size() / 2;
 
     if (shouldSwipe && this.isCorrectDirection()) {
       const offset = this.vertical ? touch.offsetY : touch.offsetX;
@@ -296,7 +327,9 @@ export class GlueSwipe {
       if (this.loop) {
         pace = offset > 0 ? (this.delta() > 0 ? -1 : 1) : 0;
       } else {
-        pace = -Math[this.delta() > 0 ? 'ceil' : 'floor'](this.delta() / this.size());
+        pace = -Math[this.delta() > 0 ? 'ceil' : 'floor'](
+          this.delta() / this.size()
+        );
       }
 
       this.move({
@@ -380,7 +413,7 @@ export class GlueSwipe {
     return (
       <Host class="glue-swipe">
         <div
-          ref={dom => {
+          ref={(dom) => {
             this.trackRef = dom;
           }}
           style={this.trackStyle()}

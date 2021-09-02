@@ -25,7 +25,7 @@ function formatValue(props) {
   shadow: false,
 })
 export class GlueCouponCell {
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() coupons: [];
   @Prop() currency = '¥';
   @Prop() border = true;
@@ -37,7 +37,13 @@ export class GlueCouponCell {
     const value = formatValue(this);
     return (
       <Host>
-        <glue-cell class="glue-coupon-cell" value={value} title={this.title || '标题'} border={this.border} isLink={this.editable} />
+        <glue-cell
+          class="glue-coupon-cell"
+          value={value}
+          g_title={this.g_title || '标题'}
+          border={this.border}
+          isLink={this.editable}
+        />
       </Host>
     );
   }

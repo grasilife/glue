@@ -1,9 +1,6 @@
 # glue-action-sheet
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -25,7 +22,6 @@
 | `show`                | `show`                   |             | `boolean` | `undefined` |
 | `title`               | `title`                  |             | `string`  | `undefined` |
 
-
 ## Events
 
 | Event        | Description | Type               |
@@ -37,7 +33,6 @@
 | `glueOpened` |             | `CustomEvent<any>` |
 | `glueShow`   |             | `CustomEvent<any>` |
 
-
 ## Dependencies
 
 ### Depends on
@@ -47,6 +42,7 @@
 - [glue-popup](../glue-popup)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-action-sheet --> glue-icon
@@ -58,6 +54,6 @@ graph TD;
   style glue-action-sheet fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

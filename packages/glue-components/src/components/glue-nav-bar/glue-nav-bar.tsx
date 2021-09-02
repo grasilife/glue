@@ -1,4 +1,12 @@
-import { Component, Prop, h, Event, EventEmitter, Host, State } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Event,
+  EventEmitter,
+  Host,
+  State,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-nav-bar');
@@ -10,7 +18,7 @@ import { useRect } from '../../utils/useRect';
   shadow: false,
 })
 export class GlueNavBar {
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() fixed: boolean;
   @Prop() zIndex: string;
   @Prop() leftText: string;
@@ -28,7 +36,12 @@ export class GlueNavBar {
   };
   renderPlaceholder = () => {
     if (this.fixed && this.placeholder) {
-      return <div class={bem('placeholder')} style={{ height: this.height ? `${this.height}px` : undefined }}></div>;
+      return (
+        <div
+          class={bem('placeholder')}
+          style={{ height: this.height ? `${this.height}px` : undefined }}
+        ></div>
+      );
     }
   };
   onClickRight = (event: MouseEvent) => {
@@ -39,7 +52,12 @@ export class GlueNavBar {
     if (this.leftText == '#slot') {
       return <slot name="left-text"></slot>;
     }
-    return [this.leftArrow && <glue-icon class="glue-nav-bar__arrow" name="arrow-left" />, this.leftText && <span class="glue-nav-bar__text">{this.leftText}</span>];
+    return [
+      this.leftArrow && (
+        <glue-icon class="glue-nav-bar__arrow" name="arrow-left" />
+      ),
+      this.leftText && <span class="glue-nav-bar__text">{this.leftText}</span>,
+    ];
   };
 
   renderRight = () => {
@@ -49,7 +67,7 @@ export class GlueNavBar {
     return <span class="glue-nav-bar__text">{this.rightText}</span>;
   };
   renderNavBar = () => {
-    const { title, fixed, border } = this;
+    const { g_title, fixed, border } = this;
     const style = {
       zIndex: this.zIndex,
     };
@@ -59,7 +77,7 @@ export class GlueNavBar {
 
     return (
       <div
-        ref={dom => {
+        ref={(dom) => {
           this.navBarRef = dom;
         }}
         //TODO:border有问题
@@ -75,7 +93,7 @@ export class GlueNavBar {
               {this.renderLeft()}
             </div>
           )}
-          <div class="glue-nav-bar__title glue-ellipsis">{title}</div>
+          <div class="glue-nav-bar__title glue-ellipsis">{g_title}</div>
           {hasRight && (
             <div class="glue-nav-bar__right" onClick={this.onClickRight}>
               {this.renderRight()}

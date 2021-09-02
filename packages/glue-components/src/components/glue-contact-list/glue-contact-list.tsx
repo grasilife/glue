@@ -18,13 +18,15 @@ export class GlueContactList {
       // emit('select', item, index);
     };
 
-    const renderRightIcon = () => <glue-radio name={item.id} iconSize={16} checkedColor={RED} />;
+    const renderRightIcon = () => (
+      <glue-radio name={item.id} iconSize={16} checkedColor={RED} />
+    );
 
     const renderEditIcon = () => (
       <glue-icon
         name="edit"
         class="glue-contact-list__edit"
-        onClick={event => {
+        onClick={(event) => {
           event.stopPropagation();
           // emit('edit', item, index);
         }}
@@ -38,7 +40,7 @@ export class GlueContactList {
         nodes.push(
           <glue-tag type="danger" round class="glue-contact-list__item-tag">
             {this.defaultTagText}
-          </glue-tag>,
+          </glue-tag>
         );
       }
 
@@ -48,8 +50,8 @@ export class GlueContactList {
     return (
       <glue-cell
         v-slots={{
-          'icon': renderEditIcon,
-          'default': renderContent,
+          icon: renderEditIcon,
+          default: renderContent,
           'right-icon': renderRightIcon,
         }}
         key={item.id}
@@ -63,7 +65,10 @@ export class GlueContactList {
   render() {
     return (
       <Host class="glue-contact-list">
-        <glue-radio-group model-value={this.modelValue} class="glue-contact-list__group">
+        <glue-radio-group
+          model-value={this.modelValue}
+          class="glue-contact-list__group"
+        >
           {this.list && this.list.map(this.renderItem)}
         </glue-radio-group>
         <div class="glue-contact-list__bottom">

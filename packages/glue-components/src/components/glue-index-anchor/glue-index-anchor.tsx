@@ -32,14 +32,18 @@ export class GlueIndexAnchor {
     }
   };
 
-  getRect = (scrollParent: Window | Element, scrollParentRect: { top: number }) => {
+  getRect = (
+    scrollParent: Window | Element,
+    scrollParentRect: { top: number }
+  ) => {
     const rootRect = this.root;
     this.rect.height = rootRect.offsetHeight;
 
     if (scrollParent === window || scrollParent === document.body) {
       this.rect.top = rootRect.offsetTop + getRootScrollTop();
     } else {
-      this.rect.top = rootRect.offsetTop + getScrollTop(scrollParent) - scrollParentRect.top;
+      this.rect.top =
+        rootRect.offsetTop + getScrollTop(scrollParent) - scrollParentRect.top;
     }
 
     return this.rect;
@@ -49,7 +53,7 @@ export class GlueIndexAnchor {
     const sticky = this.isSticky();
     return (
       <div
-        ref={dom => {
+        ref={(dom) => {
           this.root = dom;
         }}
         style={{ height: sticky ? `${this.rect.height}px` : undefined }}
@@ -60,7 +64,7 @@ export class GlueIndexAnchor {
             {
               ['glue-index-anchor__' + BORDER_BOTTOM]: sticky,
             },
-            bem([sticky]),
+            bem([sticky])
           )}
         >
           {this.index}

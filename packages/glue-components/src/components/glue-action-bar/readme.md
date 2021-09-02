@@ -1,9 +1,6 @@
 # glue-action-bar
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -11,7 +8,6 @@
 | --------------------- | ------------------------ | ----------- | --------- | ----------- |
 | `safeAreaInsetBottom` | `safe-area-inset-bottom` |             | `boolean` | `undefined` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

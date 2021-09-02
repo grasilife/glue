@@ -1,7 +1,17 @@
-import { Component, Prop, h, Host, Event, EventEmitter, State, Element, Listen, Watch } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  Event,
+  EventEmitter,
+  State,
+  Element,
+  Watch,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { CellArrowDirection } from '../glue-cell/glue-cell-interface';
-import { getElementParent, getAttribute } from '../../utils/base';
+import { getElementParent } from '../../utils/base';
 @Component({
   tag: 'glue-collapse-item',
   styleUrl: 'glue-collapse-item.less',
@@ -11,7 +21,7 @@ export class GlueCollapseItem {
   @Element() el: HTMLGlueCollapseItemElement;
   @Prop() icon: string;
   @Prop() size: string;
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() value: string | number;
   @Prop() label: string | number;
   @Prop() center: boolean;
@@ -34,12 +44,9 @@ export class GlueCollapseItem {
   parentModelValuehandle(newValue) {
     console.log(newValue, 'newValue');
   }
-  @Listen('glueToggle')
-  handleScroll(ev) {
-    console.log('the body was scrolled', ev);
-  }
-  @Event() clickTitle: EventEmitter;
-  clickTitleHandle = () => {
+  @Event()
+  clickTitle: EventEmitter;
+  private clickTitleHandle = () => {
     if (!this.disabled) {
       this.toggle();
     }
@@ -47,19 +54,19 @@ export class GlueCollapseItem {
   private wrapperRef: HTMLElement;
   private contentRef: HTMLElement;
 
-  onTransitionEnd = () => {
+  private onTransitionEnd = () => {
     if (!this.expanded()) {
       this.show = false;
     } else {
       this.wrapperRef!.style.height = '';
     }
   };
-  async expanded() {
+  private async expanded() {
     let parentEl = getElementParent(this.el);
     const isExpanded = await parentEl.isExpanded(this.name);
     return isExpanded;
   }
-  toggle = () => {
+  private toggle = () => {
     // this.show = !this.show;
     // this.arrowDirection = this.show ? 'up' : 'down';
     // console.log(this.show, 'this.show');
@@ -67,21 +74,15 @@ export class GlueCollapseItem {
     let parentEl = getElementParent(this.el);
     console.log(parentEl, 'parentEl');
 
-    parentEl.isExpanded(this.name).then(expanded => {
+    parentEl.isExpanded(this.name).then((expanded) => {
       // this.show = expanded;
       parentEl.toggle(this.name, expanded);
       console.log(this.show, 'this.show33');
     });
   };
-  getParentGutter() {
-    let parentEl = getElementParent(this.el);
-    let gutter = getAttribute(parentEl, 'gutter');
-    console.log(gutter, 'gutter');
-    return gutter;
-  }
   renderTitle = () => {
-    const { border, disabled, title, isLink } = this;
-    console.log(this.title, 'ahuhafuhfui');
+    const { border, disabled, g_title, isLink } = this;
+    console.log(this.g_title, 'ahuhafuhfui');
     return (
       <glue-cell
         role="button"
@@ -94,7 +95,7 @@ export class GlueCollapseItem {
         tabindex={disabled ? -1 : 0}
         aria-expanded={String(this.expanded())}
         onClick={this.clickTitleHandle}
-        title={title}
+        g_title={g_title}
         is-link={isLink}
         arrow-direction={this.arrowDirection}
       ></glue-cell>
@@ -103,7 +104,7 @@ export class GlueCollapseItem {
 
   renderContent = () => (
     <div
-      ref={dom => (this.wrapperRef = dom)}
+      ref={(dom) => (this.wrapperRef = dom)}
       class={classNames({
         'glue-collapse-item__wrapper': true,
       })}
@@ -111,7 +112,7 @@ export class GlueCollapseItem {
       style={{ display: this.show ? 'block' : 'none' }}
     >
       <div
-        ref={dom => (this.contentRef = dom)}
+        ref={(dom) => (this.contentRef = dom)}
         class={classNames({
           'glue-collapse-item__content': true,
         })}
@@ -126,13 +127,7 @@ export class GlueCollapseItem {
     this.show = expanded;
     console.log(this.show, 'this.show');
   }
-  async componentShouldUpdate() {
-    // console.log();
-    // let parentEl = getElementParent(this.el);
-    // const expanded = await parentEl.isExpanded(this.name);
-    // this.show = expanded;
-    // console.log(this.show, 'this.show2');
-  }
+
   componentWillLoad() {
     let parentEl = getElementParent(this.el);
     this.parentModelValue = parentEl.modelValue;

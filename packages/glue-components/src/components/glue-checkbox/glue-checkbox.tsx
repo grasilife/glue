@@ -1,4 +1,13 @@
-import { Component, Prop, h, Host, State, Element, Event, EventEmitter } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Element,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { getElementParent, getAttribute } from '../../utils/base';
 @Component({
@@ -11,14 +20,14 @@ export class GlueCheckbox {
   //checkerProps
   @Prop({ reflect: true }) label: string;
   @Prop({ reflect: true }) name: number | string;
-  @Prop({ reflect: true, mutable: true }) disabled: string;
+  @Prop({ reflect: true }) disabled: string;
   @Prop({ reflect: true }) iconSize: number | string = 16;
   @Prop({ mutable: true, reflect: true }) modelValue;
   @Prop({ reflect: true }) checkedColor: string;
   @Prop({ reflect: true }) labelPosition: string;
-  @Prop({ reflect: true, mutable: true }) labelDisabled: string;
+  @Prop({ reflect: true }) labelDisabled: string;
   @Prop({ reflect: true }) shape = 'round';
-  @Prop({ reflect: true, mutable: true }) bindGroup = 'false';
+  @Prop({ reflect: true }) bindGroup = 'false';
   @State() parent: any;
   @State() parentMax: any;
   @State() parentModelValue;
@@ -37,7 +46,7 @@ export class GlueCheckbox {
       console.log(this.modelValue, 'this.modelValue');
     }
   }
-  setParentValue = checked => {
+  setParentValue = (checked) => {
     const { name } = this;
     const { parentMax, modelValue } = this;
     console.log(modelValue, 'modelValue');
@@ -75,7 +84,7 @@ export class GlueCheckbox {
     return this.modelValue;
   };
 
-  toggle = newValue => {
+  toggle = (newValue) => {
     console.log('fjhuahiguiangi');
     if (this.parent && this.bindGroup) {
       this.setParentValue(newValue);
@@ -88,7 +97,7 @@ export class GlueCheckbox {
       this.glueChange.emit(this.modelValue);
     }
   };
-  click = e => {
+  click = () => {
     this.glueCilck.emit();
   };
   render() {

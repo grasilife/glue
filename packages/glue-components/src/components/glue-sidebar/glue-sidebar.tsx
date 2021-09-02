@@ -1,4 +1,13 @@
-import { Component, Prop, h, Host, Event, EventEmitter, Method, Element } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  Event,
+  EventEmitter,
+  Method,
+  Element,
+} from '@stencil/core';
 // import classNames from 'classnames';
 import { getElementChildren } from '../../utils/base';
 @Component({
@@ -14,6 +23,7 @@ export class GlueSidebar {
     console.log(children, 'children');
   }
   @Event() glueChange: EventEmitter;
+
   @Method()
   async setActive(value) {
     console.log(value, 'valuevalue');

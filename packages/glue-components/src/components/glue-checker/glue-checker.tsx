@@ -5,7 +5,7 @@ import {
   Host,
   Element,
   Event,
-  EventEmitter
+  EventEmitter,
 } from '@stencil/core';
 import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
@@ -13,7 +13,7 @@ import { addUnit } from '../../utils/format/unit';
 @Component({
   tag: 'glue-checker',
   styleUrl: 'glue-checker.less',
-  shadow: false
+  shadow: false,
 })
 export class GlueChecker {
   @Element() el!: HTMLGlueCheckerElement;
@@ -80,7 +80,7 @@ export class GlueChecker {
         class={classNames('glue-checker__icon', {
           ['glue-checker__icon--' + shape]: shape,
           ['glue-checker__icon--disabled']: this.disabledFn(),
-          ['glue-checker__icon--checked']: checked == 'true'
+          ['glue-checker__icon--checked']: checked == 'true',
         })}
         style={{ fontSize: addUnit(iconSize) }}
       >
@@ -97,7 +97,7 @@ export class GlueChecker {
         style={{ fontSize: addUnit(iconSize) }}
         class={classNames('glue-checker__label', {
           ['glue-checker__icon' + this.labelPosition]: this.labelPosition,
-          ['glue-checker__icon--disabled']: this.disabledFn()
+          ['glue-checker__icon--disabled']: this.disabledFn(),
         })}
       >
         {this.label}
@@ -117,7 +117,7 @@ export class GlueChecker {
         role={this.role}
         class={classNames({
           ['glue-checker__disabled']: this.disabledFn(),
-          ['glue-checker__label-disabled']: this.labelDisabled
+          ['glue-checker__label-disabled']: this.labelDisabled,
         })}
         tabindex={this.disabledFn() ? -1 : 0}
         aria-checked={this.checked}

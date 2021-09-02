@@ -9,7 +9,7 @@ const [bem] = createNamespace('glue-dropdown-item');
 })
 export class GlueDropdownItem {
   @Prop() first: string;
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() disabled: boolean;
   @Prop() teleport: any;
   @Prop() modelValue = null;
@@ -30,7 +30,7 @@ export class GlueDropdownItem {
     // emit('closed');
   };
 
-  onClickWrapper = event => {
+  onClickWrapper = (event) => {
     // prevent being identified as clicking outside and closed when using teleport
     if (this.teleport) {
       event.stopPropagation();
@@ -52,20 +52,22 @@ export class GlueDropdownItem {
   };
 
   renderTitle = () => {
-    // if (slots.title) {
-    //   return slots.title();
+    // if (slots.g_title) {
+    //   return slots.g_title();
     // }
 
-    if (this.title) {
-      return this.title;
+    if (this.g_title) {
+      return this.g_title;
     }
 
-    const match = this.options.filter(option => option.value === this.modelValue);
+    const match = this.options.filter(
+      (option) => option.value === this.modelValue
+    );
 
     return match.length ? match[0].text : '';
   };
 
-  renderOption = option => {
+  renderOption = (option) => {
     // const { activeColor } = parent.this;
     const active = option.value === this.modelValue;
 
@@ -83,7 +85,7 @@ export class GlueDropdownItem {
         clickable
         key={option.value}
         icon={option.icon}
-        title={option.text}
+        g_title={option.text}
         class={classNames('glue-dropdown-item__option', bem([active]))}
         // style={{ color: active ? activeColor : '' }}
         onClick={onClick}

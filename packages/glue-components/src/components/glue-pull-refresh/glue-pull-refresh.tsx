@@ -1,4 +1,13 @@
-import { Component, Prop, h, Host, State, Watch, EventEmitter, Event } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Watch,
+  EventEmitter,
+  Event,
+} from '@stencil/core';
 // import classNames from 'classnames';
 import { getScrollTop } from '../../utils/dom/scroll';
 import { preventDefault } from '../../utils/dom/event';
@@ -60,7 +69,8 @@ export class GluePullRefresh {
     }
   };
 
-  isTouchable = () => this.status !== 'loading' && this.status !== 'success' && !this.disabled;
+  isTouchable = () =>
+    this.status !== 'loading' && this.status !== 'success' && !this.disabled;
 
   setStatus = (distance: number, isLoading?: boolean) => {
     this.distance = distance;
@@ -90,10 +100,14 @@ export class GluePullRefresh {
     const nodes = [];
 
     if (TEXT_STATUS.indexOf(status) !== -1) {
-      nodes.push(<div class="glue-pull-refresh__text">{this.getStatusText()}</div>);
+      nodes.push(
+        <div class="glue-pull-refresh__text">{this.getStatusText()}</div>
+      );
     }
     if (status === 'loading') {
-      nodes.push(<glue-loading size="16" text={this.getStatusText()}></glue-loading>);
+      nodes.push(
+        <glue-loading size="16" text={this.getStatusText()}></glue-loading>
+      );
     }
 
     return nodes;
@@ -157,7 +171,7 @@ export class GluePullRefresh {
       transform: this.distance ? `translate3d(0,${this.distance}px, 0)` : '',
     };
     return (
-      <Host ref={dom => (this.root = dom)} class="glue-pull-refresh">
+      <Host ref={(dom) => (this.root = dom)} class="glue-pull-refresh">
         <div
           class="glue-pull-refresh__track"
           style={trackStyle}

@@ -1,9 +1,6 @@
 # glue-steps
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -17,14 +14,12 @@
 | `inactiveColor` | `inactive-color` |             | `string`           | `undefined`    |
 | `inactiveIcon`  | `inactive-icon`  |             | `string`           | `undefined`    |
 
-
 ## Events
 
 | Event       | Description | Type               |
 | ----------- | ----------- | ------------------ |
 | `clickStep` |             | `CustomEvent<any>` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

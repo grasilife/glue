@@ -1,9 +1,6 @@
 # glue-circle
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -21,14 +18,12 @@
 | `strokeWidth`   | `stroke-width`   |             | `number`           | `40`        |
 | `text`          | `text`           |             | `string`           | `undefined` |
 
-
 ## Events
 
 | Event        | Description | Type               |
 | ------------ | ----------- | ------------------ |
 | `glueChange` |             | `CustomEvent<any>` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

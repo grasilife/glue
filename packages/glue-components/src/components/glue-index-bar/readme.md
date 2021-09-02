@@ -1,9 +1,6 @@
 # glue-index-bar
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -15,14 +12,12 @@
 | `stickyOffsetTop` | `sticky-offset-top` |             | `number`  | `0`             |
 | `zIndex`          | `z-index`           |             | `string`  | `undefined`     |
 
-
 ## Events
 
 | Event          | Description | Type               |
 | -------------- | ----------- | ------------------ |
 | `clickSidebar` |             | `CustomEvent<any>` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

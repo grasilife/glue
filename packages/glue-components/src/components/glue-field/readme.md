@@ -1,9 +1,6 @@
 # glue-field
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -53,16 +50,15 @@
 | `value`             | `value`               |             | `number \| string`                    | `undefined`  |
 | `valueClass`        | `value-class`         |             | `any`                                 | `null`       |
 
-
 ## Dependencies
 
 ### Used by
 
- - [glue-address-edit](../glue-address-edit)
- - [glue-address-edit-detail](../glue-address-edit-detail)
- - [glue-contact-edit](../glue-contact-edit)
- - [glue-coupon-list](../glue-coupon-list)
- - [glue-search](../glue-search)
+- [glue-address-edit](../glue-address-edit)
+- [glue-address-edit-detail](../glue-address-edit-detail)
+- [glue-contact-edit](../glue-contact-edit)
+- [glue-coupon-list](../glue-coupon-list)
+- [glue-search](../glue-search)
 
 ### Depends on
 
@@ -70,6 +66,7 @@
 - [glue-cell](../glue-cell)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-field --> glue-icon
@@ -84,6 +81,6 @@ graph TD;
   style glue-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

@@ -1,4 +1,12 @@
-import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import classNames from 'classnames';
 import '@glue/touch-emulator';
 import { UseTouch } from '../../utils/composables/use-touch';
@@ -30,17 +38,26 @@ export class GlueSwipeCell {
   @State() startOffset: number;
   @Event() glueOpenChange: EventEmitter;
   @Event() glueCloseChange: EventEmitter;
-  @Event() click: EventEmitter;
+  @Event() glueClick: EventEmitter;
   root: HTMLElement;
   leftRef: HTMLElement;
   rightRef: HTMLElement;
 
-  getWidthByRef = ref => (ref ? useRect(ref).width : 0);
+  getWidthByRef = (ref) => (ref ? useRect(ref).width : 0);
   componentDidLoad() {
     console.log(touch, 'touch');
-    this.leftWidth = isDef(this.leftWidth) ? +this.leftWidth : this.getWidthByRef(this.leftRef);
-    this.rightWidth = isDef(this.rightWidth) ? +this.rightWidth : this.getWidthByRef(this.rightRef);
-    console.log(this.leftWidth, this.rightWidth, useRect(this.leftRef), 'agjhiauhuahu');
+    this.leftWidth = isDef(this.leftWidth)
+      ? +this.leftWidth
+      : this.getWidthByRef(this.leftRef);
+    this.rightWidth = isDef(this.rightWidth)
+      ? +this.rightWidth
+      : this.getWidthByRef(this.rightRef);
+    console.log(
+      this.leftWidth,
+      this.rightWidth,
+      useRect(this.leftRef),
+      'agjhiauhuahu'
+    );
   }
 
   open = (side: SwipeCellSide) => {
@@ -100,8 +117,19 @@ export class GlueSwipeCell {
         preventDefault(event, this.stopPropagation);
       }
 
-      this.offset = range(deltaX + this.startOffset, -this.rightWidth, this.leftWidth);
-      console.log(this.offset, deltaX, this.startOffset, -this.rightWidth, this.leftWidth, 'this.offset');
+      this.offset = range(
+        deltaX + this.startOffset,
+        -this.rightWidth,
+        this.leftWidth
+      );
+      console.log(
+        this.offset,
+        deltaX,
+        this.startOffset,
+        -this.rightWidth,
+        this.leftWidth,
+        'this.offset'
+      );
     }
   };
 
@@ -126,19 +154,20 @@ export class GlueSwipeCell {
     }
   };
 
-  getClickHandler = (position: SwipeCellPosition, stop?: boolean) => (event: MouseEvent) => {
-    if (stop) {
-      event.stopPropagation();
-    }
-    this.onClick(position);
-  };
+  getClickHandler =
+    (position: SwipeCellPosition, stop?: boolean) => (event: MouseEvent) => {
+      if (stop) {
+        event.stopPropagation();
+      }
+      this.onClick(position);
+    };
   renderSideContentLeft = () => {
     if (this.left == '#slot') {
       return (
         <div
           class={classNames('glue-swipe-cell__left')}
           onClick={this.getClickHandler('left', true)}
-          ref={dom => {
+          ref={(dom) => {
             this.leftRef = dom;
           }}
         >
@@ -152,7 +181,7 @@ export class GlueSwipeCell {
       <div
         class={classNames('glue-swipe-cell__right')}
         onClick={this.getClickHandler('right', true)}
-        ref={dom => {
+        ref={(dom) => {
           this.rightRef = dom;
         }}
       >
@@ -167,7 +196,7 @@ export class GlueSwipeCell {
     };
     return (
       <Host
-        ref={dom => {
+        ref={(dom) => {
           this.root = dom;
         }}
         class="glue-swipe-cell"

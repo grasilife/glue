@@ -47,7 +47,7 @@ export class GlueIndexBar {
     //   // emit('select', match[0].index);
     // }
   };
-  scrollToElement = element => {
+  scrollToElement = (element) => {
     const { index } = element.dataset;
     if (index) {
       this.scrollTo(index);
@@ -72,10 +72,16 @@ export class GlueIndexBar {
     }
   };
   renderIndexes = () => {
-    return this.indexList.map(index => {
+    return this.indexList.map((index) => {
       const active = index === this.activeAnchor;
       return (
-        <span class={(classNames('glue-index-bar'), { 'glue-index-bar__active': active })} style={active ? this.highlightStyle() : undefined} data-index={index}>
+        <span
+          class={
+            (classNames('glue-index-bar'), { 'glue-index-bar__active': active })
+          }
+          style={active ? this.highlightStyle() : undefined}
+          data-index={index}
+        >
           {index}
         </span>
       );
@@ -103,12 +109,18 @@ export class GlueIndexBar {
   render() {
     return (
       <div
-        ref={dom => {
+        ref={(dom) => {
           this.root = dom;
         }}
         class="glue-index-bar"
       >
-        <div class="glue-index-bar__sidebar" style={this.sidebarStyle()} onClick={this.onClickSidebar} onTouchStart={this.touch.start} onTouchMove={this.onTouchMove}>
+        <div
+          class="glue-index-bar__sidebar"
+          style={this.sidebarStyle()}
+          onClick={this.onClickSidebar}
+          onTouchStart={this.touch.start}
+          onTouchMove={this.onTouchMove}
+        >
           {this.renderIndexes()}
         </div>
         <slot></slot>

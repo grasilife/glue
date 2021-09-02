@@ -1,9 +1,6 @@
 # glue-radio-group
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -15,20 +12,20 @@
 | `iconSize`     | `icon-size`     |             | `number \| string` | `undefined` |
 | `modelValue`   | `model-value`   |             | `any`              | `null`      |
 
-
 ## Dependencies
 
 ### Used by
 
- - [glue-contact-list](../glue-contact-list)
+- [glue-contact-list](../glue-contact-list)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-contact-list --> glue-radio-group
   style glue-radio-group fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

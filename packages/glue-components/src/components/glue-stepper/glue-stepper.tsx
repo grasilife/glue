@@ -1,4 +1,12 @@
-import { Component, Prop, h, Host, Event, EventEmitter, State } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  Event,
+  EventEmitter,
+  State,
+} from '@stencil/core';
 import classNames from 'classnames';
 import '@glue/touch-emulator';
 import { createNamespace } from '../../utils/create/index';
@@ -90,9 +98,11 @@ export class GlueStepper {
 
     return value;
   };
-  minusDisabled = () => this.disabled || this.disableMinus || this.current <= +this.min;
+  minusDisabled = () =>
+    this.disabled || this.disableMinus || this.current <= +this.min;
 
-  plusDisabled = () => this.disabled || this.disablePlus || this.current >= +this.max;
+  plusDisabled = () =>
+    this.disabled || this.disablePlus || this.current >= +this.max;
 
   inputStyle = () => ({
     width: addUnit(this.inputWidth),
@@ -125,7 +135,10 @@ export class GlueStepper {
     this.current = this.getInitialValue();
   }
   onChange = () => {
-    if ((actionType === 'plus' && this.plusDisabled()) || (actionType === 'minus' && this.minusDisabled())) {
+    if (
+      (actionType === 'plus' && this.plusDisabled()) ||
+      (actionType === 'minus' && this.minusDisabled())
+    ) {
       this.glueOverlimit.emit(actionType);
 
       return;
@@ -247,7 +260,7 @@ export class GlueStepper {
         />
         <input
           v-show={this.showInput}
-          ref={dom => {
+          ref={(dom) => {
             this.inputRef = dom;
           }}
           type={this.integer ? 'tel' : 'text'}

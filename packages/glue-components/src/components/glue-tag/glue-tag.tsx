@@ -20,7 +20,7 @@ export class GlueTag {
   @Prop() closeable: boolean;
   @Prop() type = 'default';
   @Event() glueIconClick: EventEmitter;
-  closeHandle = event => {
+  closeHandle = (event) => {
     this.glueIconClick.emit(event);
   };
 
@@ -41,9 +41,19 @@ export class GlueTag {
     if (size) {
       classes[size] = size;
     }
-    const CloseIcon = closeable && <glue-icon name="cross" class={classNames('glue-tag__close')} onClick={this.closeHandle} size={12} />;
+    const CloseIcon = closeable && (
+      <glue-icon
+        name="cross"
+        class={classNames('glue-tag__close')}
+        onClick={this.closeHandle}
+        size={12}
+      />
+    );
     return (
-      <Host style={this.getStyle()} class={classNames('glue-tag', bem([type, mark, plain, round, size]))}>
+      <Host
+        style={this.getStyle()}
+        class={classNames('glue-tag', bem([type, mark, plain, round, size]))}
+      >
         <slot></slot>
         {CloseIcon}
       </Host>

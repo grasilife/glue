@@ -51,7 +51,7 @@ export class GlueField {
   //cell this
   @Prop() icon: string;
   @Prop() size: string;
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() value: string | number;
   @Prop() label: string | number;
   @Prop() center: boolean;
@@ -95,7 +95,10 @@ export class GlueField {
     this.parentSubmitOnEnter = getAttribute(parentEl, 'submit-on-enter');
     this.parentDisabled = getAttribute(parentEl, 'disabled');
     this.parentInputAlign = getAttribute(parentEl, 'input-align');
-    this.parentErrorMessageAlign = getAttribute(parentEl, 'error-message-align');
+    this.parentErrorMessageAlign = getAttribute(
+      parentEl,
+      'error-message-align'
+    );
     this.parentLabelAlign = getAttribute(parentEl, 'label-align');
     this.parentColon = getAttribute(parentEl, 'colon');
   }
@@ -105,7 +108,9 @@ export class GlueField {
 
     if (this.clearable && !readonly) {
       const hasValue = isDef(this.modelValue) && this.modelValue !== '';
-      const trigger = this.clearTrigger === 'always' || (this.clearTrigger === 'focus' && this.focused);
+      const trigger =
+        this.clearTrigger === 'always' ||
+        (this.clearTrigger === 'focus' && this.focused);
 
       return hasValue && trigger;
     }
@@ -119,7 +124,7 @@ export class GlueField {
   };
 
   runValidator = (value, rule) =>
-    new Promise(resolve => {
+    new Promise((resolve) => {
       const returnVal = rule.validator(value, rule);
 
       if (isPromise(returnVal)) {
@@ -138,7 +143,7 @@ export class GlueField {
     return message;
   };
 
-  runRules = rules =>
+  runRules = (rules) =>
     rules.reduce(
       (promise, rule) =>
         promise.then(() => {
@@ -159,7 +164,7 @@ export class GlueField {
           }
 
           if (rule.validator) {
-            return this.runValidator(value, rule).then(result => {
+            return this.runValidator(value, rule).then((result) => {
               if (result && typeof result === 'string') {
                 this.validateFailed = true;
                 this.validateMessage = result;
@@ -170,7 +175,7 @@ export class GlueField {
             });
           }
         }),
-      Promise.resolve(),
+      Promise.resolve()
     );
 
   resetValidation = () => {
@@ -181,7 +186,7 @@ export class GlueField {
   };
 
   validate = (rules = this.rules) =>
-    new Promise(resolve => {
+    new Promise((resolve) => {
       if (!rules) {
         // resolve();
       }
@@ -199,7 +204,7 @@ export class GlueField {
       });
     });
 
-  validateWithTrigger = trigger => {
+  validateWithTrigger = (trigger) => {
     console.log(trigger);
     // if (form && this.rules) {
     //   const defaultTrigger = form.this.validateTrigger === trigger;
@@ -248,7 +253,7 @@ export class GlueField {
     }
   };
 
-  onInput = event => {
+  onInput = (event) => {
     // skip update value when composing
     if (!event.target.composing) {
       console.log(event, event.target.value, 'eventeventevent');
@@ -268,7 +273,7 @@ export class GlueField {
     }
   };
 
-  onFocus = event => {
+  onFocus = (event) => {
     console.log(event);
     this.focused = true;
     // emit('focus', event);
@@ -280,7 +285,7 @@ export class GlueField {
     }
   };
 
-  onBlur = event => {
+  onBlur = (event) => {
     console.log(event);
     this.focused = false;
     this.updateValue(this.modelValue, 'onBlur');
@@ -289,22 +294,22 @@ export class GlueField {
     resetScroll();
   };
 
-  onClickInput = event => {
+  onClickInput = (event) => {
     console.log(event);
     // emit('click-input', event);
   };
 
-  onClickLeftIcon = event => {
+  onClickLeftIcon = (event) => {
     console.log(event);
     // emit('click-left-icon', event);
   };
 
-  onClickRightIcon = event => {
+  onClickRightIcon = (event) => {
     console.log(event);
     // emit('click-right-icon', event);
   };
 
-  onClear = event => {
+  onClear = (event) => {
     preventDefault(event);
     this.modelValue = '';
     // emit('update:modelValue', '');
@@ -328,7 +333,7 @@ export class GlueField {
     }
   };
 
-  onKeypress = event => {
+  onKeypress = (event) => {
     const ENTER_CODE = 13;
 
     if (event.keyCode === ENTER_CODE) {
@@ -346,11 +351,11 @@ export class GlueField {
     // emit('keypress', event);
   };
 
-  onCompositionStart = event => {
+  onCompositionStart = (event) => {
     event.target.composing = true;
   };
 
-  onCompositionEnd = event => {
+  onCompositionEnd = (event) => {
     const { target } = event;
     if (target.composing) {
       target.composing = false;
@@ -424,7 +429,7 @@ export class GlueField {
       return (
         <textarea
           {...inputProps}
-          ref={dom => {
+          ref={(dom) => {
             this.inputRef = dom;
           }}
         />
@@ -451,7 +456,7 @@ export class GlueField {
         type={inputType}
         inputmode={inputMode}
         {...inputProps}
-        ref={dom => {
+        ref={(dom) => {
           this.inputRef = dom;
         }}
       />
@@ -503,7 +508,9 @@ export class GlueField {
     if (message) {
       const errorMessageAlign = this.parentErrorMessageAlign;
       console.log(errorMessageAlign, 'errorMessageAlign');
-      return <div class={classNames('glue-field__error-message')}>{message}</div>;
+      return (
+        <div class={classNames('glue-field__error-message')}>{message}</div>
+      );
     }
   };
 
@@ -537,7 +544,7 @@ export class GlueField {
     return (
       <Host class="glue-field">
         <glue-cell
-          title="#slot"
+          g_title="#slot"
           value="#slot"
           size={this.size}
           icon={this.leftIcon}
@@ -545,7 +552,8 @@ export class GlueField {
             'glue-field__error': this.showError(),
             'glue-field__disabled': disabled,
             [`glue-field--label-${labelAlign}`]: labelAlign,
-            'glue-field__min-height': this.type === 'textarea' && !this.autosize,
+            'glue-field__min-height':
+              this.type === 'textarea' && !this.autosize,
           })}
           center={this.center}
           border={this.border}
@@ -563,11 +571,17 @@ export class GlueField {
           }}
           arrowDirection={this.arrowDirection}
         >
-          <div slot="title">{this.renderLabel()}</div>
+          <div slot="g_title">{this.renderLabel()}</div>
           <div slot="value">
             <div class={bem('body')}>
               {this.renderInput()}
-              {this.showClear() && <glue-icon name="clear" class="glue-field__clear" onTouchStart={this.onClear} />}
+              {this.showClear() && (
+                <glue-icon
+                  name="clear"
+                  class="glue-field__clear"
+                  onTouchStart={this.onClear}
+                />
+              )}
               {this.renderRightIcon()}
               {this.buttonRender()}
             </div>

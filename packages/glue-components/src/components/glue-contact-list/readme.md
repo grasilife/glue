@@ -1,9 +1,6 @@
 # glue-contact-list
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -13,7 +10,6 @@
 | `defaultTagText` | `default-tag-text` |             | `string` | `undefined` |
 | `list`           | `list`             |             | `any`    | `undefined` |
 | `modelValue`     | `model-value`      |             | `any`    | `null`      |
-
 
 ## Dependencies
 
@@ -27,6 +23,7 @@
 - [glue-button](../glue-button)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-contact-list --> glue-radio
@@ -43,6 +40,6 @@ graph TD;
   style glue-contact-list fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

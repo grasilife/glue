@@ -1,9 +1,6 @@
 # glue-pull-refresh
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -19,13 +16,11 @@
 | `successDuration`   | `success-duration`   |             | `number`  | `500`                 |
 | `successText`       | `success-text`       |             | `string`  | `undefined`           |
 
-
 ## Events
 
 | Event     | Description | Type               |
 | --------- | ----------- | ------------------ |
 | `refresh` |             | `CustomEvent<any>` |
-
 
 ## Dependencies
 
@@ -34,12 +29,13 @@
 - [glue-loading](../glue-loading)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-pull-refresh --> glue-loading
   style glue-pull-refresh fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

@@ -7,7 +7,7 @@ export type ImageFit = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
 @Component({
   tag: 'glue-uploader-preview-item',
   styleUrl: 'glue-uploader-preview-item.less',
-  shadow: false
+  shadow: false,
 })
 export class GluePreviewItem {
   @Prop() name: string;

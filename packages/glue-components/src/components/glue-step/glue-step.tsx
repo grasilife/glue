@@ -1,4 +1,12 @@
-import { Component, Prop, h, Host, Event, EventEmitter, Element } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  Event,
+  EventEmitter,
+  Element,
+} from '@stencil/core';
 // import { BORDER } from '../../global/constant/constant';
 //TODO:如何获取父元素prop
 import classNames from 'classnames';

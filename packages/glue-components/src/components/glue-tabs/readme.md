@@ -1,9 +1,6 @@
 # glue-tabs
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -29,12 +26,11 @@
 | `titleInactiveColor` | `title-inactive-color` |             | `string`           | `undefined` |
 | `type`               | `type`                 |             | `string`           | `'line'`    |
 
-
 ## Dependencies
 
 ### Used by
 
- - [glue-coupon-list](../glue-coupon-list)
+- [glue-coupon-list](../glue-coupon-list)
 
 ### Depends on
 
@@ -43,6 +39,7 @@
 - [glue-tabs-content](../glue-tabs-content)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-tabs --> glue-tabs-title
@@ -54,6 +51,6 @@ graph TD;
   style glue-tabs fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

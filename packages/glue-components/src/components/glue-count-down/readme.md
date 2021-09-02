@@ -1,9 +1,6 @@
 # glue-count-down
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -15,7 +12,6 @@
 | `millisecond` | `millisecond` |             | `boolean` | `undefined`  |
 | `time`        | `time`        |             | `number`  | `0`          |
 
-
 ## Events
 
 | Event        | Description | Type               |
@@ -23,40 +19,26 @@
 | `glueChange` |             | `CustomEvent<any>` |
 | `glueFinish` |             | `CustomEvent<any>` |
 
-
 ## Methods
 
 ### `pause() => Promise<void>`
 
-
-
 #### Returns
 
 Type: `Promise<void>`
-
-
 
 ### `reset() => Promise<void>`
 
-
-
 #### Returns
 
 Type: `Promise<void>`
-
-
 
 ### `start() => Promise<void>`
 
-
-
 #### Returns
 
 Type: `Promise<void>`
 
+---
 
-
-
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

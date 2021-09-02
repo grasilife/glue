@@ -1,4 +1,14 @@
-import { Component, Prop, h, Host, Event, EventEmitter, State, Element, Method } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  Event,
+  EventEmitter,
+  State,
+  Element,
+  Method,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { getElementParent, getAttribute } from '../../utils/base';
 @Component({
@@ -9,7 +19,7 @@ import { getElementParent, getAttribute } from '../../utils/base';
 export class GlueSidebarItem {
   @Element() el!: HTMLGlueSidebarItemElement;
   @Prop() dot: boolean;
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() badge: string;
   @Prop() value: number | string;
   @Prop() disabled: boolean;
@@ -22,6 +32,7 @@ export class GlueSidebarItem {
     }
     this.glueChange.emit(this.value);
   };
+
   @Method()
   async setParentActive() {
     //由父元素触发
@@ -31,6 +42,7 @@ export class GlueSidebarItem {
     await this.parentEl.setActive(this.value);
     console.log(this.value, 'parentModelValue333');
   }
+
   @Method()
   async setActive() {
     //由父元素触发
@@ -38,7 +50,12 @@ export class GlueSidebarItem {
       return;
     }
     let parentModelValue = await this.parentEl.getActive();
-    console.log(parentModelValue, parentModelValue === this.value, this.value, 'parentModelValue22');
+    console.log(
+      parentModelValue,
+      parentModelValue === this.value,
+      this.value,
+      'parentModelValue22'
+    );
     this.selected = parentModelValue == this.value;
   }
 
@@ -51,7 +68,7 @@ export class GlueSidebarItem {
     this.selected = parentModelValue == this.value;
   }
   render() {
-    const { dot, badge, title, disabled } = this;
+    const { dot, badge, g_title, disabled } = this;
     return (
       <Host
         class={classNames('glue-sidebar-item', {
@@ -64,7 +81,7 @@ export class GlueSidebarItem {
         }}
       >
         <glue-badge dot={dot} content={badge} class="glue-sidebar-item__text">
-          {title}
+          {g_title}
         </glue-badge>
       </Host>
     );

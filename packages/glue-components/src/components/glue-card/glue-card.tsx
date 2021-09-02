@@ -4,7 +4,7 @@ import { isDef } from '../../utils/base';
 @Component({
   tag: 'glue-card',
   styleUrl: 'glue-card.less',
-  shadow: false
+  shadow: false,
 })
 export class GlueCard {
   @Prop() tag: string;
@@ -12,7 +12,7 @@ export class GlueCard {
   @Prop() desc: string;
 
   @Prop() thumb: string;
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() centered: boolean;
   @Prop() lazyLoad: boolean;
   @Prop() thumbLink: string;
@@ -21,15 +21,15 @@ export class GlueCard {
   @Prop() originPrice: string | number;
   @Prop() currency = '¥';
   @Event()
-  onClick: EventEmitter;
+  glueClick: EventEmitter;
   clickThumb = (event) => {
-    this.onClick.emit(event);
+    this.glueClick.emit(event);
   };
   renderTitle = () => {
-    if (this.title) {
+    if (this.g_title) {
       return (
         <div class={classNames('glue-card__title', 'glue-multi-ellipsis--l2')}>
-          {this.title}
+          {this.g_title}
         </div>
       );
     }
@@ -130,7 +130,7 @@ export class GlueCard {
             class={
               (classNames('glue-card__content'),
               {
-                ' glue-card__centered': this.centered
+                ' glue-card__centered': this.centered,
               })
             }
           >

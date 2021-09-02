@@ -1,9 +1,6 @@
 # glue-tabs-title
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -21,18 +18,18 @@
 | `title`         | `title`          |             | `string`           | `undefined` |
 | `type`          | `type`           |             | `string`           | `undefined` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [glue-tabs](../glue-tabs)
+- [glue-tabs](../glue-tabs)
 
 ### Depends on
 
 - [glue-badge](../glue-badge)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-tabs-title --> glue-badge
@@ -40,6 +37,6 @@ graph TD;
   style glue-tabs-title fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

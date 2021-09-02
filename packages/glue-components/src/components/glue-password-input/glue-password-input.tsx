@@ -15,10 +15,10 @@ export class GluePasswordInput {
   @Prop() mask = true;
   @Prop() value = '';
   @Prop() length = 6;
-  @Event() focus: EventEmitter;
+  @Event() glueFocus: EventEmitter;
   onTouchStart = (event: TouchEvent) => {
     event.stopPropagation();
-    this.focus.emit(event);
+    this.glueFocus.emit(event);
   };
 
   renderPoints = () => {
@@ -43,9 +43,13 @@ export class GluePasswordInput {
           })}
           style={style}
         >
-          {mask ? <i style={{ visibility: char ? 'visible' : 'hidden' }} /> : char}
+          {mask ? (
+            <i style={{ visibility: char ? 'visible' : 'hidden' }} />
+          ) : (
+            char
+          )}
           {showCursor && <div class="glue-password-input__cursor" />}
-        </li>,
+        </li>
       );
     }
 

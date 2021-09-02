@@ -2,7 +2,11 @@ import { Component, Prop, h, State, Element, Host, Watch } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { addUnit } from '../../utils/format/unit';
-import { getVisibleHeight, getElementTop, setRootScrollTop } from '../../utils/dom/scroll';
+import {
+  getVisibleHeight,
+  getElementTop,
+  setRootScrollTop,
+} from '../../utils/dom/scroll';
 import { getElementChildren, getAttribute } from '../../utils/base';
 import { BORDER_TOP_BOTTOM } from '../../global/constant/constant';
 import { unitToPx } from '../../utils/format/unit';
@@ -75,7 +79,8 @@ export class GlueTabs {
     console.log(this.children, 'aghviahiai');
     // this.setLine();
   }
-  scrollable = () => this.children.length > this.swipeThreshold || !this.ellipsis;
+  scrollable = () =>
+    this.children.length > this.swipeThreshold || !this.ellipsis;
   scroller = () => useScrollParent(this.el);
   navStyle = () => ({
     borderColor: this.color,
@@ -102,7 +107,7 @@ export class GlueTabs {
   };
 
   // scroll active tab into view
-  scrollIntoView = immediate => {
+  scrollIntoView = (immediate) => {
     const nav = this.navRef;
     const titles = this.titleRefs;
 
@@ -121,7 +126,12 @@ export class GlueTabs {
     const shouldAnimate = this.inited;
     const titles = this.titleRefs;
     console.log(titles, 'titlestitles');
-    if (!titles || !titles[this.currentIndex] || this.type !== 'line' || isHidden(this.el)) {
+    if (
+      !titles ||
+      !titles[this.currentIndex] ||
+      this.type !== 'line' ||
+      isHidden(this.el)
+    ) {
       return;
     }
     const title = titles[this.currentIndex].$el;
@@ -142,7 +152,7 @@ export class GlueTabs {
     console.log(this.lineStyle, 'this.lineStyle');
   };
 
-  findAvailableTab = index => {
+  findAvailableTab = (index) => {
     const diff = index < this.currentIndex ? -1 : 1;
 
     while (index >= 0 && index < this.children.length) {
@@ -154,7 +164,7 @@ export class GlueTabs {
     }
   };
 
-  setCurrentIndex = currentIndex => {
+  setCurrentIndex = (currentIndex) => {
     const newIndex = this.findAvailableTab(currentIndex);
 
     if (!isDef(newIndex)) {
@@ -177,8 +187,10 @@ export class GlueTabs {
   };
 
   // correct the index of active tab
-  setCurrentIndexByName = name => {
-    const matched = this.children.filter((tab, index) => this.getTabName(tab, index) === name);
+  setCurrentIndexByName = (name) => {
+    const matched = this.children.filter(
+      (tab, index) => this.getTabName(tab, index) === name
+    );
 
     const index = matched[0] ? this.children.indexOf(matched[0]) : 0;
     this.setCurrentIndex(index);
@@ -224,12 +236,12 @@ export class GlueTabs {
     }
   };
 
-  onStickyScroll = params => {
+  onStickyScroll = (params) => {
     this.stickyFixed = params.isFixed;
     // emit('scroll', params);
   };
 
-  scrollTo = name => {
+  scrollTo = (name) => {
     this.setCurrentIndexByName(name);
     this.scrollToCurrentContent(true);
   };
@@ -256,7 +268,7 @@ export class GlueTabs {
     let prop = getAttribute(el, type);
     return prop;
   };
-  setTitleRefs = dom => {
+  setTitleRefs = (dom) => {
     let mydata = [];
     mydata.push(dom);
     console.log(dom, 'domdomdom');
@@ -269,7 +281,7 @@ export class GlueTabs {
       let title = this.getProp(item, 'title');
       return (
         <glue-tabs-title
-          ref={dom => {
+          ref={(dom) => {
             this.setTitleRefs(dom);
           }}
           // ref={this.setTitleRefs(index)}
@@ -312,11 +324,17 @@ export class GlueTabs {
 
   renderHeader = () => {
     const { type, border } = this;
-    console.log(this.scrollable(), BORDER_TOP_BOTTOM, border, type, 'afbabiufanini');
+    console.log(
+      this.scrollable(),
+      BORDER_TOP_BOTTOM,
+      border,
+      type,
+      'afbabiufanini'
+    );
     this.setLine();
     return (
       <div
-        ref={dom => {
+        ref={(dom) => {
           this.wrapRef = dom;
         }}
         class={classNames('glue-tabs__wrap', {
@@ -325,7 +343,7 @@ export class GlueTabs {
         })}
       >
         <div
-          ref={dom => {
+          ref={(dom) => {
             this.navRef = dom;
           }}
           role="tablist"
@@ -336,7 +354,9 @@ export class GlueTabs {
         >
           <slot name="nav-left"></slot>
           {this.renderNav()}
-          {type === 'line' && <div class="glue-tabs__line" style={this.lineStyle} />}
+          {type === 'line' && (
+            <div class="glue-tabs__line" style={this.lineStyle} />
+          )}
           <slot name="nav-right"></slot>
         </div>
       </div>
@@ -367,14 +387,18 @@ export class GlueTabs {
     return (
       <Host class={classNames('glue-tabs', bem([this.type]))}>
         {this.sticky ? (
-          <glue-sticky container={this.el} offset-top={this.offsetTopPx()} onScroll={this.onStickyScroll}>
+          <glue-sticky
+            container={this.el}
+            offset-top={this.offsetTopPx()}
+            onScroll={this.onStickyScroll}
+          >
             {this.renderHeader()}
           </glue-sticky>
         ) : (
           this.renderHeader()
         )}
         <glue-tabs-content
-          ref={dom => {
+          ref={(dom) => {
             this.contentRef = dom;
           }}
           // count={this.children.length}

@@ -32,7 +32,11 @@ export class GlueCouponList {
 
   // const { height: windowHeight } = useWindowSize();
 
-  buttonDisabled = () => !this.exchangeButtonLoading && (this.exchangeButtonDisabled || !this.code2 || this.code2.length < this.exchangeMinLength);
+  buttonDisabled = () =>
+    !this.exchangeButtonLoading &&
+    (this.exchangeButtonDisabled ||
+      !this.code2 ||
+      this.code2.length < this.exchangeMinLength);
 
   listStyle = () => ({
     // height: windowHeight.value - (this.showExchangeBar ? 140 : 94) + 'px',
@@ -47,7 +51,7 @@ export class GlueCouponList {
     }
   };
 
-  scrollToCoupon = index => {
+  scrollToCoupon = (index) => {
     console.log(index);
     // nextTick(() => {
     //   if (couponRefs.value[index]) {
@@ -67,7 +71,13 @@ export class GlueCouponList {
     if (this.showExchangeBar) {
       return (
         <div class="glue-coupon-list__exchange-bar">
-          <glue-field clearable border={false} class="glue-coupon-list__field" placeholder={this.inputPlaceholder || '提示'} maxlength="20" />
+          <glue-field
+            clearable
+            border={false}
+            class="glue-coupon-list__field"
+            placeholder={this.inputPlaceholder || '提示'}
+            maxlength="20"
+          />
           <glue-button
             plain
             type="danger"
@@ -98,7 +108,7 @@ export class GlueCouponList {
           {coupons.map((coupon, index) => (
             <glue-coupon
               key={coupon.id}
-              ref={dom => {
+              ref={(dom) => {
                 this.setCouponRefs = dom;
               }}
               coupon={coupon}
@@ -128,8 +138,13 @@ export class GlueCouponList {
           })}
           style={this.listStyle()}
         >
-          {disabledCoupons.map(coupon => (
-            <glue-coupon disabled key={coupon.id} coupon={coupon} currency={this.currency} />
+          {disabledCoupons.map((coupon) => (
+            <glue-coupon
+              disabled
+              key={coupon.id}
+              coupon={coupon}
+              currency={this.currency}
+            />
           ))}
           {!disabledCoupons.length && this.renderEmpty()}
         </div>

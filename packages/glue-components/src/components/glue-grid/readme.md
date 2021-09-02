@@ -1,9 +1,6 @@
 # glue-grid
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -18,7 +15,6 @@
 | `iconSize`  | `icon-size`  |             | `number \| string`           | `28`        |
 | `square`    | `square`     |             | `boolean`                    | `undefined` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

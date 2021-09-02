@@ -1,9 +1,6 @@
 # glue-search
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -20,7 +17,6 @@
 | `shape`        | `shape`         |             | `"square"` | `undefined` |
 | `showAction`   | `show-action`   |             | `boolean`  | `undefined` |
 
-
 ## Events
 
 | Event         | Description | Type               |
@@ -29,7 +25,6 @@
 | `changeValue` |             | `CustomEvent<any>` |
 | `search`      |             | `CustomEvent<any>` |
 
-
 ## Dependencies
 
 ### Depends on
@@ -37,6 +32,7 @@
 - [glue-field](../glue-field)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-search --> glue-field
@@ -47,6 +43,6 @@ graph TD;
   style glue-search fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

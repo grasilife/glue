@@ -1,9 +1,6 @@
 # glue-col
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -12,7 +9,6 @@
 | `offset` | `offset`  |             | `number \| string` | `0`     |
 | `span`   | `span`    |             | `number \| string` | `0`     |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

@@ -1,8 +1,22 @@
-import { Component, Prop, h, Host, State, Event, EventEmitter, Method } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Event,
+  EventEmitter,
+  Method,
+} from '@stencil/core';
 // import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
 import { setScrollTop } from '../../utils/dom/scroll';
-import { compareDay, getPrevDay, getNextDay, formatMonthTitle } from '../glue-calendar/utils';
+import {
+  compareDay,
+  getPrevDay,
+  getNextDay,
+  formatMonthTitle,
+} from '../glue-calendar/utils';
 import { getMonthEndDay } from '../glue-datetime-picker/utils';
 @Component({
   tag: 'glue-calendar-month',
@@ -26,10 +40,11 @@ export class GlueCalendarMonth {
   @Prop() firstDayOfWeek: number;
   @State() visible: boolean;
   @Event() glueMonthClick: EventEmitter;
-  clickHandle = item => {
+  clickHandle = (item) => {
     console.log(item, 'itemitemitemitemitem11');
     this.glueMonthClick.emit(item);
   };
+
   @Method()
   async getTitle() {
     console.log(this.title(), 'this.title()');
@@ -48,21 +63,26 @@ export class GlueCalendarMonth {
     return realDay;
   };
 
-  totalDay = () => getMonthEndDay(this.date.getFullYear(), this.date.getMonth() + 1);
+  totalDay = () =>
+    getMonthEndDay(this.date.getFullYear(), this.date.getMonth() + 1);
 
   shouldRender = () => this.visible || !this.lazyRender;
 
-  scrollIntoView = body => {
+  scrollIntoView = (body) => {
     const el = this.showSubtitle ? this.daysRef : this.monthRef;
 
-    const scrollTop = el.getBoundingClientRect().top - body.getBoundingClientRect().top + body.scrollTop;
+    const scrollTop =
+      el.getBoundingClientRect().top -
+      body.getBoundingClientRect().top +
+      body.scrollTop;
 
     setScrollTop(body, scrollTop);
   };
 
-  getMultipleDayType = day => {
+  getMultipleDayType = (day) => {
     // console.log(this.currentDate, 'this.currentDate');
-    const isSelected = date => this.currentDate.some(item => compareDay(item, date) === 0);
+    const isSelected = (date) =>
+      this.currentDate.some((item) => compareDay(item, date) === 0);
 
     if (isSelected(day)) {
       const prevDay = getPrevDay(day);
@@ -85,7 +105,7 @@ export class GlueCalendarMonth {
     return '';
   };
 
-  getRangeDayType = day => {
+  getRangeDayType = (day) => {
     const [startDay, endDay] = this.currentDate;
 
     if (!startDay) {
@@ -114,7 +134,7 @@ export class GlueCalendarMonth {
     }
   };
 
-  getDayType = day => {
+  getDayType = (day) => {
     const { type, minDate, maxDate, currentDate } = this;
     // console.log(day, minDate, maxDate, 'anifai');
     if (compareDay(day, minDate) < 0 || compareDay(day, maxDate) > 0) {
@@ -139,7 +159,7 @@ export class GlueCalendarMonth {
     }
   };
 
-  getBottomInfo = dayType => {
+  getBottomInfo = (dayType) => {
     if (this.type === 'range') {
       if (dayType === 'end') {
         return '结束';
@@ -162,7 +182,11 @@ export class GlueCalendarMonth {
   renderMark = () => {
     // console.log(this.showMark, this.date, 'this.showMark');
     if (this.showMark && this.shouldRender()) {
-      return <div class="glue-calendar-month__month-mark">{this.date.getMonth() + 1}</div>;
+      return (
+        <div class="glue-calendar-month__month-mark">
+          {this.date.getMonth() + 1}
+        </div>
+      );
     }
   };
 
@@ -221,7 +245,9 @@ export class GlueCalendarMonth {
     return (
       <div role="grid" class="glue-calendar-month__days">
         {this.renderMark()}
-        {(this.shouldRender() ? this.days() : this.placeholders()).map(this.renderDay)}
+        {(this.shouldRender() ? this.days() : this.placeholders()).map(
+          this.renderDay
+        )}
       </div>
     );
   };

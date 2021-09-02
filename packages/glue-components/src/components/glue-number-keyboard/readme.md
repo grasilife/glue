@@ -1,9 +1,6 @@
 # glue-number-keyboard
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -27,7 +24,6 @@
 | `transition`          | `transition`             |             | `boolean`          | `true`             |
 | `zIndex`              | `z-index`                |             | `string`           | `undefined`        |
 
-
 ## Events
 
 | Event         | Description | Type               |
@@ -38,7 +34,6 @@
 | `delete`      |             | `CustomEvent<any>` |
 | `input`       |             | `CustomEvent<any>` |
 
-
 ## Dependencies
 
 ### Depends on
@@ -46,6 +41,7 @@
 - [glue-key](../glue-key)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-number-keyboard --> glue-key
@@ -53,6 +49,6 @@ graph TD;
   style glue-number-keyboard fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

@@ -44,7 +44,7 @@ export class GlueProgress {
 
       return (
         <span
-          ref={dom => {
+          ref={(dom) => {
             this.pivotRef = dom;
           }}
           style={style}
@@ -56,6 +56,7 @@ export class GlueProgress {
     }
   };
   background = () => (this.inactive ? '#cacaca' : this.color);
+
   @Method()
   async resize() {
     this._resize();
@@ -79,7 +80,7 @@ export class GlueProgress {
     };
     return (
       <Host
-        ref={dom => {
+        ref={(dom) => {
           this.root = dom;
         }}
         class="glue-progress"

@@ -1,9 +1,6 @@
 # glue-calendar
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -14,7 +11,7 @@
 | `closeOnPopstate`     | `close-on-popstate`      |             | `boolean`          | `false`                                                          |
 | `color`               | `color`                  |             | `string`           | `undefined`                                                      |
 | `confirmDisabledText` | `confirm-disabled-text`  |             | `string`           | `undefined`                                                      |
-| `confirmText`         | `confirm-text`           |             | `string`           | `'确定'`                                                           |
+| `confirmText`         | `confirm-text`           |             | `string`           | `'确定'`                                                         |
 | `defaultDate`         | `default-date`           |             | `any`              | `undefined`                                                      |
 | `firstDayOfWeek`      | `first-day-of-week`      |             | `any`              | `0`                                                              |
 | `footer`              | `footer`                 |             | `string`           | `''`                                                             |
@@ -36,9 +33,8 @@
 | `showSubtitle`        | `show-subtitle`          |             | `boolean`          | `false`                                                          |
 | `showTitle`           | `show-title`             |             | `boolean`          | `false`                                                          |
 | `teleport`            | `teleport`               |             | `any`              | `undefined`                                                      |
-| `title`               | `title`                  |             | `string`           | `'日期选择'`                                                         |
+| `title`               | `title`                  |             | `string`           | `'日期选择'`                                                     |
 | `type`                | `type`                   |             | `string`           | `'single'`                                                       |
-
 
 ## Events
 
@@ -53,7 +49,6 @@
 | `glueSelect`    |             | `CustomEvent<any>` |
 | `glueUnselect`  |             | `CustomEvent<any>` |
 
-
 ## Dependencies
 
 ### Depends on
@@ -64,6 +59,7 @@
 - [glue-popup](../glue-popup)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-calendar --> glue-calendar-month
@@ -79,6 +75,6 @@ graph TD;
   style glue-calendar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

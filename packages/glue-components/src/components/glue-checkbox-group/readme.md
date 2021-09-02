@@ -1,9 +1,6 @@
 # glue-checkbox-group
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -17,7 +14,6 @@
 | `max`          | `max`           |             | `number \| string` | `undefined` |
 | `modelValue`   | `model-value`   |             | `any`              | `undefined` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

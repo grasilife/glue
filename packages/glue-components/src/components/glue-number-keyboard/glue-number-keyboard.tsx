@@ -8,7 +8,7 @@ import { stopPropagation } from '../../utils/dom/event';
 })
 export class GlueNumberKeyboard {
   @Prop() show: boolean;
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() zIndex: string;
   @Prop() teleport: string | number;
   @Prop() randomKeyOrder: boolean;
@@ -25,11 +25,11 @@ export class GlueNumberKeyboard {
   @Prop() showDeleteKey = true;
   @Prop() hideOnClickOutside = true;
   @Prop() safeAreaInsetBottom = true;
-  @Event() blur: EventEmitter;
-  @Event() close: EventEmitter;
-  @Event() delete: EventEmitter;
-  @Event() changeValue: EventEmitter;
-  @Event() input: EventEmitter;
+  @Event() glueBlur: EventEmitter;
+  @Event() glueClose: EventEmitter;
+  @Event() glueDelete: EventEmitter;
+  @Event() glueChange: EventEmitter;
+  @Event() glueInput: EventEmitter;
   root: HTMLElement;
   genBasicKeys = () => {
     const keys = [];
@@ -62,24 +62,32 @@ export class GlueNumberKeyboard {
     const extraKeys = Array.isArray(extraKey) ? extraKey : [extraKey];
 
     if (extraKeys.length === 1) {
-      keys.push({ text: 0, wider: true }, { text: extraKeys[0], type: 'extra' });
+      keys.push(
+        { text: 0, wider: true },
+        { text: extraKeys[0], type: 'extra' }
+      );
     } else if (extraKeys.length === 2) {
-      keys.push({ text: extraKeys[0], type: 'extra' }, { text: 0 }, { text: extraKeys[1], type: 'extra' });
+      keys.push(
+        { text: extraKeys[0], type: 'extra' },
+        { text: 0 },
+        { text: extraKeys[1], type: 'extra' }
+      );
     }
 
     return keys;
   };
 
-  keys = () => (this.theme === 'custom' ? this.genCustomKeys() : this.genDefaultKeys());
+  keys = () =>
+    this.theme === 'custom' ? this.genCustomKeys() : this.genDefaultKeys();
 
   onBlur = () => {
     if (this.show) {
-      this.blur.emit();
+      this.glueBlur.emit();
     }
   };
 
   onClose = () => {
-    this.close.emit();
+    this.glueClose.emit();
     if (this.blurOnClose) {
       this.onBlur();
     }
@@ -101,21 +109,21 @@ export class GlueNumberKeyboard {
     const value = this.modelValue;
 
     if (type === 'delete') {
-      this.delete.emit();
-      this.changeValue.emit(value.slice(0, value.length - 1));
+      this.glueDelete.emit();
+      this.glueChange.emit(value.slice(0, value.length - 1));
     } else if (type === 'close') {
       this.onClose();
     } else if (value.length < this.maxlength) {
-      this.input.emit(text);
-      this.changeValue.emit(value + text);
+      this.glueInput.emit(text);
+      this.glueChange.emit(value + text);
     }
   };
 
   renderHeader = () => {
-    const { title, theme, closeButtonText } = this;
-    // const leftSlot = slots['title-left'];
+    const { g_title, theme, closeButtonText } = this;
+    // const leftSlot = slots['g_title-left'];
     const showClose = closeButtonText && theme === 'default';
-    const showTitle = title || showClose;
+    const showTitle = g_title || showClose;
 
     if (!showTitle) {
       return;
@@ -124,9 +132,13 @@ export class GlueNumberKeyboard {
     return (
       <div class="glue-number-keyboard__header">
         {/* {leftSlot && <span class="glue-number-keyboard__title-left">{leftSlot()}</span>} */}
-        {title && <h2 class="glue-number-keyboard__title">{title}</h2>}
+        {g_title && <h2 class="glue-number-keyboard__title">{g_title}</h2>}
         {showClose && (
-          <button type="button" class="glue-number-keyboard__close" onClick={this.onClose}>
+          <button
+            type="button"
+            class="glue-number-keyboard__close"
+            onClick={this.onClose}
+          >
             {closeButtonText}
           </button>
         )}
@@ -135,7 +147,7 @@ export class GlueNumberKeyboard {
   };
 
   renderKeys = () => {
-    return this.keys().map(key => {
+    return this.keys().map((key) => {
       // const keySlots = {};
 
       if (key.type === 'delete') {
@@ -145,7 +157,15 @@ export class GlueNumberKeyboard {
         // keySlots.default = slots['extra-key'];
       }
 
-      return <glue-key key={key.text} text={key.text} type={key.type} wider={key.wider} color={key.color} />;
+      return (
+        <glue-key
+          key={key.text}
+          text={key.text}
+          type={key.type}
+          wider={key.wider}
+          color={key.color}
+        />
+      );
     });
   };
 
@@ -153,8 +173,16 @@ export class GlueNumberKeyboard {
     if (this.theme === 'custom') {
       return (
         <div class="glue-number-keyboard__sidebar">
-          {this.showDeleteKey && <glue-key large text={this.deleteButtonText} type="delete" />}
-          <glue-key large text={this.closeButtonText} type="close" color="blue" loading={this.closeButtonLoading} />
+          {this.showDeleteKey && (
+            <glue-key large text={this.deleteButtonText} type="delete" />
+          )}
+          <glue-key
+            large
+            text={this.closeButtonText}
+            type="close"
+            color="blue"
+            loading={this.closeButtonLoading}
+          />
         </div>
       );
     }
@@ -163,13 +191,13 @@ export class GlueNumberKeyboard {
     return (
       <Host
         v-show={this.show}
-        ref={dom => {
+        ref={(dom) => {
           this.root = dom;
         }}
         style={{ zIndex: this.zIndex }}
         class={classNames('glue-number-keyboard', {
           'glue-number-keyboard__unfit': !this.safeAreaInsetBottom,
-          'glue-number-keyboard__with-title': this.title,
+          'glue-number-keyboard__with-title': this.g_title,
         })}
         onTouchStart={stopPropagation}
         onAnimationend={this.onAnimationEnd}

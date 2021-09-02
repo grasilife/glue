@@ -1,4 +1,14 @@
-import { Component, Prop, h, Host, State, Element, EventEmitter, Event, Method } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Element,
+  EventEmitter,
+  Event,
+  Method,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { getElementParent, getAttribute } from '../../utils/base';
 @Component({
@@ -11,7 +21,7 @@ export class GlueTabbarItem {
   @Prop() dot: boolean;
   @Prop() icon: string;
   @Prop() name: string;
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() badge: string;
   @Prop() iconPrefix: string;
   @State() parentActiveColor;
@@ -27,17 +37,24 @@ export class GlueTabbarItem {
     this.parentInactiveColor = getAttribute(this.parentEl, 'inactive-color');
     this.parentModelValue = getAttribute(this.parentEl, 'model-value');
     this.selected = this.parentModelValue == this.name;
-    console.log(this.parentActiveColor, this.parentActiveColor, this.parentModelValue, 'this.parentModelValue22');
+    console.log(
+      this.parentActiveColor,
+      this.parentActiveColor,
+      this.parentModelValue,
+      'this.parentModelValue22'
+    );
   }
 
   onClick = () => {
     this.glueClick.emit();
   };
+
   @Method()
   async setParentActive() {
     await this.parentEl.setActive(this.name);
     console.log(this.name, 'parentModelValue333');
   }
+
   @Method()
   async setActive(parentModelValue) {
     //由父元素触发
@@ -49,7 +66,9 @@ export class GlueTabbarItem {
       return <slot name="icon"></slot>;
     }
     if (this.icon) {
-      return <glue-icon name={this.icon} classPrefix={this.iconPrefix} size={24} />;
+      return (
+        <glue-icon name={this.icon} classPrefix={this.iconPrefix} size={24} />
+      );
     }
   };
   render() {
@@ -69,7 +88,7 @@ export class GlueTabbarItem {
         <glue-badge dot={dot} content={badge} class="glue-tabbar-item__icon">
           {this.renderIcon()}
         </glue-badge>
-        <div class="glue-tabbar-item__text">{this.title}</div>
+        <div class="glue-tabbar-item__text">{this.g_title}</div>
       </Host>
     );
   }

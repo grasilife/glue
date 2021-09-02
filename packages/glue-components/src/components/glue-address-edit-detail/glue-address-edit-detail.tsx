@@ -18,12 +18,13 @@ export class GlueAddressEditDetail {
   @Prop() detailMaxlength: string | number;
   @Prop() showSearchResult: boolean;
   field: HTMLElement;
-  @Event() focus: EventEmitter;
-  @Event() blur: EventEmitter;
-  @Event() input: EventEmitter;
-  showSearchResultState = () => this.focused && this.searchResult && this.showSearchResult;
+  @Event() glueFocus: EventEmitter;
+  @Event() glueBlur: EventEmitter;
+  @Event() glueInput: EventEmitter;
+  showSearchResultState = () =>
+    this.focused && this.searchResult && this.showSearchResult;
 
-  onSelect = express => {
+  onSelect = (express) => {
     console.log(express);
     // emit('select-search', express);
     // emit('input', `${express.address || ''} ${express.name || ''}`.trim());
@@ -43,9 +44,12 @@ export class GlueAddressEditDetail {
     }
   };
 
-  renderSearchTitle = express => {
+  renderSearchTitle = (express) => {
     if (express.name) {
-      const text = express.name.replace(this.value, `<span class="glue-address-edit-detail__keyword" >${this.value}</span>`);
+      const text = express.name.replace(
+        this.value,
+        `<span class="glue-address-edit-detail__keyword" >${this.value}</span>`
+      );
 
       return <div innerHTML={text} />;
     }
@@ -57,7 +61,7 @@ export class GlueAddressEditDetail {
     }
 
     const { searchResult } = this;
-    return searchResult.map(express => (
+    return searchResult.map((express) => (
       <glue-cell
         v-slots={{
           title: () => this.renderSearchTitle(express),
@@ -75,16 +79,16 @@ export class GlueAddressEditDetail {
     ));
   };
 
-  onFocus = event => {
-    this.focus.emit(event);
+  onFocus = (event) => {
+    this.glueFocus.emit(event);
   };
 
-  onBlur = event => {
-    this.blur.emit(event);
+  onBlur = (event) => {
+    this.glueBlur.emit(event);
   };
 
-  onInput = value => {
-    this.input.emit(value);
+  onInput = (value) => {
+    this.glueInput.emit(value);
   };
   render() {
     if (this.show) {
@@ -93,7 +97,7 @@ export class GlueAddressEditDetail {
           <glue-field
             v-slots={{ icon: this.renderFinish }}
             autosize
-            ref={dom => (this.field = dom)}
+            ref={(dom) => (this.field = dom)}
             class="glue-address-edit-detail"
             // rows={this.detailRows}
             type="textarea"

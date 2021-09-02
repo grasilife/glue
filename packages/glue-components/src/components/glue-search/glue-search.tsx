@@ -2,7 +2,13 @@ import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import { pick } from '../../utils/base';
 import { preventDefault } from '../../utils/dom/event';
-const fieldPropNames = ['leftIcon', 'rightIcon', 'clearable', 'modelValue', 'clearTrigger'];
+const fieldPropNames = [
+  'leftIcon',
+  'rightIcon',
+  'clearable',
+  'modelValue',
+  'clearTrigger',
+];
 @Component({
   tag: 'glue-search',
   styleUrl: 'glue-search.less',
@@ -30,7 +36,7 @@ export class GlueSearch {
     // }
   };
 
-  onKeypress = event => {
+  onKeypress = (event) => {
     const ENTER_CODE = 13;
     if (event.keyCode === ENTER_CODE) {
       preventDefault(event);
@@ -48,7 +54,12 @@ export class GlueSearch {
     if (this.showAction) {
       // const text = this.actionText || 'cancel';
       return (
-        <div class="glue-search_-action" role="button" tabindex="0" onClick={this.onCancel}>
+        <div
+          class="glue-search_-action"
+          role="button"
+          tabindex="0"
+          onClick={this.onCancel}
+        >
           {/* {slots.action ? slots.action() : text} */}
         </div>
       );
@@ -74,14 +85,14 @@ export class GlueSearch {
       class: null,
     };
 
-    const onInput = value => {
+    const onInput = (value) => {
       this.changeValue.emit(value);
     };
 
     return (
       <glue-field
         // v-slots={pick(slots, ['left-icon', 'right-icon'])}
-        ref={dom => {
+        ref={(dom) => {
           this.filedRef = dom;
         }}
         type="search"

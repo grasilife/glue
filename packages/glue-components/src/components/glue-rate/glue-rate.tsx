@@ -1,4 +1,13 @@
-import { Component, Prop, h, Host, EventEmitter, Event, State, Element } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  EventEmitter,
+  Event,
+  State,
+  Element,
+} from '@stencil/core';
 import '@glue/touch-emulator';
 import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
@@ -51,7 +60,7 @@ export class GlueRate {
     return list;
   };
 
-  selectHandle = index => {
+  selectHandle = (index) => {
     if (!this.disabled && !this.readonly && index !== this.vlaue) {
       console.log(index, 'index');
       this.vlaue = index;
@@ -60,7 +69,7 @@ export class GlueRate {
   };
   untouchable = () => this.readonly || this.disabled || !this.touchable;
 
-  getScoreByPosition = x => {
+  getScoreByPosition = (x) => {
     for (let i = this.ranges.length - 1; i > 0; i--) {
       if (x > this.ranges[i].left) {
         return this.ranges[i].score;
@@ -68,7 +77,7 @@ export class GlueRate {
     }
     return this.allowHalf ? 0.5 : 1;
   };
-  onTouchStart = event => {
+  onTouchStart = (event) => {
     console.log(1111);
     if (this.untouchable()) {
       return;
@@ -87,14 +96,17 @@ export class GlueRate {
     this.ranges = [];
     rects.forEach((rect, index) => {
       if (this.allowHalf) {
-        this.ranges.push({ score: index + 0.5, left: rect.left }, { score: index + 1, left: rect.left + rect.width / 2 });
+        this.ranges.push(
+          { score: index + 0.5, left: rect.left },
+          { score: index + 1, left: rect.left + rect.width / 2 }
+        );
       } else {
         this.ranges.push({ score: index + 1, left: rect.left });
       }
     });
   };
 
-  onTouchMove = event => {
+  onTouchMove = (event) => {
     console.log(434343);
     if (this.untouchable()) {
       return;
@@ -111,7 +123,19 @@ export class GlueRate {
   };
   renderStar = (status, index) => {
     console.log(status, index, 'status, index');
-    const { icon, size, color, count, gutter, voidIcon, disabled, voidColor, allowHalf, iconPrefix, disabledColor } = this;
+    const {
+      icon,
+      size,
+      color,
+      count,
+      gutter,
+      voidIcon,
+      disabled,
+      voidColor,
+      allowHalf,
+      iconPrefix,
+      disabledColor,
+    } = this;
     const score = index + 1;
     const isFull = status === 'full';
     const isVoid = status === 'void';
@@ -124,7 +148,16 @@ export class GlueRate {
     }
     console.log(isFull, 'isFull');
     return (
-      <div key={index} role="radio" style={style} tabindex="0" class={classNames('glue-rate__item')} aria-setsize={count} aria-posinset={score} aria-checked={String(!isVoid)}>
+      <div
+        key={index}
+        role="radio"
+        style={style}
+        tabindex="0"
+        class={classNames('glue-rate__item')}
+        aria-setsize={count}
+        aria-posinset={score}
+        aria-checked={String(!isVoid)}
+      >
         <glue-icon
           size={size}
           name={isFull ? icon : voidIcon}

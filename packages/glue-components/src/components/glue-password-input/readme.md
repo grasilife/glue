@@ -1,9 +1,6 @@
 # glue-password-input
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -17,14 +14,12 @@
 | `mask`      | `mask`       |             | `boolean`          | `true`      |
 | `value`     | `value`      |             | `string`           | `''`        |
 
-
 ## Events
 
 | Event   | Description | Type               |
 | ------- | ----------- | ------------------ |
 | `focus` |             | `CustomEvent<any>` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

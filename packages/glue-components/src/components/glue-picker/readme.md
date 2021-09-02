@@ -1,9 +1,6 @@
 # glue-picker
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -27,7 +24,6 @@
 | `valuesKey`         | `values-key`          |             | `string`  | `'values'`   |
 | `visibleItemCount`  | `visible-item-count`  |             | `number`  | `6`          |
 
-
 ## Events
 
 | Event         | Description | Type               |
@@ -36,126 +32,80 @@
 | `glueChange`  |             | `CustomEvent<any>` |
 | `glueConfirm` |             | `CustomEvent<any>` |
 
-
 ## Methods
 
 ### `confirm() => Promise<void>`
 
-
-
 #### Returns
 
 Type: `Promise<void>`
-
-
 
 ### `getColumnIndex(index: any) => Promise<any>`
 
-
-
 #### Returns
 
 Type: `Promise<any>`
-
-
 
 ### `getColumnValue(index: any) => Promise<any>`
 
-
-
 #### Returns
 
 Type: `Promise<any>`
-
-
 
 ### `getColumnValues(index: any) => Promise<any>`
 
-
-
 #### Returns
 
 Type: `Promise<any>`
 
-
-
 ### `getIndexes() => Promise<void>`
-
-
 
 #### Returns
 
 Type: `Promise<void>`
 
-
-
 ### `getValues() => Promise<any[]>`
-
-
 
 #### Returns
 
 Type: `Promise<any[]>`
 
-
-
 ### `setColumnIndex(columnIndex: any, optionIndex: any) => Promise<void>`
-
-
 
 #### Returns
 
 Type: `Promise<void>`
-
-
 
 ### `setColumnValue(index: any, value: any) => Promise<void>`
 
-
-
 #### Returns
 
 Type: `Promise<void>`
-
-
 
 ### `setColumnValues(index: any, options: any) => Promise<void>`
 
-
-
 #### Returns
 
 Type: `Promise<void>`
-
-
 
 ### `setIndexes(indexes: any) => Promise<void>`
 
-
-
 #### Returns
 
 Type: `Promise<void>`
-
-
 
 ### `setValues(values: any) => Promise<void>`
 
-
-
 #### Returns
 
 Type: `Promise<void>`
-
-
-
 
 ## Dependencies
 
 ### Used by
 
- - [glue-date-picker](../glue-date-picker)
- - [glue-time-picker](../glue-time-picker)
+- [glue-date-picker](../glue-date-picker)
+- [glue-time-picker](../glue-time-picker)
 
 ### Depends on
 
@@ -163,6 +113,7 @@ Type: `Promise<void>`
 - [glue-loading](../glue-loading)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-picker --> glue-picker-column
@@ -172,6 +123,6 @@ graph TD;
   style glue-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

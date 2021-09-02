@@ -64,14 +64,23 @@ export class GlueAddressList {
 
     return (
       <div class="glue-address-list__bottom">
-        <glue-button round block type="danger" text={this.addButtonText || '添加'} class="glue-address-list__add" onClick={onClick} />
+        <glue-button
+          round
+          block
+          type="danger"
+          text={this.addButtonText || '添加'}
+          class="glue-address-list__add"
+          onClick={onClick}
+        />
       </div>
     );
   };
   render() {
     // const List = renderList(this.list);
     const DisabledList = this.renderList(this.disabledList, true);
-    const DisabledText = this.disabledText && <div class="glue-address-list__disabled-text">{this.disabledText}</div>;
+    const DisabledText = this.disabledText && (
+      <div class="glue-address-list__disabled-text">{this.disabledText}</div>
+    );
 
     return (
       <Host class="glue-address-list">

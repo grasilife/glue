@@ -10,7 +10,7 @@ export class GlueTabsTitle {
   @Prop() dot: boolean;
   @Prop() type: string;
   @Prop() color: string;
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() badge: string | number;
   @Prop() isActive: boolean;
   @Prop() disabled: boolean;
@@ -24,7 +24,8 @@ export class GlueTabsTitle {
       backgroundColor: '',
       color: '',
     };
-    const { type, color, disabled, isActive, activeColor, inactiveColor } = this;
+    const { type, color, disabled, isActive, activeColor, inactiveColor } =
+      this;
 
     const isCard = type === 'card';
 
@@ -56,7 +57,7 @@ export class GlueTabsTitle {
           'glue-tabs-title__text--ellipsis': !this.scrollable,
         })}
       >
-        {this.renderTitle ? this.renderTitle() : this.title}
+        {this.renderTitle ? this.renderTitle() : this.g_title}
       </span>
     );
 

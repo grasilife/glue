@@ -7,7 +7,7 @@ import {
   Event,
   Watch,
   Element,
-  State
+  State,
 } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
@@ -21,7 +21,7 @@ let timer = null;
 @Component({
   tag: 'glue-toast',
   styleUrl: 'glue-toast.less',
-  shadow: false
+  shadow: false,
 })
 export class GlueToast {
   @Element() el!: HTMLGlueToastElement;

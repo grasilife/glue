@@ -26,7 +26,7 @@ export class GlueTabsContent {
     if (this.animated || this.swipeable) {
       return (
         <glue-swipe
-          ref={dom => {
+          ref={(dom) => {
             this.swipeRef = dom;
           }}
           // loop={false}

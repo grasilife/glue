@@ -1,4 +1,14 @@
-import { Component, Prop, h, Host, State, Event, EventEmitter, Method, Watch } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Event,
+  EventEmitter,
+  Method,
+  Watch,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { range } from '../../utils/format/number';
 import { getElementChildren } from '../../utils/base';
@@ -38,7 +48,7 @@ export class GluePickerColumn {
   @Prop() textKey: string;
   @Prop() readonly: boolean;
   @Prop() allowHtml: boolean;
-  @Prop() className: string;
+  @Prop() class_name: string;
   @Prop() itemHeight: number;
   @Prop() defaultIndex: number;
   @Prop() swipeDuration: number | string;
@@ -67,14 +77,17 @@ export class GluePickerColumn {
     this.setIndex(this.index);
   }
   wrapper;
+
   @Method()
   async getColumnsList() {
     return getElementChildren(this.wrapper);
   }
+
   @Method()
   async getValue() {
     return this.options[this.index];
   }
+
   @Method()
   async getIndex() {
     return this.index;
@@ -83,7 +96,7 @@ export class GluePickerColumn {
 
   baseOffset = () => (this.itemHeight * (this.visibleItemCount - 1)) / 2;
 
-  adjustIndex = index => {
+  adjustIndex = (index) => {
     index = range(index, 0, this.count());
 
     for (let i = index; i < this.count(); i++) {
@@ -118,16 +131,16 @@ export class GluePickerColumn {
 
     this.offset = offset;
   };
-  
+
   @Method()
-async  setOptions(options) {
+  async setOptions(options) {
     if (JSON.stringify(options) !== JSON.stringify(this.options)) {
       this.options = deepClone(options);
       this.setIndex(this.defaultIndex);
     }
   }
 
-  onClickItem = index => {
+  onClickItem = (index) => {
     console.log(index, 'indexindex');
 
     if (this.moving || this.readonly) {
@@ -139,14 +152,15 @@ async  setOptions(options) {
     this.setIndex(index, true);
   };
 
-  getOptionText = option => {
+  getOptionText = (option) => {
     if (isObject(option) && this.textKey in option) {
       return option[this.textKey];
     }
     return option;
   };
 
-  getIndexByOffset = offset => range(Math.round(-offset / this.itemHeight), 0, this.count() - 1);
+  getIndexByOffset = (offset) =>
+    range(Math.round(-offset / this.itemHeight), 0, this.count() - 1);
 
   momentum = (distance, duration) => {
     const speed = Math.abs(distance / duration);
@@ -158,6 +172,7 @@ async  setOptions(options) {
     this.duration = +this.swipeDuration;
     this.setIndex(index, true);
   };
+
   @Method()
   async stopMomentum() {
     this.moving = false;
@@ -169,7 +184,7 @@ async  setOptions(options) {
     }
   }
 
-  onTouchStart = event => {
+  onTouchStart = (event) => {
     if (this.readonly) {
       return;
     }
@@ -190,7 +205,7 @@ async  setOptions(options) {
     this.transitionEndTrigger = null;
   };
 
-  onTouchMove = event => {
+  onTouchMove = (event) => {
     if (this.readonly) {
       return;
     }
@@ -202,7 +217,11 @@ async  setOptions(options) {
       preventDefault(event, true);
     }
 
-    this.offset = range(this.startOffset + touch.deltaY, -(this.count() * this.itemHeight), this.itemHeight);
+    this.offset = range(
+      this.startOffset + touch.deltaY,
+      -(this.count() * this.itemHeight),
+      this.itemHeight
+    );
 
     const now = Date.now();
     if (now - this.touchStartTime > MOMENTUM_LIMIT_TIME) {
@@ -218,7 +237,9 @@ async  setOptions(options) {
 
     const distance = this.offset - this.momentumOffset;
     const duration = Date.now() - this.touchStartTime;
-    const allowMomentum = duration < MOMENTUM_LIMIT_TIME && Math.abs(distance) > MOMENTUM_LIMIT_DISTANCE;
+    const allowMomentum =
+      duration < MOMENTUM_LIMIT_TIME &&
+      Math.abs(distance) > MOMENTUM_LIMIT_DISTANCE;
 
     if (allowMomentum) {
       this.momentum(distance, duration);
@@ -270,7 +291,7 @@ async  setOptions(options) {
     });
   };
 
-  setValue = value => {
+  setValue = (value) => {
     const { options } = this;
     for (let i = 0; i < options.length; i++) {
       if (this.getOptionText(options[i]) === value) {
@@ -287,14 +308,14 @@ async  setOptions(options) {
     };
     return (
       <Host
-        class={classNames(bem([this.className]), 'glue-picker-column')}
+        class={classNames(bem([this.class_name]), 'glue-picker-column')}
         onTouchStart={this.onTouchStart}
         onTouchMove={this.onTouchMove}
         onTouchEnd={this.onTouchEnd}
         onTouchCancel={this.onTouchEnd}
       >
         <ul
-          ref={dom => {
+          ref={(dom) => {
             this.wrapper = dom;
           }}
           style={wrapperStyle}

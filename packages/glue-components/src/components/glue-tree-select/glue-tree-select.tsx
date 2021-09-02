@@ -6,7 +6,7 @@ import { addUnit } from '../../utils/format/unit';
 @Component({
   tag: 'glue-tree-select',
   styleUrl: 'glue-tree-select.less',
-  shadow: false
+  shadow: false,
 })
 export class GlueTreeSelect {
   @Prop() first: string;
@@ -62,7 +62,7 @@ export class GlueTreeSelect {
         key={item.id}
         class={classNames('glue-ellipsis', 'glue-tree-select__item', {
           'glue-tree-select__item--active': this.isActiveItem(item.id),
-          'glue-tree-select__item--disabled': item.disabled
+          'glue-tree-select__item--disabled': item.disabled,
         })}
         onClick={onClick}
       >

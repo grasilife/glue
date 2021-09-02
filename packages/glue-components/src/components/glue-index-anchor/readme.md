@@ -1,9 +1,6 @@
 # glue-index-anchor
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -16,7 +13,6 @@
 | `top`    | `top`     |             | `number`                           | `0`                     |
 | `width`  | `width`   |             | `any`                              | `null`                  |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

@@ -1,9 +1,6 @@
 # glue-address-list
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -17,7 +14,6 @@
 | `modelValue`     | `model-value`      |             | `number \| string` | `undefined` |
 | `switchable`     | `switchable`       |             | `boolean`          | `true`      |
 
-
 ## Dependencies
 
 ### Depends on
@@ -25,6 +21,7 @@
 - [glue-button](../glue-button)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-address-list --> glue-button
@@ -34,6 +31,6 @@ graph TD;
   style glue-address-list fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

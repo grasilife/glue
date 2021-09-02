@@ -1,4 +1,15 @@
-import { Component, Prop, h, Host, State, Element, Watch, Event, EventEmitter, Method } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Element,
+  Watch,
+  Event,
+  EventEmitter,
+  Method,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-picker');
@@ -15,7 +26,7 @@ export class GluePicker {
   @Element() el!: HTMLGluePickerElement;
   //pickerProps
   @Prop() first: string;
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() loading: boolean;
   @Prop() readonly: boolean;
   @Prop() allowHtml: boolean;
@@ -53,9 +64,9 @@ export class GluePicker {
   componentDidLoad() {
     console.log(this.pickerColumnRef, '33dwdw');
   }
-  itemHeightFn = () => unitToPx(this.itemHeight);
+  private itemHeightFn = () => unitToPx(this.itemHeight);
 
-  dataType = () => {
+  private dataType = () => {
     const { columns } = this;
 
     const firstColumn = columns[0] || {};
@@ -69,10 +80,14 @@ export class GluePicker {
     return 'text';
   };
 
-  formatCascade = () => {
+  private formatCascade = () => {
     const formatted = [];
 
-    let cursor = { [this.childrenKey]: this.columns, defaultIndex: 0, className: '' };
+    let cursor = {
+      [this.childrenKey]: this.columns,
+      defaultIndex: 0,
+      class_name: '',
+    };
     console.log(cursor, 'cursorcursor');
     while (cursor && cursor[this.childrenKey]) {
       const children: any = cursor[this.childrenKey];
@@ -88,7 +103,7 @@ export class GluePicker {
       }
       formatted.push({
         [this.valuesKey]: cursor[this.childrenKey],
-        className: cursor.className,
+        class_name: cursor.class_name,
         defaultIndex,
       });
       cursor = children[defaultIndex];
@@ -98,7 +113,7 @@ export class GluePicker {
     console.log(this.formattedColumns, 'this.formattedColumns4');
   };
 
-  format = () => {
+  private format = () => {
     //统一将数据格式化为下面这种
     // const columns = [
     //   // 第一列
@@ -123,13 +138,25 @@ export class GluePicker {
   };
 
   // get indexes of all columns
+
+  // get indexes of all columns
+
+  // get indexes of all columns
+
+  // get indexes of all columns
   @Method()
   async getIndexes() {
-    this.pickerColumnRef.map(child => {
+    this.pickerColumnRef.map((child) => {
       console.log(child, 'childchild');
       return child;
     });
   }
+
+  // set options of column by index
+
+  // set options of column by index
+
+  // set options of column by index
 
   // set options of column by index
   @Method()
@@ -141,7 +168,7 @@ export class GluePicker {
     }
   }
 
-  async onCascadeChange(columnIndex) {
+  private async onCascadeChange(columnIndex) {
     let cursor = { [this.childrenKey]: this.columns };
     console.log(cursor, columnIndex, 'cursor22');
     const indexes = await this.getIndexs();
@@ -161,14 +188,20 @@ export class GluePicker {
   }
 
   // get column instance by index
-  getColumn = index => this.pickerColumnRef[index];
+  getColumn = (index) => this.pickerColumnRef[index];
 
-  getValue = el => {
+  getValue = (el) => {
     console.log(getElementChildren(el), 'getElementChildren(el)');
     let value = getElementChildren(el)[0].innerText;
     console.log(value, 'value');
     return value;
   };
+  // set column value by index
+
+  // set column value by index
+
+  // set column value by index
+
   // set column value by index
   @Method()
   async setColumnValue(index, value) {
@@ -184,11 +217,23 @@ export class GluePicker {
   }
 
   // get column option index by column index
+
+  // get column option index by column index
+
+  // get column option index by column index
+
+  // get column option index by column index
   @Method()
   async getColumnIndex(index) {
     console.log(this.getColumn(index).value, 'this.getColumn(index)');
     return (this.getColumn(index) || {}).value;
   }
+
+  // set column option index by column index
+
+  // set column option index by column index
+
+  // set column option index by column index
 
   // set column option index by column index
   @Method()
@@ -204,10 +249,22 @@ export class GluePicker {
   }
 
   // get options of column by index
+
+  // get options of column by index
+
+  // get options of column by index
+
+  // get options of column by index
   @Method()
   async getColumnValues(index) {
     return (this.pickerColumnRef[index] || {}).state.options;
   }
+
+  // get values of all columns
+
+  // get values of all columns
+
+  // get values of all columns
 
   // get values of all columns
   @Method()
@@ -237,17 +294,30 @@ export class GluePicker {
     return values;
   }
   // set values of all columns
+
+  // set values of all columns
+
+  // set values of all columns
+
+  // set values of all columns
   @Method()
   async setValues(values) {
     values.forEach((value, index) => {
       this.setColumnValue(index, value);
     });
   }
+
   @Method()
   async getColumnValue(index) {
     const column = this.getColumn(index);
     return column && column.getValue();
   }
+  // set indexes of all columns
+
+  // set indexes of all columns
+
+  // set indexes of all columns
+
   // set indexes of all columns
   @Method()
   async setIndexes(indexes) {
@@ -283,11 +353,12 @@ export class GluePicker {
       });
     }
   }
+
   @Method()
   async confirm() {
     let values = await this.getValues();
     let indexs = await this.getIndexs();
-    this.pickerColumnRef.forEach(child => child.stopMomentum());
+    this.pickerColumnRef.forEach((child) => child.stopMomentum());
     this.glueConfirm.emit({
       columnValue: values,
       columnIndex: indexs,
@@ -304,11 +375,11 @@ export class GluePicker {
   }
 
   renderTitle = () => {
-    if (this.title == '#slot') {
-      return <slot name="title"></slot>;
+    if (this.g_title == '#slot') {
+      return <slot name="g_title"></slot>;
     }
-    if (this.title) {
-      return <div class="glue-picker__title glue-ellipsis">{this.title}</div>;
+    if (this.g_title) {
+      return <div class="glue-picker__title glue-ellipsis">{this.g_title}</div>;
     }
   };
   renderCancelButtonText = () => {
@@ -370,14 +441,14 @@ export class GluePicker {
     console.log(this.formattedColumns, 'this.formattedColumns');
     return this.formattedColumns.map((item, columnIndex) => (
       <glue-picker-column
-        ref={dom => {
+        ref={(dom) => {
           this.pickerColumnRef[columnIndex] = dom;
           console.log(this.pickerColumnRef, 'this.pickerColumnRef');
         }}
         textKey={this.textKey}
         readonly={this.readonly}
         allowHtml={this.allowHtml}
-        className={item.className}
+        class_name={item.class_name}
         itemHeight={this.itemHeightFn()}
         defaultIndex={item.defaultIndex ?? +this.defaultIndex}
         swipeDuration={this.swipeDuration}
@@ -399,10 +470,17 @@ export class GluePicker {
     };
 
     return (
-      <div class={bem('columns')} style={columnsStyle} onTouchMove={preventDefault}>
+      <div
+        class={bem('columns')}
+        style={columnsStyle}
+        onTouchMove={preventDefault}
+      >
         {this.renderColumnItems()}
         <div class={bem('mask')} style={maskStyle} />
-        <div class={classNames(BORDER_UNSET_TOP_BOTTOM, 'glue-picker__frame')} style={frameStyle} />
+        <div
+          class={classNames(BORDER_UNSET_TOP_BOTTOM, 'glue-picker__frame')}
+          style={frameStyle}
+        />
       </div>
     );
   };

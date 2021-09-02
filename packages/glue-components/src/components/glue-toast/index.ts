@@ -33,7 +33,11 @@ function renderTeleport(el) {
   if (currentOptions.teleport) {
     //如果是字符串选择器,如果不是选择器就是dom
     if (typeof currentOptions.teleport == 'string') {
-      console.log(document.querySelector(currentOptions.teleport), currentOptions.teleport, 'teleport');
+      console.log(
+        document.querySelector(currentOptions.teleport),
+        currentOptions.teleport,
+        'teleport'
+      );
       document.querySelector(currentOptions.teleport).appendChild(el);
     } else {
       currentOptions.teleport.appendChild(this.el);
@@ -85,7 +89,7 @@ function Toast(options: any = {}) {
 
   // return toast;
 }
-const createMethod = type => options => {
+const createMethod = (type) => (options) => {
   Toast({
     type,
     ...parseOptions(options),
@@ -95,7 +99,7 @@ const createMethod = type => options => {
 Toast.allowMultiple = (value = true) => {
   allowMultiple = value;
 };
-Toast.resetDefaultOptions = type => {
+Toast.resetDefaultOptions = (type) => {
   if (typeof type === 'string') {
     defaultOptionsMap[type] = null;
   } else {
@@ -104,7 +108,7 @@ Toast.resetDefaultOptions = type => {
   }
 };
 //立即执行
-['loading', 'success', 'fail'].forEach(method => {
+['loading', 'success', 'fail'].forEach((method) => {
   Toast[method] = createMethod(method);
 });
 export default Toast;

@@ -1,9 +1,6 @@
 # glue-empty
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -13,7 +10,6 @@
 | `image`       | `image`       |             | `string` | `'default'` |
 | `imageSize`   | `image-size`  |             | `string` | `undefined` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

@@ -4,7 +4,9 @@ import { RED } from '../../global/constant/constant';
 import { padZero } from '../../utils/format/string';
 function getDate(timeStamp) {
   const date = new Date(timeStamp * 1000);
-  return `${date.getFullYear()}.${padZero(date.getMonth() + 1)}.${padZero(date.getDate())}`;
+  return `${date.getFullYear()}.${padZero(date.getMonth() + 1)}.${padZero(
+    date.getDate()
+  )}`;
 }
 
 function formatDiscount(discount) {
@@ -12,7 +14,9 @@ function formatDiscount(discount) {
 }
 
 function formatAmount(amount) {
-  return (amount / 100).toFixed(amount % 100 === 0 ? 0 : amount % 10 === 0 ? 1 : 2);
+  return (amount / 100).toFixed(
+    amount % 100 === 0 ? 0 : amount % 10 === 0 ? 1 : 2
+  );
 }
 @Component({
   tag: 'glue-coupon',
@@ -63,12 +67,20 @@ export class GlueCoupon {
         <div class="glue-coupon__content">
           <div class="glue-coupon__head">
             <h2 class="glue-coupon__amount">{this.faceAmount()}</h2>
-            <p class="glue-coupon__condition">{coupon.condition || this.conditionMessage()}</p>
+            <p class="glue-coupon__condition">
+              {coupon.condition || this.conditionMessage()}
+            </p>
           </div>
           <div class="glue-coupon__body">
             <p class="glue-coupon__name">{coupon.name}</p>
             <p class="glue-coupon__valid">{this.validPeriod()}</p>
-            {!disabled && <glue-checkbox class="glue-coupon__corner" model-value={chosen} checkedColor={RED} />}
+            {!disabled && (
+              <glue-checkbox
+                class="glue-coupon__corner"
+                model-value={chosen}
+                checkedColor={RED}
+              />
+            )}
           </div>
         </div>
         {description && <p class="glue-coupon__description">{description}</p>}

@@ -2,7 +2,12 @@ import { Component, Prop, h, Host, Element } from '@stencil/core';
 import classNames from 'classnames';
 export type RowAlign = 'top' | 'center' | 'bottom';
 
-export type RowJustify = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
+export type RowJustify =
+  | 'start'
+  | 'end'
+  | 'center'
+  | 'space-around'
+  | 'space-between';
 import { createNamespace } from '../../utils/create/index';
 export type RowSpaces = { left?: number; right: number }[];
 const [bem] = createNamespace('glue-row');
@@ -27,7 +32,12 @@ export class GlueRow {
     const { align, justify } = this;
     console.log(justify, 'justify');
     return (
-      <Host class={classNames('glue-row', bem([`align-${align}`, `justify-${justify}`]))}>
+      <Host
+        class={classNames(
+          'glue-row',
+          bem([`align-${align}`, `justify-${justify}`])
+        )}
+      >
         <slot></slot>
       </Host>
     );

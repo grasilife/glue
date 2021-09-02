@@ -1,4 +1,13 @@
-import { Component, Prop, h, State, EventEmitter, Event, Host, Watch } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  State,
+  EventEmitter,
+  Event,
+  Host,
+  Watch,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { addUnit } from '../../utils/format/unit';
@@ -100,7 +109,13 @@ export class GlueImage {
   };
 
   renderPlaceholder = () => {
-    console.log(this.loadingState, this.showLoading, this.errorState, this.showError, 'this.loadingState');
+    console.log(
+      this.loadingState,
+      this.showLoading,
+      this.errorState,
+      this.showError,
+      'this.loadingState'
+    );
     console.log(this.errorState, 'this.errorState');
     if (this.errorState && this.showError) {
       return (
@@ -143,11 +158,26 @@ export class GlueImage {
     if (this.lazyLoad) {
       console.log('ahuhauhauhuahu1');
       //懒加载走这里
-      return <img ref={dom => (this.imageRef = dom)} {...attrs} onLoad={() => this.imageOnLoad()} onError={() => this.imageOnError()} />;
+      return (
+        <img
+          ref={(dom) => (this.imageRef = dom)}
+          {...attrs}
+          onLoad={() => this.imageOnLoad()}
+          onError={() => this.imageOnError()}
+        />
+      );
     }
     //非懒加载走这里
     console.log('ahuhauhauhuahu');
-    return <img ref={dom => (this.imageRef = dom)} src={this.src} onLoad={() => this.imageOnLoad()} onError={() => this.imageOnError()} {...attrs} />;
+    return (
+      <img
+        ref={(dom) => (this.imageRef = dom)}
+        src={this.src}
+        onLoad={() => this.imageOnLoad()}
+        onError={() => this.imageOnError()}
+        {...attrs}
+      />
+    );
   };
 
   // onLazyLoaded = ({ el }: { el: HTMLElement }) => {
@@ -172,11 +202,11 @@ export class GlueImage {
     }
     const lazyImg = new IntersectionObserver(
       //imgage必须有宽和高才会生效,要不然isIntersecting全部为true
-      entries => {
+      (entries) => {
         console.log(entries, 'entries');
         // 异步 api 关系
         //isIntersecting 目标元素当前是否可见 Boolean值 可见为true
-        entries.forEach(item => {
+        entries.forEach((item) => {
           console.log(item.isIntersecting, 'item.isIntersecting');
           if (item.isIntersecting) {
             // 停止观察当前元素 避免不可见时候再次调用callback函数
@@ -191,7 +221,7 @@ export class GlueImage {
       {
         // rootMargin:用来扩大或者缩小视窗的的大小，使用css的定义方法，10px 10px 30px 20px表示top、right、bottom 和 left的值
         rootMargin: '300px 0px',
-      },
+      }
     );
     //observe接受一个DOM元素
     if (this.imageRef) {

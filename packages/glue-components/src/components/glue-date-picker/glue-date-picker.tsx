@@ -1,6 +1,10 @@
 import { Component, Prop, h, Host, State } from '@stencil/core';
 import classNames from 'classnames';
-import { getMonthEndDay, getTrueValue, times } from '../glue-datetime-picker/utils';
+import {
+  getMonthEndDay,
+  getTrueValue,
+  times,
+} from '../glue-datetime-picker/utils';
 import { isDate } from '../../utils/validate/date';
 import { padZero } from '../../utils/format/string';
 const currentYear = new Date().getFullYear();
@@ -16,7 +20,7 @@ export class GlueDatePicker {
   @Prop() columnsOrder: [];
   @Prop() formatter: Function = (_type: string, value: unknown) => value;
   //pickerProps
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() loading: boolean;
   @Prop() readonly: boolean;
   @Prop() allowHtml: boolean;
@@ -35,7 +39,7 @@ export class GlueDatePicker {
     this.currentDate = this.formatValue(this.modelValue);
   }
   picker;
-  formatValue = value => {
+  formatValue = (value) => {
     if (!isDate(value)) {
       value = this.minDate;
     }
@@ -84,9 +88,15 @@ export class GlueDatePicker {
   };
 
   ranges = () => {
-    const { maxYear, maxDate, maxMonth, maxHour, maxMinute } = this.getBoundary('max', this.currentDate);
+    const { maxYear, maxDate, maxMonth, maxHour, maxMinute } = this.getBoundary(
+      'max',
+      this.currentDate
+    );
 
-    const { minYear, minDate, minMonth, minHour, minMinute } = this.getBoundary('min', this.currentDate);
+    const { minYear, minDate, minMonth, minHour, minMinute } = this.getBoundary(
+      'min',
+      this.currentDate
+    );
 
     let result = [
       {
@@ -136,7 +146,7 @@ export class GlueDatePicker {
 
   originColumns = () => {
     return this.ranges().map(({ type, range: rangeArr }) => {
-      let values = times(rangeArr[1] - rangeArr[0] + 1, index => {
+      let values = times(rangeArr[1] - rangeArr[0] + 1, (index) => {
         const value = padZero(rangeArr[0] + index);
         return value;
       });
@@ -153,8 +163,8 @@ export class GlueDatePicker {
   };
 
   columns = () => {
-    return this.originColumns().map(column => ({
-      values: column.values.map(value => this.formatter(column.type, value)),
+    return this.originColumns().map((column) => ({
+      values: column.values.map((value) => this.formatter(column.type, value)),
     }));
   };
 
@@ -162,7 +172,7 @@ export class GlueDatePicker {
     const { value } = this.currentDate;
     const { formatter } = this;
 
-    const values = this.originColumns().map(column => {
+    const values = this.originColumns().map((column) => {
       switch (column.type) {
         case 'year':
           return formatter('year', `${value.getFullYear()}`);
@@ -190,7 +200,7 @@ export class GlueDatePicker {
     const { type } = this;
     const indexes = this.picker().getIndexes();
 
-    const getValue = type => {
+    const getValue = (type) => {
       let index = 0;
       this.originColumns().forEach((column, columnIndex) => {
         if (type === column.type) {
@@ -254,7 +264,7 @@ export class GlueDatePicker {
     return (
       <Host class={classNames('cunstom')}>
         <glue-picker
-          ref={dom => {
+          ref={(dom) => {
             this.picker = dom;
           }}
           columns={this.columns()}

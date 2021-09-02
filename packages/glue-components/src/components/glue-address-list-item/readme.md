@@ -1,9 +1,6 @@
 # glue-address-list-item
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -14,7 +11,6 @@
 | `disabled`       | `disabled`         |             | `boolean` | `undefined` |
 | `switchable`     | `switchable`       |             | `boolean` | `undefined` |
 
-
 ## Dependencies
 
 ### Depends on
@@ -24,6 +20,7 @@
 - [glue-cell](../glue-cell)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-address-list-item --> glue-icon
@@ -35,6 +32,6 @@ graph TD;
   style glue-address-list-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

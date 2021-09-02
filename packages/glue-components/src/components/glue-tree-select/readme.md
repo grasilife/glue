@@ -1,9 +1,6 @@
 # glue-tree-select
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -17,14 +14,12 @@
 | `max`             | `max`               |             | `number` | `Infinity`  |
 | `selectedIcon`    | `selected-icon`     |             | `string` | `'success'` |
 
-
 ## Events
 
 | Event           | Description | Type               |
 | --------------- | ----------- | ------------------ |
 | `glueClickItem` |             | `CustomEvent<any>` |
 | `glueClickNav`  |             | `CustomEvent<any>` |
-
 
 ## Dependencies
 
@@ -35,6 +30,7 @@
 - [glue-sidebar](../glue-sidebar)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-tree-select --> glue-icon
@@ -45,6 +41,6 @@ graph TD;
   style glue-tree-select fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

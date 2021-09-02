@@ -1,4 +1,13 @@
-import { Component, Prop, h, Host, EventEmitter, Event, Element, Watch } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  EventEmitter,
+  Event,
+  Element,
+  Watch,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 import { DURATION, EASING } from '../../global/constant/constant';
@@ -46,7 +55,7 @@ export class GluePopup {
   @Prop() closeIconPosition = 'top-right';
   @Prop() content = '';
   @Event() glueClick: EventEmitter;
-  clickHandle = event => {
+  clickHandle = (event) => {
     this.glueClick.emit(event);
   };
   @Event() glueOpen: EventEmitter;
@@ -99,13 +108,22 @@ export class GluePopup {
         <div
           class={classNames({
             'glue-popup__close-icon': true,
-            'glue-popup__close-icon--top-right': this.closeIconPosition == 'top-right',
-            'glue-popup__close-icon--top-left': this.closeIconPosition == 'top-left',
-            'glue-popup__close-icon--bottom-left': this.closeIconPosition == 'bottom-left',
-            'glue-popup__close-icon--bottom-right': this.closeIconPosition == 'bottom-right',
+            'glue-popup__close-icon--top-right':
+              this.closeIconPosition == 'top-right',
+            'glue-popup__close-icon--top-left':
+              this.closeIconPosition == 'top-left',
+            'glue-popup__close-icon--bottom-left':
+              this.closeIconPosition == 'bottom-left',
+            'glue-popup__close-icon--bottom-right':
+              this.closeIconPosition == 'bottom-right',
           })}
         >
-          <glue-icon role="button" tabindex="0" name={this.closeIcon} onClick={this.clickCloseIconHandle}></glue-icon>
+          <glue-icon
+            role="button"
+            tabindex="0"
+            name={this.closeIcon}
+            onClick={this.clickCloseIconHandle}
+          ></glue-icon>
         </div>
       );
     }
@@ -143,7 +161,11 @@ export class GluePopup {
       } else {
         if (this.position == 'top' || this.position == 'bottom') {
           style.transform = `translateY($(this.height))`;
-          console.log(style.transform, this.height, 'style.transformstyle.transform');
+          console.log(
+            style.transform,
+            this.height,
+            'style.transformstyle.transform'
+          );
         }
         if (this.position == 'right' || this.position == 'left') {
           style.transform = `translateX($(this.width))`;
@@ -168,7 +190,7 @@ export class GluePopup {
     }
     return (
       <div
-        ref={dom => {
+        ref={(dom) => {
           this.popupRef = dom;
         }}
         style={style}
@@ -178,7 +200,7 @@ export class GluePopup {
             'glue-popup--round': round,
             'glue-popup-safe-area-inset-bottom': safeAreaInsetBottom,
           },
-          bem([position]),
+          bem([position])
         )}
         onClick={this.clickHandle}
       >
@@ -216,7 +238,7 @@ export class GluePopup {
         },
         () => {
           this.openedHandle();
-        },
+        }
       );
     }
     if (this.position == 'top') {
@@ -230,7 +252,7 @@ export class GluePopup {
         },
         () => {
           this.openedHandle();
-        },
+        }
       );
     }
     if (this.position == 'bottom') {
@@ -245,7 +267,7 @@ export class GluePopup {
         },
         () => {
           this.openedHandle();
-        },
+        }
       );
     }
     if (this.position == 'left') {
@@ -260,7 +282,7 @@ export class GluePopup {
         },
         () => {
           this.openedHandle();
-        },
+        }
       );
     }
     if (this.position == 'right') {
@@ -275,7 +297,7 @@ export class GluePopup {
         },
         () => {
           this.openedHandle();
-        },
+        }
       );
     }
   };
@@ -292,7 +314,7 @@ export class GluePopup {
         () => {
           // this.popupRef.style.display = 'none';
           this.closedHandle();
-        },
+        }
       );
     }
     if (this.position == 'top') {
@@ -307,7 +329,7 @@ export class GluePopup {
         () => {
           // this.popupRef.style.display = 'none';
           this.closedHandle();
-        },
+        }
       );
     }
     if (this.position == 'bottom') {
@@ -323,7 +345,7 @@ export class GluePopup {
           console.log(this, 'this.popupRef.style');
           // this.popupRef.style.display = 'none';
           this.closedHandle();
-        },
+        }
       );
     }
     if (this.position == 'left') {
@@ -337,7 +359,7 @@ export class GluePopup {
         () => {
           // this.popupRef.style.display = 'none';
           this.closedHandle();
-        },
+        }
       );
     }
     if (this.position == 'right') {
@@ -351,7 +373,7 @@ export class GluePopup {
         () => {
           // this.popupRef.style.display = 'none';
           this.closedHandle();
-        },
+        }
       );
     }
   };
@@ -367,7 +389,11 @@ export class GluePopup {
         this.popupRef.style.zIndex = this.zIndex;
         if (this.position == 'top' || this.position == 'bottom') {
           style.transform = `translateY($(this.height))`;
-          console.log(style.transform, this.height, 'style.transformstyle.transform');
+          console.log(
+            style.transform,
+            this.height,
+            'style.transformstyle.transform'
+          );
         }
         if (this.position == 'right' || this.position == 'left') {
           style.transform = `translateX($(this.width))`;
@@ -388,7 +414,11 @@ export class GluePopup {
     if (this.teleport) {
       //如果是字符串选择器,如果不是选择器就是dom
       if (typeof this.teleport == 'string') {
-        console.log(document.querySelector(this.teleport), this.teleport, 'teleport');
+        console.log(
+          document.querySelector(this.teleport),
+          this.teleport,
+          'teleport'
+        );
         document.querySelector(this.teleport).appendChild(this.el);
       } else {
         this.teleport.appendChild(this.el);

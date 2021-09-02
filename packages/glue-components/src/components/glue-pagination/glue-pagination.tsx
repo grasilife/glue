@@ -1,4 +1,12 @@
-import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-pagination');
@@ -9,10 +17,9 @@ import { BORDER } from '../../global/constant/constant';
   shadow: false,
 })
 export class GluePagination {
-  @Prop({ mutable: true })
-  prevText = '上一页';
-  @Prop({ mutable: true }) pageText = '';
-  @Prop({ mutable: true }) nextText = '下一页';
+  @Prop() prevText = '上一页';
+  @Prop() pageText = '';
+  @Prop() nextText = '下一页';
   @Prop() forceEllipses: boolean;
   @Prop() mode = 'multi';
   @Prop() value = 0;
@@ -35,7 +42,9 @@ export class GluePagination {
   };
   renderDesc = () => {
     if (this.mode !== 'multi') {
-      return <li class={bem('page-desc')}>{`${this.value}/${this.count()}`}</li>;
+      return (
+        <li class={bem('page-desc')}>{`${this.value}/${this.count()}`}</li>
+      );
     }
   };
   count = () => {
@@ -102,7 +111,7 @@ export class GluePagination {
 
     return items;
   };
-  renderText = page => {
+  renderText = (page) => {
     //TODO:slot存在传值的问题
     if (this.pageText == '#slot') {
       return <slot name="page-text">{page.text}</slot>;
@@ -136,18 +145,28 @@ export class GluePagination {
           })}
         >
           <li
-            class={classNames('glue-pagination__item', 'glue-pagination__prev', BORDER, {
-              'glue-pagination__item--disabled': value === 1,
-            })}
+            class={classNames(
+              'glue-pagination__item',
+              'glue-pagination__prev',
+              BORDER,
+              {
+                'glue-pagination__item--disabled': value === 1,
+              }
+            )}
             onClick={onSelect(value - 1)}
           >
             {this.renderPrevText()}
           </li>
-          {this.pages().map(page => (
+          {this.pages().map((page) => (
             <li
-              class={classNames('glue-pagination__item', 'glue-pagination__page', BORDER, {
-                'glue-pagination__item--active': page.active,
-              })}
+              class={classNames(
+                'glue-pagination__item',
+                'glue-pagination__page',
+                BORDER,
+                {
+                  'glue-pagination__item--active': page.active,
+                }
+              )}
               onClick={onSelect(page.number)}
             >
               {this.renderText(page)}
@@ -155,9 +174,14 @@ export class GluePagination {
           ))}
           {this.renderDesc()}
           <li
-            class={classNames('glue-pagination__item', 'glue-pagination__next', BORDER, {
-              'glue-pagination__item--disabled': value === this.count(),
-            })}
+            class={classNames(
+              'glue-pagination__item',
+              'glue-pagination__next',
+              BORDER,
+              {
+                'glue-pagination__item--disabled': value === this.count(),
+              }
+            )}
             onClick={onSelect(value + 1)}
           >
             {this.renderNextText()}

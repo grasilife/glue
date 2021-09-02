@@ -25,7 +25,8 @@ let rootFontSize: number;
 function getRootFontSize() {
   if (!rootFontSize) {
     const doc = document.documentElement;
-    const fontSize = doc.style.fontSize || window.getComputedStyle(doc).fontSize;
+    const fontSize =
+      doc.style.fontSize || window.getComputedStyle(doc).fontSize;
 
     rootFontSize = parseFloat(fontSize);
   }

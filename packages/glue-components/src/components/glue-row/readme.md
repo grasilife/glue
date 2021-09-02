@@ -1,9 +1,6 @@
 # glue-row
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -13,7 +10,6 @@
 | `gutter`  | `gutter`  |             | `number \| string`                                                  | `0`         |
 | `justify` | `justify` |             | `"center" \| "end" \| "space-around" \| "space-between" \| "start"` | `undefined` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

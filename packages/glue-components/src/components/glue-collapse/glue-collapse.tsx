@@ -24,6 +24,7 @@ export class GlueCollapse {
     reflect: true,
   })
   border = false;
+
   @Method()
   async toggle(name, expanded) {
     console.log(name, expanded, 'toggle');
@@ -43,7 +44,7 @@ export class GlueCollapse {
       //只展开一个
       if (!expanded) {
         //展开
-        name = modelValue.filter(activeName => activeName === name);
+        name = modelValue.filter((activeName) => activeName === name);
       } else {
         //关闭
         name = '';
@@ -67,12 +68,19 @@ export class GlueCollapse {
     // emit('change', name);
     // emit('update:modelValue', name);
   }
+
   @Method()
   async isExpanded(name) {
     const { accordion, modelValue } = this;
 
-    if (!accordion && !Array.isArray(modelValue) && process.env.NODE_ENV !== 'production') {
-      console.error('[Vant] Collapse: type of prop "modelValue" should be Array');
+    if (
+      !accordion &&
+      !Array.isArray(modelValue) &&
+      process.env.NODE_ENV !== 'production'
+    ) {
+      console.error(
+        '[Vant] Collapse: type of prop "modelValue" should be Array'
+      );
       return;
     }
     console.log(modelValue, name, modelValue.indexOf(name), 'isExpanded');
@@ -80,7 +88,13 @@ export class GlueCollapse {
   }
   render() {
     return (
-      <Host class={classNames('glue-collapse', BORDER_TOP_BOTTOM, bem([this.border]))}>
+      <Host
+        class={classNames(
+          'glue-collapse',
+          BORDER_TOP_BOTTOM,
+          bem([this.border])
+        )}
+      >
         <slot></slot>
       </Host>
     );

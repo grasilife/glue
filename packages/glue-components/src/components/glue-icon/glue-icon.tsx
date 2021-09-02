@@ -14,13 +14,8 @@ export class GlueIcon {
   @Prop() color: string;
   @Prop() tag: string;
   @Prop() classPrefix: string;
-  isImage(name?: string) {
+  private isImage(name?: string) {
     return name ? name.indexOf('/') !== -1 : false;
-  }
-  renderBadge() {
-    if (this.badge || this.dot) {
-      return <glue-badge dot={this.dot} content={this.badge}></glue-badge>;
-    }
   }
   render() {
     const { dot, name, size, badge, color, classPrefix } = this;

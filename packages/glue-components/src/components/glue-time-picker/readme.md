@@ -1,9 +1,6 @@
 # glue-time-picker
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -28,18 +25,18 @@
 | `title`             | `title`               |             | `string`  | `undefined` |
 | `visibleItemCount`  | `visible-item-count`  |             | `number`  | `6`         |
 
-
 ## Dependencies
 
 ### Used by
 
- - [glue-datetime-picker](../glue-datetime-picker)
+- [glue-datetime-picker](../glue-datetime-picker)
 
 ### Depends on
 
 - [glue-picker](../glue-picker)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-time-picker --> glue-picker
@@ -49,6 +46,6 @@ graph TD;
   style glue-time-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

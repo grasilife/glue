@@ -1,9 +1,6 @@
 # glue-nav-bar
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -19,14 +16,12 @@
 | `title`            | `title`               |             | `string`  | `undefined` |
 | `zIndex`           | `z-index`             |             | `string`  | `undefined` |
 
-
 ## Events
 
 | Event       | Description | Type               |
 | ----------- | ----------- | ------------------ |
 | `glueLeft`  |             | `CustomEvent<any>` |
 | `glueRight` |             | `CustomEvent<any>` |
-
 
 ## Dependencies
 
@@ -35,6 +30,7 @@
 - [glue-icon](../glue-icon)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-nav-bar --> glue-icon
@@ -42,6 +38,6 @@ graph TD;
   style glue-nav-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

@@ -1,9 +1,6 @@
 # glue-sidebar-item
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -15,48 +12,38 @@
 | `title`    | `title`    |             | `string`           | `undefined` |
 | `value`    | `value`    |             | `number \| string` | `undefined` |
 
-
 ## Events
 
 | Event        | Description | Type               |
 | ------------ | ----------- | ------------------ |
 | `glueChange` |             | `CustomEvent<any>` |
 
-
 ## Methods
 
 ### `setActive() => Promise<void>`
 
-
-
 #### Returns
 
 Type: `Promise<void>`
-
-
 
 ### `setParentActive() => Promise<void>`
 
-
-
 #### Returns
 
 Type: `Promise<void>`
-
-
-
 
 ## Dependencies
 
 ### Used by
 
- - [glue-tree-select](../glue-tree-select)
+- [glue-tree-select](../glue-tree-select)
 
 ### Depends on
 
 - [glue-badge](../glue-badge)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-sidebar-item --> glue-badge
@@ -64,6 +51,6 @@ graph TD;
   style glue-sidebar-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

@@ -1,4 +1,14 @@
-import { Component, Prop, h, Host, Event, EventEmitter, Element, Watch, Method } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  Event,
+  EventEmitter,
+  Element,
+  Watch,
+  Method,
+} from '@stencil/core';
 // import classNames from 'classnames';
 import { useRect } from '../../utils/useRect';
 import { useScrollParent } from '../../utils/useScrollParent';
@@ -35,6 +45,7 @@ export class GlueList {
     this._check();
   }
   @Event() glueLoad: EventEmitter;
+
   @Method()
   async check() {
     this._check();
@@ -54,7 +65,12 @@ export class GlueList {
     }
     let isReachEdge = false;
     const placeholderRect = useRect(this.placeholder);
-    console.log(scrollParentRect.top, placeholderRect.top, scrollParentRect.top - placeholderRect.top, '坐标');
+    console.log(
+      scrollParentRect.top,
+      placeholderRect.top,
+      scrollParentRect.top - placeholderRect.top,
+      '坐标'
+    );
     if (direction === 'up') {
       isReachEdge = scrollParentRect.top - placeholderRect.top <= offset;
     } else {
@@ -78,7 +94,10 @@ export class GlueList {
       const text = this.errorText;
       if (text) {
         return (
-          <div class="glue-list__error-text" onClick={this.clickErrorTextHandle}>
+          <div
+            class="glue-list__error-text"
+            onClick={this.clickErrorTextHandle}
+          >
             {text}
           </div>
         );
@@ -102,7 +121,12 @@ export class GlueList {
     if (this.direction === 'down') {
       return <slot></slot>;
     } else {
-      return <div ref={dom => (this.placeholder = dom)} class="glue-list__placeholder" />;
+      return (
+        <div
+          ref={(dom) => (this.placeholder = dom)}
+          class="glue-list__placeholder"
+        />
+      );
     }
   };
   renderFinishedText = () => {
@@ -129,9 +153,19 @@ export class GlueList {
   }
   render() {
     const Content = <slot></slot>;
-    const Placeholder = <div ref={dom => (this.placeholder = dom)} class="glue-list__placeholder" />;
+    const Placeholder = (
+      <div
+        ref={(dom) => (this.placeholder = dom)}
+        class="glue-list__placeholder"
+      />
+    );
     return (
-      <Host ref={dom => (this.root = dom)} role="feed" class="glue-list" aria-busy={this.loading}>
+      <Host
+        ref={(dom) => (this.root = dom)}
+        role="feed"
+        class="glue-list"
+        aria-busy={this.loading}
+      >
         {this.direction === 'down' ? Content : Placeholder}
         {this.renderLoading()}
         {this.renderFinishedText()}

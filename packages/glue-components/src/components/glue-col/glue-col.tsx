@@ -13,7 +13,7 @@ export class GlueCol {
   @Prop() offset: string | number = 0;
 
   @Prop() span: string | number = 0;
-  style = () => {
+  private style = () => {
     let gutter = this.getParentGutter();
     console.log(gutter, 'groups');
     return {
@@ -22,7 +22,7 @@ export class GlueCol {
     };
   };
   componentDidLoad() {}
-  getParentGutter() {
+  private getParentGutter() {
     let parentEl = getElementParent(this.el);
     let gutter = getAttribute(parentEl, 'gutter');
     console.log(gutter, 'gutter');
@@ -32,7 +32,10 @@ export class GlueCol {
     const { span, offset } = this;
     console.log(span, offset, 'offset');
     return (
-      <Host style={this.style()} class={classNames('glue-col', bem([span, [`offset-${offset}`]]))}>
+      <Host
+        style={this.style()}
+        class={classNames('glue-col', bem([span, [`offset-${offset}`]]))}
+      >
         <slot></slot>
       </Host>
     );

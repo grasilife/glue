@@ -1,8 +1,25 @@
-import { Component, Prop, h, Host, Event, EventEmitter, State } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  Event,
+  EventEmitter,
+  State,
+} from '@stencil/core';
 import classNames from 'classnames';
 // import { pick } from '../../utils/base';
 import { getVisibleHeight } from '../../utils/dom/scroll';
-const PRESET_ICONS = ['qq', 'link', 'weibo', 'wechat', 'poster', 'qrcode', 'weapp-qrcode', 'wechat-moments'];
+const PRESET_ICONS = [
+  'qq',
+  'link',
+  'weibo',
+  'wechat',
+  'poster',
+  'qrcode',
+  'weapp-qrcode',
+  'wechat-moments',
+];
 function getIconURL(icon: string) {
   if (PRESET_ICONS.indexOf(icon) !== -1) {
     return `https://img01.yzcdn.cn/vant/share-sheet-${icon}.png`;
@@ -29,7 +46,7 @@ export class GlueShareSheet {
   refContent: HTMLElement;
   @Prop() show: boolean;
   @Prop() options = [];
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() cancelText: string;
   @Prop() description: string;
   @Prop() duration: string;
@@ -79,14 +96,16 @@ export class GlueShareSheet {
   };
 
   renderHeader = () => {
-    const title = this.title;
+    const g_title = this.g_title;
     const description = this.description;
 
-    if (title || description) {
+    if (g_title || description) {
       return (
         <div class="glue-share-sheet__header">
-          {title && <h2 class="glue-share-sheet__title">{title}</h2>}
-          {description && <span class="glue-share-sheet__description">{description}</span>}
+          {g_title && <h2 class="glue-share-sheet__title">{g_title}</h2>}
+          {description && (
+            <span class="glue-share-sheet__description">{description}</span>
+          )}
         </div>
       );
     }
@@ -105,17 +124,27 @@ export class GlueShareSheet {
       >
         <img src={getIconURL(icon)} class="glue-share-sheet__icon" />
         {name && <span class="glue-share-sheet__name">{name}</span>}
-        {description && <span class="glue-share-sheet__option-description">{description}</span>}
+        {description && (
+          <span class="glue-share-sheet__option-description">
+            {description}
+          </span>
+        )}
       </div>
     );
   };
 
-  renderOptions = (options: ShareSheetOption[], border?: boolean) => <div class={classNames('glue-share-sheet__options', bem([border]))}>{options.map(this.renderOption)}</div>;
+  renderOptions = (options: ShareSheetOption[], border?: boolean) => (
+    <div class={classNames('glue-share-sheet__options', bem([border]))}>
+      {options.map(this.renderOption)}
+    </div>
+  );
 
   renderRows = () => {
     const { options } = this;
     if (Array.isArray(options[0])) {
-      return (options as ShareSheetOption[][]).map((item, index) => this.renderOptions(item, index !== 0));
+      return (options as ShareSheetOption[][]).map((item, index) =>
+        this.renderOptions(item, index !== 0)
+      );
     }
     return this.renderOptions(options as ShareSheetOption[]);
   };
@@ -124,7 +153,11 @@ export class GlueShareSheet {
     const text = this.cancelText ?? '取消';
     if (text) {
       return (
-        <button type="button" class="glue-share-sheet__cancel" onClick={this.onCancel}>
+        <button
+          type="button"
+          class="glue-share-sheet__cancel"
+          onClick={this.onCancel}
+        >
           {text}
         </button>
       );
@@ -135,7 +168,15 @@ export class GlueShareSheet {
     console.log(this.height, this.refContent.offsetHeight, 'this.height');
   }
   render() {
-    const { show, duration, round, overlay, lockScroll, lazyRender, closeOnClickOverlay } = this;
+    const {
+      show,
+      duration,
+      round,
+      overlay,
+      lockScroll,
+      lazyRender,
+      closeOnClickOverlay,
+    } = this;
     return (
       <Host>
         <glue-popup
@@ -157,7 +198,7 @@ export class GlueShareSheet {
         >
           <div
             class="glue-share-sheet__content"
-            ref={dom => {
+            ref={(dom) => {
               this.refContent = dom;
             }}
           >

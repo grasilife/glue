@@ -1,5 +1,13 @@
-import { Component, Prop, h, Host, State, Element, Event, EventEmitter } from '@stencil/core';
-import { inBrowser } from '../../utils/base';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Element,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import { getScrollTop } from '../../utils/dom/scroll';
 import { unitToPx } from '../../utils/format/unit';
 import { useScrollParent } from '../../utils/useScrollParent';
@@ -50,13 +58,17 @@ export class GlueSticky {
     }
 
     if (this.zIndex !== undefined) {
-      style.zIndex = (parseFloat(style.zIndex) + parseFloat(this.zIndex)).toString();
+      style.zIndex = (
+        parseFloat(style.zIndex) + parseFloat(this.zIndex)
+      ).toString();
     }
 
     if (this.position === 'top') {
       style.top = this.offsetTopFormat ? `${this.offsetTopFormat}px` : '0px';
     } else {
-      style.bottom = this.offsetBottomFormat ? `${this.offsetBottomFormat}px` : '0px';
+      style.bottom = this.offsetBottomFormat
+        ? `${this.offsetBottomFormat}px`
+        : '0px';
     }
     console.log(style, this, 'style');
     return style;
@@ -81,8 +93,10 @@ export class GlueSticky {
     if (this.position === 'top') {
       // The sticky component should be kept inside the container element
       if (container) {
-        const difference = containerRect.bottom - this.offsetTopFormat - this.height;
-        this.fixed = this.offsetTopFormat > rootRect.top && containerRect.bottom > 0;
+        const difference =
+          containerRect.bottom - this.offsetTopFormat - this.height;
+        this.fixed =
+          this.offsetTopFormat > rootRect.top && containerRect.bottom > 0;
         this.transform = difference < 0 ? difference : 0;
       } else {
         console.log(this.offsetTopFormat, rootRect.top, 'fiahguhaiuhfgaiuhg');
@@ -91,11 +105,22 @@ export class GlueSticky {
     } else if (this.position === 'bottom') {
       const { clientHeight } = document.documentElement;
       if (container) {
-        const difference = clientHeight - containerRect.top - this.offsetBottomFormat - this.height;
-        this.fixed = clientHeight - this.offsetBottomFormat < rootRect.bottom && clientHeight > containerRect.top;
+        const difference =
+          clientHeight -
+          containerRect.top -
+          this.offsetBottomFormat -
+          this.height;
+        this.fixed =
+          clientHeight - this.offsetBottomFormat < rootRect.bottom &&
+          clientHeight > containerRect.top;
         this.transform = difference < 0 ? -difference : 0;
       } else {
-        console.log(clientHeight, this.offsetBottomFormat, rootRect.bottom, '位置');
+        console.log(
+          clientHeight,
+          this.offsetBottomFormat,
+          rootRect.bottom,
+          '位置'
+        );
         this.fixed = clientHeight - this.offsetBottomFormat < rootRect.bottom;
         console.log(this.fixed, 'this.fixed');
       }
@@ -125,35 +150,17 @@ export class GlueSticky {
     scrollParent.removeEventListener('scroll', this.onScroll);
     this.unobserve(this.el);
   }
-  observe = target => {
+  observe = (target) => {
     if (target.value) {
       this.observer.observe(target);
     }
   };
 
-  unobserve = target => {
+  unobserve = (target) => {
     if (target) {
       this.observer.unobserve(target);
     }
   };
-  useVisibilityChange() {
-    // compatibility: https://caniuse.com/#feat=intersectionobserver
-    if (!inBrowser || !window.IntersectionObserver) {
-      return;
-    }
-
-    this.observer = new IntersectionObserver(
-      entries => {
-        if (entries[0].intersectionRatio <= 0) {
-          return;
-        } else {
-          this.onScroll();
-        }
-      },
-      { root: document.body },
-    );
-    this.observe(this.el);
-  }
   render() {
     const { fixed, height, width } = this;
     const rootStyle = {

@@ -1,9 +1,6 @@
 # glue-rate
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -25,13 +22,11 @@
 | `voidColor`     | `void-color`     |             | `string`  | `undefined` |
 | `voidIcon`      | `void-icon`      |             | `string`  | `'star-o'`  |
 
-
 ## Events
 
 | Event        | Description | Type               |
 | ------------ | ----------- | ------------------ |
 | `glueChange` |             | `CustomEvent<any>` |
-
 
 ## Dependencies
 
@@ -40,6 +35,7 @@
 - [glue-icon](../glue-icon)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-rate --> glue-icon
@@ -47,6 +43,6 @@ graph TD;
   style glue-rate fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

@@ -1,4 +1,13 @@
-import { Component, Prop, h, Host, State, Event, EventEmitter, Watch } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Event,
+  EventEmitter,
+  Watch,
+} from '@stencil/core';
 export type NoticeBarMode = 'closeable' | 'link';
 import classNames from 'classnames';
 import { useRect } from '../../utils/useRect';
@@ -47,7 +56,9 @@ export class GlueNoticeBar {
       if (this.leftIcon == '#slot') {
         return <slot name="left-icon"></slot>;
       } else {
-        return <glue-icon class="glue-notice-bar__left-icon" name={this.leftIcon} />;
+        return (
+          <glue-icon class="glue-notice-bar__left-icon" name={this.leftIcon} />
+        );
       }
     }
   };
@@ -55,9 +66,13 @@ export class GlueNoticeBar {
     const ellipsis = this.scrollable === false && !this.wrapable;
     console.log(ellipsis, 'ellipsis');
     return (
-      <div ref={el => (this.wrapRef = el)} role="marquee" class="glue-notice-bar__wrap">
+      <div
+        ref={(el) => (this.wrapRef = el)}
+        role="marquee"
+        class="glue-notice-bar__wrap"
+      >
         <div
-          ref={el => (this.contentRef = el)}
+          ref={(el) => (this.contentRef = el)}
           class={classNames('glue-notice-bar__content', {
             'glue-ellipsis': ellipsis,
           })}
@@ -99,7 +114,7 @@ export class GlueNoticeBar {
           },
         ],
         begin: () => {},
-        complete: anim => {
+        complete: (anim) => {
           this.glueReplay.emit();
           anim.restart();
         },
@@ -129,7 +144,13 @@ export class GlueNoticeBar {
     }
     const name = this.getRightIconName();
     if (name) {
-      return <glue-icon name={name} class="glue-notice-bar__right-icon" onClick={this.onClickRightIconHandle} />;
+      return (
+        <glue-icon
+          name={name}
+          class="glue-notice-bar__right-icon"
+          onClick={this.onClickRightIconHandle}
+        />
+      );
     }
   };
   render() {

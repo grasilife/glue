@@ -65,14 +65,14 @@ export class GlueForm {
   @Event() submitChange: EventEmitter;
   @Event() failed: EventEmitter;
 
-  getFieldsByNames = names => {
+  getFieldsByNames = (names) => {
     if (names) {
-      return children.filter(field => names.indexOf(field.name) !== -1);
+      return children.filter((field) => names.indexOf(field.name) !== -1);
     }
     return children;
   };
 
-  validateSeq = names =>
+  validateSeq = (names) =>
     new Promise((resolve, reject) => {
       const errors = [];
       const fields = this.getFieldsByNames(names);
@@ -82,14 +82,14 @@ export class GlueForm {
           (promise, field) =>
             promise.then(() => {
               if (!errors.length) {
-                return field.validate().then(error => {
+                return field.validate().then((error) => {
                   if (error) {
                     errors.push(error);
                   }
                 });
               }
             }),
-          Promise.resolve(),
+          Promise.resolve()
         )
         .then(() => {
           if (errors.length) {
@@ -100,11 +100,11 @@ export class GlueForm {
         });
     });
 
-  validateAll = names =>
+  validateAll = (names) =>
     new Promise((resolve, reject) => {
       const fields = this.getFieldsByNames(names);
-      Promise.all(fields.map(item => item.validate())).then(errors => {
-        errors = errors.filter(item => item);
+      Promise.all(fields.map((item) => item.validate())).then((errors) => {
+        errors = errors.filter((item) => item);
 
         if (errors.length) {
           reject(errors);
@@ -114,12 +114,12 @@ export class GlueForm {
       });
     });
 
-  validateField = name => {
-    const matched = children.filter(item => item.name === name);
+  validateField = (name) => {
+    const matched = children.filter((item) => item.name === name);
 
     if (matched.length) {
       return new Promise((resolve, reject) => {
-        matched[0].validate().then(error => {
+        matched[0].validate().then((error) => {
           if (error) {
             reject(error);
           } else {
@@ -139,19 +139,19 @@ export class GlueForm {
     return this.validateFirst ? this.validateSeq(name) : this.validateAll(name);
   };
 
-  resetValidation = name => {
+  resetValidation = (name) => {
     if (name && !Array.isArray(name)) {
       name = [name];
     }
 
     const fields = this.getFieldsByNames(name);
-    fields.forEach(item => {
+    fields.forEach((item) => {
       item.resetValidation();
     });
   };
 
   scrollToField = (name, options?) => {
-    children.some(item => {
+    children.some((item) => {
       if (item.name === name) {
         item.$el.scrollIntoView(options);
         return true;
@@ -173,7 +173,7 @@ export class GlueForm {
       .then(() => {
         this.submitChange.emit(values);
       })
-      .catch(errors => {
+      .catch((errors) => {
         this.failed.emit({ values, errors });
 
         if (this.scrollToError) {
@@ -182,7 +182,7 @@ export class GlueForm {
       });
   };
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     this.submit();
   };

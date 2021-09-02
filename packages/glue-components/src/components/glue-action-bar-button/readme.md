@@ -1,9 +1,6 @@
 # glue-action-bar-button
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -18,13 +15,11 @@
 | `text`       | `text`        |             | `string`  | `undefined` |
 | `type`       | `type`        |             | `string`  | `undefined` |
 
-
 ## Events
 
 | Event     | Description | Type               |
 | --------- | ----------- | ------------------ |
 | `onClick` |             | `CustomEvent<any>` |
-
 
 ## Dependencies
 
@@ -33,6 +28,7 @@
 - [glue-button](../glue-button)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-action-bar-button --> glue-button
@@ -42,6 +38,6 @@ graph TD;
   style glue-action-bar-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

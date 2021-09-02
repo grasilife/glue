@@ -1,8 +1,22 @@
-import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { getSizeStyle } from '../../utils/format/unit';
 import { pick } from '../../utils/base';
-import { isImageFile, readFileContent, isOversize, filterFiles, toArray } from './utils';
+import {
+  isImageFile,
+  readFileContent,
+  isOversize,
+  filterFiles,
+  toArray,
+} from './utils';
 console.log(isImageFile, toArray);
 import { isPromise } from '../../utils/base';
 export type ResultType = 'dataUrl' | 'text' | 'file';
@@ -58,7 +72,7 @@ export class GlueUploader {
     }
   };
 
-  onAfterRead = items => {
+  onAfterRead = (items) => {
     this.resetInput();
 
     if (isOversize(items, this.maxSize)) {
@@ -87,7 +101,7 @@ export class GlueUploader {
     }
   };
 
-  readFile = files => {
+  readFile = (files) => {
     const { maxCount, value, resultType } = this;
 
     if (Array.isArray(files)) {
@@ -97,21 +111,23 @@ export class GlueUploader {
         files = files.slice(0, remainCount);
       }
 
-      Promise.all(files.map(file => readFileContent(file, resultType))).then(contents => {
-        const fileList = files.map((file, index) => {
-          const result = { file, status: '', message: '' };
-          console.log(result, 'result');
-          if (contents[index]) {
-            result['content'] = contents[index];
-          }
+      Promise.all(files.map((file) => readFileContent(file, resultType))).then(
+        (contents) => {
+          const fileList = files.map((file, index) => {
+            const result = { file, status: '', message: '' };
+            console.log(result, 'result');
+            if (contents[index]) {
+              result['content'] = contents[index];
+            }
 
-          return result;
-        });
+            return result;
+          });
 
-        this.onAfterRead(fileList);
-      });
+          this.onAfterRead(fileList);
+        }
+      );
     } else {
-      readFileContent(files, resultType).then(content => {
+      readFileContent(files, resultType).then((content) => {
         //content为base64格式数据
         const result = { file: files, status: '', message: '' };
         console.log(result, 'result2');
@@ -124,7 +140,7 @@ export class GlueUploader {
     }
   };
 
-  onChange = event => {
+  onChange = (event) => {
     console.log(event.target, 'event');
     let { files } = event.target;
 
@@ -144,7 +160,7 @@ export class GlueUploader {
 
       if (isPromise(response)) {
         response
-          .then(data => {
+          .then((data) => {
             if (data) {
               this.readFile(data);
             } else {
@@ -165,7 +181,7 @@ export class GlueUploader {
     this.glueClosePreview.emit();
   };
 
-  renderPreviewImage = item => {
+  renderPreviewImage = (item) => {
     console.log(item, '预览');
     if (this.previewFullImage) {
       const imageFiles = this.value.filter(isImageFile);
@@ -200,12 +216,17 @@ export class GlueUploader {
 
   renderPreviewItem = (item, index) => {
     console.log(item, index, 'item, index');
-    const needPickData = ['imageFit', 'deletable', 'previewSize', 'beforeDelete'];
+    const needPickData = [
+      'imageFit',
+      'deletable',
+      'previewSize',
+      'beforeDelete',
+    ];
 
     const previewData = pick(this, needPickData);
     const previewProp = pick(item, needPickData);
     console.log(previewData, 'previewData');
-    Object.keys(previewProp).forEach(item => {
+    Object.keys(previewProp).forEach((item) => {
       if (previewProp[item] !== undefined) {
         previewData[item] = previewProp[item];
       }
@@ -248,7 +269,7 @@ export class GlueUploader {
 
     const Input = (
       <input
-        ref={dom => {
+        ref={(dom) => {
           this.inputRef = dom;
         }}
         type="file"
@@ -272,8 +293,14 @@ export class GlueUploader {
 
     return (
       <div class="glue-uploader__upload" style={getSizeStyle(this.previewSize)}>
-        <glue-icon name={this.uploadIcon} class="glue-uploader__upload-icon" size="24" />
-        {this.uploadText && <span class="glue-uploader__upload-text">{this.uploadText}</span>}
+        <glue-icon
+          name={this.uploadIcon}
+          class="glue-uploader__upload-icon"
+          size="24"
+        />
+        {this.uploadText && (
+          <span class="glue-uploader__upload-text">{this.uploadText}</span>
+        )}
         {Input}
       </div>
     );

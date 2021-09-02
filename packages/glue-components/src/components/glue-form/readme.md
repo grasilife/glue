@@ -1,9 +1,6 @@
 # glue-form
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -23,7 +20,6 @@
 | `validateFirst`     | `validate-first`      |             | `boolean`          | `undefined` |
 | `validateTrigger`   | `validate-trigger`    |             | `string`           | `'onBlur'`  |
 
-
 ## Events
 
 | Event          | Description | Type               |
@@ -31,20 +27,20 @@
 | `failed`       |             | `CustomEvent<any>` |
 | `submitChange` |             | `CustomEvent<any>` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [glue-contact-edit](../glue-contact-edit)
+- [glue-contact-edit](../glue-contact-edit)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-contact-edit --> glue-form
   style glue-form fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

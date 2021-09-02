@@ -10,7 +10,7 @@ import { CellArrowDirection } from '../glue-cell/glue-cell-interface';
 export class GlueCell {
   @Prop() icon: string;
   @Prop() size: string;
-  @Prop() title: string;
+  @Prop() g_title: string;
   @Prop() value: string | number;
   @Prop() label: string | number;
   @Prop() center: boolean;
@@ -43,7 +43,7 @@ export class GlueCell {
   };
 
   renderTitle = () => {
-    if (this.title == '#slot' || isDef(this.title)) {
+    if (this.g_title == '#slot' || isDef(this.g_title)) {
       return (
         <div
           class={classNames(this.titleClass, {
@@ -51,7 +51,11 @@ export class GlueCell {
           })}
           style={this.titleStyle}
         >
-          {this.title == '#slot' ? <slot name="title"></slot> : <span>{this.title}</span>}
+          {this.g_title == '#slot' ? (
+            <slot name="g_title"></slot>
+          ) : (
+            <span>{this.g_title}</span>
+          )}
           {this.renderLabel()}
         </div>
       );
@@ -59,7 +63,7 @@ export class GlueCell {
   };
 
   renderValue = () => {
-    const hasTitle = this.title == '#slot' || isDef(this.title);
+    const hasTitle = this.g_title == '#slot' || isDef(this.g_title);
     const hasValue = this.value == '#slot' || isDef(this.value);
 
     if (hasValue) {
@@ -70,7 +74,11 @@ export class GlueCell {
             'glue-cell__value--alone': !hasTitle,
           })}
         >
-          {this.value == '#slot' ? <slot name="value"></slot> : <span>{this.value}</span>}
+          {this.value == '#slot' ? (
+            <slot name="value"></slot>
+          ) : (
+            <span>{this.value}</span>
+          )}
         </div>
       );
     }
@@ -98,7 +106,9 @@ export class GlueCell {
       return <slot name="rightIcon"></slot>;
     }
     if (this.isLink) {
-      const name = this.arrowDirection ? `arrow-${this.arrowDirection}` : 'arrow';
+      const name = this.arrowDirection
+        ? `arrow-${this.arrowDirection}`
+        : 'arrow';
       return (
         <glue-icon
           name={name}
