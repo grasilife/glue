@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property              | Attribute                | Description | Type                                                   | Default     |
@@ -23,7 +22,6 @@
 | `show`                | `show`                   |             | `boolean`                                              | `undefined` |
 | `type`                | `type`                   |             | `string`                                               | `'text'`    |
 
-
 ## Events
 
 | Event        | Description | Type               |
@@ -35,7 +33,6 @@
 | `glueOpened` |             | `CustomEvent<any>` |
 | `toggle`     |             | `CustomEvent<any>` |
 
-
 ## Dependencies
 
 ### Depends on
@@ -44,6 +41,7 @@
 - [glue-loading](../glue-loading)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-toast --> glue-icon
@@ -52,6 +50,6 @@ graph TD;
   style glue-toast fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

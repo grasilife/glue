@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property            | Attribute             | Description | Type      | Default     |
@@ -26,18 +25,18 @@
 | `swipeDuration`     | `swipe-duration`      |             | `number`  | `1000`      |
 | `visibleItemCount`  | `visible-item-count`  |             | `number`  | `6`         |
 
-
 ## Dependencies
 
 ### Used by
 
- - [glue-datetime-picker](../glue-datetime-picker)
+- [glue-datetime-picker](../glue-datetime-picker)
 
 ### Depends on
 
 - [glue-picker](../glue-picker)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-time-picker --> glue-picker
@@ -47,6 +46,6 @@ graph TD;
   style glue-time-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

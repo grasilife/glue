@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property      | Attribute      | Description | Type               | Default     |
@@ -14,17 +13,17 @@
 | `offset`      | --             |             | `[number, number]` | `undefined` |
 | `slotContent` | `slot-content` |             | `boolean`          | `undefined` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [glue-icon](../glue-icon)
- - [glue-sidebar-item](../glue-sidebar-item)
- - [glue-tabbar-item](../glue-tabbar-item)
- - [glue-tabs-title](../glue-tabs-title)
+- [glue-icon](../glue-icon)
+- [glue-sidebar-item](../glue-sidebar-item)
+- [glue-tabbar-item](../glue-tabbar-item)
+- [glue-tabs-title](../glue-tabs-title)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-icon --> glue-badge
@@ -34,6 +33,6 @@ graph TD;
   style glue-badge fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

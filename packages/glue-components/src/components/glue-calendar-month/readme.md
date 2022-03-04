@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property         | Attribute           | Description | Type      | Default     |
@@ -22,38 +21,32 @@
 | `showSubtitle`   | `show-subtitle`     |             | `boolean` | `undefined` |
 | `type`           | `type`              |             | `string`  | `undefined` |
 
-
 ## Events
 
 | Event            | Description | Type               |
 | ---------------- | ----------- | ------------------ |
 | `glueMonthClick` |             | `CustomEvent<any>` |
 
-
 ## Methods
 
 ### `getTitle() => Promise<string>`
-
-
 
 #### Returns
 
 Type: `Promise<string>`
 
-
-
-
 ## Dependencies
 
 ### Used by
 
- - [glue-calendar](../glue-calendar)
+- [glue-calendar](../glue-calendar)
 
 ### Depends on
 
 - [glue-calendar-day](../glue-calendar-day)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-calendar-month --> glue-calendar-day
@@ -61,6 +54,6 @@ graph TD;
   style glue-calendar-month fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

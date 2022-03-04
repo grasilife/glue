@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property     | Attribute    | Description | Type                    | Default     |
@@ -18,14 +17,12 @@
 | `text`       | `text`       |             | `string`                | `undefined` |
 | `wrapable`   | `wrapable`   |             | `boolean`               | `false`     |
 
-
 ## Events
 
 | Event        | Description | Type               |
 | ------------ | ----------- | ------------------ |
 | `glueClose`  |             | `CustomEvent<any>` |
 | `glueReplay` |             | `CustomEvent<any>` |
-
 
 ## Dependencies
 
@@ -34,6 +31,7 @@
 - [glue-icon](../glue-icon)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-notice-bar --> glue-icon
@@ -41,6 +39,6 @@ graph TD;
   style glue-notice-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

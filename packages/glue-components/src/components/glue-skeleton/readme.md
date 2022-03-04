@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property       | Attribute       | Description | Type               | Default             |
@@ -18,7 +17,6 @@
 | `titleState`   | `title-state`   |             | `boolean`          | `undefined`         |
 | `titleWidth`   | `title-width`   |             | `number \| string` | `undefined`         |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

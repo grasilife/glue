@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property        | Attribute        | Description | Type               | Default     |
@@ -22,7 +21,6 @@
 | `value`         | `value`          |             | `any`              | `0`         |
 | `vertical`      | `vertical`       |             | `boolean`          | `undefined` |
 
-
 ## Events
 
 | Event           | Description | Type               |
@@ -31,7 +29,6 @@
 | `glueDragEnd`   |             | `CustomEvent<any>` |
 | `glueDragStart` |             | `CustomEvent<any>` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

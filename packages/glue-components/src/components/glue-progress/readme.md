@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property      | Attribute      | Description | Type      | Default     |
@@ -17,20 +16,14 @@
 | `textColor`   | `text-color`   |             | `string`  | `undefined` |
 | `trackColor`  | `track-color`  |             | `string`  | `undefined` |
 
-
 ## Methods
 
 ### `resize() => Promise<void>`
-
-
 
 #### Returns
 
 Type: `Promise<void>`
 
+---
 
-
-
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

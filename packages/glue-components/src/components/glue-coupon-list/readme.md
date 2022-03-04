@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                 | Attribute                  | Description | Type      | Default       |
@@ -27,7 +26,6 @@
 | `showCount`              | `show-count`               |             | `boolean` | `true`        |
 | `showExchangeBar`        | `show-exchange-bar`        |             | `boolean` | `true`        |
 
-
 ## Dependencies
 
 ### Depends on
@@ -39,6 +37,7 @@
 - [glue-tabs](../glue-tabs)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-coupon-list --> glue-field
@@ -64,6 +63,6 @@ graph TD;
   style glue-coupon-list fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

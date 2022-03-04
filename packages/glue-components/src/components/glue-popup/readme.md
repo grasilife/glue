@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property              | Attribute                | Description | Type                    | Default       |
@@ -30,7 +29,6 @@
 | `width`               | `width`                  |             | `string`                | `undefined`   |
 | `zIndex`              | `z-index`                |             | `string`                | `'2000'`      |
 
-
 ## Events
 
 | Event                | Description | Type               |
@@ -43,15 +41,14 @@
 | `glueOpen`           |             | `CustomEvent<any>` |
 | `glueOpened`         |             | `CustomEvent<any>` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [glue-action-sheet](../glue-action-sheet)
- - [glue-address-edit](../glue-address-edit)
- - [glue-calendar](../glue-calendar)
- - [glue-share-sheet](../glue-share-sheet)
+- [glue-action-sheet](../glue-action-sheet)
+- [glue-address-edit](../glue-address-edit)
+- [glue-calendar](../glue-calendar)
+- [glue-share-sheet](../glue-share-sheet)
 
 ### Depends on
 
@@ -59,6 +56,7 @@
 - [glue-overlay](../glue-overlay)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-popup --> glue-icon
@@ -71,6 +69,6 @@ graph TD;
   style glue-popup fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

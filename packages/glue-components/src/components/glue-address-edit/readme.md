@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                 | Attribute            | Description | Type                                                                                                                                                                               | Default              |
@@ -30,7 +29,6 @@
 | `telValidator`           | --                   |             | `(value: string) => boolean`                                                                                                                                                       | `isMobile`           |
 | `validator`              | `validator`          |             | `any`                                                                                                                                                                              | `undefined`          |
 
-
 ## Dependencies
 
 ### Depends on
@@ -42,6 +40,7 @@
 - [glue-popup](../glue-popup)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-address-edit --> glue-switch
@@ -61,6 +60,6 @@ graph TD;
   style glue-address-edit fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

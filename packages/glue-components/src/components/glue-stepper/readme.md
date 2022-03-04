@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property        | Attribute        | Description | Type               | Default     |
@@ -30,7 +29,6 @@
 | `step`          | `step`           |             | `number`           | `1`         |
 | `theme`         | `theme`          |             | `string`           | `undefined` |
 
-
 ## Events
 
 | Event           | Description | Type               |
@@ -42,7 +40,6 @@
 | `glueOverlimit` |             | `CustomEvent<any>` |
 | `gluePlus`      |             | `CustomEvent<any>` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

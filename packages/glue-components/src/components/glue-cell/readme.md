@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property          | Attribute          | Description | Type                                  | Default     |
@@ -25,27 +24,27 @@
 | `value`           | `value`            |             | `number \| string`                    | `undefined` |
 | `valueClass`      | `value-class`      |             | `any`                                 | `null`      |
 
-
 ## Dependencies
 
 ### Used by
 
- - [glue-address-edit](../glue-address-edit)
- - [glue-address-edit-detail](../glue-address-edit-detail)
- - [glue-address-list-item](../glue-address-list-item)
- - [glue-collapse-item](../glue-collapse-item)
- - [glue-contact-card](../glue-contact-card)
- - [glue-contact-edit](../glue-contact-edit)
- - [glue-contact-list](../glue-contact-list)
- - [glue-coupon-cell](../glue-coupon-cell)
- - [glue-dropdown-item](../glue-dropdown-item)
- - [glue-field](../glue-field)
+- [glue-address-edit](../glue-address-edit)
+- [glue-address-edit-detail](../glue-address-edit-detail)
+- [glue-address-list-item](../glue-address-list-item)
+- [glue-collapse-item](../glue-collapse-item)
+- [glue-contact-card](../glue-contact-card)
+- [glue-contact-edit](../glue-contact-edit)
+- [glue-contact-list](../glue-contact-list)
+- [glue-coupon-cell](../glue-coupon-cell)
+- [glue-dropdown-item](../glue-dropdown-item)
+- [glue-field](../glue-field)
 
 ### Depends on
 
 - [glue-icon](../glue-icon)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-cell --> glue-icon
@@ -63,6 +62,6 @@ graph TD;
   style glue-cell fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

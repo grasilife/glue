@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property        | Attribute        | Description | Type               | Default     |
@@ -18,7 +17,6 @@
 | `name`          | `name`           |             | `number \| string` | `undefined` |
 | `shape`         | `shape`          |             | `string`           | `'round'`   |
 
-
 ## Events
 
 | Event        | Description | Type               |
@@ -26,19 +24,19 @@
 | `glueChange` |             | `CustomEvent<any>` |
 | `glueCilck`  |             | `CustomEvent<any>` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [glue-coupon](../glue-coupon)
- - [glue-demo](../glue-demo)
+- [glue-coupon](../glue-coupon)
+- [glue-demo](../glue-demo)
 
 ### Depends on
 
 - [glue-checker](../glue-checker)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-checkbox --> glue-checker
@@ -49,6 +47,6 @@ graph TD;
   style glue-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

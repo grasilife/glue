@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property       | Attribute       | Description | Type      | Default     |
@@ -27,26 +26,24 @@
 | `text`         | `text`          |             | `string`  | `undefined` |
 | `type`         | `type`          |             | `string`  | `'default'` |
 
-
 ## Events
 
 | Event       | Description | Type               |
 | ----------- | ----------- | ------------------ |
 | `glueClick` |             | `CustomEvent<any>` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [glue-action-bar-button](../glue-action-bar-button)
- - [glue-address-edit](../glue-address-edit)
- - [glue-address-list](../glue-address-list)
- - [glue-calendar](../glue-calendar)
- - [glue-contact-edit](../glue-contact-edit)
- - [glue-contact-list](../glue-contact-list)
- - [glue-coupon-list](../glue-coupon-list)
- - [glue-demo](../glue-demo)
+- [glue-action-bar-button](../glue-action-bar-button)
+- [glue-address-edit](../glue-address-edit)
+- [glue-address-list](../glue-address-list)
+- [glue-calendar](../glue-calendar)
+- [glue-contact-edit](../glue-contact-edit)
+- [glue-contact-list](../glue-contact-list)
+- [glue-coupon-list](../glue-coupon-list)
+- [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -54,6 +51,7 @@
 - [glue-icon](../glue-icon)
 
 ### Graph
+
 ```mermaid
 graph TD;
   glue-button --> glue-loading
@@ -70,6 +68,6 @@ graph TD;
   style glue-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

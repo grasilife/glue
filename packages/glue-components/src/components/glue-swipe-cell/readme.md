@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property          | Attribute          | Description | Type      | Default     |
@@ -16,7 +15,6 @@
 | `rightWidth`      | `right-width`      |             | `number`  | `undefined` |
 | `stopPropagation` | `stop-propagation` |             | `boolean` | `undefined` |
 
-
 ## Events
 
 | Event             | Description | Type               |
@@ -25,7 +23,6 @@
 | `glueCloseChange` |             | `CustomEvent<any>` |
 | `glueOpenChange`  |             | `CustomEvent<any>` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_
