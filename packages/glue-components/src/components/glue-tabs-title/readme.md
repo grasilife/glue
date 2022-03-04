@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property        | Attribute        | Description | Type               | Default     |
@@ -11,25 +12,25 @@
 | `color`         | `color`          |             | `string`           | `undefined` |
 | `disabled`      | `disabled`       |             | `boolean`          | `undefined` |
 | `dot`           | `dot`            |             | `boolean`          | `undefined` |
+| `g_title`       | `g_title`        |             | `string`           | `undefined` |
 | `inactiveColor` | `inactive-color` |             | `string`           | `undefined` |
 | `isActive`      | `is-active`      |             | `boolean`          | `undefined` |
 | `renderTitle`   | `render-title`   |             | `any`              | `undefined` |
 | `scrollable`    | `scrollable`     |             | `boolean`          | `undefined` |
-| `title`         | `title`          |             | `string`           | `undefined` |
 | `type`          | `type`           |             | `string`           | `undefined` |
+
 
 ## Dependencies
 
 ### Used by
 
-- [glue-tabs](../glue-tabs)
+ - [glue-tabs](../glue-tabs)
 
 ### Depends on
 
 - [glue-badge](../glue-badge)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-tabs-title --> glue-badge
@@ -37,6 +38,6 @@ graph TD;
   style glue-tabs-title fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

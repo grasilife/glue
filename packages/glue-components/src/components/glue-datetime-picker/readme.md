@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property            | Attribute             | Description | Type               | Default                              |
@@ -13,6 +14,7 @@
 | `filter`            | `filter`              |             | `any`              | `undefined`                          |
 | `fimaxMinuterst`    | `fimax-minuterst`     |             | `number \| string` | `59`                                 |
 | `formatter`         | `formatter`           |             | `any`              | `undefined`                          |
+| `g_title`           | `g_title`             |             | `string`           | `undefined`                          |
 | `itemHeight`        | `item-height`         |             | `number`           | `44`                                 |
 | `loading`           | `loading`             |             | `boolean`          | `undefined`                          |
 | `maxDate`           | --                    |             | `Date`             | `new Date(currentYear + 10, 11, 31)` |
@@ -24,9 +26,9 @@
 | `readonly`          | `readonly`            |             | `boolean`          | `undefined`                          |
 | `showToolbar`       | `show-toolbar`        |             | `boolean`          | `false`                              |
 | `swipeDuration`     | `swipe-duration`      |             | `number`           | `1000`                               |
-| `title`             | `title`               |             | `string`           | `undefined`                          |
 | `type`              | `type`                |             | `string`           | `'datetime'`                         |
 | `visibleItemCount`  | `visible-item-count`  |             | `number`           | `6`                                  |
+
 
 ## Dependencies
 
@@ -36,7 +38,6 @@
 - [glue-date-picker](../glue-date-picker)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-datetime-picker --> glue-time-picker
@@ -48,6 +49,6 @@ graph TD;
   style glue-datetime-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

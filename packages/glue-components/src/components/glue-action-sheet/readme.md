@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property              | Attribute                | Description | Type      | Default     |
@@ -14,13 +15,14 @@
 | `closeable`           | `closeable`              |             | `boolean` | `undefined` |
 | `description`         | `description`            |             | `string`  | `undefined` |
 | `duration`            | `duration`               |             | `string`  | `undefined` |
+| `g_title`             | `g_title`                |             | `string`  | `undefined` |
 | `lazyRender`          | `lazy-render`            |             | `boolean` | `true`      |
 | `lockScroll`          | `lock-scroll`            |             | `boolean` | `true`      |
 | `overlay`             | `overlay`                |             | `boolean` | `false`     |
 | `round`               | `round`                  |             | `boolean` | `true`      |
 | `safeAreaInsetBottom` | `safe-area-inset-bottom` |             | `boolean` | `false`     |
 | `show`                | `show`                   |             | `boolean` | `undefined` |
-| `title`               | `title`                  |             | `string`  | `undefined` |
+
 
 ## Events
 
@@ -33,6 +35,7 @@
 | `glueOpened` |             | `CustomEvent<any>` |
 | `glueShow`   |             | `CustomEvent<any>` |
 
+
 ## Dependencies
 
 ### Depends on
@@ -42,7 +45,6 @@
 - [glue-popup](../glue-popup)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-action-sheet --> glue-icon
@@ -54,6 +56,6 @@ graph TD;
   style glue-action-sheet fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

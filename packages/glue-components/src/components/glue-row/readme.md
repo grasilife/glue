@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property  | Attribute | Description | Type                                                                | Default     |
@@ -10,6 +11,7 @@
 | `gutter`  | `gutter`  |             | `number \| string`                                                  | `0`         |
 | `justify` | `justify` |             | `"center" \| "end" \| "space-around" \| "space-between" \| "start"` | `undefined` |
 
----
 
-_Built with [StencilJS](https://stenciljs.com/)_
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

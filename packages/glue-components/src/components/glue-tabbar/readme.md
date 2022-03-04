@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property              | Attribute                | Description | Type      | Default     |
@@ -16,26 +17,37 @@
 | `safeAreaInsetBottom` | `safe-area-inset-bottom` |             | `boolean` | `undefined` |
 | `zIndex`              | `z-index`                |             | `string`  | `undefined` |
 
+
 ## Events
 
 | Event        | Description | Type               |
 | ------------ | ----------- | ------------------ |
 | `glueChange` |             | `CustomEvent<any>` |
 
+
 ## Methods
 
 ### `getActive() => Promise<any>`
+
+
 
 #### Returns
 
 Type: `Promise<any>`
 
+
+
 ### `setActive(active: any) => Promise<void>`
+
+
 
 #### Returns
 
 Type: `Promise<void>`
 
----
 
-_Built with [StencilJS](https://stenciljs.com/)_
+
+
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

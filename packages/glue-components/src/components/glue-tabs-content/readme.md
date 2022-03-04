@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property       | Attribute       | Description | Type      | Default     |
@@ -15,18 +16,18 @@
 | `lazyRender`   | `lazy-render`   |             | `boolean` | `undefined` |
 | `swipeable`    | `swipeable`     |             | `boolean` | `undefined` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [glue-tabs](../glue-tabs)
+ - [glue-tabs](../glue-tabs)
 
 ### Depends on
 
 - [glue-swipe](../glue-swipe)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-tabs-content --> glue-swipe
@@ -34,6 +35,6 @@ graph TD;
   style glue-tabs-content fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property            | Attribute             | Description | Type      | Default     |
@@ -12,6 +13,7 @@
 | `confirmButtonText` | `confirm-button-text` |             | `string`  | `undefined` |
 | `filter`            | `filter`              |             | `any`     | `undefined` |
 | `formatter`         | `formatter`           |             | `any`     | `undefined` |
+| `g_title`           | `g_title`             |             | `string`  | `undefined` |
 | `itemHeight`        | `item-height`         |             | `number`  | `44`        |
 | `loading`           | `loading`             |             | `boolean` | `undefined` |
 | `maxHour`           | `max-hour`            |             | `number`  | `23`        |
@@ -22,21 +24,20 @@
 | `readonly`          | `readonly`            |             | `boolean` | `undefined` |
 | `showToolbar`       | `show-toolbar`        |             | `boolean` | `false`     |
 | `swipeDuration`     | `swipe-duration`      |             | `number`  | `1000`      |
-| `title`             | `title`               |             | `string`  | `undefined` |
 | `visibleItemCount`  | `visible-item-count`  |             | `number`  | `6`         |
+
 
 ## Dependencies
 
 ### Used by
 
-- [glue-datetime-picker](../glue-datetime-picker)
+ - [glue-datetime-picker](../glue-datetime-picker)
 
 ### Depends on
 
 - [glue-picker](../glue-picker)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-time-picker --> glue-picker
@@ -46,6 +47,6 @@ graph TD;
   style glue-time-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

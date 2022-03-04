@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property          | Attribute           | Description | Type                             | Default                  |
@@ -14,6 +15,7 @@
 | `showSetDefault`  | `show-set-default`  |             | `boolean`                        | `undefined`              |
 | `telValidator`    | --                  |             | `(value: string) => boolean`     | `isMobile`               |
 
+
 ## Dependencies
 
 ### Depends on
@@ -25,7 +27,6 @@
 - [glue-field](../glue-field)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-contact-edit --> glue-button
@@ -43,6 +44,6 @@ graph TD;
   style glue-contact-edit fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

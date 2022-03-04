@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property      | Attribute      | Description | Type               | Default     |
@@ -9,6 +10,7 @@
 | `centered`    | `centered`     |             | `boolean`          | `undefined` |
 | `currency`    | `currency`     |             | `string`           | `'¥'`       |
 | `desc`        | `desc`         |             | `string`           | `undefined` |
+| `g_title`     | `g_title`      |             | `string`           | `undefined` |
 | `lazyLoad`    | `lazy-load`    |             | `boolean`          | `undefined` |
 | `num`         | `num`          |             | `number \| string` | `undefined` |
 | `originPrice` | `origin-price` |             | `number \| string` | `undefined` |
@@ -16,13 +18,14 @@
 | `tag`         | `tag`          |             | `string`           | `undefined` |
 | `thumb`       | `thumb`        |             | `string`           | `undefined` |
 | `thumbLink`   | `thumb-link`   |             | `string`           | `undefined` |
-| `title`       | `title`        |             | `string`           | `undefined` |
+
 
 ## Events
 
-| Event     | Description | Type               |
-| --------- | ----------- | ------------------ |
-| `onClick` |             | `CustomEvent<any>` |
+| Event       | Description | Type               |
+| ----------- | ----------- | ------------------ |
+| `glueClick` |             | `CustomEvent<any>` |
+
 
 ## Dependencies
 
@@ -31,7 +34,6 @@
 - [glue-tag](../glue-tag)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-card --> glue-tag
@@ -40,6 +42,6 @@ graph TD;
   style glue-card fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

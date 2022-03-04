@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property       | Attribute       | Description | Type      | Default     |
@@ -11,7 +12,8 @@
 | `coupons`      | --              |             | `[]`      | `undefined` |
 | `currency`     | `currency`      |             | `string`  | `'¥'`       |
 | `editable`     | `editable`      |             | `boolean` | `true`      |
-| `title`        | `title`         |             | `string`  | `undefined` |
+| `g_title`      | `g_title`       |             | `string`  | `undefined` |
+
 
 ## Dependencies
 
@@ -20,7 +22,6 @@
 - [glue-cell](../glue-cell)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-coupon-cell --> glue-cell
@@ -29,6 +30,6 @@ graph TD;
   style glue-coupon-cell fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

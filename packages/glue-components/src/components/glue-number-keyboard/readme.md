@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property              | Attribute                | Description | Type               | Default            |
@@ -11,6 +12,7 @@
 | `closeButtonText`     | `close-button-text`      |             | `string`           | `undefined`        |
 | `deleteButtonText`    | `delete-button-text`     |             | `string`           | `undefined`        |
 | `extraKey`            | `extra-key`              |             | `string`           | `''`               |
+| `g_title`             | `g_title`                |             | `string`           | `undefined`        |
 | `hideOnClickOutside`  | `hide-on-click-outside`  |             | `boolean`          | `true`             |
 | `maxlength`           | `maxlength`              |             | `number`           | `Number.MAX_VALUE` |
 | `modelValue`          | `model-value`            |             | `string`           | `''`               |
@@ -20,19 +22,20 @@
 | `showDeleteKey`       | `show-delete-key`        |             | `boolean`          | `true`             |
 | `teleport`            | `teleport`               |             | `number \| string` | `undefined`        |
 | `theme`               | `theme`                  |             | `string`           | `'default'`        |
-| `title`               | `title`                  |             | `string`           | `undefined`        |
 | `transition`          | `transition`             |             | `boolean`          | `true`             |
 | `zIndex`              | `z-index`                |             | `string`           | `undefined`        |
 
+
 ## Events
 
-| Event         | Description | Type               |
-| ------------- | ----------- | ------------------ |
-| `blur`        |             | `CustomEvent<any>` |
-| `changeValue` |             | `CustomEvent<any>` |
-| `close`       |             | `CustomEvent<any>` |
-| `delete`      |             | `CustomEvent<any>` |
-| `input`       |             | `CustomEvent<any>` |
+| Event        | Description | Type               |
+| ------------ | ----------- | ------------------ |
+| `glueBlur`   |             | `CustomEvent<any>` |
+| `glueChange` |             | `CustomEvent<any>` |
+| `glueClose`  |             | `CustomEvent<any>` |
+| `glueDelete` |             | `CustomEvent<any>` |
+| `glueInput`  |             | `CustomEvent<any>` |
+
 
 ## Dependencies
 
@@ -41,7 +44,6 @@
 - [glue-key](../glue-key)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-number-keyboard --> glue-key
@@ -49,6 +51,6 @@ graph TD;
   style glue-number-keyboard fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

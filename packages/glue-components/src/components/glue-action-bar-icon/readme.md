@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property    | Attribute | Description | Type               | Default     |
@@ -13,11 +14,13 @@
 | `iconClass` | --        |             | `null`             | `undefined` |
 | `text`      | `text`    |             | `string`           | `undefined` |
 
+
 ## Events
 
-| Event     | Description | Type               |
-| --------- | ----------- | ------------------ |
-| `onClick` |             | `CustomEvent<any>` |
+| Event      | Description | Type               |
+| ---------- | ----------- | ------------------ |
+| `gluClick` |             | `CustomEvent<any>` |
+
 
 ## Dependencies
 
@@ -26,7 +29,6 @@
 - [glue-icon](../glue-icon)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-action-bar-icon --> glue-icon
@@ -34,6 +36,6 @@ graph TD;
   style glue-action-bar-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

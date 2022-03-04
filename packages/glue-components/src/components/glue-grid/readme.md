@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property    | Attribute    | Description | Type                         | Default     |
@@ -15,6 +16,7 @@
 | `iconSize`  | `icon-size`  |             | `number \| string`           | `28`        |
 | `square`    | `square`     |             | `boolean`                    | `undefined` |
 
----
 
-_Built with [StencilJS](https://stenciljs.com/)_
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

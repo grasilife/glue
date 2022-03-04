@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property            | Attribute             | Description | Type                                  | Default      |
@@ -22,6 +23,7 @@
 | `errorMessageAlign` | `error-message-align` |             | `string`                              | `undefined`  |
 | `formatTrigger`     | `format-trigger`      |             | `string`                              | `'onChange'` |
 | `formatter`         | `formatter`           |             | `any`                                 | `undefined`  |
+| `g_title`           | `g_title`             |             | `string`                              | `undefined`  |
 | `icon`              | `icon`                |             | `string`                              | `undefined`  |
 | `iconPrefix`        | `icon-prefix`         |             | `string`                              | `undefined`  |
 | `inputAlign`        | `input-align`         |             | `string`                              | `undefined`  |
@@ -43,22 +45,22 @@
 | `showWordLimit`     | `show-word-limit`     |             | `boolean`                             | `undefined`  |
 | `size`              | `size`                |             | `string`                              | `undefined`  |
 | `tilabelClasstle`   | `tilabel-classtle`    |             | `any`                                 | `null`       |
-| `title`             | `title`               |             | `string`                              | `undefined`  |
 | `titleClass`        | `title-class`         |             | `any`                                 | `null`       |
 | `titleStyle`        | `title-style`         |             | `any`                                 | `null`       |
 | `type`              | `type`                |             | `string`                              | `'text'`     |
 | `value`             | `value`               |             | `number \| string`                    | `undefined`  |
 | `valueClass`        | `value-class`         |             | `any`                                 | `null`       |
 
+
 ## Dependencies
 
 ### Used by
 
-- [glue-address-edit](../glue-address-edit)
-- [glue-address-edit-detail](../glue-address-edit-detail)
-- [glue-contact-edit](../glue-contact-edit)
-- [glue-coupon-list](../glue-coupon-list)
-- [glue-search](../glue-search)
+ - [glue-address-edit](../glue-address-edit)
+ - [glue-address-edit-detail](../glue-address-edit-detail)
+ - [glue-contact-edit](../glue-contact-edit)
+ - [glue-coupon-list](../glue-coupon-list)
+ - [glue-search](../glue-search)
 
 ### Depends on
 
@@ -66,7 +68,6 @@
 - [glue-cell](../glue-cell)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-field --> glue-icon
@@ -81,6 +82,6 @@ graph TD;
   style glue-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

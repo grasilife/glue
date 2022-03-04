@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property              | Attribute                | Description | Type               | Default     |
@@ -11,6 +12,7 @@
 | `closeOnPopstate`     | `close-on-popstate`      |             | `boolean`          | `false`     |
 | `description`         | `description`            |             | `string`           | `undefined` |
 | `duration`            | `duration`               |             | `string`           | `undefined` |
+| `g_title`             | `g_title`                |             | `string`           | `undefined` |
 | `lazyRender`          | `lazy-render`            |             | `boolean`          | `false`     |
 | `lockScroll`          | `lock-scroll`            |             | `boolean`          | `false`     |
 | `options`             | --                       |             | `any[]`            | `[]`        |
@@ -19,7 +21,7 @@
 | `safeAreaInsetBottom` | `safe-area-inset-bottom` |             | `boolean`          | `true`      |
 | `show`                | `show`                   |             | `boolean`          | `undefined` |
 | `teleport`            | `teleport`               |             | `object \| string` | `undefined` |
-| `title`               | `title`                  |             | `string`           | `undefined` |
+
 
 ## Events
 
@@ -33,6 +35,7 @@
 | `glueSelect` |             | `CustomEvent<any>` |
 | `glueShow`   |             | `CustomEvent<any>` |
 
+
 ## Dependencies
 
 ### Depends on
@@ -40,7 +43,6 @@
 - [glue-popup](../glue-popup)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-share-sheet --> glue-popup
@@ -50,6 +52,6 @@ graph TD;
   style glue-share-sheet fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

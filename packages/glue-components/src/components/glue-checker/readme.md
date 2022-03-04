@@ -2,25 +2,27 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property        | Attribute        | Description | Type               | Default     |
 | --------------- | ---------------- | ----------- | ------------------ | ----------- |
-| `bem`           | `bem`            |             | `boolean`          | `true`      |
-| `bindGroup`     | `bind-group`     |             | `boolean`          | `true`      |
-| `checked`       | `checked`        |             | `boolean`          | `undefined` |
+| `bem`           | `bem`            |             | `string`           | `'true'`    |
+| `bindGroup`     | `bind-group`     |             | `string`           | `'true'`    |
+| `checked`       | `checked`        |             | `string`           | `undefined` |
 | `checkedColor`  | `checked-color`  |             | `string`           | `undefined` |
-| `disabled`      | `disabled`       |             | `boolean`          | `undefined` |
+| `disabled`      | `disabled`       |             | `string`           | `undefined` |
 | `icon`          | `icon`           |             | `string`           | `''`        |
 | `iconSize`      | `icon-size`      |             | `number \| string` | `undefined` |
 | `label`         | `label`          |             | `string`           | `undefined` |
-| `labelDisabled` | `label-disabled` |             | `boolean`          | `undefined` |
+| `labelDisabled` | `label-disabled` |             | `string`           | `undefined` |
 | `labelPosition` | `label-position` |             | `string`           | `undefined` |
 | `modelValue`    | `model-value`    |             | `any`              | `undefined` |
 | `name`          | `name`           |             | `number \| string` | `undefined` |
 | `parent`        | `parent`         |             | `any`              | `undefined` |
 | `role`          | `role`           |             | `string`           | `undefined` |
 | `shape`         | `shape`          |             | `string`           | `'round'`   |
+
 
 ## Events
 
@@ -29,18 +31,18 @@
 | `glueCilck`  |             | `CustomEvent<any>` |
 | `glueToggle` |             | `CustomEvent<any>` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [glue-checkbox](../glue-checkbox)
+ - [glue-checkbox](../glue-checkbox)
 
 ### Depends on
 
 - [glue-icon](../glue-icon)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-checker --> glue-icon
@@ -49,6 +51,6 @@ graph TD;
   style glue-checker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
