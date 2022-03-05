@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property    | Attribute    | Description | Type      | Default     |
@@ -16,26 +17,27 @@
 | `textColor` | `text-color` |             | `string`  | `undefined` |
 | `type`      | `type`       |             | `string`  | `'default'` |
 
+
 ## Events
 
 | Event           | Description | Type               |
 | --------------- | ----------- | ------------------ |
 | `glueIconClick` |             | `CustomEvent<any>` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [glue-address-list-item](../glue-address-list-item)
-- [glue-card](../glue-card)
-- [glue-contact-list](../glue-contact-list)
+ - [glue-address-list-item](../glue-address-list-item)
+ - [glue-card](../glue-card)
+ - [glue-contact-list](../glue-contact-list)
 
 ### Depends on
 
 - [glue-icon](../glue-icon)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-tag --> glue-icon
@@ -46,6 +48,6 @@ graph TD;
   style glue-tag fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

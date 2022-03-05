@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property              | Attribute                | Description | Type               | Default     |
@@ -21,6 +22,7 @@
 | `show`                | `show`                   |             | `boolean`          | `undefined` |
 | `teleport`            | `teleport`               |             | `object \| string` | `undefined` |
 
+
 ## Events
 
 | Event        | Description | Type               |
@@ -33,6 +35,7 @@
 | `glueSelect` |             | `CustomEvent<any>` |
 | `glueShow`   |             | `CustomEvent<any>` |
 
+
 ## Dependencies
 
 ### Depends on
@@ -40,7 +43,6 @@
 - [glue-popup](../glue-popup)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-share-sheet --> glue-popup
@@ -50,6 +52,6 @@ graph TD;
   style glue-share-sheet fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

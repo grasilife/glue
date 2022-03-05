@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property           | Attribute             | Description | Type      | Default     |
@@ -16,12 +17,14 @@
 | `safeAreaInsetTop` | `safe-area-inset-top` |             | `boolean` | `undefined` |
 | `zIndex`           | `z-index`             |             | `string`  | `undefined` |
 
+
 ## Events
 
 | Event       | Description | Type               |
 | ----------- | ----------- | ------------------ |
 | `glueLeft`  |             | `CustomEvent<any>` |
 | `glueRight` |             | `CustomEvent<any>` |
+
 
 ## Dependencies
 
@@ -30,7 +33,6 @@
 - [glue-icon](../glue-icon)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-nav-bar --> glue-icon
@@ -38,6 +40,6 @@ graph TD;
   style glue-nav-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

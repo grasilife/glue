@@ -497,13 +497,14 @@ export class GlueDemo {
         {/* <glue-checkbox model-value="true" label="复选框"></glue-checkbox> */}
         {/* <glue-icon name="cart-o" color="#1989fa" size="32" />
         <glue-icon name="fire-o" color="#ee0a24" size="32" /> */}
-        <glue-checkbox-group model_value={['a', 'b']}>
+        {/* <glue-checkbox-group model_value={['a', 'b']}>
           <glue-checkbox name="a">复选框 a</glue-checkbox>
           <glue-checkbox name="b">复选框 b</glue-checkbox>
-        </glue-checkbox-group>
-        <glue-button square type="primary">
+        </glue-checkbox-group> */}
+        {/* <glue-button square type="primary" testMax={this.fileList}>
           收藏
-        </glue-button>
+        </glue-button> */}
+        <glue-button isOpen={this.items}></glue-button>
       </div>
     );
   }

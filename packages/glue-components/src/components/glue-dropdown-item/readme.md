@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property     | Attribute     | Description | Type      | Default     |
@@ -15,6 +16,7 @@
 | `teleport`   | `teleport`    |             | `any`     | `undefined` |
 | `titleClass` | `title-class` |             | `any`     | `null`      |
 
+
 ## Dependencies
 
 ### Depends on
@@ -22,7 +24,6 @@
 - [glue-cell](../glue-cell)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-dropdown-item --> glue-cell
@@ -31,6 +32,6 @@ graph TD;
   style glue-dropdown-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

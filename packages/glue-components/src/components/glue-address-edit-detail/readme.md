@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property           | Attribute            | Description | Type               | Default     |
@@ -16,6 +17,7 @@
 | `showSearchResult` | `show-search-result` |             | `boolean`          | `undefined` |
 | `value`            | `value`              |             | `string`           | `undefined` |
 
+
 ## Events
 
 | Event       | Description | Type               |
@@ -23,6 +25,7 @@
 | `glueBlur`  |             | `CustomEvent<any>` |
 | `glueFocus` |             | `CustomEvent<any>` |
 | `glueInput` |             | `CustomEvent<any>` |
+
 
 ## Dependencies
 
@@ -32,7 +35,6 @@
 - [glue-field](../glue-field)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-address-edit-detail --> glue-cell
@@ -44,6 +46,6 @@ graph TD;
   style glue-address-edit-detail fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
