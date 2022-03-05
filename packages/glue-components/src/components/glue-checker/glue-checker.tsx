@@ -18,7 +18,7 @@ import { addUnit } from '../../utils/format/unit';
 export class GlueChecker {
   @Element() el!: HTMLGlueCheckerElement;
   //checkerProps
-  @Prop() label: string;
+  @Prop({ reflect: true }) label: string;
   @Prop() name: number | string;
   @Prop() disabled: string;
   @Prop() iconSize: number | string;
@@ -31,8 +31,8 @@ export class GlueChecker {
   // this
   @Prop() role: string;
   @Prop() parent: any;
-  @Prop() checked: string;
-  @Prop() bindGroup: string = 'true';
+  @Prop() checked: boolean = false;
+  @Prop() bindGroup: boolean = true;
   @Prop() bem: string = 'true';
   @Event() glueToggle: EventEmitter;
   @Event() glueCilck: EventEmitter;
@@ -80,7 +80,7 @@ export class GlueChecker {
         class={classNames('glue-checker__icon', {
           ['glue-checker__icon--' + shape]: shape,
           ['glue-checker__icon--disabled']: this.disabledFn(),
-          ['glue-checker__icon--checked']: checked == 'true',
+          ['glue-checker__icon--checked']: checked,
         })}
         style={{ fontSize: addUnit(iconSize) }}
       >
@@ -91,7 +91,6 @@ export class GlueChecker {
 
   renderLabel = () => {
     const iconSize = this.iconSize || this.getParentProp('iconSize');
-    console.log(this.label, 'fjaijfia221');
     return (
       <span
         style={{ fontSize: addUnit(iconSize) }}

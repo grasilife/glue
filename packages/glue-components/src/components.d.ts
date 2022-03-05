@@ -238,14 +238,14 @@ export namespace Components {
         "g_title": string;
     }
     interface GlueCheckbox {
-        "bindGroup": string;
+        "bindGroup": boolean;
         "checkedColor": string;
         "disabled": string;
         "iconSize": number | string;
         "label": string;
         "labelDisabled": string;
         "labelPosition": string;
-        "modelValue": any;
+        "modelValue": boolean;
         "name": number | string;
         "shape": string;
     }
@@ -256,12 +256,12 @@ export namespace Components {
         "first": string;
         "iconSize": number | string;
         "max": number | string;
-        "model_value": any;
+        "modelValue": any;
     }
     interface GlueChecker {
         "bem": string;
-        "bindGroup": string;
-        "checked": string;
+        "bindGroup": boolean;
+        "checked": boolean;
         "checkedColor": string;
         "disabled": string;
         "icon": string;
@@ -2109,14 +2109,14 @@ declare namespace LocalJSX {
         "g_title"?: string;
     }
     interface GlueCheckbox {
-        "bindGroup"?: string;
+        "bindGroup"?: boolean;
         "checkedColor"?: string;
         "disabled"?: string;
         "iconSize"?: number | string;
         "label"?: string;
         "labelDisabled"?: string;
         "labelPosition"?: string;
-        "modelValue"?: any;
+        "modelValue"?: boolean;
         "name"?: number | string;
         "onGlueChange"?: (event: CustomEvent<any>) => void;
         "onGlueCilck"?: (event: CustomEvent<any>) => void;
@@ -2129,12 +2129,12 @@ declare namespace LocalJSX {
         "first"?: string;
         "iconSize"?: number | string;
         "max"?: number | string;
-        "model_value"?: any;
+        "modelValue"?: any;
     }
     interface GlueChecker {
         "bem"?: string;
-        "bindGroup"?: string;
-        "checked"?: string;
+        "bindGroup"?: boolean;
+        "checked"?: boolean;
         "checkedColor"?: string;
         "disabled"?: string;
         "icon"?: string;

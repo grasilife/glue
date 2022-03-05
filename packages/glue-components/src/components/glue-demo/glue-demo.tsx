@@ -493,14 +493,20 @@ export class GlueDemo {
         {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="100%" height="30%" position="top">
           <div>内容</div>
         </glue-popup> */}
-        {/* <glue-checkbox modelValue={true} label="复选框" shape="square" checked-color="#ee0a24" icon-size="24"></glue-checkbox> */}
-        {/* <glue-checkbox model-value="true" label="复选框"></glue-checkbox> */}
-        {/* <glue-icon name="cart-o" color="#1989fa" size="32" />
-        <glue-icon name="fire-o" color="#ee0a24" size="32" /> */}
-        {/* <glue-checkbox-group model_value={['a', 'b']}>
+        <glue-checkbox
+          modelValue={true}
+          label="复选框"
+          // shape="square"
+          // checked-color="#ee0a24"
+          // icon-size="24"
+        ></glue-checkbox>
+        <glue-checkbox modelValue={true} label="复选框"></glue-checkbox>
+        <glue-icon name="cart-o" color="#1989fa" size="32" />
+        <glue-icon name="fire-o" color="#ee0a24" size="32" />
+        <glue-checkbox-group modelValue={['a', 'b']}>
           <glue-checkbox name="a">复选框 a</glue-checkbox>
           <glue-checkbox name="b">复选框 b</glue-checkbox>
-        </glue-checkbox-group> */}
+        </glue-checkbox-group>
         {/* <glue-button square type="primary" testMax={this.fileList}>
           收藏
         </glue-button> */}

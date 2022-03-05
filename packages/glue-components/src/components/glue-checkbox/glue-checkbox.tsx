@@ -22,12 +22,12 @@ export class GlueCheckbox {
   @Prop({ reflect: true }) name: number | string;
   @Prop({ reflect: true }) disabled: string;
   @Prop({ reflect: true }) iconSize: number | string = 16;
-  @Prop({ mutable: true, reflect: true }) modelValue;
+  @Prop({ mutable: true, reflect: true }) modelValue = false;
   @Prop({ reflect: true }) checkedColor: string;
   @Prop({ reflect: true }) labelPosition: string;
   @Prop({ reflect: true }) labelDisabled: string;
   @Prop({ reflect: true }) shape = 'round';
-  @Prop({ reflect: true }) bindGroup = 'false';
+  @Prop({ reflect: true }) bindGroup: boolean = false;
   @State() parent: any;
   @State() parentMax: any;
   @State() parentModelValue;
@@ -48,9 +48,9 @@ export class GlueCheckbox {
   }
   setParentValue = (checked) => {
     const { name } = this;
-    const { parentMax, modelValue } = this;
-    console.log(modelValue, 'modelValue');
-    const value = modelValue.slice();
+    const { parentMax, parentModelValue } = this;
+    console.log(parentModelValue, 'modelValue');
+    const value = parentModelValue.slice();
 
     if (checked) {
       const overlimit = parentMax && value.length >= parentMax;
@@ -89,11 +89,7 @@ export class GlueCheckbox {
     if (this.parent && this.bindGroup) {
       this.setParentValue(newValue);
     } else {
-      if (this.modelValue == 'true') {
-        this.modelValue = 'false';
-      } else {
-        this.modelValue = 'true';
-      }
+      this.modelValue = !this.modelValue;
       this.glueChange.emit(this.modelValue);
     }
   };
