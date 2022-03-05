@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property              | Attribute                | Description | Type      | Default     |
@@ -22,6 +23,7 @@
 | `safeAreaInsetBottom` | `safe-area-inset-bottom` |             | `boolean` | `false`     |
 | `show`                | `show`                   |             | `boolean` | `undefined` |
 
+
 ## Events
 
 | Event        | Description | Type               |
@@ -33,6 +35,7 @@
 | `glueOpened` |             | `CustomEvent<any>` |
 | `glueShow`   |             | `CustomEvent<any>` |
 
+
 ## Dependencies
 
 ### Depends on
@@ -42,7 +45,6 @@
 - [glue-popup](../glue-popup)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-action-sheet --> glue-icon
@@ -54,6 +56,6 @@ graph TD;
   style glue-action-sheet fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

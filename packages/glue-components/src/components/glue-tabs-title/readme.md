@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property        | Attribute        | Description | Type               | Default     |
@@ -18,18 +19,18 @@
 | `scrollable`    | `scrollable`     |             | `boolean`          | `undefined` |
 | `type`          | `type`           |             | `string`           | `undefined` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [glue-tabs](../glue-tabs)
+ - [glue-tabs](../glue-tabs)
 
 ### Depends on
 
 - [glue-badge](../glue-badge)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-tabs-title --> glue-badge
@@ -37,6 +38,6 @@ graph TD;
   style glue-tabs-title fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

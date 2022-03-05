@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property        | Attribute        | Description | Type               | Default     |
@@ -15,20 +16,20 @@
 | `name`          | --               |             | `null`             | `undefined` |
 | `shape`         | `shape`          |             | `string`           | `'round'`   |
 
+
 ## Dependencies
 
 ### Used by
 
-- [glue-contact-list](../glue-contact-list)
+ - [glue-contact-list](../glue-contact-list)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-contact-list --> glue-radio
   style glue-radio fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

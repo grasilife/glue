@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property   | Attribute  | Description | Type      | Default     |
@@ -12,6 +13,7 @@
 | `tel`      | `tel`      |             | `string`  | `undefined` |
 | `type`     | `type`     |             | `string`  | `'add'`     |
 
+
 ## Dependencies
 
 ### Depends on
@@ -19,7 +21,6 @@
 - [glue-cell](../glue-cell)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-contact-card --> glue-cell
@@ -28,6 +29,6 @@ graph TD;
   style glue-contact-card fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property    | Attribute    | Description | Type               | Default      |
@@ -14,22 +15,22 @@
 | `type`      | `type`       |             | `string`           | `'circular'` |
 | `vertical`  | `vertical`   |             | `boolean`          | `undefined`  |
 
+
 ## Dependencies
 
 ### Used by
 
-- [glue-action-sheet](../glue-action-sheet)
-- [glue-button](../glue-button)
-- [glue-key](../glue-key)
-- [glue-list](../glue-list)
-- [glue-picker](../glue-picker)
-- [glue-pull-refresh](../glue-pull-refresh)
-- [glue-switch](../glue-switch)
-- [glue-toast](../glue-toast)
-- [glue-uploader-preview-item](../glue-uploader-preview-item)
+ - [glue-action-sheet](../glue-action-sheet)
+ - [glue-button](../glue-button)
+ - [glue-key](../glue-key)
+ - [glue-list](../glue-list)
+ - [glue-picker](../glue-picker)
+ - [glue-pull-refresh](../glue-pull-refresh)
+ - [glue-switch](../glue-switch)
+ - [glue-toast](../glue-toast)
+ - [glue-uploader-preview-item](../glue-uploader-preview-item)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-action-sheet --> glue-loading
@@ -44,6 +45,6 @@ graph TD;
   style glue-loading fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

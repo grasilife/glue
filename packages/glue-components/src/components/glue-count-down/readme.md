@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property      | Attribute     | Description | Type      | Default      |
@@ -12,6 +13,7 @@
 | `millisecond` | `millisecond` |             | `boolean` | `undefined`  |
 | `time`        | `time`        |             | `number`  | `0`          |
 
+
 ## Events
 
 | Event        | Description | Type               |
@@ -19,26 +21,40 @@
 | `glueChange` |             | `CustomEvent<any>` |
 | `glueFinish` |             | `CustomEvent<any>` |
 
+
 ## Methods
 
 ### `pause() => Promise<void>`
 
+
+
 #### Returns
 
 Type: `Promise<void>`
+
+
 
 ### `reset() => Promise<void>`
 
+
+
 #### Returns
 
 Type: `Promise<void>`
+
+
 
 ### `start() => Promise<void>`
 
+
+
 #### Returns
 
 Type: `Promise<void>`
 
----
 
-_Built with [StencilJS](https://stenciljs.com/)_
+
+
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

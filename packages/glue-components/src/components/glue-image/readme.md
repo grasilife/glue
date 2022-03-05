@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property      | Attribute      | Description | Type                                                       | Default        |
@@ -20,6 +21,7 @@
 | `src`         | `src`          |             | `string`                                                   | `undefined`    |
 | `width`       | `width`        |             | `number \| string`                                         | `undefined`    |
 
+
 ## Events
 
 | Event       | Description | Type               |
@@ -27,18 +29,18 @@
 | `glueError` |             | `CustomEvent<any>` |
 | `glueLoad`  |             | `CustomEvent<any>` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [glue-uploader-preview-item](../glue-uploader-preview-item)
+ - [glue-uploader-preview-item](../glue-uploader-preview-item)
 
 ### Depends on
 
 - [glue-icon](../glue-icon)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-image --> glue-icon
@@ -47,6 +49,6 @@ graph TD;
   style glue-image fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

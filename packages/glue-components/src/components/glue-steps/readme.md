@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property        | Attribute        | Description | Type               | Default        |
@@ -14,12 +15,14 @@
 | `inactiveColor` | `inactive-color` |             | `string`           | `undefined`    |
 | `inactiveIcon`  | `inactive-icon`  |             | `string`           | `undefined`    |
 
+
 ## Events
 
 | Event       | Description | Type               |
 | ----------- | ----------- | ------------------ |
 | `clickStep` |             | `CustomEvent<any>` |
 
----
 
-_Built with [StencilJS](https://stenciljs.com/)_
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property      | Attribute      | Description | Type               | Default     |
@@ -18,11 +19,13 @@
 | `thumb`       | `thumb`        |             | `string`           | `undefined` |
 | `thumbLink`   | `thumb-link`   |             | `string`           | `undefined` |
 
+
 ## Events
 
 | Event       | Description | Type               |
 | ----------- | ----------- | ------------------ |
 | `glueClick` |             | `CustomEvent<any>` |
+
 
 ## Dependencies
 
@@ -31,7 +34,6 @@
 - [glue-tag](../glue-tag)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-card --> glue-tag
@@ -40,6 +42,6 @@ graph TD;
   style glue-card fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

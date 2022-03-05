@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property          | Attribute          | Description | Type                                  | Default     |
@@ -25,11 +26,13 @@
 | `value`           | `value`            |             | `number \| string`                    | `undefined` |
 | `valueClass`      | `value-class`      |             | `any`                                 | `null`      |
 
+
 ## Events
 
 | Event        | Description | Type               |
 | ------------ | ----------- | ------------------ |
 | `clickTitle` |             | `CustomEvent<any>` |
+
 
 ## Dependencies
 
@@ -38,7 +41,6 @@
 - [glue-cell](../glue-cell)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-collapse-item --> glue-cell
@@ -47,6 +49,6 @@ graph TD;
   style glue-collapse-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

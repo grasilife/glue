@@ -2,29 +2,33 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
-| Property       | Attribute       | Description | Type      | Default     |
-| -------------- | --------------- | ----------- | --------- | ----------- |
-| `block`        | `block`         |             | `boolean` | `undefined` |
-| `color`        | `color`         |             | `string`  | `undefined` |
-| `disabled`     | `disabled`      |             | `boolean` | `undefined` |
-| `hairline`     | `hairline`      |             | `boolean` | `undefined` |
-| `icon`         | `icon`          |             | `string`  | `undefined` |
-| `iconPosition` | `icon-position` |             | `string`  | `'left'`    |
-| `iconPrefix`   | `icon-prefix`   |             | `string`  | `undefined` |
-| `loading`      | `loading`       |             | `boolean` | `undefined` |
-| `loadingSize`  | `loading-size`  |             | `string`  | `'20px'`    |
-| `loadingText`  | `loading-text`  |             | `string`  | `undefined` |
-| `loadingType`  | `loading-type`  |             | `string`  | `undefined` |
-| `nativeType`   | `native-type`   |             | `string`  | `'button'`  |
-| `plain`        | `plain`         |             | `boolean` | `undefined` |
-| `round`        | `round`         |             | `boolean` | `undefined` |
-| `size`         | `size`          |             | `string`  | `'normal'`  |
-| `square`       | `square`        |             | `boolean` | `undefined` |
-| `tag`          | `tag`           |             | `string`  | `'button'`  |
-| `text`         | `text`          |             | `string`  | `undefined` |
-| `type`         | `type`          |             | `string`  | `'default'` |
+| Property       | Attribute       | Description | Type       | Default     |
+| -------------- | --------------- | ----------- | ---------- | ----------- |
+| `block`        | `block`         |             | `boolean`  | `undefined` |
+| `color`        | `color`         |             | `string`   | `undefined` |
+| `disabled`     | `disabled`      |             | `boolean`  | `undefined` |
+| `hairline`     | `hairline`      |             | `boolean`  | `undefined` |
+| `icon`         | `icon`          |             | `string`   | `undefined` |
+| `iconPosition` | `icon-position` |             | `string`   | `'left'`    |
+| `iconPrefix`   | `icon-prefix`   |             | `string`   | `undefined` |
+| `isOpen`       | `is-open`       |             | `boolean`  | `true`      |
+| `list`         | --              |             | `number[]` | `[]`        |
+| `loading`      | `loading`       |             | `boolean`  | `undefined` |
+| `loadingSize`  | `loading-size`  |             | `string`   | `'20px'`    |
+| `loadingText`  | `loading-text`  |             | `string`   | `undefined` |
+| `loadingType`  | `loading-type`  |             | `string`   | `undefined` |
+| `nativeType`   | `native-type`   |             | `string`   | `'button'`  |
+| `plain`        | `plain`         |             | `boolean`  | `undefined` |
+| `round`        | `round`         |             | `boolean`  | `undefined` |
+| `size`         | `size`          |             | `string`   | `'normal'`  |
+| `square`       | `square`        |             | `boolean`  | `undefined` |
+| `tag`          | `tag`           |             | `string`   | `'button'`  |
+| `text`         | `text`          |             | `string`   | `undefined` |
+| `type`         | `type`          |             | `string`   | `'default'` |
+
 
 ## Events
 
@@ -32,18 +36,19 @@
 | ----------- | ----------- | ------------------ |
 | `glueClick` |             | `CustomEvent<any>` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [glue-action-bar-button](../glue-action-bar-button)
-- [glue-address-edit](../glue-address-edit)
-- [glue-address-list](../glue-address-list)
-- [glue-calendar](../glue-calendar)
-- [glue-contact-edit](../glue-contact-edit)
-- [glue-contact-list](../glue-contact-list)
-- [glue-coupon-list](../glue-coupon-list)
-- [glue-demo](../glue-demo)
+ - [glue-action-bar-button](../glue-action-bar-button)
+ - [glue-address-edit](../glue-address-edit)
+ - [glue-address-list](../glue-address-list)
+ - [glue-calendar](../glue-calendar)
+ - [glue-contact-edit](../glue-contact-edit)
+ - [glue-contact-list](../glue-contact-list)
+ - [glue-coupon-list](../glue-coupon-list)
+ - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -51,7 +56,6 @@
 - [glue-icon](../glue-icon)
 
 ### Graph
-
 ```mermaid
 graph TD;
   glue-button --> glue-loading
@@ -68,6 +72,6 @@ graph TD;
   style glue-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

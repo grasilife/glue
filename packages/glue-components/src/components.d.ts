@@ -122,6 +122,8 @@ export namespace Components {
         "icon": string;
         "iconPosition": string;
         "iconPrefix": string;
+        "isOpen": boolean;
+        "list": number[];
         "loading": boolean;
         "loadingSize": string;
         "loadingText": string;
@@ -1982,6 +1984,8 @@ declare namespace LocalJSX {
         "icon"?: string;
         "iconPosition"?: string;
         "iconPrefix"?: string;
+        "isOpen"?: boolean;
+        "list"?: number[];
         "loading"?: boolean;
         "loadingSize"?: string;
         "loadingText"?: string;
