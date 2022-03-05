@@ -504,7 +504,7 @@ export class GlueDemo {
         {/* <glue-button square type="primary" testMax={this.fileList}>
           收藏
         </glue-button> */}
-        <glue-button isOpen={this.items}></glue-button>
+        <glue-button></glue-button>
       </div>
     );
   }
