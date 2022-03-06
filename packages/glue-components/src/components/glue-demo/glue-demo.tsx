@@ -505,7 +505,7 @@ export class GlueDemo {
           label="复选框"
           disabled={true}
         ></glue-checkbox> */}
-        <glue-checkbox
+        {/* <glue-checkbox
           modelValue={true}
           label="复选框"
           shape="square"
@@ -516,17 +516,14 @@ export class GlueDemo {
           icon="#slot"
         >
           <glue-icon name="chat-o" size="32" color="red" />
-        </glue-checkbox>
-        {/* <glue-icon name="cart-o" color="#1989fa" size="32" />
-        <glue-icon name="fire-o" color="#ee0a24" size="32" />
+        </glue-checkbox> */}
         <glue-checkbox-group modelValue={['a', 'b']}>
-          <glue-checkbox name="a">复选框 a</glue-checkbox>
-          <glue-checkbox name="b">复选框 b</glue-checkbox>
+          <glue-checkbox name="a" label="复选框"></glue-checkbox>
+          <glue-checkbox name="b" label="复选框"></glue-checkbox>
         </glue-checkbox-group>
-        <glue-button square type="primary" testMax={this.fileList}>
+        <glue-button square type="primary">
           收藏
         </glue-button>
-        <glue-button></glue-button> */}
       </div>
     );
   }

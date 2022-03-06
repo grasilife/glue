@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CellArrowDirection } from "./components/glue-cell/glue-cell-interface";
+import { CheckerDirection } from "./components/glue-checkbox-group/glue-checkbox-group";
 import { DividerContentPosition } from "./components/glue-divider/glue-divider";
 import { GridDirection } from "./components/glue-grid/glue-grid";
 import { ImageFit } from "./components/glue-image/glue-image";
@@ -252,7 +253,7 @@ export namespace Components {
     }
     interface GlueCheckboxGroup {
         "checkedColor": string;
-        "direction": string;
+        "direction": CheckerDirection;
         "disabled": string;
         "first": string;
         "iconSize": number | string;
@@ -270,7 +271,7 @@ export namespace Components {
         "label": string;
         "labelDisabled": boolean;
         "labelPosition": string;
-        "modelValue": any;
+        "modelValue": boolean;
         "name": number | string;
         "parent": any;
         "role": string;
@@ -2127,7 +2128,7 @@ declare namespace LocalJSX {
     }
     interface GlueCheckboxGroup {
         "checkedColor"?: string;
-        "direction"?: string;
+        "direction"?: CheckerDirection;
         "disabled"?: string;
         "first"?: string;
         "iconSize"?: number | string;
@@ -2145,7 +2146,7 @@ declare namespace LocalJSX {
         "label"?: string;
         "labelDisabled"?: boolean;
         "labelPosition"?: string;
-        "modelValue"?: any;
+        "modelValue"?: boolean;
         "name"?: number | string;
         "onGlueCilck"?: (event: CustomEvent<any>) => void;
         "onGlueToggle"?: (event: CustomEvent<any>) => void;

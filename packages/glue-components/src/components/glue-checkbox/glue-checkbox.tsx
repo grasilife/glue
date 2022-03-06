@@ -9,7 +9,9 @@ import {
   EventEmitter,
 } from '@stencil/core';
 import classNames from 'classnames';
+import { createNamespace } from '../../utils/create/index';
 import { getElementParent, getAttribute } from '../../utils/base';
+const [bem] = createNamespace('glue-checkbox');
 @Component({
   tag: 'glue-checkbox',
   styleUrl: 'glue-checkbox.less',
@@ -24,7 +26,7 @@ export class GlueCheckbox {
   @Prop({ reflect: true }) disabled: boolean = false;
   @Prop({ reflect: true }) iconSize: number | string = 16;
   @Prop({ mutable: true, reflect: true }) modelValue = false;
-  @Prop({ reflect: true }) checkedColor: string;
+  @Prop({ reflect: true }) checkedColor: string = '#1989fa';
   @Prop({ reflect: true }) labelPosition: string;
   @Prop({ reflect: true }) labelDisabled: boolean = false;
   @Prop({ reflect: true }) shape = 'round';
@@ -47,6 +49,16 @@ export class GlueCheckbox {
       console.log(this.modelValue, 'this.modelValue');
     }
   }
+  getParentProp = (name) => {
+    console.log(this.parent, name, 'this.parentthis.parent');
+    if (this.parent) {
+      let parentAttr = getAttribute(this.parent, name);
+      console.log(parentAttr, 'parentAttr');
+      return parentAttr;
+    }
+    return null;
+  };
+  direction = () => this.getParentProp('direction') || null;
   setParentValue = (checked) => {
     const { name } = this;
     const { parentMax, parentModelValue } = this;
@@ -78,29 +90,29 @@ export class GlueCheckbox {
 
   checked = () => {
     console.log(this.parent, this.bindGroup, 'this.bindGroup');
-    if (this.parent && this.bindGroup) {
-      return this.parentModelValue.indexOf(this.name) !== -1;
-    }
+    // if (this.parent && this.bindGroup) {
+    //   return this.parentModelValue.indexOf(this.name) !== -1;
+    // }
     console.log(this.modelValue, 'this.modelValue1');
     return this.modelValue;
   };
 
   toggle = (newValue) => {
-    console.log('fjhuahiguiangi');
+    console.log(newValue, this.modelValue, 'fjhuahiguiangi111');
+    this.modelValue = !this.modelValue;
+    this.glueChange.emit(this.modelValue);
     if (this.parent && this.bindGroup) {
       this.setParentValue(newValue);
-    } else {
-      this.modelValue = !this.modelValue;
-      this.glueChange.emit(this.modelValue);
     }
   };
-  click = () => {
-    this.glueCilck.emit();
+  click = (event) => {
+    console.log(event.detail, 'jijijijijijiji');
+    this.glueCilck.emit(event.detail);
   };
   render() {
     console.log(this.label, this.modelValue, 'fjaijfia');
     return (
-      <Host class={classNames('glue-checkbox')}>
+      <Host class={classNames('glue-checkbox', bem([this.direction()]))}>
         <glue-checker
           class="glue-checkbox"
           role="checkbox"

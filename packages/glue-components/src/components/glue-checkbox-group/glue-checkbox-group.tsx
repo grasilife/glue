@@ -1,8 +1,9 @@
 import { Component, Prop, h, Element, State, Host } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
-const [bem] = createNamespace('glue-action-bar-button');
+const [bem] = createNamespace('glue-checkbox-group');
 import { getElementChildren, getAttribute } from '../../utils/base';
+export type CheckerDirection = 'horizontal' | 'vertical';
 @Component({
   tag: 'glue-checkbox-group',
   styleUrl: 'glue-checkbox-group.less',
@@ -13,7 +14,7 @@ export class GlueCheckboxGroup {
   @Prop() first: string;
   @Prop() max: number | string;
   @Prop() disabled: string;
-  @Prop() direction: string;
+  @Prop({ reflect: true }) direction: CheckerDirection = 'vertical';
   @Prop() iconSize: number | string;
   @Prop() checkedColor: string;
   @Prop({ reflect: true }) modelValue: any;
@@ -22,7 +23,7 @@ export class GlueCheckboxGroup {
     console.log(this.modelValue, 'mmmmmm');
     this.children = getElementChildren(this.el);
     console.log(this.children, 'this.children');
-    this.toggleAll();
+    // this.toggleAll();
   }
   toggleAll = (options = { checked: '', skipDisabled: '' }) => {
     console.log(options);
