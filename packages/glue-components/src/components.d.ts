@@ -241,6 +241,7 @@ export namespace Components {
         "bindGroup": boolean;
         "checkedColor": string;
         "disabled": boolean;
+        "icon": string;
         "iconSize": number | string;
         "label": string;
         "labelDisabled": boolean;
@@ -2113,6 +2114,7 @@ declare namespace LocalJSX {
         "bindGroup"?: boolean;
         "checkedColor"?: string;
         "disabled"?: boolean;
+        "icon"?: string;
         "iconSize"?: number | string;
         "label"?: string;
         "labelDisabled"?: boolean;

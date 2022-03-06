@@ -19,6 +19,7 @@ export class GlueCheckbox {
   @Element() el!: HTMLGlueCheckboxElement;
   //checkerProps
   @Prop({ reflect: true }) label: string;
+  @Prop() icon: string;
   @Prop({ reflect: true }) name: number | string;
   @Prop({ reflect: true }) disabled: boolean = false;
   @Prop({ reflect: true }) iconSize: number | string = 16;
@@ -103,6 +104,7 @@ export class GlueCheckbox {
         <glue-checker
           class="glue-checkbox"
           role="checkbox"
+          icon={this.icon}
           parent={this.parent}
           checked={this.checked()}
           bindGroup={this.bindGroup}

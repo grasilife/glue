@@ -513,7 +513,10 @@ export class GlueDemo {
           checked-color="#ee0a24"
           icon-size="24px"
           label-disabled={true}
-        ></glue-checkbox>
+          icon="#slot"
+        >
+          <glue-icon name="chat-o" size="32" color="red" />
+        </glue-checkbox>
         {/* <glue-icon name="cart-o" color="#1989fa" size="32" />
         <glue-icon name="fire-o" color="#ee0a24" size="32" />
         <glue-checkbox-group modelValue={['a', 'b']}>
