@@ -500,13 +500,21 @@ export class GlueDemo {
           // checked-color="#ee0a24"
           // icon-size="24"
         ></glue-checkbox> */}
-        <glue-checkbox
+        {/* <glue-checkbox
           modelValue={true}
           label="复选框"
           disabled={true}
+        ></glue-checkbox> */}
+        <glue-checkbox
+          modelValue={true}
+          label="复选框"
+          shape="square"
+          class="shape"
+          checked-color="#ee0a24"
+          icon-size="24px"
+          label-disabled={true}
         ></glue-checkbox>
-        {/* <glue-checkbox modelValue={true} label="复选框"></glue-checkbox>
-        <glue-icon name="cart-o" color="#1989fa" size="32" />
+        {/* <glue-icon name="cart-o" color="#1989fa" size="32" />
         <glue-icon name="fire-o" color="#ee0a24" size="32" />
         <glue-checkbox-group modelValue={['a', 'b']}>
           <glue-checkbox name="a">复选框 a</glue-checkbox>

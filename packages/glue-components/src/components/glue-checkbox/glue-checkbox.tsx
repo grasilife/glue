@@ -25,7 +25,7 @@ export class GlueCheckbox {
   @Prop({ mutable: true, reflect: true }) modelValue = false;
   @Prop({ reflect: true }) checkedColor: string;
   @Prop({ reflect: true }) labelPosition: string;
-  @Prop({ reflect: true }) labelDisabled: string;
+  @Prop({ reflect: true }) labelDisabled: boolean = false;
   @Prop({ reflect: true }) shape = 'round';
   @Prop({ reflect: true }) bindGroup: boolean = false;
   @State() parent: any;

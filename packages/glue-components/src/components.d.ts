@@ -243,7 +243,7 @@ export namespace Components {
         "disabled": boolean;
         "iconSize": number | string;
         "label": string;
-        "labelDisabled": string;
+        "labelDisabled": boolean;
         "labelPosition": string;
         "modelValue": boolean;
         "name": number | string;
@@ -267,7 +267,7 @@ export namespace Components {
         "icon": string;
         "iconSize": number | string;
         "label": string;
-        "labelDisabled": string;
+        "labelDisabled": boolean;
         "labelPosition": string;
         "modelValue": any;
         "name": number | string;
@@ -545,6 +545,7 @@ export namespace Components {
         "text": string;
     }
     interface GlueIcon {
+        "backgroundColor": string;
         "badge": number | string;
         "classPrefix": string;
         "color": string;
@@ -2114,7 +2115,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "iconSize"?: number | string;
         "label"?: string;
-        "labelDisabled"?: string;
+        "labelDisabled"?: boolean;
         "labelPosition"?: string;
         "modelValue"?: boolean;
         "name"?: number | string;
@@ -2140,7 +2141,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         "iconSize"?: number | string;
         "label"?: string;
-        "labelDisabled"?: string;
+        "labelDisabled"?: boolean;
         "labelPosition"?: string;
         "modelValue"?: any;
         "name"?: number | string;
@@ -2421,6 +2422,7 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface GlueIcon {
+        "backgroundColor"?: string;
         "badge"?: number | string;
         "classPrefix"?: string;
         "color"?: string;

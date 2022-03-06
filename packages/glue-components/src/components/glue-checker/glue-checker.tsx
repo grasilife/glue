@@ -25,7 +25,7 @@ export class GlueChecker {
   @Prop() modelValue;
   @Prop() checkedColor: string;
   @Prop() labelPosition: string;
-  @Prop() labelDisabled: string;
+  @Prop() labelDisabled: boolean = false;
   @Prop() shape: string = 'round';
   @Prop() icon: string = '';
   // this
@@ -68,7 +68,13 @@ export class GlueChecker {
       return <slot name="icon"></slot>;
     }
     return (
-      <glue-icon name="success" color={this.checkedColor} size={iconSize} />
+      <glue-icon
+        name="success"
+        // color={this.checkedColor}
+        backgroundColor={this.checkedColor}
+        size={iconSize}
+        style={{ background: 'this.checkedColor' }}
+      />
     );
   };
   renderIcon = () => {
