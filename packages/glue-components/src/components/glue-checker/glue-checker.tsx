@@ -20,7 +20,7 @@ export class GlueChecker {
   //checkerProps
   @Prop({ reflect: true }) label: string;
   @Prop() name: number | string;
-  @Prop() disabled: string;
+  @Prop() disabled: boolean = false;
   @Prop() iconSize: number | string;
   @Prop() modelValue;
   @Prop() checkedColor: string;
@@ -46,7 +46,10 @@ export class GlueChecker {
     return null;
   };
 
-  disabledFn = () => this.getParentProp('disabled') || this.disabled;
+  disabledFn = () => {
+    console.log(this.getParentProp('disabled'), this.disabled, 'jijijijijiji');
+    return this.getParentProp('disabled') || this.disabled;
+  };
 
   direction = () => this.getParentProp('direction') || null;
 
@@ -90,16 +93,17 @@ export class GlueChecker {
   };
 
   renderLabel = () => {
+    console.log(this.disabledFn(), 'kkkkkk');
     const iconSize = this.iconSize || this.getParentProp('iconSize');
     return (
       <span
         style={{ fontSize: addUnit(iconSize) }}
         class={classNames('glue-checker__label', {
-          ['glue-checker__icon' + this.labelPosition]: this.labelPosition,
-          ['glue-checker__icon--disabled']: this.disabledFn(),
+          // ['glue-checker__icon' + this.labelPosition]: this.labelPosition,
+          ['glue-checker__label--disabled']: this.disabledFn(),
         })}
       >
-        {this.label}
+        {this.label}111
       </span>
     );
   };
@@ -116,7 +120,7 @@ export class GlueChecker {
         role={this.role}
         class={classNames({
           ['glue-checker__disabled']: this.disabledFn(),
-          ['glue-checker__label-disabled']: this.labelDisabled,
+          ['glue-checker__label-disabled']: this.disabledFn(),
         })}
         tabindex={this.disabledFn() ? -1 : 0}
         aria-checked={this.checked}

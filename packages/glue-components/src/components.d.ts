@@ -240,7 +240,7 @@ export namespace Components {
     interface GlueCheckbox {
         "bindGroup": boolean;
         "checkedColor": string;
-        "disabled": string;
+        "disabled": boolean;
         "iconSize": number | string;
         "label": string;
         "labelDisabled": string;
@@ -263,7 +263,7 @@ export namespace Components {
         "bindGroup": boolean;
         "checked": boolean;
         "checkedColor": string;
-        "disabled": string;
+        "disabled": boolean;
         "icon": string;
         "iconSize": number | string;
         "label": string;
@@ -2111,7 +2111,7 @@ declare namespace LocalJSX {
     interface GlueCheckbox {
         "bindGroup"?: boolean;
         "checkedColor"?: string;
-        "disabled"?: string;
+        "disabled"?: boolean;
         "iconSize"?: number | string;
         "label"?: string;
         "labelDisabled"?: string;
@@ -2136,7 +2136,7 @@ declare namespace LocalJSX {
         "bindGroup"?: boolean;
         "checked"?: boolean;
         "checkedColor"?: string;
-        "disabled"?: string;
+        "disabled"?: boolean;
         "icon"?: string;
         "iconSize"?: number | string;
         "label"?: string;

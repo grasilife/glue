@@ -20,7 +20,7 @@ export class GlueCheckbox {
   //checkerProps
   @Prop({ reflect: true }) label: string;
   @Prop({ reflect: true }) name: number | string;
-  @Prop({ reflect: true }) disabled: string;
+  @Prop({ reflect: true }) disabled: boolean = false;
   @Prop({ reflect: true }) iconSize: number | string = 16;
   @Prop({ mutable: true, reflect: true }) modelValue = false;
   @Prop({ reflect: true }) checkedColor: string;
