@@ -517,7 +517,7 @@ export class GlueDemo {
         >
           <glue-icon name="chat-o" size="32" color="red" />
         </glue-checkbox> */}
-        <glue-checkbox-group modelValue={['a', 'b']}>
+        <glue-checkbox-group modelValue={['a', 'b']} max={1}>
           <glue-checkbox name="a" label="复选框"></glue-checkbox>
           <glue-checkbox name="b" label="复选框"></glue-checkbox>
         </glue-checkbox-group>

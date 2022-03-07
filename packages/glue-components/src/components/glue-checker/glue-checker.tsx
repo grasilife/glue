@@ -22,7 +22,7 @@ export class GlueChecker {
   @Prop() name: number | string;
   @Prop() disabled: boolean = false;
   @Prop() iconSize: number | string;
-  @Prop({ mutable: true, reflect: true }) modelValue = false;
+  @Prop({ reflect: true }) modelValue = false;
   @Prop() checkedColor: string;
   @Prop() labelPosition: string;
   @Prop() labelDisabled: boolean = false;
@@ -72,7 +72,7 @@ export class GlueChecker {
       <glue-icon
         name="success"
         // color={this.checkedColor}
-        backgroundColor={this.checkedColor}
+        backgroundColor={this.checked ? this.checkedColor : 'white'}
         size={iconSize}
       />
     );
