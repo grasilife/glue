@@ -5,15 +5,16 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type               | Default     |
-| ------------- | -------------- | ----------- | ------------------ | ----------- |
-| `badge`       | `badge`        |             | `number \| string` | `undefined` |
-| `classPrefix` | `class-prefix` |             | `string`           | `undefined` |
-| `color`       | `color`        |             | `string`           | `undefined` |
-| `dot`         | `dot`          |             | `boolean`          | `undefined` |
-| `name`        | `name`         |             | `string`           | `undefined` |
-| `size`        | `size`         |             | `number \| string` | `16`        |
-| `tag`         | `tag`          |             | `string`           | `undefined` |
+| Property          | Attribute          | Description | Type               | Default     |
+| ----------------- | ------------------ | ----------- | ------------------ | ----------- |
+| `backgroundColor` | `background-color` |             | `string`           | `undefined` |
+| `badge`           | `badge`            |             | `number \| string` | `undefined` |
+| `classPrefix`     | `class-prefix`     |             | `string`           | `undefined` |
+| `color`           | `color`            |             | `string`           | `undefined` |
+| `dot`             | `dot`              |             | `boolean`          | `undefined` |
+| `name`            | `name`             |             | `string`           | `undefined` |
+| `size`            | `size`             |             | `number \| string` | `16`        |
+| `tag`             | `tag`              |             | `string`           | `undefined` |
 
 
 ## Dependencies

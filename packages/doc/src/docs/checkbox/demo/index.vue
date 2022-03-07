@@ -1,94 +1,79 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-checkbox v-model="checkbox1">{{ checkbox }}</van-checkbox>
+      <glue-checkbox :model-value="checkbox1" :label="checkbox"></glue-checkbox>
     </DemoBlock>
 
     <DemoBlock :title="disabled">
-      <van-checkbox :value="false" disabled>
-        {{ checkbox }}
-      </van-checkbox>
-      <van-checkbox :value="true" disabled>
-        {{ checkbox }}
-      </van-checkbox>
+      <glue-checkbox :value="false" disabled :label="checkbox"> </glue-checkbox>
+      <glue-checkbox :value="true" disabled :label="checkbox"> </glue-checkbox>
     </DemoBlock>
 
     <DemoBlock :title="customShape">
-      <van-checkbox v-model="checkboxShape" shape="square">
-        {{ customColor }}
-      </van-checkbox>
+      <glue-checkbox :model-value="checkboxShape" shape="square" :label="customShape"> </glue-checkbox>
     </DemoBlock>
 
     <DemoBlock :title="customColor">
-      <van-checkbox v-model="checkbox2" checked-color="#ee0a24">
-        {{ customColor }}
-      </van-checkbox>
+      <glue-checkbox :model-value="checkbox2" checked-color="#ee0a24" :label="customColor"> </glue-checkbox>
     </DemoBlock>
 
     <DemoBlock :title="customIconSize">
-      <van-checkbox v-model="checboxIcon" icon-size="24px">
-        {{ customIconSize }}
-      </van-checkbox>
+      <glue-checkbox :model-value="checboxIcon" icon-size="24px" :label="customIconSize"> </glue-checkbox>
     </DemoBlock>
 
     <DemoBlock :title="customIcon">
-      <van-checkbox v-model="checkbox3">
-        {{ customIcon }}
-        <template #icon="{ checked }">
-          <img :src="checked ? activeIcon : inactiveIcon" />
-        </template>
-      </van-checkbox>
+      <glue-checkbox :model-value="checkbox3" :label="customIcon" icon="#slot">
+        <glue-icon :name="checkbox3 ? activeIcon : inactiveIcon" size="32" />
+      </glue-checkbox>
     </DemoBlock>
 
     <DemoBlock :title="disableLabel">
-      <van-checkbox v-model="checkboxLabel" label-disabled>
-        {{ checkbox }}
-      </van-checkbox>
+      <glue-checkbox :model-value="checkboxLabel" :label-disabled="true" :label="checkbox"> </glue-checkbox>
     </DemoBlock>
 
     <DemoBlock :title="title3">
-      <van-checkbox-group v-model="result">
-        <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
-        <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
-      </van-checkbox-group>
+      <glue-checkbox-group v-model="result">
+        <glue-checkbox name="a" :label="checkbox"></glue-checkbox>
+        <glue-checkbox name="b" :label="checkbox"></glue-checkbox>
+      </glue-checkbox-group>
     </DemoBlock>
 
     <DemoBlock :title="horizontal">
-      <van-checkbox-group v-model="horizontalResult" direction="horizontal">
-        <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
-        <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
-      </van-checkbox-group>
+      <glue-checkbox-group :model-value="horizontalResult" direction="horizontal">
+        <glue-checkbox name="a" :label="checkbox"></glue-checkbox>
+        <glue-checkbox name="b" :label="checkbox"></glue-checkbox>
+      </glue-checkbox-group>
     </DemoBlock>
 
     <DemoBlock :title="title4">
-      <van-checkbox-group v-model="result2" :max="2">
-        <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
-        <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
-        <van-checkbox name="c">{{ checkbox }} c</van-checkbox>
-      </van-checkbox-group>
+      <glue-checkbox-group :model-value="result2" :max="2">
+        <glue-checkbox name="a" :label="checkbox"></glue-checkbox>
+        <glue-checkbox name="b" :label="checkbox"></glue-checkbox>
+        <glue-checkbox name="c" :label="checkbox"></glue-checkbox>
+      </glue-checkbox-group>
     </DemoBlock>
 
     <DemoBlock :title="toggleAllTitle">
-      <van-checkbox-group v-model="checkAllResult" ref="group">
-        <van-checkbox name="a">{{ checkbox }} a</van-checkbox>
-        <van-checkbox name="b">{{ checkbox }} b</van-checkbox>
-        <van-checkbox name="c">{{ checkbox }} c</van-checkbox>
-      </van-checkbox-group>
+      <glue-checkbox-group :model-value="checkAllResult" ref="group">
+        <glue-checkbox name="a" :label="checkbox"></glue-checkbox>
+        <glue-checkbox name="b" :label="checkbox"></glue-checkbox>
+        <glue-checkbox name="c" :label="checkbox"></glue-checkbox>
+      </glue-checkbox-group>
 
       <div class="demo-checkbox-buttons">
-        <van-button type="primary" @click="checkAll">
+        <glue-button type="primary" @click="checkAll">
           {{ checkAllTitle }}
-        </van-button>
-        <van-button type="info" @click="toggleAll">
+        </glue-button>
+        <glue-button type="info" @click="toggleAll">
           {{ inverse }}
-        </van-button>
+        </glue-button>
       </div>
     </DemoBlock>
 
     <DemoBlock :title="title5">
-      <van-checkbox-group v-model="result3">
-        <van-cell-group>
-          <van-cell
+      <glue-checkbox-group v-model="result3">
+        <glue-cell-group>
+          <glue-cell
             v-for="(item, index) in list"
             clickable
             :key="index"
@@ -96,11 +81,11 @@
             @click="toggle(index)"
           >
             <template #right-icon>
-              <van-checkbox ref="checkboxes" :name="item" />
+              <glue-checkbox ref="checkboxes" :name="item" />
             </template>
-          </van-cell>
-        </van-cell-group>
-      </van-checkbox-group>
+          </glue-cell>
+        </glue-cell-group>
+      </glue-checkbox-group>
     </DemoBlock>
   </DemoSection>
 </template>
@@ -163,12 +148,13 @@ export default {
 .demo-checkbox {
   background: @white;
 
-  .van-checkbox {
-    margin: 0 0 8px 20px;
+  .glue-checkbox,
+  .glue-checkbox-group {
+    margin: 0 0 4px 10px;
   }
 
-  .van-cell {
-    .van-checkbox {
+  .glue-cell {
+    .glue-checkbox {
       margin: 0;
     }
   }
@@ -180,12 +166,12 @@ export default {
   &-buttons {
     margin-top: @padding-md;
 
-    .van-button {
+    .glue-button {
       margin-left: @padding-md;
     }
   }
 
-  .van-doc-demo-block__title {
+  .glue-doc-demo-block__title {
     margin-top: -8px;
   }
 }

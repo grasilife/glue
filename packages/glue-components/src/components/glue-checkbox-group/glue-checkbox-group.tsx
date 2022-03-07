@@ -46,7 +46,7 @@ export class GlueCheckboxGroup {
   };
   render() {
     return (
-      <Host class={classNames(bem([this.direction]))}>
+      <Host class={classNames('glue-checkbox-group', bem([this.direction]))}>
         <slot></slot>
       </Host>
     );

@@ -14,6 +14,9 @@ https://stenciljs.com/docs/faq;
 #### 关于slot传参数的问题
 
 web components目前没有slot传参的api
+#### 关于slot类型的问题
+
+slot没法传递到子组件的子组件,比如glue-checkbox的icon的slot,没法传递的glue-check组件,而是只能传递到glue-checkbox组件,而且slot一旦传递就无法隐藏
 #### 多语言的支持
 
 暂时没有实现多语言的支持
