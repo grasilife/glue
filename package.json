@@ -18,10 +18,8 @@
     "clear:readme": "esno scripts/clearReadme.ts"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^3.3.0"
-  },
-  "devDependencies": {
     "@umijs/utils": "^4.0.0-rc.5",
+    "cz-conventional-changelog": "^3.3.0",
     "esno": "^0.14.1",
     "lerna": "^3.22.1",
     "plop": "^2.7.4"
