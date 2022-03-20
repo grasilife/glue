@@ -12,13 +12,15 @@ export class GlueIcon {
   @Prop() size: number | string = 16;
   @Prop() badge: number | string;
   @Prop() color: string;
+  @Prop() backgroundColor: string;
   @Prop() tag: string;
   @Prop() classPrefix: string;
   private isImage(name?: string) {
     return name ? name.indexOf('/') !== -1 : false;
   }
   render() {
-    const { dot, name, size, badge, color, classPrefix } = this;
+    const { dot, name, size, badge, color, classPrefix, backgroundColor } =
+      this;
     console.log(addUnit(size), 'jiahuahu');
     const isImageIcon = this.isImage(name);
     console.log(isImageIcon, 'isImageIcon');
@@ -27,8 +29,8 @@ export class GlueIcon {
         <glue-badge dot={dot} content={badge} slot-content>
           <i
             style={{
-              // borderColor: color,
               color: color,
+              backgroundColor: backgroundColor,
               fontSize: addUnit(size),
             }}
             class={classNames(classPrefix, 'glue-icon', {

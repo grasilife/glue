@@ -7,14 +7,15 @@
 
 | Property        | Attribute        | Description | Type               | Default     |
 | --------------- | ---------------- | ----------- | ------------------ | ----------- |
-| `bindGroup`     | `bind-group`     |             | `string`           | `'false'`   |
-| `checkedColor`  | `checked-color`  |             | `string`           | `undefined` |
-| `disabled`      | `disabled`       |             | `string`           | `undefined` |
+| `bindGroup`     | `bind-group`     |             | `boolean`          | `false`     |
+| `checkedColor`  | `checked-color`  |             | `string`           | `'#1989fa'` |
+| `disabled`      | `disabled`       |             | `boolean`          | `false`     |
+| `icon`          | `icon`           |             | `string`           | `undefined` |
 | `iconSize`      | `icon-size`      |             | `number \| string` | `16`        |
 | `label`         | `label`          |             | `string`           | `undefined` |
-| `labelDisabled` | `label-disabled` |             | `string`           | `undefined` |
+| `labelDisabled` | `label-disabled` |             | `boolean`          | `false`     |
 | `labelPosition` | `label-position` |             | `string`           | `undefined` |
-| `modelValue`    | `model-value`    |             | `any`              | `undefined` |
+| `modelValue`    | `model-value`    |             | `boolean`          | `false`     |
 | `name`          | `name`           |             | `number \| string` | `undefined` |
 | `shape`         | `shape`          |             | `string`           | `'round'`   |
 
@@ -32,6 +33,7 @@
 ### Used by
 
  - [glue-coupon](../glue-coupon)
+ - [glue-demo](../glue-demo)
 
 ### Depends on
 
@@ -44,6 +46,7 @@ graph TD;
   glue-checker --> glue-icon
   glue-icon --> glue-badge
   glue-coupon --> glue-checkbox
+  glue-demo --> glue-checkbox
   style glue-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

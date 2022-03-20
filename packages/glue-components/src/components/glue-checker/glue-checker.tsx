@@ -9,7 +9,7 @@ import {
 } from '@stencil/core';
 import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
-// import { getElementParent, getAttribute } from '../../utils/base';
+import { getAttribute } from '../../utils/base';
 @Component({
   tag: 'glue-checker',
   styleUrl: 'glue-checker.less',
@@ -22,10 +22,10 @@ export class GlueChecker {
   @Prop() name: number | string;
   @Prop() disabled: boolean = false;
   @Prop() iconSize: number | string;
-  @Prop() modelValue;
+  @Prop({ reflect: true }) modelValue = false;
   @Prop() checkedColor: string;
   @Prop() labelPosition: string;
-  @Prop() labelDisabled: string;
+  @Prop() labelDisabled: boolean = false;
   @Prop() shape: string = 'round';
   @Prop() icon: string = '';
   // this
@@ -39,9 +39,11 @@ export class GlueChecker {
   componentDidLoad() {}
   iconRef;
   getParentProp = (name) => {
-    console.log(this.parent, 'this.parentthis.parent');
-    if (this.parent && this.bindGroup) {
-      return this.parent.this[name];
+    console.log(this.parent, name, 'this.parentthis.parent');
+    if (this.parent) {
+      let parentAttr = getAttribute(this.parent, name);
+      console.log(parentAttr, 'parentAttr');
+      return parentAttr;
     }
     return null;
   };
@@ -51,8 +53,6 @@ export class GlueChecker {
     return this.getParentProp('disabled') || this.disabled;
   };
 
-  direction = () => this.getParentProp('direction') || null;
-
   onClick = (event: MouseEvent) => {
     const { target } = event;
     const icon = this.iconRef;
@@ -61,14 +61,20 @@ export class GlueChecker {
     if (!this.disabledFn() && (iconClicked || !this.labelDisabled)) {
       this.glueToggle.emit();
     }
-    this.glueCilck.emit(event);
+    this.glueCilck.emit(this.name);
   };
   renderGlueIcon = (iconSize) => {
     if (this.icon == '#slot') {
       return <slot name="icon"></slot>;
     }
+    console.log(this.checkedColor, 'this.checkedColor');
     return (
-      <glue-icon name="success" color={this.checkedColor} size={iconSize} />
+      <glue-icon
+        name="success"
+        // color={this.checkedColor}
+        backgroundColor={this.checked ? this.checkedColor : 'white'}
+        size={iconSize}
+      />
     );
   };
   renderIcon = () => {
@@ -103,7 +109,7 @@ export class GlueChecker {
           ['glue-checker__label--disabled']: this.disabledFn(),
         })}
       >
-        {this.label}111
+        {this.label}
       </span>
     );
   };
