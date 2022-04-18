@@ -20,4 +20,6 @@ yarn-error.log*
 *.sln
 *.sw?
 
+/packages/glue-components/src/components/**/*.md
+
 package-lock.json
