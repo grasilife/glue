@@ -1,6 +1,6 @@
 export const inBrowser = typeof window !== 'undefined';
 
-const root = (inBrowser ? window : global) as Window;
+const root = globalThis;
 
 let prev = Date.now();
 
