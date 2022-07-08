@@ -54,6 +54,7 @@ export class GlueChecker {
   };
 
   onClick = (event: MouseEvent) => {
+    console.log(21212);
     const { target } = event;
     const icon = this.iconRef;
     const iconClicked = icon === target || icon!.contains(target as Node);
@@ -64,6 +65,7 @@ export class GlueChecker {
     this.glueCilck.emit(this.name);
   };
   renderGlueIcon = (iconSize) => {
+    console.log(this.icon, 'this.icon');
     if (this.icon == '#slot') {
       return <slot name="icon"></slot>;
     }

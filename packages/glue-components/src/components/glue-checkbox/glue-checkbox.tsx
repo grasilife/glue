@@ -131,7 +131,9 @@ export class GlueCheckbox {
           labelPosition={this.labelPosition}
           labelDisabled={this.labelDisabled}
           shape={this.shape}
-        ></glue-checker>
+        >
+          <slot name="icon"></slot>
+        </glue-checker>
       </Host>
     );
   }

@@ -126,6 +126,9 @@ export class GlueDemo {
     seconds: 0,
   };
   @State() currentDate = new Date();
+  @State() activeIcon = 'https://img01.yzcdn.cn/vant/user-active.png';
+  @State() inactiveIcon = 'https://img01.yzcdn.cn/vant/user-inactive.png';
+  @State() checked = true;
   @State() minDate = new Date(2020, 0, 1);
   @State() maxDate = new Date(2025, 10, 1);
   handleClick = () => {
@@ -240,6 +243,10 @@ export class GlueDemo {
   };
   onOversize = (file) => {
     console.log(file, 'onOversize');
+  };
+  onGlueCilck = (e) => {
+    console.log(e, 'jijiai');
+    this.checked = !this.checked;
   };
   beforeRead = (file) => {
     if (file.type !== 'image/jpeg') {
@@ -499,14 +506,14 @@ export class GlueDemo {
           // shape="square"
           // checked-color="#ee0a24"
           // icon-size="24"
-        ></glue-checkbox> */}
-        {/* <glue-checkbox
+        ></glue-checkbox>
+        <glue-checkbox
           modelValue={true}
           label="复选框"
           disabled={true}
         ></glue-checkbox> */}
-        {/* <glue-checkbox
-          modelValue={true}
+        <glue-checkbox
+          modelValue={this.checked}
           label="复选框"
           shape="square"
           class="shape"
@@ -514,16 +521,20 @@ export class GlueDemo {
           icon-size="24px"
           label-disabled={true}
           icon="#slot"
+          onGlueCilck={this.onGlueCilck}
         >
-          <glue-icon name="chat-o" size="32" color="red" />
-        </glue-checkbox> */}
-        <glue-checkbox-group modelValue={['a', 'b']} max={1}>
+          <img
+            src={this.checked ? this.activeIcon : this.inactiveIcon}
+            slot="icon"
+          />
+        </glue-checkbox>
+        {/* <glue-checkbox-group modelValue={['a', 'b']} max={1}>
           <glue-checkbox name="a" label="复选框"></glue-checkbox>
           <glue-checkbox name="b" label="复选框"></glue-checkbox>
-        </glue-checkbox-group>
-        <glue-button square type="primary">
+        </glue-checkbox-group> */}
+        {/* <glue-button square type="primary">
           收藏
-        </glue-button>
+        </glue-button> */}
       </div>
     );
   }
