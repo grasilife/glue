@@ -26,7 +26,7 @@ export type ActionSheetAction = {
 })
 export class GlueActionSheet {
   refContent: HTMLElement;
-  @Prop() show: boolean;
+  @Prop({ mutable: true }) show: boolean;
   @Prop() actions: any;
   @Prop() g_title: string;
   @Prop() cancelText: string;
@@ -35,19 +35,19 @@ export class GlueActionSheet {
   @Prop() closeIcon = 'cross';
   @Prop() duration: string;
   @Prop() round = true;
-  @Prop() overlay = false;
+  @Prop() overlay = true;
   @Prop() lockScroll = true;
   @Prop() lazyRender = true;
   @Prop() closeOnClickAction: boolean;
   @Prop() closeOnClickOverlay = true;
   @Prop() safeAreaInsetBottom = false;
   @State() height = '0';
+  @Event() glueSelect: EventEmitter;
   @Event() glueCancel: EventEmitter;
   @Event() glueShow: EventEmitter;
-  @Event() glueOpen: EventEmitter;
   openHandle = () => {
     this.show = true;
-    this.glueOpen.emit(true);
+    this.glueShow.emit(true);
   };
   @Event() glueClose: EventEmitter;
   closeHandle = () => {
@@ -131,8 +131,10 @@ export class GlueActionSheet {
         callback(item);
       }
 
-      // emit('select', item, index);
-
+      this.glueSelect.emit({
+        item,
+        index,
+      });
       if (this.closeOnClickAction) {
         this.onUpdateShow(false);
       }

@@ -79,10 +79,12 @@
             :key="index"
             :title="`${checkbox} ${item}`"
             @click="toggle(index)"
+            right-icon="#slot"
+            value="内容"
           >
-            <template #right-icon>
+            <div slot="rightIcon">
               <glue-checkbox ref="checkboxes" :name="item" />
-            </template>
+            </div>
           </glue-cell>
         </glue-cell-group>
       </glue-checkbox-group>

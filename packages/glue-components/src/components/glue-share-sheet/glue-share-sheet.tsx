@@ -51,10 +51,10 @@ export class GlueShareSheet {
   @Prop() description: string;
   @Prop() duration: string;
   @Prop() round = true;
-  @Prop() overlay = false;
-  @Prop() lockScroll = false;
-  @Prop() lazyRender = false;
-  @Prop() closeOnPopstate = false;
+  @Prop() overlay = true;
+  @Prop() lockScroll = true;
+  @Prop() lazyRender = true;
+  @Prop() closeOnPopstate = true;
   @Prop() closeOnClickOverlay = true;
   @Prop() safeAreaInsetBottom = true;
   @Prop() teleport: string | object;

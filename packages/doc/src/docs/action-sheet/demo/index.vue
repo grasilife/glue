@@ -1,48 +1,46 @@
 <template>
   <DemoSection>
     <DemoBlock card :title="basicUsage">
-      <van-cell is-link :title="basicUsage" @click="show.basic = true" />
-      <van-cell is-link :title="showCancel" @click="show.cancel = true" />
-      <van-cell is-link :title="showDescription" @click="show.description = true" />
+      <glue-cell is-link :g_title="basicUsage" @click="show.basic = true" />
+      <glue-cell is-link :g_title="showCancel" @click="show.cancel = true" />
+      <glue-cell is-link :g_title="showDescription" @click="show.description = true" />
     </DemoBlock>
 
     <DemoBlock card :title="optionStatus">
-      <van-cell is-link :title="optionStatus" @click="show.status = true" />
+      <glue-cell is-link :g_title="optionStatus" @click="show.status = true" />
     </DemoBlock>
 
     <DemoBlock card :title="customPanel">
-      <van-cell is-link :title="customPanel" @click="show.title = true" />
+      <glue-cell is-link :g_title="customPanel" @click="show.title = true" />
     </DemoBlock>
 
-    <van-action-sheet v-model="show.basic" :actions="simpleActions" @select="onSelect" />
+    <glue-action-sheet :show="show.basic" :actions.prop="simpleActions" @glueSelect="onSelect" @glueClose="glueClose" />
 
-    <van-action-sheet
-      v-model="show.cancel"
-      :actions="simpleActions"
+    <glue-action-sheet
+      :show="show.cancel"
+      :actions.prop="simpleActions"
       close-on-click-action
       :cancel-text="cancel"
-      @cancel="onCancel"
+      @glueClose="glueClose"
     />
 
-    <van-action-sheet
-      v-model="show.description"
-      :actions="actionsWithDescription"
+    <glue-action-sheet
+      :show="show.description"
+      :actions.prop="actionsWithDescription"
       close-on-click-action
       :cancel-text="cancel"
       :description="description"
     />
 
-    <van-action-sheet v-model="show.status" close-on-click-action :actions="statusActions" :cancel-text="cancel" />
+    <glue-action-sheet :show="show.status" close-on-click-action :actions.prop="statusActions" :cancel-text="cancel" />
 
-    <van-action-sheet v-model="show.title" :title="title">
+    <glue-action-sheet :show="show.title" :g_title="title">
       <div class="demo-action-sheet-content">{{ content }}</div>
-    </van-action-sheet>
+    </glue-action-sheet>
   </DemoSection>
 </template>
 
 <script>
-import { RED } from "../../../common/constant";
-
 export default {
   data() {
     return {
@@ -62,6 +60,13 @@ export default {
       coloredOption: "着色选项",
       disabledOption: "禁用选项",
       showDescription: "展示描述信息",
+      simpleActions: [{ name: "选项一" }, { name: "选项二" }, { name: "选项三" }],
+      statusActions: [
+        { name: "选项一", color: "#ee0a24" },
+        { name: "选项二", disabled: true },
+        { name: "选项三", subname: "描述信息", loading: true }
+      ],
+      actionsWithDescription: [{ name: "选项一" }, { name: "选项二" }, { name: "选项三", subname: "描述信息" }],
       show: {
         basic: false,
         cancel: false,
@@ -72,31 +77,14 @@ export default {
     };
   },
 
-  computed: {
-    simpleActions() {
-      return [{ name: this.option1 }, { name: this.option2 }, { name: this.option3 }];
-    },
-
-    actionsWithDescription() {
-      return [{ name: this.option1 }, { name: this.option2 }, { name: this.option3, subname: this.subname }];
-    },
-
-    statusActions() {
-      return [
-        { name: this.coloredOption, color: RED },
-        { name: this.disabledOption, disabled: true },
-        { loading: true }
-      ];
-    }
-  },
-
   methods: {
     onSelect(item) {
       this.show.basic = false;
       this.$toast(item.name);
     },
-
-    onCancel() {
+    glueClose() {
+      this.show.basic = false;
+      console.log(this.show.basic, "this.show.basic");
       this.$toast(this.cancel);
     }
   }
