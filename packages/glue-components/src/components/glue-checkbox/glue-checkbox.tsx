@@ -39,14 +39,15 @@ export class GlueCheckbox {
   // const { parent } = useParent(CHECKBOX_KEY);
   componentDidLoad() {
     let parent = getElementParent(this.el);
-    console.log(parent.tagName, 'parent111');
+    console.log(parent.tagName, this.el, 'parent111');
+    console.log(this.modelValue, 'parent222');
     //如果没有group就不获取
     if (parent.tagName == 'GLUE-CHECKBOX-GROUP') {
       this.parent = parent;
       console.log(this.parent, 'this.parent111');
       this.modelValue = getAttribute(this.parent, 'model-value');
       this.parentMax = getAttribute(this.parent, 'max');
-      console.log(this.modelValue, 'this.modelValue');
+      console.log(this.modelValue, this.parentMax, 'this.modelValue');
     }
   }
   getParentProp = (name) => {

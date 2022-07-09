@@ -21,7 +21,7 @@ export type CheckerDirection = 'horizontal' | 'vertical';
 export class GlueCheckboxGroup {
   @Element() el!: HTMLGlueCheckboxGroupElement;
   @Prop() first: string;
-  @Prop() max: number | string;
+  @Prop({ reflect: true }) max: number | string;
   @Prop() disabled: string;
   @Prop({ reflect: true }) direction: CheckerDirection = 'vertical';
   @Prop() iconSize: number | string;
@@ -35,7 +35,7 @@ export class GlueCheckboxGroup {
     this.glueChange.emit(event);
   };
   componentDidLoad() {
-    console.log(this.modelValue, 'mmmmmm');
+    console.log(this.modelValue, this.el.children, 'mmmmmm');
     this.children = getElementChildren(this.el);
     console.log(this.children, 'this.children');
     // this.toggleAll();

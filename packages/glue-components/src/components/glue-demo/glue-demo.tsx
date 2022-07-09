@@ -126,6 +126,7 @@ export class GlueDemo {
     seconds: 0,
   };
   @State() currentDate = new Date();
+  @State() checkBox = ['a', 'b'];
   @State() activeIcon = 'https://img01.yzcdn.cn/vant/user-active.png';
   @State() inactiveIcon = 'https://img01.yzcdn.cn/vant/user-inactive.png';
   @State() checked = true;
@@ -503,6 +504,7 @@ export class GlueDemo {
         {/* <glue-checkbox
           modelValue={true}
           label="复选框"
+          label-disabled={true}
           // shape="square"
           // checked-color="#ee0a24"
           // icon-size="24"
@@ -511,7 +513,7 @@ export class GlueDemo {
           modelValue={true}
           label="复选框"
           disabled={true}
-        ></glue-checkbox> */}
+        ></glue-checkbox>
         <glue-checkbox
           modelValue={this.checked}
           label="复选框"
@@ -527,11 +529,15 @@ export class GlueDemo {
             src={this.checked ? this.activeIcon : this.inactiveIcon}
             slot="icon"
           />
-        </glue-checkbox>
-        {/* <glue-checkbox-group modelValue={['a', 'b']} max={1}>
+        </glue-checkbox> */}
+        <glue-checkbox-group
+          modelValue={this.checkBox}
+          max={1}
+          direction="horizontal"
+        >
           <glue-checkbox name="a" label="复选框"></glue-checkbox>
           <glue-checkbox name="b" label="复选框"></glue-checkbox>
-        </glue-checkbox-group> */}
+        </glue-checkbox-group>
         {/* <glue-button square type="primary">
           收藏
         </glue-button> */}
