@@ -271,6 +271,11 @@ export class GlueDemo {
   onGlueChange = (event) => {
     console.log(event, 'event3');
   };
+  @State() ActionSheetState = false;
+  openActionSheet = () => {
+    this.ActionSheetState = true;
+  };
+
   render() {
     return (
       <div class="container">
@@ -328,8 +333,17 @@ export class GlueDemo {
         {/* <glue-tag closeable type="primary">
           标签
         </glue-tag> */}
-        {/* <glue-cell is-link title="基础用法" onClick={this.click} /> */}
-        {/* <glue-action-sheet show={this.show} onGlueClosed={this.closedHandle} actions={this.actions} cancel-text="取消" description="这是一段描述信息" overlay /> */}
+        <glue-cell is-link title="基础用法" onClick={this.click}>
+          基础用法
+        </glue-cell>
+        <glue-action-sheet
+          show={this.show}
+          onGlueClosed={this.closedHandle}
+          actions={this.actions}
+          cancel-text="取消"
+          description="这是一段描述信息"
+          overlay
+        />
         {/* <glue-share-sheet show={this.show} title="立即分享给好友" options={this.options} overlay onGlueClosed={this.closedHandle} /> */}
         {/* <glue-swipe-cell left="#slot" right="#slot">
           <div slot="left">
@@ -563,10 +577,14 @@ export class GlueDemo {
           增加
         </glue-button>
         <glue-button type="primary">减少</glue-button> */}
-        <glue-toast type="success"></glue-toast>
+        {/* <glue-toast type="success"></glue-toast>
         <glue-button type="primary" onClick={this.openToast}>
           打开toast
-        </glue-button>
+        </glue-button> */}
+        {/* <glue-cell is-link onClick={this.openActionSheet}>
+          展示弹出层
+        </glue-cell> */}
+        {/* <glue-action-sheet show={this.ActionSheetState} action={ this.} /> */}
       </div>
     );
   }

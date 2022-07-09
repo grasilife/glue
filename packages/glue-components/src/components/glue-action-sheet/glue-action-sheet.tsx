@@ -26,7 +26,7 @@ export type ActionSheetAction = {
 })
 export class GlueActionSheet {
   refContent: HTMLElement;
-  @Prop() show: boolean;
+  @Prop({ mutable: true }) show: boolean;
   @Prop() actions: any;
   @Prop() g_title: string;
   @Prop() cancelText: string;

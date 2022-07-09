@@ -172,7 +172,7 @@ export class GluePopup {
         }
       }
     } else {
-      style.display = 'none';
+      // style.display = 'none';
       if (this.position == 'bottom') {
         style.transform = `translateY(100%)`;
         console.log(style.transform, 'style.transform');
@@ -233,7 +233,7 @@ export class GluePopup {
         this.duration,
         this.easing,
         () => {
-          this.popupRef.style.display = 'block';
+          // this.popupRef.style.display = 'block';
           this.openHandle();
         },
         () => {
@@ -247,7 +247,7 @@ export class GluePopup {
         this.duration,
         this.easing,
         () => {
-          this.popupRef.style.display = 'block';
+          // this.popupRef.style.display = 'block';
           this.openHandle();
         },
         () => {
@@ -262,7 +262,7 @@ export class GluePopup {
         this.easing,
         this.height,
         () => {
-          this.popupRef.style.display = 'block';
+          // this.popupRef.style.display = 'block';
           this.openHandle();
         },
         () => {
@@ -277,7 +277,7 @@ export class GluePopup {
         this.easing,
         this.width,
         () => {
-          this.popupRef.style.display = 'block';
+          // this.popupRef.style.display = 'block';
           this.openHandle();
         },
         () => {
@@ -292,7 +292,7 @@ export class GluePopup {
         this.easing,
         this.width,
         () => {
-          this.popupRef.style.display = 'block';
+          // this.popupRef.style.display = 'block';
           this.openHandle();
         },
         () => {
