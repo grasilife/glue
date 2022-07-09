@@ -530,17 +530,27 @@ export class GlueDemo {
             slot="icon"
           />
         </glue-checkbox> */}
-        <glue-checkbox-group
+        {/* <glue-checkbox-group
           modelValue={this.checkBox}
           max={1}
           direction="horizontal"
         >
           <glue-checkbox name="a" label="复选框"></glue-checkbox>
           <glue-checkbox name="b" label="复选框"></glue-checkbox>
-        </glue-checkbox-group>
+        </glue-checkbox-group> */}
         {/* <glue-button square type="primary">
           收藏
         </glue-button> */}
+        <glue-circle
+          currentRate={this.currentRate}
+          rate={30}
+          speed={100}
+          text="宽度定制"
+        />
+        <glue-button type="primary" onClick={this.handleClick}>
+          增加
+        </glue-button>
+        <glue-button type="primary">减少</glue-button>
       </div>
     );
   }
