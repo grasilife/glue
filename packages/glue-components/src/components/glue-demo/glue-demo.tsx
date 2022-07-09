@@ -1,5 +1,5 @@
 import { Component, h, State } from '@stencil/core';
-// import Toast from '../glue-toast/index';
+import Toast from '../glue-toast/index';
 // import classNames from 'classnames';
 @Component({
   tag: 'glue-demo',
@@ -229,6 +229,9 @@ export class GlueDemo {
   componentDidLoad() {}
   click = () => {
     this.show = true;
+  };
+  openToast = () => {
+    Toast('提示内容');
   };
   afterRead = (file) => {
     file.status = 'uploading';
@@ -492,7 +495,7 @@ export class GlueDemo {
           <glue-tab title="标签 3">内容 3</glue-tab>
           <glue-tab title="标签 4">内容 4</glue-tab>
         </glue-tabs> */}
-        <glue-cell is-link onClick={this.popupCell}>
+        {/* <glue-cell is-link onClick={this.popupCell}>
           展示弹出层
         </glue-cell>
         <glue-popup
@@ -506,7 +509,7 @@ export class GlueDemo {
           position="bottom"
         >
           <div>内容</div>
-        </glue-popup>
+        </glue-popup> */}
         {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="100%" height="30%" position="top">
           <div>内容</div>
         </glue-popup> */}
@@ -560,6 +563,10 @@ export class GlueDemo {
           增加
         </glue-button>
         <glue-button type="primary">减少</glue-button> */}
+        <glue-toast type="success"></glue-toast>
+        <glue-button type="primary" onClick={this.openToast}>
+          打开toast
+        </glue-button>
       </div>
     );
   }

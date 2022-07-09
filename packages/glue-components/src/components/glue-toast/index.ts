@@ -70,6 +70,7 @@ function getInstance() {
   return queue[queue.length - 1];
 }
 function parseOptions(message) {
+  console.log(message, 'message');
   if (isObject(message)) {
     return message;
   }
@@ -78,16 +79,17 @@ function parseOptions(message) {
 function Toast(options: any = {}) {
   const toast = getInstance();
   console.log(options, toast);
-  // options = parseOptions(options);
-  // options = {
-  //   ...currentOptions,
-  //   ...defaultOptionsMap[options.type || currentOptions.type],
-  //   ...options,
-  // };
+  options = parseOptions(options);
 
-  // toast.open(options);
+  options = {
+    ...currentOptions,
+    ...defaultOptionsMap[options.type || currentOptions.type],
+    ...options,
+  };
+  console.log(options, 'options');
+  toast.open(options);
 
-  // return toast;
+  return toast;
 }
 const createMethod = (type) => (options) => {
   Toast({
