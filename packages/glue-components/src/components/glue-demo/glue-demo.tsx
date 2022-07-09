@@ -333,7 +333,7 @@ export class GlueDemo {
         {/* <glue-tag closeable type="primary">
           标签
         </glue-tag> */}
-        <glue-cell is-link title="基础用法" onClick={this.click}>
+        {/* <glue-cell is-link title="基础用法" onClick={this.click}>
           基础用法
         </glue-cell>
         <glue-action-sheet
@@ -350,7 +350,7 @@ export class GlueDemo {
           options={this.options}
           overlay
           onGlueClosed={this.closedHandle}
-        />
+        /> */}
         {/* <glue-swipe-cell left="#slot" right="#slot">
           <div slot="left">
             <glue-button square type="primary">
@@ -411,10 +411,21 @@ export class GlueDemo {
         {/* <glue-stepper model-value={1} step={2} min={5} max={8} decimal-length="1" input-width="40px" button-size="32px" theme="round" before-change={this.beforeChange} /> */}
         {/* <glue-switch value={true} loading size="24px" active-color="#ee0a24" inactive-color="#dcdee0" />
         <glue-loading /> */}
-        {/* <glue-uploader value={[]} show-upload /> */}
-        {/* <glue-uploader
+        <glue-uploader
+          customUpload="#slot"
+          list={[]}
+          multiple
+          maxCount={2}
+          maxSize={500 * 1024}
+          onGlueOversize={this.onOversize}
+        >
+          <glue-button type="primary" onClick={this.openToast}>
+            上传文件
+          </glue-button>
+        </glue-uploader>
+        <glue-uploader
           show-upload
-          value={this.fileList}
+          list={this.fileList}
           multiple
           preview-image
           deletable
@@ -424,7 +435,7 @@ export class GlueDemo {
           max-size={50000000}
           onGlueOversize={this.onOversize}
           disabled
-        ></glue-uploader> */}
+        ></glue-uploader>
         {/* <glue-calendar
           show={this.showBasic}
           show-title
