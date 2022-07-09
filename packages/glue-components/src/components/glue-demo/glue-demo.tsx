@@ -492,12 +492,21 @@ export class GlueDemo {
           <glue-tab title="标签 3">内容 3</glue-tab>
           <glue-tab title="标签 4">内容 4</glue-tab>
         </glue-tabs> */}
-        {/* <glue-cell is-link onClick={this.popupCell}>
+        <glue-cell is-link onClick={this.popupCell}>
           展示弹出层
-        </glue-cell> */}
-        {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="30%" height="100%" position="left">
+        </glue-cell>
+        <glue-popup
+          closeOnClickOverlay={true}
+          overlay={true}
+          show={this.showBasic}
+          onGlueClose={this.popupClose}
+          closeable
+          width="100%"
+          height="30%"
+          position="bottom"
+        >
           <div>内容</div>
-        </glue-popup> */}
+        </glue-popup>
         {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="100%" height="30%" position="top">
           <div>内容</div>
         </glue-popup> */}
@@ -541,7 +550,7 @@ export class GlueDemo {
         {/* <glue-button square type="primary">
           收藏
         </glue-button> */}
-        <glue-circle
+        {/* <glue-circle
           currentRate={this.currentRate}
           rate={30}
           speed={100}
@@ -550,7 +559,7 @@ export class GlueDemo {
         <glue-button type="primary" onClick={this.handleClick}>
           增加
         </glue-button>
-        <glue-button type="primary">减少</glue-button>
+        <glue-button type="primary">减少</glue-button> */}
       </div>
     );
   }
