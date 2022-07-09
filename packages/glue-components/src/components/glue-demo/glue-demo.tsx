@@ -344,7 +344,13 @@ export class GlueDemo {
           description="这是一段描述信息"
           overlay
         />
-        {/* <glue-share-sheet show={this.show} title="立即分享给好友" options={this.options} overlay onGlueClosed={this.closedHandle} /> */}
+        <glue-share-sheet
+          show={true}
+          title="立即分享给好友"
+          options={this.options}
+          overlay
+          onGlueClosed={this.closedHandle}
+        />
         {/* <glue-swipe-cell left="#slot" right="#slot">
           <div slot="left">
             <glue-button square type="primary">

@@ -1,25 +1,25 @@
 <template>
   <DemoSection>
     <DemoBlock card :title="basicUsage">
-      <van-cell is-link :title="showSheet" @click="show.basic = true" />
-      <van-share-sheet v-model="show.basic" :title="title" :options="options" @select="onSelect" />
+      <glue-cell is-link :g_title="showSheet" @click="show.basic = true" />
+      <glue-share-sheet :show="show.basic" :g_title="title" :options.prop="options" @select="onSelect" />
     </DemoBlock>
 
     <DemoBlock card :title="multiLine">
-      <van-cell is-link :title="showSheet" @click="show.multiLine = true" />
-      <van-share-sheet v-model="show.multiLine" :title="title" :options="multiLineOptions" @select="onSelect" />
+      <glue-cell is-link :g_title="showSheet" @click="show.multiLine = true" />
+      <glue-share-sheet :show="show.multiLine" :g_title="title" :options.prop="multiLineOptions" @select="onSelect" />
     </DemoBlock>
 
     <DemoBlock card :title="customIcon">
-      <van-cell is-link :title="showSheet" @click="show.customIcon = true" />
-      <van-share-sheet v-model="show.customIcon" :options="customIconOptions" @select="onSelect" />
+      <glue-cell is-link :g_title="showSheet" @click="show.customIcon = true" />
+      <glue-share-sheet :show="show.customIcon" :options.prop="customIconOptions" @select="onSelect" />
     </DemoBlock>
 
     <DemoBlock card :title="withDesc">
-      <van-cell is-link :title="showSheet" @click="show.withDesc = true" />
-      <van-share-sheet
-        v-model="show.withDesc"
-        :title="title"
+      <glue-cell is-link :g_title="showSheet" @click="show.withDesc = true" />
+      <glue-share-sheet
+        :show="show.withDesc"
+        :g_title="title"
         :options="optionsWithDesc"
         :description="description"
         @select="onSelect"
