@@ -261,7 +261,7 @@ export namespace Components {
         "max": number | string;
         "modelValue": any;
         "setValue": (value: any) => Promise<void>;
-        "toggleAll": (options?: { checked: string; skipDisabled: string; }) => Promise<void>;
+        "toggleAll": (checked: any) => Promise<void>;
     }
     interface GlueChecker {
         "bem": string;

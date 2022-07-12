@@ -54,24 +54,12 @@ export class GlueCheckboxGroup {
   }
 
   @Method()
-  async toggleAll(options = { checked: '', skipDisabled: '' }) {
-    console.log(options);
-    const { checked, skipDisabled } = options;
-    let checkedChildren = [];
+  async toggleAll(checked) {
+    this.children = getElementChildren(this.el);
     for (let i = 0; i < this.children.length; i++) {
-      console.log(this.children[i], 'ejfiheiuj');
-      let item = this.children[i];
-      if (!getAttribute(item, 'bind-group')) {
-        break;
-      }
-      if (getAttribute(item, 'disabled') && skipDisabled) {
-        checkedChildren.push(getAttribute(item, 'name'));
-      }
-      if (checked) {
-        checkedChildren.push(getAttribute(item, 'name'));
-      }
+      let element = this.children[i];
+      element.setValue('checked', checked);
     }
-    console.log(checkedChildren, 'checkedChildren');
   }
   @Method()
   async setValue(value: any) {

@@ -574,6 +574,9 @@ export class GlueDemo {
           />
         </glue-checkbox> */}
         <glue-checkbox-group
+          ref={(dom) => {
+            this.container = dom;
+          }}
           modelValue={this.checkBox}
           direction="horizontal"
           max={1}
@@ -605,6 +608,7 @@ export class GlueDemo {
         <glue-button
           type="primary"
           onClick={() => {
+            // this.container.toggleAll(false);
             this.checkBox = ['a'];
           }}
         >

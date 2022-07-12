@@ -46,31 +46,32 @@ export class GlueCheckbox {
   }
   async toggle() {
     let parent = getElementParent(this.el);
-    const { name } = this;
-    const { max, modelValue } = parent;
-    const value = modelValue.slice();
-    const overlimit = max && value.length >= max;
-    const index = value.indexOf(name);
-    console.log(overlimit, 'overlimit');
-    if (!overlimit) {
-      if (index === -1) {
-        //不存在
-        value.push(name);
+    if (parent) {
+      const { name } = this;
+      const { max, modelValue } = parent;
+      const value = modelValue.slice();
+      const overlimit = max && value.length >= max;
+      const index = value.indexOf(name);
+      console.log(overlimit, 'overlimit');
+      if (!overlimit) {
+        if (index === -1) {
+          //不存在
+          value.push(name);
+        } else {
+          value.splice(index, 1);
+        }
       } else {
-        value.splice(index, 1);
+        if (index !== -1) {
+          value.splice(index, 1);
+        }
       }
-    } else {
-      if (index !== -1) {
-        value.splice(index, 1);
-      }
+      parent.setValue(value);
+      console.log(this.checked, value, 'this.checked11');
     }
-    parent.setValue(value);
-    console.log(this.checked, value, 'this.checked11');
     this.glueChange.emit(this.checked);
   }
-  click = (event) => {
-    console.log(event.detail, 'jijijijijijiji');
-    this.glueCilck.emit(event.detail);
+  click = () => {
+    this.glueCilck.emit(this.checked);
   };
 
   render() {
