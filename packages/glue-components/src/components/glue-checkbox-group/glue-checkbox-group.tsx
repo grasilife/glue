@@ -13,7 +13,7 @@ import {
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-checkbox-group');
-import { getElementChildren, getAttribute } from '../../utils/base';
+import { getElementChildren } from '../../utils/base';
 export type CheckerDirection = 'horizontal' | 'vertical';
 @Component({
   tag: 'glue-checkbox-group',

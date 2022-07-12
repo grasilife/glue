@@ -544,7 +544,7 @@ export class GlueDemo {
         {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="100%" height="30%" position="top">
           <div>内容</div>
         </glue-popup> */}
-        {/* <glue-checkbox
+        <glue-checkbox
           modelValue={true}
           label="复选框"
           label-disabled={true}
@@ -572,7 +572,7 @@ export class GlueDemo {
             src={this.checked ? this.activeIcon : this.inactiveIcon}
             slot="icon"
           />
-        </glue-checkbox> */}
+        </glue-checkbox>
         <glue-checkbox-group
           ref={(dom) => {
             this.container = dom;
