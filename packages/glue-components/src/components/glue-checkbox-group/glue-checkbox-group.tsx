@@ -7,6 +7,8 @@ import {
   Host,
   Event,
   EventEmitter,
+  Method,
+  Watch,
 } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
@@ -20,13 +22,12 @@ export type CheckerDirection = 'horizontal' | 'vertical';
 })
 export class GlueCheckboxGroup {
   @Element() el!: HTMLGlueCheckboxGroupElement;
-  @Prop() first: string;
   @Prop({ reflect: true }) max: number | string;
   @Prop() disabled: string;
   @Prop({ reflect: true }) direction: CheckerDirection = 'vertical';
   @Prop() iconSize: number | string;
   @Prop() checkedColor: string;
-  @Prop({ reflect: true }) modelValue: any;
+  @Prop({ reflect: true, mutable: true }) modelValue: any;
   @State() children;
   @Event()
   glueChange: EventEmitter;
@@ -34,13 +35,26 @@ export class GlueCheckboxGroup {
     console.log(event, 111);
     this.glueChange.emit(event);
   };
-  componentDidLoad() {
-    console.log(this.modelValue, this.el.children, 'mmmmmm');
+  @Watch('modelValue')
+  watchModelValue() {
     this.children = getElementChildren(this.el);
-    console.log(this.children, 'this.children');
-    // this.toggleAll();
+    for (let i = 0; i < this.children.length; i++) {
+      let element = this.children[i];
+      let name = element.name;
+      //只能使用方法设置state
+      if (this.modelValue.indexOf(name) === -1) {
+        element.setValue('checked', false);
+      } else {
+        element.setValue('checked', true);
+      }
+    }
   }
-  toggleAll = (options = { checked: '', skipDisabled: '' }) => {
+  componentWillLoad() {
+    this.watchModelValue();
+  }
+
+  @Method()
+  async toggleAll(options = { checked: '', skipDisabled: '' }) {
     console.log(options);
     const { checked, skipDisabled } = options;
     let checkedChildren = [];
@@ -58,7 +72,23 @@ export class GlueCheckboxGroup {
       }
     }
     console.log(checkedChildren, 'checkedChildren');
-  };
+  }
+  @Method()
+  async setValue(value: any) {
+    this.modelValue = value;
+    console.log(value, 'setValue');
+  }
+  @Method()
+  async getProps() {
+    return {
+      modelValue: this.modelValue,
+      max: this.max,
+      disabled: this.disabled,
+      direction: this.direction,
+      iconSize: this.iconSize,
+      checkedColor: this.checkedColor,
+    };
+  }
   render() {
     return (
       <Host class={classNames('glue-checkbox-group', bem([this.direction]))}>

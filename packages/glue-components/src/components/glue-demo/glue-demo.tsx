@@ -411,7 +411,7 @@ export class GlueDemo {
         {/* <glue-stepper model-value={1} step={2} min={5} max={8} decimal-length="1" input-width="40px" button-size="32px" theme="round" before-change={this.beforeChange} /> */}
         {/* <glue-switch value={true} loading size="24px" active-color="#ee0a24" inactive-color="#dcdee0" />
         <glue-loading /> */}
-        <glue-uploader
+        {/* <glue-uploader
           customUpload="#slot"
           list={[]}
           multiple
@@ -435,7 +435,7 @@ export class GlueDemo {
           max-size={50000000}
           onGlueOversize={this.onOversize}
           disabled
-        ></glue-uploader>
+        ></glue-uploader> */}
         {/* <glue-calendar
           show={this.showBasic}
           show-title
@@ -573,14 +573,10 @@ export class GlueDemo {
             slot="icon"
           />
         </glue-checkbox> */}
-        {/* <glue-checkbox-group
-          modelValue={this.checkBox}
-          max={1}
-          direction="horizontal"
-        >
+        <glue-checkbox-group modelValue={this.checkBox} direction="horizontal">
           <glue-checkbox name="a" label="复选框"></glue-checkbox>
           <glue-checkbox name="b" label="复选框"></glue-checkbox>
-        </glue-checkbox-group> */}
+        </glue-checkbox-group>
         {/* <glue-button square type="primary">
           收藏
         </glue-button> */}
@@ -602,6 +598,14 @@ export class GlueDemo {
           展示弹出层
         </glue-cell> */}
         {/* <glue-action-sheet show={this.ActionSheetState} action={ this.} /> */}
+        <glue-button
+          type="primary"
+          onClick={() => {
+            this.checkBox = ['a'];
+          }}
+        >
+          修改state
+        </glue-button>
       </div>
     );
   }
