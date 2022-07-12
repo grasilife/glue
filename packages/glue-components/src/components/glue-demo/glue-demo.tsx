@@ -573,7 +573,11 @@ export class GlueDemo {
             slot="icon"
           />
         </glue-checkbox> */}
-        <glue-checkbox-group modelValue={this.checkBox} direction="horizontal">
+        <glue-checkbox-group
+          modelValue={this.checkBox}
+          direction="horizontal"
+          max={1}
+        >
           <glue-checkbox name="a" label="复选框"></glue-checkbox>
           <glue-checkbox name="b" label="复选框"></glue-checkbox>
         </glue-checkbox-group>

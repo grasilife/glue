@@ -244,7 +244,6 @@ export namespace Components {
         "disabled": boolean;
         "icon": string;
         "iconSize": number | string;
-        "isChecked": () => Promise<void>;
         "label": string;
         "labelDisabled": boolean;
         "labelPosition": string;

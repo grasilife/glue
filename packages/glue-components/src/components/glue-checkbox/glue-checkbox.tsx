@@ -39,65 +39,33 @@ export class GlueCheckbox {
   @Event() glueCilck: EventEmitter;
   @Event() glueChange: EventEmitter;
   async componentDidLoad() {}
-  async setParentValue() {
-    let parent = getElementParent(this.el);
-    const { name } = this;
-    const { modelValue } = parent;
-    const value = modelValue.slice();
-    const index = value.indexOf(name);
-    if (this.checked) {
-      value.push(name);
-    } else {
-      value.splice(index, 1);
-    }
-    // if (index === -1) {
-    //   //不存在
-    //   // const overlimit = max && value.length >= max;
-    //   // console.log(
-    //   //   !overlimit,
-    //   //   value.indexOf(name) === -1,
-    //   //   value,
-    //   //   name,
-    //   //   'overlimit'
-    //   // );
-    //   // if (!overlimit && value.indexOf(name) === -1) {
-    //   //   value.push(name);
-    //   //   console.log(this.bindGroup, 'this.bindGroup');
-    //   //   if (this.bindGroup) {
-    //   //     console.log(value, '11111');
-    //   //     parent.setValue(value);
-    //   //   }
-    //   // }
-    //   value.push(name);
-    // } else {
-    //   //存在
-    //   value.splice(index, 1);
-    // }
-    parent.setValue(value);
-    console.log(this.checked, value, 'this.checked11');
-  }
 
-  @Method()
-  async isChecked() {
-    let parent = getElementParent(this.el);
-    if (parent && this.bindGroup) {
-      console.log(
-        parent.modelValue,
-        parent.modelValue.indexOf(this.name) !== -1,
-        'mmmmmm'
-      );
-      this.checked = parent.modelValue.indexOf(this.name) !== -1;
-    } else {
-      this.checked = this.modelValue;
-    }
-  }
   @Method()
   async setValue(key, value) {
     this[key] = value;
   }
   async toggle() {
-    this.checked = !this.checked;
-    await this.setParentValue();
+    let parent = getElementParent(this.el);
+    const { name } = this;
+    const { max, modelValue } = parent;
+    const value = modelValue.slice();
+    const overlimit = max && value.length >= max;
+    const index = value.indexOf(name);
+    console.log(overlimit, 'overlimit');
+    if (!overlimit) {
+      if (index === -1) {
+        //不存在
+        value.push(name);
+      } else {
+        value.splice(index, 1);
+      }
+    } else {
+      if (index !== -1) {
+        value.splice(index, 1);
+      }
+    }
+    parent.setValue(value);
+    console.log(this.checked, value, 'this.checked11');
     this.glueChange.emit(this.checked);
   }
   click = (event) => {
