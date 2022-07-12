@@ -46,7 +46,8 @@ export class GlueCheckbox {
   }
   async toggle() {
     let parent = getElementParent(this.el);
-    if (parent.tagName === 'GLUE-CHECKBOX-GROU') {
+    console.log(parent.tagName, 'parent.tagName');
+    if (parent.tagName === 'GLUE-CHECKBOX-GROUP') {
       const { name } = this;
       const { max, modelValue } = parent;
       const value = modelValue.slice();
@@ -69,7 +70,7 @@ export class GlueCheckbox {
     } else {
       this.checked = !this.checked;
     }
-    this.modelValue = this.checked;
+    // this.modelValue = this.checked;
     this.glueChange.emit(this.checked);
     console.log(this.checked, 'this.checked11');
   }
