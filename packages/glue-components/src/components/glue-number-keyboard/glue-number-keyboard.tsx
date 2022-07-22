@@ -16,7 +16,7 @@ export class GlueNumberKeyboard {
   @Prop() deleteButtonText: string;
   @Prop() closeButtonLoading: boolean;
   @Prop() theme = 'default';
-  @Prop() modelValue = '';
+  @Prop({ mutable: true }) modelValue = '';
   //当extraKey为""时出现关闭键盘图标
   @Prop() extraKey = '';
   @Prop() maxlength = Number.MAX_VALUE;
