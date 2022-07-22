@@ -1,4 +1,5 @@
 import { isObject, inBrowser } from '../../utils/base';
+import { GlueToast } from './glue-toast';
 import { EASING } from '../../global/constant/constant';
 const defaultOptions: any = {
   show: true,
@@ -45,6 +46,8 @@ function renderTeleport(el) {
   }
 }
 function createInstance() {
+  let innnn = new GlueToast();
+  console.log(innnn, 'GlueToast');
   const element = document.createElement('glue-toast');
   Object.assign(element, currentOptions);
   // for (let key in currentOptions) {

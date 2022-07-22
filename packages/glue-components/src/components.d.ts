@@ -2480,6 +2480,7 @@ declare namespace LocalJSX {
         "color"?: string;
         "large"?: boolean;
         "loading"?: boolean;
+        "onGluePress"?: (event: CustomEvent<any>) => void;
         "text"?: string | number;
         "type"?: string;
         "wider"?: boolean;

@@ -479,7 +479,7 @@ export class GlueDemo {
           </glue-swipe>
         </div> */}
         {/* <glue-datetime-picker model-value={this.currentDate} type="date" title="选择年月日" min-date={this.minDate} max-date={this.maxDate} show-toolbar></glue-datetime-picker> */}
-        {/* <glue-number-keyboard show={true} /> */}
+        <glue-number-keyboard show={true} />
         {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="." theme="custom" /> */}
         {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="X" theme="custom" /> */}
         {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="." title="键盘标题" theme="default" /> */}
@@ -597,10 +597,10 @@ export class GlueDemo {
           增加
         </glue-button>
         <glue-button type="primary">减少</glue-button> */}
-        {/* <glue-toast type="success"></glue-toast>
+        {/* <glue-toast type="success"></glue-toast> */}
         <glue-button type="primary" onClick={this.openToast}>
           打开toast
-        </glue-button> */}
+        </glue-button>
         {/* <glue-cell is-link onClick={this.openActionSheet}>
           展示弹出层
         </glue-cell> */}
