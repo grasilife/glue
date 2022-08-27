@@ -249,16 +249,19 @@ export namespace Components {
         "labelPosition": string;
         "modelValue": boolean;
         "name": number | string;
+        "setValue": (key: any, value: any) => Promise<void>;
         "shape": string;
     }
     interface GlueCheckboxGroup {
         "checkedColor": string;
         "direction": CheckerDirection;
         "disabled": string;
-        "first": string;
+        "getProps": () => Promise<{ modelValue: any; max: string | number; disabled: string; direction: CheckerDirection; iconSize: string | number; checkedColor: string; }>;
         "iconSize": number | string;
         "max": number | string;
         "modelValue": any;
+        "setValue": (value: any) => Promise<void>;
+        "toggleAll": (checked: any) => Promise<void>;
     }
     interface GlueChecker {
         "bem": string;
@@ -2130,7 +2133,6 @@ declare namespace LocalJSX {
         "checkedColor"?: string;
         "direction"?: CheckerDirection;
         "disabled"?: string;
-        "first"?: string;
         "iconSize"?: number | string;
         "max"?: number | string;
         "modelValue"?: any;
@@ -2478,6 +2480,7 @@ declare namespace LocalJSX {
         "color"?: string;
         "large"?: boolean;
         "loading"?: boolean;
+        "onGluePress"?: (event: CustomEvent<any>) => void;
         "text"?: string | number;
         "type"?: string;
         "wider"?: boolean;

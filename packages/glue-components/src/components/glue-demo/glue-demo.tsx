@@ -411,7 +411,7 @@ export class GlueDemo {
         {/* <glue-stepper model-value={1} step={2} min={5} max={8} decimal-length="1" input-width="40px" button-size="32px" theme="round" before-change={this.beforeChange} /> */}
         {/* <glue-switch value={true} loading size="24px" active-color="#ee0a24" inactive-color="#dcdee0" />
         <glue-loading /> */}
-        <glue-uploader
+        {/* <glue-uploader
           customUpload="#slot"
           list={[]}
           multiple
@@ -435,7 +435,7 @@ export class GlueDemo {
           max-size={50000000}
           onGlueOversize={this.onOversize}
           disabled
-        ></glue-uploader>
+        ></glue-uploader> */}
         {/* <glue-calendar
           show={this.showBasic}
           show-title
@@ -479,7 +479,7 @@ export class GlueDemo {
           </glue-swipe>
         </div> */}
         {/* <glue-datetime-picker model-value={this.currentDate} type="date" title="选择年月日" min-date={this.minDate} max-date={this.maxDate} show-toolbar></glue-datetime-picker> */}
-        {/* <glue-number-keyboard show={true} /> */}
+        <glue-number-keyboard show={true} />
         {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="." theme="custom" /> */}
         {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="X" theme="custom" /> */}
         {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="." title="键盘标题" theme="default" /> */}
@@ -544,7 +544,7 @@ export class GlueDemo {
         {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="100%" height="30%" position="top">
           <div>内容</div>
         </glue-popup> */}
-        {/* <glue-checkbox
+        <glue-checkbox
           modelValue={true}
           label="复选框"
           label-disabled={true}
@@ -572,15 +572,18 @@ export class GlueDemo {
             src={this.checked ? this.activeIcon : this.inactiveIcon}
             slot="icon"
           />
-        </glue-checkbox> */}
-        {/* <glue-checkbox-group
+        </glue-checkbox>
+        <glue-checkbox-group
+          ref={(dom) => {
+            this.container = dom;
+          }}
           modelValue={this.checkBox}
-          max={1}
           direction="horizontal"
+          max={1}
         >
           <glue-checkbox name="a" label="复选框"></glue-checkbox>
           <glue-checkbox name="b" label="复选框"></glue-checkbox>
-        </glue-checkbox-group> */}
+        </glue-checkbox-group>
         {/* <glue-button square type="primary">
           收藏
         </glue-button> */}
@@ -594,14 +597,23 @@ export class GlueDemo {
           增加
         </glue-button>
         <glue-button type="primary">减少</glue-button> */}
-        {/* <glue-toast type="success"></glue-toast>
+        {/* <glue-toast type="success"></glue-toast> */}
         <glue-button type="primary" onClick={this.openToast}>
           打开toast
-        </glue-button> */}
+        </glue-button>
         {/* <glue-cell is-link onClick={this.openActionSheet}>
           展示弹出层
         </glue-cell> */}
         {/* <glue-action-sheet show={this.ActionSheetState} action={ this.} /> */}
+        <glue-button
+          type="primary"
+          onClick={() => {
+            // this.container.toggleAll(false);
+            this.checkBox = ['a'];
+          }}
+        >
+          修改state
+        </glue-button>
       </div>
     );
   }

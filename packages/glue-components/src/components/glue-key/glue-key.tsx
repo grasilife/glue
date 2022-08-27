@@ -1,4 +1,12 @@
-import { Component, Prop, h, Host, State } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import classNames from 'classnames';
 import '@glue/touch-emulator';
 import { createNamespace } from '../../utils/create/index';
@@ -35,7 +43,9 @@ export class GlueKey {
   @Prop() large: boolean;
   @Prop() loading: boolean;
   @State() active = false;
+  @Event() gluePress: EventEmitter;
   onTouchStart = (event: TouchEvent) => {
+    console.log(12121212);
     touch.start(event);
     this.active = true;
   };
@@ -57,7 +67,11 @@ export class GlueKey {
       //   event.preventDefault();
       // }
       this.active = false;
-      // emit('press', this.text, this.type);
+      console.log(this.text, this.type, 'jijijiji');
+      this.gluePress.emit({
+        text: this.text,
+        type: this.type,
+      });
     }
   };
 
