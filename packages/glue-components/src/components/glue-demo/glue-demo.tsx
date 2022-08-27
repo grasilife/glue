@@ -1,5 +1,5 @@
 import { Component, h, State } from '@stencil/core';
-// import Toast from '../glue-toast/index';
+import Toast from '../glue-toast/index';
 // import classNames from 'classnames';
 @Component({
   tag: 'glue-demo',
@@ -126,6 +126,10 @@ export class GlueDemo {
     seconds: 0,
   };
   @State() currentDate = new Date();
+  @State() checkBox = ['a', 'b'];
+  @State() activeIcon = 'https://img01.yzcdn.cn/vant/user-active.png';
+  @State() inactiveIcon = 'https://img01.yzcdn.cn/vant/user-inactive.png';
+  @State() checked = true;
   @State() minDate = new Date(2020, 0, 1);
   @State() maxDate = new Date(2025, 10, 1);
   handleClick = () => {
@@ -226,6 +230,9 @@ export class GlueDemo {
   click = () => {
     this.show = true;
   };
+  openToast = () => {
+    Toast('提示内容');
+  };
   afterRead = (file) => {
     file.status = 'uploading';
     file.message = '上传中...';
@@ -240,6 +247,10 @@ export class GlueDemo {
   };
   onOversize = (file) => {
     console.log(file, 'onOversize');
+  };
+  onGlueCilck = (e) => {
+    console.log(e, 'jijiai');
+    this.checked = !this.checked;
   };
   beforeRead = (file) => {
     if (file.type !== 'image/jpeg') {
@@ -260,6 +271,11 @@ export class GlueDemo {
   onGlueChange = (event) => {
     console.log(event, 'event3');
   };
+  @State() ActionSheetState = false;
+  openActionSheet = () => {
+    this.ActionSheetState = true;
+  };
+
   render() {
     return (
       <div class="container">
@@ -317,9 +333,24 @@ export class GlueDemo {
         {/* <glue-tag closeable type="primary">
           标签
         </glue-tag> */}
-        {/* <glue-cell is-link title="基础用法" onClick={this.click} /> */}
-        {/* <glue-action-sheet show={this.show} onGlueClosed={this.closedHandle} actions={this.actions} cancel-text="取消" description="这是一段描述信息" overlay /> */}
-        {/* <glue-share-sheet show={this.show} title="立即分享给好友" options={this.options} overlay onGlueClosed={this.closedHandle} /> */}
+        {/* <glue-cell is-link title="基础用法" onClick={this.click}>
+          基础用法
+        </glue-cell>
+        <glue-action-sheet
+          show={this.show}
+          onGlueClosed={this.closedHandle}
+          actions={this.actions}
+          cancel-text="取消"
+          description="这是一段描述信息"
+          overlay
+        />
+        <glue-share-sheet
+          show={true}
+          title="立即分享给好友"
+          options={this.options}
+          overlay
+          onGlueClosed={this.closedHandle}
+        /> */}
         {/* <glue-swipe-cell left="#slot" right="#slot">
           <div slot="left">
             <glue-button square type="primary">
@@ -380,10 +411,21 @@ export class GlueDemo {
         {/* <glue-stepper model-value={1} step={2} min={5} max={8} decimal-length="1" input-width="40px" button-size="32px" theme="round" before-change={this.beforeChange} /> */}
         {/* <glue-switch value={true} loading size="24px" active-color="#ee0a24" inactive-color="#dcdee0" />
         <glue-loading /> */}
-        {/* <glue-uploader value={[]} show-upload /> */}
         {/* <glue-uploader
+          customUpload="#slot"
+          list={[]}
+          multiple
+          maxCount={2}
+          maxSize={500 * 1024}
+          onGlueOversize={this.onOversize}
+        >
+          <glue-button type="primary" onClick={this.openToast}>
+            上传文件
+          </glue-button>
+        </glue-uploader>
+        <glue-uploader
           show-upload
-          value={this.fileList}
+          list={this.fileList}
           multiple
           preview-image
           deletable
@@ -437,7 +479,7 @@ export class GlueDemo {
           </glue-swipe>
         </div> */}
         {/* <glue-datetime-picker model-value={this.currentDate} type="date" title="选择年月日" min-date={this.minDate} max-date={this.maxDate} show-toolbar></glue-datetime-picker> */}
-        {/* <glue-number-keyboard show={true} /> */}
+        <glue-number-keyboard show={true} />
         {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="." theme="custom" /> */}
         {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="X" theme="custom" /> */}
         {/* <glue-number-keyboard show={true} close-button-text="完成" extra-key="." title="键盘标题" theme="default" /> */}
@@ -486,27 +528,37 @@ export class GlueDemo {
         </glue-tabs> */}
         {/* <glue-cell is-link onClick={this.popupCell}>
           展示弹出层
-        </glue-cell> */}
-        {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="30%" height="100%" position="left">
+        </glue-cell>
+        <glue-popup
+          closeOnClickOverlay={true}
+          overlay={true}
+          show={this.showBasic}
+          onGlueClose={this.popupClose}
+          closeable
+          width="100%"
+          height="30%"
+          position="bottom"
+        >
           <div>内容</div>
         </glue-popup> */}
         {/* <glue-popup show={this.showBasic} onGlueClose={this.popupClose} closeable width="100%" height="30%" position="top">
           <div>内容</div>
         </glue-popup> */}
-        {/* <glue-checkbox
+        <glue-checkbox
           modelValue={true}
           label="复选框"
+          label-disabled={true}
           // shape="square"
           // checked-color="#ee0a24"
           // icon-size="24"
-        ></glue-checkbox> */}
-        {/* <glue-checkbox
+        ></glue-checkbox>
+        <glue-checkbox
           modelValue={true}
           label="复选框"
           disabled={true}
-        ></glue-checkbox> */}
-        {/* <glue-checkbox
-          modelValue={true}
+        ></glue-checkbox>
+        <glue-checkbox
+          modelValue={this.checked}
           label="复选框"
           shape="square"
           class="shape"
@@ -514,15 +566,53 @@ export class GlueDemo {
           icon-size="24px"
           label-disabled={true}
           icon="#slot"
+          onGlueCilck={this.onGlueCilck}
         >
-          <glue-icon name="chat-o" size="32" color="red" />
-        </glue-checkbox> */}
-        <glue-checkbox-group modelValue={['a', 'b']} max={1}>
+          <img
+            src={this.checked ? this.activeIcon : this.inactiveIcon}
+            slot="icon"
+          />
+        </glue-checkbox>
+        <glue-checkbox-group
+          ref={(dom) => {
+            this.container = dom;
+          }}
+          modelValue={this.checkBox}
+          direction="horizontal"
+          max={1}
+        >
           <glue-checkbox name="a" label="复选框"></glue-checkbox>
           <glue-checkbox name="b" label="复选框"></glue-checkbox>
         </glue-checkbox-group>
-        <glue-button square type="primary">
+        {/* <glue-button square type="primary">
           收藏
+        </glue-button> */}
+        {/* <glue-circle
+          currentRate={this.currentRate}
+          rate={30}
+          speed={100}
+          text="宽度定制"
+        />
+        <glue-button type="primary" onClick={this.handleClick}>
+          增加
+        </glue-button>
+        <glue-button type="primary">减少</glue-button> */}
+        {/* <glue-toast type="success"></glue-toast> */}
+        <glue-button type="primary" onClick={this.openToast}>
+          打开toast
+        </glue-button>
+        {/* <glue-cell is-link onClick={this.openActionSheet}>
+          展示弹出层
+        </glue-cell> */}
+        {/* <glue-action-sheet show={this.ActionSheetState} action={ this.} /> */}
+        <glue-button
+          type="primary"
+          onClick={() => {
+            // this.container.toggleAll(false);
+            this.checkBox = ['a'];
+          }}
+        >
+          修改state
         </glue-button>
       </div>
     );

@@ -5,20 +5,20 @@
     </DemoBlock>
 
     <DemoBlock :title="preview">
-      <glue-uploader :value="fileList" multiple accept="*" show-upload preview-image />
+      <glue-uploader :list.prop="fileList" multiple accept="*" show-upload preview-image />
     </DemoBlock>
 
     <DemoBlock :title="status">
-      <glue-uploader :value="statusFileList" :after-read="afterReadFailed" show-upload preview-image />
+      <glue-uploader :list.prop="statusFileList" :after-read="afterReadFailed" show-upload preview-image />
     </DemoBlock>
 
     <DemoBlock :title="maxCount">
-      <glue-uploader :value="fileList2" multiple :max-count="2" show-upload preview-image />
+      <glue-uploader :list.prop="fileList2" multiple :max-count="2" show-upload preview-image />
     </DemoBlock>
 
     <DemoBlock :title="maxSize">
       <glue-uploader
-        :value="fileList4"
+        :list.prop="fileList4"
         multiple
         :max-size="500 * 1024"
         @oversize="onOversize"
@@ -36,7 +36,7 @@
     </DemoBlock>
 
     <DemoBlock :title="previewCover">
-      <glue-uploader :value="previewCoverFiles" show-upload preview-image>
+      <glue-uploader :list.prop="previewCoverFiles" show-upload preview-image>
         <template #preview-cover="{ file }">
           <div class="preview-cover glue-ellipsis">{{ file.name }}</div>
         </template>
@@ -44,7 +44,7 @@
     </DemoBlock>
 
     <DemoBlock :title="beforeReadTitle">
-      <glue-uploader :value="fileList3" :before-read="beforeRead" show-upload preview-image />
+      <glue-uploader :list.prop="fileList3" :before-read="beforeRead" show-upload preview-image />
     </DemoBlock>
 
     <DemoBlock :title="disabled">
@@ -52,7 +52,7 @@
     </DemoBlock>
 
     <DemoBlock :title="customPreviewImage">
-      <glue-uploader :value="fileList5" multiple accept="*" :deletable="false" show-upload preview-image />
+      <glue-uploader :list.prop="fileList5" multiple accept="*" :deletable="false" show-upload preview-image />
     </DemoBlock>
   </DemoSection>
 </template>
@@ -98,31 +98,27 @@ export default {
           previewSize: 120
         }
       ],
-      statusFileList: [],
-      previewCoverFiles: []
+      statusFileList: [
+        {
+          url: "https://img.yzcdn.cn/vant/leaf.jpg",
+          status: "uploading",
+          message: this.uploading
+        },
+        {
+          url: "https://img.yzcdn.cn/vant/tree.jpg",
+          status: "failed",
+          message: this.failed
+        }
+      ],
+      previewCoverFiles: [
+        {
+          url: "https://img.yzcdn.cn/vant/leaf.jpg",
+          file: {
+            name: this.imageName
+          }
+        }
+      ]
     };
-  },
-
-  created() {
-    this.statusFileList.push(
-      {
-        url: "https://img.yzcdn.cn/vant/leaf.jpg",
-        status: "uploading",
-        message: this.uploading
-      },
-      {
-        url: "https://img.yzcdn.cn/vant/tree.jpg",
-        status: "failed",
-        message: this.failed
-      }
-    );
-
-    this.previewCoverFiles.push({
-      url: "https://img.yzcdn.cn/vant/leaf.jpg",
-      file: {
-        name: this.imageName
-      }
-    });
   },
 
   methods: {

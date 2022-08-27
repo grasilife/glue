@@ -11,6 +11,7 @@
     "clear-all": "lerna clean && yarn workspaces run clean",
     "build": "lerna run --stream --sort build",
     "start": "lerna run --stream --sort start",
+    "doc": "lerna run --stream --sort doc",
     "test": "lerna run --stream --sort test",
     "new": "plop",
     "publish": "lerna publish",

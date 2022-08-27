@@ -42,10 +42,10 @@ export class GluePopup {
   @Prop() overlayStyle: object;
   @Prop() overlayClass = null;
   @Prop() transitionAppear: boolean;
-  @Prop() overlay = false;
-  @Prop() lockScroll = false;
-  @Prop() lazyRender = false;
-  @Prop() closeOnClickOverlay = false;
+  @Prop() overlay = true;
+  @Prop() lockScroll = true;
+  @Prop() lazyRender = true;
+  @Prop() closeOnClickOverlay = true;
   @Prop() round = false;
   @Prop() closeable: boolean;
   @Prop() closeOnPopstate: boolean;
@@ -172,7 +172,7 @@ export class GluePopup {
         }
       }
     } else {
-      style.display = 'none';
+      // style.display = 'none';
       if (this.position == 'bottom') {
         style.transform = `translateY(100%)`;
         console.log(style.transform, 'style.transform');
@@ -233,7 +233,7 @@ export class GluePopup {
         this.duration,
         this.easing,
         () => {
-          this.popupRef.style.display = 'block';
+          // this.popupRef.style.display = 'block';
           this.openHandle();
         },
         () => {
@@ -247,7 +247,7 @@ export class GluePopup {
         this.duration,
         this.easing,
         () => {
-          this.popupRef.style.display = 'block';
+          // this.popupRef.style.display = 'block';
           this.openHandle();
         },
         () => {
@@ -262,7 +262,7 @@ export class GluePopup {
         this.easing,
         this.height,
         () => {
-          this.popupRef.style.display = 'block';
+          // this.popupRef.style.display = 'block';
           this.openHandle();
         },
         () => {
@@ -277,7 +277,7 @@ export class GluePopup {
         this.easing,
         this.width,
         () => {
-          this.popupRef.style.display = 'block';
+          // this.popupRef.style.display = 'block';
           this.openHandle();
         },
         () => {
@@ -292,7 +292,7 @@ export class GluePopup {
         this.easing,
         this.width,
         () => {
-          this.popupRef.style.display = 'block';
+          // this.popupRef.style.display = 'block';
           this.openHandle();
         },
         () => {

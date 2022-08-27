@@ -16,8 +16,8 @@ export class GlueNumberKeyboard {
   @Prop() deleteButtonText: string;
   @Prop() closeButtonLoading: boolean;
   @Prop() theme = 'default';
-  @Prop() modelValue = '';
-  //TODO:当extraKey为""时出现关闭键盘图标
+  @Prop({ mutable: true }) modelValue = '';
+  //当extraKey为""时出现关闭键盘图标
   @Prop() extraKey = '';
   @Prop() maxlength = Number.MAX_VALUE;
   @Prop() transition = true;
@@ -40,7 +40,7 @@ export class GlueNumberKeyboard {
     if (this.randomKeyOrder) {
       keys.sort(() => (Math.random() > 0.5 ? 1 : -1));
     }
-
+    console.log(keys, 'keys1');
     return keys;
   };
 
@@ -56,11 +56,11 @@ export class GlueNumberKeyboard {
 
   genCustomKeys = () => {
     const keys = this.genBasicKeys();
+    console.log(keys, 'keys1111');
     const { extraKey } = this;
-    //TODO:extraKey数组居然不能赋值
     console.log(extraKey, 'extraKeyextraKey');
     const extraKeys = Array.isArray(extraKey) ? extraKey : [extraKey];
-
+    console.log(extraKeys, 'extraKeys');
     if (extraKeys.length === 1) {
       keys.push(
         { text: 0, wider: true },
@@ -77,8 +77,12 @@ export class GlueNumberKeyboard {
     return keys;
   };
 
-  keys = () =>
-    this.theme === 'custom' ? this.genCustomKeys() : this.genDefaultKeys();
+  keys = () => {
+    console.log(this.theme, 'this.theme');
+    return this.theme === 'custom'
+      ? this.genCustomKeys()
+      : this.genDefaultKeys();
+  };
 
   onBlur = () => {
     if (this.show) {
@@ -98,7 +102,10 @@ export class GlueNumberKeyboard {
     // emit(this.show ? 'show' : 'hide');
   };
 
-  onPress = (text, type) => {
+  onPress = (event) => {
+    console.log(event, 'event');
+    let { text, type } = event.detail;
+    console.log(text, type, 'text, type1');
     if (text === '') {
       if (type === 'extra') {
         this.onBlur();
@@ -106,17 +113,20 @@ export class GlueNumberKeyboard {
       return;
     }
 
-    const value = this.modelValue;
-
     if (type === 'delete') {
       this.glueDelete.emit();
-      this.glueChange.emit(value.slice(0, value.length - 1));
+
+      this.modelValue = this.modelValue.slice(0, this.modelValue.length - 1);
+
+      this.glueChange.emit(this.modelValue);
     } else if (type === 'close') {
       this.onClose();
-    } else if (value.length < this.maxlength) {
+    } else if (this.modelValue.length < this.maxlength) {
+      this.modelValue = this.modelValue + text;
       this.glueInput.emit(text);
-      this.glueChange.emit(value + text);
+      this.glueChange.emit(this.modelValue);
     }
+    console.log(text, this.modelValue, 'texttext');
   };
 
   renderHeader = () => {
@@ -147,6 +157,7 @@ export class GlueNumberKeyboard {
   };
 
   renderKeys = () => {
+    console.log(this.keys(), 'this.keys()');
     return this.keys().map((key) => {
       // const keySlots = {};
 
@@ -156,7 +167,7 @@ export class GlueNumberKeyboard {
       if (key.type === 'extra') {
         // keySlots.default = slots['extra-key'];
       }
-
+      console.log(key.type, 'key.type');
       return (
         <glue-key
           key={key.text}
@@ -164,6 +175,7 @@ export class GlueNumberKeyboard {
           type={key.type}
           wider={key.wider}
           color={key.color}
+          onGluePress={this.onPress}
         />
       );
     });

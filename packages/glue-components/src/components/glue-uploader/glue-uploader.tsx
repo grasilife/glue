@@ -41,13 +41,13 @@ export class GlueUploader {
   @Prop() name = '';
   @Prop() accept = 'image/*';
   //数组失效
-  @Prop() value = [];
+  @Prop() list = [];
   @Prop() maxSize = Number.MAX_VALUE;
   @Prop() maxCount = Number.MAX_VALUE;
-  @Prop() deletable = false;
-  @Prop() showUpload = false;
-  @Prop() previewImage = false;
-  @Prop() previewFullImage = false;
+  @Prop() deletable = true;
+  @Prop() showUpload = true;
+  @Prop() previewImage = true;
+  @Prop() previewFullImage = true;
   @Prop() imageFit = 'cover';
   @Prop() resultType: ResultType = 'dataUrl';
   @Prop() uploadIcon = 'photograph';
@@ -60,7 +60,7 @@ export class GlueUploader {
   @Event() glueOversize: EventEmitter;
   @State() items;
   inputRef: HTMLElement;
-  getDetail = (index = this.value.length) => ({
+  getDetail = (index = this.list.length) => ({
     name: this.name,
     index,
   });
@@ -94,7 +94,7 @@ export class GlueUploader {
         return;
       }
     }
-    this.value = [...this.value, ...toArray(items)];
+    this.list = [...this.list, ...toArray(items)];
     console.log(this.afterRead, 'this.afterRead');
     if (this.afterRead) {
       this.afterRead(items, this.getDetail());
@@ -102,10 +102,10 @@ export class GlueUploader {
   };
 
   readFile = (files) => {
-    const { maxCount, value, resultType } = this;
+    const { maxCount, list, resultType } = this;
 
     if (Array.isArray(files)) {
-      const remainCount = maxCount - value.length;
+      const remainCount = maxCount - list.length;
 
       if (files.length > remainCount) {
         files = files.slice(0, remainCount);
@@ -184,7 +184,7 @@ export class GlueUploader {
   renderPreviewImage = (item) => {
     console.log(item, '预览');
     if (this.previewFullImage) {
-      const imageFiles = this.value.filter(isImageFile);
+      const imageFiles = this.list.filter(isImageFile);
       console.log(imageFiles, 'imageFiles');
 
       // const images = imageFiles.map(item => item.content || item.url);
@@ -205,9 +205,9 @@ export class GlueUploader {
 
   deleteFile = (item, index) => {
     console.log(item);
-    const fileList = this.value.slice(0);
+    const fileList = this.list.slice(0);
     fileList.splice(index, 1);
-    this.value = fileList;
+    this.list = fileList;
     this.glueDelete.emit({
       item: item,
       detail: this.getDetail(index),
@@ -257,13 +257,13 @@ export class GlueUploader {
 
   renderPreviewList = () => {
     if (this.previewImage) {
-      return this.value.map(this.renderPreviewItem);
+      return this.list.map(this.renderPreviewItem);
     }
   };
 
   renderUpload = () => {
-    console.log(this.value, this.maxCount, this.showUpload, 'this.value');
-    if (this.value.length >= this.maxCount || !this.showUpload) {
+    console.log(this.list, this.maxCount, this.showUpload, 'this.value');
+    if (this.list.length >= this.maxCount || !this.showUpload) {
       return;
     }
 
