@@ -669,6 +669,9 @@ export namespace Components {
         "transition": boolean;
         "zIndex": string;
     }
+    interface GlueNumberKeyboardDemo {
+        "first": string;
+    }
     interface GlueOverlay {
         "customStyle": object;
         "duration": number | string;
@@ -1526,6 +1529,12 @@ declare global {
         prototype: HTMLGlueNumberKeyboardElement;
         new (): HTMLGlueNumberKeyboardElement;
     };
+    interface HTMLGlueNumberKeyboardDemoElement extends Components.GlueNumberKeyboardDemo, HTMLStencilElement {
+    }
+    var HTMLGlueNumberKeyboardDemoElement: {
+        prototype: HTMLGlueNumberKeyboardDemoElement;
+        new (): HTMLGlueNumberKeyboardDemoElement;
+    };
     interface HTMLGlueOverlayElement extends Components.GlueOverlay, HTMLStencilElement {
     }
     var HTMLGlueOverlayElement: {
@@ -1827,6 +1836,7 @@ declare global {
         "glue-nav-bar": HTMLGlueNavBarElement;
         "glue-notice-bar": HTMLGlueNoticeBarElement;
         "glue-number-keyboard": HTMLGlueNumberKeyboardElement;
+        "glue-number-keyboard-demo": HTMLGlueNumberKeyboardDemoElement;
         "glue-overlay": HTMLGlueOverlayElement;
         "glue-pagination": HTMLGluePaginationElement;
         "glue-password-input": HTMLGluePasswordInputElement;
@@ -2561,6 +2571,9 @@ declare namespace LocalJSX {
         "transition"?: boolean;
         "zIndex"?: string;
     }
+    interface GlueNumberKeyboardDemo {
+        "first"?: string;
+    }
     interface GlueOverlay {
         "customStyle"?: object;
         "duration"?: number | string;
@@ -3149,6 +3162,7 @@ declare namespace LocalJSX {
         "glue-nav-bar": GlueNavBar;
         "glue-notice-bar": GlueNoticeBar;
         "glue-number-keyboard": GlueNumberKeyboard;
+        "glue-number-keyboard-demo": GlueNumberKeyboardDemo;
         "glue-overlay": GlueOverlay;
         "glue-pagination": GluePagination;
         "glue-password-input": GluePasswordInput;
@@ -3255,6 +3269,7 @@ declare module "@stencil/core" {
             "glue-nav-bar": LocalJSX.GlueNavBar & JSXBase.HTMLAttributes<HTMLGlueNavBarElement>;
             "glue-notice-bar": LocalJSX.GlueNoticeBar & JSXBase.HTMLAttributes<HTMLGlueNoticeBarElement>;
             "glue-number-keyboard": LocalJSX.GlueNumberKeyboard & JSXBase.HTMLAttributes<HTMLGlueNumberKeyboardElement>;
+            "glue-number-keyboard-demo": LocalJSX.GlueNumberKeyboardDemo & JSXBase.HTMLAttributes<HTMLGlueNumberKeyboardDemoElement>;
             "glue-overlay": LocalJSX.GlueOverlay & JSXBase.HTMLAttributes<HTMLGlueOverlayElement>;
             "glue-pagination": LocalJSX.GluePagination & JSXBase.HTMLAttributes<HTMLGluePaginationElement>;
             "glue-password-input": LocalJSX.GluePasswordInput & JSXBase.HTMLAttributes<HTMLGluePasswordInputElement>;
