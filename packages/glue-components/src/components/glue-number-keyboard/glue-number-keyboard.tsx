@@ -7,7 +7,7 @@ import { stopPropagation } from '../../utils/dom/event';
   shadow: false,
 })
 export class GlueNumberKeyboard {
-  @Prop() show: boolean;
+  @Prop() show: boolean = true;
   @Prop() g_title: string;
   @Prop() zIndex: string;
   @Prop() teleport: string | number;
@@ -200,13 +200,16 @@ export class GlueNumberKeyboard {
     }
   };
   render() {
+    console.log(this.show ? 'block' : 'hidden', this.show, '11');
     return (
       <Host
-        v-show={this.show}
         ref={(dom) => {
           this.root = dom;
         }}
-        style={{ zIndex: this.zIndex }}
+        style={{
+          zIndex: this.zIndex,
+          display: this.show ? 'block' : 'none',
+        }}
         class={classNames('glue-number-keyboard', {
           'glue-number-keyboard__unfit': !this.safeAreaInsetBottom,
           'glue-number-keyboard__with-title': this.g_title,
