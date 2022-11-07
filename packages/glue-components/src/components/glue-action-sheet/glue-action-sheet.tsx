@@ -28,7 +28,7 @@ export class GlueActionSheet {
   refContent: HTMLElement;
   @Prop({ mutable: true }) show: boolean;
   @Prop() actions: any;
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() cancelText: string;
   @Prop() description: string;
   @Prop() closeable: boolean;
@@ -77,10 +77,10 @@ export class GlueActionSheet {
   };
 
   renderHeader = () => {
-    if (this.g_title) {
+    if (this.gtitle) {
       return (
         <div class="glue-action-sheet__header">
-          {this.g_title}
+          {this.gtitle}
           {this.closeable && (
             <glue-icon
               name={this.closeIcon}

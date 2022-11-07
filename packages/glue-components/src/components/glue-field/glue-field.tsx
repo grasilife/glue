@@ -51,7 +51,7 @@ export class GlueField {
   //cell this
   @Prop() icon: string;
   @Prop() size: string;
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() value: string | number;
   @Prop() label: string | number;
   @Prop() center: boolean;
@@ -544,7 +544,7 @@ export class GlueField {
     return (
       <Host class="glue-field">
         <glue-cell
-          g_title="#slot"
+          gtitle="#slot"
           value="#slot"
           size={this.size}
           icon={this.leftIcon}
@@ -571,7 +571,7 @@ export class GlueField {
           }}
           arrowDirection={this.arrowDirection}
         >
-          <div slot="g_title">{this.renderLabel()}</div>
+          <div slot="gtitle">{this.renderLabel()}</div>
           <div slot="value">
             <div class={bem('body')}>
               {this.renderInput()}

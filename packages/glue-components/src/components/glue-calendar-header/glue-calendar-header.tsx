@@ -7,20 +7,20 @@ import { Component, Prop, h, Host } from '@stencil/core';
 })
 export class GlueCalendarHeader {
   @Prop() first: string;
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() subtitle: string;
   @Prop() showTitle: boolean;
   @Prop() showSubtitle: boolean;
   @Prop() firstDayOfWeek: number;
   renderTitle = () => {
-    console.log(this.showTitle, this.g_title, 'showTitle2');
+    console.log(this.showTitle, this.gtitle, 'showTitle2');
     if (this.showTitle) {
-      if (this.g_title == '#slot') {
-        return <slot name="g_title"></slot>;
+      if (this.gtitle == '#slot') {
+        return <slot name="gtitle"></slot>;
       }
-      const text = this.g_title || 'g_title';
-      const g_title = text;
-      return <div class="glue-calendar-header-title">{g_title}</div>;
+      const text = this.gtitle || 'gtitle';
+      const gtitle = text;
+      return <div class="glue-calendar-header-title">{gtitle}</div>;
     }
   };
 

@@ -12,7 +12,7 @@ export class GlueCard {
   @Prop() desc: string;
 
   @Prop() thumb: string;
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() centered: boolean;
   @Prop() lazyLoad: boolean;
   @Prop() thumbLink: string;
@@ -26,10 +26,10 @@ export class GlueCard {
     this.glueClick.emit(event);
   };
   renderTitle = () => {
-    if (this.g_title) {
+    if (this.gtitle) {
       return (
         <div class={classNames('glue-card__title', 'glue-multi-ellipsis--l2')}>
-          {this.g_title}
+          {this.gtitle}
         </div>
       );
     }

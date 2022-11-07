@@ -6,7 +6,7 @@ import classNames from 'classnames';
   shadow: false,
 })
 export class GlueCellGroup {
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
 
   @Prop() border = true;
   renderGroup = () => {
@@ -17,9 +17,9 @@ export class GlueCellGroup {
     );
   };
   renderTitle = () => {
-    if (this.g_title) {
+    if (this.gtitle) {
       return (
-        <div class={classNames('glue-cell-group__title')}>{this.g_title}</div>
+        <div class={classNames('glue-cell-group__title')}>{this.gtitle}</div>
       );
     }
   };

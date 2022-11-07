@@ -32,7 +32,7 @@ import {
 })
 export class GlueCalendar {
   @Prop({ mutable: true }) show: boolean;
-  @Prop() g_title: string = '日期选择';
+  @Prop() gtitle: string = '日期选择';
   @Prop() color: string;
   @Prop() readonly: boolean;
   @Prop() teleport: any;
@@ -233,7 +233,7 @@ export class GlueCalendar {
           this.monthRefs[i].showed = true;
           this.glueMonthShow.emit({
             date: month.date,
-            g_title: month.g_title,
+            gtitle: month.gtitle,
           });
         }
       }
@@ -503,7 +503,7 @@ export class GlueCalendar {
   renderCalendar = () => (
     <div class="glue-calendar">
       <glue-calendar-header
-        g_title={this.g_title}
+        gtitle={this.gtitle}
         showTitle={this.showTitle}
         subtitle={this.subtitle}
         showSubtitle={this.showSubtitle}

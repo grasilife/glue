@@ -108,7 +108,7 @@ export default {
 通过插槽可以自定义面板的展示内容，同时可以使用`title`属性展示标题栏
 
 ```html
-<glue-action-sheet :show="show.title" :g_title="title">
+<glue-action-sheet :show="show.title" :gtitle="title">
   <div class="demo-action-sheet-content">{{ content }}</div>
 </glue-action-sheet>
 

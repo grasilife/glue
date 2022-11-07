@@ -8,7 +8,7 @@ import { stopPropagation } from '../../utils/dom/event';
 })
 export class GlueNumberKeyboard {
   @Prop() show: boolean = true;
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() zIndex: string;
   @Prop() teleport: string | number;
   @Prop() randomKeyOrder: boolean;
@@ -18,7 +18,7 @@ export class GlueNumberKeyboard {
   @Prop() theme = 'default';
   @Prop({ mutable: true }) modelValue = '';
   //当extraKey为""时出现关闭键盘图标
-  @Prop() extraKey = '';
+  @Prop() extraKey: string | any[] = '';
   @Prop() maxlength = Number.MAX_VALUE;
   @Prop() transition = true;
   @Prop() blurOnClose = true;
@@ -60,7 +60,7 @@ export class GlueNumberKeyboard {
     const { extraKey } = this;
     console.log(extraKey, 'extraKeyextraKey');
     const extraKeys = Array.isArray(extraKey) ? extraKey : [extraKey];
-    console.log(extraKeys, 'extraKeys');
+    console.log(extraKeys, 'extraKeys1');
     if (extraKeys.length === 1) {
       keys.push(
         { text: 0, wider: true },
@@ -130,10 +130,10 @@ export class GlueNumberKeyboard {
   };
 
   renderHeader = () => {
-    const { g_title, theme, closeButtonText } = this;
-    // const leftSlot = slots['g_title-left'];
+    const { gtitle, theme, closeButtonText } = this;
+    // const leftSlot = slots['gtitle-left'];
     const showClose = closeButtonText && theme === 'default';
-    const showTitle = g_title || showClose;
+    const showTitle = gtitle || showClose;
 
     if (!showTitle) {
       return;
@@ -142,7 +142,7 @@ export class GlueNumberKeyboard {
     return (
       <div class="glue-number-keyboard__header">
         {/* {leftSlot && <span class="glue-number-keyboard__title-left">{leftSlot()}</span>} */}
-        {g_title && <h2 class="glue-number-keyboard__title">{g_title}</h2>}
+        {gtitle && <h2 class="glue-number-keyboard__title">{gtitle}</h2>}
         {showClose && (
           <button
             type="button"
@@ -212,7 +212,7 @@ export class GlueNumberKeyboard {
         }}
         class={classNames('glue-number-keyboard', {
           'glue-number-keyboard__unfit': !this.safeAreaInsetBottom,
-          'glue-number-keyboard__with-title': this.g_title,
+          'glue-number-keyboard__with-title': this.gtitle,
         })}
         onTouchStart={stopPropagation}
         onAnimationend={this.onAnimationEnd}

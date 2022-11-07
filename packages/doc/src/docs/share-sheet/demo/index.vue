@@ -1,25 +1,25 @@
 <template>
   <DemoSection>
     <DemoBlock card :title="basicUsage">
-      <glue-cell is-link :g_title="showSheet" @click="show.basic = true" />
-      <glue-share-sheet :show="show.basic" :g_title="title" :options.prop="options" @select="onSelect" />
+      <glue-cell is-link :gtitle="showSheet" @click="show.basic = true" />
+      <glue-share-sheet :show="show.basic" :gtitle="title" :options.prop="options" @select="onSelect" />
     </DemoBlock>
 
     <DemoBlock card :title="multiLine">
-      <glue-cell is-link :g_title="showSheet" @click="show.multiLine = true" />
-      <glue-share-sheet :show="show.multiLine" :g_title="title" :options.prop="multiLineOptions" @select="onSelect" />
+      <glue-cell is-link :gtitle="showSheet" @click="show.multiLine = true" />
+      <glue-share-sheet :show="show.multiLine" :gtitle="title" :options.prop="multiLineOptions" @select="onSelect" />
     </DemoBlock>
 
     <DemoBlock card :title="customIcon">
-      <glue-cell is-link :g_title="showSheet" @click="show.customIcon = true" />
+      <glue-cell is-link :gtitle="showSheet" @click="show.customIcon = true" />
       <glue-share-sheet :show="show.customIcon" :options.prop="customIconOptions" @select="onSelect" />
     </DemoBlock>
 
     <DemoBlock card :title="withDesc">
-      <glue-cell is-link :g_title="showSheet" @click="show.withDesc = true" />
+      <glue-cell is-link :gtitle="showSheet" @click="show.withDesc = true" />
       <glue-share-sheet
         :show="show.withDesc"
-        :g_title="title"
+        :gtitle="title"
         :options="optionsWithDesc"
         :description="description"
         @select="onSelect"

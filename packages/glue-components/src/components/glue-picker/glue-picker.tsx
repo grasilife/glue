@@ -26,7 +26,7 @@ export class GluePicker {
   @Element() el!: HTMLGluePickerElement;
   //pickerProps
   @Prop() first: string;
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() loading: boolean;
   @Prop() readonly: boolean;
   @Prop() allowHtml: boolean;
@@ -375,11 +375,11 @@ export class GluePicker {
   }
 
   renderTitle = () => {
-    if (this.g_title == '#slot') {
-      return <slot name="g_title"></slot>;
+    if (this.gtitle == '#slot') {
+      return <slot name="gtitle"></slot>;
     }
-    if (this.g_title) {
-      return <div class="glue-picker__title glue-ellipsis">{this.g_title}</div>;
+    if (this.gtitle) {
+      return <div class="glue-picker__title glue-ellipsis">{this.gtitle}</div>;
     }
   };
   renderCancelButtonText = () => {

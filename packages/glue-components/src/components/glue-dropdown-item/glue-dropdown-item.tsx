@@ -9,7 +9,7 @@ const [bem] = createNamespace('glue-dropdown-item');
 })
 export class GlueDropdownItem {
   @Prop() first: string;
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() disabled: boolean;
   @Prop() teleport: any;
   @Prop() modelValue = null;
@@ -52,12 +52,12 @@ export class GlueDropdownItem {
   };
 
   renderTitle = () => {
-    // if (slots.g_title) {
-    //   return slots.g_title();
+    // if (slots.gtitle) {
+    //   return slots.gtitle();
     // }
 
-    if (this.g_title) {
-      return this.g_title;
+    if (this.gtitle) {
+      return this.gtitle;
     }
 
     const match = this.options.filter(
@@ -85,7 +85,7 @@ export class GlueDropdownItem {
         clickable
         key={option.value}
         icon={option.icon}
-        g_title={option.text}
+        gtitle={option.text}
         class={classNames('glue-dropdown-item__option', bem([active]))}
         // style={{ color: active ? activeColor : '' }}
         onClick={onClick}

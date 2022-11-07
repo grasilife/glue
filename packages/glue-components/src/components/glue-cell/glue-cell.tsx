@@ -10,7 +10,7 @@ import { CellArrowDirection } from '../glue-cell/glue-cell-interface';
 export class GlueCell {
   @Prop() icon: string;
   @Prop() size: string;
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() value: string | number;
   @Prop() label: string | number;
   @Prop() center: boolean;
@@ -43,7 +43,7 @@ export class GlueCell {
   };
 
   renderTitle = () => {
-    if (this.g_title == '#slot' || isDef(this.g_title)) {
+    if (this.gtitle == '#slot' || isDef(this.gtitle)) {
       return (
         <div
           class={classNames(this.titleClass, {
@@ -51,10 +51,10 @@ export class GlueCell {
           })}
           style={this.titleStyle}
         >
-          {this.g_title == '#slot' ? (
-            <slot name="g_title"></slot>
+          {this.gtitle == '#slot' ? (
+            <slot name="gtitle"></slot>
           ) : (
-            <span>{this.g_title}</span>
+            <span>{this.gtitle}</span>
           )}
           {this.renderLabel()}
         </div>
@@ -63,7 +63,7 @@ export class GlueCell {
   };
 
   renderValue = () => {
-    const hasTitle = this.g_title == '#slot' || isDef(this.g_title);
+    const hasTitle = this.gtitle == '#slot' || isDef(this.gtitle);
     const hasValue = this.value == '#slot' || isDef(this.value);
 
     if (hasValue) {

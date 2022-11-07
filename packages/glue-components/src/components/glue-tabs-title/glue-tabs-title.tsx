@@ -10,7 +10,7 @@ export class GlueTabsTitle {
   @Prop() dot: boolean;
   @Prop() type: string;
   @Prop() color: string;
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() badge: string | number;
   @Prop() isActive: boolean;
   @Prop() disabled: boolean;
@@ -57,7 +57,7 @@ export class GlueTabsTitle {
           'glue-tabs-title__text--ellipsis': !this.scrollable,
         })}
       >
-        {this.renderTitle ? this.renderTitle() : this.g_title}
+        {this.renderTitle ? this.renderTitle() : this.gtitle}
       </span>
     );
 

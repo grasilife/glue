@@ -10,6 +10,7 @@ module.exports = {
   },
   extends: ['plugin:@stencil/recommended', 'prettier'],
   rules: {
+    camelcase: ['error'],
     '@stencil/required-jsdoc': 0,
     '@stencil/dependency-suggestions': 0,
     '@stencil/decorators-style': 0,

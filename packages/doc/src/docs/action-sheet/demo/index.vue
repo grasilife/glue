@@ -1,17 +1,17 @@
 <template>
   <DemoSection>
     <DemoBlock card :title="basicUsage">
-      <glue-cell is-link :g_title="basicUsage" @click="show.basic = true" />
-      <glue-cell is-link :g_title="showCancel" @click="show.cancel = true" />
-      <glue-cell is-link :g_title="showDescription" @click="show.description = true" />
+      <glue-cell is-link :gtitle="basicUsage" @click="show.basic = true" />
+      <glue-cell is-link :gtitle="showCancel" @click="show.cancel = true" />
+      <glue-cell is-link :gtitle="showDescription" @click="show.description = true" />
     </DemoBlock>
 
     <DemoBlock card :title="optionStatus">
-      <glue-cell is-link :g_title="optionStatus" @click="show.status = true" />
+      <glue-cell is-link :gtitle="optionStatus" @click="show.status = true" />
     </DemoBlock>
 
     <DemoBlock card :title="customPanel">
-      <glue-cell is-link :g_title="customPanel" @click="show.title = true" />
+      <glue-cell is-link :gtitle="customPanel" @click="show.title = true" />
     </DemoBlock>
 
     <glue-action-sheet :show="show.basic" :actions.prop="simpleActions" @glueSelect="onSelect" @glueClose="glueClose" />
@@ -34,7 +34,7 @@
 
     <glue-action-sheet :show="show.status" close-on-click-action :actions.prop="statusActions" :cancel-text="cancel" />
 
-    <glue-action-sheet :show="show.title" :g_title="title">
+    <glue-action-sheet :show="show.title" :gtitle="title">
       <div class="demo-action-sheet-content">{{ content }}</div>
     </glue-action-sheet>
   </DemoSection>

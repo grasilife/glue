@@ -7,6 +7,7 @@ import { Component, Prop, h, State } from '@stencil/core';
 export class GlueNumberKeyboardDemo {
   @Prop() first: string;
   @State() keyboard: string = 'default';
+  @State() extraKey: any[] = ['00', '.'];
   onGlueInput = (event) => {
     console.log(event, 'onGlueInput');
   };
@@ -32,40 +33,47 @@ export class GlueNumberKeyboardDemo {
     return (
       <div>
         <glue-cell
-          g_title="弹出默认键盘"
+          gtitle="弹出默认键盘"
           isLink
           onClick={() => {
             this.keyboard = 'default';
           }}
         />
         <glue-cell
-          g_title="弹出带右侧栏的键盘"
+          gtitle="弹出带右侧栏的键盘"
           isLink
           onClick={() => {
             this.keyboard = 'custom';
           }}
         />
         <glue-cell
-          g_title="弹出身份证号键盘"
+          gtitle="弹出身份证号键盘"
           isLink
-          onClick={this.onCellClick}
+          onClick={() => {
+            this.keyboard = 'extraKey';
+          }}
         />
         <glue-cell
-          g_title="弹出带标题的键盘"
+          gtitle="弹出带标题的键盘"
           isLink
-          onClick={this.onCellClick}
+          onClick={() => {
+            this.keyboard = 'title';
+          }}
         />
         <glue-cell
-          g_title="弹出配置多个按键的键盘"
+          gtitle="弹出配置多个按键的键盘"
           isLink
-          onClick={this.onCellClick}
+          onClick={() => {
+            this.keyboard = 'multiExtraKey';
+          }}
         />
         <glue-cell
-          g_title="弹出配置随机数字的键盘"
+          gtitle="弹出配置随机数字的键盘"
           isLink
-          onClick={this.onCellClick}
+          onClick={() => {
+            this.keyboard = 'randomKeyOrder';
+          }}
         />
-
         <glue-number-keyboard
           show={this.keyboard == 'default'}
           onGlueBlur={this.onGlueBlur}
@@ -77,8 +85,49 @@ export class GlueNumberKeyboardDemo {
         <glue-number-keyboard
           show={this.keyboard === 'custom'}
           theme="custom"
-          extra-key="."
+          extraKey="."
           close-button-text="完成"
+          onGlueBlur={this.onGlueBlur}
+          onGlueInput={this.onGlueInput}
+          onGlueClose={this.onGlueClose}
+          onGlueDelete={this.onGlueDelete}
+          onGlueChange={this.onGlueChange}
+        />
+        <glue-number-keyboard
+          show={this.keyboard === 'extraKey'}
+          extraKey="X"
+          close-button-text="完成"
+          onGlueBlur={this.onGlueBlur}
+          onGlueInput={this.onGlueInput}
+          onGlueClose={this.onGlueClose}
+          onGlueDelete={this.onGlueDelete}
+          onGlueChange={this.onGlueChange}
+        />
+        <glue-number-keyboard
+          show={this.keyboard === 'title'}
+          gtitle="键盘标题"
+          extraKey="."
+          close-button-text="完成"
+          onGlueBlur={this.onGlueBlur}
+          onGlueInput={this.onGlueInput}
+          onGlueClose={this.onGlueClose}
+          onGlueDelete={this.onGlueDelete}
+          onGlueChange={this.onGlueChange}
+        />
+        <glue-number-keyboard
+          show={this.keyboard === 'multiExtraKey'}
+          theme="custom"
+          extraKey={this.extraKey}
+          close-button-text="完成"
+          onGlueBlur={this.onGlueBlur}
+          onGlueInput={this.onGlueInput}
+          onGlueClose={this.onGlueClose}
+          onGlueDelete={this.onGlueDelete}
+          onGlueChange={this.onGlueChange}
+        />
+        <glue-number-keyboard
+          show={this.keyboard === 'randomKeyOrder'}
+          random-key-order
           onGlueBlur={this.onGlueBlur}
           onGlueInput={this.onGlueInput}
           onGlueClose={this.onGlueClose}
