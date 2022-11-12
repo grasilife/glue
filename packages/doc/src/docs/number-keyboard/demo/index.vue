@@ -1,83 +1,64 @@
 <template>
   <DemoSection>
-    <van-cell is-link @touchstart.native.stop="keyboard = 'default'">
-      {{ button1 }}
-    </van-cell>
-    <van-cell is-link @touchstart.native.stop="keyboard = 'custom'">
-      {{ button2 }}
-    </van-cell>
-    <van-cell is-link @touchstart.native.stop="keyboard = 'extraKey'">
-      {{ button3 }}
-    </van-cell>
-    <van-cell is-link @touchstart.native.stop="keyboard = 'title'">
-      {{ button4 }}
-    </van-cell>
-    <van-cell is-link @touchstart.native.stop="keyboard = 'multiExtraKey'">
-      {{ button5 }}
-    </van-cell>
-    <van-cell is-link @touchstart.native.stop="keyboard = 'randomKeyOrder'">
-      {{ button6 }}
-    </van-cell>
-
-    <van-field
-      readonly
-      clickable
-      :value="value"
-      :label="bindValue"
-      :placeholder="clickToInput"
-      @touchstart.native.stop="keyboard = 'bindValue'"
+    <glue-cell is-link @click="keyboard = 'default'" gtitle="弹出默认键盘"> </glue-cell>
+    <glue-cell is-link @click="keyboard = 'custom'" gtitle="弹出带右侧栏的键盘"> </glue-cell>
+    <glue-cell is-link @click="keyboard = 'extraKey'" gtitle="弹出身份证号键盘"> </glue-cell>
+    <glue-cell is-link @click="keyboard = 'title'" gtitle="弹出带标题的键盘"> </glue-cell>
+    <glue-cell is-link @click="keyboard = 'multiExtraKey'" gtitle="弹出配置多个按键的键盘"> </glue-cell>
+    <glue-cell is-link @click="keyboard = 'randomKeyOrder'" gtitle="弹出配置随机数字的键盘"> </glue-cell>
+    <glue-number-keyboard
+      v-if="keyboard === 'default'"
+      @glueBlur="keyboard = ''"
+      @glueInput="onInput"
+      @glueDelete="onDelete"
     />
 
-    <van-number-keyboard :show="keyboard === 'default'" @blur="keyboard = ''" @input="onInput" @delete="onDelete" />
-
-    <van-number-keyboard
-      :show="keyboard === 'custom'"
+    <glue-number-keyboard
+      v-if="keyboard === 'custom'"
       :close-button-text="close"
       theme="custom"
       extra-key="."
-      @blur="keyboard = ''"
-      @input="onInput"
-      @delete="onDelete"
+      @glueBlur="keyboard = ''"
+      @glueInput="onInput"
+      @glueDelete="onDelete"
     />
 
-    <van-number-keyboard
-      :show="keyboard === 'extraKey'"
+    <glue-number-keyboard
+      v-if="keyboard === 'extraKey'"
       :close-button-text="close"
       extra-key="X"
-      @blur="keyboard = ''"
-      @input="onInput"
-      @delete="onDelete"
+      @glueBlur="keyboard = ''"
+      @glueInput="onInput"
+      @glueDelete="onDelete"
     />
 
-    <van-number-keyboard
-      :show="keyboard === 'title'"
+    <glue-number-keyboard
+      v-if="keyboard === 'title'"
       :close-button-text="close"
       :title="title"
       extra-key="."
-      @blur="keyboard = ''"
-      @input="onInput"
-      @delete="onDelete"
+      @glueBlur="keyboard = ''"
+      @glueInput="onInput"
+      @glueDelete="onDelete"
     />
 
-    <van-number-keyboard
-      :show="keyboard === 'multiExtraKey'"
+    <glue-number-keyboard
+      v-if="keyboard === 'multiExtraKey'"
       :close-button-text="close"
       theme="custom"
-      :extra-key="['00', '.']"
-      @blur="keyboard = ''"
-      @input="onInput"
-      @delete="onDelete"
+      :extra-key.prop="['00', '.']"
+      @glueBlur="keyboard = ''"
+      @glueInput="onInput"
+      @glueDelete="onDelete"
     />
 
-    <van-number-keyboard
-      :show="keyboard === 'randomKeyOrder'"
+    <glue-number-keyboard
+      v-if="keyboard === 'randomKeyOrder'"
       random-key-order
-      @blur="keyboard = ''"
-      @input="onInput"
-      @delete="onDelete"
+      @glueBlur="keyboard = ''"
+      @glueInput="onInput"
+      @glueDelete="onDelete"
     />
-
-    <van-number-keyboard v-model="value" :show="keyboard === 'bindValue'" maxlength="6" @blur="keyboard = ''" />
   </DemoSection>
 </template>
 
@@ -89,12 +70,6 @@ export default {
       close: "完成",
       input: "输入",
       title: "键盘标题",
-      button1: "弹出默认键盘",
-      button2: "弹出带右侧栏的键盘",
-      button3: "弹出身份证号键盘",
-      button4: "弹出带标题的键盘",
-      button5: "弹出配置多个按键的键盘",
-      button6: "弹出配置随机数字的键盘",
       extraKey: "左下角按键内容",
       bindValue: "双向绑定",
       clickToInput: "点此输入",
@@ -106,6 +81,9 @@ export default {
   },
 
   methods: {
+    ppp() {
+      console.log(212121);
+    },
     onInput(value) {
       this.$toast(`${this.input}: ${value}`);
     },
@@ -123,7 +101,7 @@ export default {
 .demo-number-keyboard {
   padding-bottom: 300px;
 
-  .van-button {
+  .glue-button {
     margin-left: @padding-md;
   }
 }
