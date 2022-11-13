@@ -20,7 +20,7 @@ export class GlueDatePicker {
   @Prop() columnsOrder: [];
   @Prop() formatter: Function = (_type: string, value: unknown) => value;
   //pickerProps
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() loading: boolean;
   @Prop() readonly: boolean;
   @Prop() allowHtml: boolean;

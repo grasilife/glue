@@ -15,7 +15,7 @@ export class GlueTimePicker {
   @Prop() columnsOrder: [];
   @Prop() formatter;
   //pickerProps
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() loading: boolean;
   @Prop() readonly: boolean;
   @Prop() allowHtml: boolean;

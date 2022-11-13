@@ -46,7 +46,7 @@ export class GlueShareSheet {
   refContent: HTMLElement;
   @Prop() show: boolean;
   @Prop() options = [];
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() cancelText: string;
   @Prop() description: string;
   @Prop() duration: string;
@@ -96,13 +96,13 @@ export class GlueShareSheet {
   };
 
   renderHeader = () => {
-    const g_title = this.g_title;
+    const gtitle = this.gtitle;
     const description = this.description;
 
-    if (g_title || description) {
+    if (gtitle || description) {
       return (
         <div class="glue-share-sheet__header">
-          {g_title && <h2 class="glue-share-sheet__title">{g_title}</h2>}
+          {gtitle && <h2 class="glue-share-sheet__title">{gtitle}</h2>}
           {description && (
             <span class="glue-share-sheet__description">{description}</span>
           )}

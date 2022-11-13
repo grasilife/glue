@@ -21,7 +21,7 @@ export class GlueCollapseItem {
   @Element() el: HTMLGlueCollapseItemElement;
   @Prop() icon: string;
   @Prop() size: string;
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() value: string | number;
   @Prop() label: string | number;
   @Prop() center: boolean;
@@ -81,8 +81,8 @@ export class GlueCollapseItem {
     });
   };
   renderTitle = () => {
-    const { border, disabled, g_title, isLink } = this;
-    console.log(this.g_title, 'ahuhafuhfui');
+    const { border, disabled, gtitle, isLink } = this;
+    console.log(this.gtitle, 'ahuhafuhfui');
     return (
       <glue-cell
         role="button"
@@ -95,7 +95,7 @@ export class GlueCollapseItem {
         tabindex={disabled ? -1 : 0}
         aria-expanded={String(this.expanded())}
         onClick={this.clickTitleHandle}
-        g_title={g_title}
+        gtitle={gtitle}
         is-link={isLink}
         arrow-direction={this.arrowDirection}
       ></glue-cell>

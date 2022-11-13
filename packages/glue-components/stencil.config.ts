@@ -21,7 +21,5 @@ export const config: Config = {
     },
   ],
   extras: {},
-  // buildEs5: false,
-  // minifyJs: true,
-  // minifyCss: true,
+  buildEs5: true,
 };

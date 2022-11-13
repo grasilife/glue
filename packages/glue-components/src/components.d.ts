@@ -46,7 +46,7 @@ export namespace Components {
         "closeable": boolean;
         "description": string;
         "duration": string;
-        "g_title": string;
+        "gtitle": string;
         "lazyRender": boolean;
         "lockScroll": boolean;
         "overlay": boolean;
@@ -147,7 +147,7 @@ export namespace Components {
         "firstDayOfWeek": any;
         "footer": string;
         "formatter": any;
-        "g_title": string;
+        "gtitle": string;
         "lazyRender": boolean;
         "maxDate": Date;
         "maxRange": any;
@@ -177,7 +177,7 @@ export namespace Components {
     interface GlueCalendarHeader {
         "first": string;
         "firstDayOfWeek": number;
-        "g_title": string;
+        "gtitle": string;
         "showSubtitle": boolean;
         "showTitle": boolean;
         "subtitle": string;
@@ -203,7 +203,7 @@ export namespace Components {
         "centered": boolean;
         "currency": string;
         "desc": string;
-        "g_title": string;
+        "gtitle": string;
         "lazyLoad": boolean;
         "num": string | number;
         "originPrice": string | number;
@@ -220,7 +220,7 @@ export namespace Components {
         "border": boolean;
         "center": boolean;
         "clickable": boolean;
-        "g_title": string;
+        "gtitle": string;
         "icon": string;
         "iconPrefix": string;
         "isLink": boolean;
@@ -236,7 +236,7 @@ export namespace Components {
     }
     interface GlueCellGroup {
         "border": boolean;
-        "g_title": string;
+        "gtitle": string;
     }
     interface GlueCheckbox {
         "bindGroup": boolean;
@@ -310,7 +310,7 @@ export namespace Components {
         "center": boolean;
         "clickable": boolean;
         "disabled": boolean;
-        "g_title": string;
+        "gtitle": string;
         "icon": string;
         "iconPrefix": string;
         "isLink": boolean;
@@ -376,7 +376,7 @@ export namespace Components {
         "coupons": [];
         "currency": string;
         "editable": boolean;
-        "g_title": string;
+        "gtitle": string;
     }
     interface GlueCouponList {
         "chosenCoupon": number;
@@ -406,7 +406,7 @@ export namespace Components {
         "confirmButtonText": string;
         "filter": any;
         "formatter": Function;
-        "g_title": string;
+        "gtitle": string;
         "itemHeight": number;
         "loading": boolean;
         "maxDate": Date;
@@ -426,7 +426,7 @@ export namespace Components {
         "filter": any;
         "fimaxMinuterst": string | number;
         "formatter": any;
-        "g_title": string;
+        "gtitle": string;
         "itemHeight": number;
         "loading": boolean;
         "maxDate": Date;
@@ -455,7 +455,7 @@ export namespace Components {
     interface GlueDropdownItem {
         "disabled": boolean;
         "first": string;
-        "g_title": string;
+        "gtitle": string;
         "lazyRender": boolean;
         "modelValue": any;
         "options": any[];
@@ -487,7 +487,7 @@ export namespace Components {
         "errorMessageAlign": string;
         "formatTrigger": string;
         "formatter": any;
-        "g_title": string;
+        "gtitle": string;
         "icon": string;
         "iconPrefix": string;
         "inputAlign": string;
@@ -630,7 +630,7 @@ export namespace Components {
     interface GlueNavBar {
         "border": boolean;
         "fixed": boolean;
-        "g_title": string;
+        "gtitle": string;
         "leftArrow": boolean;
         "leftText": string;
         "placeholder": boolean;
@@ -655,8 +655,8 @@ export namespace Components {
         "closeButtonLoading": boolean;
         "closeButtonText": string;
         "deleteButtonText": string;
-        "extraKey": string;
-        "g_title": string;
+        "extraKey": string | any[];
+        "gtitle": string;
         "hideOnClickOutside": boolean;
         "maxlength": number;
         "modelValue": string;
@@ -668,6 +668,9 @@ export namespace Components {
         "theme": string;
         "transition": boolean;
         "zIndex": string;
+    }
+    interface GlueNumberKeyboardDemo {
+        "first": string;
     }
     interface GlueOverlay {
         "customStyle": object;
@@ -708,12 +711,12 @@ export namespace Components {
         "confirmButtonText": string;
         "defaultIndex": number;
         "first": string;
-        "g_title": string;
         "getColumnIndex": (index: any) => Promise<any>;
         "getColumnValue": (index: any) => Promise<any>;
         "getColumnValues": (index: any) => Promise<any>;
         "getIndexes": () => Promise<void>;
         "getValues": () => Promise<any[]>;
+        "gtitle": string;
         "itemHeight": number;
         "loading": boolean;
         "readonly": boolean;
@@ -853,7 +856,7 @@ export namespace Components {
         "closeOnPopstate": boolean;
         "description": string;
         "duration": string;
-        "g_title": string;
+        "gtitle": string;
         "lazyRender": boolean;
         "lockScroll": boolean;
         "options": any[];
@@ -872,7 +875,7 @@ export namespace Components {
         "badge": string;
         "disabled": boolean;
         "dot": boolean;
-        "g_title": string;
+        "gtitle": string;
         "setActive": () => Promise<void>;
         "setParentActive": () => Promise<void>;
         "value": number | string;
@@ -998,7 +1001,7 @@ export namespace Components {
         "badge": string | number;
         "disabled": boolean;
         "dot": boolean;
-        "g_title": string;
+        "gtitle": string;
         "name": string | number;
         "titleClass": null;
         "titleStyle": null;
@@ -1019,7 +1022,7 @@ export namespace Components {
     interface GlueTabbarItem {
         "badge": string;
         "dot": boolean;
-        "g_title": string;
+        "gtitle": string;
         "icon": string;
         "iconPrefix": string;
         "name": string;
@@ -1063,7 +1066,7 @@ export namespace Components {
         "color": string;
         "disabled": boolean;
         "dot": boolean;
-        "g_title": string;
+        "gtitle": string;
         "inactiveColor": string;
         "isActive": boolean;
         "renderTitle": any;
@@ -1088,7 +1091,7 @@ export namespace Components {
         "confirmButtonText": string;
         "filter": any;
         "formatter": any;
-        "g_title": string;
+        "gtitle": string;
         "itemHeight": number;
         "loading": boolean;
         "maxHour": number;
@@ -1526,6 +1529,12 @@ declare global {
         prototype: HTMLGlueNumberKeyboardElement;
         new (): HTMLGlueNumberKeyboardElement;
     };
+    interface HTMLGlueNumberKeyboardDemoElement extends Components.GlueNumberKeyboardDemo, HTMLStencilElement {
+    }
+    var HTMLGlueNumberKeyboardDemoElement: {
+        prototype: HTMLGlueNumberKeyboardDemoElement;
+        new (): HTMLGlueNumberKeyboardDemoElement;
+    };
     interface HTMLGlueOverlayElement extends Components.GlueOverlay, HTMLStencilElement {
     }
     var HTMLGlueOverlayElement: {
@@ -1827,6 +1836,7 @@ declare global {
         "glue-nav-bar": HTMLGlueNavBarElement;
         "glue-notice-bar": HTMLGlueNoticeBarElement;
         "glue-number-keyboard": HTMLGlueNumberKeyboardElement;
+        "glue-number-keyboard-demo": HTMLGlueNumberKeyboardDemoElement;
         "glue-overlay": HTMLGlueOverlayElement;
         "glue-pagination": HTMLGluePaginationElement;
         "glue-password-input": HTMLGluePasswordInputElement;
@@ -1902,7 +1912,7 @@ declare namespace LocalJSX {
         "closeable"?: boolean;
         "description"?: string;
         "duration"?: string;
-        "g_title"?: string;
+        "gtitle"?: string;
         "lazyRender"?: boolean;
         "lockScroll"?: boolean;
         "onGlueCancel"?: (event: CustomEvent<any>) => void;
@@ -2013,7 +2023,7 @@ declare namespace LocalJSX {
         "firstDayOfWeek"?: any;
         "footer"?: string;
         "formatter"?: any;
-        "g_title"?: string;
+        "gtitle"?: string;
         "lazyRender"?: boolean;
         "maxDate"?: Date;
         "maxRange"?: any;
@@ -2052,7 +2062,7 @@ declare namespace LocalJSX {
     interface GlueCalendarHeader {
         "first"?: string;
         "firstDayOfWeek"?: number;
-        "g_title"?: string;
+        "gtitle"?: string;
         "showSubtitle"?: boolean;
         "showTitle"?: boolean;
         "subtitle"?: string;
@@ -2078,7 +2088,7 @@ declare namespace LocalJSX {
         "centered"?: boolean;
         "currency"?: string;
         "desc"?: string;
-        "g_title"?: string;
+        "gtitle"?: string;
         "lazyLoad"?: boolean;
         "num"?: string | number;
         "onGlueClick"?: (event: CustomEvent<any>) => void;
@@ -2096,7 +2106,7 @@ declare namespace LocalJSX {
         "border"?: boolean;
         "center"?: boolean;
         "clickable"?: boolean;
-        "g_title"?: string;
+        "gtitle"?: string;
         "icon"?: string;
         "iconPrefix"?: string;
         "isLink"?: boolean;
@@ -2112,7 +2122,7 @@ declare namespace LocalJSX {
     }
     interface GlueCellGroup {
         "border"?: boolean;
-        "g_title"?: string;
+        "gtitle"?: string;
     }
     interface GlueCheckbox {
         "bindGroup"?: boolean;
@@ -2186,7 +2196,7 @@ declare namespace LocalJSX {
         "center"?: boolean;
         "clickable"?: boolean;
         "disabled"?: boolean;
-        "g_title"?: string;
+        "gtitle"?: string;
         "icon"?: string;
         "iconPrefix"?: string;
         "isLink"?: boolean;
@@ -2252,7 +2262,7 @@ declare namespace LocalJSX {
         "coupons"?: [];
         "currency"?: string;
         "editable"?: boolean;
-        "g_title"?: string;
+        "gtitle"?: string;
     }
     interface GlueCouponList {
         "chosenCoupon"?: number;
@@ -2282,7 +2292,7 @@ declare namespace LocalJSX {
         "confirmButtonText"?: string;
         "filter"?: any;
         "formatter"?: Function;
-        "g_title"?: string;
+        "gtitle"?: string;
         "itemHeight"?: number;
         "loading"?: boolean;
         "maxDate"?: Date;
@@ -2302,7 +2312,7 @@ declare namespace LocalJSX {
         "filter"?: any;
         "fimaxMinuterst"?: string | number;
         "formatter"?: any;
-        "g_title"?: string;
+        "gtitle"?: string;
         "itemHeight"?: number;
         "loading"?: boolean;
         "maxDate"?: Date;
@@ -2331,7 +2341,7 @@ declare namespace LocalJSX {
     interface GlueDropdownItem {
         "disabled"?: boolean;
         "first"?: string;
-        "g_title"?: string;
+        "gtitle"?: string;
         "lazyRender"?: boolean;
         "modelValue"?: any;
         "options"?: any[];
@@ -2363,7 +2373,7 @@ declare namespace LocalJSX {
         "errorMessageAlign"?: string;
         "formatTrigger"?: string;
         "formatter"?: any;
-        "g_title"?: string;
+        "gtitle"?: string;
         "icon"?: string;
         "iconPrefix"?: string;
         "inputAlign"?: string;
@@ -2513,7 +2523,7 @@ declare namespace LocalJSX {
     interface GlueNavBar {
         "border"?: boolean;
         "fixed"?: boolean;
-        "g_title"?: string;
+        "gtitle"?: string;
         "leftArrow"?: boolean;
         "leftText"?: string;
         "onGlueLeft"?: (event: CustomEvent<any>) => void;
@@ -2542,8 +2552,8 @@ declare namespace LocalJSX {
         "closeButtonLoading"?: boolean;
         "closeButtonText"?: string;
         "deleteButtonText"?: string;
-        "extraKey"?: string;
-        "g_title"?: string;
+        "extraKey"?: string | any[];
+        "gtitle"?: string;
         "hideOnClickOutside"?: boolean;
         "maxlength"?: number;
         "modelValue"?: string;
@@ -2560,6 +2570,9 @@ declare namespace LocalJSX {
         "theme"?: string;
         "transition"?: boolean;
         "zIndex"?: string;
+    }
+    interface GlueNumberKeyboardDemo {
+        "first"?: string;
     }
     interface GlueOverlay {
         "customStyle"?: object;
@@ -2601,7 +2614,7 @@ declare namespace LocalJSX {
         "confirmButtonText"?: string;
         "defaultIndex"?: number;
         "first"?: string;
-        "g_title"?: string;
+        "gtitle"?: string;
         "itemHeight"?: number;
         "loading"?: boolean;
         "onGlueCancel"?: (event: CustomEvent<any>) => void;
@@ -2746,7 +2759,7 @@ declare namespace LocalJSX {
         "closeOnPopstate"?: boolean;
         "description"?: string;
         "duration"?: string;
-        "g_title"?: string;
+        "gtitle"?: string;
         "lazyRender"?: boolean;
         "lockScroll"?: boolean;
         "onGlueCancel"?: (event: CustomEvent<any>) => void;
@@ -2771,7 +2784,7 @@ declare namespace LocalJSX {
         "badge"?: string;
         "disabled"?: boolean;
         "dot"?: boolean;
-        "g_title"?: string;
+        "gtitle"?: string;
         "onGlueChange"?: (event: CustomEvent<any>) => void;
         "value"?: number | string;
     }
@@ -2909,7 +2922,7 @@ declare namespace LocalJSX {
         "badge"?: string | number;
         "disabled"?: boolean;
         "dot"?: boolean;
-        "g_title"?: string;
+        "gtitle"?: string;
         "name"?: string | number;
         "titleClass"?: null;
         "titleStyle"?: null;
@@ -2929,7 +2942,7 @@ declare namespace LocalJSX {
     interface GlueTabbarItem {
         "badge"?: string;
         "dot"?: boolean;
-        "g_title"?: string;
+        "gtitle"?: string;
         "icon"?: string;
         "iconPrefix"?: string;
         "name"?: string;
@@ -2972,7 +2985,7 @@ declare namespace LocalJSX {
         "color"?: string;
         "disabled"?: boolean;
         "dot"?: boolean;
-        "g_title"?: string;
+        "gtitle"?: string;
         "inactiveColor"?: string;
         "isActive"?: boolean;
         "renderTitle"?: any;
@@ -2998,7 +3011,7 @@ declare namespace LocalJSX {
         "confirmButtonText"?: string;
         "filter"?: any;
         "formatter"?: any;
-        "g_title"?: string;
+        "gtitle"?: string;
         "itemHeight"?: number;
         "loading"?: boolean;
         "maxHour"?: number;
@@ -3149,6 +3162,7 @@ declare namespace LocalJSX {
         "glue-nav-bar": GlueNavBar;
         "glue-notice-bar": GlueNoticeBar;
         "glue-number-keyboard": GlueNumberKeyboard;
+        "glue-number-keyboard-demo": GlueNumberKeyboardDemo;
         "glue-overlay": GlueOverlay;
         "glue-pagination": GluePagination;
         "glue-password-input": GluePasswordInput;
@@ -3255,6 +3269,7 @@ declare module "@stencil/core" {
             "glue-nav-bar": LocalJSX.GlueNavBar & JSXBase.HTMLAttributes<HTMLGlueNavBarElement>;
             "glue-notice-bar": LocalJSX.GlueNoticeBar & JSXBase.HTMLAttributes<HTMLGlueNoticeBarElement>;
             "glue-number-keyboard": LocalJSX.GlueNumberKeyboard & JSXBase.HTMLAttributes<HTMLGlueNumberKeyboardElement>;
+            "glue-number-keyboard-demo": LocalJSX.GlueNumberKeyboardDemo & JSXBase.HTMLAttributes<HTMLGlueNumberKeyboardDemoElement>;
             "glue-overlay": LocalJSX.GlueOverlay & JSXBase.HTMLAttributes<HTMLGlueOverlayElement>;
             "glue-pagination": LocalJSX.GluePagination & JSXBase.HTMLAttributes<HTMLGluePaginationElement>;
             "glue-password-input": LocalJSX.GluePasswordInput & JSXBase.HTMLAttributes<HTMLGluePasswordInputElement>;

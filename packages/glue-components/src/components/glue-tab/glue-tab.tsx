@@ -11,7 +11,7 @@ export class GlueTab {
   @Prop({ reflect: true }) dot: boolean;
   @Prop({ reflect: true }) name: string | number;
   @Prop({ reflect: true }) badge: string | number;
-  @Prop({ reflect: true }) g_title: string;
+  @Prop({ reflect: true }) gtitle: string;
   @Prop({ reflect: true }) titleStyle: null;
   @Prop({ reflect: true }) titleClass: null;
   @Prop({ reflect: true }) disabled: boolean;
@@ -28,7 +28,7 @@ export class GlueTab {
 
     if (this.lazyRender) {
       // nextTick(() => {
-      //   parent.emit('rendered', getName(), props.g_title);
+      //   parent.emit('rendered', getName(), props.gtitle);
       // });
     }
   };

@@ -18,7 +18,7 @@ import { useRect } from '../../utils/useRect';
   shadow: false,
 })
 export class GlueNavBar {
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() fixed: boolean;
   @Prop() zIndex: string;
   @Prop() leftText: string;
@@ -67,7 +67,7 @@ export class GlueNavBar {
     return <span class="glue-nav-bar__text">{this.rightText}</span>;
   };
   renderNavBar = () => {
-    const { g_title, fixed, border } = this;
+    const { gtitle, fixed, border } = this;
     const style = {
       zIndex: this.zIndex,
     };
@@ -93,7 +93,7 @@ export class GlueNavBar {
               {this.renderLeft()}
             </div>
           )}
-          <div class="glue-nav-bar__title glue-ellipsis">{g_title}</div>
+          <div class="glue-nav-bar__title glue-ellipsis">{gtitle}</div>
           {hasRight && (
             <div class="glue-nav-bar__right" onClick={this.onClickRight}>
               {this.renderRight()}

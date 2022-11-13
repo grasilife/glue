@@ -21,7 +21,7 @@ export class GlueTabbarItem {
   @Prop() dot: boolean;
   @Prop() icon: string;
   @Prop() name: string;
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() badge: string;
   @Prop() iconPrefix: string;
   @State() parentActiveColor;
@@ -88,7 +88,7 @@ export class GlueTabbarItem {
         <glue-badge dot={dot} content={badge} class="glue-tabbar-item__icon">
           {this.renderIcon()}
         </glue-badge>
-        <div class="glue-tabbar-item__text">{this.g_title}</div>
+        <div class="glue-tabbar-item__text">{this.gtitle}</div>
       </Host>
     );
   }

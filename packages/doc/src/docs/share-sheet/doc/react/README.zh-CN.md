@@ -11,8 +11,8 @@
 分享面板通过 `options` 属性来定义分享选项，数组的每一项是一个对象，对象格式见文档下方表格。
 
 ```html
-<glue-cell g_title="显示分享面板" @click="showShare = true" />
-<glue-share-sheet :show="show.basic" :g_title="title" :options.prop="options" @select="onSelect" />
+<glue-cell gtitle="显示分享面板" @click="showShare = true" />
+<glue-share-sheet :show="show.basic" :gtitle="title" :options.prop="options" @select="onSelect" />
 ```
 
 ```js
@@ -123,7 +123,7 @@ export default {
 当分享选项的数量较多时，可以将 `options` 定义为数组嵌套的格式，每个子数组会作为一行选项展示。
 
 ```html
-<glue-share-sheet :show="show.multiLine" :g_title="title" :options.prop="multiLineOptions" @select="onSelect" />
+<glue-share-sheet :show="show.multiLine" :gtitle="title" :options.prop="multiLineOptions" @select="onSelect" />
 ```
 
 ### 自定义图标
@@ -141,7 +141,7 @@ export default {
 ```html
 <glue-share-sheet
   :show="show.withDesc"
-  :g_title="title"
+  :gtitle="title"
   :options="optionsWithDesc"
   :description="description"
   @select="onSelect"

@@ -24,7 +24,7 @@ export class GlueDatetimePicker {
   @Prop() columnsOrder: [];
   @Prop() formatter;
   //pickerProps
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() loading: boolean;
   @Prop() readonly: boolean;
   @Prop() allowHtml: boolean;

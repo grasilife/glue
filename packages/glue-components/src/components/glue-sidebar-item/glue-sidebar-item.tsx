@@ -19,7 +19,7 @@ import { getElementParent, getAttribute } from '../../utils/base';
 export class GlueSidebarItem {
   @Element() el!: HTMLGlueSidebarItemElement;
   @Prop() dot: boolean;
-  @Prop() g_title: string;
+  @Prop() gtitle: string;
   @Prop() badge: string;
   @Prop() value: number | string;
   @Prop() disabled: boolean;
@@ -68,7 +68,7 @@ export class GlueSidebarItem {
     this.selected = parentModelValue == this.value;
   }
   render() {
-    const { dot, badge, g_title, disabled } = this;
+    const { dot, badge, gtitle, disabled } = this;
     return (
       <Host
         class={classNames('glue-sidebar-item', {
@@ -81,7 +81,7 @@ export class GlueSidebarItem {
         }}
       >
         <glue-badge dot={dot} content={badge} class="glue-sidebar-item__text">
-          {g_title}
+          {gtitle}
         </glue-badge>
       </Host>
     );
