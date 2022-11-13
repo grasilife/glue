@@ -123,6 +123,7 @@ export class GlueNumberKeyboard {
       this.onClose();
     } else if (this.modelValue.length < this.maxlength) {
       this.modelValue = this.modelValue + text;
+      console.log(text, 'texttexttexttext');
       this.glueInput.emit(text);
       this.glueChange.emit(this.modelValue);
     }

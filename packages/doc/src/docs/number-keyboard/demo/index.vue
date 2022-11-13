@@ -81,11 +81,8 @@ export default {
   },
 
   methods: {
-    ppp() {
-      console.log(212121);
-    },
-    onInput(value) {
-      this.$toast(`${this.input}: ${value}`);
+    onInput(event) {
+      this.$toast(`${this.input}: ${event.detail}`);
     },
 
     onDelete() {
