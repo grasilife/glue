@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d229865"],{de8f:function(n,e,t){"use strict";t.r(e),t.d(e,"i",(function(){return c}));t("2aa5"),t("32f5"),t("dee9");function c(n){return n=n.replace(/[^-|\d]/g,""),/^((\+86)|(86))?(1)\d{10}$/.test(n)||/^0[0-9-]{10,13}$/.test(n)}}}]);

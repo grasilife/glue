@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0d696f"],{"72ca":function(n,o,t){"use strict";t.r(o),t.d(o,"glue_component",(function(){return c}));var e=t("2964"),r=":host{display:block;color:red}",c=function(){function n(n){Object(e["r"])(this,n)}return n.prototype.render=function(){return Object(e["h"])("div",null,"Hello, World! I'm ")},n}();c.style=r}}]);
