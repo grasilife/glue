@@ -83,12 +83,12 @@ export class GluePasswordInputDemo {
           </glue-doc-block>
           <glue-doc-block gtitle="格子间距">
             <glue-password-input
-              value={this.value.removeMask}
+              value={this.value.addGutter}
               onGlueFocus={() => {
-                this.current = 'removeMask';
+                this.current = 'addGutter';
               }}
               gutter={10}
-              focused={this.current === 'removeMask'}
+              focused={this.current === 'addGutter'}
             />
           </glue-doc-block>
           <glue-doc-block gtitle="明文展示">
