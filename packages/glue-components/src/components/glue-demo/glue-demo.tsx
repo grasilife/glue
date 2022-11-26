@@ -1,5 +1,4 @@
-import { Component, h } from '@stencil/core';
-import classNames from 'classnames';
+import { Component, h, Host } from '@stencil/core';
 @Component({
   tag: 'glue-demo',
   styleUrl: 'glue-demo.less',
@@ -8,11 +7,11 @@ import classNames from 'classnames';
 export class GlueDemo {
   render() {
     return (
-      <div class={classNames('cunstom')}>
+      <Host>
         {/* <glue-number-keyboard-demo></glue-number-keyboard-demo> */}
         <glue-password-input-demo></glue-password-input-demo>
         {/* <glue-doc-block-demo></glue-doc-block-demo> */}
-      </div>
+      </Host>
     );
   }
 }
