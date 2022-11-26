@@ -29,7 +29,7 @@ export class GluePasswordInput {
       const char = value[i];
       const showBorder = i !== 0 && !gutter;
       const showCursor = focused && i === value.length;
-
+      console.log(i, value, 'value1');
       let style;
       if (i !== 0 && gutter) {
         style = { marginLeft: addUnit(gutter) };
@@ -52,7 +52,7 @@ export class GluePasswordInput {
         </li>
       );
     }
-
+    console.log(Points, 'Points');
     return Points;
   };
   render() {

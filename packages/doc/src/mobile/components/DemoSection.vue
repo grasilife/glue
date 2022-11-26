@@ -29,5 +29,6 @@ export default {
   box-sizing: border-box;
   min-height: calc(100vh - 56px);
   padding-bottom: 20px;
+  overflow: auto;
 }
 </style>

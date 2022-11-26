@@ -10,8 +10,8 @@ export class GlueDemo {
     return (
       <div class={classNames('cunstom')}>
         {/* <glue-number-keyboard-demo></glue-number-keyboard-demo> */}
-        {/* <glue-password-input-demo></glue-password-input-demo> */}
-        <glue-doc-block-demo></glue-doc-block-demo>
+        <glue-password-input-demo></glue-password-input-demo>
+        {/* <glue-doc-block-demo></glue-doc-block-demo> */}
       </div>
     );
   }

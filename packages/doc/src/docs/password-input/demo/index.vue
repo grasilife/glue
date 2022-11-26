@@ -1,15 +1,15 @@
 <template>
   <DemoSection>
-    <DemoBlock ref="basicUsage" :title="basicUsage">
-      <van-password-input
+    <DemoBlock ref="basicUsage" title="基础用法">
+      <glue-password-input
         :value="value.basicUsage"
         :focused="current === 'basicUsage'"
         @focus="current = 'basicUsage'"
       />
     </DemoBlock>
 
-    <DemoBlock ref="customLength" :title="customLength">
-      <van-password-input
+    <DemoBlock ref="customLength" title="自定义长度">
+      <glue-password-input
         :value="value.customLength"
         :length="4"
         :focused="current === 'customLength'"
@@ -17,8 +17,8 @@
       />
     </DemoBlock>
 
-    <DemoBlock ref="addGutter" :title="addGutter">
-      <van-password-input
+    <DemoBlock ref="addGutter" title="格子间距">
+      <glue-password-input
         :value="value.addGutter"
         :gutter="10"
         :focused="current === 'addGutter'"
@@ -26,8 +26,8 @@
       />
     </DemoBlock>
 
-    <DemoBlock ref="removeMask" :title="removeMask">
-      <van-password-input
+    <DemoBlock ref="removeMask" title="明文展示">
+      <glue-password-input
         :mask="false"
         :value="value.removeMask"
         :focused="current === 'removeMask'"
@@ -35,8 +35,8 @@
       />
     </DemoBlock>
 
-    <DemoBlock ref="showInfo" :title="showInfo">
-      <van-password-input
+    <DemoBlock ref="showInfo" title="提示信息">
+      <glue-password-input
         :info="info"
         :value="value.showInfo"
         :error-info="errorInfo"
@@ -45,7 +45,7 @@
       />
     </DemoBlock>
 
-    <van-number-keyboard :show="!!current" @blur="current = ''" @input="onInput" @delete="onDelete" />
+    <glue-number-keyboard :show="!!current" @blur="current = ''" @input="onInput" @delete="onDelete" />
   </DemoSection>
 </template>
 
@@ -53,13 +53,8 @@
 export default {
   data() {
     return {
-      basicUsage: "基础用法",
       info: "密码为 6 位数字",
-      showInfo: "提示信息",
-      addGutter: "格子间距",
       errorInfo: "密码错误",
-      removeMask: "明文展示",
-      customLength: "自定义长度",
       value: {
         showInfo: "123",
         addGutter: "123",

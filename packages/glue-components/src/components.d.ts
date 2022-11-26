@@ -712,7 +712,6 @@ export namespace Components {
         "value": string;
     }
     interface GluePasswordInputDemo {
-        "first": string;
     }
     interface GluePicker {
         "allowHtml": boolean;
@@ -2656,7 +2655,6 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface GluePasswordInputDemo {
-        "first"?: string;
     }
     interface GluePicker {
         "allowHtml"?: boolean;
