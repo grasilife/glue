@@ -30,7 +30,7 @@ slot 没法传递到子组件的子组件,比如 glue-checkbox 的 icon 的 slot
 
 #### 当 props 定义为 boolean 时存在问题
 
-当 props 定义为 boolean 时,必须填写默认值,这样传递过来的值才是真正的 boolean 值
+当 props 定义为 boolean 时,必须填写默认值,这样传递过来的值才是真正的 boolean 值,在 vue2 总必须使用 prop,否则传递无效
 
 ```js
   @Prop({ reflect: true }) isOpen: boolean = true;

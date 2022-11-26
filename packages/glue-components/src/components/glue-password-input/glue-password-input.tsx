@@ -12,7 +12,7 @@ export class GluePasswordInput {
   @Prop() gutter: string | number;
   @Prop() focused: boolean;
   @Prop() errorInfo: string;
-  @Prop() mask = true;
+  @Prop() mask: boolean = true;
   @Prop() value = '';
   @Prop() length = 6;
   @Event() glueFocus: EventEmitter;
@@ -24,12 +24,12 @@ export class GluePasswordInput {
   renderPoints = () => {
     const Points = [];
     const { mask, value, length, gutter, focused } = this;
-
+    console.log(mask, 'mask');
     for (let i = 0; i < length; i++) {
       const char = value[i];
       const showBorder = i !== 0 && !gutter;
       const showCursor = focused && i === value.length;
-
+      console.log(i, value, 'value1');
       let style;
       if (i !== 0 && gutter) {
         style = { marginLeft: addUnit(gutter) };
@@ -52,7 +52,7 @@ export class GluePasswordInput {
         </li>
       );
     }
-
+    console.log(Points, 'Points');
     return Points;
   };
   render() {
@@ -69,9 +69,8 @@ export class GluePasswordInput {
         </ul>
         {info && (
           <div
-            class={classNames('glue-password-input__security', {
-              [BORDER_SURROUND]: !this.gutter,
-              ['glue-password-input__' + this.errorInfo]: this.errorInfo,
+            class={classNames({
+              ['glue-password-input__error-info']: this.errorInfo,
               ['glue-password-input__info']: !this.errorInfo,
             })}
           >

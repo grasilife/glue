@@ -452,6 +452,15 @@ export namespace Components {
         "hairline": boolean;
         "text": string;
     }
+    interface GlueDocBlock {
+        "card": string;
+        "gtitle": string;
+    }
+    interface GlueDocBlockDemo {
+        "first": string;
+    }
+    interface GlueDocSection {
+    }
     interface GlueDropdownItem {
         "disabled": boolean;
         "first": string;
@@ -701,6 +710,8 @@ export namespace Components {
         "length": number;
         "mask": boolean;
         "value": string;
+    }
+    interface GluePasswordInputDemo {
     }
     interface GluePicker {
         "allowHtml": boolean;
@@ -1409,6 +1420,24 @@ declare global {
         prototype: HTMLGlueDividerElement;
         new (): HTMLGlueDividerElement;
     };
+    interface HTMLGlueDocBlockElement extends Components.GlueDocBlock, HTMLStencilElement {
+    }
+    var HTMLGlueDocBlockElement: {
+        prototype: HTMLGlueDocBlockElement;
+        new (): HTMLGlueDocBlockElement;
+    };
+    interface HTMLGlueDocBlockDemoElement extends Components.GlueDocBlockDemo, HTMLStencilElement {
+    }
+    var HTMLGlueDocBlockDemoElement: {
+        prototype: HTMLGlueDocBlockDemoElement;
+        new (): HTMLGlueDocBlockDemoElement;
+    };
+    interface HTMLGlueDocSectionElement extends Components.GlueDocSection, HTMLStencilElement {
+    }
+    var HTMLGlueDocSectionElement: {
+        prototype: HTMLGlueDocSectionElement;
+        new (): HTMLGlueDocSectionElement;
+    };
     interface HTMLGlueDropdownItemElement extends Components.GlueDropdownItem, HTMLStencilElement {
     }
     var HTMLGlueDropdownItemElement: {
@@ -1552,6 +1581,12 @@ declare global {
     var HTMLGluePasswordInputElement: {
         prototype: HTMLGluePasswordInputElement;
         new (): HTMLGluePasswordInputElement;
+    };
+    interface HTMLGluePasswordInputDemoElement extends Components.GluePasswordInputDemo, HTMLStencilElement {
+    }
+    var HTMLGluePasswordInputDemoElement: {
+        prototype: HTMLGluePasswordInputDemoElement;
+        new (): HTMLGluePasswordInputDemoElement;
     };
     interface HTMLGluePickerElement extends Components.GluePicker, HTMLStencilElement {
     }
@@ -1816,6 +1851,9 @@ declare global {
         "glue-demo": HTMLGlueDemoElement;
         "glue-dialog": HTMLGlueDialogElement;
         "glue-divider": HTMLGlueDividerElement;
+        "glue-doc-block": HTMLGlueDocBlockElement;
+        "glue-doc-block-demo": HTMLGlueDocBlockDemoElement;
+        "glue-doc-section": HTMLGlueDocSectionElement;
         "glue-dropdown-item": HTMLGlueDropdownItemElement;
         "glue-dropdown-menu": HTMLGlueDropdownMenuElement;
         "glue-empty": HTMLGlueEmptyElement;
@@ -1840,6 +1878,7 @@ declare global {
         "glue-overlay": HTMLGlueOverlayElement;
         "glue-pagination": HTMLGluePaginationElement;
         "glue-password-input": HTMLGluePasswordInputElement;
+        "glue-password-input-demo": HTMLGluePasswordInputDemoElement;
         "glue-picker": HTMLGluePickerElement;
         "glue-picker-column": HTMLGluePickerColumnElement;
         "glue-popover": HTMLGluePopoverElement;
@@ -2338,6 +2377,15 @@ declare namespace LocalJSX {
         "hairline"?: boolean;
         "text"?: string;
     }
+    interface GlueDocBlock {
+        "card"?: string;
+        "gtitle"?: string;
+    }
+    interface GlueDocBlockDemo {
+        "first"?: string;
+    }
+    interface GlueDocSection {
+    }
     interface GlueDropdownItem {
         "disabled"?: boolean;
         "first"?: string;
@@ -2605,6 +2653,8 @@ declare namespace LocalJSX {
         "mask"?: boolean;
         "onGlueFocus"?: (event: CustomEvent<any>) => void;
         "value"?: string;
+    }
+    interface GluePasswordInputDemo {
     }
     interface GluePicker {
         "allowHtml"?: boolean;
@@ -3142,6 +3192,9 @@ declare namespace LocalJSX {
         "glue-demo": GlueDemo;
         "glue-dialog": GlueDialog;
         "glue-divider": GlueDivider;
+        "glue-doc-block": GlueDocBlock;
+        "glue-doc-block-demo": GlueDocBlockDemo;
+        "glue-doc-section": GlueDocSection;
         "glue-dropdown-item": GlueDropdownItem;
         "glue-dropdown-menu": GlueDropdownMenu;
         "glue-empty": GlueEmpty;
@@ -3166,6 +3219,7 @@ declare namespace LocalJSX {
         "glue-overlay": GlueOverlay;
         "glue-pagination": GluePagination;
         "glue-password-input": GluePasswordInput;
+        "glue-password-input-demo": GluePasswordInputDemo;
         "glue-picker": GluePicker;
         "glue-picker-column": GluePickerColumn;
         "glue-popover": GluePopover;
@@ -3249,6 +3303,9 @@ declare module "@stencil/core" {
             "glue-demo": LocalJSX.GlueDemo & JSXBase.HTMLAttributes<HTMLGlueDemoElement>;
             "glue-dialog": LocalJSX.GlueDialog & JSXBase.HTMLAttributes<HTMLGlueDialogElement>;
             "glue-divider": LocalJSX.GlueDivider & JSXBase.HTMLAttributes<HTMLGlueDividerElement>;
+            "glue-doc-block": LocalJSX.GlueDocBlock & JSXBase.HTMLAttributes<HTMLGlueDocBlockElement>;
+            "glue-doc-block-demo": LocalJSX.GlueDocBlockDemo & JSXBase.HTMLAttributes<HTMLGlueDocBlockDemoElement>;
+            "glue-doc-section": LocalJSX.GlueDocSection & JSXBase.HTMLAttributes<HTMLGlueDocSectionElement>;
             "glue-dropdown-item": LocalJSX.GlueDropdownItem & JSXBase.HTMLAttributes<HTMLGlueDropdownItemElement>;
             "glue-dropdown-menu": LocalJSX.GlueDropdownMenu & JSXBase.HTMLAttributes<HTMLGlueDropdownMenuElement>;
             "glue-empty": LocalJSX.GlueEmpty & JSXBase.HTMLAttributes<HTMLGlueEmptyElement>;
@@ -3273,6 +3330,7 @@ declare module "@stencil/core" {
             "glue-overlay": LocalJSX.GlueOverlay & JSXBase.HTMLAttributes<HTMLGlueOverlayElement>;
             "glue-pagination": LocalJSX.GluePagination & JSXBase.HTMLAttributes<HTMLGluePaginationElement>;
             "glue-password-input": LocalJSX.GluePasswordInput & JSXBase.HTMLAttributes<HTMLGluePasswordInputElement>;
+            "glue-password-input-demo": LocalJSX.GluePasswordInputDemo & JSXBase.HTMLAttributes<HTMLGluePasswordInputDemoElement>;
             "glue-picker": LocalJSX.GluePicker & JSXBase.HTMLAttributes<HTMLGluePickerElement>;
             "glue-picker-column": LocalJSX.GluePickerColumn & JSXBase.HTMLAttributes<HTMLGluePickerColumnElement>;
             "glue-popover": LocalJSX.GluePopover & JSXBase.HTMLAttributes<HTMLGluePopoverElement>;

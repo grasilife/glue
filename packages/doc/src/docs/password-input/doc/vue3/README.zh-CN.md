@@ -12,33 +12,9 @@
 
 ```html
 <!-- 密码输入框 -->
-<van-password-input
-  :value="value"
-  :focused="showKeyboard"
-  @focus="showKeyboard = true"
-/>
+<glue-password-input :value="value" :focused="showKeyboard" @glueFocus="showKeyboard = true" />
 <!-- 数字键盘 -->
-<van-number-keyboard
-  v-model="value"
-  :show="showKeyboard"
-  @blur="showKeyboard = false"
-/>
-```
-
-```js
-import { ref } from 'vue';
-
-export default {
-  setup() {
-    const value = ref('123');
-    const showKeyboard = ref(true);
-
-    return {
-      value,
-      showKeyboard,
-    };
-  },
-};
+<glue-number-keyboard v-model="value" :show="showKeyboard" @blur="showKeyboard = false" />
 ```
 
 ### 自定义长度
@@ -46,12 +22,7 @@ export default {
 通过 `length` 属性来设置密码长度。
 
 ```html
-<van-password-input
-  :value="value"
-  :length="4"
-  :focused="showKeyboard"
-  @focus="showKeyboard = true"
-/>
+<glue-password-input :value="value" :length="4" :focused="showKeyboard" @glueFocus="showKeyboard = true" />
 ```
 
 ### 格子间距
@@ -59,12 +30,7 @@ export default {
 通过 `gutter` 属性来设置格子之间的间距。
 
 ```html
-<van-password-input
-  :value="value"
-  :gutter="10"
-  :focused="showKeyboard"
-  @focus="showKeyboard = true"
-/>
+<glue-password-input :value="value" :gutter="10" :focused="showKeyboard" @glueFocus="showKeyboard = true" />
 ```
 
 ### 明文展示
@@ -72,12 +38,7 @@ export default {
 将 `mask` 设置为 `false` 可以明文展示输入的内容，适用于短信验证码等场景。
 
 ```html
-<van-password-input
-  :value="value"
-  :mask="false"
-  :focused="showKeyboard"
-  @focus="showKeyboard = true"
-/>
+<glue-password-input :value="value" :mask.prop="false" :focused="showKeyboard" @glueFocus="showKeyboard = true" />
 ```
 
 ### 提示信息
@@ -85,72 +46,96 @@ export default {
 通过 `info` 属性设置提示信息，通过 `error-info` 属性设置错误提示，例如当输入六位时提示密码错误。
 
 ```html
-<van-password-input
+<glue-password-input
   :value="value"
   info="密码为 6 位数字"
   :error-info="errorInfo"
   :focused="showKeyboard"
-  @focus="showKeyboard = true"
+  @glueFocus="showKeyboard = true"
 />
-<van-number-keyboard
-  v-model="value"
-  :show="showKeyboard"
-  @blur="showKeyboard = false"
-/>
+<glue-number-keyboard :show="!!current" @glueBlur="current = ''" @glueInput="onInput" @glueDelete="onDelete" />
 ```
 
 ```js
-import { ref, watch } from 'vue';
-
+<script>
 export default {
-  setup() {
-    const value = ref('123');
-    const errorInfo = ref('');
-    const showKeyboard = ref(true);
-
-    watch(value, (newVal) => {
-      if (newVal.length === 6 && newVal !== '123456') {
-        errorInfo.value = '密码错误';
-      } else {
-        errorInfo.value = '';
-      }
-    });
-
+  data() {
     return {
-      value,
-      errorInfo,
-      showKeyboard,
+      info: "密码为 6 位数字",
+      errorInfo: "密码错误",
+      value: {
+        showInfo: "123",
+        addGutter: "123",
+        basicUsage: "123",
+        removeMask: "123",
+        customLength: "123"
+      },
+      current: "basicUsage"
     };
   },
+
+  watch: {
+    current(value) {
+      if (value) {
+        const el = this.$refs[value].$el;
+        const { top } = el.getBoundingClientRect();
+        window.scrollTo(0, window.pageYOffset + top);
+      }
+    }
+  },
+
+  methods: {
+    onInput(event) {
+      let key = event.detail;
+      const { value, current } = this;
+      const maxlegnth = current === "customLength" ? 4 : 6;
+      const newValue = (value[current] + key).slice(0, maxlegnth);
+
+      value[current] = newValue;
+
+      if (current === "showInfo" && newValue.length === 6 && newValue !== "123456") {
+        this.errorInfo = this.errorInfo;
+      }
+    },
+    onDelete() {
+      const { value, current } = this;
+      value[current] = value[current].slice(0, value[current].length - 1);
+
+      if (current === "showInfo") {
+        this.errorInfo = "";
+      }
+    }
+  }
 };
+</script>
 ```
 
 ## API
 
 ### Props
 
-| 参数       | 说明                                                | 类型               | 默认值  |
-|------------|---------------------------------------------------|--------------------|---------|
-| value      | 密码值                                              | _string_           | `''`    |
-| info       | 输入框下方文字提示                                  | _string_           | -       |
-| error-info | 输入框下方错误提示                                  | _string_           | -       |
-| length     | 密码最大长度                                        | _number \| string_ | `6`     |
+| 参数       | 说明                                                  | 类型               | 默认值  |
+| ---------- | ----------------------------------------------------- | ------------------ | ------- |
+| value      | 密码值                                                | _string_           | `''`    |
+| info       | 输入框下方文字提示                                    | _string_           | -       |
+| error-info | 输入框下方错误提示                                    | _string_           | -       |
+| length     | 密码最大长度                                          | _number \| string_ | `6`     |
 | gutter     | 输入框格子之间的间距，如 `20px` `2em`，默认单位为`px` | _number \| string_ | `0`     |
-| mask       | 是否隐藏密码内容                                    | _boolean_          | `true`  |
-| focused    | 是否已聚焦，聚焦时会显示光标                         | _boolean_          | `false` |
+| mask       | 是否隐藏密码内容                                      | _boolean_          | `true`  |
+| focused    | 是否已聚焦，聚焦时会显示光标                          | _boolean_          | `false` |
 
 ### Events
 
-| 事件名 | 说明             | 回调参数 |
-|--------|----------------|----------|
-| focus  | 输入框聚焦时触发 | -        |
+| 事件名    | 说明             | 回调参数 |
+| --------- | ---------------- | -------- |
+| glueFocus | 输入框聚焦时触发 | -        |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
 | 名称                             | 默认值          | 描述 |
-|----------------------------------|-----------------|------|
+| -------------------------------- | --------------- | ---- |
 | @password-input-height           | `50px`          | -    |
 | @password-input-margin           | `0 @padding-md` | -    |
 | @password-input-font-size        | `20px`          | -    |

@@ -27,7 +27,9 @@ export default {
 <style lang="less" rel="stylesheet/less" scoped>
 .van-doc-demo-section {
   box-sizing: border-box;
-  min-height: calc(100vh - 56px);
+  height: 100%;
+  width: 100%;
   padding-bottom: 20px;
+  overflow: auto;
 }
 </style>

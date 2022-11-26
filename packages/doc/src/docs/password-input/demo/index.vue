@@ -1,51 +1,53 @@
 <template>
   <DemoSection>
-    <DemoBlock ref="basicUsage" :title="basicUsage">
-      <van-password-input
-        :value="value.basicUsage"
-        :focused="current === 'basicUsage'"
-        @focus="current = 'basicUsage'"
-      />
-    </DemoBlock>
+    <div class="demo-password-input-container">
+      <DemoBlock ref="basicUsage" title="基础用法">
+        <glue-password-input
+          :value="value.basicUsage"
+          :focused="current === 'basicUsage'"
+          @glueFocus="current = 'basicUsage'"
+        />
+      </DemoBlock>
 
-    <DemoBlock ref="customLength" :title="customLength">
-      <van-password-input
-        :value="value.customLength"
-        :length="4"
-        :focused="current === 'customLength'"
-        @focus="current = 'customLength'"
-      />
-    </DemoBlock>
+      <DemoBlock ref="customLength" title="自定义长度">
+        <glue-password-input
+          :value="value.customLength"
+          :length="4"
+          :focused="current === 'customLength'"
+          @glueFocus="current = 'customLength'"
+        />
+      </DemoBlock>
 
-    <DemoBlock ref="addGutter" :title="addGutter">
-      <van-password-input
-        :value="value.addGutter"
-        :gutter="10"
-        :focused="current === 'addGutter'"
-        @focus="current = 'addGutter'"
-      />
-    </DemoBlock>
+      <DemoBlock ref="addGutter" title="格子间距">
+        <glue-password-input
+          :value="value.addGutter"
+          :gutter="10"
+          :focused="current === 'addGutter'"
+          @glueFocus="current = 'addGutter'"
+        />
+      </DemoBlock>
 
-    <DemoBlock ref="removeMask" :title="removeMask">
-      <van-password-input
-        :mask="false"
-        :value="value.removeMask"
-        :focused="current === 'removeMask'"
-        @focus="current = 'removeMask'"
-      />
-    </DemoBlock>
+      <DemoBlock ref="removeMask" title="明文展示">
+        <glue-password-input
+          :mask.prop="false"
+          :value="value.removeMask"
+          :focused="current === 'removeMask'"
+          @glueFocus="current = 'removeMask'"
+        />
+      </DemoBlock>
 
-    <DemoBlock ref="showInfo" :title="showInfo">
-      <van-password-input
-        :info="info"
-        :value="value.showInfo"
-        :error-info="errorInfo"
-        :focused="current === 'showInfo'"
-        @focus="current = 'showInfo'"
-      />
-    </DemoBlock>
+      <DemoBlock ref="showInfo" title="提示信息">
+        <glue-password-input
+          :info="info"
+          :value="value.showInfo"
+          :error-info="errorInfo"
+          :focused="current === 'showInfo'"
+          @glueFocus="current = 'showInfo'"
+        />
+      </DemoBlock>
+    </div>
 
-    <van-number-keyboard :show="!!current" @blur="current = ''" @input="onInput" @delete="onDelete" />
+    <glue-number-keyboard :show="!!current" @glueBlur="current = ''" @glueInput="onInput" @glueDelete="onDelete" />
   </DemoSection>
 </template>
 
@@ -53,13 +55,8 @@
 export default {
   data() {
     return {
-      basicUsage: "基础用法",
       info: "密码为 6 位数字",
-      showInfo: "提示信息",
-      addGutter: "格子间距",
       errorInfo: "密码错误",
-      removeMask: "明文展示",
-      customLength: "自定义长度",
       value: {
         showInfo: "123",
         addGutter: "123",
@@ -82,7 +79,8 @@ export default {
   },
 
   methods: {
-    onInput(key) {
+    onInput(event) {
+      let key = event.detail;
       const { value, current } = this;
       const maxlegnth = current === "customLength" ? 4 : 6;
       const newValue = (value[current] + key).slice(0, maxlegnth);
@@ -108,5 +106,9 @@ export default {
 <style lang="less">
 .demo-password-input {
   min-height: 140vh;
+}
+.demo-password-input-container {
+  height: calc(100% - 240px);
+  overflow: auto;
 }
 </style>
