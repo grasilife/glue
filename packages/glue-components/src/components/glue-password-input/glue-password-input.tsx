@@ -69,9 +69,8 @@ export class GluePasswordInput {
         </ul>
         {info && (
           <div
-            class={classNames('glue-password-input__security', {
-              [BORDER_SURROUND]: !this.gutter,
-              ['glue-password-input__' + this.errorInfo]: this.errorInfo,
+            class={classNames({
+              ['glue-password-input__error-info']: this.errorInfo,
               ['glue-password-input__info']: !this.errorInfo,
             })}
           >
