@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Host } from '@stencil/core';
 import classNames from 'classnames';
 @Component({
   tag: 'glue-doc-block',
@@ -9,7 +9,8 @@ export class GlueDocBlock {
   @Prop() gtitle: string;
   @Prop() card: string;
   renderTitle = () => {
-    if (this.gtitle == '') {
+    console.log(this.gtitle, 'this.gtitle');
+    if (this.gtitle) {
       return <h2 class="glue-doc-block__title">{this.gtitle}</h2>;
     }
   };
@@ -26,10 +27,10 @@ export class GlueDocBlock {
   };
   render() {
     return (
-      <div class={classNames('glue-doc-block')}>
+      <Host class={classNames('glue-doc-block')}>
         {this.renderTitle()}
         {this.renderCard()}
-      </div>
+      </Host>
     );
   }
 }

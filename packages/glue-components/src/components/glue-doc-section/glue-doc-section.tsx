@@ -1,4 +1,4 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, Host } from '@stencil/core';
 import classNames from 'classnames';
 @Component({
   tag: 'glue-doc-section',
@@ -8,9 +8,9 @@ import classNames from 'classnames';
 export class GlueDocSection {
   render() {
     return (
-      <section class={classNames('glue-doc-section')}>
+      <Host class={classNames('glue-doc-section')}>
         <slot />
-      </section>
+      </Host>
     );
   }
 }
