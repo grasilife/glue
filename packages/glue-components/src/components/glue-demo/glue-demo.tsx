@@ -9,7 +9,7 @@ export class GlueDemo {
     return (
       <Host>
         {/* <glue-number-keyboard-demo></glue-number-keyboard-demo> */}
-        <glue-password-input-demo></glue-password-input-demo>
+        {/* <glue-password-input-demo></glue-password-input-demo> */}
         {/* <glue-doc-block-demo></glue-doc-block-demo> */}
       </Host>
     );

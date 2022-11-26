@@ -12,7 +12,7 @@ export class GluePasswordInput {
   @Prop() gutter: string | number;
   @Prop() focused: boolean;
   @Prop() errorInfo: string;
-  @Prop() mask = true;
+  @Prop() mask: boolean = true;
   @Prop() value = '';
   @Prop() length = 6;
   @Event() glueFocus: EventEmitter;
@@ -24,7 +24,7 @@ export class GluePasswordInput {
   renderPoints = () => {
     const Points = [];
     const { mask, value, length, gutter, focused } = this;
-
+    console.log(mask, 'mask');
     for (let i = 0; i < length; i++) {
       const char = value[i];
       const showBorder = i !== 0 && !gutter;
