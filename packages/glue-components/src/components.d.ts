@@ -304,6 +304,9 @@ export namespace Components {
         "modelValue": any[];
         "toggle": (name: any, expanded: any) => Promise<void>;
     }
+    interface GlueCollapseDemo {
+        "first": string;
+    }
     interface GlueCollapseItem {
         "arrowDirection": CellArrowDirection;
         "border": boolean;
@@ -474,6 +477,9 @@ export namespace Components {
     interface GlueDropdownMenu {
         "first": string;
     }
+    interface GlueDropdownMenuDemo {
+        "first": string;
+    }
     interface GlueEmpty {
         "description": string;
         "image": string;
@@ -524,6 +530,9 @@ export namespace Components {
         "value": string | number;
         "valueClass": any;
     }
+    interface GlueFieldDemo {
+        "first": string;
+    }
     interface GlueForm {
         "colon": boolean;
         "disabled": boolean;
@@ -538,6 +547,9 @@ export namespace Components {
         "submitOnEnter": boolean;
         "validateFirst": boolean;
         "validateTrigger": string;
+    }
+    interface GlueFormDemo {
+        "first": string;
     }
     interface GlueGrid {
         "border": boolean;
@@ -604,6 +616,9 @@ export namespace Components {
         "stickyOffsetTop": number;
         "zIndex": string;
     }
+    interface GlueIndexBarDemo {
+        "first": string;
+    }
     interface GlueKey {
         "color": string;
         "large": boolean;
@@ -626,6 +641,9 @@ export namespace Components {
         "loading": any;
         "loadingText": string;
         "offset": number;
+    }
+    interface GlueListDemo {
+        "first": string;
     }
     interface GlueLoading {
         "color": string;
@@ -760,7 +778,13 @@ export namespace Components {
         "textKey": string;
         "visibleItemCount": number;
     }
+    interface GluePickerDemo {
+        "first": string;
+    }
     interface GluePopover {
+        "first": string;
+    }
+    interface GluePopoverDemo {
         "first": string;
     }
     interface GluePopup {
@@ -787,6 +811,9 @@ export namespace Components {
         "width": string;
         "zIndex": string;
     }
+    interface GluePopupDemo {
+        "first": string;
+    }
     interface GlueProgress {
         "color": string;
         "inactive": boolean;
@@ -810,6 +837,9 @@ export namespace Components {
         "successDuration": number;
         "successText": string;
     }
+    interface GluePullRefreshDemo {
+        "first": string;
+    }
     interface GlueRadio {
         "checkedColor": string;
         "disabled": boolean;
@@ -819,6 +849,9 @@ export namespace Components {
         "modelValue": null;
         "name": null;
         "shape": string;
+    }
+    interface GlueRadioDemo {
+        "first": string;
     }
     interface GlueRadioGroup {
         "checkedColor": string;
@@ -861,6 +894,9 @@ export namespace Components {
         "shape": 'square';
         "showAction": boolean;
     }
+    interface GlueSearchDemo {
+        "first": string;
+    }
     interface GlueShareSheet {
         "cancelText": string;
         "closeOnClickOverlay": boolean;
@@ -881,6 +917,9 @@ export namespace Components {
         "getActive": () => Promise<any>;
         "modelValue": any;
         "setActive": (value: any) => Promise<void>;
+    }
+    interface GlueSidebarDemo {
+        "first": string;
     }
     interface GlueSidebarItem {
         "badge": string;
@@ -923,6 +962,9 @@ export namespace Components {
         "first": number;
         "last": string;
         "middle": string;
+    }
+    interface GlueStepDemo {
+        "first": string;
     }
     interface GlueStepper {
         "allowEmpty": boolean;
@@ -994,6 +1036,9 @@ export namespace Components {
         "rightWidth": number;
         "stopPropagation": boolean;
     }
+    interface GlueSwipeDemo {
+        "first": string;
+    }
     interface GlueSwipeItem {
         "first": string;
         "setOffset": (offset: any) => Promise<void>;
@@ -1017,6 +1062,9 @@ export namespace Components {
         "titleClass": null;
         "titleStyle": null;
     }
+    interface GlueTabDemo {
+        "first": string;
+    }
     interface GlueTabbar {
         "activeColor": string;
         "beforeChange": any;
@@ -1029,6 +1077,9 @@ export namespace Components {
         "safeAreaInsetBottom": boolean;
         "setActive": (active: any) => Promise<void>;
         "zIndex": string;
+    }
+    interface GlueTabbarDemo {
+        "first": string;
     }
     interface GlueTabbarItem {
         "badge": string;
@@ -1140,6 +1191,9 @@ export namespace Components {
         "mainActiveIndex": any;
         "max": number;
         "selectedIcon": string;
+    }
+    interface GlueTreeSelectDemo {
+        "first": string;
     }
     interface GlueUploader {
         "accept": string;
@@ -1330,6 +1384,12 @@ declare global {
         prototype: HTMLGlueCollapseElement;
         new (): HTMLGlueCollapseElement;
     };
+    interface HTMLGlueCollapseDemoElement extends Components.GlueCollapseDemo, HTMLStencilElement {
+    }
+    var HTMLGlueCollapseDemoElement: {
+        prototype: HTMLGlueCollapseDemoElement;
+        new (): HTMLGlueCollapseDemoElement;
+    };
     interface HTMLGlueCollapseItemElement extends Components.GlueCollapseItem, HTMLStencilElement {
     }
     var HTMLGlueCollapseItemElement: {
@@ -1450,6 +1510,12 @@ declare global {
         prototype: HTMLGlueDropdownMenuElement;
         new (): HTMLGlueDropdownMenuElement;
     };
+    interface HTMLGlueDropdownMenuDemoElement extends Components.GlueDropdownMenuDemo, HTMLStencilElement {
+    }
+    var HTMLGlueDropdownMenuDemoElement: {
+        prototype: HTMLGlueDropdownMenuDemoElement;
+        new (): HTMLGlueDropdownMenuDemoElement;
+    };
     interface HTMLGlueEmptyElement extends Components.GlueEmpty, HTMLStencilElement {
     }
     var HTMLGlueEmptyElement: {
@@ -1462,11 +1528,23 @@ declare global {
         prototype: HTMLGlueFieldElement;
         new (): HTMLGlueFieldElement;
     };
+    interface HTMLGlueFieldDemoElement extends Components.GlueFieldDemo, HTMLStencilElement {
+    }
+    var HTMLGlueFieldDemoElement: {
+        prototype: HTMLGlueFieldDemoElement;
+        new (): HTMLGlueFieldDemoElement;
+    };
     interface HTMLGlueFormElement extends Components.GlueForm, HTMLStencilElement {
     }
     var HTMLGlueFormElement: {
         prototype: HTMLGlueFormElement;
         new (): HTMLGlueFormElement;
+    };
+    interface HTMLGlueFormDemoElement extends Components.GlueFormDemo, HTMLStencilElement {
+    }
+    var HTMLGlueFormDemoElement: {
+        prototype: HTMLGlueFormDemoElement;
+        new (): HTMLGlueFormDemoElement;
     };
     interface HTMLGlueGridElement extends Components.GlueGrid, HTMLStencilElement {
     }
@@ -1516,6 +1594,12 @@ declare global {
         prototype: HTMLGlueIndexBarElement;
         new (): HTMLGlueIndexBarElement;
     };
+    interface HTMLGlueIndexBarDemoElement extends Components.GlueIndexBarDemo, HTMLStencilElement {
+    }
+    var HTMLGlueIndexBarDemoElement: {
+        prototype: HTMLGlueIndexBarDemoElement;
+        new (): HTMLGlueIndexBarDemoElement;
+    };
     interface HTMLGlueKeyElement extends Components.GlueKey, HTMLStencilElement {
     }
     var HTMLGlueKeyElement: {
@@ -1533,6 +1617,12 @@ declare global {
     var HTMLGlueListElement: {
         prototype: HTMLGlueListElement;
         new (): HTMLGlueListElement;
+    };
+    interface HTMLGlueListDemoElement extends Components.GlueListDemo, HTMLStencilElement {
+    }
+    var HTMLGlueListDemoElement: {
+        prototype: HTMLGlueListDemoElement;
+        new (): HTMLGlueListDemoElement;
     };
     interface HTMLGlueLoadingElement extends Components.GlueLoading, HTMLStencilElement {
     }
@@ -1600,17 +1690,35 @@ declare global {
         prototype: HTMLGluePickerColumnElement;
         new (): HTMLGluePickerColumnElement;
     };
+    interface HTMLGluePickerDemoElement extends Components.GluePickerDemo, HTMLStencilElement {
+    }
+    var HTMLGluePickerDemoElement: {
+        prototype: HTMLGluePickerDemoElement;
+        new (): HTMLGluePickerDemoElement;
+    };
     interface HTMLGluePopoverElement extends Components.GluePopover, HTMLStencilElement {
     }
     var HTMLGluePopoverElement: {
         prototype: HTMLGluePopoverElement;
         new (): HTMLGluePopoverElement;
     };
+    interface HTMLGluePopoverDemoElement extends Components.GluePopoverDemo, HTMLStencilElement {
+    }
+    var HTMLGluePopoverDemoElement: {
+        prototype: HTMLGluePopoverDemoElement;
+        new (): HTMLGluePopoverDemoElement;
+    };
     interface HTMLGluePopupElement extends Components.GluePopup, HTMLStencilElement {
     }
     var HTMLGluePopupElement: {
         prototype: HTMLGluePopupElement;
         new (): HTMLGluePopupElement;
+    };
+    interface HTMLGluePopupDemoElement extends Components.GluePopupDemo, HTMLStencilElement {
+    }
+    var HTMLGluePopupDemoElement: {
+        prototype: HTMLGluePopupDemoElement;
+        new (): HTMLGluePopupDemoElement;
     };
     interface HTMLGlueProgressElement extends Components.GlueProgress, HTMLStencilElement {
     }
@@ -1624,11 +1732,23 @@ declare global {
         prototype: HTMLGluePullRefreshElement;
         new (): HTMLGluePullRefreshElement;
     };
+    interface HTMLGluePullRefreshDemoElement extends Components.GluePullRefreshDemo, HTMLStencilElement {
+    }
+    var HTMLGluePullRefreshDemoElement: {
+        prototype: HTMLGluePullRefreshDemoElement;
+        new (): HTMLGluePullRefreshDemoElement;
+    };
     interface HTMLGlueRadioElement extends Components.GlueRadio, HTMLStencilElement {
     }
     var HTMLGlueRadioElement: {
         prototype: HTMLGlueRadioElement;
         new (): HTMLGlueRadioElement;
+    };
+    interface HTMLGlueRadioDemoElement extends Components.GlueRadioDemo, HTMLStencilElement {
+    }
+    var HTMLGlueRadioDemoElement: {
+        prototype: HTMLGlueRadioDemoElement;
+        new (): HTMLGlueRadioDemoElement;
     };
     interface HTMLGlueRadioGroupElement extends Components.GlueRadioGroup, HTMLStencilElement {
     }
@@ -1654,6 +1774,12 @@ declare global {
         prototype: HTMLGlueSearchElement;
         new (): HTMLGlueSearchElement;
     };
+    interface HTMLGlueSearchDemoElement extends Components.GlueSearchDemo, HTMLStencilElement {
+    }
+    var HTMLGlueSearchDemoElement: {
+        prototype: HTMLGlueSearchDemoElement;
+        new (): HTMLGlueSearchDemoElement;
+    };
     interface HTMLGlueShareSheetElement extends Components.GlueShareSheet, HTMLStencilElement {
     }
     var HTMLGlueShareSheetElement: {
@@ -1665,6 +1791,12 @@ declare global {
     var HTMLGlueSidebarElement: {
         prototype: HTMLGlueSidebarElement;
         new (): HTMLGlueSidebarElement;
+    };
+    interface HTMLGlueSidebarDemoElement extends Components.GlueSidebarDemo, HTMLStencilElement {
+    }
+    var HTMLGlueSidebarDemoElement: {
+        prototype: HTMLGlueSidebarDemoElement;
+        new (): HTMLGlueSidebarDemoElement;
     };
     interface HTMLGlueSidebarItemElement extends Components.GlueSidebarItem, HTMLStencilElement {
     }
@@ -1689,6 +1821,12 @@ declare global {
     var HTMLGlueStepElement: {
         prototype: HTMLGlueStepElement;
         new (): HTMLGlueStepElement;
+    };
+    interface HTMLGlueStepDemoElement extends Components.GlueStepDemo, HTMLStencilElement {
+    }
+    var HTMLGlueStepDemoElement: {
+        prototype: HTMLGlueStepDemoElement;
+        new (): HTMLGlueStepDemoElement;
     };
     interface HTMLGlueStepperElement extends Components.GlueStepper, HTMLStencilElement {
     }
@@ -1726,6 +1864,12 @@ declare global {
         prototype: HTMLGlueSwipeCellElement;
         new (): HTMLGlueSwipeCellElement;
     };
+    interface HTMLGlueSwipeDemoElement extends Components.GlueSwipeDemo, HTMLStencilElement {
+    }
+    var HTMLGlueSwipeDemoElement: {
+        prototype: HTMLGlueSwipeDemoElement;
+        new (): HTMLGlueSwipeDemoElement;
+    };
     interface HTMLGlueSwipeItemElement extends Components.GlueSwipeItem, HTMLStencilElement {
     }
     var HTMLGlueSwipeItemElement: {
@@ -1744,11 +1888,23 @@ declare global {
         prototype: HTMLGlueTabElement;
         new (): HTMLGlueTabElement;
     };
+    interface HTMLGlueTabDemoElement extends Components.GlueTabDemo, HTMLStencilElement {
+    }
+    var HTMLGlueTabDemoElement: {
+        prototype: HTMLGlueTabDemoElement;
+        new (): HTMLGlueTabDemoElement;
+    };
     interface HTMLGlueTabbarElement extends Components.GlueTabbar, HTMLStencilElement {
     }
     var HTMLGlueTabbarElement: {
         prototype: HTMLGlueTabbarElement;
         new (): HTMLGlueTabbarElement;
+    };
+    interface HTMLGlueTabbarDemoElement extends Components.GlueTabbarDemo, HTMLStencilElement {
+    }
+    var HTMLGlueTabbarDemoElement: {
+        prototype: HTMLGlueTabbarDemoElement;
+        new (): HTMLGlueTabbarDemoElement;
     };
     interface HTMLGlueTabbarItemElement extends Components.GlueTabbarItem, HTMLStencilElement {
     }
@@ -1798,6 +1954,12 @@ declare global {
         prototype: HTMLGlueTreeSelectElement;
         new (): HTMLGlueTreeSelectElement;
     };
+    interface HTMLGlueTreeSelectDemoElement extends Components.GlueTreeSelectDemo, HTMLStencilElement {
+    }
+    var HTMLGlueTreeSelectDemoElement: {
+        prototype: HTMLGlueTreeSelectDemoElement;
+        new (): HTMLGlueTreeSelectDemoElement;
+    };
     interface HTMLGlueUploaderElement extends Components.GlueUploader, HTMLStencilElement {
     }
     var HTMLGlueUploaderElement: {
@@ -1836,6 +1998,7 @@ declare global {
         "glue-circle": HTMLGlueCircleElement;
         "glue-col": HTMLGlueColElement;
         "glue-collapse": HTMLGlueCollapseElement;
+        "glue-collapse-demo": HTMLGlueCollapseDemoElement;
         "glue-collapse-item": HTMLGlueCollapseItemElement;
         "glue-component": HTMLGlueComponentElement;
         "glue-composables": HTMLGlueComposablesElement;
@@ -1856,9 +2019,12 @@ declare global {
         "glue-doc-section": HTMLGlueDocSectionElement;
         "glue-dropdown-item": HTMLGlueDropdownItemElement;
         "glue-dropdown-menu": HTMLGlueDropdownMenuElement;
+        "glue-dropdown-menu-demo": HTMLGlueDropdownMenuDemoElement;
         "glue-empty": HTMLGlueEmptyElement;
         "glue-field": HTMLGlueFieldElement;
+        "glue-field-demo": HTMLGlueFieldDemoElement;
         "glue-form": HTMLGlueFormElement;
+        "glue-form-demo": HTMLGlueFormDemoElement;
         "glue-grid": HTMLGlueGridElement;
         "glue-grid-item": HTMLGlueGridItemElement;
         "glue-icon": HTMLGlueIconElement;
@@ -1867,9 +2033,11 @@ declare global {
         "glue-image-preview-item": HTMLGlueImagePreviewItemElement;
         "glue-index-anchor": HTMLGlueIndexAnchorElement;
         "glue-index-bar": HTMLGlueIndexBarElement;
+        "glue-index-bar-demo": HTMLGlueIndexBarDemoElement;
         "glue-key": HTMLGlueKeyElement;
         "glue-lazyload": HTMLGlueLazyloadElement;
         "glue-list": HTMLGlueListElement;
+        "glue-list-demo": HTMLGlueListDemoElement;
         "glue-loading": HTMLGlueLoadingElement;
         "glue-nav-bar": HTMLGlueNavBarElement;
         "glue-notice-bar": HTMLGlueNoticeBarElement;
@@ -1881,31 +2049,42 @@ declare global {
         "glue-password-input-demo": HTMLGluePasswordInputDemoElement;
         "glue-picker": HTMLGluePickerElement;
         "glue-picker-column": HTMLGluePickerColumnElement;
+        "glue-picker-demo": HTMLGluePickerDemoElement;
         "glue-popover": HTMLGluePopoverElement;
+        "glue-popover-demo": HTMLGluePopoverDemoElement;
         "glue-popup": HTMLGluePopupElement;
+        "glue-popup-demo": HTMLGluePopupDemoElement;
         "glue-progress": HTMLGlueProgressElement;
         "glue-pull-refresh": HTMLGluePullRefreshElement;
+        "glue-pull-refresh-demo": HTMLGluePullRefreshDemoElement;
         "glue-radio": HTMLGlueRadioElement;
+        "glue-radio-demo": HTMLGlueRadioDemoElement;
         "glue-radio-group": HTMLGlueRadioGroupElement;
         "glue-rate": HTMLGlueRateElement;
         "glue-row": HTMLGlueRowElement;
         "glue-search": HTMLGlueSearchElement;
+        "glue-search-demo": HTMLGlueSearchDemoElement;
         "glue-share-sheet": HTMLGlueShareSheetElement;
         "glue-sidebar": HTMLGlueSidebarElement;
+        "glue-sidebar-demo": HTMLGlueSidebarDemoElement;
         "glue-sidebar-item": HTMLGlueSidebarItemElement;
         "glue-skeleton": HTMLGlueSkeletonElement;
         "glue-slider": HTMLGlueSliderElement;
         "glue-step": HTMLGlueStepElement;
+        "glue-step-demo": HTMLGlueStepDemoElement;
         "glue-stepper": HTMLGlueStepperElement;
         "glue-steps": HTMLGlueStepsElement;
         "glue-sticky": HTMLGlueStickyElement;
         "glue-submit-bar": HTMLGlueSubmitBarElement;
         "glue-swipe": HTMLGlueSwipeElement;
         "glue-swipe-cell": HTMLGlueSwipeCellElement;
+        "glue-swipe-demo": HTMLGlueSwipeDemoElement;
         "glue-swipe-item": HTMLGlueSwipeItemElement;
         "glue-switch": HTMLGlueSwitchElement;
         "glue-tab": HTMLGlueTabElement;
+        "glue-tab-demo": HTMLGlueTabDemoElement;
         "glue-tabbar": HTMLGlueTabbarElement;
+        "glue-tabbar-demo": HTMLGlueTabbarDemoElement;
         "glue-tabbar-item": HTMLGlueTabbarItemElement;
         "glue-tabs": HTMLGlueTabsElement;
         "glue-tabs-content": HTMLGlueTabsContentElement;
@@ -1914,6 +2093,7 @@ declare global {
         "glue-time-picker": HTMLGlueTimePickerElement;
         "glue-toast": HTMLGlueToastElement;
         "glue-tree-select": HTMLGlueTreeSelectElement;
+        "glue-tree-select-demo": HTMLGlueTreeSelectDemoElement;
         "glue-uploader": HTMLGlueUploaderElement;
         "glue-uploader-preview-item": HTMLGlueUploaderPreviewItemElement;
     }
@@ -2229,6 +2409,9 @@ declare namespace LocalJSX {
         "border"?: boolean;
         "modelValue"?: any[];
     }
+    interface GlueCollapseDemo {
+        "first"?: string;
+    }
     interface GlueCollapseItem {
         "arrowDirection"?: CellArrowDirection;
         "border"?: boolean;
@@ -2399,6 +2582,9 @@ declare namespace LocalJSX {
     interface GlueDropdownMenu {
         "first"?: string;
     }
+    interface GlueDropdownMenuDemo {
+        "first"?: string;
+    }
     interface GlueEmpty {
         "description"?: string;
         "image"?: string;
@@ -2449,6 +2635,9 @@ declare namespace LocalJSX {
         "value"?: string | number;
         "valueClass"?: any;
     }
+    interface GlueFieldDemo {
+        "first"?: string;
+    }
     interface GlueForm {
         "colon"?: boolean;
         "disabled"?: boolean;
@@ -2465,6 +2654,9 @@ declare namespace LocalJSX {
         "submitOnEnter"?: boolean;
         "validateFirst"?: boolean;
         "validateTrigger"?: string;
+    }
+    interface GlueFormDemo {
+        "first"?: string;
     }
     interface GlueGrid {
         "border"?: boolean;
@@ -2534,6 +2726,9 @@ declare namespace LocalJSX {
         "stickyOffsetTop"?: number;
         "zIndex"?: string;
     }
+    interface GlueIndexBarDemo {
+        "first"?: string;
+    }
     interface GlueKey {
         "color"?: string;
         "large"?: boolean;
@@ -2558,6 +2753,9 @@ declare namespace LocalJSX {
         "offset"?: number;
         "onGlueClickErrorText"?: (event: CustomEvent<any>) => void;
         "onGlueLoad"?: (event: CustomEvent<any>) => void;
+    }
+    interface GlueListDemo {
+        "first"?: string;
     }
     interface GlueLoading {
         "color"?: string;
@@ -2691,7 +2889,13 @@ declare namespace LocalJSX {
         "textKey"?: string;
         "visibleItemCount"?: number;
     }
+    interface GluePickerDemo {
+        "first"?: string;
+    }
     interface GluePopover {
+        "first"?: string;
+    }
+    interface GluePopoverDemo {
         "first"?: string;
     }
     interface GluePopup {
@@ -2725,6 +2929,9 @@ declare namespace LocalJSX {
         "width"?: string;
         "zIndex"?: string;
     }
+    interface GluePopupDemo {
+        "first"?: string;
+    }
     interface GlueProgress {
         "color"?: string;
         "inactive"?: boolean;
@@ -2748,6 +2955,9 @@ declare namespace LocalJSX {
         "successDuration"?: number;
         "successText"?: string;
     }
+    interface GluePullRefreshDemo {
+        "first"?: string;
+    }
     interface GlueRadio {
         "checkedColor"?: string;
         "disabled"?: boolean;
@@ -2757,6 +2967,9 @@ declare namespace LocalJSX {
         "modelValue"?: null;
         "name"?: null;
         "shape"?: string;
+    }
+    interface GlueRadioDemo {
+        "first"?: string;
     }
     interface GlueRadioGroup {
         "checkedColor"?: string;
@@ -2803,6 +3016,9 @@ declare namespace LocalJSX {
         "shape"?: 'square';
         "showAction"?: boolean;
     }
+    interface GlueSearchDemo {
+        "first"?: string;
+    }
     interface GlueShareSheet {
         "cancelText"?: string;
         "closeOnClickOverlay"?: boolean;
@@ -2829,6 +3045,9 @@ declare namespace LocalJSX {
     interface GlueSidebar {
         "modelValue"?: any;
         "onGlueChange"?: (event: CustomEvent<any>) => void;
+    }
+    interface GlueSidebarDemo {
+        "first"?: string;
     }
     interface GlueSidebarItem {
         "badge"?: string;
@@ -2874,6 +3093,9 @@ declare namespace LocalJSX {
         "last"?: string;
         "middle"?: string;
         "onClickStep"?: (event: CustomEvent<any>) => void;
+    }
+    interface GlueStepDemo {
+        "first"?: string;
     }
     interface GlueStepper {
         "allowEmpty"?: boolean;
@@ -2954,6 +3176,9 @@ declare namespace LocalJSX {
         "rightWidth"?: number;
         "stopPropagation"?: boolean;
     }
+    interface GlueSwipeDemo {
+        "first"?: string;
+    }
     interface GlueSwipeItem {
         "first"?: string;
     }
@@ -2977,6 +3202,9 @@ declare namespace LocalJSX {
         "titleClass"?: null;
         "titleStyle"?: null;
     }
+    interface GlueTabDemo {
+        "first"?: string;
+    }
     interface GlueTabbar {
         "activeColor"?: string;
         "beforeChange"?: any;
@@ -2988,6 +3216,9 @@ declare namespace LocalJSX {
         "placeholder"?: boolean;
         "safeAreaInsetBottom"?: boolean;
         "zIndex"?: string;
+    }
+    interface GlueTabbarDemo {
+        "first"?: string;
     }
     interface GlueTabbarItem {
         "badge"?: string;
@@ -3108,6 +3339,9 @@ declare namespace LocalJSX {
         "onGlueClickNav"?: (event: CustomEvent<any>) => void;
         "selectedIcon"?: string;
     }
+    interface GlueTreeSelectDemo {
+        "first"?: string;
+    }
     interface GlueUploader {
         "accept"?: string;
         "afterRead"?: any;
@@ -3177,6 +3411,7 @@ declare namespace LocalJSX {
         "glue-circle": GlueCircle;
         "glue-col": GlueCol;
         "glue-collapse": GlueCollapse;
+        "glue-collapse-demo": GlueCollapseDemo;
         "glue-collapse-item": GlueCollapseItem;
         "glue-component": GlueComponent;
         "glue-composables": GlueComposables;
@@ -3197,9 +3432,12 @@ declare namespace LocalJSX {
         "glue-doc-section": GlueDocSection;
         "glue-dropdown-item": GlueDropdownItem;
         "glue-dropdown-menu": GlueDropdownMenu;
+        "glue-dropdown-menu-demo": GlueDropdownMenuDemo;
         "glue-empty": GlueEmpty;
         "glue-field": GlueField;
+        "glue-field-demo": GlueFieldDemo;
         "glue-form": GlueForm;
+        "glue-form-demo": GlueFormDemo;
         "glue-grid": GlueGrid;
         "glue-grid-item": GlueGridItem;
         "glue-icon": GlueIcon;
@@ -3208,9 +3446,11 @@ declare namespace LocalJSX {
         "glue-image-preview-item": GlueImagePreviewItem;
         "glue-index-anchor": GlueIndexAnchor;
         "glue-index-bar": GlueIndexBar;
+        "glue-index-bar-demo": GlueIndexBarDemo;
         "glue-key": GlueKey;
         "glue-lazyload": GlueLazyload;
         "glue-list": GlueList;
+        "glue-list-demo": GlueListDemo;
         "glue-loading": GlueLoading;
         "glue-nav-bar": GlueNavBar;
         "glue-notice-bar": GlueNoticeBar;
@@ -3222,31 +3462,42 @@ declare namespace LocalJSX {
         "glue-password-input-demo": GluePasswordInputDemo;
         "glue-picker": GluePicker;
         "glue-picker-column": GluePickerColumn;
+        "glue-picker-demo": GluePickerDemo;
         "glue-popover": GluePopover;
+        "glue-popover-demo": GluePopoverDemo;
         "glue-popup": GluePopup;
+        "glue-popup-demo": GluePopupDemo;
         "glue-progress": GlueProgress;
         "glue-pull-refresh": GluePullRefresh;
+        "glue-pull-refresh-demo": GluePullRefreshDemo;
         "glue-radio": GlueRadio;
+        "glue-radio-demo": GlueRadioDemo;
         "glue-radio-group": GlueRadioGroup;
         "glue-rate": GlueRate;
         "glue-row": GlueRow;
         "glue-search": GlueSearch;
+        "glue-search-demo": GlueSearchDemo;
         "glue-share-sheet": GlueShareSheet;
         "glue-sidebar": GlueSidebar;
+        "glue-sidebar-demo": GlueSidebarDemo;
         "glue-sidebar-item": GlueSidebarItem;
         "glue-skeleton": GlueSkeleton;
         "glue-slider": GlueSlider;
         "glue-step": GlueStep;
+        "glue-step-demo": GlueStepDemo;
         "glue-stepper": GlueStepper;
         "glue-steps": GlueSteps;
         "glue-sticky": GlueSticky;
         "glue-submit-bar": GlueSubmitBar;
         "glue-swipe": GlueSwipe;
         "glue-swipe-cell": GlueSwipeCell;
+        "glue-swipe-demo": GlueSwipeDemo;
         "glue-swipe-item": GlueSwipeItem;
         "glue-switch": GlueSwitch;
         "glue-tab": GlueTab;
+        "glue-tab-demo": GlueTabDemo;
         "glue-tabbar": GlueTabbar;
+        "glue-tabbar-demo": GlueTabbarDemo;
         "glue-tabbar-item": GlueTabbarItem;
         "glue-tabs": GlueTabs;
         "glue-tabs-content": GlueTabsContent;
@@ -3255,6 +3506,7 @@ declare namespace LocalJSX {
         "glue-time-picker": GlueTimePicker;
         "glue-toast": GlueToast;
         "glue-tree-select": GlueTreeSelect;
+        "glue-tree-select-demo": GlueTreeSelectDemo;
         "glue-uploader": GlueUploader;
         "glue-uploader-preview-item": GlueUploaderPreviewItem;
     }
@@ -3288,6 +3540,7 @@ declare module "@stencil/core" {
             "glue-circle": LocalJSX.GlueCircle & JSXBase.HTMLAttributes<HTMLGlueCircleElement>;
             "glue-col": LocalJSX.GlueCol & JSXBase.HTMLAttributes<HTMLGlueColElement>;
             "glue-collapse": LocalJSX.GlueCollapse & JSXBase.HTMLAttributes<HTMLGlueCollapseElement>;
+            "glue-collapse-demo": LocalJSX.GlueCollapseDemo & JSXBase.HTMLAttributes<HTMLGlueCollapseDemoElement>;
             "glue-collapse-item": LocalJSX.GlueCollapseItem & JSXBase.HTMLAttributes<HTMLGlueCollapseItemElement>;
             "glue-component": LocalJSX.GlueComponent & JSXBase.HTMLAttributes<HTMLGlueComponentElement>;
             "glue-composables": LocalJSX.GlueComposables & JSXBase.HTMLAttributes<HTMLGlueComposablesElement>;
@@ -3308,9 +3561,12 @@ declare module "@stencil/core" {
             "glue-doc-section": LocalJSX.GlueDocSection & JSXBase.HTMLAttributes<HTMLGlueDocSectionElement>;
             "glue-dropdown-item": LocalJSX.GlueDropdownItem & JSXBase.HTMLAttributes<HTMLGlueDropdownItemElement>;
             "glue-dropdown-menu": LocalJSX.GlueDropdownMenu & JSXBase.HTMLAttributes<HTMLGlueDropdownMenuElement>;
+            "glue-dropdown-menu-demo": LocalJSX.GlueDropdownMenuDemo & JSXBase.HTMLAttributes<HTMLGlueDropdownMenuDemoElement>;
             "glue-empty": LocalJSX.GlueEmpty & JSXBase.HTMLAttributes<HTMLGlueEmptyElement>;
             "glue-field": LocalJSX.GlueField & JSXBase.HTMLAttributes<HTMLGlueFieldElement>;
+            "glue-field-demo": LocalJSX.GlueFieldDemo & JSXBase.HTMLAttributes<HTMLGlueFieldDemoElement>;
             "glue-form": LocalJSX.GlueForm & JSXBase.HTMLAttributes<HTMLGlueFormElement>;
+            "glue-form-demo": LocalJSX.GlueFormDemo & JSXBase.HTMLAttributes<HTMLGlueFormDemoElement>;
             "glue-grid": LocalJSX.GlueGrid & JSXBase.HTMLAttributes<HTMLGlueGridElement>;
             "glue-grid-item": LocalJSX.GlueGridItem & JSXBase.HTMLAttributes<HTMLGlueGridItemElement>;
             "glue-icon": LocalJSX.GlueIcon & JSXBase.HTMLAttributes<HTMLGlueIconElement>;
@@ -3319,9 +3575,11 @@ declare module "@stencil/core" {
             "glue-image-preview-item": LocalJSX.GlueImagePreviewItem & JSXBase.HTMLAttributes<HTMLGlueImagePreviewItemElement>;
             "glue-index-anchor": LocalJSX.GlueIndexAnchor & JSXBase.HTMLAttributes<HTMLGlueIndexAnchorElement>;
             "glue-index-bar": LocalJSX.GlueIndexBar & JSXBase.HTMLAttributes<HTMLGlueIndexBarElement>;
+            "glue-index-bar-demo": LocalJSX.GlueIndexBarDemo & JSXBase.HTMLAttributes<HTMLGlueIndexBarDemoElement>;
             "glue-key": LocalJSX.GlueKey & JSXBase.HTMLAttributes<HTMLGlueKeyElement>;
             "glue-lazyload": LocalJSX.GlueLazyload & JSXBase.HTMLAttributes<HTMLGlueLazyloadElement>;
             "glue-list": LocalJSX.GlueList & JSXBase.HTMLAttributes<HTMLGlueListElement>;
+            "glue-list-demo": LocalJSX.GlueListDemo & JSXBase.HTMLAttributes<HTMLGlueListDemoElement>;
             "glue-loading": LocalJSX.GlueLoading & JSXBase.HTMLAttributes<HTMLGlueLoadingElement>;
             "glue-nav-bar": LocalJSX.GlueNavBar & JSXBase.HTMLAttributes<HTMLGlueNavBarElement>;
             "glue-notice-bar": LocalJSX.GlueNoticeBar & JSXBase.HTMLAttributes<HTMLGlueNoticeBarElement>;
@@ -3333,31 +3591,42 @@ declare module "@stencil/core" {
             "glue-password-input-demo": LocalJSX.GluePasswordInputDemo & JSXBase.HTMLAttributes<HTMLGluePasswordInputDemoElement>;
             "glue-picker": LocalJSX.GluePicker & JSXBase.HTMLAttributes<HTMLGluePickerElement>;
             "glue-picker-column": LocalJSX.GluePickerColumn & JSXBase.HTMLAttributes<HTMLGluePickerColumnElement>;
+            "glue-picker-demo": LocalJSX.GluePickerDemo & JSXBase.HTMLAttributes<HTMLGluePickerDemoElement>;
             "glue-popover": LocalJSX.GluePopover & JSXBase.HTMLAttributes<HTMLGluePopoverElement>;
+            "glue-popover-demo": LocalJSX.GluePopoverDemo & JSXBase.HTMLAttributes<HTMLGluePopoverDemoElement>;
             "glue-popup": LocalJSX.GluePopup & JSXBase.HTMLAttributes<HTMLGluePopupElement>;
+            "glue-popup-demo": LocalJSX.GluePopupDemo & JSXBase.HTMLAttributes<HTMLGluePopupDemoElement>;
             "glue-progress": LocalJSX.GlueProgress & JSXBase.HTMLAttributes<HTMLGlueProgressElement>;
             "glue-pull-refresh": LocalJSX.GluePullRefresh & JSXBase.HTMLAttributes<HTMLGluePullRefreshElement>;
+            "glue-pull-refresh-demo": LocalJSX.GluePullRefreshDemo & JSXBase.HTMLAttributes<HTMLGluePullRefreshDemoElement>;
             "glue-radio": LocalJSX.GlueRadio & JSXBase.HTMLAttributes<HTMLGlueRadioElement>;
+            "glue-radio-demo": LocalJSX.GlueRadioDemo & JSXBase.HTMLAttributes<HTMLGlueRadioDemoElement>;
             "glue-radio-group": LocalJSX.GlueRadioGroup & JSXBase.HTMLAttributes<HTMLGlueRadioGroupElement>;
             "glue-rate": LocalJSX.GlueRate & JSXBase.HTMLAttributes<HTMLGlueRateElement>;
             "glue-row": LocalJSX.GlueRow & JSXBase.HTMLAttributes<HTMLGlueRowElement>;
             "glue-search": LocalJSX.GlueSearch & JSXBase.HTMLAttributes<HTMLGlueSearchElement>;
+            "glue-search-demo": LocalJSX.GlueSearchDemo & JSXBase.HTMLAttributes<HTMLGlueSearchDemoElement>;
             "glue-share-sheet": LocalJSX.GlueShareSheet & JSXBase.HTMLAttributes<HTMLGlueShareSheetElement>;
             "glue-sidebar": LocalJSX.GlueSidebar & JSXBase.HTMLAttributes<HTMLGlueSidebarElement>;
+            "glue-sidebar-demo": LocalJSX.GlueSidebarDemo & JSXBase.HTMLAttributes<HTMLGlueSidebarDemoElement>;
             "glue-sidebar-item": LocalJSX.GlueSidebarItem & JSXBase.HTMLAttributes<HTMLGlueSidebarItemElement>;
             "glue-skeleton": LocalJSX.GlueSkeleton & JSXBase.HTMLAttributes<HTMLGlueSkeletonElement>;
             "glue-slider": LocalJSX.GlueSlider & JSXBase.HTMLAttributes<HTMLGlueSliderElement>;
             "glue-step": LocalJSX.GlueStep & JSXBase.HTMLAttributes<HTMLGlueStepElement>;
+            "glue-step-demo": LocalJSX.GlueStepDemo & JSXBase.HTMLAttributes<HTMLGlueStepDemoElement>;
             "glue-stepper": LocalJSX.GlueStepper & JSXBase.HTMLAttributes<HTMLGlueStepperElement>;
             "glue-steps": LocalJSX.GlueSteps & JSXBase.HTMLAttributes<HTMLGlueStepsElement>;
             "glue-sticky": LocalJSX.GlueSticky & JSXBase.HTMLAttributes<HTMLGlueStickyElement>;
             "glue-submit-bar": LocalJSX.GlueSubmitBar & JSXBase.HTMLAttributes<HTMLGlueSubmitBarElement>;
             "glue-swipe": LocalJSX.GlueSwipe & JSXBase.HTMLAttributes<HTMLGlueSwipeElement>;
             "glue-swipe-cell": LocalJSX.GlueSwipeCell & JSXBase.HTMLAttributes<HTMLGlueSwipeCellElement>;
+            "glue-swipe-demo": LocalJSX.GlueSwipeDemo & JSXBase.HTMLAttributes<HTMLGlueSwipeDemoElement>;
             "glue-swipe-item": LocalJSX.GlueSwipeItem & JSXBase.HTMLAttributes<HTMLGlueSwipeItemElement>;
             "glue-switch": LocalJSX.GlueSwitch & JSXBase.HTMLAttributes<HTMLGlueSwitchElement>;
             "glue-tab": LocalJSX.GlueTab & JSXBase.HTMLAttributes<HTMLGlueTabElement>;
+            "glue-tab-demo": LocalJSX.GlueTabDemo & JSXBase.HTMLAttributes<HTMLGlueTabDemoElement>;
             "glue-tabbar": LocalJSX.GlueTabbar & JSXBase.HTMLAttributes<HTMLGlueTabbarElement>;
+            "glue-tabbar-demo": LocalJSX.GlueTabbarDemo & JSXBase.HTMLAttributes<HTMLGlueTabbarDemoElement>;
             "glue-tabbar-item": LocalJSX.GlueTabbarItem & JSXBase.HTMLAttributes<HTMLGlueTabbarItemElement>;
             "glue-tabs": LocalJSX.GlueTabs & JSXBase.HTMLAttributes<HTMLGlueTabsElement>;
             "glue-tabs-content": LocalJSX.GlueTabsContent & JSXBase.HTMLAttributes<HTMLGlueTabsContentElement>;
@@ -3366,6 +3635,7 @@ declare module "@stencil/core" {
             "glue-time-picker": LocalJSX.GlueTimePicker & JSXBase.HTMLAttributes<HTMLGlueTimePickerElement>;
             "glue-toast": LocalJSX.GlueToast & JSXBase.HTMLAttributes<HTMLGlueToastElement>;
             "glue-tree-select": LocalJSX.GlueTreeSelect & JSXBase.HTMLAttributes<HTMLGlueTreeSelectElement>;
+            "glue-tree-select-demo": LocalJSX.GlueTreeSelectDemo & JSXBase.HTMLAttributes<HTMLGlueTreeSelectDemoElement>;
             "glue-uploader": LocalJSX.GlueUploader & JSXBase.HTMLAttributes<HTMLGlueUploaderElement>;
             "glue-uploader-preview-item": LocalJSX.GlueUploaderPreviewItem & JSXBase.HTMLAttributes<HTMLGlueUploaderPreviewItemElement>;
         }
