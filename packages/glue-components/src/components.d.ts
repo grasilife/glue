@@ -840,24 +840,29 @@ export namespace Components {
         "first": string;
     }
     interface GlueRadio {
+        "bindGroup": boolean;
         "checkedColor": string;
         "disabled": boolean;
-        "iconSize": string | number;
+        "icon": string;
+        "iconSize": number | string;
+        "label": string;
         "labelDisabled": boolean;
         "labelPosition": string;
-        "modelValue": null;
-        "name": null;
+        "modelValue": boolean;
+        "name": number | string;
+        "setValue": (key: any, value: any) => Promise<void>;
         "shape": string;
     }
     interface GlueRadioDemo {
-        "first": string;
     }
     interface GlueRadioGroup {
         "checkedColor": string;
         "direction": string;
         "disabled": boolean;
+        "getProps": () => Promise<{ modelValue: any; disabled: boolean; direction: string; iconSize: string | number; checkedColor: string; }>;
         "iconSize": string | number;
         "modelValue": any;
+        "setValue": (value: any) => Promise<void>;
     }
     interface GlueRate {
         "allowHalf": boolean;
@@ -2957,17 +2962,21 @@ declare namespace LocalJSX {
         "first"?: string;
     }
     interface GlueRadio {
+        "bindGroup"?: boolean;
         "checkedColor"?: string;
         "disabled"?: boolean;
-        "iconSize"?: string | number;
+        "icon"?: string;
+        "iconSize"?: number | string;
+        "label"?: string;
         "labelDisabled"?: boolean;
         "labelPosition"?: string;
-        "modelValue"?: null;
-        "name"?: null;
+        "modelValue"?: boolean;
+        "name"?: number | string;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueCilck"?: (event: CustomEvent<any>) => void;
         "shape"?: string;
     }
     interface GlueRadioDemo {
-        "first"?: string;
     }
     interface GlueRadioGroup {
         "checkedColor"?: string;
@@ -2975,6 +2984,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "iconSize"?: string | number;
         "modelValue"?: any;
+        "onGlueUpdate"?: (event: CustomEvent<any>) => void;
     }
     interface GlueRate {
         "allowHalf"?: boolean;
