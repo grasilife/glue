@@ -456,7 +456,7 @@ export namespace Components {
         "text": string;
     }
     interface GlueDocBlock {
-        "card": string;
+        "card": boolean;
         "gtitle": string;
     }
     interface GlueDocBlockDemo {
@@ -763,9 +763,9 @@ export namespace Components {
     }
     interface GluePickerColumn {
         "allowHtml": boolean;
-        "class_name": string;
         "defaultIndex": number;
         "first": string;
+        "gClassName": string;
         "getColumnsList": () => Promise<any>;
         "getIndex": () => Promise<number>;
         "getValue": () => Promise<any>;
@@ -779,7 +779,6 @@ export namespace Components {
         "visibleItemCount": number;
     }
     interface GluePickerDemo {
-        "first": string;
     }
     interface GluePopover {
         "first": string;
@@ -2561,7 +2560,7 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface GlueDocBlock {
-        "card"?: string;
+        "card"?: boolean;
         "gtitle"?: string;
     }
     interface GlueDocBlockDemo {
@@ -2878,9 +2877,9 @@ declare namespace LocalJSX {
     }
     interface GluePickerColumn {
         "allowHtml"?: boolean;
-        "class_name"?: string;
         "defaultIndex"?: number;
         "first"?: string;
+        "gClassName"?: string;
         "initialOptions"?: any[];
         "itemHeight"?: number;
         "onGlueChange"?: (event: CustomEvent<any>) => void;
@@ -2890,7 +2889,6 @@ declare namespace LocalJSX {
         "visibleItemCount"?: number;
     }
     interface GluePickerDemo {
-        "first"?: string;
     }
     interface GluePopover {
         "first"?: string;
