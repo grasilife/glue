@@ -24,14 +24,17 @@ export class GlueRadioGroup {
   @Watch('modelValue')
   watchModelValue() {
     this.children = getElementChildren(this.el);
+    console.log(this.children, 'this.children');
     for (let i = 0; i < this.children.length; i++) {
       let element = this.children[i];
       let name = element.name;
       //只能使用方法设置state
-      if (this.modelValue.indexOf(name) === -1) {
-        element.setValue('checked', false);
-      } else {
+      console.log(element, name, 'namenamename');
+      if (this.modelValue === name) {
+        console.log(element.setValue, 'element.setValue');
         element.setValue('checked', true);
+      } else {
+        element.setValue('checked', false);
       }
     }
   }

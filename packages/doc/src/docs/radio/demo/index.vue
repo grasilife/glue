@@ -1,87 +1,85 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-radio-group v-model="radio1" class="demo-radio-group">
-        <van-radio name="1">{{ radio }} 1</van-radio>
-        <van-radio name="2">{{ radio }} 2</van-radio>
-      </van-radio-group>
+      <glue-radio-group :model-value="radio1" class="demo-radio-group">
+        <glue-radio name="1" :label="`${radio}1`"></glue-radio>
+        <glue-radio name="2" :label="`${radio}2`"></glue-radio>
+      </glue-radio-group>
     </DemoBlock>
 
     <DemoBlock :title="horizontal">
-      <van-radio-group v-model="radioHorizontal" class="demo-radio-group" direction="horizontal">
-        <van-radio name="1">{{ radio }} 1</van-radio>
-        <van-radio name="2">{{ radio }} 2</van-radio>
-      </van-radio-group>
+      <glue-radio-group :model-value="radioHorizontal" class="demo-radio-group" direction="horizontal">
+        <glue-radio name="1" :label="`${radio}1`"></glue-radio>
+        <glue-radio name="2" :label="`${radio}2`"></glue-radio>
+      </glue-radio-group>
     </DemoBlock>
 
     <DemoBlock :title="disabled">
-      <van-radio-group v-model="radio2" class="demo-radio-group" disabled>
-        <van-radio name="1">{{ radio }} 1</van-radio>
-        <van-radio name="2">{{ radio }} 2</van-radio>
-      </van-radio-group>
+      <glue-radio-group :model-value="radio2" class="demo-radio-group" disabled>
+        <glue-radio name="1" :label="`${radio}1`"></glue-radio>
+        <glue-radio name="2" :label="`${radio}2`"></glue-radio>
+      </glue-radio-group>
     </DemoBlock>
 
     <DemoBlock :title="customShape">
-      <van-radio-group v-model="radioShape" class="demo-radio-group">
-        <van-radio name="1" shape="square">{{ radio }} 1</van-radio>
-        <van-radio name="2" shape="square">{{ radio }} 2</van-radio>
-      </van-radio-group>
+      <glue-radio-group :model-value="radioShape" class="demo-radio-group">
+        <glue-radio name="1" shape="square" :label="`${radio}1`"></glue-radio>
+        <glue-radio name="2" shape="square" :label="`${radio}2`"></glue-radio>
+      </glue-radio-group>
     </DemoBlock>
 
     <DemoBlock :title="customColor">
-      <van-radio-group v-model="radio3" class="demo-radio-group">
-        <van-radio name="1" checked-color="#ee0a24"> {{ radio }} 1 </van-radio>
-        <van-radio name="2" checked-color="#ee0a24"> {{ radio }} 2 </van-radio>
-      </van-radio-group>
+      <glue-radio-group :model-value="radio3" class="demo-radio-group">
+        <glue-radio name="1" checked-color="#ee0a24" :label="`${radio}1`"> </glue-radio>
+        <glue-radio name="2" checked-color="#ee0a24" :label="`${radio}2`"> </glue-radio>
+      </glue-radio-group>
     </DemoBlock>
 
     <DemoBlock :title="customIconSize">
-      <van-radio-group v-model="radioIconSize" class="demo-radio-group">
-        <van-radio name="1" icon-size="24px"> {{ radio }} 1 </van-radio>
-        <van-radio name="2" icon-size="24px"> {{ radio }} 2 </van-radio>
-      </van-radio-group>
+      <glue-radio-group :model-value="radioIconSize" class="demo-radio-group">
+        <glue-radio name="1" icon-size="24px" :label="`${radio}1`"> </glue-radio>
+        <glue-radio name="2" icon-size="24px" :label="`${radio}2`"> </glue-radio>
+      </glue-radio-group>
     </DemoBlock>
 
     <DemoBlock :title="customIcon">
-      <van-radio-group v-model="radio4" class="demo-radio-group">
-        <van-radio name="1">
-          {{ radio }} 1
+      <glue-radio-group :model-value="radio4" class="demo-radio-group">
+        <glue-radio name="1" :label="`${radio}1`">
           <template #icon="{ checked }">
             <img :src="checked ? icon.active : icon.inactive" />
           </template>
-        </van-radio>
-        <van-radio name="2">
-          {{ radio }} 2
+        </glue-radio>
+        <glue-radio name="2" :label="`${radio}2`">
           <template #icon="{ checked }">
             <img :src="checked ? icon.active : icon.inactive" />
           </template>
-        </van-radio>
-      </van-radio-group>
+        </glue-radio>
+      </glue-radio-group>
     </DemoBlock>
 
     <DemoBlock :title="disableLabel">
-      <van-radio-group v-model="radioLabel" class="demo-radio-group">
-        <van-radio name="1" label-disabled>{{ radio }} 1</van-radio>
-        <van-radio name="2" label-disabled>{{ radio }} 2</van-radio>
-      </van-radio-group>
+      <glue-radio-group :model-value="radioLabel" class="demo-radio-group">
+        <glue-radio name="1" label-disabled :label="`${radio}1`"></glue-radio>
+        <glue-radio name="2" label-disabled :label="`${radio}2`"></glue-radio>
+      </glue-radio-group>
     </DemoBlock>
 
-    <DemoBlock :title="withCell">
-      <van-radio-group v-model="radio5">
-        <van-cell-group>
-          <van-cell clickable :title="radio + 1" @click="radio5 = '1'">
+    <!-- <DemoBlock :title="withCell">
+      <glue-radio-group :model-value="radio5">
+        <glue-cell-group>
+          <glue-cell clickable :title="radio + 1" @click="radio5 = '1'">
             <template #right-icon>
-              <van-radio name="1" />
+              <glue-radio name="1" />
             </template>
-          </van-cell>
-          <van-cell clickable :title="radio + 2" @click="radio5 = '2'">
+          </glue-cell>
+          <glue-cell clickable :title="radio + 2" @click="radio5 = '2'">
             <template #right-icon>
-              <van-radio name="2" />
+              <glue-radio name="2" />
             </template>
-          </van-cell>
-        </van-cell-group>
-      </van-radio-group>
-    </DemoBlock>
+          </glue-cell>
+        </glue-cell-group>
+      </glue-radio-group>
+    </DemoBlock> -->
   </DemoSection>
 </template>
 
@@ -128,8 +126,8 @@ export default {
   &-group {
     padding: 0 16px;
 
-    .van-radio {
-      margin-bottom: 8px;
+    .glue-radio {
+      margin: 0px 8px 6px 0px;
     }
   }
 
@@ -137,7 +135,7 @@ export default {
     height: 20px;
   }
 
-  .van-doc-demo-block__title {
+  .glue-doc-demo-block__title {
     margin-top: -8px;
   }
 }
