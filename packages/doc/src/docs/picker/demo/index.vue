@@ -1,38 +1,51 @@
 <template>
   <DemoSection>
     <DemoBlock card :title="basicUsage">
-      <van-picker show-toolbar :title="title" :columns="textColumns" @change="onChange1" />
+      <glue-picker show-toolbar :gtitle="title" :columns.prop="textColumns" @change="onChange1" />
     </DemoBlock>
 
     <DemoBlock card :title="defaultIndex">
-      <van-picker show-toolbar :title="title" :columns="textColumns" :default-index="2" @change="onChange1" />
+      <glue-picker show-toolbar :gtitle="title" :columns.prop="textColumns" :default-index="2" @change="onChange1" />
     </DemoBlock>
 
     <DemoBlock card :title="multipleColumns">
-      <van-picker show-toolbar :title="title" :columns="dateColumns" @cancel="onCancel" @confirm="onConfirm" />
+      <glue-picker show-toolbar :gtitle="title" :columns.prop="dateColumns" @cancel="onCancel" @confirm="onConfirm" />
     </DemoBlock>
 
     <DemoBlock card :title="cascade">
-      <van-picker show-toolbar :title="title" :columns="cascadeColumns" @cancel="onCancel" @confirm="onConfirm" />
+      <glue-picker
+        show-toolbar
+        :gtitle="title"
+        :columns.prop="cascadeColumns"
+        @cancel="onCancel"
+        @confirm="onConfirm"
+      />
     </DemoBlock>
 
     <DemoBlock card :title="disableOption">
-      <van-picker show-toolbar :title="title" :columns="disabledColumns" />
+      <glue-picker show-toolbar :gtitle="title" :columns.prop="disabledColumns" />
     </DemoBlock>
 
     <DemoBlock card :title="setColumnValues">
-      <van-picker show-toolbar :title="title" :columns="columns" @change="onChange2" />
+      <glue-picker show-toolbar :gtitle="title" :columns.prop="columns" @change="onChange2" />
     </DemoBlock>
 
     <DemoBlock card :title="loadingStatus">
-      <van-picker loading show-toolbar :title="title" :columns="columns" />
+      <glue-picker loading show-toolbar :gtitle="title" :columns.prop="columns" />
     </DemoBlock>
 
     <DemoBlock card :title="withPopup">
-      <van-field readonly clickable :label="city" :value="fieldValue" :placeholder="chooseCity" @click="onClickField" />
-      <van-popup v-model="showPicker" round position="bottom">
-        <van-picker show-toolbar :title="title" :columns="textColumns" @cancel="onCancel2" @confirm="onConfirm2" />
-      </van-popup>
+      <glue-field
+        readonly
+        clickable
+        :label="city"
+        :value="fieldValue"
+        :placeholder="chooseCity"
+        @click="onClickField"
+      />
+      <glue-popup v-model="showPicker" round position="bottom">
+        <glue-picker show-toolbar :gtitle="title" :columns="textColumns" @cancel="onCancel2" @confirm="onConfirm2" />
+      </glue-popup>
     </DemoBlock>
   </DemoSection>
 </template>
