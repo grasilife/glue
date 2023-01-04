@@ -58,6 +58,7 @@ export class GlueTabbar {
           element.setValue('selected', false);
         }
       } else {
+        console.log(this.modelValue, i, 'jigjiajigjia');
         if (this.modelValue === i) {
           console.log(element.setValue, 'element.setValue');
           element.setValue('selected', true);

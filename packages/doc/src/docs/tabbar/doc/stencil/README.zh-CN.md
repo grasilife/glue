@@ -7,7 +7,7 @@
 `modelValue` 默认绑定选中标签的索引值，通过修改 `modelValue` 即可切换选中的标签。
 
 ```html
-<glue-tabbar :modelValue="active">
+<glue-tabbar :model-value.prop="active">
   <glue-tabbar-item icon="home-o" gtitle="标签"></glue-tabbar-item>
   <glue-tabbar-item icon="search" gtitle="标签"></glue-tabbar-item>
   <glue-tabbar-item icon="friends-o" gtitle="标签"></glue-tabbar-item>
@@ -28,10 +28,10 @@ export default {
 
 ### 通过名称匹配
 
-在标签指定 `name` 属性的情况下，`:modelValue` 的值为当前标签的 `name`。
+在标签指定 `name` 属性的情况下，`:model-value.prop` 的值为当前标签的 `name`。
 
 ```html
-<glue-tabbar :modelValue="active">
+<glue-tabbar :model-value.prop="active">
   <glue-tabbar-item name="home" icon="home-o" gtitle="标签"></glue-tabbar-item>
   <glue-tabbar-item name="search" icon="search" gtitle="标签"></glue-tabbar-item>
   <glue-tabbar-item name="friends" icon="friends-o" gtitle="标签"></glue-tabbar-item>
@@ -55,7 +55,7 @@ export default {
 设置 `dot` 属性后，会在图标右上角展示一个小红点；设置 `badge` 属性后，会在图标右上角展示相应的徽标。
 
 ```html
-<glue-tabbar :modelValue="active">
+<glue-tabbar :model-value.prop="active">
   <glue-tabbar-item icon="home-o" gtitle="标签"></glue-tabbar-item>
   <glue-tabbar-item icon="search" dot gtitle="标签"></glue-tabbar-item>
   <glue-tabbar-item icon="friends-o" badge="5" gtitle="标签"></glue-tabbar-item>
@@ -68,7 +68,7 @@ export default {
 通过 `icon` 插槽自定义图标，可以通过 `slot-scope` 判断标签是否选中。
 
 ```html
-<glue-tabbar :modelValue="active">
+<glue-tabbar :model-value.prop="active">
   <glue-tabbar-item badge="3">
     <span>自定义</span>
     <template #icon="props">
@@ -101,7 +101,7 @@ export default {
 ### 自定义颜色
 
 ```html
-<glue-tabbar :modelValue="active" active-color="#ee0a24" inactive-color="#000">
+<glue-tabbar :model-value.prop="active" active-color="#ee0a24" inactive-color="#000">
   <glue-tabbar-item icon="home-o" gtitle="标签"></glue-tabbar-item>
   <glue-tabbar-item icon="search" gtitle="标签"></glue-tabbar-item>
   <glue-tabbar-item icon="friends-o" gtitle="标签"></glue-tabbar-item>
@@ -112,7 +112,7 @@ export default {
 ### 监听切换事件
 
 ```html
-<glue-tabbar :modelValue="active" @change="onChange">
+<glue-tabbar :model-value.prop="active" @change="onChange">
   <glue-tabbar-item icon="home-o" gtitle="标签1"></glue-tabbar-item>
   <glue-tabbar-item icon="search" gtitle="标签2"></glue-tabbar-item>
   <glue-tabbar-item icon="friends-o" gtitle="标签3"></glue-tabbar-item>

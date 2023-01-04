@@ -8,10 +8,10 @@
 
 ### 基础用法
 
-通过 `:model-value` 绑定值当前选中项的 name。
+通过 `model-value` 绑定值当前选中项的 name。
 
 ```html
-<glue-radio-group :model-value="checked">
+<glue-radio-group :model-value.prop="checked">
   <glue-radio name="1" label="单选框 1"></glue-radio>
   <glue-radio name="2" label="单选框 2"></glue-radio>
 </glue-radio-group>
@@ -33,7 +33,7 @@ export default {
 将 `direction` 属性设置为 `horizontal` 后，单选框组会变成水平排列。
 
 ```html
-<glue-radio-group :model-value="checked" direction="horizontal">
+<glue-radio-group :model-value.prop="checked" direction="horizontal">
   <glue-radio name="1" label="单选框 1"></glue-radio>
   <glue-radio name="2" label="单选框 2"></glue-radio>
 </glue-radio-group>
@@ -44,7 +44,7 @@ export default {
 通过 `disabled` 属性禁止选项切换，在 `Radio` 上设置 `disabled` 可以禁用单个选项。
 
 ```html
-<glue-radio-group :model-value="checked" disabled>
+<glue-radio-group :model-value.prop="checked" disabled>
   <glue-radio name="1" label="单选框 1"></glue-radio>
   <glue-radio name="2" label="单选框 2"></glue-radio>
 </glue-radio-group>
@@ -55,7 +55,7 @@ export default {
 将 `shape` 属性设置为 `square`，单选框的形状会变成方形。
 
 ```html
-<glue-radio-group :model-value="checked">
+<glue-radio-group :model-value.prop="checked">
   <glue-radio name="1" shape="square" label="单选框 1"></glue-radio>
   <glue-radio name="2" shape="square" label="单选框 2"></glue-radio>
 </glue-radio-group>
@@ -66,7 +66,7 @@ export default {
 通过 `checked-color` 属性设置选中状态的图标颜色。
 
 ```html
-<glue-radio-group :model-value="checked">
+<glue-radio-group :model-value.prop="checked">
   <glue-radio name="1" checked-color="#ee0a24" label="单选框 1"></glue-radio>
   <glue-radio name="2" checked-color="#ee0a24" label="单选框 2"></glue-radio>
 </glue-radio-group>
@@ -77,7 +77,7 @@ export default {
 通过 `icon-size` 属性可以自定义图标的大小。
 
 ```html
-<glue-radio-group :model-value="checked">
+<glue-radio-group :model-value.prop="checked">
   <glue-radio name="1" icon-size="24px" label="单选框 1"></glue-radio>
   <glue-radio name="2" icon-size="24px" label="单选框 2"></glue-radio>
 </glue-radio-group>
@@ -88,7 +88,7 @@ export default {
 通过 `icon` 插槽自定义图标，并通过 `slotProps` 判断是否为选中状态。
 
 ```html
-<glue-radio-group :model-value="checked">
+<glue-radio-group :model-value.prop="checked">
   <glue-radio name="1" label="单选框 1">
     <template #icon="props">
       <img class="img-icon" :src="props.checked ? activeIcon : inactiveIcon" />
@@ -128,7 +128,7 @@ export default {
 设置 `label-disabled` 属性后，点击图标以外的内容不会触发单选框切换。
 
 ```html
-<glue-radio-group :model-value="checked">
+<glue-radio-group :model-value.prop="checked">
   <glue-radio name="1" label-disabled label="单选框 1">单选框 1</glue-radio>
   <glue-radio name="2" label-disabled label="单选框 1">单选框 2</glue-radio>
 </glue-radio-group>
@@ -139,7 +139,7 @@ export default {
 此时你需要再引入 `Cell` 和 `CellGroup` 组件。
 
 ```html
-<glue-radio-group :model-value="checked">
+<glue-radio-group :model-value.prop="checked">
   <glue-cell-group>
     <glue-cell title="单选框 1" clickable @click="checked = '1'">
       <template #right-icon>
@@ -171,13 +171,13 @@ export default {
 
 ### RadioGroup Props
 
-| 参数          | 说明                                 | 类型               | 默认值     |
-| ------------- | ------------------------------------ | ------------------ | ---------- |
-| :model-value  | 当前选中项的标识符                   | _any_              | -          |
-| disabled      | 是否禁用所有单选框                   | _boolean_          | `false`    |
-| direction     | 排列方向，可选值为`horizontal`       | _string_           | `vertical` |
-| icon-size     | 所有单选框的图标大小，默认单位为`px` | _number \| string_ | `20px`     |
-| checked-color | 所有单选框的选中状态颜色             | _string_           | `#1989fa`  |
+| 参数             | 说明                                 | 类型               | 默认值     |
+| ---------------- | ------------------------------------ | ------------------ | ---------- |
+| model-value.prop | 当前选中项的标识符                   | _any_              | -          |
+| disabled         | 是否禁用所有单选框                   | _boolean_          | `false`    |
+| direction        | 排列方向，可选值为`horizontal`       | _string_           | `vertical` |
+| icon-size        | 所有单选框的图标大小，默认单位为`px` | _number \| string_ | `20px`     |
+| checked-color    | 所有单选框的选中状态颜色             | _string_           | `#1989fa`  |
 
 ### Radio Events
 

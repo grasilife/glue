@@ -1,7 +1,7 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <glue-tabbar :modelValue="active">
+      <glue-tabbar :model-value.prop="active">
         <glue-tabbar-item icon="home-o" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="search" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="friends-o" :gtitle="tab"></glue-tabbar-item>
@@ -10,7 +10,7 @@
     </DemoBlock>
 
     <DemoBlock :title="matchByName">
-      <glue-tabbar :modelValue="activeName">
+      <glue-tabbar :model-value.prop="activeName">
         <glue-tabbar-item name="home" icon="home-o" :gtitle="tab"> </glue-tabbar-item>
         <glue-tabbar-item name="search" icon="search" :gtitle="tab"> </glue-tabbar-item>
         <glue-tabbar-item name="friends" icon="friends-o" :gtitle="tab"> </glue-tabbar-item>
@@ -19,7 +19,7 @@
     </DemoBlock>
 
     <DemoBlock :title="badge">
-      <glue-tabbar :modelValue="active2">
+      <glue-tabbar :model-value.prop="active2">
         <glue-tabbar-item icon="home-o" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="search" dot :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="friends-o" badge="5" :gtitle="tab"> </glue-tabbar-item>
@@ -28,7 +28,7 @@
     </DemoBlock>
 
     <DemoBlock :title="customIcon">
-      <glue-tabbar :modelValue="active3">
+      <glue-tabbar :model-value.prop="active3">
         <glue-tabbar-item badge="3">
           <span>{{ custom }}</span>
           <template #icon="props">
@@ -41,7 +41,7 @@
     </DemoBlock>
 
     <DemoBlock :title="customColor">
-      <glue-tabbar :modelValue="active4" active-color="#ee0a24" inactive-color="#000">
+      <glue-tabbar :model-value.prop="active4" active-color="#ee0a24" inactive-color="#000">
         <glue-tabbar-item icon="home-o" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="search" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="friends-o" :gtitle="tab"></glue-tabbar-item>
@@ -50,7 +50,7 @@
     </DemoBlock>
 
     <DemoBlock :title="switchEvent">
-      <glue-tabbar :modelValue="active5" @change="onChange">
+      <glue-tabbar :model-value.prop="active5" @change="onChange">
         <glue-tabbar-item icon="home-o" :gtitle="tab + 1"></glue-tabbar-item>
         <glue-tabbar-item icon="search" :gtitle="tab + 2"></glue-tabbar-item>
         <glue-tabbar-item icon="friends-o" :gtitle="tab + 3"></glue-tabbar-item>

@@ -1,7 +1,7 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <glue-checkbox :model-value="checkbox1" :label="checkbox"></glue-checkbox>
+      <glue-checkbox :model-value.prop="checkbox1" :label="checkbox"></glue-checkbox>
     </DemoBlock>
 
     <DemoBlock :title="disabled">
@@ -10,25 +10,25 @@
     </DemoBlock>
 
     <DemoBlock :title="customShape">
-      <glue-checkbox :model-value="checkboxShape" shape="square" :label="customShape"> </glue-checkbox>
+      <glue-checkbox :model-value.prop="checkboxShape" shape="square" :label="customShape"> </glue-checkbox>
     </DemoBlock>
 
     <DemoBlock :title="customColor">
-      <glue-checkbox :model-value="checkbox2" checked-color="#ee0a24" :label="customColor"> </glue-checkbox>
+      <glue-checkbox :model-value.prop="checkbox2" checked-color="#ee0a24" :label="customColor"> </glue-checkbox>
     </DemoBlock>
 
     <DemoBlock :title="customIconSize">
-      <glue-checkbox :model-value="checboxIcon" icon-size="24px" :label="customIconSize"> </glue-checkbox>
+      <glue-checkbox :model-value.prop="checboxIcon" icon-size="24px" :label="customIconSize"> </glue-checkbox>
     </DemoBlock>
 
     <DemoBlock :title="customIcon">
-      <glue-checkbox :model-value="checkbox3" :label="customIcon" icon="#slot">
+      <glue-checkbox :model-value.prop="checkbox3" :label="customIcon" icon="#slot">
         <glue-icon :name="checkbox3 ? activeIcon : inactiveIcon" size="32" />
       </glue-checkbox>
     </DemoBlock>
 
     <DemoBlock :title="disableLabel">
-      <glue-checkbox :model-value="checkboxLabel" :label-disabled="true" :label="checkbox"> </glue-checkbox>
+      <glue-checkbox :model-value.prop="checkboxLabel" :label-disabled="true" :label="checkbox"> </glue-checkbox>
     </DemoBlock>
 
     <DemoBlock :title="title3">
@@ -39,14 +39,14 @@
     </DemoBlock>
 
     <DemoBlock :title="horizontal">
-      <glue-checkbox-group :model-value="horizontalResult" direction="horizontal">
+      <glue-checkbox-group :model-value.prop="horizontalResult" direction="horizontal">
         <glue-checkbox name="a" :label="checkbox"></glue-checkbox>
         <glue-checkbox name="b" :label="checkbox"></glue-checkbox>
       </glue-checkbox-group>
     </DemoBlock>
 
     <DemoBlock :title="title4">
-      <glue-checkbox-group :model-value="result2" :max="2">
+      <glue-checkbox-group :model-value.prop="result2" :max="2">
         <glue-checkbox name="a" :label="checkbox"></glue-checkbox>
         <glue-checkbox name="b" :label="checkbox"></glue-checkbox>
         <glue-checkbox name="c" :label="checkbox"></glue-checkbox>
@@ -54,7 +54,7 @@
     </DemoBlock>
 
     <DemoBlock :title="toggleAllTitle">
-      <glue-checkbox-group :model-value="checkAllResult" ref="group">
+      <glue-checkbox-group :model-value.prop="checkAllResult" ref="group">
         <glue-checkbox name="a" :label="checkbox"></glue-checkbox>
         <glue-checkbox name="b" :label="checkbox"></glue-checkbox>
         <glue-checkbox name="c" :label="checkbox"></glue-checkbox>
