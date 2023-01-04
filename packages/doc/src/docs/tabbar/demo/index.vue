@@ -27,7 +27,7 @@
       </glue-tabbar>
     </DemoBlock>
 
-    <DemoBlock :title="customIcon">
+    <!-- <DemoBlock :title="customIcon">
       <glue-tabbar :model-value.prop="active3">
         <glue-tabbar-item badge="3">
           <span>{{ custom }}</span>
@@ -38,7 +38,7 @@
         <glue-tabbar-item icon="search" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="setting-o" :gtitle="tab"></glue-tabbar-item>
       </glue-tabbar>
-    </DemoBlock>
+    </DemoBlock> -->
 
     <DemoBlock :title="customColor">
       <glue-tabbar :model-value.prop="active4" active-color="#ee0a24" inactive-color="#000">
