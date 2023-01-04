@@ -29,6 +29,7 @@ export class GlueTabbarItem {
   @State() parentModelValue;
   @State() selected: boolean;
   @State() parentEl: any;
+  @State() index: any;
   @Event() glueClick: EventEmitter;
 
   componentDidLoad() {
@@ -49,8 +50,13 @@ export class GlueTabbarItem {
     let parent = getElementParent(this.el);
     console.log(parent.tagName, 'parent.tagName');
     if (parent.tagName === 'GLUE-TABBAR') {
-      const { name } = this;
-      parent.setValue('modelValue', name);
+      const { name, index } = this;
+      if (name) {
+        parent.setValue('modelValue', name);
+      } else {
+        parent.setValue('modelValue', index);
+      }
+
       this.glueClick.emit();
     }
 

@@ -54,6 +54,7 @@ export class GlueTabbar {
         if (this.modelValue === name) {
           console.log(element.setValue, 'element.setValue');
           element.setValue('selected', true);
+
         } else {
           element.setValue('selected', false);
         }
@@ -62,8 +63,10 @@ export class GlueTabbar {
         if (this.modelValue === i) {
           console.log(element.setValue, 'element.setValue');
           element.setValue('selected', true);
+          element.setValue('index', i);
         } else {
           element.setValue('selected', false);
+          element.setValue('index', i);
         }
       }
 
