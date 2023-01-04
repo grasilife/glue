@@ -12,7 +12,8 @@ export class GlueDemo {
         {/* <glue-password-input-demo></glue-password-input-demo> */}
         {/* <glue-doc-block-demo></glue-doc-block-demo> */}
         {/* <glue-picker-demo></glue-picker-demo> */}
-        <glue-radio-demo></glue-radio-demo>
+        {/* <glue-radio-demo></glue-radio-demo> */}
+        <glue-search-demo></glue-search-demo>
       </Host>
     );
   }

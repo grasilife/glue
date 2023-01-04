@@ -888,18 +888,54 @@ export namespace Components {
     }
     interface GlueSearch {
         "actionText": string;
+        "arrowDirection": CellArrowDirection;
+        "autocomplete": string;
+        "autosize": any;
         "background": string;
+        "border": boolean;
+        "button": string;
+        "center": boolean;
         "clearTrigger": string;
         "clearable": boolean;
+        "clickable": boolean;
+        "colon": any;
+        "disabled": any;
+        "error": any;
+        "errorMessage": string;
+        "errorMessageAlign": string;
+        "formatTrigger": string;
+        "formatter": any;
+        "gtitle": string;
+        "icon": string;
+        "iconPrefix": string;
+        "inputAlign": string;
+        "isLink": boolean;
         "label": string;
+        "labelAlign": string;
+        "labelClass": any;
+        "labelWidth": string | number;
         "leftIcon": string;
+        "maxlength": string | number;
         "modelValue": string;
+        "name": string;
+        "placeholder": string;
+        "readonly": any;
+        "required": boolean;
         "rightIcon": string;
-        "shape": 'square';
+        "rows": number;
+        "rules": any;
+        "shape": string;
         "showAction": boolean;
+        "showWordLimit": boolean;
+        "size": string;
+        "tilabelClasstle": any;
+        "titleClass": any;
+        "titleStyle": any;
+        "type": string;
+        "value": string | number;
+        "valueClass": any;
     }
     interface GlueSearchDemo {
-        "first": string;
     }
     interface GlueShareSheet {
         "cancelText": string;
@@ -3011,21 +3047,57 @@ declare namespace LocalJSX {
     }
     interface GlueSearch {
         "actionText"?: string;
+        "arrowDirection"?: CellArrowDirection;
+        "autocomplete"?: string;
+        "autosize"?: any;
         "background"?: string;
+        "border"?: boolean;
+        "button"?: string;
+        "center"?: boolean;
         "clearTrigger"?: string;
         "clearable"?: boolean;
+        "clickable"?: boolean;
+        "colon"?: any;
+        "disabled"?: any;
+        "error"?: any;
+        "errorMessage"?: string;
+        "errorMessageAlign"?: string;
+        "formatTrigger"?: string;
+        "formatter"?: any;
+        "gtitle"?: string;
+        "icon"?: string;
+        "iconPrefix"?: string;
+        "inputAlign"?: string;
+        "isLink"?: boolean;
         "label"?: string;
+        "labelAlign"?: string;
+        "labelClass"?: any;
+        "labelWidth"?: string | number;
         "leftIcon"?: string;
+        "maxlength"?: string | number;
         "modelValue"?: string;
-        "onCancel"?: (event: CustomEvent<any>) => void;
-        "onChangeValue"?: (event: CustomEvent<any>) => void;
-        "onSearch"?: (event: CustomEvent<any>) => void;
+        "name"?: string;
+        "onGlueCancel"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueSearch"?: (event: CustomEvent<any>) => void;
+        "placeholder"?: string;
+        "readonly"?: any;
+        "required"?: boolean;
         "rightIcon"?: string;
-        "shape"?: 'square';
+        "rows"?: number;
+        "rules"?: any;
+        "shape"?: string;
         "showAction"?: boolean;
+        "showWordLimit"?: boolean;
+        "size"?: string;
+        "tilabelClasstle"?: any;
+        "titleClass"?: any;
+        "titleStyle"?: any;
+        "type"?: string;
+        "value"?: string | number;
+        "valueClass"?: any;
     }
     interface GlueSearchDemo {
-        "first"?: string;
     }
     interface GlueShareSheet {
         "cancelText"?: string;

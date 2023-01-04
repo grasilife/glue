@@ -66,3 +66,7 @@ export interface SomeValue {
   value: string;
 }
 ```
+
+#### 关于 props 复用的问题
+
+多个组件共用 prop 属性,怎么样继承或者复用
