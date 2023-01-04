@@ -13,7 +13,8 @@ export class GlueDemo {
         {/* <glue-doc-block-demo></glue-doc-block-demo> */}
         {/* <glue-picker-demo></glue-picker-demo> */}
         {/* <glue-radio-demo></glue-radio-demo> */}
-        <glue-search-demo></glue-search-demo>
+        {/* <glue-search-demo></glue-search-demo> */}
+        <glue-tabbar-demo></glue-tabbar-demo>
       </Host>
     );
   }

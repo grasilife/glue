@@ -1110,16 +1110,14 @@ export namespace Components {
         "beforeChange": any;
         "border": boolean;
         "fixed": boolean;
-        "getActive": () => Promise<any>;
         "inactiveColor": string;
         "modelValue": any;
         "placeholder": boolean;
         "safeAreaInsetBottom": boolean;
-        "setActive": (active: any) => Promise<void>;
+        "setValue": (key: any, value: any) => Promise<void>;
         "zIndex": string;
     }
     interface GlueTabbarDemo {
-        "first": string;
     }
     interface GlueTabbarItem {
         "badge": string;
@@ -1128,8 +1126,7 @@ export namespace Components {
         "icon": string;
         "iconPrefix": string;
         "name": string;
-        "setActive": (parentModelValue: any) => Promise<void>;
-        "setParentActive": () => Promise<void>;
+        "setValue": (key: any, value: any) => Promise<void>;
     }
     interface GlueTabs {
         "active": number;
@@ -3298,7 +3295,6 @@ declare namespace LocalJSX {
         "zIndex"?: string;
     }
     interface GlueTabbarDemo {
-        "first"?: string;
     }
     interface GlueTabbarItem {
         "badge"?: string;
