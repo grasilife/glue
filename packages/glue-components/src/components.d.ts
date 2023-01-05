@@ -603,6 +603,7 @@ export namespace Components {
     }
     interface GlueIndexAnchor {
         "active": boolean;
+        "gtitle": string | number;
         "index": string | number;
         "left": any;
         "rect": { top: number; height: number; };
@@ -617,7 +618,6 @@ export namespace Components {
         "zIndex": string;
     }
     interface GlueIndexBarDemo {
-        "first": string;
     }
     interface GlueKey {
         "color": string;
@@ -2749,6 +2749,7 @@ declare namespace LocalJSX {
     }
     interface GlueIndexAnchor {
         "active"?: boolean;
+        "gtitle"?: string | number;
         "index"?: string | number;
         "left"?: any;
         "rect"?: { top: number; height: number; };
@@ -2764,7 +2765,6 @@ declare namespace LocalJSX {
         "zIndex"?: string;
     }
     interface GlueIndexBarDemo {
-        "first"?: string;
     }
     interface GlueKey {
         "color"?: string;

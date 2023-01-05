@@ -11,6 +11,7 @@ const [bem] = createNamespace('glue-index-anchor');
 })
 export class GlueIndexAnchor {
   @Prop() index: string | number;
+  @Prop() gtitle: string | number;
   @Prop() top = 0;
   @Prop() left = null;
   @Prop() rect = { top: 0, height: 0 };
@@ -67,7 +68,7 @@ export class GlueIndexAnchor {
             bem([sticky])
           )}
         >
-          {this.index}
+          {this.gtitle ? this.gtitle : this.index}
         </div>
       </div>
     );

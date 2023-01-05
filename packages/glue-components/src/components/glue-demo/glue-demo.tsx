@@ -14,7 +14,8 @@ export class GlueDemo {
         {/* <glue-picker-demo></glue-picker-demo> */}
         {/* <glue-radio-demo></glue-radio-demo> */}
         {/* <glue-search-demo></glue-search-demo> */}
-        <glue-tabbar-demo></glue-tabbar-demo>
+        {/* <glue-tabbar-demo></glue-tabbar-demo> */}
+        <glue-index-bar-demo></glue-index-bar-demo>
       </Host>
     );
   }
