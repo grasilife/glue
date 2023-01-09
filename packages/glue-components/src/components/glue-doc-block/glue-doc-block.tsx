@@ -11,7 +11,7 @@ export class GlueDocBlock {
   renderTitle = () => {
     console.log(this.gtitle, 'this.gtitle');
     if (this.gtitle) {
-      return <h2 class="glue-doc-block__title">{this.gtitle}</h2>;
+      // return <h2 class="glue-doc-block__title">{this.gtitle}</h2>;
     }
   };
   renderCard = () => {

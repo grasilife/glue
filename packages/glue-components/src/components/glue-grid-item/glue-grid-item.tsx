@@ -29,7 +29,7 @@ export class GlueGridItem {
   @State() direction: number | string;
   rootStyle = () => {
     let parentEl = getElementParent(this.el);
-    let children = getElementChildren(parentEl);
+    let children = getElementChildren(parentEl, 'DIV');
     //下面的方法好像不行
     // let index = null;
     // for (let i = 0; i < children.length; i++) {

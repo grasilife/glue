@@ -1,5 +1,6 @@
-import { Component, State, h } from '@stencil/core';
+import { Component, State, h, Host } from '@stencil/core';
 import classNames from 'classnames';
+import { Fragment } from '@stencil/core';
 @Component({
   tag: 'glue-index-bar-demo',
   styleUrl: 'glue-index-bar-demo.less',
@@ -13,51 +14,47 @@ export class GlueIndexBarDemo {
   @State() indexList: string[] = [];
   @State() customIndexList: number[] = [1, 2, 3, 4, 5, 6, 8, 9, 10];
 
-
   componentWillLoad() {
-    const charCodeOfA = "A".charCodeAt(0);
-    this.indexList = Array(26).fill(0).map((item) => {
-      return String.fromCharCode(charCodeOfA + item)
-    })
-
+    const charCodeOfA = 'A'.charCodeAt(0);
+    this.indexList = Array(26)
+      .fill(0)
+      .map((item: any, index: number) => {
+        console.log(item, 'item');
+        return String.fromCharCode(charCodeOfA + index);
+      });
   }
   render() {
-    return <div class={classNames('cunstom')}>
-      <glue-doc-section>
-        <glue-doc-block card={true} gtitle={this.basicUsage}>
+    return (
+      <Host class={classNames('cunstom')}>
+        <glue-doc-section>
           <glue-index-bar>
-            {
-              this.indexList.map((index: string) => {
-                return (
-                  <div key={index}>
-                    <glue-index-anchor index={index} />
-                    <glue-cell gtitle={this.text} />
-                    <glue-cell gtitle={this.text} />
-                    <glue-cell gtitle={this.text} />
-                  </div>
-                )
-              })
-            }
+            {this.indexList.map((index: string) => {
+              return (
+                <div key={index}>
+                  <glue-index-anchor index={index} />
+                  <glue-cell gtitle={this.text} />
+                  <glue-cell gtitle={this.text} />
+                  <glue-cell gtitle={this.text} />
+                </div>
+              );
+            })}
           </glue-index-bar>
-        </glue-doc-block>
-        <glue-doc-block card={true} gtitle={this.customIndexListTitle}>
-          <glue-index-bar>
-            {
-              this.customIndexList.map((index: number) => {
-                return (
-                  <div key={index}>
-                    <glue-index-anchor index={index} gtitle={this.gtitle + index} />
-                    <glue-cell gtitle={this.text} />
-                    <glue-cell gtitle={this.text} />
-                    <glue-cell gtitle={this.text} />
-                  </div>
-                )
-              })
-            }
-          </glue-index-bar>
-        </glue-doc-block>
-      </glue-doc-section>
-
-    </div>;
+          {/* <glue-index-bar>
+          {
+            this.customIndexList.map((index: number) => {
+              return (
+                <div key={index}>
+                  <glue-index-anchor index={index} gtitle={this.gtitle + index} />
+                  <glue-cell gtitle={this.text} />
+                  <glue-cell gtitle={this.text} />
+                  <glue-cell gtitle={this.text} />
+                </div>
+              )
+            })
+          }
+        </glue-index-bar> */}
+        </glue-doc-section>
+      </Host>
+    );
   }
 }

@@ -603,10 +603,13 @@ export namespace Components {
     }
     interface GlueIndexAnchor {
         "active": boolean;
+        "getRect": (scrollParent: Window | Element, scrollParentRect: { top: number; }) => Promise<{ top: number; height: number; }>;
+        "getValue": (key: string) => Promise<any>;
         "gtitle": string | number;
         "index": string | number;
         "left": any;
         "rect": { top: number; height: number; };
+        "setValue": (key: string, value: any) => Promise<void>;
         "top": number;
         "width": any;
     }
@@ -766,7 +769,7 @@ export namespace Components {
         "defaultIndex": number;
         "first": string;
         "gClassName": string;
-        "getColumnsList": () => Promise<any>;
+        "getColumnsList": () => Promise<any[]>;
         "getIndex": () => Promise<number>;
         "getValue": () => Promise<any>;
         "initialOptions": any[];

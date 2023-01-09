@@ -405,7 +405,7 @@ export class GlueSwipe {
   };
   componentDidLoad() {
     console.log('Component has been rendered');
-    this.children = getElementChildren(this.trackRef);
+    this.children = getElementChildren(this.trackRef, 'GLUE-CELL');
     console.log(this.children, 'this.children');
     this.initialize();
   }

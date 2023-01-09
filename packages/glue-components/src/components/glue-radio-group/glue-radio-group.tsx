@@ -1,4 +1,15 @@
-import { Component, Prop, h, Event, EventEmitter, Host, Method, Watch, Element, State } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Event,
+  EventEmitter,
+  Host,
+  Method,
+  Watch,
+  Element,
+  State,
+} from '@stencil/core';
 import classNames from 'classnames';
 
 import { createNamespace } from '../../utils/create/index';
@@ -23,7 +34,7 @@ export class GlueRadioGroup {
   // this.glueBlur.emit();
   @Watch('modelValue')
   watchModelValue() {
-    this.children = getElementChildren(this.el);
+    this.children = getElementChildren(this.el, 'GLUE-RADIO');
     console.log(this.children, 'this.children');
     for (let i = 0; i < this.children.length; i++) {
       let element = this.children[i];
@@ -58,8 +69,10 @@ export class GlueRadioGroup {
   }
   render() {
     const classes = [classNames(bem([this.direction]))];
-    return <Host class={classNames('glue-radio-group', classes)}>
-      <slot />
-    </Host>;
+    return (
+      <Host class={classNames('glue-radio-group', classes)}>
+        <slot />
+      </Host>
+    );
   }
 }

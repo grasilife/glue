@@ -8,7 +8,7 @@ import {
   Element,
   Watch,
   State,
-  Method
+  Method,
 } from '@stencil/core';
 import classNames from 'classnames';
 import { BORDER_TOP_BOTTOM } from '../../global/constant/constant';
@@ -43,7 +43,7 @@ export class GlueTabbar {
   };
   @Watch('modelValue')
   watchModelValue() {
-    this.children = getElementChildren(this.el);
+    this.children = getElementChildren(this.el, 'GLUE-TABBAR-ITEM');
     console.log(this.children, 'this.children');
     for (let i = 0; i < this.children.length; i++) {
       let element = this.children[i];
@@ -54,7 +54,6 @@ export class GlueTabbar {
         if (this.modelValue === name) {
           console.log(element.setValue, 'element.setValue');
           element.setValue('selected', true);
-
         } else {
           element.setValue('selected', false);
         }
@@ -69,7 +68,6 @@ export class GlueTabbar {
           element.setValue('index', i);
         }
       }
-
     }
   }
   @Method()
@@ -101,8 +99,6 @@ export class GlueTabbar {
       </div>
     );
   };
-
-
 
   render() {
     const { fixed, zIndex, border } = this;

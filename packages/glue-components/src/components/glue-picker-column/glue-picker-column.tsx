@@ -80,7 +80,7 @@ export class GluePickerColumn {
 
   @Method()
   async getColumnsList() {
-    return getElementChildren(this.wrapper);
+    return getElementChildren(this.wrapper, 'LI');
   }
 
   @Method()

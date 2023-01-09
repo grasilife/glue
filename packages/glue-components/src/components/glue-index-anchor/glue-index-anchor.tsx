@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Host, Method } from '@stencil/core';
 import classNames from 'classnames';
 import { BORDER_BOTTOM } from '../../global/constant/constant';
 import { getRootScrollTop, getScrollTop } from '../../utils/dom/scroll';
@@ -12,11 +12,11 @@ const [bem] = createNamespace('glue-index-anchor');
 export class GlueIndexAnchor {
   @Prop() index: string | number;
   @Prop() gtitle: string | number;
-  @Prop() top = 0;
-  @Prop() left = null;
+  @Prop({ mutable: true }) top = 0;
+  @Prop({ mutable: true }) left = null;
   @Prop() rect = { top: 0, height: 0 };
-  @Prop() width = null;
-  @Prop() active = false;
+  @Prop({ mutable: true }) width = null;
+  @Prop({ mutable: true }) active = false;
   root: HTMLElement;
   isSticky = () => this.active;
   anchorStyle = () => {
@@ -32,28 +32,39 @@ export class GlueIndexAnchor {
       };
     }
   };
-
-  getRect = (
+  @Method()
+  async getValue(key: string) {
+    return this[key];
+  }
+  @Method()
+  async setValue(key: string, value: any) {
+    this[key] = value;
+  }
+  @Method()
+  async getRect(
     scrollParent: Window | Element,
     scrollParentRect: { top: number }
-  ) => {
+  ) {
     const rootRect = this.root;
+    console.log(rootRect,'rootRect');
     this.rect.height = rootRect.offsetHeight;
 
     if (scrollParent === window || scrollParent === document.body) {
+      console.log(rootRect.offsetTop,getRootScrollTop(),'rootRect.offsetTop');
       this.rect.top = rootRect.offsetTop + getRootScrollTop();
     } else {
+      console.log(rootRect.offsetTop,getScrollTop(scrollParent),scrollParentRect.top,'scrollParentRect.top');
       this.rect.top =
         rootRect.offsetTop + getScrollTop(scrollParent) - scrollParentRect.top;
     }
 
     return this.rect;
-  };
+  }
 
   render() {
     const sticky = this.isSticky();
     return (
-      <div
+      <Host
         ref={(dom) => {
           this.root = dom;
         }}
@@ -62,6 +73,7 @@ export class GlueIndexAnchor {
         <div
           style={this.anchorStyle()}
           class={classNames(
+            'glue-index-anchor',
             {
               ['glue-index-anchor__' + BORDER_BOTTOM]: sticky,
             },
@@ -70,7 +82,7 @@ export class GlueIndexAnchor {
         >
           {this.gtitle ? this.gtitle : this.index}
         </div>
-      </div>
+      </Host>
     );
   }
 }

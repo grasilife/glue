@@ -49,8 +49,39 @@ export function pick(obj: Record<string, any>, keys: string[]) {
     return ret;
   }, {} as Record<string, any>);
 }
-export const getElementChildren = (el: any) => {
-  return el.children != null ? el.children : el.childNodes;
+
+export const getElementChildren = (el: any, tagName: string) => {
+  console.log(el, 'elel');
+  //parent.tagName === 'GLUE-RADIO-GROUP'
+
+  let targetChildren = [];
+  function findTagNameEl(el: any) {
+    let children = el.children != null ? el.children : el.childNodes;
+    console.log(children, 'children2121');
+    if (children) {
+      for (let i = 0; i < children.length; i++) {
+        let item = children[i];
+        console.log(item.tagName, tagName, 'tagNametagName');
+        if (item.tagName === tagName) {
+          console.log(item, 'hujijijij');
+          targetChildren.push(item);
+        } else {
+          findTagNameEl(item);
+        }
+      }
+    }
+  }
+
+  findTagNameEl(el);
+  console.log(targetChildren, 'targetChildren');
+  // while (children && children.tagName === tagName) {
+  //   const { overflowY } = window.getComputedStyle(node);
+  //   if (overflowScrollReg.test(overflowY)) {
+  //     return node;
+  //   }
+  //   node = node.parentNode as Element;
+  // }
+  return targetChildren;
 };
 export const getElementParent = (el: any) => {
   return el.parentElement != null ? el.parentElement : el.parentNode;

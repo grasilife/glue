@@ -376,7 +376,7 @@ export class GlueTabs {
   }
   componentDidLoad() {
     console.log(this.contentRef, 'Component has been rendered');
-    let htmlCollection = getElementChildren(this.contentRef);
+    let htmlCollection = getElementChildren(this.contentRef, 'GLUE-TAB');
     //转成数组
     this.children = [].slice.call(htmlCollection);
     console.log(this.children, 'this.children');
