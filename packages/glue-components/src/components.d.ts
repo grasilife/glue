@@ -1106,7 +1106,6 @@ export namespace Components {
         "titleStyle": null;
     }
     interface GlueTabDemo {
-        "first": string;
     }
     interface GlueTabbar {
         "activeColor": string;
@@ -3283,7 +3282,6 @@ declare namespace LocalJSX {
         "titleStyle"?: null;
     }
     interface GlueTabDemo {
-        "first"?: string;
     }
     interface GlueTabbar {
         "activeColor"?: string;
@@ -3321,6 +3319,9 @@ declare namespace LocalJSX {
         "lineHeight"?: string | number;
         "lineWidth"?: string | number;
         "offsetTopVlaue"?: number;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueClick"?: (event: CustomEvent<any>) => void;
+        "onGlueDisabled"?: (event: CustomEvent<any>) => void;
         "scrollspy"?: boolean;
         "sticky"?: boolean;
         "swipeThreshold"?: number;

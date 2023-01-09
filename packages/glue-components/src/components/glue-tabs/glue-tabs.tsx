@@ -1,4 +1,14 @@
-import { Component, Prop, h, State, Element, Host, Watch } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  State,
+  Element,
+  Host,
+  Watch,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { addUnit } from '../../utils/format/unit';
@@ -61,6 +71,9 @@ export class GlueTabs {
   @State() tabHeight;
   @State() lockScroll;
   @State() stickyFixed;
+  @Event() glueDisabled: EventEmitter;
+  @Event() glueClick: EventEmitter;
+  @Event() glueChange: EventEmitter;
   contentRef;
   wrapRef;
   navRef;
@@ -181,7 +194,10 @@ export class GlueTabs {
       // emit('update:active', newName);
 
       if (shouldEmitChange) {
-        // emit('change', newName, newTab.title);
+        this.glueChange.emit({
+          name: newName,
+          title: newTab.title,
+        });
       }
     }
   };
@@ -220,7 +236,10 @@ export class GlueTabs {
     const name = this.getTabName(this.children[index], index);
 
     if (disabled) {
-      // emit('disabled', name, title);
+      this.glueDisabled.emit({
+        name,
+        title,
+      });
     } else {
       callInterceptor({
         interceptor: this.beforeChange,
@@ -230,8 +249,10 @@ export class GlueTabs {
           this.scrollToCurrentContent();
         },
       });
-
-      // emit('click', name, title);
+      this.glueClick.emit({
+        name,
+        title,
+      });
       // route(item);
     }
   };
