@@ -44,7 +44,7 @@ export class GlueTab {
   };
   contentRender = () => {
     const shouldRender = this.inited || this.scrollspy || !this.lazyRender;
-    console.log(shouldRender);
+    console.log(shouldRender, 'shouldRender');
 
     //如果没有动画
     if (!this.animated) {
