@@ -1,6 +1,6 @@
 import { Component, State, h, Host } from '@stencil/core';
 import classNames from 'classnames';
-import { Fragment } from '@stencil/core';
+// import { Fragment } from '@stencil/core';
 @Component({
   tag: 'glue-index-bar-demo',
   styleUrl: 'glue-index-bar-demo.less',
