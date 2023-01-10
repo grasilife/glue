@@ -33,7 +33,7 @@ export class GlueSwipe {
   @Prop({ reflect: true }) vertical: boolean = false;
   @Prop({ reflect: true }) lazyRender: boolean;
   @Prop() indicatorColor: string = '#1989fa';
-  @Prop({ reflect: true }) loop = false;
+  @Prop({ reflect: true }) loop = true;
   @Prop() duration: string | number = 500;
   @Prop() touchable = false;
   @Prop() initialSwipe = 0;
@@ -127,6 +127,7 @@ export class GlueSwipe {
     };
     console.log(this.trackSize(), this[crossAxis], 'this.trackSize()');
     if (this.size()) {
+      console.log(this.trackSize(), 'this.trackSize()');
       style[mainAxis] = `${this.trackSize()}px`;
       style[crossAxis] = this[crossAxis] ? `${this[crossAxis]}px` : '';
     }
