@@ -11,15 +11,15 @@
 每个 SwipeItem 代表一张轮播卡片，可以通过 `autoplay` 属性设置自动轮播的间隔。
 
 ```html
-<van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-  <van-swipe-item>1</van-swipe-item>
-  <van-swipe-item>2</van-swipe-item>
-  <van-swipe-item>3</van-swipe-item>
-  <van-swipe-item>4</van-swipe-item>
-</van-swipe>
+<glue-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+  <glue-swipe-item>1</glue-swipe-item>
+  <glue-swipe-item>2</glue-swipe-item>
+  <glue-swipe-item>3</glue-swipe-item>
+  <glue-swipe-item>4</glue-swipe-item>
+</glue-swipe>
 
 <style>
-  .my-swipe .van-swipe-item {
+  .my-swipe .glue-swipe-item {
     color: #fff;
     font-size: 20px;
     line-height: 150px;
@@ -34,44 +34,41 @@
 当 Swipe 中含有图片时，可以通过 `lazy-render` 属性来开启懒加载模式。在懒加载模式下，只会渲染当前页和下一页。
 
 ```html
-<van-swipe :autoplay="3000" lazy-render>
-  <van-swipe-item v-for="image in images" :key="image">
+<glue-swipe :autoplay="3000" lazy-render>
+  <glue-swipe-item v-for="image in images" :key="image">
     <img :src="image" />
-  </van-swipe-item>
-</van-swipe>
+  </glue-swipe-item>
+</glue-swipe>
 ```
 
 ```js
 export default {
   setup() {
-    const images = [
-      'https://img01.yzcdn.cn/vant/apple-1.jpg',
-      'https://img01.yzcdn.cn/vant/apple-2.jpg',
-    ];
+    const images = ["https://img01.yzcdn.cn/vant/apple-1.jpg", "https://img01.yzcdn.cn/vant/apple-2.jpg"];
     return { images };
-  },
+  }
 };
 ```
 
 ### 监听 change 事件
 
 ```html
-<van-swipe @change="onChange">
-  <van-swipe-item>1</van-swipe-item>
-  <van-swipe-item>2</van-swipe-item>
-  <van-swipe-item>3</van-swipe-item>
-  <van-swipe-item>4</van-swipe-item>
-</van-swipe>
+<glue-swipe @change="onChange">
+  <glue-swipe-item>1</glue-swipe-item>
+  <glue-swipe-item>2</glue-swipe-item>
+  <glue-swipe-item>3</glue-swipe-item>
+  <glue-swipe-item>4</glue-swipe-item>
+</glue-swipe>
 ```
 
 ```js
-import { Toast } from 'vant';
+import { Toast } from "vant";
 
 export default {
   setup() {
-    const onChange = (index) => Toast('当前 Swipe 索引：' + index);
+    const onChange = index => Toast("当前 Swipe 索引：" + index);
     return { onChange };
-  },
+  }
 };
 ```
 
@@ -80,12 +77,12 @@ export default {
 设置 `vertical` 属性后滑块会纵向排列，此时需要指定滑块容器的高度。
 
 ```html
-<van-swipe style="height: 200px;" vertical>
-  <van-swipe-item>1</van-swipe-item>
-  <van-swipe-item>2</van-swipe-item>
-  <van-swipe-item>3</van-swipe-item>
-  <van-swipe-item>4</van-swipe-item>
-</van-swipe>
+<glue-swipe style="height: 200px;" vertical>
+  <glue-swipe-item>1</glue-swipe-item>
+  <glue-swipe-item>2</glue-swipe-item>
+  <glue-swipe-item>3</glue-swipe-item>
+  <glue-swipe-item>4</glue-swipe-item>
+</glue-swipe>
 ```
 
 ### 自定义滑块大小
@@ -93,12 +90,12 @@ export default {
 滑块默认宽度为 `100%`，可以通过 `width` 属性设置单个滑块的宽度。纵向滚动模式下，可以通过 `height` 属性设置单个滑块的高度。
 
 ```html
-<van-swipe :loop="false" :width="300">
-  <van-swipe-item>1</van-swipe-item>
-  <van-swipe-item>2</van-swipe-item>
-  <van-swipe-item>3</van-swipe-item>
-  <van-swipe-item>4</van-swipe-item>
-</van-swipe>
+<glue-swipe :loop="false" :width="300">
+  <glue-swipe-item>1</glue-swipe-item>
+  <glue-swipe-item>2</glue-swipe-item>
+  <glue-swipe-item>3</glue-swipe-item>
+  <glue-swipe-item>4</glue-swipe-item>
+</glue-swipe>
 ```
 
 > 目前不支持在循环滚动模式下自定义滑块大小，因此需要将 loop 设置为 false。
@@ -108,15 +105,15 @@ export default {
 通过 `indicator` 插槽可以自定义指示器的样式。
 
 ```html
-<van-swipe @change="onChange">
-  <van-swipe-item>1</van-swipe-item>
-  <van-swipe-item>2</van-swipe-item>
-  <van-swipe-item>3</van-swipe-item>
-  <van-swipe-item>4</van-swipe-item>
+<glue-swipe @change="onChange">
+  <glue-swipe-item>1</glue-swipe-item>
+  <glue-swipe-item>2</glue-swipe-item>
+  <glue-swipe-item>3</glue-swipe-item>
+  <glue-swipe-item>4</glue-swipe-item>
   <template #indicator>
     <div class="custom-indicator">{{ current + 1 }}/4</div>
   </template>
-</van-swipe>
+</glue-swipe>
 
 <style>
   .custom-indicator {
@@ -131,19 +128,19 @@ export default {
 ```
 
 ```js
-import { ref } from 'vue';
+import { ref } from "vue";
 
 export default {
   setup() {
     const current = ref(0);
-    const onChange = (index) => {
+    const onChange = index => {
       current.value = index;
     };
     return {
       current,
-      onChange,
+      onChange
     };
-  },
+  }
 };
 ```
 
@@ -152,12 +149,12 @@ export default {
 ### Swipe Props
 
 | 参数             | 说明                     | 类型               | 默认值    |
-|------------------|------------------------|--------------------|-----------|
-| autoplay         | 自动轮播间隔，单位为 ms   | _number \| string_ | -         |
-| duration         | 动画时长，单位为 ms       | _number \| string_ | `500`     |
+| ---------------- | ------------------------ | ------------------ | --------- |
+| autoplay         | 自动轮播间隔，单位为 ms  | _number \| string_ | -         |
+| duration         | 动画时长，单位为 ms      | _number \| string_ | `500`     |
 | initial-swipe    | 初始位置索引值           | _number \| string_ | `0`       |
-| width            | 滑块宽度，单位为`px`      | _number \| string_ | `auto`    |
-| height           | 滑块高度，单位为`px`      | _number \| string_ | `auto`    |
+| width            | 滑块宽度，单位为`px`     | _number \| string_ | `auto`    |
+| height           | 滑块高度，单位为`px`     | _number \| string_ | `auto`    |
 | loop             | 是否开启循环播放         | _boolean_          | `true`    |
 | show-indicators  | 是否显示指示器           | _boolean_          | `true`    |
 | vertical         | 是否为纵向滚动           | _boolean_          | `false`   |
@@ -169,36 +166,36 @@ export default {
 ### Swipe Events
 
 | 事件名 | 说明                 | 回调参数            |
-|--------|--------------------|-----------------|
+| ------ | -------------------- | ------------------- |
 | change | 每一页轮播结束后触发 | index, 当前页的索引 |
 
 ### SwipeItem Events
 
 | 事件名 | 说明       | 回调参数       |
-|--------|----------|----------------|
+| ------ | ---------- | -------------- |
 | click  | 点击时触发 | _event: Event_ |
 
 ### Swipe 方法
 
 通过 ref 可以获取到 Swipe 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
 
-| 方法名  | 说明                                                      | 参数                            | 返回值 |
-|---------|---------------------------------------------------------|---------------------------------|--------|
-| prev    | 切换到上一轮播                                            | -                               | -      |
-| next    | 切换到下一轮播                                            | -                               | -      |
-| swipeTo | 切换到指定位置                                            | index: number, options: Options | -      |
+| 方法名  | 说明                                                       | 参数                            | 返回值 |
+| ------- | ---------------------------------------------------------- | ------------------------------- | ------ |
+| prev    | 切换到上一轮播                                             | -                               | -      |
+| next    | 切换到下一轮播                                             | -                               | -      |
+| swipeTo | 切换到指定位置                                             | index: number, options: Options | -      |
 | resize  | 外层元素大小或组件显示状态变化时，可以调用此方法来触发重绘 | -                               | -      |
 
 ### swipeTo Options 格式
 
 | 名称      | 说明         | 类型      |
-|-----------|------------|-----------|
+| --------- | ------------ | --------- |
 | immediate | 是否跳过动画 | _boolean_ |
 
 ### Swipe Slots
 
 | 名称      | 说明         |
-|-----------|------------|
+| --------- | ------------ |
 | default   | 轮播内容     |
 | indicator | 自定义指示器 |
 
@@ -207,7 +204,7 @@ export default {
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
 | 名称                                       | 默认值          | 描述 |
-|--------------------------------------------|-----------------|------|
+| ------------------------------------------ | --------------- | ---- |
 | @swipe-indicator-size                      | `6px`           | -    |
 | @swipe-indicator-margin                    | `@padding-sm`   | -    |
 | @swipe-indicator-active-opacity            | `1`             | -    |
@@ -241,15 +238,15 @@ Swipe 组件在挂载时，会获取自身的宽度，并计算出轮播图的�
 
 ```html
 <!-- Before -->
-<van-swipe v-show="show" />
+<glue-swipe v-show="show" />
 <!-- After -->
-<van-swipe v-if="show" />
+<glue-swipe v-if="show" />
 ```
 
 方法二，调用组件的 resize 方法来主动触发重绘：
 
 ```html
-<van-swipe v-show="show" ref="swipe" />
+<glue-swipe v-show="show" ref="swipe" />
 ```
 
 ```js
