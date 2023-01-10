@@ -38,7 +38,8 @@ export class GlueCollapse {
       let name = element.name;
       //只能使用方法设置state
       if (this.accordion) {
-        if (this.modelValue == name) {
+        console.log(this.modelValue, name, 'h8fgahufaui');
+        if (this.modelValue === name) {
           element.setValue('show', true);
         } else {
           element.setValue('show', false);
@@ -57,17 +58,24 @@ export class GlueCollapse {
     console.log(name, expanded, this.modelValue, this.accordion, 'toggle');
     if (this.accordion) {
       if (name === this.modelValue) {
-        this.modelValue = '';
+        if (expanded) {
+          this.modelValue = '';
+        } else {
+          this.modelValue = name;
+        }
       } else {
         this.modelValue = name;
       }
-    } else if (expanded) {
-      this.modelValue = this.modelValue.filter((activeName) => {
-        return activeName !== name;
-      });
     } else {
-      this.modelValue = [...this.modelValue, name];
+      if (expanded) {
+        this.modelValue = this.modelValue.filter((activeName) => {
+          return activeName !== name;
+        });
+      } else {
+        this.modelValue = [...this.modelValue, name];
+      }
     }
+
     console.log(name, this.modelValue, 'change');
     this.glueChange.emit(name);
   }
