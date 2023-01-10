@@ -1,5 +1,5 @@
 import { Component, State, h, Host } from '@stencil/core';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 @Component({
   tag: 'glue-swipe-demo',
   styleUrl: 'glue-swipe-demo.less',
@@ -35,7 +35,7 @@ export class GlueSwipeDemo {
               <glue-swipe-item>4</glue-swipe-item>
             </glue-swipe>
           </glue-doc-block>
-          {/* <glue-doc-block gtitle={this.title2}>
+          <glue-doc-block gtitle={this.title2}>
             <glue-swipe autoplay={3000}>
               {this.images.map((item, index) => {
                 return (
@@ -55,6 +55,9 @@ export class GlueSwipeDemo {
               }}
             >
               <glue-swipe-item>1</glue-swipe-item>
+              <glue-swipe-item>2</glue-swipe-item>
+              <glue-swipe-item>3</glue-swipe-item>
+              <glue-swipe-item>4</glue-swipe-item>
             </glue-swipe>
           </glue-doc-block>
           <glue-doc-block gtitle={this.title4}>
@@ -84,7 +87,7 @@ export class GlueSwipeDemo {
               <glue-swipe-item>4</glue-swipe-item>
             </glue-swipe>
           </glue-doc-block>
-          <glue-doc-block gtitle={this.title6}>
+          {/* <glue-doc-block gtitle={this.title6}>
             <glue-swipe
               width={300}
               indicatorColor="white"

@@ -1058,6 +1058,7 @@ export namespace Components {
         "getActiveIndicator": () => Promise<number>;
         "getCount": () => Promise<number>;
         "getSize": () => Promise<number>;
+        "getValue": (key: string) => Promise<any>;
         "height": number;
         "indicatorColor": string;
         "initialSwipe": number;

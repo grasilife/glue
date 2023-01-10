@@ -35,7 +35,7 @@ export class GlueSwipe {
   @Prop() indicatorColor: string = '#1989fa';
   @Prop({ reflect: true }) loop = true;
   @Prop() duration: string | number = 500;
-  @Prop() touchable = false;
+  @Prop() touchable: boolean = true;
   @Prop() initialSwipe = 0;
   @Prop() showIndicators: string | boolean = true;
   @Prop() stopPropagation = false;
@@ -290,6 +290,7 @@ export class GlueSwipe {
   // let touchStartTime;
 
   onTouchStart = (event) => {
+    console.log(this.touchable, '213e23w312');
     if (!this.touchable) return;
 
     touch.start(event);
@@ -373,7 +374,10 @@ export class GlueSwipe {
       });
     });
   };
-
+  @Method()
+  async getValue(key: string) {
+    return this[key];
+  }
   renderDot = (_, index) => {
     //指示器
     const active = index === this.activeIndicator();
