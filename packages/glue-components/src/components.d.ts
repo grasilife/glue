@@ -1080,7 +1080,6 @@ export namespace Components {
         "stopPropagation": boolean;
     }
     interface GlueSwipeDemo {
-        "first": string;
     }
     interface GlueSwipeItem {
         "first": string;
@@ -3256,7 +3255,6 @@ declare namespace LocalJSX {
         "stopPropagation"?: boolean;
     }
     interface GlueSwipeDemo {
-        "first"?: string;
     }
     interface GlueSwipeItem {
         "first"?: string;
