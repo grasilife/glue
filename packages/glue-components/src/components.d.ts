@@ -317,8 +317,9 @@ export namespace Components {
         "iconPrefix": string;
         "isLink": boolean;
         "label": string | number;
-        "name": string;
+        "name": string | number;
         "required": boolean;
+        "setValue": (key: any, value: any) => Promise<void>;
         "size": string;
         "tilabelClasstle": any;
         "titleClass": any;
@@ -2446,6 +2447,7 @@ declare namespace LocalJSX {
         "accordion"?: boolean;
         "border"?: boolean;
         "modelValue"?: any;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
     }
     interface GlueCollapseDemo {
     }
@@ -2460,7 +2462,7 @@ declare namespace LocalJSX {
         "iconPrefix"?: string;
         "isLink"?: boolean;
         "label"?: string | number;
-        "name"?: string;
+        "name"?: string | number;
         "onClickTitle"?: (event: CustomEvent<any>) => void;
         "required"?: boolean;
         "size"?: string;
