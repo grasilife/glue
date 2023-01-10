@@ -7,7 +7,7 @@ import classNames from 'classnames';
 })
 export class GlueDocBlock {
   @Prop() gtitle: string;
-  @Prop() card: string;
+  @Prop() card: boolean;
   renderTitle = () => {
     console.log(this.gtitle, 'this.gtitle');
     if (this.gtitle) {

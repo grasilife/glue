@@ -1,7 +1,19 @@
-import { Component, Prop, h, Host, Method } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  Method,
+  Event,
+  EventEmitter,
+  Watch,
+  Element,
+  State,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { BORDER_TOP_BOTTOM } from '../../global/constant/constant';
 import { createNamespace } from '../../utils/create/index';
+import { getElementChildren } from '../../utils/base';
 const [bem] = createNamespace('glue-collapse');
 @Component({
   tag: 'glue-collapse',
@@ -9,73 +21,71 @@ const [bem] = createNamespace('glue-collapse');
   shadow: false,
 })
 export class GlueCollapse {
-  @Prop({
-    reflect: true,
-  })
+  @Element() el!: HTMLGlueCollapseElement;
   //手风琴模式
-  accordion: boolean;
+  @Prop({ reflect: true }) accordion: boolean = false;
 
-  @Prop({
-    reflect: true,
-  })
-  modelValue = [];
+  @Prop({ reflect: true, mutable: true }) modelValue: any = [];
 
-  @Prop({
-    reflect: true,
-  })
-  border = false;
-
-  @Method()
-  async toggle(name, expanded) {
-    console.log(name, expanded, 'toggle');
-    const { accordion, modelValue } = this;
-
-    // if (accordion) {
-    //   if (name === modelValue) {
-    //     name = '';
-    //   }
-    // } else if (expanded) {
-    //   name = modelValue.concat(name);
-    // } else {
-    //   name = modelValue.filter(activeName => activeName !== name);
-    // }
-    console.log(this.accordion, !expanded, 'fhiahufhuiai');
-    if (accordion) {
-      //只展开一个
-      if (!expanded) {
-        //展开
-        name = modelValue.filter((activeName) => activeName === name);
+  @Prop({ reflect: true }) border = false;
+  @State() children;
+  @Event() glueChange: EventEmitter;
+  @Watch('modelValue')
+  watchModelValue() {
+    this.children = getElementChildren(this.el, 'GLUE-COLLAPSE-ITEM');
+    for (let i = 0; i < this.children.length; i++) {
+      let element = this.children[i];
+      let name = element.name;
+      //只能使用方法设置state
+      if (this.accordion) {
+        console.log(this.modelValue, name, 'h8fgahufaui');
+        if (this.modelValue === name) {
+          element.setValue('show', true);
+        } else {
+          element.setValue('show', false);
+        }
       } else {
-        //关闭
-        name = '';
-      }
-    } else {
-      if (!expanded) {
-        //展开
-        modelValue.push(name);
-      } else {
-        //关闭
-        let i = modelValue.length;
-        //删除掉传过来的值
-        while (i--) {
-          if (modelValue[i] === name) {
-            modelValue.splice(i, 1);
-          }
+        if (this.modelValue.indexOf(name) === -1) {
+          element.setValue('show', false);
+        } else {
+          element.setValue('show', true);
         }
       }
     }
-    console.log(name, modelValue, 'change');
-    // emit('change', name);
-    // emit('update:modelValue', name);
+  }
+  @Method()
+  async toggle(name, expanded) {
+    console.log(name, expanded, this.modelValue, this.accordion, 'toggle');
+    if (this.accordion) {
+      if (name === this.modelValue) {
+        if (expanded) {
+          this.modelValue = '';
+        } else {
+          this.modelValue = name;
+        }
+      } else {
+        this.modelValue = name;
+      }
+    } else {
+      if (expanded) {
+        this.modelValue = this.modelValue.filter((activeName) => {
+          return activeName !== name;
+        });
+      } else {
+        this.modelValue = [...this.modelValue, name];
+      }
+    }
+
+    console.log(name, this.modelValue, 'change');
+    this.glueChange.emit(name);
   }
 
   @Method()
   async isExpanded(name) {
-    const { accordion, modelValue } = this;
-
+    console.log(name, this.accordion, 'namenamename');
     if (
-      !accordion &&
-      !Array.isArray(modelValue) &&
+      !this.accordion &&
+      !Array.isArray(this.modelValue) &&
       process.env.NODE_ENV !== 'production'
     ) {
       console.error(
@@ -83,8 +93,9 @@ export class GlueCollapse {
       );
       return;
     }
-    console.log(modelValue, name, modelValue.indexOf(name), 'isExpanded');
-    return accordion ? modelValue === name : modelValue.indexOf(name) !== -1;
+    return this.accordion
+      ? this.modelValue === name
+      : this.modelValue.indexOf(name) !== -1;
   }
   render() {
     return (

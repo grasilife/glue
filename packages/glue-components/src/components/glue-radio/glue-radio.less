@@ -1,3 +1,98 @@
 @import 'src/global/styles/var';
-glue-radio {
+
+:root {
+  --glue-radio-size: @radio-size;
+  --glue-radio-border-color: @radio-border-color;
+  --glue-radio-transition-duration: @radio-transition-duration;
+  --glue-radio-label-margin: @radio-label-margin;
+  --glue-radio-label-color: @radio-label-color;
+  --glue-radio-checked-icon-color: @radio-checked-icon-color;
+  --glue-radio-disabled-icon-color: @radio-disabled-icon-color;
+  --glue-radio-disabled-label-color: @radio-disabled-label-color;
+  --glue-radio-disabled-background-color: @radio-disabled-background-color;
+}
+
+.glue-radio {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+
+  &--label-disabled {
+    cursor: default;
+  }
+
+  &--horizontal {
+    margin-right: var(--glue-padding-sm);
+  }
+
+  &__icon {
+    flex: none;
+    height: 1em;
+    font-size: var(--glue-radio-size);
+    line-height: 1em;
+    cursor: pointer;
+
+    .glue-icon {
+      display: block;
+      box-sizing: border-box;
+      width: 1.25em;
+      height: 1.25em;
+      color: transparent;
+      font-size: 0.8em;
+      line-height: 1.25;
+      text-align: center;
+      border: 1px solid var(--glue-radio-border-color);
+      transition-duration: var(--glue-radio-transition-duration);
+      transition-property: color, border-color, background-color;
+    }
+
+    &--round {
+      .glue-icon {
+        border-radius: 100%;
+      }
+    }
+
+    &--checked {
+      .glue-icon {
+        color: var(--glue-white);
+        background-color: var(--glue-radio-checked-icon-color);
+        border-color: var(--glue-radio-checked-icon-color);
+      }
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+
+      .glue-icon {
+        background-color: var(--glue-radio-disabled-background-color);
+        border-color: var(--glue-radio-disabled-icon-color);
+      }
+    }
+
+    &--disabled&--checked {
+      .glue-icon {
+        color: var(--glue-radio-disabled-icon-color);
+      }
+    }
+  }
+
+  &__label {
+    margin-left: var(--glue-radio-label-margin);
+    color: var(--glue-radio-label-color);
+    line-height: var(--glue-radio-size);
+
+    &--left {
+      margin: 0 var(--glue-radio-label-margin) 0 0;
+    }
+
+    &--disabled {
+      color: var(--glue-radio-disabled-label-color);
+    }
+  }
 }

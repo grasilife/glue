@@ -62,11 +62,12 @@ export class GlueSwipeItem {
     let trackParentEl = getElementParent(this.el);
     let parentEl = getElementParent(trackParentEl);
     console.log(parentEl, 'parentEl');
-    this.parentVertical = getAttribute(parentEl, 'vertical');
+    this.parentVertical = await parentEl.getValue('vertical');
+    console.log(this.parentVertical, 'this.parentVertical');
     this.parentSize = await parentEl.getSize();
-    this.parentLoop = getAttribute(parentEl, 'loop');
+    this.parentLoop = await parentEl.getValue('loop');
     this.parentActiveIndicator = await parentEl.getActiveIndicator();
-    this.parentLazyRender = getAttribute(parentEl, 'lazy-render');
+    this.parentLazyRender = await parentEl.getValue('azyRender');
     this.parentCount = await parentEl.getCount();
     this.shouldRender();
   }
@@ -78,6 +79,7 @@ export class GlueSwipeItem {
     };
 
     if (this.parentSize) {
+      console.log(this.parentSize, 'this.parentSize');
       style[this.parentVertical ? 'height' : 'width'] = `${this.parentSize}px`;
     }
 

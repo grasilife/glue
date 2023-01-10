@@ -39,11 +39,11 @@
     }
 
     &--disabled {
-      cursor: not-allowed;
+      cursor: not-allowed !important;
 
       &,
       & .glue-cell__right-icon {
-        color: @collapse-item-title-disabled-color;
+        color: @collapse-item-title-disabled-color !important;
       }
 
       &:active {
@@ -65,6 +65,7 @@
     line-height: @collapse-item-content-line-height;
     background-color: @collapse-item-content-background-color;
     position: relative;
+
     &::after {
       .hairline-top(@cell-border-color, @padding-md, @padding-md);
     }

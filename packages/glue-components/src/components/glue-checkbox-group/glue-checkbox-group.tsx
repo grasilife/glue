@@ -37,7 +37,7 @@ export class GlueCheckboxGroup {
   };
   @Watch('modelValue')
   watchModelValue() {
-    this.children = getElementChildren(this.el);
+    this.children = getElementChildren(this.el, 'GLUE-CHECKBOX');
     for (let i = 0; i < this.children.length; i++) {
       let element = this.children[i];
       let name = element.name;
@@ -55,7 +55,7 @@ export class GlueCheckboxGroup {
 
   @Method()
   async toggleAll(checked) {
-    this.children = getElementChildren(this.el);
+    this.children = getElementChildren(this.el, 'GLUE-CHECKBOX');
     for (let i = 0; i < this.children.length; i++) {
       let element = this.children[i];
       element.setValue('checked', checked);

@@ -3,10 +3,12 @@ import {
   Prop,
   h,
   Host,
-  Method,
   Event,
   EventEmitter,
   Element,
+  Watch,
+  State,
+  Method,
 } from '@stencil/core';
 import classNames from 'classnames';
 import { BORDER_TOP_BOTTOM } from '../../global/constant/constant';
@@ -25,9 +27,10 @@ export class GlueTabbar {
   @Prop({ reflect: true }) activeColor: string;
   @Prop() beforeChange: any;
   @Prop({ reflect: true }) inactiveColor: string;
-  @Prop({ mutable: true, reflect: true }) modelValue: any;
+  @Prop({ reflect: true }) modelValue: any;
   @Prop() border = false;
   @Prop() fixed = false;
+  @State() children;
   @Prop() safeAreaInsetBottom: boolean;
   @Event() glueChange: EventEmitter;
   root;
@@ -38,7 +41,43 @@ export class GlueTabbar {
     // enable safe-area-inset-bottom by default when fixed
     return !this.fixed;
   };
-
+  @Watch('modelValue')
+  watchModelValue() {
+    this.children = getElementChildren(this.el, 'GLUE-TABBAR-ITEM');
+    console.log(this.children, 'this.children');
+    for (let i = 0; i < this.children.length; i++) {
+      let element = this.children[i];
+      let name = element.name;
+      //只能使用方法设置state
+      console.log(element, name, 'namenamename');
+      if (name) {
+        if (this.modelValue === name) {
+          console.log(element.setValue, 'element.setValue');
+          element.setValue('selected', true);
+        } else {
+          element.setValue('selected', false);
+        }
+      } else {
+        console.log(this.modelValue, i, 'jigjiajigjia');
+        if (this.modelValue === i) {
+          console.log(element.setValue, 'element.setValue');
+          element.setValue('selected', true);
+          element.setValue('index', i);
+        } else {
+          element.setValue('selected', false);
+          element.setValue('index', i);
+        }
+      }
+    }
+  }
+  @Method()
+  async setValue(key, value) {
+    console.log(key, value, 'hhijioa');
+    this[key] = value;
+  }
+  componentWillLoad() {
+    this.watchModelValue();
+  }
   renderTabbar = () => {
     const { fixed, zIndex, border } = this;
 
@@ -61,22 +100,6 @@ export class GlueTabbar {
     );
   };
 
-  @Method()
-  async setActive(active) {
-    this.modelValue = active;
-    console.log(active, 'activeactive');
-    this.glueChange.emit(active);
-    let children = getElementChildren(this.el);
-    for (let i = 0; i < children.length; i++) {
-      console.log(children[i], this.modelValue, 'children[i]');
-      children[i].setActive(this.modelValue);
-    }
-  }
-
-  @Method()
-  async getActive() {
-    return this.modelValue;
-  }
   render() {
     const { fixed, zIndex, border } = this;
 

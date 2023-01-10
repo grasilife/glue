@@ -33,11 +33,11 @@ export class GlueSwipe {
   @Prop({ reflect: true }) vertical: boolean = false;
   @Prop({ reflect: true }) lazyRender: boolean;
   @Prop() indicatorColor: string = '#1989fa';
-  @Prop({ reflect: true }) loop = false;
+  @Prop({ reflect: true }) loop = true;
   @Prop() duration: string | number = 500;
-  @Prop() touchable = false;
+  @Prop() touchable: boolean = true;
   @Prop() initialSwipe = 0;
-  @Prop() showIndicators: any = false;
+  @Prop() showIndicators: string | boolean = true;
   @Prop() stopPropagation = false;
   @State() rect = null;
   @State() touchStartTime;
@@ -127,6 +127,7 @@ export class GlueSwipe {
     };
     console.log(this.trackSize(), this[crossAxis], 'this.trackSize()');
     if (this.size()) {
+      console.log(this.trackSize(), 'this.trackSize()');
       style[mainAxis] = `${this.trackSize()}px`;
       style[crossAxis] = this[crossAxis] ? `${this[crossAxis]}px` : '';
     }
@@ -289,6 +290,7 @@ export class GlueSwipe {
   // let touchStartTime;
 
   onTouchStart = (event) => {
+    console.log(this.touchable, '213e23w312');
     if (!this.touchable) return;
 
     touch.start(event);
@@ -372,11 +374,15 @@ export class GlueSwipe {
       });
     });
   };
-
+  @Method()
+  async getValue(key: string) {
+    return this[key];
+  }
   renderDot = (_, index) => {
     //指示器
     const active = index === this.activeIndicator();
     const style = active ? { backgroundColor: this.indicatorColor } : null;
+    console.log(style, 'style11');
     return (
       <i
         style={style}
@@ -388,6 +394,7 @@ export class GlueSwipe {
   };
 
   renderIndicator = () => {
+    console.log(this.showIndicators, this.count(), 'this.showIndicators');
     if (this.showIndicators == '#slot') {
       return <slot name="show-indicators"></slot>;
     }
@@ -405,7 +412,7 @@ export class GlueSwipe {
   };
   componentDidLoad() {
     console.log('Component has been rendered');
-    this.children = getElementChildren(this.trackRef);
+    this.children = getElementChildren(this.trackRef, 'GLUE-SWIPE-ITEM');
     console.log(this.children, 'this.children');
     this.initialize();
   }

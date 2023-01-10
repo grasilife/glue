@@ -1,60 +1,60 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-swipe :autoplay="3000" indicator-color="white">
-        <van-swipe-item>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
-      </van-swipe>
+      <glue-swipe :autoplay="3000" indicator-color="white">
+        <glue-swipe-item>1</glue-swipe-item>
+        <glue-swipe-item>2</glue-swipe-item>
+        <glue-swipe-item>3</glue-swipe-item>
+        <glue-swipe-item>4</glue-swipe-item>
+      </glue-swipe>
     </DemoBlock>
 
     <DemoBlock :title="title2">
-      <van-swipe :autoplay="3000">
-        <van-swipe-item v-for="(image, index) in images" :key="index">
+      <glue-swipe :autoplay="3000">
+        <glue-swipe-item v-for="(image, index) in images" :key="index">
           <img v-lazy="image" />
-        </van-swipe-item>
-      </van-swipe>
+        </glue-swipe-item>
+      </glue-swipe>
     </DemoBlock>
 
     <DemoBlock :title="title3">
-      <van-swipe indicator-color="white" @change="onChange1">
-        <van-swipe-item>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
-      </van-swipe>
+      <glue-swipe indicator-color="white" @change="onChange1">
+        <glue-swipe-item>1</glue-swipe-item>
+        <glue-swipe-item>2</glue-swipe-item>
+        <glue-swipe-item>3</glue-swipe-item>
+        <glue-swipe-item>4</glue-swipe-item>
+      </glue-swipe>
     </DemoBlock>
 
     <DemoBlock :title="title4">
-      <van-swipe vertical :autoplay="3000" indicator-color="white" style="height: 200px;" class="demo-swipe--vertical">
-        <van-swipe-item>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
-      </van-swipe>
+      <glue-swipe vertical :autoplay="3000" indicator-color="white" style="height: 200px;" class="demo-swipe--vertical">
+        <glue-swipe-item>1</glue-swipe-item>
+        <glue-swipe-item>2</glue-swipe-item>
+        <glue-swipe-item>3</glue-swipe-item>
+        <glue-swipe-item>4</glue-swipe-item>
+      </glue-swipe>
     </DemoBlock>
 
     <DemoBlock :title="title5">
-      <van-swipe :width="300" :loop="false" indicator-color="white">
-        <van-swipe-item>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
-      </van-swipe>
+      <glue-swipe :width="300" :loop="false" indicator-color="white">
+        <glue-swipe-item>1</glue-swipe-item>
+        <glue-swipe-item>2</glue-swipe-item>
+        <glue-swipe-item>3</glue-swipe-item>
+        <glue-swipe-item>4</glue-swipe-item>
+      </glue-swipe>
     </DemoBlock>
 
     <DemoBlock :title="title6">
-      <van-swipe @change="onChange2">
-        <van-swipe-item>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
+      <glue-swipe @change="onChange2">
+        <glue-swipe-item>1</glue-swipe-item>
+        <glue-swipe-item>2</glue-swipe-item>
+        <glue-swipe-item>3</glue-swipe-item>
+        <glue-swipe-item>4</glue-swipe-item>
 
         <template #indicator>
           <div class="custom-indicator">{{ current + 1 }}/4</div>
         </template>
-      </van-swipe>
+      </glue-swipe>
     </DemoBlock>
   </DemoSection>
 </template>
@@ -98,7 +98,7 @@ export default {
 .demo-swipe {
   padding-bottom: 30px;
 
-  .van-swipe {
+  .glue-swipe {
     &-item {
       color: @white;
       font-size: 20px;
@@ -126,7 +126,7 @@ export default {
   }
 
   &--vertical {
-    .van-swipe-item {
+    .glue-swipe-item {
       line-height: 200px;
     }
   }

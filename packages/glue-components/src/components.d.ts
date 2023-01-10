@@ -301,11 +301,10 @@ export namespace Components {
         "accordion": boolean;
         "border": boolean;
         "isExpanded": (name: any) => Promise<boolean>;
-        "modelValue": any[];
+        "modelValue": any;
         "toggle": (name: any, expanded: any) => Promise<void>;
     }
     interface GlueCollapseDemo {
-        "first": string;
     }
     interface GlueCollapseItem {
         "arrowDirection": CellArrowDirection;
@@ -318,8 +317,9 @@ export namespace Components {
         "iconPrefix": string;
         "isLink": boolean;
         "label": string | number;
-        "name": string;
+        "name": string | number;
         "required": boolean;
+        "setValue": (key: any, value: any) => Promise<void>;
         "size": string;
         "tilabelClasstle": any;
         "titleClass": any;
@@ -456,7 +456,7 @@ export namespace Components {
         "text": string;
     }
     interface GlueDocBlock {
-        "card": string;
+        "card": boolean;
         "gtitle": string;
     }
     interface GlueDocBlockDemo {
@@ -603,9 +603,13 @@ export namespace Components {
     }
     interface GlueIndexAnchor {
         "active": boolean;
+        "getRect": (scrollParent: Window | Element, scrollParentRect: { top: number; }) => Promise<{ top: number; height: number; }>;
+        "getValue": (key: string) => Promise<any>;
+        "gtitle": string | number;
         "index": string | number;
         "left": any;
         "rect": { top: number; height: number; };
+        "setValue": (key: string, value: any) => Promise<void>;
         "top": number;
         "width": any;
     }
@@ -617,7 +621,6 @@ export namespace Components {
         "zIndex": string;
     }
     interface GlueIndexBarDemo {
-        "first": string;
     }
     interface GlueKey {
         "color": string;
@@ -763,10 +766,10 @@ export namespace Components {
     }
     interface GluePickerColumn {
         "allowHtml": boolean;
-        "class_name": string;
         "defaultIndex": number;
         "first": string;
-        "getColumnsList": () => Promise<any>;
+        "gClassName": string;
+        "getColumnsList": () => Promise<any[]>;
         "getIndex": () => Promise<number>;
         "getValue": () => Promise<any>;
         "initialOptions": any[];
@@ -779,7 +782,6 @@ export namespace Components {
         "visibleItemCount": number;
     }
     interface GluePickerDemo {
-        "first": string;
     }
     interface GluePopover {
         "first": string;
@@ -841,24 +843,29 @@ export namespace Components {
         "first": string;
     }
     interface GlueRadio {
+        "bindGroup": boolean;
         "checkedColor": string;
         "disabled": boolean;
-        "iconSize": string | number;
+        "icon": string;
+        "iconSize": number | string;
+        "label": string;
         "labelDisabled": boolean;
         "labelPosition": string;
-        "modelValue": null;
-        "name": null;
+        "modelValue": boolean;
+        "name": number | string;
+        "setValue": (key: any, value: any) => Promise<void>;
         "shape": string;
     }
     interface GlueRadioDemo {
-        "first": string;
     }
     interface GlueRadioGroup {
         "checkedColor": string;
         "direction": string;
         "disabled": boolean;
+        "getProps": () => Promise<{ modelValue: any; disabled: boolean; direction: string; iconSize: string | number; checkedColor: string; }>;
         "iconSize": string | number;
         "modelValue": any;
+        "setValue": (value: any) => Promise<void>;
     }
     interface GlueRate {
         "allowHalf": boolean;
@@ -884,18 +891,54 @@ export namespace Components {
     }
     interface GlueSearch {
         "actionText": string;
+        "arrowDirection": CellArrowDirection;
+        "autocomplete": string;
+        "autosize": any;
         "background": string;
+        "border": boolean;
+        "button": string;
+        "center": boolean;
         "clearTrigger": string;
         "clearable": boolean;
+        "clickable": boolean;
+        "colon": any;
+        "disabled": any;
+        "error": any;
+        "errorMessage": string;
+        "errorMessageAlign": string;
+        "formatTrigger": string;
+        "formatter": any;
+        "gtitle": string;
+        "icon": string;
+        "iconPrefix": string;
+        "inputAlign": string;
+        "isLink": boolean;
         "label": string;
+        "labelAlign": string;
+        "labelClass": any;
+        "labelWidth": string | number;
         "leftIcon": string;
+        "maxlength": string | number;
         "modelValue": string;
+        "name": string;
+        "placeholder": string;
+        "readonly": any;
+        "required": boolean;
         "rightIcon": string;
-        "shape": 'square';
+        "rows": number;
+        "rules": any;
+        "shape": string;
         "showAction": boolean;
+        "showWordLimit": boolean;
+        "size": string;
+        "tilabelClasstle": any;
+        "titleClass": any;
+        "titleStyle": any;
+        "type": string;
+        "value": string | number;
+        "valueClass": any;
     }
     interface GlueSearchDemo {
-        "first": string;
     }
     interface GlueShareSheet {
         "cancelText": string;
@@ -1015,12 +1058,13 @@ export namespace Components {
         "getActiveIndicator": () => Promise<number>;
         "getCount": () => Promise<number>;
         "getSize": () => Promise<number>;
+        "getValue": (key: string) => Promise<any>;
         "height": number;
         "indicatorColor": string;
         "initialSwipe": number;
         "lazyRender": boolean;
         "loop": boolean;
-        "showIndicators": any;
+        "showIndicators": string | boolean;
         "stopPropagation": boolean;
         "touchable": boolean;
         "vertical": boolean;
@@ -1037,7 +1081,6 @@ export namespace Components {
         "stopPropagation": boolean;
     }
     interface GlueSwipeDemo {
-        "first": string;
     }
     interface GlueSwipeItem {
         "first": string;
@@ -1063,23 +1106,20 @@ export namespace Components {
         "titleStyle": null;
     }
     interface GlueTabDemo {
-        "first": string;
     }
     interface GlueTabbar {
         "activeColor": string;
         "beforeChange": any;
         "border": boolean;
         "fixed": boolean;
-        "getActive": () => Promise<any>;
         "inactiveColor": string;
         "modelValue": any;
         "placeholder": boolean;
         "safeAreaInsetBottom": boolean;
-        "setActive": (active: any) => Promise<void>;
+        "setValue": (key: any, value: any) => Promise<void>;
         "zIndex": string;
     }
     interface GlueTabbarDemo {
-        "first": string;
     }
     interface GlueTabbarItem {
         "badge": string;
@@ -1088,8 +1128,7 @@ export namespace Components {
         "icon": string;
         "iconPrefix": string;
         "name": string;
-        "setActive": (parentModelValue: any) => Promise<void>;
-        "setParentActive": () => Promise<void>;
+        "setValue": (key: any, value: any) => Promise<void>;
     }
     interface GlueTabs {
         "active": number;
@@ -2407,10 +2446,10 @@ declare namespace LocalJSX {
     interface GlueCollapse {
         "accordion"?: boolean;
         "border"?: boolean;
-        "modelValue"?: any[];
+        "modelValue"?: any;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
     }
     interface GlueCollapseDemo {
-        "first"?: string;
     }
     interface GlueCollapseItem {
         "arrowDirection"?: CellArrowDirection;
@@ -2423,7 +2462,7 @@ declare namespace LocalJSX {
         "iconPrefix"?: string;
         "isLink"?: boolean;
         "label"?: string | number;
-        "name"?: string;
+        "name"?: string | number;
         "onClickTitle"?: (event: CustomEvent<any>) => void;
         "required"?: boolean;
         "size"?: string;
@@ -2561,7 +2600,7 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface GlueDocBlock {
-        "card"?: string;
+        "card"?: boolean;
         "gtitle"?: string;
     }
     interface GlueDocBlockDemo {
@@ -2712,6 +2751,7 @@ declare namespace LocalJSX {
     }
     interface GlueIndexAnchor {
         "active"?: boolean;
+        "gtitle"?: string | number;
         "index"?: string | number;
         "left"?: any;
         "rect"?: { top: number; height: number; };
@@ -2727,7 +2767,6 @@ declare namespace LocalJSX {
         "zIndex"?: string;
     }
     interface GlueIndexBarDemo {
-        "first"?: string;
     }
     interface GlueKey {
         "color"?: string;
@@ -2878,9 +2917,9 @@ declare namespace LocalJSX {
     }
     interface GluePickerColumn {
         "allowHtml"?: boolean;
-        "class_name"?: string;
         "defaultIndex"?: number;
         "first"?: string;
+        "gClassName"?: string;
         "initialOptions"?: any[];
         "itemHeight"?: number;
         "onGlueChange"?: (event: CustomEvent<any>) => void;
@@ -2890,7 +2929,6 @@ declare namespace LocalJSX {
         "visibleItemCount"?: number;
     }
     interface GluePickerDemo {
-        "first"?: string;
     }
     interface GluePopover {
         "first"?: string;
@@ -2959,17 +2997,21 @@ declare namespace LocalJSX {
         "first"?: string;
     }
     interface GlueRadio {
+        "bindGroup"?: boolean;
         "checkedColor"?: string;
         "disabled"?: boolean;
-        "iconSize"?: string | number;
+        "icon"?: string;
+        "iconSize"?: number | string;
+        "label"?: string;
         "labelDisabled"?: boolean;
         "labelPosition"?: string;
-        "modelValue"?: null;
-        "name"?: null;
+        "modelValue"?: boolean;
+        "name"?: number | string;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueCilck"?: (event: CustomEvent<any>) => void;
         "shape"?: string;
     }
     interface GlueRadioDemo {
-        "first"?: string;
     }
     interface GlueRadioGroup {
         "checkedColor"?: string;
@@ -2977,6 +3019,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "iconSize"?: string | number;
         "modelValue"?: any;
+        "onGlueUpdate"?: (event: CustomEvent<any>) => void;
     }
     interface GlueRate {
         "allowHalf"?: boolean;
@@ -3003,21 +3046,57 @@ declare namespace LocalJSX {
     }
     interface GlueSearch {
         "actionText"?: string;
+        "arrowDirection"?: CellArrowDirection;
+        "autocomplete"?: string;
+        "autosize"?: any;
         "background"?: string;
+        "border"?: boolean;
+        "button"?: string;
+        "center"?: boolean;
         "clearTrigger"?: string;
         "clearable"?: boolean;
+        "clickable"?: boolean;
+        "colon"?: any;
+        "disabled"?: any;
+        "error"?: any;
+        "errorMessage"?: string;
+        "errorMessageAlign"?: string;
+        "formatTrigger"?: string;
+        "formatter"?: any;
+        "gtitle"?: string;
+        "icon"?: string;
+        "iconPrefix"?: string;
+        "inputAlign"?: string;
+        "isLink"?: boolean;
         "label"?: string;
+        "labelAlign"?: string;
+        "labelClass"?: any;
+        "labelWidth"?: string | number;
         "leftIcon"?: string;
+        "maxlength"?: string | number;
         "modelValue"?: string;
-        "onCancel"?: (event: CustomEvent<any>) => void;
-        "onChangeValue"?: (event: CustomEvent<any>) => void;
-        "onSearch"?: (event: CustomEvent<any>) => void;
+        "name"?: string;
+        "onGlueCancel"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueSearch"?: (event: CustomEvent<any>) => void;
+        "placeholder"?: string;
+        "readonly"?: any;
+        "required"?: boolean;
         "rightIcon"?: string;
-        "shape"?: 'square';
+        "rows"?: number;
+        "rules"?: any;
+        "shape"?: string;
         "showAction"?: boolean;
+        "showWordLimit"?: boolean;
+        "size"?: string;
+        "tilabelClasstle"?: any;
+        "titleClass"?: any;
+        "titleStyle"?: any;
+        "type"?: string;
+        "value"?: string | number;
+        "valueClass"?: any;
     }
     interface GlueSearchDemo {
-        "first"?: string;
     }
     interface GlueShareSheet {
         "cancelText"?: string;
@@ -3157,7 +3236,7 @@ declare namespace LocalJSX {
         "lazyRender"?: boolean;
         "loop"?: boolean;
         "onGlueChange"?: (event: CustomEvent<any>) => void;
-        "showIndicators"?: any;
+        "showIndicators"?: string | boolean;
         "stopPropagation"?: boolean;
         "touchable"?: boolean;
         "vertical"?: boolean;
@@ -3177,7 +3256,6 @@ declare namespace LocalJSX {
         "stopPropagation"?: boolean;
     }
     interface GlueSwipeDemo {
-        "first"?: string;
     }
     interface GlueSwipeItem {
         "first"?: string;
@@ -3203,7 +3281,6 @@ declare namespace LocalJSX {
         "titleStyle"?: null;
     }
     interface GlueTabDemo {
-        "first"?: string;
     }
     interface GlueTabbar {
         "activeColor"?: string;
@@ -3218,7 +3295,6 @@ declare namespace LocalJSX {
         "zIndex"?: string;
     }
     interface GlueTabbarDemo {
-        "first"?: string;
     }
     interface GlueTabbarItem {
         "badge"?: string;
@@ -3242,6 +3318,9 @@ declare namespace LocalJSX {
         "lineHeight"?: string | number;
         "lineWidth"?: string | number;
         "offsetTopVlaue"?: number;
+        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueClick"?: (event: CustomEvent<any>) => void;
+        "onGlueDisabled"?: (event: CustomEvent<any>) => void;
         "scrollspy"?: boolean;
         "sticky"?: boolean;
         "swipeThreshold"?: number;

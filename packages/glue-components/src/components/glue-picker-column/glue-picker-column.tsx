@@ -48,7 +48,7 @@ export class GluePickerColumn {
   @Prop() textKey: string;
   @Prop() readonly: boolean;
   @Prop() allowHtml: boolean;
-  @Prop() class_name: string;
+  @Prop() gClassName: string;
   @Prop() itemHeight: number;
   @Prop() defaultIndex: number;
   @Prop() swipeDuration: number | string;
@@ -80,7 +80,7 @@ export class GluePickerColumn {
 
   @Method()
   async getColumnsList() {
-    return getElementChildren(this.wrapper);
+    return getElementChildren(this.wrapper, 'LI');
   }
 
   @Method()
@@ -308,7 +308,7 @@ export class GluePickerColumn {
     };
     return (
       <Host
-        class={classNames(bem([this.class_name]), 'glue-picker-column')}
+        class={classNames(bem([this.gClassName]), 'glue-picker-column')}
         onTouchStart={this.onTouchStart}
         onTouchMove={this.onTouchMove}
         onTouchEnd={this.onTouchEnd}

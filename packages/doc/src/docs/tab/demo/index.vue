@@ -49,7 +49,9 @@
     <DemoBlock :title="title7">
       <van-tabs :active="active">
         <van-tab v-for="index in 2" :key="index">
-          <template #title> <van-icon name="more-o" />{{ tab }} </template>
+          <template #title>
+            <van-icon name="more-o" />{{ tab }}
+          </template>
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
@@ -134,17 +136,17 @@ export default {
 .demo-tab {
   margin-bottom: 80vh;
 
-  .van-tab .van-icon {
+  .glue-tab .van-icon {
     margin-right: 5px;
     vertical-align: -2px;
   }
 
-  .van-tab__pane {
+  .glue-tab__panel {
     padding: 24px 20px;
     background-color: @white;
   }
 
-  .van-tabs--card .van-tab__pane {
+  .glue-tabs--card .glue-tab__pane {
     background-color: transparent;
   }
 }

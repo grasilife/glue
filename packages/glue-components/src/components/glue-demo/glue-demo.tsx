@@ -11,7 +11,14 @@ export class GlueDemo {
         {/* <glue-number-keyboard-demo></glue-number-keyboard-demo> */}
         {/* <glue-password-input-demo></glue-password-input-demo> */}
         {/* <glue-doc-block-demo></glue-doc-block-demo> */}
-        <glue-picker-demo></glue-picker-demo>
+        {/* <glue-picker-demo></glue-picker-demo> */}
+        {/* <glue-radio-demo></glue-radio-demo> */}
+        {/* <glue-search-demo></glue-search-demo> */}
+        {/* <glue-tabbar-demo></glue-tabbar-demo> */}
+        {/* <glue-index-bar-demo></glue-index-bar-demo> */}
+        {/* <glue-tab-demo></glue-tab-demo> */}
+        {/* <glue-swipe-demo></glue-swipe-demo> */}
+        <glue-collapse-demo></glue-collapse-demo>
       </Host>
     );
   }

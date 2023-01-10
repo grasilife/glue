@@ -15,5 +15,7 @@ module.exports = {
     'react/jsx-no-bind': 0,
     '@stencil/reserved-member-name': 0,
     '@stencil/own-methods-must-be-private': 0,
+    '@stencil/async-methods': 0,
+    '@stencil/strict-mutable': 0,
   },
 };

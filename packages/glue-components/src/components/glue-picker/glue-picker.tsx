@@ -86,7 +86,7 @@ export class GluePicker {
     let cursor = {
       [this.childrenKey]: this.columns,
       defaultIndex: 0,
-      class_name: '',
+      gClassName: '',
     };
     console.log(cursor, 'cursorcursor');
     while (cursor && cursor[this.childrenKey]) {
@@ -103,7 +103,7 @@ export class GluePicker {
       }
       formatted.push({
         [this.valuesKey]: cursor[this.childrenKey],
-        class_name: cursor.class_name,
+        gClassName: cursor.gClassName,
         defaultIndex,
       });
       cursor = children[defaultIndex];
@@ -191,8 +191,11 @@ export class GluePicker {
   getColumn = (index) => this.pickerColumnRef[index];
 
   getValue = (el) => {
-    console.log(getElementChildren(el), 'getElementChildren(el)');
-    let value = getElementChildren(el)[0].innerText;
+    console.log(
+      getElementChildren(el, 'GLUE-PICKER-COLUMN'),
+      'getElementChildren(el)'
+    );
+    let value = getElementChildren(el, 'GLUE-PICKER-COLUMN')[0].innerText;
     console.log(value, 'value');
     return value;
   };
@@ -448,7 +451,7 @@ export class GluePicker {
         textKey={this.textKey}
         readonly={this.readonly}
         allowHtml={this.allowHtml}
-        class_name={item.class_name}
+        gClassName={item.gClassName}
         itemHeight={this.itemHeightFn()}
         defaultIndex={item.defaultIndex ?? +this.defaultIndex}
         swipeDuration={this.swipeDuration}

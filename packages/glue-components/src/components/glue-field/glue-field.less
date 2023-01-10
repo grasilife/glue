@@ -3,7 +3,8 @@
 .glue-field {
   outline: none;
   position: relative;
-  display: block;
+  display: flex;
+  flex: 1;
   &::after {
     .hairline-bottom(@cell-border-color, @padding-md, @padding-md);
   }
@@ -94,9 +95,9 @@
     }
 
     // for safari
-    &[type='search'] {
-      -webkit-appearance: none;
-    }
+    // &[type='search'] {
+    //   -webkit-appearance: none;
+    // }
   }
 
   &__clear,

@@ -84,7 +84,7 @@ export class GlueRate {
     }
 
     touch.start(event);
-    let children = getElementChildren(this.el);
+    let children = getElementChildren(this.el, 'DIV');
     const rects = [];
     for (let i = 0; i < children.length; i++) {
       let rect = children[i].getBoundingClientRect();

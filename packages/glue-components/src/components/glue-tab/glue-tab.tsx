@@ -44,7 +44,7 @@ export class GlueTab {
   };
   contentRender = () => {
     const shouldRender = this.inited || this.scrollspy || !this.lazyRender;
-    console.log(shouldRender);
+    console.log(shouldRender, 'shouldRender');
 
     //如果没有动画
     if (!this.animated) {
@@ -61,7 +61,7 @@ export class GlueTab {
             'glue-tab__inactive': !active,
           })}
         >
-          <div class="glue-tab__pane">
+          <div class="glue-tab__panel">
             <slot></slot>
           </div>
         </glue-swipe-item>
@@ -79,7 +79,7 @@ export class GlueTab {
   }
   render() {
     return (
-      <Host role="tabpanel" class="glue-tab__pane">
+      <Host role="tabpanel" class="glue-tab__panel">
         {this.contentRender()}
       </Host>
     );

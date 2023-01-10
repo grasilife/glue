@@ -1,4 +1,14 @@
-import { Component, Prop, h, State, Element, Host, Watch } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  State,
+  Element,
+  Host,
+  Watch,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { addUnit } from '../../utils/format/unit';
@@ -61,12 +71,16 @@ export class GlueTabs {
   @State() tabHeight;
   @State() lockScroll;
   @State() stickyFixed;
+  @Event() glueDisabled: EventEmitter;
+  @Event() glueClick: EventEmitter;
+  @Event() glueChange: EventEmitter;
   contentRef;
   wrapRef;
   navRef;
   @Watch('currentIndex')
   currentIndexHandle() {
     this.scrollIntoView(false);
+    console.log(12212121);
     this.setLine();
 
     // scroll to correct position
@@ -78,6 +92,25 @@ export class GlueTabs {
   titleRefsHandle() {
     console.log(this.children, 'aghviahiai');
     // this.setLine();
+  }
+  @Watch('active')
+  watchModelValue() {
+    this.children = getElementChildren(this.el, 'GLUE-TAB');
+    console.log(this.children, 'this.children2222');
+    this.setCurrentIndex(this.active);
+    // this.setLine();
+    // for (let i = 0; i < this.children.length; i++) {
+    //   let element = this.children[i];
+    //   let name = element.name;
+    //   //只能使用方法设置state
+    //   console.log(element, name, 'namenamename');
+    //   if (this.modelValue === name) {
+    //     console.log(element.setValue, 'element.setValue');
+    //     element.setValue('checked', true);
+    //   } else {
+    //     element.setValue('checked', false);
+    //   }
+    // }
   }
   scrollable = () =>
     this.children.length > this.swipeThreshold || !this.ellipsis;
@@ -123,33 +156,49 @@ export class GlueTabs {
 
   // update nav bar style
   setLine = () => {
-    const shouldAnimate = this.inited;
-    const titles = this.titleRefs;
-    console.log(titles, 'titlestitles');
-    if (
-      !titles ||
-      !titles[this.currentIndex] ||
-      this.type !== 'line' ||
-      isHidden(this.el)
-    ) {
-      return;
-    }
-    const title = titles[this.currentIndex].$el;
-    const { lineWidth, lineHeight } = this;
-    const left = title.offsetLeft + title.offsetWidth / 2;
-
-    this.lineStyle.width = addUnit(lineWidth);
-    this.lineStyle.backgroundColor = this.color;
-    this.lineStyle.transform = `translateX(${left}px) translateX(-50%)`;
-    if (shouldAnimate) {
-      this.lineStyle.transitionDuration = `${this.duration}s`;
-    }
-    if (isDef(lineHeight)) {
-      const height = addUnit(lineHeight);
-      this.lineStyle.height = height;
-      this.lineStyle.borderRadius = height;
-    }
-    console.log(this.lineStyle, 'this.lineStyle');
+    setTimeout(() => {
+      //暂时用定时器
+      const shouldAnimate = this.inited;
+      const titles = this.children;
+      console.log(titles, this.currentIndex, 'titlestitles');
+      if (
+        !titles ||
+        !titles[this.currentIndex] ||
+        this.type !== 'line' ||
+        isHidden(this.el)
+      ) {
+        return;
+      }
+      console.log(2312212122222221);
+      let titleChildren = getElementChildren(this.el, 'GLUE-TABS-TITLE');
+      const title = titleChildren[this.currentIndex];
+      const { lineWidth, lineHeight } = this;
+      const left = title.offsetLeft + title.offsetWidth / 2;
+      console.log(title, title.offsetLeft, title.offsetWidth, 'leftleft11');
+      let width = addUnit(lineWidth);
+      let backgroundColor = this.color;
+      let transform = `translateX(${left}px) translateX(-50%)`;
+      let transitionDuration = '';
+      let height = '';
+      let borderRadius = '';
+      if (shouldAnimate) {
+        transitionDuration = `${this.duration}s`;
+      }
+      if (isDef(lineHeight)) {
+        height = addUnit(lineHeight);
+        borderRadius = height;
+      }
+      this.lineStyle = {
+        ...this.lineStyle,
+        width,
+        backgroundColor,
+        transform,
+        transitionDuration,
+        height,
+        borderRadius,
+      };
+      console.log(this.lineStyle, 'this.lineStyle');
+    }, 50);
   };
 
   findAvailableTab = (index) => {
@@ -176,12 +225,15 @@ export class GlueTabs {
     const shouldEmitChange = this.currentIndex !== null;
 
     this.currentIndex = newIndex;
-
+    console.log(this.currentIndex, 'this.currentIndex');
     if (newName !== this.active) {
       // emit('update:active', newName);
 
       if (shouldEmitChange) {
-        // emit('change', newName, newTab.title);
+        this.glueChange.emit({
+          name: newName,
+          title: newTab.title,
+        });
       }
     }
   };
@@ -218,20 +270,26 @@ export class GlueTabs {
     const { title, disabled } = this.children[index];
     console.log(item, index, title, 'item, index');
     const name = this.getTabName(this.children[index], index);
-
+    console.log(name, 'namenamename');
     if (disabled) {
-      // emit('disabled', name, title);
+      this.glueDisabled.emit({
+        name,
+        title,
+      });
     } else {
       callInterceptor({
         interceptor: this.beforeChange,
         args: [name],
         done: () => {
+          console.log(index, 'indexindex');
           this.setCurrentIndex(index);
           this.scrollToCurrentContent();
         },
       });
-
-      // emit('click', name, title);
+      this.glueClick.emit({
+        name,
+        title,
+      });
       // route(item);
     }
   };
@@ -276,9 +334,10 @@ export class GlueTabs {
   };
   renderNav = () => {
     // let list = [];
-    console.log(this.children, 'this.children22');
+    console.log(this.children, 'this.children2222232');
     return this.children.map((item, index) => {
-      let title = this.getProp(item, 'title');
+      let gtitle = this.getProp(item, 'gtitle');
+      console.log(gtitle, 'titletitletitle');
       return (
         <glue-tabs-title
           ref={(dom) => {
@@ -288,7 +347,7 @@ export class GlueTabs {
           // dot={dot}
           // type={this.type}
           // badge={badge}
-          title={title}
+          gtitle={gtitle}
           // color={color}
           // style={titleStyle}
           // class={titleClass}
@@ -331,7 +390,8 @@ export class GlueTabs {
       type,
       'afbabiufanini'
     );
-    this.setLine();
+    // this.setLine();
+    console.log(this.lineStyle, 'this.lineStyle');
     return (
       <div
         ref={(dom) => {
@@ -368,17 +428,13 @@ export class GlueTabs {
     this.tabHeight = getVisibleHeight(this.wrapRef);
     this.scrollIntoView(true);
   };
-  componentShouldUpdate() {
-    console.log(this.children, this.titleRefs, 'hfuanfuanin11');
-    if (this.children.length == this.titleRefs.length) {
-      // this.setLine();
-    }
-  }
   componentDidLoad() {
+    this.watchModelValue();
+    console.log(this.children, 'this.children');
     console.log(this.contentRef, 'Component has been rendered');
-    let htmlCollection = getElementChildren(this.contentRef);
-    //转成数组
-    this.children = [].slice.call(htmlCollection);
+    // let htmlCollection = getElementChildren(this.contentRef, 'GLUE-TAB');
+    // //转成数组
+    // this.children = [].slice.call(htmlCollection);
     console.log(this.children, 'this.children');
     this.setLine();
   }

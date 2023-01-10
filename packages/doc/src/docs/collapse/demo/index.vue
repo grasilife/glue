@@ -1,58 +1,61 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-collapse v-model="active1">
-        <van-collapse-item :title="title + 1">
+      <glue-collapse lue-collapse :model-value.prop="active1">
+        <glue-collapse-item :gtitle="gtitle + 1" :name="0">
           {{ text }}
-        </van-collapse-item>
-        <van-collapse-item :title="title + 2">
+        </glue-collapse-item>
+        <glue-collapse-item :gtitle="gtitle + 2" :name="1">
           {{ text }}
-        </van-collapse-item>
-        <van-collapse-item :title="title + 3">
+        </glue-collapse-item>
+        <glue-collapse-item :gtitle="gtitle + 3" :name="2">
           {{ text }}
-        </van-collapse-item>
-      </van-collapse>
+        </glue-collapse-item>
+      </glue-collapse>
     </DemoBlock>
 
     <DemoBlock :title="accordion">
-      <van-collapse v-model="active2" accordion>
-        <van-collapse-item :title="title + 1">
+      <glue-collapse :model-value.prop="active2" accordion>
+        <glue-collapse-item :gtitle="gtitle + 1" :name="0">
           {{ text }}
-        </van-collapse-item>
-        <van-collapse-item :title="title + 2">
+        </glue-collapse-item>
+        <glue-collapse-item :gtitle="gtitle + 2" :name="1">
           {{ text }}
-        </van-collapse-item>
-        <van-collapse-item :title="title + 3">
+        </glue-collapse-item>
+        <glue-collapse-item :gtitle="gtitle + 3" :name="2">
           {{ text }}
-        </van-collapse-item>
-      </van-collapse>
+        </glue-collapse-item>
+      </glue-collapse>
     </DemoBlock>
 
     <DemoBlock :title="disabled">
-      <van-collapse v-model="active3">
-        <van-collapse-item :title="title + 1">
+      <glue-collapse :model-value.prop="active3">
+        <glue-collapse-item :gtitle="gtitle + 1" :name="0">
           {{ text }}
-        </van-collapse-item>
-        <van-collapse-item :title="title + 2" disabled>
+        </glue-collapse-item>
+        <glue-collapse-item :gtitle="gtitle + 2" disabled :name="1">
           {{ text }}
-        </van-collapse-item>
-        <van-collapse-item :title="title + 3" disabled>
+        </glue-collapse-item>
+        <glue-collapse-item :gtitle="gtitle + 3" disabled :name="2">
           {{ text }}
-        </van-collapse-item>
-      </van-collapse>
+        </glue-collapse-item>
+      </glue-collapse>
     </DemoBlock>
 
-    <DemoBlock :title="titleSlot">
-      <van-collapse v-model="active4">
-        <van-collapse-item>
-          <template #title> {{ title + 1 }}<van-icon name="question-o" /> </template>
+    <!-- <DemoBlock :title="titleSlot">
+      <glue-collapse :model-value.prop="active4">
+        <glue-collapse-item :name="0">
+          <template #gtitle>
+            {{ gtitle + 1 }}
+            <glue-icon name="question-o" />
+          </template>
           {{ text }}
-        </van-collapse-item>
-        <van-collapse-item :title="title + 2" :value="content" icon="shop-o">
+        </glue-collapse-item>
+        <glue-collapse-item :gtitle="gtitle + 2" :value="content" icon="shop-o" :name="1">
           {{ text }}
-        </van-collapse-item>
-      </van-collapse>
-    </DemoBlock>
+        </glue-collapse-item>
+      </glue-collapse>
+    </DemoBlock> -->
   </DemoSection>
 </template>
 
@@ -62,7 +65,7 @@ export default {
     return {
       content: "内容",
       disabled: "禁用",
-      title: "标题",
+      gtitle: "标题",
       basicUsage: "基础用法",
       accordion: "手风琴",
       titleSlot: "自定义标题内容",
@@ -80,7 +83,7 @@ export default {
 @import "../../../common/style/var2.less";
 
 .demo-collapse {
-  .van-icon-question-o {
+  .glue-icon-question-o {
     margin-left: 5px;
     color: @blue;
     font-size: 15px;

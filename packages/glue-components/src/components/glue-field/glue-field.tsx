@@ -393,7 +393,7 @@ export class GlueField {
     const disabled = this.parentDisabled;
     const readonly = this.parentReadonly;
     const inputAlign = this.parentInputAlign || this.inputAlign;
-    console.log(inputAlign, 'inputAlign');
+    console.log(inputAlign, this.placeholder, 'inputAlign');
     // if (slots.input) {
     //   return (
     //     <div class={(classNames('glue-field__control', 'glue-field--custom'), bem([inputAlign]), {})} onClick={this.onClickInput}>
@@ -544,7 +544,6 @@ export class GlueField {
     return (
       <Host class="glue-field">
         <glue-cell
-          gtitle="#slot"
           value="#slot"
           size={this.size}
           icon={this.leftIcon}
@@ -562,7 +561,7 @@ export class GlueField {
           clickable={this.clickable}
           titleStyle={this.labelStyle()}
           titleClass={{
-            'glue-field__label': true,
+            'glue-field__label': this.label,
             ...this.labelClass,
             ...labelAlign,
           }}
@@ -571,7 +570,8 @@ export class GlueField {
           }}
           arrowDirection={this.arrowDirection}
         >
-          <div slot="gtitle">{this.renderLabel()}</div>
+          {/* <div slot="gtitle">{this.renderLabel()}</div> */}
+          {this.renderLabel()}
           <div slot="value">
             <div class={bem('body')}>
               {this.renderInput()}

@@ -1,73 +1,61 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-tabbar v-model="active">
-        <van-tabbar-item icon="home-o">{{ tab }}</van-tabbar-item>
-        <van-tabbar-item icon="search">{{ tab }}</van-tabbar-item>
-        <van-tabbar-item icon="friends-o">{{ tab }}</van-tabbar-item>
-        <van-tabbar-item icon="setting-o">{{ tab }}</van-tabbar-item>
-      </van-tabbar>
+      <glue-tabbar :model-value.prop="active">
+        <glue-tabbar-item icon="home-o" :gtitle="tab"></glue-tabbar-item>
+        <glue-tabbar-item icon="search" :gtitle="tab"></glue-tabbar-item>
+        <glue-tabbar-item icon="friends-o" :gtitle="tab"></glue-tabbar-item>
+        <glue-tabbar-item icon="setting-o" :gtitle="tab"></glue-tabbar-item>
+      </glue-tabbar>
     </DemoBlock>
 
     <DemoBlock :title="matchByName">
-      <van-tabbar v-model="activeName">
-        <van-tabbar-item name="home" icon="home-o">
-          {{ tab }}
-        </van-tabbar-item>
-        <van-tabbar-item name="search" icon="search">
-          {{ tab }}
-        </van-tabbar-item>
-        <van-tabbar-item name="friends" icon="friends-o">
-          {{ tab }}
-        </van-tabbar-item>
-        <van-tabbar-item name="setting" icon="setting-o">
-          {{ tab }}
-        </van-tabbar-item>
-      </van-tabbar>
+      <glue-tabbar :model-value.prop="activeName">
+        <glue-tabbar-item name="home" icon="home-o" :gtitle="tab"> </glue-tabbar-item>
+        <glue-tabbar-item name="search" icon="search" :gtitle="tab"> </glue-tabbar-item>
+        <glue-tabbar-item name="friends" icon="friends-o" :gtitle="tab"> </glue-tabbar-item>
+        <glue-tabbar-item name="setting" icon="setting-o" :gtitle="tab"> </glue-tabbar-item>
+      </glue-tabbar>
     </DemoBlock>
 
     <DemoBlock :title="badge">
-      <van-tabbar v-model="active2">
-        <van-tabbar-item icon="home-o">{{ tab }}</van-tabbar-item>
-        <van-tabbar-item icon="search" dot>{{ tab }}</van-tabbar-item>
-        <van-tabbar-item icon="friends-o" badge="5">
-          {{ tab }}
-        </van-tabbar-item>
-        <van-tabbar-item icon="setting-o" badge="20">
-          {{ tab }}
-        </van-tabbar-item>
-      </van-tabbar>
+      <glue-tabbar :model-value.prop="active2">
+        <glue-tabbar-item icon="home-o" :gtitle="tab"></glue-tabbar-item>
+        <glue-tabbar-item icon="search" dot :gtitle="tab"></glue-tabbar-item>
+        <glue-tabbar-item icon="friends-o" badge="5" :gtitle="tab"> </glue-tabbar-item>
+        <glue-tabbar-item icon="setting-o" badge="20" :gtitle="tab"> </glue-tabbar-item>
+      </glue-tabbar>
     </DemoBlock>
 
-    <DemoBlock :title="customIcon">
-      <van-tabbar v-model="active3">
-        <van-tabbar-item badge="3">
+    <!-- <DemoBlock :title="customIcon">
+      <glue-tabbar :model-value.prop="active3">
+        <glue-tabbar-item badge="3">
           <span>{{ custom }}</span>
           <template #icon="props">
             <img :src="props.active ? icon.active : icon.inactive" />
           </template>
-        </van-tabbar-item>
-        <van-tabbar-item icon="search">{{ tab }}</van-tabbar-item>
-        <van-tabbar-item icon="setting-o">{{ tab }}</van-tabbar-item>
-      </van-tabbar>
-    </DemoBlock>
+        </glue-tabbar-item>
+        <glue-tabbar-item icon="search" :gtitle="tab"></glue-tabbar-item>
+        <glue-tabbar-item icon="setting-o" :gtitle="tab"></glue-tabbar-item>
+      </glue-tabbar>
+    </DemoBlock> -->
 
     <DemoBlock :title="customColor">
-      <van-tabbar v-model="active4" active-color="#ee0a24" inactive-color="#000">
-        <van-tabbar-item icon="home-o">{{ tab }}</van-tabbar-item>
-        <van-tabbar-item icon="search">{{ tab }}</van-tabbar-item>
-        <van-tabbar-item icon="friends-o">{{ tab }}</van-tabbar-item>
-        <van-tabbar-item icon="setting-o">{{ tab }}</van-tabbar-item>
-      </van-tabbar>
+      <glue-tabbar :model-value.prop="active4" active-color="#ee0a24" inactive-color="#000">
+        <glue-tabbar-item icon="home-o" :gtitle="tab"></glue-tabbar-item>
+        <glue-tabbar-item icon="search" :gtitle="tab"></glue-tabbar-item>
+        <glue-tabbar-item icon="friends-o" :gtitle="tab"></glue-tabbar-item>
+        <glue-tabbar-item icon="setting-o" :gtitle="tab"></glue-tabbar-item>
+      </glue-tabbar>
     </DemoBlock>
 
     <DemoBlock :title="switchEvent">
-      <van-tabbar v-model="active5" @change="onChange">
-        <van-tabbar-item icon="home-o">{{ tab + 1 }}</van-tabbar-item>
-        <van-tabbar-item icon="search">{{ tab + 2 }}</van-tabbar-item>
-        <van-tabbar-item icon="friends-o">{{ tab + 3 }}</van-tabbar-item>
-        <van-tabbar-item icon="setting-o">{{ tab + 4 }}</van-tabbar-item>
-      </van-tabbar>
+      <glue-tabbar :model-value.prop="active5" @change="onChange">
+        <glue-tabbar-item icon="home-o" :gtitle="tab + 1"></glue-tabbar-item>
+        <glue-tabbar-item icon="search" :gtitle="tab + 2"></glue-tabbar-item>
+        <glue-tabbar-item icon="friends-o" :gtitle="tab + 3"></glue-tabbar-item>
+        <glue-tabbar-item icon="setting-o" :gtitle="tab + 4"></glue-tabbar-item>
+      </glue-tabbar>
     </DemoBlock>
   </DemoSection>
 </template>
@@ -111,7 +99,7 @@ export default {
 
 <style lang="less">
 .demo-tabbar {
-  .van-tabbar {
+  .glue-tabbar {
     position: relative;
     padding-bottom: 0;
   }

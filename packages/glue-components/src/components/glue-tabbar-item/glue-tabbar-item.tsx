@@ -29,6 +29,7 @@ export class GlueTabbarItem {
   @State() parentModelValue;
   @State() selected: boolean;
   @State() parentEl: any;
+  @State() index: any;
   @Event() glueClick: EventEmitter;
 
   componentDidLoad() {
@@ -46,21 +47,27 @@ export class GlueTabbarItem {
   }
 
   onClick = () => {
-    this.glueClick.emit();
+    let parent = getElementParent(this.el);
+    console.log(parent.tagName, 'parent.tagName');
+    if (parent.tagName === 'GLUE-TABBAR') {
+      const { name, index } = this;
+      if (name) {
+        parent.setValue('modelValue', name);
+      } else {
+        parent.setValue('modelValue', index);
+      }
+
+      this.glueClick.emit();
+    }
+
   };
-
   @Method()
-  async setParentActive() {
-    await this.parentEl.setActive(this.name);
-    console.log(this.name, 'parentModelValue333');
+  async setValue(key, value) {
+    console.log(key, value, 'hhijioa');
+    this[key] = value;
   }
 
-  @Method()
-  async setActive(parentModelValue) {
-    //由父元素触发
-    console.log(parentModelValue, this.name, 'parentModelValue111');
-    this.selected = parentModelValue == this.name;
-  }
+
   renderIcon = () => {
     if (this.icon == '#slot') {
       return <slot name="icon"></slot>;
@@ -82,7 +89,6 @@ export class GlueTabbarItem {
         style={{ color }}
         onClick={() => {
           this.onClick();
-          this.setParentActive();
         }}
       >
         <glue-badge dot={dot} content={badge} class="glue-tabbar-item__icon">

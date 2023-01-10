@@ -19,7 +19,7 @@ export class GlueSidebar {
   @Element() el!: HTMLGlueSidebarElement;
   @Prop({ reflect: true }) modelValue: any;
   componentDidLoad() {
-    let children = getElementChildren(this.el);
+    let children = getElementChildren(this.el, 'GLUE-SIDEBAR-ITEM');
     console.log(children, 'children');
   }
   @Event() glueChange: EventEmitter;
@@ -29,7 +29,7 @@ export class GlueSidebar {
     console.log(value, 'valuevalue');
     this.modelValue = value;
     this.glueChange.emit(value);
-    let children = getElementChildren(this.el);
+    let children = getElementChildren(this.el, 'GLUE-SIDEBAR-ITEM');
     for (let i = 0; i < children.length; i++) {
       console.log(children[i], 'children[i]');
       children[i].setActive();
