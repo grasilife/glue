@@ -8,6 +8,7 @@ import {
   State,
   Element,
   Method,
+  Watch,
 } from '@stencil/core';
 import classNames from 'classnames';
 import { CellArrowDirection } from '../glue-cell/glue-cell-interface';
@@ -33,13 +34,17 @@ export class GlueCollapseItem {
   @Prop() titleClass = null;
   @Prop() valueClass = null;
   @Prop() tilabelClasstle = null;
-  @Prop() arrowDirection: CellArrowDirection = 'down';
+  @Prop({ mutable: true }) arrowDirection: CellArrowDirection = 'down';
   @Prop() border: boolean = true;
   @Prop() name: string | number;
 
   @Prop() disabled: boolean;
   @State() show = false;
   @Event() clickTitle: EventEmitter;
+  @Watch('show')
+  watchShow() {
+    this.arrowDirection = this.show ? 'up' : 'down';
+  }
   private clickTitleHandle = () => {
     console.log('22121212121');
     if (!this.disabled) {
@@ -62,15 +67,11 @@ export class GlueCollapseItem {
     return isExpanded;
   }
   private toggle = () => {
-    // this.show = !this.show;
-    this.arrowDirection = this.show ? 'up' : 'down';
-    // console.log(this.show, 'this.show');
     //先传递到父组件
     let parentEl = getElementParent(this.el);
     console.log(parentEl, 'parentEl');
 
     parentEl.isExpanded(this.name).then((expanded) => {
-      // this.show = expanded;
       parentEl.toggle(this.name, expanded);
       console.log(this.name, expanded, 'this.show33');
     });

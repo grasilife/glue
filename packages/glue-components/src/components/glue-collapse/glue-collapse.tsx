@@ -23,7 +23,7 @@ const [bem] = createNamespace('glue-collapse');
 export class GlueCollapse {
   @Element() el!: HTMLGlueCollapseElement;
   //手风琴模式
-  @Prop({ reflect: true }) accordion: boolean;
+  @Prop({ reflect: true }) accordion: boolean = false;
 
   @Prop({ reflect: true, mutable: true }) modelValue: any = [];
 
@@ -37,21 +37,29 @@ export class GlueCollapse {
       let element = this.children[i];
       let name = element.name;
       //只能使用方法设置state
-      if (this.modelValue.indexOf(name) === -1) {
-        element.setValue('show', false);
-        element.setValue('arrowDirection', 'up');
+      if (this.accordion) {
+        if (this.modelValue == name) {
+          element.setValue('show', true);
+        } else {
+          element.setValue('show', false);
+        }
       } else {
-        element.setValue('show', true);
-        element.setValue('arrowDirection', 'down');
+        if (this.modelValue.indexOf(name) === -1) {
+          element.setValue('show', false);
+        } else {
+          element.setValue('show', true);
+        }
       }
     }
   }
   @Method()
   async toggle(name, expanded) {
-    console.log(name, expanded, this.modelValue, 'toggle');
+    console.log(name, expanded, this.modelValue, this.accordion, 'toggle');
     if (this.accordion) {
       if (name === this.modelValue) {
         this.modelValue = '';
+      } else {
+        this.modelValue = name;
       }
     } else if (expanded) {
       this.modelValue = this.modelValue.filter((activeName) => {
@@ -66,10 +74,10 @@ export class GlueCollapse {
 
   @Method()
   async isExpanded(name) {
-    const { accordion, modelValue } = this;
+    console.log(name, this.accordion, 'namenamename');
     if (
-      !accordion &&
-      !Array.isArray(modelValue) &&
+      !this.accordion &&
+      !Array.isArray(this.modelValue) &&
       process.env.NODE_ENV !== 'production'
     ) {
       console.error(
@@ -77,8 +85,9 @@ export class GlueCollapse {
       );
       return;
     }
-    console.log(modelValue, name, modelValue.indexOf(name), 'isExpanded11');
-    return accordion ? modelValue === name : modelValue.indexOf(name) !== -1;
+    return this.accordion
+      ? this.modelValue === name
+      : this.modelValue.indexOf(name) !== -1;
   }
   render() {
     return (

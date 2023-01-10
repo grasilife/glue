@@ -21,7 +21,7 @@ export class GlueCollapseDemo {
     return (
       <div class={classNames('cunstom')}>
         <glue-doc-section>
-          <glue-doc-block gtitle={this.basicUsage}>
+          {/* <glue-doc-block gtitle={this.basicUsage}>
             <glue-collapse modelValue={this.active1}>
               <glue-collapse-item gtitle={this.gtitle + 1} name={0}>
                 {this.text}
@@ -33,42 +33,42 @@ export class GlueCollapseDemo {
                 {this.text}
               </glue-collapse-item>
             </glue-collapse>
-          </glue-doc-block>
-          {/* <glue-doc-block gtitle={this.accordion}>
+          </glue-doc-block> */}
+          <glue-doc-block gtitle={this.accordion}>
             <glue-collapse modelValue={this.active2} accordion>
-              <glue-collapse-item gtitle={this.gtitle + 1}>
+              <glue-collapse-item gtitle={this.gtitle + 1} name={0}>
                 {this.text}
               </glue-collapse-item>
-              <glue-collapse-item gtitle={this.gtitle + 2}>
+              <glue-collapse-item gtitle={this.gtitle + 2} name={1}>
                 {this.text}
               </glue-collapse-item>
-              <glue-collapse-item gtitle={this.gtitle + 3}>
+              <glue-collapse-item gtitle={this.gtitle + 3} name={2}>
                 {this.text}
               </glue-collapse-item>
             </glue-collapse>
           </glue-doc-block>
-          <glue-doc-block gtitle={this.disabled}>
+          {/* <glue-doc-block gtitle={this.disabled}>
             <glue-collapse modelValue={this.active3} accordion>
-              <glue-collapse-item gtitle={this.gtitle + 1}>
+              <glue-collapse-item gtitle={this.gtitle + 1} name={0}>
                 {this.text}
               </glue-collapse-item>
-              <glue-collapse-item gtitle={this.gtitle + 2}>
+              <glue-collapse-item gtitle={this.gtitle + 2} name={1}>
                 {this.text}
               </glue-collapse-item>
-              <glue-collapse-item gtitle={this.gtitle + 3}>
+              <glue-collapse-item gtitle={this.gtitle + 3} name={2}>
                 {this.text}
               </glue-collapse-item>
             </glue-collapse>
           </glue-doc-block>
           <glue-doc-block gtitle={this.titleSlot}>
             <glue-collapse modelValue={this.active4} accordion>
-              <glue-collapse-item gtitle={this.gtitle + 1}>
+              <glue-collapse-item gtitle={this.gtitle + 1} name={0}>
                 {this.text}
               </glue-collapse-item>
-              <glue-collapse-item gtitle={this.gtitle + 2}>
+              <glue-collapse-item gtitle={this.gtitle + 2} name={1}>
                 {this.text}
               </glue-collapse-item>
-              <glue-collapse-item gtitle={this.gtitle + 3}>
+              <glue-collapse-item gtitle={this.gtitle + 3} name={2}>
                 {this.text}
               </glue-collapse-item>
             </glue-collapse>
