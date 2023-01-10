@@ -37,7 +37,7 @@ export class GlueSwipe {
   @Prop() duration: string | number = 500;
   @Prop() touchable = false;
   @Prop() initialSwipe = 0;
-  @Prop() showIndicators: any = false;
+  @Prop() showIndicators: string | boolean = true;
   @Prop() stopPropagation = false;
   @State() rect = null;
   @State() touchStartTime;
@@ -389,6 +389,7 @@ export class GlueSwipe {
   };
 
   renderIndicator = () => {
+    console.log(this.showIndicators, this.count(), 'this.showIndicators');
     if (this.showIndicators == '#slot') {
       return <slot name="show-indicators"></slot>;
     }
@@ -406,7 +407,7 @@ export class GlueSwipe {
   };
   componentDidLoad() {
     console.log('Component has been rendered');
-    this.children = getElementChildren(this.trackRef, 'GLUE-CELL');
+    this.children = getElementChildren(this.trackRef, 'GLUE-SWIPE-ITEM');
     console.log(this.children, 'this.children');
     this.initialize();
   }
