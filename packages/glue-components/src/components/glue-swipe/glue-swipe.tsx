@@ -377,6 +377,7 @@ export class GlueSwipe {
     //指示器
     const active = index === this.activeIndicator();
     const style = active ? { backgroundColor: this.indicatorColor } : null;
+    console.log(style, 'style11');
     return (
       <i
         style={style}

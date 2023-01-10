@@ -1,4 +1,4 @@
-import { Component, State, h } from '@stencil/core';
+import { Component, State, h, Host } from '@stencil/core';
 import classNames from 'classnames';
 @Component({
   tag: 'glue-swipe-demo',
@@ -25,7 +25,7 @@ export class GlueSwipeDemo {
   }
   render() {
     return (
-      <div class={classNames('cunstom')}>
+      <Host>
         <glue-doc-section>
           <glue-doc-block gtitle={this.basicUsage}>
             <glue-swipe autoplay={3000} indicatorColor="white">
@@ -100,7 +100,7 @@ export class GlueSwipeDemo {
             </glue-swipe>
           </glue-doc-block> */}
         </glue-doc-section>
-      </div>
+      </Host>
     );
   }
 }
