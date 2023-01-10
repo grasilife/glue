@@ -81,7 +81,7 @@ export class GlueTabs {
   currentIndexHandle() {
     this.scrollIntoView(false);
     console.log(12212121);
-    // this.setLine();
+    this.setLine();
 
     // scroll to correct position
     if (this.stickyFixed && !this.scrollspy) {
@@ -97,6 +97,7 @@ export class GlueTabs {
   watchModelValue() {
     this.children = getElementChildren(this.el, 'GLUE-TAB');
     console.log(this.children, 'this.children2222');
+    this.setCurrentIndex(this.active);
     // this.setLine();
     // for (let i = 0; i < this.children.length; i++) {
     //   let element = this.children[i];
@@ -155,46 +156,49 @@ export class GlueTabs {
 
   // update nav bar style
   setLine = () => {
-    const shouldAnimate = this.inited;
-    const titles = this.children;
-    console.log(titles, this.currentIndex, 'titlestitles');
-    if (
-      !titles ||
-      !titles[this.currentIndex] ||
-      this.type !== 'line' ||
-      isHidden(this.el)
-    ) {
-      return;
-    }
-    console.log(2312212122222221);
-    let titleChildren = getElementChildren(this.el, 'GLUE-TABS-TITLE');
-    const title = titleChildren[this.currentIndex];
-    const { lineWidth, lineHeight } = this;
-    const left = title.offsetLeft + title.offsetWidth / 2;
-    console.log(title, title.offsetLeft, title.offsetWidth, 'leftleft11');
-    let width = addUnit(lineWidth);
-    let backgroundColor = this.color;
-    let transform = `translateX(${left}px) translateX(-50%)`;
-    let transitionDuration = '';
-    let height = '';
-    let borderRadius = '';
-    if (shouldAnimate) {
-      transitionDuration = `${this.duration}s`;
-    }
-    if (isDef(lineHeight)) {
-      height = addUnit(lineHeight);
-      borderRadius = height;
-    }
-    this.lineStyle = {
-      ...this.lineStyle,
-      width,
-      backgroundColor,
-      transform,
-      transitionDuration,
-      height,
-      borderRadius,
-    };
-    console.log(this.lineStyle, 'this.lineStyle');
+    setTimeout(() => {
+      //暂时用定时器
+      const shouldAnimate = this.inited;
+      const titles = this.children;
+      console.log(titles, this.currentIndex, 'titlestitles');
+      if (
+        !titles ||
+        !titles[this.currentIndex] ||
+        this.type !== 'line' ||
+        isHidden(this.el)
+      ) {
+        return;
+      }
+      console.log(2312212122222221);
+      let titleChildren = getElementChildren(this.el, 'GLUE-TABS-TITLE');
+      const title = titleChildren[this.currentIndex];
+      const { lineWidth, lineHeight } = this;
+      const left = title.offsetLeft + title.offsetWidth / 2;
+      console.log(title, title.offsetLeft, title.offsetWidth, 'leftleft11');
+      let width = addUnit(lineWidth);
+      let backgroundColor = this.color;
+      let transform = `translateX(${left}px) translateX(-50%)`;
+      let transitionDuration = '';
+      let height = '';
+      let borderRadius = '';
+      if (shouldAnimate) {
+        transitionDuration = `${this.duration}s`;
+      }
+      if (isDef(lineHeight)) {
+        height = addUnit(lineHeight);
+        borderRadius = height;
+      }
+      this.lineStyle = {
+        ...this.lineStyle,
+        width,
+        backgroundColor,
+        transform,
+        transitionDuration,
+        height,
+        borderRadius,
+      };
+      console.log(this.lineStyle, 'this.lineStyle');
+    }, 50);
   };
 
   findAvailableTab = (index) => {
@@ -386,7 +390,7 @@ export class GlueTabs {
       type,
       'afbabiufanini'
     );
-    this.setLine();
+    // this.setLine();
     console.log(this.lineStyle, 'this.lineStyle');
     return (
       <div
