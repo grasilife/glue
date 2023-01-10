@@ -88,7 +88,7 @@ export class GlueCollapseItem {
         role="button"
         class={classNames({
           'glue-collapse-item__title': true,
-          'glue-collapse-item--disabled': disabled,
+          'glue-collapse-item__title--disabled': disabled,
           'glue-collapse-item--expanded': this.expanded,
           'glue-collapse-item--borderless': border,
         })}
