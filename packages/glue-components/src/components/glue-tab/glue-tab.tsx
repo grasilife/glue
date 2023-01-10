@@ -61,7 +61,7 @@ export class GlueTab {
             'glue-tab__inactive': !active,
           })}
         >
-          <div class="glue-tab__pane">
+          <div class="glue-tab__panel">
             <slot></slot>
           </div>
         </glue-swipe-item>
@@ -79,7 +79,7 @@ export class GlueTab {
   }
   render() {
     return (
-      <Host role="tabpanel" class="glue-tab__pane">
+      <Host role="tabpanel" class="glue-tab__panel">
         {this.contentRender()}
       </Host>
     );
