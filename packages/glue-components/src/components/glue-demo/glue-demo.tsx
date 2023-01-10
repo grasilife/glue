@@ -17,7 +17,8 @@ export class GlueDemo {
         {/* <glue-tabbar-demo></glue-tabbar-demo> */}
         {/* <glue-index-bar-demo></glue-index-bar-demo> */}
         {/* <glue-tab-demo></glue-tab-demo> */}
-        <glue-swipe-demo></glue-swipe-demo>
+        {/* <glue-swipe-demo></glue-swipe-demo> */}
+        <glue-collapse-demo></glue-collapse-demo>
       </Host>
     );
   }

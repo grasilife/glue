@@ -301,11 +301,10 @@ export namespace Components {
         "accordion": boolean;
         "border": boolean;
         "isExpanded": (name: any) => Promise<boolean>;
-        "modelValue": any[];
+        "modelValue": any;
         "toggle": (name: any, expanded: any) => Promise<void>;
     }
     interface GlueCollapseDemo {
-        "first": string;
     }
     interface GlueCollapseItem {
         "arrowDirection": CellArrowDirection;
@@ -2446,10 +2445,9 @@ declare namespace LocalJSX {
     interface GlueCollapse {
         "accordion"?: boolean;
         "border"?: boolean;
-        "modelValue"?: any[];
+        "modelValue"?: any;
     }
     interface GlueCollapseDemo {
-        "first"?: string;
     }
     interface GlueCollapseItem {
         "arrowDirection"?: CellArrowDirection;

@@ -18,7 +18,7 @@ export class GlueCollapse {
   @Prop({
     reflect: true,
   })
-  modelValue = [];
+  modelValue: any = [];
 
   @Prop({
     reflect: true,
