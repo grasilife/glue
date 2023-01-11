@@ -36,43 +36,45 @@ export class GlueListDemo {
     },
   ];
   onLoad(index) {
-    let copyList = JSON.parse(JSON.stringify(this.list));
-    const list = copyList[index];
+    const list = JSON.parse(JSON.stringify(this.list[index]));
     list.loading = true;
 
     setTimeout(() => {
-      // if (list.refreshing) {
-      //   list.items = [];
-      //   list.refreshing = false;
-      // }
-      // list.refreshing = false;
+      if (list.refreshing) {
+        list.items = [];
+        list.refreshing = false;
+      }
 
-      // // show error info in second demo
-      console.log(index, list.items.length, list.error, 'list.error');
+      for (let i = 0; i < 10; i++) {
+        const text = list.items.length + 1;
+        list.items.push(text < 10 ? '0' + text : text);
+      }
+
+      list.loading = false;
+      console.log(list.loading, 'list.loading');
+      list.refreshing = false;
+
+      // show error info in second demo
       if (index === 1 && list.items.length === 10 && !list.error) {
         list.error = true;
-        list.loading = false;
-        console.log(331221);
-        return;
       } else {
         list.error = false;
-        list.loading = true;
-      }
-      if (list.items.length >= 40) {
-        list.finished = true;
-      } else {
-        for (let i = 0; i < 10; i++) {
-          const text = list.items.length + 1;
-          let item = text < 10 ? '0' + text : text;
-          list.items.push(item);
-        }
       }
 
-      this.list = copyList;
-      console.log(list, 'list222');
+      if (list.items.length >= 40) {
+        list.finished = true;
+      }
+      //数据不可变
+      this.list = this.list.map((item, index2) => {
+        if (index2 == index) {
+          return list;
+        } else {
+          return item;
+        }
+      });
     }, 1000);
-    this.list = copyList;
-    console.log(this.list, copyList, 'copyList');
+
+    console.log(this.list, 'this.list');
   }
 
   onRefresh(index) {
@@ -86,7 +88,7 @@ export class GlueListDemo {
     return (
       <Host>
         <glue-doc-section>
-          {/* <glue-doc-block gtitle={this.basicUsage}>
+          <glue-doc-block gtitle={this.basicUsage}>
             <glue-list
               loading={this.list[0].loading}
               finished={this.list[0].finished}
@@ -101,8 +103,8 @@ export class GlueListDemo {
                 );
               })}
             </glue-list>
-          </glue-doc-block> */}
-          <glue-doc-block gtitle={this.errorInfo}>
+          </glue-doc-block>
+          {/* <glue-doc-block gtitle={this.errorInfo}>
             <glue-list
               loading={this.list[1].loading}
               finished={this.list[1].finished}
@@ -119,7 +121,7 @@ export class GlueListDemo {
                 );
               })}
             </glue-list>
-          </glue-doc-block>
+          </glue-doc-block> */}
         </glue-doc-section>
       </Host>
     );

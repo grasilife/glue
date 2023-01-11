@@ -52,9 +52,9 @@ export class GlueList {
   }
   _check = () => {
     console.log(this.root, this.placeholder, 'ahgfyaufbabuf');
-    if (this.loading || this.finished || this.error) {
-      return;
-    }
+    // if (this.loading || this.finished || this.error) {
+    //   return;
+    // }
     const { offset, direction } = this;
     // let parentEl = getElementParent(this.el);
     let scrollParent = useScrollParent(this.el);
@@ -150,6 +150,7 @@ export class GlueList {
   disconnectedCallback() {
     let scrollParent = useScrollParent(this.el);
     scrollParent.removeEventListener('scroll', this._check);
+    this.loading = !this.loading;
   }
   render() {
     const Content = <slot></slot>;
