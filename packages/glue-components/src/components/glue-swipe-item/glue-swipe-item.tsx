@@ -8,7 +8,7 @@ import {
   Method,
 } from '@stencil/core';
 // import classNames from 'classnames';
-import { getElementParent, getAttribute } from '../../utils/base';
+import { getElementParent } from '../../utils/base';
 @Component({
   tag: 'glue-swipe-item',
   styleUrl: 'glue-swipe-item.less',
