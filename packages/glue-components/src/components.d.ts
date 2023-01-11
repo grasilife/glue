@@ -646,7 +646,6 @@ export namespace Components {
         "offset": number;
     }
     interface GlueListDemo {
-        "first": string;
     }
     interface GlueLoading {
         "color": string;
@@ -2794,7 +2793,6 @@ declare namespace LocalJSX {
         "onGlueLoad"?: (event: CustomEvent<any>) => void;
     }
     interface GlueListDemo {
-        "first"?: string;
     }
     interface GlueLoading {
         "color"?: string;
