@@ -76,7 +76,30 @@ export class GlueListDemo {
 
     console.log(this.list, 'this.list');
   }
-
+  glueUpdateLoad(index, loading) {
+    this.list = this.list.map((item, index2) => {
+      if (index2 == index) {
+        return {
+          ...item,
+          loading,
+        };
+      } else {
+        return item;
+      }
+    });
+  }
+  glueUpdateError(index, error) {
+    this.list = this.list.map((item, index2) => {
+      if (index2 == index) {
+        return {
+          ...item,
+          error,
+        };
+      } else {
+        return item;
+      }
+    });
+  }
   onRefresh(index) {
     this.list[index].finished = false;
     this.onLoad(index);
@@ -95,6 +118,14 @@ export class GlueListDemo {
               finishedText={this.finishedText}
               onGlueLoad={() => {
                 this.onLoad(0);
+              }}
+              onGlueUpdateLoad={(e) => {
+                console.log(e, 'jijiiji');
+                this.glueUpdateLoad(0, e.detail);
+              }}
+              onGlueUpdateError={(e) => {
+                console.log(e, 'jijiiji');
+                this.glueUpdateError(0, e.detail);
               }}
             >
               {this.list[0].items.map((_item, index) => {

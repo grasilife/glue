@@ -28,7 +28,6 @@ export class GlueList {
   @Prop() finishedText: string;
   @Prop() offset = 300;
   @Prop() direction = 'down';
-  @Event() glueClickErrorText: EventEmitter;
   @Prop() immediateCheck = true;
   private root: HTMLElement;
   private placeholder: HTMLElement;
@@ -45,16 +44,17 @@ export class GlueList {
     this._check();
   }
   @Event() glueLoad: EventEmitter;
-
+  @Event() glueUpdateLoad: EventEmitter;
+  @Event() glueUpdateError: EventEmitter;
   @Method()
   async check() {
     this._check();
   }
   _check = () => {
     console.log(this.root, this.placeholder, 'ahgfyaufbabuf');
-    // if (this.loading || this.finished || this.error) {
-    //   return;
-    // }
+    if (this.loading || this.finished || this.error) {
+      return;
+    }
     const { offset, direction } = this;
     // let parentEl = getElementParent(this.el);
     let scrollParent = useScrollParent(this.el);
@@ -79,11 +79,12 @@ export class GlueList {
     console.log(isReachEdge, 'isReachEdge');
     if (isReachEdge) {
       this.loading = true;
+      this.glueUpdateLoad.emit(this.loading);
       this.glueLoad.emit();
     }
   };
   clickErrorTextHandle = () => {
-    this.glueClickErrorText.emit(false);
+    this.glueUpdateError.emit(false);
     this._check();
   };
   renderErrorText = () => {
@@ -142,7 +143,9 @@ export class GlueList {
   };
   componentDidLoad() {
     let scrollParent = useScrollParent(this.el);
-    scrollParent.addEventListener('scroll', this._check);
+    scrollParent.addEventListener('scroll', this._check, {
+      passive: true,
+    });
     if (this.immediateCheck) {
       this._check();
     }

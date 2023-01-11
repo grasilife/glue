@@ -2789,8 +2789,9 @@ declare namespace LocalJSX {
         "loading"?: any;
         "loadingText"?: string;
         "offset"?: number;
-        "onGlueClickErrorText"?: (event: CustomEvent<any>) => void;
         "onGlueLoad"?: (event: CustomEvent<any>) => void;
+        "onGlueUpdateError"?: (event: CustomEvent<any>) => void;
+        "onGlueUpdateLoad"?: (event: CustomEvent<any>) => void;
     }
     interface GlueListDemo {
     }
