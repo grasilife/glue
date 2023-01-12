@@ -20,8 +20,8 @@ import { isHidden } from '../../utils/dom/style';
 })
 export class GlueList {
   @Element() el: HTMLGlueListElement;
-  @Prop() error: boolean;
-  @Prop({ mutable: true }) loading;
+  @Prop() error: boolean = false;
+  @Prop({ mutable: true }) loading = false;
   @Prop() finished: boolean;
   @Prop() errorText: string;
   @Prop() loadingText: string = '加载中...';
@@ -52,6 +52,7 @@ export class GlueList {
   }
   _check = () => {
     console.log(this.root, this.placeholder, 'ahgfyaufbabuf');
+    console.log(this.loading, this.finished, this.error, 'this.loading');
     if (this.loading || this.finished || this.error) {
       return;
     }

@@ -12,97 +12,56 @@ export class GlueListDemo {
   @State() errorText: string = '请求失败，点击重新加载';
   @State() pullRefresh: string = '下拉刷新';
   @State() finishedText: string = '没有更多了';
-  @State() list: any[] = [
-    {
-      items: [],
-      refreshing: false,
-      loading: false,
-      error: false,
-      finished: false,
-    },
-    {
-      items: [],
-      refreshing: false,
-      loading: false,
-      error: false,
-      finished: false,
-    },
-    {
-      items: [],
-      refreshing: false,
-      loading: false,
-      error: false,
-      finished: false,
-    },
-  ];
-  onLoad(index) {
-    const list = JSON.parse(JSON.stringify(this.list[index]));
-    list.loading = true;
-
-    setTimeout(() => {
-      if (list.refreshing) {
-        list.items = [];
-        list.refreshing = false;
-      }
-
-      for (let i = 0; i < 10; i++) {
-        const text = list.items.length + 1;
-        list.items.push(text < 10 ? '0' + text : text);
-      }
-
-      list.loading = false;
-      console.log(list.loading, 'list.loading');
-      list.refreshing = false;
-
-      // show error info in second demo
-      if (index === 1 && list.items.length === 10 && !list.error) {
-        list.error = true;
-      } else {
-        list.error = false;
-      }
-
-      if (list.items.length >= 40) {
-        list.finished = true;
-      }
-      //数据不可变
-      this.list = this.list.map((item, index2) => {
-        if (index2 == index) {
-          return list;
-        } else {
-          return item;
+  @State() listObj: any = {
+    items: [],
+    refreshing: false,
+    loading: false,
+    error: false,
+    finished: false,
+  };
+  getData() {
+    return new Promise((resolve, _reject) => {
+      let items = [];
+      setTimeout(() => {
+        for (let i = 0; i < 10; i++) {
+          const text = items.length + 1;
+          items.push(text < 10 ? '0' + text : text);
         }
+        return resolve(items);
+      }, 1000);
+    });
+  }
+  onLoad() {
+    this.listObj = { ...this.listObj, loading: true };
+    this.getData()
+      .then((res: any[]) => {
+        console.log(res, 'resresres');
+        // if (list.items.length >= 40) {
+        //   list.finished = true;
+        //   return;
+        // }
+        this.listObj = {
+          ...this.listObj,
+          loading: false,
+          items: [...this.listObj.items, ...res],
+        };
+        console.log(this.listObj, 'this.listObj2');
+      })
+      .catch(() => {
+        this.listObj.error = true;
+        this.listObj.loading = false;
       });
-    }, 1000);
-
-    console.log(this.list, 'this.list');
+    console.log(this.listObj, 'this.listObj');
   }
-  glueUpdateLoad(index, loading) {
-    this.list = this.list.map((item, index2) => {
-      if (index2 == index) {
-        return {
-          ...item,
-          loading,
-        };
-      } else {
-        return item;
-      }
-    });
+  glueUpdateLoad(loading) {
+    this.listObj = { ...this.listObj, loading: loading };
   }
-  glueUpdateError(index, error) {
-    this.list = this.list.map((item, index2) => {
-      if (index2 == index) {
-        return {
-          ...item,
-          error,
-        };
-      } else {
-        return item;
-      }
-    });
+  glueUpdateError(error) {
+    this.listObj = { ...this.listObj, error: error };
   }
-  onRefresh(index) {
-    this.list[index].finished = false;
-    this.onLoad(index);
+  onRefresh() {
+    this.listObj.finished = false;
+    this.onLoad();
   }
   // componentWillLoad() {
   //   this.onLoad(0);
@@ -113,22 +72,22 @@ export class GlueListDemo {
         <glue-doc-section>
           <glue-doc-block gtitle={this.basicUsage}>
             <glue-list
-              loading={this.list[0].loading}
-              finished={this.list[0].finished}
+              loading={this.listObj.loading}
+              finished={this.listObj.finished}
               finishedText={this.finishedText}
               onGlueLoad={() => {
-                this.onLoad(0);
+                this.onLoad();
               }}
               onGlueUpdateLoad={(e) => {
                 console.log(e, 'jijiiji');
-                this.glueUpdateLoad(0, e.detail);
+                this.glueUpdateLoad(e.detail);
               }}
               onGlueUpdateError={(e) => {
                 console.log(e, 'jijiiji');
-                this.glueUpdateError(0, e.detail);
+                this.glueUpdateError(e.detail);
               }}
             >
-              {this.list[0].items.map((_item, index) => {
+              {this.listObj.items.map((_item, index) => {
                 return (
                   <glue-cell gtitle={index.toString()} key={index}></glue-cell>
                 );

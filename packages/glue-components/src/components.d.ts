@@ -641,7 +641,7 @@ export namespace Components {
         "finished": boolean;
         "finishedText": string;
         "immediateCheck": boolean;
-        "loading": any;
+        "loading": boolean;
         "loadingText": string;
         "offset": number;
     }
@@ -2786,7 +2786,7 @@ declare namespace LocalJSX {
         "finished"?: boolean;
         "finishedText"?: string;
         "immediateCheck"?: boolean;
-        "loading"?: any;
+        "loading"?: boolean;
         "loadingText"?: string;
         "offset"?: number;
         "onGlueLoad"?: (event: CustomEvent<any>) => void;
