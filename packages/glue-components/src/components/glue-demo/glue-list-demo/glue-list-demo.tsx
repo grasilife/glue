@@ -36,10 +36,11 @@ export class GlueListDemo {
     this.getData()
       .then((res: any[]) => {
         console.log(res, 'resresres');
-        // if (list.items.length >= 40) {
-        //   list.finished = true;
-        //   return;
-        // }
+        if (this.listObj.items.length >= 40) {
+          this.listObj = { ...this.listObj, finished: true };
+          console.log(this.listObj, 'this.listObj.finished');
+          return;
+        }
         this.listObj = {
           ...this.listObj,
           loading: false,
@@ -48,8 +49,8 @@ export class GlueListDemo {
         console.log(this.listObj, 'this.listObj2');
       })
       .catch(() => {
-        this.listObj.error = true;
-        this.listObj.loading = false;
+        this.listObj = { ...this.listObj, error: true };
+        this.listObj = { ...this.listObj, loading: false };
       });
     console.log(this.listObj, 'this.listObj');
   }
@@ -60,7 +61,7 @@ export class GlueListDemo {
     this.listObj = { ...this.listObj, error: error };
   }
   onRefresh() {
-    this.listObj.finished = false;
+    this.listObj = { ...this.listObj, finished: false };
     this.onLoad();
   }
   // componentWillLoad() {
