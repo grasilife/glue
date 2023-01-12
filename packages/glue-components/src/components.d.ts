@@ -1006,7 +1006,6 @@ export namespace Components {
         "middle": string;
     }
     interface GlueStepDemo {
-        "first": string;
     }
     interface GlueStepper {
         "allowEmpty": boolean;
@@ -3173,7 +3172,6 @@ declare namespace LocalJSX {
         "onClickStep"?: (event: CustomEvent<any>) => void;
     }
     interface GlueStepDemo {
-        "first"?: string;
     }
     interface GlueStepper {
         "allowEmpty"?: boolean;
