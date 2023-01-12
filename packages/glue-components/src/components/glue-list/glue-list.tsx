@@ -59,16 +59,22 @@ export class GlueList {
     // let parentEl = getElementParent(this.el);
     let scrollParent = useScrollParent(this.el);
     const scrollParentRect = useRect(scrollParent);
-    console.log(scrollParentRect, 'scrollParentRect');
+    // console.log(scrollParentRect, 'scrollParentRect');
     if (!scrollParentRect.height || isHidden(this.root)) {
       return false;
     }
     let isReachEdge = false;
     const placeholderRect = useRect(this.placeholder);
     console.log(
-      scrollParentRect.top,
-      placeholderRect.top,
-      scrollParentRect.top - placeholderRect.top,
+      scrollParentRect,
+      placeholderRect,
+      direction,
+      'scrollParentRect'
+    );
+    console.log(
+      placeholderRect.bottom,
+      scrollParentRect.bottom,
+      placeholderRect.bottom - scrollParentRect.bottom,
       '坐标'
     );
     if (direction === 'up') {
