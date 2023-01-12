@@ -20,14 +20,14 @@ export class GlueListDemo {
     finished: false,
   };
   getData() {
-    return new Promise((resolve, _reject) => {
+    return new Promise((_resolve, _reject) => {
       let items = [];
       setTimeout(() => {
         for (let i = 0; i < 10; i++) {
           const text = items.length + 1;
           items.push(text < 10 ? '0' + text : text);
         }
-        return resolve(items);
+        return _resolve(items);
       }, 1000);
     });
   }
@@ -36,9 +36,14 @@ export class GlueListDemo {
     this.getData()
       .then((res: any[]) => {
         console.log(res, 'resresres');
-        if (this.listObj.items.length >= 40) {
+        if (this.listObj.items.length >= 60) {
           this.listObj = { ...this.listObj, finished: true };
           console.log(this.listObj, 'this.listObj.finished');
+          return;
+        }
+        if (this.listObj.items.length >= 40) {
+          this.listObj = { ...this.listObj, error: true, loading: false };
+          console.log(this.listObj, 'error22');
           return;
         }
         this.listObj = {
@@ -49,16 +54,18 @@ export class GlueListDemo {
         console.log(this.listObj, 'this.listObj2');
       })
       .catch(() => {
+        console.log('ppppp');
         this.listObj = { ...this.listObj, error: true };
         this.listObj = { ...this.listObj, loading: false };
       });
     console.log(this.listObj, 'this.listObj');
   }
   glueUpdateLoad(loading) {
-    this.listObj = { ...this.listObj, loading: loading };
+    this.listObj = { ...this.listObj, loading };
+    console.log(this.listObj, 'this.listObj1');
   }
   glueUpdateError(error) {
-    this.listObj = { ...this.listObj, error: error };
+    this.listObj = { ...this.listObj, error };
   }
   onRefresh() {
     this.listObj = { ...this.listObj, finished: false };
@@ -74,6 +81,8 @@ export class GlueListDemo {
           <glue-doc-block gtitle={this.basicUsage}>
             <glue-list
               loading={this.listObj.loading}
+              error={this.listObj.error}
+              errorText={this.errorText}
               finished={this.listObj.finished}
               finishedText={this.finishedText}
               onGlueLoad={() => {

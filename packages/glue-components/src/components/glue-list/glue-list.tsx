@@ -20,9 +20,9 @@ import { isHidden } from '../../utils/dom/style';
 })
 export class GlueList {
   @Element() el: HTMLGlueListElement;
-  @Prop() error: boolean = false;
-  @Prop({ mutable: true }) loading = false;
-  @Prop() finished: boolean;
+  @Prop({ mutable: true, reflect: true }) error: boolean = false;
+  @Prop({ mutable: true, reflect: true }) loading: boolean = false;
+  @Prop({ mutable: true, reflect: true }) finished: boolean = false;
   @Prop() errorText: string;
   @Prop() loadingText: string = '加载中...';
   @Prop() finishedText: string;
@@ -91,10 +91,12 @@ export class GlueList {
     }
   };
   clickErrorTextHandle = () => {
-    this.glueUpdateError.emit(false);
+    this.error = false;
+    this.glueUpdateError.emit(this.error);
     this._check();
   };
   renderErrorText = () => {
+    console.log(this.error, this.loading, 'this.error');
     if (this.error) {
       if (this.errorText == '#slot') {
         return <slot name="error-text"></slot>;
