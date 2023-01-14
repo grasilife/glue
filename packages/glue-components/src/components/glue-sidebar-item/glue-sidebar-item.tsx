@@ -62,7 +62,7 @@ export class GlueSidebarItem {
   //TODO:样式错乱,应该是selected引起的
   componentDidLoad() {
     console.log(this.value, 'Component has been rendered');
-    this.parentEl = getElementParent(this.el);
+    this.parentEl = getElementParent(this.el, 'GLUE-SIDEBAR');
     let parentModelValue = getAttribute(this.parentEl, 'model-value');
     console.log(parentModelValue, this.value, 'parentModelValue');
     this.selected = parentModelValue == this.value;

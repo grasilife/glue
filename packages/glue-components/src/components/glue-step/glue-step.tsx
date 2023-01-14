@@ -6,10 +6,14 @@ import {
   Event,
   EventEmitter,
   Element,
+  Method,
+  State,
 } from '@stencil/core';
-// import { BORDER } from '../../global/constant/constant';
-//TODO:如何获取父元素prop
+import { createNamespace } from '../../utils/create/index';
+import { BORDER } from '../../global/constant/constant';
 import classNames from 'classnames';
+import { getElementParent } from '../../utils/base';
+const [bem] = createNamespace('glue-step');
 @Component({
   tag: 'glue-step',
   styleUrl: 'glue-step.less',
@@ -22,67 +26,120 @@ export class GlueStep {
   @Prop() middle: string;
 
   @Prop() last: string;
+  @State() parentDirection;
+  @State() parentActive;
+  @State() parentInactiveColor;
+  @State() parentActiveColor;
+  @State() parentFinishIcon;
+  @State() parentActiveIcon;
+  @State() parentInactiveIcon;
+  @State() index: number;
   @Event() clickStep: EventEmitter;
+  @Method()
+  async setIndex(index: number) {
+    this.index = index;
+    console.log(this.index, 'this.index');
+  }
+  @Method()
+  async setValue(key, value) {
+    this[key] = value;
+  }
+  @Method()
+  async getParentValue() {
+    let parent = getElementParent(this.el, 'GLUE-STEPS');
+    console.log(parent.tagName, 'parent.tagName');
+    if (parent.tagName === 'GLUE-STEPS') {
+      this.parentDirection = parent.direction;
+      this.parentActive = parent.active;
+      this.parentInactiveColor = parent.inactiveColor;
+      this.parentActiveColor = parent.activeColor;
+      this.parentFinishIcon = parent.finishIcon;
+      this.parentActiveIcon = parent.activeIcon;
+      this.parentInactiveIcon = parent.inactiveIcon;
+    }
+    console.log(this.parentDirection, 'this.direction');
+  }
   getStatus = () => {
-    // const el = this.el;
-    // const parent = el.parentNode as any;
-    // const active = +parent.active;
-    // if (index.value < active) {
-    //   return 'finish';
-    // }
-    // return index.value === active ? 'process' : 'waiting';
-    return 'process';
+    const active = +this.parentActive;
+    if (this.index < this.parentActive) {
+      return 'finish';
+    }
+    return this.index === active ? 'process' : 'waiting';
   };
 
   isActive = () => this.getStatus() === 'process';
 
   lineStyle = () => ({
-    // background: this.getStatus() === 'finish' ? this.el.parentNode.activeColor : parentProps.inactiveColor,
-    background: 'red',
+    background:
+      this.getStatus() === 'finish'
+        ? this.parentActiveColor
+        : this.parentInactiveColor,
   });
 
   titleStyle = () => {
     if (this.isActive()) {
-      // return { color: this.parentProps.activeColor };
-      return { color: 'red' };
+      return { color: this.parentActiveColor };
     }
     if (!this.getStatus()) {
-      // return { color: parentProps.inactiveColor };
-      return { color: 'red' };
+      return { color: this.parentInactiveColor };
     }
   };
 
   onClickStep = () => {
     // parent.onClickStep(index.value);
   };
-
+  componentDidLoad() {
+    this.getParentValue();
+  }
   renderCircle = () => {
-    console.log(this, this.el.getAttribute('first'), 'hauhauhuah');
-    // const { finishIcon, activeIcon, activeColor, inactiveIcon } = parentProps;
+    if (this.isActive()) {
+      console.log(this.parentActiveColor, 'this.parentActiveColor');
+      return (
+        <glue-icon
+          class="glue-step__icon"
+          name={this.parentActiveIcon}
+          color={this.parentActiveColor}
+        />
+      );
+    }
 
-    // if (this.isActive()) {
-    //   return <glue-icon class="glue-step__icon glue-step__active" name={activeIcon} color={activeColor} />;
-    // }
+    if (this.getStatus() === 'finish' && this.parentFinishIcon) {
+      return (
+        <glue-icon
+          class="glue-step__icon glue-step__icon--finish"
+          name={this.parentFinishIcon}
+          color={this.parentActiveColor}
+        />
+      );
+    }
 
-    // if (this.getStatus() === 'finish' && finishIcon) {
-    //   return <glue-icon class="glue-step__icon glue-step__finish" name={finishIcon} color={activeColor} />;
-    // }
-
-    // if (inactiveIcon) {
-    //   return <glue-icon class="glue-step__icon" name={inactiveIcon} />;
-    // }
+    if (this.parentInactiveIcon) {
+      return (
+        <glue-icon class="glue-step__icon" name={this.parentInactiveIcon} />
+      );
+    }
 
     return <i class="glue-step__circle" style={this.lineStyle()} />;
   };
   render() {
     console.log(this, this.el, 'hauhauhuah');
+    const status = this.getStatus();
     return (
-      <Host>
+      <Host
+        class={classNames(
+          'glue-step',
+          BORDER,
+          bem([this.parentDirection, status]),
+          {
+            'glue-step__active': this.isActive(),
+          }
+        )}
+      >
         <div
           class={classNames('glue-step__title', {
-            'glue-step__active': this.isActive(),
+            'glue-step__title--active': this.isActive(),
           })}
-          style={this.lineStyle()}
+          style={this.titleStyle()}
           onClick={this.onClickStep}
         >
           <slot></slot>

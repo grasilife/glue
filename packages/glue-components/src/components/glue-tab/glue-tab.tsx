@@ -70,7 +70,7 @@ export class GlueTab {
   };
   componentDidLoad() {
     console.log('Component has been rendered');
-    let parentEl = getElementParent(this.el);
+    let parentEl = getElementParent(this.el, 'GLUE-TABS');
     this.animated = getAttribute(parentEl, 'animated');
     this.swipeable = getAttribute(parentEl, 'swipeable');
     this.scrollspy = getAttribute(parentEl, 'scrollspy');

@@ -45,7 +45,7 @@ export class GlueCheckbox {
     this[key] = value;
   }
   async toggle() {
-    let parent = getElementParent(this.el);
+    let parent = getElementParent(this.el, 'GLUE-CHECKBOX-GROUP');
     console.log(parent.tagName, 'parent.tagName');
     if (parent.tagName === 'GLUE-CHECKBOX-GROUP') {
       const { name } = this;

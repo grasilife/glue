@@ -641,12 +641,11 @@ export namespace Components {
         "finished": boolean;
         "finishedText": string;
         "immediateCheck": boolean;
-        "loading": any;
+        "loading": boolean;
         "loadingText": string;
         "offset": number;
     }
     interface GlueListDemo {
-        "first": string;
     }
     interface GlueLoading {
         "color": string;
@@ -1003,11 +1002,13 @@ export namespace Components {
     }
     interface GlueStep {
         "first": number;
+        "getParentValue": () => Promise<void>;
         "last": string;
         "middle": string;
+        "setIndex": (index: number) => Promise<void>;
+        "setValue": (key: any, value: any) => Promise<void>;
     }
     interface GlueStepDemo {
-        "first": string;
     }
     interface GlueStepper {
         "allowEmpty": boolean;
@@ -2787,14 +2788,14 @@ declare namespace LocalJSX {
         "finished"?: boolean;
         "finishedText"?: string;
         "immediateCheck"?: boolean;
-        "loading"?: any;
+        "loading"?: boolean;
         "loadingText"?: string;
         "offset"?: number;
-        "onGlueClickErrorText"?: (event: CustomEvent<any>) => void;
         "onGlueLoad"?: (event: CustomEvent<any>) => void;
+        "onGlueUpdateError"?: (event: CustomEvent<any>) => void;
+        "onGlueUpdateLoad"?: (event: CustomEvent<any>) => void;
     }
     interface GlueListDemo {
-        "first"?: string;
     }
     interface GlueLoading {
         "color"?: string;
@@ -3174,7 +3175,6 @@ declare namespace LocalJSX {
         "onClickStep"?: (event: CustomEvent<any>) => void;
     }
     interface GlueStepDemo {
-        "first"?: string;
     }
     interface GlueStepper {
         "allowEmpty"?: boolean;

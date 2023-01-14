@@ -89,7 +89,7 @@ export class GlueField {
   componentDidLoad() {
     this.adjustSize();
     console.log('Component has been rendered');
-    let parentEl = getElementParent(this.el);
+    let parentEl = getElementParent(this.el, 'GLUE-CELL-GROUP');
     this.parentReadonly = getAttribute(parentEl, 'readonly');
     this.parentLabelWidth = getAttribute(parentEl, 'label-width');
     this.parentSubmitOnEnter = getAttribute(parentEl, 'submit-on-enter');

@@ -8,7 +8,7 @@
           :finished-text="finishedText"
           @glueLoad="onLoad(0)"
         >
-          <glue-cell v-for="item in list[0].items" :key="item" :title="item" />
+          <glue-cell v-for="item in list[0].items" :key="item" :gtitle="item" />
         </glue-list>
       </van-tab>
 
@@ -20,7 +20,7 @@
           :error-text="errorText"
           @glueLoad="onLoad(1)"
         >
-          <glue-cell v-for="item in list[1].items" :key="item" :title="item" />
+          <glue-cell v-for="item in list[1].items" :key="item" :gtitle="item" />
         </glue-list>
       </van-tab>
 
@@ -32,7 +32,7 @@
             :finished-text="finishedText"
             @glueLoad="onLoad(2)"
           >
-            <glue-cell v-for="item in list[2].items" :key="item" :title="item" />
+            <glue-cell v-for="item in list[2].items" :key="item" :gtitle="item" />
           </glue-list>
         </van-pull-refresh>
       </van-tab>

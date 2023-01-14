@@ -20,15 +20,14 @@ import { isHidden } from '../../utils/dom/style';
 })
 export class GlueList {
   @Element() el: HTMLGlueListElement;
-  @Prop() error: boolean;
-  @Prop({ mutable: true }) loading;
-  @Prop() finished: boolean;
+  @Prop({ mutable: true, reflect: true }) error: boolean = false;
+  @Prop({ mutable: true, reflect: true }) loading: boolean = false;
+  @Prop({ mutable: true, reflect: true }) finished: boolean = false;
   @Prop() errorText: string;
   @Prop() loadingText: string = '加载中...';
   @Prop() finishedText: string;
   @Prop() offset = 300;
   @Prop() direction = 'down';
-  @Event() glueClickErrorText: EventEmitter;
   @Prop() immediateCheck = true;
   private root: HTMLElement;
   private placeholder: HTMLElement;
@@ -45,13 +44,15 @@ export class GlueList {
     this._check();
   }
   @Event() glueLoad: EventEmitter;
-
+  @Event() glueUpdateLoad: EventEmitter;
+  @Event() glueUpdateError: EventEmitter;
   @Method()
   async check() {
     this._check();
   }
   _check = () => {
     console.log(this.root, this.placeholder, 'ahgfyaufbabuf');
+    console.log(this.loading, this.finished, this.error, 'this.loading');
     if (this.loading || this.finished || this.error) {
       return;
     }
@@ -59,16 +60,22 @@ export class GlueList {
     // let parentEl = getElementParent(this.el);
     let scrollParent = useScrollParent(this.el);
     const scrollParentRect = useRect(scrollParent);
-    console.log(scrollParentRect, 'scrollParentRect');
+    // console.log(scrollParentRect, 'scrollParentRect');
     if (!scrollParentRect.height || isHidden(this.root)) {
       return false;
     }
     let isReachEdge = false;
     const placeholderRect = useRect(this.placeholder);
     console.log(
-      scrollParentRect.top,
-      placeholderRect.top,
-      scrollParentRect.top - placeholderRect.top,
+      scrollParentRect,
+      placeholderRect,
+      direction,
+      'scrollParentRect'
+    );
+    console.log(
+      placeholderRect.bottom,
+      scrollParentRect.bottom,
+      placeholderRect.bottom - scrollParentRect.bottom,
       '坐标'
     );
     if (direction === 'up') {
@@ -79,14 +86,17 @@ export class GlueList {
     console.log(isReachEdge, 'isReachEdge');
     if (isReachEdge) {
       this.loading = true;
+      this.glueUpdateLoad.emit(this.loading);
       this.glueLoad.emit();
     }
   };
   clickErrorTextHandle = () => {
-    this.glueClickErrorText.emit(false);
+    this.error = false;
+    this.glueUpdateError.emit(this.error);
     this._check();
   };
   renderErrorText = () => {
+    console.log(this.error, this.loading, 'this.error');
     if (this.error) {
       if (this.errorText == '#slot') {
         return <slot name="error-text"></slot>;
@@ -142,7 +152,9 @@ export class GlueList {
   };
   componentDidLoad() {
     let scrollParent = useScrollParent(this.el);
-    scrollParent.addEventListener('scroll', this._check);
+    scrollParent.addEventListener('scroll', this._check, {
+      passive: true,
+    });
     if (this.immediateCheck) {
       this._check();
     }
@@ -150,6 +162,7 @@ export class GlueList {
   disconnectedCallback() {
     let scrollParent = useScrollParent(this.el);
     scrollParent.removeEventListener('scroll', this._check);
+    this.loading = !this.loading;
   }
   render() {
     const Content = <slot></slot>;

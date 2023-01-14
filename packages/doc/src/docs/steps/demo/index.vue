@@ -1,40 +1,40 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-steps :active="active">
-        <van-step>{{ step1 }}</van-step>
-        <van-step>{{ step2 }}</van-step>
-        <van-step>{{ step3 }}</van-step>
-        <van-step>{{ step4 }}</van-step>
-      </van-steps>
+      <glue-steps :active="active">
+        <glue-step>{{ step1 }}</glue-step>
+        <glue-step>{{ step2 }}</glue-step>
+        <glue-step>{{ step3 }}</glue-step>
+        <glue-step>{{ step4 }}</glue-step>
+      </glue-steps>
 
-      <van-button @click="nextStep">{{ nextStepTitle }}</van-button>
+      <glue-button @click="nextStep">{{ nextStepTitle }}</glue-button>
     </DemoBlock>
 
     <DemoBlock :title="customStyle">
-      <van-steps :active="active" active-icon="success" inactive-icon="arrow" active-color="#38f">
-        <van-step>{{ step1 }}</van-step>
-        <van-step>{{ step2 }}</van-step>
-        <van-step>{{ step3 }}</van-step>
-        <van-step>{{ step4 }}</van-step>
-      </van-steps>
+      <glue-steps :active="active" active-icon="success" inactive-icon="arrow" active-color="#38f">
+        <glue-step>{{ step1 }}</glue-step>
+        <glue-step>{{ step2 }}</glue-step>
+        <glue-step>{{ step3 }}</glue-step>
+        <glue-step>{{ step4 }}</glue-step>
+      </glue-steps>
     </DemoBlock>
 
     <DemoBlock :title="title3">
-      <van-steps :active="0" direction="vertical">
-        <van-step>
+      <glue-steps :active="0" direction="vertical">
+        <glue-step>
           <h3>{{ status1 }}</h3>
           <p>2016-07-12 12:40</p>
-        </van-step>
-        <van-step>
+        </glue-step>
+        <glue-step>
           <h3>{{ status2 }}</h3>
           <p>2016-07-11 10:00</p>
-        </van-step>
-        <van-step>
+        </glue-step>
+        <glue-step>
           <h3>{{ status3 }}</h3>
           <p>2016-07-10 09:30</p>
-        </van-step>
-      </van-steps>
+        </glue-step>
+      </glue-steps>
     </DemoBlock>
   </DemoSection>
 </template>
@@ -72,11 +72,11 @@ export default {
 
 .demo-steps {
   .steps-success,
-  .van-icon-location {
+  .glue-icon-location {
     color: @green;
   }
 
-  .van-button {
+  .glue-button {
     margin: @padding-md 0 0 @padding-md;
   }
 
@@ -87,7 +87,7 @@ export default {
     font-size: inherit;
   }
 
-  .van-steps__message + p {
+  .glue-steps__message + p {
     margin-bottom: 10px;
   }
 }

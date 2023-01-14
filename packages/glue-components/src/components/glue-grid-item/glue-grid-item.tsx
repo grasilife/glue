@@ -28,7 +28,7 @@ export class GlueGridItem {
   @State() columnNum: number | string;
   @State() direction: number | string;
   rootStyle = () => {
-    let parentEl = getElementParent(this.el);
+    let parentEl = getElementParent(this.el, 'GLUE-GRID');
     let children = getElementChildren(parentEl, 'DIV');
     //下面的方法好像不行
     // let index = null;
@@ -96,7 +96,7 @@ export class GlueGridItem {
   };
 
   componentWillLoad() {
-    let parentEl = getElementParent(this.el);
+    let parentEl = getElementParent(this.el, 'GLUE-GRID');
     this.center = getAttribute(parentEl, 'center');
     this.border = getAttribute(parentEl, 'border');
     this.square = getAttribute(parentEl, 'square');
