@@ -1,42 +1,42 @@
 <template>
   <DemoSection>
-    <van-grid :column-num="2" :border="false">
-      <van-grid-item>
-        <h3 class="demo-sidebar-title">{{ basicUsage }}</h3>
-        <van-sidebar v-model="activeKey1">
-          <van-sidebar-item :title="title" />
-          <van-sidebar-item :title="title" />
-          <van-sidebar-item :title="title" />
-        </van-sidebar>
-      </van-grid-item>
+    <glue-grid :column-num="2" :border="false">
+      <glue-grid-item custom="#slot">
+        <h3 class="demo-sidebar-gtitle">{{ basicUsage }}</h3>
+        <glue-sidebar :modelValue.prop="activeKey1">
+          <glue-sidebar-item :gtitle="gtitle" />
+          <glue-sidebar-item :gtitle="gtitle" />
+          <glue-sidebar-item :gtitle="gtitle" />
+        </glue-sidebar>
+      </glue-grid-item>
 
-      <van-grid-item>
-        <h3 class="demo-sidebar-title">{{ showBadge }}</h3>
-        <van-sidebar v-model="activeKey2">
-          <van-sidebar-item :title="title" dot />
-          <van-sidebar-item :title="title" badge="5" />
-          <van-sidebar-item :title="title" badge="99+" />
-        </van-sidebar>
-      </van-grid-item>
+      <glue-grid-item custom="#slot">
+        <h3 class="demo-sidebar-gtitle">{{ showBadge }}</h3>
+        <glue-sidebar :modelValue.prop="activeKey2">
+          <glue-sidebar-item :gtitle="gtitle" dot />
+          <glue-sidebar-item :gtitle="gtitle" badge="5" />
+          <glue-sidebar-item :gtitle="gtitle" badge="99+" />
+        </glue-sidebar>
+      </glue-grid-item>
 
-      <van-grid-item>
-        <h3 class="demo-sidebar-title">{{ disabled }}</h3>
-        <van-sidebar v-model="activeKey3">
-          <van-sidebar-item :title="title" />
-          <van-sidebar-item :title="title" disabled />
-          <van-sidebar-item :title="title" />
-        </van-sidebar>
-      </van-grid-item>
+      <glue-grid-item custom="#slot">
+        <h3 class="demo-sidebar-gtitle">{{ disabled }}</h3>
+        <glue-sidebar :modelValue.prop="activeKey3">
+          <glue-sidebar-item :gtitle="gtitle" />
+          <glue-sidebar-item :gtitle="gtitle" disabled />
+          <glue-sidebar-item :gtitle="gtitle" />
+        </glue-sidebar>
+      </glue-grid-item>
 
-      <van-grid-item>
-        <h3 class="demo-sidebar-title">{{ changeEvent }}</h3>
-        <van-sidebar v-model="activeKey4" @change="onChange">
-          <van-sidebar-item :title="title + 1" />
-          <van-sidebar-item :title="title + 2" />
-          <van-sidebar-item :title="title + 3" />
-        </van-sidebar>
-      </van-grid-item>
-    </van-grid>
+      <glue-grid-item custom="#slot">
+        <h3 class="demo-sidebar-gtitle">{{ changeEvent }}</h3>
+        <glue-sidebar :modelValue.prop="activeKey4" @glueChange="onChange">
+          <glue-sidebar-item :gtitle="gtitle + 1" />
+          <glue-sidebar-item :gtitle="gtitle + 2" />
+          <glue-sidebar-item :gtitle="gtitle + 3" />
+        </glue-sidebar>
+      </glue-grid-item>
+    </glue-grid>
   </DemoSection>
 </template>
 
@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       basicUsage: "基础用法",
-      title: "标签名",
+      gtitle: "标签名",
       showBadge: "徽标提示",
       disabled: "禁用选项",
       changeEvent: "监听切换事件",
@@ -58,10 +58,11 @@ export default {
   },
 
   methods: {
-    onChange(index) {
+    onChange(e) {
+      console.log(e, "jiajiaji");
       this.$notify({
         type: "primary",
-        message: `${this.selectTip} ${this.title}${index + 1}`
+        message: `${this.selectTip} ${this.gtitle}${e.detail + 1}`
       });
     }
   }
@@ -74,11 +75,11 @@ export default {
 .demo-sidebar {
   background-color: @white;
 
-  .van-sidebar {
+  .glue-sidebar {
     margin-left: @padding-md;
   }
 
-  &-title {
+  &-gtitle {
     margin-bottom: 16px;
     color: @gray-6;
     font-weight: normal;

@@ -93,7 +93,7 @@ export class GlueTreeSelect {
         badge={item.badge}
         class={classNames('glue-tree-select__nav-item', bem([item.className]))}
         disabled={item.disabled}
-        value={item.id}
+        // value={item.id}
       />
     ));
 
