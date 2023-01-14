@@ -35,6 +35,20 @@ export class GlueTreeSelect {
   watchActiveId() {
     this.modelValue = this.activeId;
   }
+  @Watch('mainActiveIndex')
+  watchMainActiveIndex() {
+    this.setSideBarState();
+  }
+  setSideBarState() {
+    let children = getElementChildren(this.el, 'GLUE-SIDEBAR-ITEM');
+    console.log(children, 'children');
+    for (let i = 0; i < children.length; i++) {
+      let element = children[i];
+      console.log(this.items[i], 'this.items[i].id');
+      element.setIndex(i);
+      element.setValue('parentModelValue', this.mainActiveIndex);
+    }
+  }
   isActiveItem = (id) => {
     console.log(this.isMultiple(), this.activeId, id, 'agjhuahiu');
     return this.isMultiple()
@@ -113,30 +127,25 @@ export class GlueTreeSelect {
     return (
       <glue-sidebar
         class="glue-tree-select__nav"
-        model-value={this.mainActiveIndex}
+        modelValue={this.mainActiveIndex}
         onGlueChange={this.onSidebarChange}
       >
         {Items}
       </glue-sidebar>
     );
   };
+
   componentDidLoad() {
-    let children = getElementChildren(this.el, 'GLUE-SIDEBAR-ITEM');
-    console.log(children, 'children');
-    for (let i = 0; i < children.length; i++) {
-      let element = children[i];
-      console.log(this.items[i], 'this.items[i].id');
-      element.setIndex(i);
-      element.setValue('parentModelValue', this.activeId);
-    }
+    this.setSideBarState();
   }
   renderContent = () => {
     // if (slots.content) {
     //   return slots.content();
     // }
     //获取这个节点
-    const selected = this.items.filter((item) => {
-      return item.id == this.mainActiveIndex;
+    const selected = this.items.filter((item, index) => {
+      console.log(item, this.mainActiveIndex, 'jirjiajijif');
+      return index == this.mainActiveIndex;
     });
     console.log(selected, this.mainActiveIndex, 'selectedselected');
     if (selected.length != 0 && selected[0].children) {
