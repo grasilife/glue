@@ -42,7 +42,35 @@ export class GlueStepDemo {
               {this.nextStepTitle}
             </glue-button>
           </glue-doc-block>
-          <glue-doc-block gtitle={this.basicUsage}>1</glue-doc-block>
+          <glue-doc-block gtitle={this.customStyle}>
+            <glue-steps
+              active={this.active}
+              activeIcon="success"
+              inactiveIcon="arrow"
+              activeColor="#38f"
+            >
+              <glue-step>{this.step1}</glue-step>
+              <glue-step>{this.step2}</glue-step>
+              <glue-step>{this.step3}</glue-step>
+              <glue-step>{this.step4}</glue-step>
+            </glue-steps>
+          </glue-doc-block>
+          <glue-doc-block gtitle={this.title3}>
+            <glue-steps active={0} direction="vertical">
+              <glue-step>
+                <h3>{this.status1}</h3>
+                <p>2016-07-12 12:40</p>
+              </glue-step>
+              <glue-step>
+                <h3>{this.status2}</h3>
+                <p>2016-07-12 12:40</p>
+              </glue-step>
+              <glue-step>
+                <h3>{this.status3}</h3>
+                <p>2016-07-12 12:40</p>
+              </glue-step>
+            </glue-steps>
+          </glue-doc-block>
         </glue-doc-section>
       </div>
     );
