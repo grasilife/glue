@@ -1223,7 +1223,8 @@ export namespace Components {
     }
     interface GlueTreeSelect {
         "activeId": any;
-        "height": number;
+        "content": any;
+        "height": number | string;
         "items": any;
         "mainActiveIndex": any;
         "max": number;
@@ -3403,7 +3404,8 @@ declare namespace LocalJSX {
     }
     interface GlueTreeSelect {
         "activeId"?: any;
-        "height"?: number;
+        "content"?: any;
+        "height"?: number | string;
         "items"?: any;
         "mainActiveIndex"?: any;
         "max"?: number;

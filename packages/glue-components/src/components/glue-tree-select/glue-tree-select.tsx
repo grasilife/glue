@@ -23,7 +23,8 @@ export class GlueTreeSelect {
   @Element() el!: HTMLGlueTreeSelectElement;
   @Prop() max: number = Infinity;
   @Prop() items: any = [];
-  @Prop() height = 300;
+  @Prop() content;
+  @Prop() height: number | string = 300;
   @Prop({ reflect: true, mutable: true }) activeId: any;
   @Prop() selectedIcon = 'success';
   @Prop({ reflect: true, mutable: true }) mainActiveIndex: any;
@@ -139,9 +140,9 @@ export class GlueTreeSelect {
     this.setSideBarState();
   }
   renderContent = () => {
-    // if (slots.content) {
-    //   return slots.content();
-    // }
+    if (this.content === '#slot') {
+      return <slot></slot>;
+    }
     //获取这个节点
     const selected = this.items.filter((item, index) => {
       console.log(item, this.mainActiveIndex, 'jirjiajijif');

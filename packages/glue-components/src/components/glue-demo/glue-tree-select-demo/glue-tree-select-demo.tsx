@@ -21,6 +21,14 @@ export class GlueTreeSelectDemo {
   @State() activeIndex2: number = 0;
   @State() activeIndex3: number = 0;
   @State() activeIndex4: number = 0;
+  badgeItems() {
+    const data = JSON.parse(JSON.stringify(this.data)).slice(0, 2);
+
+    data[0].dot = true;
+    data[1].badge = 5;
+
+    return data;
+  }
   render() {
     return (
       <div class={classNames('cunstom')}>
@@ -30,6 +38,45 @@ export class GlueTreeSelectDemo {
               items={this.data}
               activeId={this.activeId}
               mainActiveIndex={this.activeIndex}
+            ></glue-tree-select>
+          </glue-doc-block>
+          <glue-doc-block gtitle={this.multipleMode}>
+            <glue-tree-select
+              items={this.data}
+              activeId={this.activeIds}
+              mainActiveIndex={this.activeIndex2}
+            ></glue-tree-select>
+          </glue-doc-block>
+          <glue-doc-block gtitle={this.customContent}>
+            <glue-tree-select
+              height="55vw"
+              content="#slot"
+              items={this.dataSimple}
+              mainActiveIndex={this.activeIndex3}
+              onGlueClickNav={(e) => {
+                console.log(e.detail, 'e.detail;');
+                this.activeIndex3 = e.detail;
+              }}
+            >
+              {this.activeIndex3 === 0 ? (
+                <glue-image
+                  showLoading={false}
+                  src="https://img.yzcdn.cn/vant/apple-1.jpg"
+                ></glue-image>
+              ) : (
+                <glue-image
+                  showLoading={false}
+                  src="https://img.yzcdn.cn/vant/apple-2.jpg"
+                ></glue-image>
+              )}
+            </glue-tree-select>
+          </glue-doc-block>
+          <glue-doc-block gtitle={this.showBadge}>
+            <glue-tree-select
+              height="55vw"
+              items={this.badgeItems()}
+              activeId={this.activeId2}
+              mainActiveIndex={this.activeIndex4}
             ></glue-tree-select>
           </glue-doc-block>
         </glue-doc-section>
