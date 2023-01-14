@@ -10,7 +10,7 @@ import {
   Method,
 } from '@stencil/core';
 import classNames from 'classnames';
-import { getElementParent, getAttribute } from '../../utils/base';
+import { getElementParent } from '../../utils/base';
 @Component({
   tag: 'glue-sidebar-item',
   styleUrl: 'glue-sidebar-item.less',
@@ -21,63 +21,51 @@ export class GlueSidebarItem {
   @Prop() dot: boolean;
   @Prop() gtitle: string;
   @Prop() badge: string;
-  @Prop() value: number | string;
   @Prop() disabled: boolean;
   @State() selected: boolean;
-  @State() parentEl: any;
+  @State() parentModelValue: any;
   @Event() glueChange: EventEmitter;
+  @State() index: number;
   onClick = () => {
     if (this.disabled) {
       return;
     }
-    this.glueChange.emit(this.value);
+    let parent = getElementParent(this.el, 'GLUE-SIDEBAR');
+    parent.setValue('modelValue', this.index);
+    console.log(this.index, 'this.selected');
+    this.glueChange.emit(this.index);
   };
-
   @Method()
-  async setParentActive() {
-    //由父元素触发
-    if (this.disabled) {
-      return;
-    }
-    await this.parentEl.setActive(this.value);
-    console.log(this.value, 'parentModelValue333');
+  async setIndex(index: number) {
+    this.index = index;
+    console.log(this.index, 'this.index');
   }
-
   @Method()
-  async setActive() {
-    //由父元素触发
-    if (this.disabled) {
-      return;
-    }
-    let parentModelValue = await this.parentEl.getActive();
-    console.log(
-      parentModelValue,
-      parentModelValue === this.value,
-      this.value,
-      'parentModelValue22'
-    );
-    this.selected = parentModelValue == this.value;
+  async setValue(key, value) {
+    this[key] = value;
   }
-
-  //TODO:样式错乱,应该是selected引起的
+  @Method()
+  async getParentValue() {
+    let parent = getElementParent(this.el, 'GLUE-SIDEBAR');
+    console.log(parent.tagName, 'parent.tagName');
+    if (parent.tagName === 'GLUE-SIDEBAR') {
+      this.parentModelValue = parent['modelValue'];
+    }
+  }
   componentDidLoad() {
-    console.log(this.value, 'Component has been rendered');
-    this.parentEl = getElementParent(this.el, 'GLUE-SIDEBAR');
-    let parentModelValue = getAttribute(this.parentEl, 'model-value');
-    console.log(parentModelValue, this.value, 'parentModelValue');
-    this.selected = parentModelValue == this.value;
+    this.getParentValue();
   }
   render() {
     const { dot, badge, gtitle, disabled } = this;
+    const selected = this.index === this.parentModelValue;
     return (
       <Host
         class={classNames('glue-sidebar-item', {
-          'glue-sidebar-item--select': this.selected,
+          'glue-sidebar-item--select': selected,
           'glue-sidebar-item--disabled': disabled,
         })}
         onClick={() => {
           this.onClick();
-          this.setParentActive();
         }}
       >
         <glue-badge dot={dot} content={badge} class="glue-sidebar-item__text">

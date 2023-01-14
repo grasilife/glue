@@ -7,6 +7,8 @@ import {
   EventEmitter,
   Method,
   Element,
+  Watch,
+  State,
 } from '@stencil/core';
 // import classNames from 'classnames';
 import { getElementChildren } from '../../utils/base';
@@ -18,32 +20,26 @@ import { getElementChildren } from '../../utils/base';
 export class GlueSidebar {
   @Element() el!: HTMLGlueSidebarElement;
   @Prop({ reflect: true }) modelValue: any;
-  componentDidLoad() {
-    let children = getElementChildren(this.el, 'GLUE-SIDEBAR-ITEM');
-    console.log(children, 'children');
-  }
+  @State() children;
   @Event() glueChange: EventEmitter;
 
   @Method()
-  async setActive(value) {
-    console.log(value, 'valuevalue');
-    this.modelValue = value;
-    this.glueChange.emit(value);
-    let children = getElementChildren(this.el, 'GLUE-SIDEBAR-ITEM');
-    for (let i = 0; i < children.length; i++) {
-      console.log(children[i], 'children[i]');
-      children[i].setActive();
+  async setValue(key, value) {
+    this[key] = value;
+  }
+  @Watch('modelValue')
+  watchModelValue() {
+    this.children = getElementChildren(this.el, 'GLUE-SIDEBAR-ITEM');
+    console.log(this.children, 'this.children');
+    for (let i = 0; i < this.children.length; i++) {
+      let element = this.children[i];
+      element.setIndex(i);
+      element.getParentValue();
     }
   }
-
-  @Method()
-  async getActive() {
-    return this.modelValue;
+  componentDidLoad() {
+    this.watchModelValue();
   }
-  // @Watch('active')
-  // watchShowHandler(newValue) {
-  //   this.setActive();
-  // }
   render() {
     return (
       <Host class="glue-sidebar">

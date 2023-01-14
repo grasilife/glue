@@ -956,21 +956,19 @@ export namespace Components {
         "teleport": string | object;
     }
     interface GlueSidebar {
-        "getActive": () => Promise<any>;
         "modelValue": any;
-        "setActive": (value: any) => Promise<void>;
+        "setValue": (key: any, value: any) => Promise<void>;
     }
     interface GlueSidebarDemo {
-        "first": string;
     }
     interface GlueSidebarItem {
         "badge": string;
         "disabled": boolean;
         "dot": boolean;
+        "getParentValue": () => Promise<void>;
         "gtitle": string;
-        "setActive": () => Promise<void>;
-        "setParentActive": () => Promise<void>;
-        "value": number | string;
+        "setIndex": (index: number) => Promise<void>;
+        "setValue": (key: any, value: any) => Promise<void>;
     }
     interface GlueSkeleton {
         "animateState": boolean;
@@ -3127,7 +3125,6 @@ declare namespace LocalJSX {
         "onGlueChange"?: (event: CustomEvent<any>) => void;
     }
     interface GlueSidebarDemo {
-        "first"?: string;
     }
     interface GlueSidebarItem {
         "badge"?: string;
@@ -3135,7 +3132,6 @@ declare namespace LocalJSX {
         "dot"?: boolean;
         "gtitle"?: string;
         "onGlueChange"?: (event: CustomEvent<any>) => void;
-        "value"?: number | string;
     }
     interface GlueSkeleton {
         "animateState"?: boolean;

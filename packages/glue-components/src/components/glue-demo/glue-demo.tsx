@@ -20,7 +20,8 @@ export class GlueDemo {
         {/* <glue-swipe-demo></glue-swipe-demo> */}
         {/* <glue-collapse-demo></glue-collapse-demo> */}
         {/* <glue-list-demo></glue-list-demo> */}
-        <glue-step-demo></glue-step-demo>
+        {/* <glue-step-demo></glue-step-demo> */}
+        <glue-sidebar-demo></glue-sidebar-demo>
       </Host>
     );
   }
