@@ -1,28 +1,36 @@
 <template>
   <DemoSection>
     <DemoBlock :title="radioMode">
-      <van-tree-select :items="items" :active-id.sync="activeId" :main-active-index.sync="activeIndex" />
+      <glue-tree-select :items.prop="items" :active-id.prop="activeId" :main-active-index.prop="activeIndex" />
     </DemoBlock>
 
     <DemoBlock :title="multipleMode">
-      <van-tree-select :items="items" :active-id.sync="activeIds" :main-active-index.sync="activeIndex2" />
+      <glue-tree-select :items.prop="items" :active-id.prop="activeIds" :main-active-index.prop="activeIndex2" />
     </DemoBlock>
 
     <DemoBlock :title="customContent">
-      <van-tree-select height="55vw" :items="simpleItems" :main-active-index.sync="activeIndex3">
-        <template #content>
-          <van-image v-if="activeIndex3 === 0" :show-loading="false" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
-          <van-image v-if="activeIndex3 === 1" :show-loading="false" src="https://img.yzcdn.cn/vant/apple-2.jpg" />
-        </template>
-      </van-tree-select>
+      <glue-tree-select
+        height="55vw"
+        :items.prop="simpleItems"
+        :main-active-index.prop="activeIndex3"
+        content="#slot"
+        @glueClickNav="
+          e => {
+            this.activeIndex3 = e.detail;
+          }
+        "
+      >
+        <glue-image v-if="activeIndex3 === 0" :show-loading="false" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+        <glue-image v-if="activeIndex3 === 1" :show-loading="false" src="https://img.yzcdn.cn/vant/apple-2.jpg" />
+      </glue-tree-select>
     </DemoBlock>
 
     <DemoBlock :title="showBadge">
-      <van-tree-select
+      <glue-tree-select
         height="55vw"
-        :items="badgeItems"
-        :active-id.sync="activeId2"
-        :main-active-index.sync="activeIndex4"
+        :items.prop="badgeItems"
+        :active-id.prop="activeId2"
+        :main-active-index.prop="activeIndex4"
       />
     </DemoBlock>
   </DemoSection>
