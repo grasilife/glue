@@ -16,6 +16,9 @@ export class GlueSidebarDemo {
   @State() activeKey2: number = 0;
   @State() activeKey3: number = 0;
   @State() activeKey4: number = 0;
+  onChange(e) {
+    console.log(e.details, 'onChange');
+  }
   render() {
     return (
       <div class={classNames('glue-sidebar-demo')}>
@@ -27,6 +30,44 @@ export class GlueSidebarDemo {
                 <glue-sidebar-item gtitle={this.title}></glue-sidebar-item>
                 <glue-sidebar-item gtitle={this.title}></glue-sidebar-item>
                 <glue-sidebar-item gtitle={this.title}></glue-sidebar-item>
+              </glue-sidebar>
+            </glue-grid-item>
+            <glue-grid-item custom="#slot">
+              <h3 class="demo-sidebar-title">{this.showBadge}</h3>
+              <glue-sidebar modelValue={this.activeKey2}>
+                <glue-sidebar-item gtitle={this.title} dot></glue-sidebar-item>
+                <glue-sidebar-item
+                  gtitle={this.title}
+                  badge="5"
+                ></glue-sidebar-item>
+                <glue-sidebar-item
+                  gtitle={this.title}
+                  badge="99+"
+                ></glue-sidebar-item>
+              </glue-sidebar>
+            </glue-grid-item>
+            <glue-grid-item custom="#slot">
+              <h3 class="demo-sidebar-title">{this.disabled}</h3>
+              <glue-sidebar modelValue={this.activeKey3}>
+                <glue-sidebar-item gtitle={this.title}></glue-sidebar-item>
+                <glue-sidebar-item
+                  gtitle={this.title}
+                  disabled
+                ></glue-sidebar-item>
+                <glue-sidebar-item gtitle={this.title}></glue-sidebar-item>
+              </glue-sidebar>
+            </glue-grid-item>
+            <glue-grid-item custom="#slot">
+              <h3 class="demo-sidebar-title">{this.changeEvent}</h3>
+              <glue-sidebar
+                modelValue={this.activeKey3}
+                onGlueChange={(e) => {
+                  this.onChange(e);
+                }}
+              >
+                <glue-sidebar-item gtitle={this.title + 1}></glue-sidebar-item>
+                <glue-sidebar-item gtitle={this.title + 2}></glue-sidebar-item>
+                <glue-sidebar-item gtitle={this.title + 3}></glue-sidebar-item>
               </glue-sidebar>
             </glue-grid-item>
           </glue-grid>
