@@ -19,13 +19,17 @@ import { getElementChildren } from '../../utils/base';
 })
 export class GlueSidebar {
   @Element() el!: HTMLGlueSidebarElement;
-  @Prop({ reflect: true }) modelValue: any;
+  @Prop({ reflect: true, mutable: true }) modelValue: any;
   @State() children;
   @Event() glueChange: EventEmitter;
 
   @Method()
   async setValue(key, value) {
+    console.log(key, value, 'key, value');
     this[key] = value;
+    if (key === 'modelValue') {
+      this.glueChange.emit(value);
+    }
   }
   @Watch('modelValue')
   watchModelValue() {

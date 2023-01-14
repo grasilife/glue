@@ -17,7 +17,7 @@ export class GlueSidebarDemo {
   @State() activeKey3: number = 0;
   @State() activeKey4: number = 0;
   onChange(e) {
-    console.log(e.details, 'onChange');
+    console.log(e.detail, 'onChange');
   }
   render() {
     return (
