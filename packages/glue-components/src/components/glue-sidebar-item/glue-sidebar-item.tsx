@@ -22,7 +22,6 @@ export class GlueSidebarItem {
   @Prop() gtitle: string;
   @Prop() badge: string;
   @Prop() disabled: boolean;
-  @State() selected: boolean;
   @State() parentModelValue: any;
   @Event() glueChange: EventEmitter;
   @State() index: number;
@@ -32,7 +31,6 @@ export class GlueSidebarItem {
     }
     let parent = getElementParent(this.el, 'GLUE-SIDEBAR');
     parent.setValue('modelValue', this.index);
-    console.log(this.index, 'this.selected');
     this.glueChange.emit(this.index);
   };
   @Method()
