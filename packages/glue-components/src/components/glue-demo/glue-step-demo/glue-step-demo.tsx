@@ -18,7 +18,7 @@ export class GlueStepDemo {
   @State() status2: string = '【城市】物流状态2';
   @State() status3: string = '【快件已发货';
   @State() customStyle: string = '自定义样式';
-  @State() active: number = 1;
+  @State() active: number = 0;
   render() {
     return (
       <div class={classNames('cunstom')}>

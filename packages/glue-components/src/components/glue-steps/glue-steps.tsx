@@ -21,9 +21,7 @@ import { getElementChildren } from '../../utils/base';
 export class GlueSteps {
   @Element() el!: HTMLGlueStepsElement;
   @Prop() finishIcon: string;
-
-  @Prop() activeColor: string;
-
+  @Prop() activeColor: string = '#07c160';
   @Prop() inactiveIcon: string;
   @Prop() inactiveColor: string;
   @Prop() active: string | number = 0;
@@ -36,10 +34,11 @@ export class GlueSteps {
   };
   @Watch('active')
   watchModelValue() {
-    this.children = getElementChildren(this.el, 'GLUE-RADIO');
+    this.children = getElementChildren(this.el, 'GLUE-STEP');
     console.log(this.children, 'this.children');
     for (let i = 0; i < this.children.length; i++) {
       let element = this.children[i];
+      element.setIndex(i);
       let name = element.name;
       //只能使用方法设置state
       console.log(element, name, 'namenamename');
@@ -49,6 +48,9 @@ export class GlueSteps {
       // } else {
       //   element.setValue('checked', false);
     }
+  }
+  componentDidLoad() {
+    this.watchModelValue();
   }
   render() {
     return (

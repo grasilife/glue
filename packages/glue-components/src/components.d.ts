@@ -1005,6 +1005,7 @@ export namespace Components {
         "getParentValue": () => Promise<void>;
         "last": string;
         "middle": string;
+        "setIndex": (index: number) => Promise<void>;
         "setValue": (key: any, value: any) => Promise<void>;
     }
     interface GlueStepDemo {
