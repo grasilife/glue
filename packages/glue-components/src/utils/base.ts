@@ -51,13 +51,9 @@ export function pick(obj: Record<string, any>, keys: string[]) {
 }
 
 export const getElementChildren = (el: any, tagName: string) => {
-  console.log(el, 'elel');
-  //parent.tagName === 'GLUE-RADIO-GROUP'
-
   let targetChildren = [];
   function findTagNameEl(el: any) {
     let children = el.children != null ? el.children : el.childNodes;
-    console.log(children, 'children2121');
     if (children) {
       for (let i = 0; i < children.length; i++) {
         let item = children[i];
@@ -73,18 +69,23 @@ export const getElementChildren = (el: any, tagName: string) => {
   }
 
   findTagNameEl(el);
-  console.log(targetChildren, 'targetChildren');
-  // while (children && children.tagName === tagName) {
-  //   const { overflowY } = window.getComputedStyle(node);
-  //   if (overflowScrollReg.test(overflowY)) {
-  //     return node;
-  //   }
-  //   node = node.parentNode as Element;
-  // }
   return targetChildren;
 };
-export const getElementParent = (el: any) => {
-  return el.parentElement != null ? el.parentElement : el.parentNode;
+export const getElementParent = (el: any, tagName: string) => {
+  let targetParent = null;
+  function findTagNameEl(el: any) {
+    let parent = el.parentElement != null ? el.parentElement : el.parentNode;
+    console.log(parent, 'parent');
+    if (parent.tagName === tagName && targetParent === null) {
+      targetParent = parent;
+    } else {
+      findTagNameEl(parent);
+    }
+  }
+
+  findTagNameEl(el);
+  console.log(targetParent, 'targetParent');
+  return targetParent;
 };
 export const getAttribute = (el: any, prop: string) => {
   console.log(el, 'el.hasAttribute(prop)');

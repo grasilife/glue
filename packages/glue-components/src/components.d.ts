@@ -1002,8 +1002,10 @@ export namespace Components {
     }
     interface GlueStep {
         "first": number;
+        "getParentValue": () => Promise<void>;
         "last": string;
         "middle": string;
+        "setValue": (key: any, value: any) => Promise<void>;
     }
     interface GlueStepDemo {
     }

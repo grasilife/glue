@@ -23,7 +23,7 @@ export class GlueCol {
   };
   componentDidLoad() {}
   private getParentGutter() {
-    let parentEl = getElementParent(this.el);
+    let parentEl = getElementParent(this.el, 'GLUE-ROW');
     let gutter = getAttribute(parentEl, 'gutter');
     console.log(gutter, 'gutter');
     return gutter;

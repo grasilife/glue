@@ -33,7 +33,7 @@ export class GlueTabbarItem {
   @Event() glueClick: EventEmitter;
 
   componentDidLoad() {
-    this.parentEl = getElementParent(this.el);
+    this.parentEl = getElementParent(this.el, 'GLUE-TABBAR');
     this.parentActiveColor = getAttribute(this.parentEl, 'active-color');
     this.parentInactiveColor = getAttribute(this.parentEl, 'inactive-color');
     this.parentModelValue = getAttribute(this.parentEl, 'model-value');
@@ -47,7 +47,7 @@ export class GlueTabbarItem {
   }
 
   onClick = () => {
-    let parent = getElementParent(this.el);
+    let parent = getElementParent(this.el, 'GLUE-TABBAR');
     console.log(parent.tagName, 'parent.tagName');
     if (parent.tagName === 'GLUE-TABBAR') {
       const { name, index } = this;
@@ -59,14 +59,12 @@ export class GlueTabbarItem {
 
       this.glueClick.emit();
     }
-
   };
   @Method()
   async setValue(key, value) {
     console.log(key, value, 'hhijioa');
     this[key] = value;
   }
-
 
   renderIcon = () => {
     if (this.icon == '#slot') {

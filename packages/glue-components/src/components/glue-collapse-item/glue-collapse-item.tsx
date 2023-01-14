@@ -62,13 +62,13 @@ export class GlueCollapseItem {
     }
   };
   private async expanded() {
-    let parentEl = getElementParent(this.el);
+    let parentEl = getElementParent(this.el, 'GLUE-COLLAPSE');
     const isExpanded = await parentEl.isExpanded(this.name);
     return isExpanded;
   }
   private toggle = () => {
     //先传递到父组件
-    let parentEl = getElementParent(this.el);
+    let parentEl = getElementParent(this.el, 'GLUE-COLLAPSE');
     console.log(parentEl, 'parentEl');
 
     parentEl.isExpanded(this.name).then((expanded) => {
@@ -122,7 +122,7 @@ export class GlueCollapseItem {
     </div>
   );
   async componentDidLoad() {
-    let parentEl = getElementParent(this.el);
+    let parentEl = getElementParent(this.el, 'GLUE-COLLAPSE');
     console.log(parentEl, 'parentEl');
     const expanded = await parentEl.isExpanded(this.name);
     console.log(expanded, this.name, 'expanded');

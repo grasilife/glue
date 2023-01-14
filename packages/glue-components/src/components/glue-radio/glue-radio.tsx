@@ -1,4 +1,14 @@
-import { Component, Prop, h, Host, State, Element, Event, EventEmitter, Method } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  State,
+  Element,
+  Event,
+  EventEmitter,
+  Method,
+} from '@stencil/core';
 import classNames from 'classnames';
 // import { createNamespace } from '../../utils/create/index';
 // const [bem] = createNamespace('glue-button');
@@ -32,7 +42,7 @@ export class GlueRadio {
     this[key] = value;
   }
   async toggle() {
-    let parent = getElementParent(this.el);
+    let parent = getElementParent(this.el, 'GLUE-RADIO-GROUP');
     console.log(parent.tagName, 'parent.tagName');
     if (parent.tagName === 'GLUE-RADIO-GROUP') {
       const { name } = this;
@@ -47,30 +57,32 @@ export class GlueRadio {
     this.glueCilck.emit(this.checked);
   };
   render() {
-    return <Host class={classNames('glue-radio')} role="radio">
-      <glue-checker
-        class="glue-radio"
-        role="checkbox"
-        icon={this.icon}
-        parent={this.parent}
-        checked={this.checked}
-        bindGroup={this.bindGroup}
-        onGlueToggle={() => {
-          this.toggle();
-        }}
-        onGlueCilck={this.click}
-        label={this.label}
-        name={this.name}
-        disabled={this.disabled}
-        iconSize={this.iconSize}
-        modelValue={this.modelValue}
-        checkedColor={this.checkedColor}
-        labelPosition={this.labelPosition}
-        labelDisabled={this.labelDisabled}
-        shape={this.shape}
-      >
-        <slot name="icon"></slot>
-      </glue-checker>
-    </Host>;
+    return (
+      <Host class={classNames('glue-radio')} role="radio">
+        <glue-checker
+          class="glue-radio"
+          role="checkbox"
+          icon={this.icon}
+          parent={this.parent}
+          checked={this.checked}
+          bindGroup={this.bindGroup}
+          onGlueToggle={() => {
+            this.toggle();
+          }}
+          onGlueCilck={this.click}
+          label={this.label}
+          name={this.name}
+          disabled={this.disabled}
+          iconSize={this.iconSize}
+          modelValue={this.modelValue}
+          checkedColor={this.checkedColor}
+          labelPosition={this.labelPosition}
+          labelDisabled={this.labelDisabled}
+          shape={this.shape}
+        >
+          <slot name="icon"></slot>
+        </glue-checker>
+      </Host>
+    );
   }
 }

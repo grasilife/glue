@@ -6,10 +6,12 @@ import {
   Event,
   EventEmitter,
   Element,
+  Method,
+  State,
 } from '@stencil/core';
 // import { BORDER } from '../../global/constant/constant';
-//TODO:如何获取父元素prop
 import classNames from 'classnames';
+import { getElementParent } from '../../utils/base';
 @Component({
   tag: 'glue-step',
   styleUrl: 'glue-step.less',
@@ -22,7 +24,21 @@ export class GlueStep {
   @Prop() middle: string;
 
   @Prop() last: string;
+  @State() direction;
   @Event() clickStep: EventEmitter;
+  @Method()
+  async setValue(key, value) {
+    this[key] = value;
+  }
+  @Method()
+  async getParentValue() {
+    let parent = getElementParent(this.el, 'GLUE-STEPS');
+    console.log(parent.tagName, 'parent.tagName');
+    if (parent.tagName === 'GLUE-STEPS') {
+      this.direction = parent.direction;
+    }
+    console.log(this.direction, 'this.direction');
+  }
   getStatus = () => {
     // const el = this.el;
     // const parent = el.parentNode as any;
@@ -55,7 +71,9 @@ export class GlueStep {
   onClickStep = () => {
     // parent.onClickStep(index.value);
   };
-
+  componentDidLoad() {
+    this.getParentValue();
+  }
   renderCircle = () => {
     console.log(this, this.el.getAttribute('first'), 'hauhauhuah');
     // const { finishIcon, activeIcon, activeColor, inactiveIcon } = parentProps;

@@ -59,8 +59,8 @@ export class GlueSwipeItem {
     this.getState();
   }
   async getState() {
-    let trackParentEl = getElementParent(this.el);
-    let parentEl = getElementParent(trackParentEl);
+    // let trackParentEl = getElementParent(this.el);
+    let parentEl = getElementParent(this.el, 'GLUE-SWIPE');
     console.log(parentEl, 'parentEl');
     this.parentVertical = await parentEl.getValue('vertical');
     console.log(this.parentVertical, 'this.parentVertical');
