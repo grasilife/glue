@@ -19,6 +19,7 @@ https://stenciljs.com/docs/faq;
 #### 关于 slot 传参数的问题
 
 web components 目前没有 slot 传参的 api
+TreeSelect 在使用 content="#slot"后 slot 标签出现异常
 
 #### 关于 slot 类型的问题
 

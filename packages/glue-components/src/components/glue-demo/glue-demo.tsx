@@ -21,7 +21,8 @@ export class GlueDemo {
         {/* <glue-collapse-demo></glue-collapse-demo> */}
         {/* <glue-list-demo></glue-list-demo> */}
         {/* <glue-step-demo></glue-step-demo> */}
-        <glue-sidebar-demo></glue-sidebar-demo>
+        {/* <glue-sidebar-demo></glue-sidebar-demo> */}
+        <glue-tree-select-demo></glue-tree-select-demo>
       </Host>
     );
   }

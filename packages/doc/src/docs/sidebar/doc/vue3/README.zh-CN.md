@@ -7,11 +7,11 @@
 通过 `modelValue` 绑定当前选中项的索引。
 
 ```html
-<van-sidebar :modelValue.prop="active">
-  <van-sidebar-item gtitle="标签名称" />
-  <van-sidebar-item gtitle="标签名称" />
-  <van-sidebar-item gtitle="标签名称" />
-</van-sidebar>
+<glue-sidebar :modelValue.prop="active">
+  <glue-sidebar-item gtitle="标签名称" />
+  <glue-sidebar-item gtitle="标签名称" />
+  <glue-sidebar-item gtitle="标签名称" />
+</glue-sidebar>
 ```
 
 ```js
@@ -30,11 +30,11 @@ export default {
 设置 `dot` 属性后，会在右上角展示一个小红点；设置 `badge` 属性后，会在右上角展示相应的徽标。
 
 ```html
-<van-sidebar :modelValue.prop="active">
-  <van-sidebar-item gtitle="标签名称" dot />
-  <van-sidebar-item gtitle="标签名称" badge="5" />
-  <van-sidebar-item gtitle="标签名称" badge="20" />
-</van-sidebar>
+<glue-sidebar :modelValue.prop="active">
+  <glue-sidebar-item gtitle="标签名称" dot />
+  <glue-sidebar-item gtitle="标签名称" badge="5" />
+  <glue-sidebar-item gtitle="标签名称" badge="20" />
+</glue-sidebar>
 ```
 
 ### 禁用选项
@@ -42,11 +42,11 @@ export default {
 通过 `disabled` 属性禁用选项。
 
 ```html
-<van-sidebar :modelValue.prop="active">
-  <van-sidebar-item gtitle="标签名称" />
-  <van-sidebar-item gtitle="标签名称" disabled />
-  <van-sidebar-item gtitle="标签名称" />
-</van-sidebar>
+<glue-sidebar :modelValue.prop="active">
+  <glue-sidebar-item gtitle="标签名称" />
+  <glue-sidebar-item gtitle="标签名称" disabled />
+  <glue-sidebar-item gtitle="标签名称" />
+</glue-sidebar>
 ```
 
 ### 监听切换事件
@@ -54,11 +54,11 @@ export default {
 设置 `change` 方法来监听切换导航项时的事件。
 
 ```html
-<van-sidebar :modelValue.prop="active" @change="onChange">
-  <van-sidebar-item gtitle="标签名 1" />
-  <van-sidebar-item gtitle="标签名 2" />
-  <van-sidebar-item gtitle="标签名 3" />
-</van-sidebar>
+<glue-sidebar :modelValue.prop="active" @change="onChange">
+  <glue-sidebar-item gtitle="标签名 1" />
+  <glue-sidebar-item gtitle="标签名 2" />
+  <glue-sidebar-item gtitle="标签名 3" />
+</glue-sidebar>
 ```
 
 ```js
