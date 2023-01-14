@@ -139,7 +139,7 @@ export class GlueStep {
           class={classNames('glue-step__title', {
             'glue-step__title--active': this.isActive(),
           })}
-          style={this.lineStyle()}
+          style={this.titleStyle()}
           onClick={this.onClickStep}
         >
           <slot></slot>

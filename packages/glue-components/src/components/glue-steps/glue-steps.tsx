@@ -39,6 +39,7 @@ export class GlueSteps {
     for (let i = 0; i < this.children.length; i++) {
       let element = this.children[i];
       element.setIndex(i);
+      element.getParentValue();
       let name = element.name;
       //只能使用方法设置state
       console.log(element, name, 'namenamename');

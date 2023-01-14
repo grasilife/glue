@@ -19,6 +19,10 @@ export class GlueStepDemo {
   @State() status3: string = '【快件已发货';
   @State() customStyle: string = '自定义样式';
   @State() active: number = 0;
+  nextStep() {
+    this.active = ++this.active % 4;
+    console.log(this.active, 'this.active');
+  }
   render() {
     return (
       <div class={classNames('cunstom')}>
@@ -30,6 +34,13 @@ export class GlueStepDemo {
               <glue-step>{this.step3}</glue-step>
               <glue-step>{this.step4}</glue-step>
             </glue-steps>
+            <glue-button
+              onGlueClick={() => {
+                this.nextStep();
+              }}
+            >
+              {this.nextStepTitle}
+            </glue-button>
           </glue-doc-block>
           <glue-doc-block gtitle={this.basicUsage}>1</glue-doc-block>
         </glue-doc-section>
