@@ -8,8 +8,6 @@ node_modules
 
 # Log files
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # Editor directories and files
 .idea
@@ -23,3 +21,4 @@ yarn-error.log*
 /packages/glue-components/src/components/**/*.md
 
 package-lock.json
+pnpm-lock.yaml

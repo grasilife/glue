@@ -1,14 +1,8 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": [
-    "packages/doc",
-    "packages/glue-components",
-    "packages/glue-markdown-loader",
-    "packages/glue-touch-emulator"
-  ],
   "scripts": {
-    "clear-all": "lerna clean && yarn workspaces run clean",
+    "clear-all": "lerna clean",
     "build": "lerna run --stream --sort build",
     "start": "lerna run --stream --sort start",
     "doc": "lerna run --stream --sort doc",
@@ -22,7 +16,7 @@
     "@umijs/utils": "^4.0.0-rc.5",
     "cz-conventional-changelog": "^3.3.0",
     "esno": "^0.14.1",
-    "lerna": "^3.22.1",
+    "lerna": "^6.4.1",
     "plop": "^2.7.4"
   },
   "config": {

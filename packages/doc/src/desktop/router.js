@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { isMobile, decamelize } from "../common";
+import { isMobile } from "../common";
 import config from "../common/config";
 import "../common/iframe-router";
 const { locales, defaultLang, defaultType, types } = config.site;
@@ -17,7 +17,7 @@ const router = new VueRouter({
 router.afterEach(() => {
   Vue.nextTick(() => window.syncPath());
 });
-
+console.log(defaultType, defaultLang, "defaultLang");
 window.vueRouter = router;
 function getRoutes() {
   const routes = [
@@ -37,13 +37,17 @@ function getRoutes() {
     locales[lang].nav.forEach(element => {
       if (element.items) {
         element.items.forEach(element2 => {
+          console.log(element2.path, "element2.path");
           types.forEach(type => {
+            console.log(type.label, lang, element2.title, "element2.title");
+            let comPath = `@/docs/${element2.path}/doc/${type.label}/README.${lang}.md`;
+            console.log(comPath, "comPath");
             routes.push({
               name: `/${type.label}/${lang}/${element2.title}`,
               path: `/${type.label}/${lang}/${element2.path}`,
               //这个地方不能使用下面的方法
               // component: () => import(imortPath),
-              component: () => import("../docs/" + element2.path + "/doc/" + type.label + "/README." + lang + ".md"),
+              component: () => import(comPath),
               meta: {
                 path: element2.path,
                 lang,

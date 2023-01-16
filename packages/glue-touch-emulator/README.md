@@ -10,10 +10,10 @@
 npm i @glue/touch-emulator -S
 ```
 
-#### YARN
+#### pnpm
 
 ```shell
-yarn add @glue/touch-emulator
+pnpm  add @glue/touch-emulator
 ```
 
 ## 使用指南
@@ -21,7 +21,7 @@ yarn add @glue/touch-emulator
 直接在代码中引入模块即可，模块会自动完成初始化并生效
 
 ```js
-import '@glue/touch-emulator';
+import "@glue/touch-emulator";
 ```
 
 ## CDN 引入

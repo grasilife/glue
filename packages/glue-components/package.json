@@ -23,10 +23,11 @@
     "generate": "stencil generate",
     "lint:eslint": "eslint src/**/*{.ts,.tsx} --ignore-path .gitignore  --fix",
     "lint:prettier": "prettier --ignore-path .gitignore --write .",
-    "lint": "yarn lint:eslint && yarn lint:prettier"
+    "lint": "pnpm  lint:eslint && pnpm  lint:prettier"
   },
   "dependencies": {
     "@glue/markdown-loader": "0.0.2-alpha.0",
+    "@glue/touch-emulator": "^0.0.2-alpha.0",
     "@stencil/core": "^2.5.2",
     "animejs": "^3.2.1",
     "intersection-observer": "^0.12.0"

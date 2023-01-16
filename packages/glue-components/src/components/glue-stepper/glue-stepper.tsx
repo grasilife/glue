@@ -20,7 +20,7 @@ import { getSizeStyle } from '../../utils/format/unit';
 import { addUnit } from '../../utils/format/unit';
 let actionType: 'plus' | 'minus';
 let isLongPress: boolean;
-let longPressTimer: NodeJS.Timeout;
+let longPressTimer: any;
 const LONG_PRESS_INTERVAL = 200;
 const LONG_PRESS_START_TIME = 600;
 function equal(value1?: string | number, value2?: string | number) {
