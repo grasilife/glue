@@ -20,5 +20,3 @@ npm-debug.log*
 
 /packages/glue-components/src/components/**/*.md
 
-package-lock.json
-pnpm-lock.yaml
