@@ -83,11 +83,7 @@ export class GlueCollapse {
   @Method()
   async isExpanded(name) {
     console.log(name, this.accordion, 'namenamename');
-    if (
-      !this.accordion &&
-      !Array.isArray(this.modelValue) &&
-      process.env.NODE_ENV !== 'production'
-    ) {
+    if (!this.accordion && !Array.isArray(this.modelValue)) {
       console.error(
         '[Vant] Collapse: type of prop "modelValue" should be Array'
       );

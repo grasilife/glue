@@ -9,11 +9,6 @@ module.exports = {
     host: "0.0.0.0",
     port: 3001,
     https: false,
-    hotOnly: false,
-    overlay: {
-      warnings: false,
-      errors: true
-    },
     proxy: {
       "/rest": {
         target: "http://0.0.0.0",

@@ -26,8 +26,8 @@ jobs:
       # Runs the Glue Actions Build and Deploy
       - name: 安装和构建
         run: |
-          yarn install
-          yarn build
+          pnpm install
+          pnpm build
       - name: 部署
         uses: peaceiris/actions-gh-pages@v3
         with:

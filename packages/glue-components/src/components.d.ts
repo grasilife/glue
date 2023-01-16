@@ -1270,6 +1270,218 @@ export namespace Components {
         "previewSize": string | number;
     }
 }
+export interface GlueActionBarButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueActionBarButtonElement;
+}
+export interface GlueActionBarIconCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueActionBarIconElement;
+}
+export interface GlueActionSheetCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueActionSheetElement;
+}
+export interface GlueAddressEditDetailCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueAddressEditDetailElement;
+}
+export interface GlueButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueButtonElement;
+}
+export interface GlueCalendarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueCalendarElement;
+}
+export interface GlueCalendarDayCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueCalendarDayElement;
+}
+export interface GlueCalendarMonthCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueCalendarMonthElement;
+}
+export interface GlueCardCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueCardElement;
+}
+export interface GlueCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueCheckboxElement;
+}
+export interface GlueCheckboxGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueCheckboxGroupElement;
+}
+export interface GlueCheckerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueCheckerElement;
+}
+export interface GlueCircleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueCircleElement;
+}
+export interface GlueCollapseCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueCollapseElement;
+}
+export interface GlueCollapseItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueCollapseItemElement;
+}
+export interface GlueCountDownCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueCountDownElement;
+}
+export interface GlueFormCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueFormElement;
+}
+export interface GlueImageCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueImageElement;
+}
+export interface GlueIndexBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueIndexBarElement;
+}
+export interface GlueKeyCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueKeyElement;
+}
+export interface GlueListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueListElement;
+}
+export interface GlueNavBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueNavBarElement;
+}
+export interface GlueNoticeBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueNoticeBarElement;
+}
+export interface GlueNumberKeyboardCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueNumberKeyboardElement;
+}
+export interface GluePaginationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGluePaginationElement;
+}
+export interface GluePasswordInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGluePasswordInputElement;
+}
+export interface GluePickerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGluePickerElement;
+}
+export interface GluePickerColumnCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGluePickerColumnElement;
+}
+export interface GluePopupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGluePopupElement;
+}
+export interface GluePullRefreshCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGluePullRefreshElement;
+}
+export interface GlueRadioCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueRadioElement;
+}
+export interface GlueRadioGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueRadioGroupElement;
+}
+export interface GlueRateCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueRateElement;
+}
+export interface GlueSearchCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueSearchElement;
+}
+export interface GlueShareSheetCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueShareSheetElement;
+}
+export interface GlueSidebarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueSidebarElement;
+}
+export interface GlueSidebarItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueSidebarItemElement;
+}
+export interface GlueSliderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueSliderElement;
+}
+export interface GlueStepCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueStepElement;
+}
+export interface GlueStepperCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueStepperElement;
+}
+export interface GlueStepsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueStepsElement;
+}
+export interface GlueStickyCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueStickyElement;
+}
+export interface GlueSwipeCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueSwipeElement;
+}
+export interface GlueSwipeCellCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueSwipeCellElement;
+}
+export interface GlueSwitchCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueSwitchElement;
+}
+export interface GlueTabbarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueTabbarElement;
+}
+export interface GlueTabbarItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueTabbarItemElement;
+}
+export interface GlueTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueTabsElement;
+}
+export interface GlueTagCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueTagElement;
+}
+export interface GlueToastCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueToastElement;
+}
+export interface GlueTreeSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueTreeSelectElement;
+}
+export interface GlueUploaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueUploaderElement;
+}
+export interface GlueUploaderPreviewItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueUploaderPreviewItemElement;
+}
 declare global {
     interface HTMLGlueActionBarElement extends Components.GlueActionBar, HTMLStencilElement {
     }
@@ -2145,7 +2357,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         "leftRound"?: boolean;
         "loading"?: boolean;
-        "onGlueClick"?: (event: CustomEvent<any>) => void;
+        "onGlueClick"?: (event: GlueActionBarButtonCustomEvent<any>) => void;
         "rightRound"?: boolean;
         "text"?: string;
         "type"?: string;
@@ -2156,7 +2368,7 @@ declare namespace LocalJSX {
         "dot"?: boolean;
         "icon"?: string;
         "iconClass"?: null;
-        "onGluClick"?: (event: CustomEvent<any>) => void;
+        "onGluClick"?: (event: GlueActionBarIconCustomEvent<any>) => void;
         "text"?: string;
     }
     interface GlueActionSheet {
@@ -2171,12 +2383,12 @@ declare namespace LocalJSX {
         "gtitle"?: string;
         "lazyRender"?: boolean;
         "lockScroll"?: boolean;
-        "onGlueCancel"?: (event: CustomEvent<any>) => void;
-        "onGlueClose"?: (event: CustomEvent<any>) => void;
-        "onGlueClosed"?: (event: CustomEvent<any>) => void;
-        "onGlueOpened"?: (event: CustomEvent<any>) => void;
-        "onGlueSelect"?: (event: CustomEvent<any>) => void;
-        "onGlueShow"?: (event: CustomEvent<any>) => void;
+        "onGlueCancel"?: (event: GlueActionSheetCustomEvent<any>) => void;
+        "onGlueClose"?: (event: GlueActionSheetCustomEvent<any>) => void;
+        "onGlueClosed"?: (event: GlueActionSheetCustomEvent<any>) => void;
+        "onGlueOpened"?: (event: GlueActionSheetCustomEvent<any>) => void;
+        "onGlueSelect"?: (event: GlueActionSheetCustomEvent<any>) => void;
+        "onGlueShow"?: (event: GlueActionSheetCustomEvent<any>) => void;
         "overlay"?: boolean;
         "round"?: boolean;
         "safeAreaInsetBottom"?: boolean;
@@ -2212,9 +2424,9 @@ declare namespace LocalJSX {
         "errorMessage"?: string;
         "first"?: string;
         "focused"?: boolean;
-        "onGlueBlur"?: (event: CustomEvent<any>) => void;
-        "onGlueFocus"?: (event: CustomEvent<any>) => void;
-        "onGlueInput"?: (event: CustomEvent<any>) => void;
+        "onGlueBlur"?: (event: GlueAddressEditDetailCustomEvent<any>) => void;
+        "onGlueFocus"?: (event: GlueAddressEditDetailCustomEvent<any>) => void;
+        "onGlueInput"?: (event: GlueAddressEditDetailCustomEvent<any>) => void;
         "searchResult"?: any;
         "show"?: boolean;
         "showSearchResult"?: boolean;
@@ -2259,7 +2471,7 @@ declare namespace LocalJSX {
         "loadingText"?: string;
         "loadingType"?: string;
         "nativeType"?: string;
-        "onGlueClick"?: (event: CustomEvent<any>) => void;
+        "onGlueClick"?: (event: GlueButtonCustomEvent<any>) => void;
         "plain"?: boolean;
         "round"?: boolean;
         "size"?: string;
@@ -2284,14 +2496,14 @@ declare namespace LocalJSX {
         "maxDate"?: Date;
         "maxRange"?: any;
         "minDate"?: Date;
-        "onGlueClose"?: (event: CustomEvent<any>) => void;
-        "onGlueClosed"?: (event: CustomEvent<any>) => void;
-        "onGlueConfirm"?: (event: CustomEvent<any>) => void;
-        "onGlueMonthShow"?: (event: CustomEvent<any>) => void;
-        "onGlueOpen"?: (event: CustomEvent<any>) => void;
-        "onGlueOpened"?: (event: CustomEvent<any>) => void;
-        "onGlueSelect"?: (event: CustomEvent<any>) => void;
-        "onGlueUnselect"?: (event: CustomEvent<any>) => void;
+        "onGlueClose"?: (event: GlueCalendarCustomEvent<any>) => void;
+        "onGlueClosed"?: (event: GlueCalendarCustomEvent<any>) => void;
+        "onGlueConfirm"?: (event: GlueCalendarCustomEvent<any>) => void;
+        "onGlueMonthShow"?: (event: GlueCalendarCustomEvent<any>) => void;
+        "onGlueOpen"?: (event: GlueCalendarCustomEvent<any>) => void;
+        "onGlueOpened"?: (event: GlueCalendarCustomEvent<any>) => void;
+        "onGlueSelect"?: (event: GlueCalendarCustomEvent<any>) => void;
+        "onGlueUnselect"?: (event: GlueCalendarCustomEvent<any>) => void;
         "poppable"?: boolean;
         "position"?: string;
         "rangePrompt"?: string;
@@ -2312,7 +2524,7 @@ declare namespace LocalJSX {
         "index"?: number;
         "item"?: any;
         "offset"?: number;
-        "onGlueDayClick"?: (event: CustomEvent<any>) => void;
+        "onGlueDayClick"?: (event: GlueCalendarDayCustomEvent<any>) => void;
         "rowHeight"?: string;
     }
     interface GlueCalendarHeader {
@@ -2333,7 +2545,7 @@ declare namespace LocalJSX {
         "lazyRender"?: boolean;
         "maxDate"?: any;
         "minDate"?: any;
-        "onGlueMonthClick"?: (event: CustomEvent<any>) => void;
+        "onGlueMonthClick"?: (event: GlueCalendarMonthCustomEvent<any>) => void;
         "rowHeight"?: string;
         "showMark"?: boolean;
         "showMonthTitle"?: boolean;
@@ -2347,7 +2559,7 @@ declare namespace LocalJSX {
         "gtitle"?: string;
         "lazyLoad"?: boolean;
         "num"?: string | number;
-        "onGlueClick"?: (event: CustomEvent<any>) => void;
+        "onGlueClick"?: (event: GlueCardCustomEvent<any>) => void;
         "originPrice"?: string | number;
         "price"?: string | number;
         "tag"?: string;
@@ -2391,8 +2603,8 @@ declare namespace LocalJSX {
         "labelPosition"?: string;
         "modelValue"?: boolean;
         "name"?: number | string;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
-        "onGlueCilck"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueCheckboxCustomEvent<any>) => void;
+        "onGlueCilck"?: (event: GlueCheckboxCustomEvent<any>) => void;
         "shape"?: string;
     }
     interface GlueCheckboxGroup {
@@ -2402,7 +2614,7 @@ declare namespace LocalJSX {
         "iconSize"?: number | string;
         "max"?: number | string;
         "modelValue"?: any;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueCheckboxGroupCustomEvent<any>) => void;
     }
     interface GlueChecker {
         "bem"?: string;
@@ -2417,8 +2629,8 @@ declare namespace LocalJSX {
         "labelPosition"?: string;
         "modelValue"?: boolean;
         "name"?: number | string;
-        "onGlueCilck"?: (event: CustomEvent<any>) => void;
-        "onGlueToggle"?: (event: CustomEvent<any>) => void;
+        "onGlueCilck"?: (event: GlueCheckerCustomEvent<any>) => void;
+        "onGlueToggle"?: (event: GlueCheckerCustomEvent<any>) => void;
         "parent"?: any;
         "role"?: string;
         "shape"?: string;
@@ -2429,7 +2641,7 @@ declare namespace LocalJSX {
         "fill"?: string;
         "layerColor"?: string;
         "lineColor"?: string | object;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueCircleCustomEvent<any>) => void;
         "rate"?: number;
         "size"?: string;
         "speed"?: number;
@@ -2445,7 +2657,7 @@ declare namespace LocalJSX {
         "accordion"?: boolean;
         "border"?: boolean;
         "modelValue"?: any;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueCollapseCustomEvent<any>) => void;
     }
     interface GlueCollapseDemo {
     }
@@ -2461,7 +2673,7 @@ declare namespace LocalJSX {
         "isLink"?: boolean;
         "label"?: string | number;
         "name"?: string | number;
-        "onClickTitle"?: (event: CustomEvent<any>) => void;
+        "onClickTitle"?: (event: GlueCollapseItemCustomEvent<any>) => void;
         "required"?: boolean;
         "size"?: string;
         "tilabelClasstle"?: any;
@@ -2505,8 +2717,8 @@ declare namespace LocalJSX {
         "custom"?: boolean;
         "format"?: string;
         "millisecond"?: boolean;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
-        "onGlueFinish"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueCountDownCustomEvent<any>) => void;
+        "onGlueFinish"?: (event: GlueCountDownCustomEvent<any>) => void;
         "time"?: number;
     }
     interface GlueCoupon {
@@ -2682,8 +2894,8 @@ declare namespace LocalJSX {
         "inputAlign"?: string;
         "labelAlign"?: string;
         "labelWidth"?: string | number;
-        "onFailed"?: (event: CustomEvent<any>) => void;
-        "onSubmitChange"?: (event: CustomEvent<any>) => void;
+        "onFailed"?: (event: GlueFormCustomEvent<any>) => void;
+        "onSubmitChange"?: (event: GlueFormCustomEvent<any>) => void;
         "readonly"?: boolean;
         "scrollToError"?: boolean;
         "showError"?: boolean;
@@ -2732,8 +2944,8 @@ declare namespace LocalJSX {
         "iconPrefix"?: string;
         "lazyLoad"?: boolean;
         "loadingIcon"?: string;
-        "onGlueError"?: (event: CustomEvent<any>) => void;
-        "onGlueLoad"?: (event: CustomEvent<any>) => void;
+        "onGlueError"?: (event: GlueImageCustomEvent<any>) => void;
+        "onGlueLoad"?: (event: GlueImageCustomEvent<any>) => void;
         "radius"?: string | number;
         "round"?: boolean;
         "showError"?: boolean;
@@ -2759,7 +2971,7 @@ declare namespace LocalJSX {
     interface GlueIndexBar {
         "highlightColor"?: string;
         "indexList"?: any[];
-        "onClickSidebar"?: (event: CustomEvent<any>) => void;
+        "onClickSidebar"?: (event: GlueIndexBarCustomEvent<any>) => void;
         "sticky"?: boolean;
         "stickyOffsetTop"?: number;
         "zIndex"?: string;
@@ -2770,7 +2982,7 @@ declare namespace LocalJSX {
         "color"?: string;
         "large"?: boolean;
         "loading"?: boolean;
-        "onGluePress"?: (event: CustomEvent<any>) => void;
+        "onGluePress"?: (event: GlueKeyCustomEvent<any>) => void;
         "text"?: string | number;
         "type"?: string;
         "wider"?: boolean;
@@ -2788,9 +3000,9 @@ declare namespace LocalJSX {
         "loading"?: boolean;
         "loadingText"?: string;
         "offset"?: number;
-        "onGlueLoad"?: (event: CustomEvent<any>) => void;
-        "onGlueUpdateError"?: (event: CustomEvent<any>) => void;
-        "onGlueUpdateLoad"?: (event: CustomEvent<any>) => void;
+        "onGlueLoad"?: (event: GlueListCustomEvent<any>) => void;
+        "onGlueUpdateError"?: (event: GlueListCustomEvent<any>) => void;
+        "onGlueUpdateLoad"?: (event: GlueListCustomEvent<any>) => void;
     }
     interface GlueListDemo {
     }
@@ -2809,8 +3021,8 @@ declare namespace LocalJSX {
         "gtitle"?: string;
         "leftArrow"?: boolean;
         "leftText"?: string;
-        "onGlueLeft"?: (event: CustomEvent<any>) => void;
-        "onGlueRight"?: (event: CustomEvent<any>) => void;
+        "onGlueLeft"?: (event: GlueNavBarCustomEvent<any>) => void;
+        "onGlueRight"?: (event: GlueNavBarCustomEvent<any>) => void;
         "placeholder"?: boolean;
         "rightText"?: string;
         "safeAreaInsetTop"?: boolean;
@@ -2822,8 +3034,8 @@ declare namespace LocalJSX {
         "delay"?: number;
         "leftIcon"?: string;
         "mode"?: NoticeBarMode;
-        "onGlueClose"?: (event: CustomEvent<any>) => void;
-        "onGlueReplay"?: (event: CustomEvent<any>) => void;
+        "onGlueClose"?: (event: GlueNoticeBarCustomEvent<any>) => void;
+        "onGlueReplay"?: (event: GlueNoticeBarCustomEvent<any>) => void;
         "rightIcon"?: string;
         "scrollable"?: boolean;
         "speed"?: number;
@@ -2840,11 +3052,11 @@ declare namespace LocalJSX {
         "hideOnClickOutside"?: boolean;
         "maxlength"?: number;
         "modelValue"?: string;
-        "onGlueBlur"?: (event: CustomEvent<any>) => void;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
-        "onGlueClose"?: (event: CustomEvent<any>) => void;
-        "onGlueDelete"?: (event: CustomEvent<any>) => void;
-        "onGlueInput"?: (event: CustomEvent<any>) => void;
+        "onGlueBlur"?: (event: GlueNumberKeyboardCustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueNumberKeyboardCustomEvent<any>) => void;
+        "onGlueClose"?: (event: GlueNumberKeyboardCustomEvent<any>) => void;
+        "onGlueDelete"?: (event: GlueNumberKeyboardCustomEvent<any>) => void;
+        "onGlueInput"?: (event: GlueNumberKeyboardCustomEvent<any>) => void;
         "randomKeyOrder"?: boolean;
         "safeAreaInsetBottom"?: boolean;
         "show"?: boolean;
@@ -2871,7 +3083,7 @@ declare namespace LocalJSX {
         "itemsPerPage"?: number;
         "mode"?: string;
         "nextText"?: string;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GluePaginationCustomEvent<any>) => void;
         "pageCount"?: number;
         "pageText"?: string;
         "prevText"?: string;
@@ -2886,7 +3098,7 @@ declare namespace LocalJSX {
         "info"?: string;
         "length"?: number;
         "mask"?: boolean;
-        "onGlueFocus"?: (event: CustomEvent<any>) => void;
+        "onGlueFocus"?: (event: GluePasswordInputCustomEvent<any>) => void;
         "value"?: string;
     }
     interface GluePasswordInputDemo {
@@ -2902,9 +3114,9 @@ declare namespace LocalJSX {
         "gtitle"?: string;
         "itemHeight"?: number;
         "loading"?: boolean;
-        "onGlueCancel"?: (event: CustomEvent<any>) => void;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
-        "onGlueConfirm"?: (event: CustomEvent<any>) => void;
+        "onGlueCancel"?: (event: GluePickerCustomEvent<any>) => void;
+        "onGlueChange"?: (event: GluePickerCustomEvent<any>) => void;
+        "onGlueConfirm"?: (event: GluePickerCustomEvent<any>) => void;
         "readonly"?: boolean;
         "showToolbar"?: boolean;
         "swipeDuration"?: number;
@@ -2920,7 +3132,7 @@ declare namespace LocalJSX {
         "gClassName"?: string;
         "initialOptions"?: any[];
         "itemHeight"?: number;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GluePickerColumnCustomEvent<any>) => void;
         "readonly"?: boolean;
         "swipeDuration"?: number | string;
         "textKey"?: string;
@@ -2946,13 +3158,13 @@ declare namespace LocalJSX {
         "height"?: string;
         "lazyRender"?: boolean;
         "lockScroll"?: boolean;
-        "onGlueClick"?: (event: CustomEvent<any>) => void;
-        "onGlueClickCloseIcon"?: (event: CustomEvent<any>) => void;
-        "onGlueClickOverlay"?: (event: CustomEvent<any>) => void;
-        "onGlueClose"?: (event: CustomEvent<any>) => void;
-        "onGlueClosed"?: (event: CustomEvent<any>) => void;
-        "onGlueOpen"?: (event: CustomEvent<any>) => void;
-        "onGlueOpened"?: (event: CustomEvent<any>) => void;
+        "onGlueClick"?: (event: GluePopupCustomEvent<any>) => void;
+        "onGlueClickCloseIcon"?: (event: GluePopupCustomEvent<any>) => void;
+        "onGlueClickOverlay"?: (event: GluePopupCustomEvent<any>) => void;
+        "onGlueClose"?: (event: GluePopupCustomEvent<any>) => void;
+        "onGlueClosed"?: (event: GluePopupCustomEvent<any>) => void;
+        "onGlueOpen"?: (event: GluePopupCustomEvent<any>) => void;
+        "onGlueOpened"?: (event: GluePopupCustomEvent<any>) => void;
         "overlay"?: boolean;
         "overlayClass"?: any;
         "overlayStyle"?: object;
@@ -2986,7 +3198,7 @@ declare namespace LocalJSX {
         "loadingText"?: string;
         "loosingText"?: string;
         "modelValue"?: boolean;
-        "onRefresh"?: (event: CustomEvent<any>) => void;
+        "onRefresh"?: (event: GluePullRefreshCustomEvent<any>) => void;
         "pullingText"?: string;
         "successDuration"?: number;
         "successText"?: string;
@@ -3005,8 +3217,8 @@ declare namespace LocalJSX {
         "labelPosition"?: string;
         "modelValue"?: boolean;
         "name"?: number | string;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
-        "onGlueCilck"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueRadioCustomEvent<any>) => void;
+        "onGlueCilck"?: (event: GlueRadioCustomEvent<any>) => void;
         "shape"?: string;
     }
     interface GlueRadioDemo {
@@ -3017,7 +3229,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "iconSize"?: string | number;
         "modelValue"?: any;
-        "onGlueUpdate"?: (event: CustomEvent<any>) => void;
+        "onGlueUpdate"?: (event: GlueRadioGroupCustomEvent<any>) => void;
     }
     interface GlueRate {
         "allowHalf"?: boolean;
@@ -3029,7 +3241,7 @@ declare namespace LocalJSX {
         "gutter"?: string;
         "icon"?: string;
         "iconPrefix"?: string;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueRateCustomEvent<any>) => void;
         "readonly"?: boolean;
         "size"?: number;
         "touchable"?: boolean;
@@ -3074,9 +3286,9 @@ declare namespace LocalJSX {
         "maxlength"?: string | number;
         "modelValue"?: string;
         "name"?: string;
-        "onGlueCancel"?: (event: CustomEvent<any>) => void;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
-        "onGlueSearch"?: (event: CustomEvent<any>) => void;
+        "onGlueCancel"?: (event: GlueSearchCustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueSearchCustomEvent<any>) => void;
+        "onGlueSearch"?: (event: GlueSearchCustomEvent<any>) => void;
         "placeholder"?: string;
         "readonly"?: any;
         "required"?: boolean;
@@ -3105,13 +3317,13 @@ declare namespace LocalJSX {
         "gtitle"?: string;
         "lazyRender"?: boolean;
         "lockScroll"?: boolean;
-        "onGlueCancel"?: (event: CustomEvent<any>) => void;
-        "onGlueClose"?: (event: CustomEvent<any>) => void;
-        "onGlueClosed"?: (event: CustomEvent<any>) => void;
-        "onGlueOpen"?: (event: CustomEvent<any>) => void;
-        "onGlueOpened"?: (event: CustomEvent<any>) => void;
-        "onGlueSelect"?: (event: CustomEvent<any>) => void;
-        "onGlueShow"?: (event: CustomEvent<any>) => void;
+        "onGlueCancel"?: (event: GlueShareSheetCustomEvent<any>) => void;
+        "onGlueClose"?: (event: GlueShareSheetCustomEvent<any>) => void;
+        "onGlueClosed"?: (event: GlueShareSheetCustomEvent<any>) => void;
+        "onGlueOpen"?: (event: GlueShareSheetCustomEvent<any>) => void;
+        "onGlueOpened"?: (event: GlueShareSheetCustomEvent<any>) => void;
+        "onGlueSelect"?: (event: GlueShareSheetCustomEvent<any>) => void;
+        "onGlueShow"?: (event: GlueShareSheetCustomEvent<any>) => void;
         "options"?: any[];
         "overlay"?: boolean;
         "round"?: boolean;
@@ -3121,7 +3333,7 @@ declare namespace LocalJSX {
     }
     interface GlueSidebar {
         "modelValue"?: any;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueSidebarCustomEvent<any>) => void;
     }
     interface GlueSidebarDemo {
     }
@@ -3130,7 +3342,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "dot"?: boolean;
         "gtitle"?: string;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueSidebarItemCustomEvent<any>) => void;
     }
     interface GlueSkeleton {
         "animateState"?: boolean;
@@ -3154,9 +3366,9 @@ declare namespace LocalJSX {
         "inactiveColor"?: string;
         "max"?: number | string;
         "min"?: number | string;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
-        "onGlueDragEnd"?: (event: CustomEvent<any>) => void;
-        "onGlueDragStart"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueSliderCustomEvent<any>) => void;
+        "onGlueDragEnd"?: (event: GlueSliderCustomEvent<any>) => void;
+        "onGlueDragStart"?: (event: GlueSliderCustomEvent<any>) => void;
         "range"?: boolean;
         "readonly"?: boolean;
         "step"?: number | string;
@@ -3167,7 +3379,7 @@ declare namespace LocalJSX {
         "first"?: number;
         "last"?: string;
         "middle"?: string;
-        "onClickStep"?: (event: CustomEvent<any>) => void;
+        "onClickStep"?: (event: GlueStepCustomEvent<any>) => void;
     }
     interface GlueStepDemo {
     }
@@ -3188,12 +3400,12 @@ declare namespace LocalJSX {
         "min"?: number;
         "modelValue"?: string | number;
         "name"?: string;
-        "onGlueBlur"?: (event: CustomEvent<any>) => void;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
-        "onGlueFocus"?: (event: CustomEvent<any>) => void;
-        "onGlueMinus"?: (event: CustomEvent<any>) => void;
-        "onGlueOverlimit"?: (event: CustomEvent<any>) => void;
-        "onGluePlus"?: (event: CustomEvent<any>) => void;
+        "onGlueBlur"?: (event: GlueStepperCustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueStepperCustomEvent<any>) => void;
+        "onGlueFocus"?: (event: GlueStepperCustomEvent<any>) => void;
+        "onGlueMinus"?: (event: GlueStepperCustomEvent<any>) => void;
+        "onGlueOverlimit"?: (event: GlueStepperCustomEvent<any>) => void;
+        "onGluePlus"?: (event: GlueStepperCustomEvent<any>) => void;
         "placeholder"?: string;
         "showInput"?: boolean;
         "showMinus"?: boolean;
@@ -3209,13 +3421,13 @@ declare namespace LocalJSX {
         "finishIcon"?: string;
         "inactiveColor"?: string;
         "inactiveIcon"?: string;
-        "onClickStep"?: (event: CustomEvent<any>) => void;
+        "onClickStep"?: (event: GlueStepsCustomEvent<any>) => void;
     }
     interface GlueSticky {
         "container"?: any;
         "offsetBottomValue"?: number;
         "offsetTopValue"?: number;
-        "onGlueScroll"?: (event: CustomEvent<any>) => void;
+        "onGlueScroll"?: (event: GlueStickyCustomEvent<any>) => void;
         "position"?: string;
         "zIndex"?: string;
     }
@@ -3230,7 +3442,7 @@ declare namespace LocalJSX {
         "initialSwipe"?: number;
         "lazyRender"?: boolean;
         "loop"?: boolean;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueSwipeCustomEvent<any>) => void;
         "showIndicators"?: string | boolean;
         "stopPropagation"?: boolean;
         "touchable"?: boolean;
@@ -3243,9 +3455,9 @@ declare namespace LocalJSX {
         "left"?: string;
         "leftWidth"?: number;
         "name"?: string;
-        "onGlueClick"?: (event: CustomEvent<any>) => void;
-        "onGlueCloseChange"?: (event: CustomEvent<any>) => void;
-        "onGlueOpenChange"?: (event: CustomEvent<any>) => void;
+        "onGlueClick"?: (event: GlueSwipeCellCustomEvent<any>) => void;
+        "onGlueCloseChange"?: (event: GlueSwipeCellCustomEvent<any>) => void;
+        "onGlueOpenChange"?: (event: GlueSwipeCellCustomEvent<any>) => void;
         "right"?: string;
         "rightWidth"?: number;
         "stopPropagation"?: boolean;
@@ -3262,7 +3474,7 @@ declare namespace LocalJSX {
         "inactiveColor"?: string;
         "inactiveValue"?: boolean;
         "loading"?: boolean;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueSwitchCustomEvent<any>) => void;
         "size"?: string | number;
         "value"?: boolean;
     }
@@ -3284,7 +3496,7 @@ declare namespace LocalJSX {
         "fixed"?: boolean;
         "inactiveColor"?: string;
         "modelValue"?: any;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueTabbarCustomEvent<any>) => void;
         "placeholder"?: boolean;
         "safeAreaInsetBottom"?: boolean;
         "zIndex"?: string;
@@ -3298,7 +3510,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         "iconPrefix"?: string;
         "name"?: string;
-        "onGlueClick"?: (event: CustomEvent<any>) => void;
+        "onGlueClick"?: (event: GlueTabbarItemCustomEvent<any>) => void;
     }
     interface GlueTabs {
         "active"?: number;
@@ -3313,9 +3525,9 @@ declare namespace LocalJSX {
         "lineHeight"?: string | number;
         "lineWidth"?: string | number;
         "offsetTopVlaue"?: number;
-        "onGlueChange"?: (event: CustomEvent<any>) => void;
-        "onGlueClick"?: (event: CustomEvent<any>) => void;
-        "onGlueDisabled"?: (event: CustomEvent<any>) => void;
+        "onGlueChange"?: (event: GlueTabsCustomEvent<any>) => void;
+        "onGlueClick"?: (event: GlueTabsCustomEvent<any>) => void;
+        "onGlueDisabled"?: (event: GlueTabsCustomEvent<any>) => void;
         "scrollspy"?: boolean;
         "sticky"?: boolean;
         "swipeThreshold"?: number;
@@ -3352,7 +3564,7 @@ declare namespace LocalJSX {
         "color"?: string;
         "first"?: string;
         "mark"?: boolean;
-        "onGlueIconClick"?: (event: CustomEvent<any>) => void;
+        "onGlueIconClick"?: (event: GlueTagCustomEvent<any>) => void;
         "plain"?: boolean;
         "round"?: boolean;
         "size"?: string;
@@ -3390,12 +3602,12 @@ declare namespace LocalJSX {
         "loadingType"?: ToastType;
         "lockScroll"?: boolean;
         "message"?: string;
-        "onGlueClick"?: (event: CustomEvent<any>) => void;
-        "onGlueClose"?: (event: CustomEvent<any>) => void;
-        "onGlueClosed"?: (event: CustomEvent<any>) => void;
-        "onGlueOpen"?: (event: CustomEvent<any>) => void;
-        "onGlueOpened"?: (event: CustomEvent<any>) => void;
-        "onToggle"?: (event: CustomEvent<any>) => void;
+        "onGlueClick"?: (event: GlueToastCustomEvent<any>) => void;
+        "onGlueClose"?: (event: GlueToastCustomEvent<any>) => void;
+        "onGlueClosed"?: (event: GlueToastCustomEvent<any>) => void;
+        "onGlueOpen"?: (event: GlueToastCustomEvent<any>) => void;
+        "onGlueOpened"?: (event: GlueToastCustomEvent<any>) => void;
+        "onToggle"?: (event: GlueToastCustomEvent<any>) => void;
         "overlayClass"?: null;
         "overlayStyle"?: object;
         "position"?: string;
@@ -3409,8 +3621,8 @@ declare namespace LocalJSX {
         "items"?: any;
         "mainActiveIndex"?: any;
         "max"?: number;
-        "onGlueClickItem"?: (event: CustomEvent<any>) => void;
-        "onGlueClickNav"?: (event: CustomEvent<any>) => void;
+        "onGlueClickItem"?: (event: GlueTreeSelectCustomEvent<any>) => void;
+        "onGlueClickNav"?: (event: GlueTreeSelectCustomEvent<any>) => void;
         "selectedIcon"?: string;
     }
     interface GlueTreeSelectDemo {
@@ -3431,10 +3643,10 @@ declare namespace LocalJSX {
         "maxSize"?: number;
         "multiple"?: boolean;
         "name"?: string;
-        "onGlueClosePreview"?: (event: CustomEvent<any>) => void;
-        "onGlueDelete"?: (event: CustomEvent<any>) => void;
-        "onGlueOversize"?: (event: CustomEvent<any>) => void;
-        "onGluePreview"?: (event: CustomEvent<any>) => void;
+        "onGlueClosePreview"?: (event: GlueUploaderCustomEvent<any>) => void;
+        "onGlueDelete"?: (event: GlueUploaderCustomEvent<any>) => void;
+        "onGlueOversize"?: (event: GlueUploaderCustomEvent<any>) => void;
+        "onGluePreview"?: (event: GlueUploaderCustomEvent<any>) => void;
         "previewCover"?: string;
         "previewFullImage"?: boolean;
         "previewImage"?: boolean;
@@ -3453,8 +3665,8 @@ declare namespace LocalJSX {
         "item"?: any;
         "lazyLoad"?: boolean;
         "name"?: string;
-        "onGlueDelete"?: (event: CustomEvent<any>) => void;
-        "onGluePreview"?: (event: CustomEvent<any>) => void;
+        "onGlueDelete"?: (event: GlueUploaderPreviewItemCustomEvent<any>) => void;
+        "onGluePreview"?: (event: GlueUploaderPreviewItemCustomEvent<any>) => void;
         "previewCover"?: string;
         "previewSize"?: string | number;
     }

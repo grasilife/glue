@@ -468,7 +468,7 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
 **Bug Fixes**
 
-- 修复使用 `yarn add vant@next` 安装失败的问题
+- 修复使用 `pnpm add vant@next` 安装失败的问题
 
 ### [v3.0.0-alpha.1](https://github.com/youzan/vant/compare/v2.10.3...v3.0.0-alpha.1)
 

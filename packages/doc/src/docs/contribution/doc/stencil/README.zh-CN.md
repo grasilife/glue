@@ -23,11 +23,11 @@
 git clone git@github.com:grasilife/glue.git
 
 # 安装依赖
-cd glue && yarn
+cd glue && pnpm
 
 # 进入glue-components，浏览器访问 http://localhost:3333
 # 进入doc，浏览器访问 http://localhost:3001
-yarn start
+pnpm  start
 ```
 
 ### 目录结构
@@ -45,11 +45,12 @@ packages
 ├─ glue-touch-emulator  # 桌面端支持的触摸库
 ```
 
-### 添加新组件,使用plop创建组件模版
+### 添加新组件,使用 plop 创建组件模版
 
 ```bash
-yarn new
+pnpm  new
 ```
+
 添加新组件时，请按照下面的目录结构组织文件，并在 `doc/common/config.js` 中配置组件名称。
 
 ```
