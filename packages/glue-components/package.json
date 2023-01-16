@@ -26,7 +26,6 @@
     "lint": "pnpm  lint:eslint && pnpm  lint:prettier"
   },
   "dependencies": {
-    "@glue/markdown-loader": "0.0.2-alpha.0",
     "@glue/touch-emulator": "^0.0.2-alpha.0",
     "@stencil/core": "^2.5.2",
     "animejs": "^3.2.1",
