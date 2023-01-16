@@ -26,6 +26,7 @@ jobs:
       # Runs the Glue Actions Build and Deploy
       - name: 安装和构建
         run: |
+          npm i pnpm -g
           pnpm install
           pnpm build
       - name: 部署
