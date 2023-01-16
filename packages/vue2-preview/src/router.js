@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { isMobile } from "../common";
+import { isMobile, decamelize } from "../common";
 import "../common/iframe-router";
+// import DemoHome from "./components/DemoHome";
 import config from "../common/config";
 const { locales, defaultLang, defaultType, types } = config.site;
 console.log(locales, defaultLang, "路由");
@@ -81,7 +82,8 @@ function getRoutes() {
                 },
                 //这个地方不能使用下面的方法
                 // component: () => import(imortPath),
-                component: () => import("@/docs/" + element2.path + "/demo/index.vue")
+                component: () =>
+                  import("@/docs/" + element2.path + "/demo/index.vue")
               });
             });
           }

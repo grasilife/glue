@@ -1,0 +1,33 @@
+{
+  "name": "@glue/glue-cli",
+  "version": "4.0.4",
+  "main": "dist/index.cjs.js",
+  "module": "dist/idnex.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": "^14.16.0 || >=16.0.0"
+  },
+  "scripts": {
+    "doc": "rollup -w -c rollup.config.ts --environment MODE:dev",
+    "build": "rimraf dist && rollup -c rollup.config.ts --environment MODE:prod",
+    "release": "pnpm build"
+  },
+  "keywords": [
+    "glue-cli"
+  ],
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@types/node": "^18.11.18",
+    "rollup": "^2.78.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-typescript2": "^0.32.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
+  }
+}
