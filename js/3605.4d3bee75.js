@@ -1,0 +1,7 @@
+"use strict";(self["webpackChunkdoc"]=self["webpackChunkdoc"]||[]).push([[3605,74689],{3605:function(t,r,n){n.r(r),n.d(r,{glue_doc_block_demo:function(){return i}});var o=n(83458),e=n(74689),u="",i=function(){function t(t){(0,o.r)(this,t),this.first=void 0}return t.prototype.render=function(){return(0,o.h)(o.H,{class:(0,e.c)("cunstom")},(0,o.h)("glue-doc-section",null,(0,o.h)("glue-doc-block",{gtitle:"基础用法"},"11"),(0,o.h)("glue-doc-block",{gtitle:"自定义长度"},"11")))},t}();i.style=u},74689:function(t,r,n){n.r(r),n.d(r,{c:function(){return u}});n(29045);function o(t,r,n){return n={path:r,exports:{},require:function(t,r){return e()}},t(n,n.exports),n.exports}function e(){throw new Error("Dynamic requires are not currently supported by @rollup/plugin-commonjs")}var u=o((function(t){
+/*!
+      Copyright (c) 2018 Jed Watson.
+      Licensed under the MIT License (MIT), see
+      http://jedwatson.github.io/classnames
+    */
+(function(){var r={}.hasOwnProperty;function n(){for(var t=[],o=0;o<arguments.length;o++){var e=arguments[o];if(e){var u=typeof e;if("string"===u||"number"===u)t.push(e);else if(Array.isArray(e)){if(e.length){var i=n.apply(null,e);i&&t.push(i)}}else if("object"===u){if(e.toString!==Object.prototype.toString&&!e.toString.toString().includes("[native code]")){t.push(e.toString());continue}for(var c in e)r.call(e,c)&&e[c]&&t.push(c)}}}return t.join(" ")}t.exports?(n.default=n,t.exports=n):window.classNames=n})()}))}}]);

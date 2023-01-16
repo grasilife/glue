@@ -1,0 +1,1 @@
+"use strict";(self["webpackChunkdoc"]=self["webpackChunkdoc"]||[]).push([[53366],{53366:function(e,t,n){function c(e){return e=e.replace(/[^-|\d]/g,""),/^((\+86)|(86))?(1)\d{10}$/.test(e)||/^0[0-9-]{10,13}$/.test(e)}n.r(t),n.d(t,{i:function(){return c}})}}]);
