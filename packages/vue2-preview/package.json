@@ -1,0 +1,18 @@
+{
+  "name": "@glue/vue2-preview",
+  "private": true,
+  "version": "0.0.2-alpha.0",
+  "type": "module",
+  "scripts": {
+    "doc": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue2": "^2.2.0",
+    "vite": "^4.0.0"
+  },
+  "dependencies": {
+    "vue": "~2.7.14"
+  }
+}
