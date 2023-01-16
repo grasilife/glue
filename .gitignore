@@ -8,6 +8,7 @@ node_modules
 
 # Log files
 npm-debug.log*
+lerna-debug.log
 
 # Editor directories and files
 .idea
