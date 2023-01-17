@@ -106,12 +106,14 @@ importers:
   packages/glue-components:
     specifiers:
       '@glue/touch-emulator': ^0.0.2-alpha.0
-      '@stencil/core': ^2.5.2
+      '@stencil/core': ^2.21.0
       '@stencil/eslint-plugin': ^0.4.0
       '@stencil/less': ^1.0.0
+      '@stencil/postcss': ^2.1.0
       '@typescript-eslint/eslint-plugin': ^4.30.0
       '@typescript-eslint/parser': ^4.30.0
       animejs: ^3.2.1
+      autoprefixer: ^10.4.13
       classnames: ^2.2.6
       eslint: ^8.30.0
       eslint-config-prettier: ^8.3.0
@@ -127,8 +129,10 @@ importers:
     devDependencies:
       '@stencil/eslint-plugin': 0.4.0_rffeeqykq3zmzp5jck22ktpksq
       '@stencil/less': 1.0.0_@stencil+core@2.21.0
+      '@stencil/postcss': 2.1.0_@stencil+core@2.21.0
       '@typescript-eslint/eslint-plugin': 4.33.0_lk4cdpisccdvhgbzysczniy3fi
       '@typescript-eslint/parser': 4.33.0_7uibuqfxkfaozanbtbziikiqje
+      autoprefixer: 10.4.13
       classnames: 2.3.2
       eslint: 8.32.0
       eslint-config-prettier: 8.6.0_eslint@8.32.0
@@ -204,6 +208,7 @@ importers:
   packages/vue2-preview:
     specifiers:
       '@glue/glue-cli': workspace:^4.0.4
+      '@rollup/plugin-dynamic-import-vars': ^2.0.2
       '@vitejs/plugin-vue2': ^2.2.0
       glue-components: workspace:^0.0.2-alpha.0
       vite: ^4.0.0
@@ -215,6 +220,7 @@ importers:
       vue: 2.7.14
       vue-router: 3.6.5
     devDependencies:
+      '@rollup/plugin-dynamic-import-vars': 2.0.2
       '@vitejs/plugin-vue2': 2.2.0_vite@4.0.4+vue@2.7.14
       vite: 4.0.4
 
@@ -3566,6 +3572,21 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
 
+  /@rollup/plugin-dynamic-import-vars/2.0.2:
+    resolution: {integrity: sha512-aycot2FUPPVb3uDswXsmUdgu8Z8T82uQGBGXZm/uf9XNsp1QoFDBhPrLiwNDJB8BUIiaRjvmaVsAPAQrbVTBVA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2
+      estree-walker: 2.0.2
+      fast-glob: 3.2.12
+      magic-string: 0.27.0
+    dev: true
+
   /@rollup/plugin-json/4.1.0_rollup@2.79.1:
     resolution: {integrity: sha512-yfLbTdNS6amI/2OpmbiBoW12vngr5NW2jCJVZSBEz+H5KfUJZ2M7sDjk0U6GOOdCWFVScShte29o9NezJ53TPw==}
     peerDependencies:
@@ -3606,6 +3627,20 @@ packages:
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
     engines: {node: '>= 8.0.0'}
     dependencies:
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
+    dev: true
+
+  /@rollup/pluginutils/5.0.2:
+    resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@types/estree': 1.0.0
       estree-walker: 2.0.2
       picomatch: 2.3.1
     dev: true
@@ -3689,6 +3724,16 @@ packages:
     dependencies:
       '@stencil/core': 2.21.0
       less: 3.13.1
+    dev: true
+
+  /@stencil/postcss/2.1.0_@stencil+core@2.21.0:
+    resolution: {integrity: sha512-/e4TYEXErGaHxH0ocg620YqEMLuMLpK/Wg4MJsiJglrLZCZhU4XCX1N0SwxaIOUbEZ1Zh+AqQ++yMI92ilndEA==}
+    peerDependencies:
+      '@stencil/core': '>=2.0.0'
+    dependencies:
+      '@stencil/core': 2.21.0
+      autoprefixer: 10.4.13_postcss@8.3.11
+      postcss: 8.3.11
     dev: true
 
   /@sveltejs/vite-plugin-svelte/2.0.2_svelte@3.55.1+vite@4.0.4:
@@ -5532,6 +5577,37 @@ packages:
   /atomic-sleep/1.0.0:
     resolution: {integrity: sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==}
     engines: {node: '>=8.0.0'}
+    dev: true
+
+  /autoprefixer/10.4.13:
+    resolution: {integrity: sha512-49vKpMqcZYsJjwotvt4+h/BCjJVnhGwcLpDt5xkcaOG3eLrG/HUYLagrihYsQ+qrIBgIzX1Rw7a6L8I/ZA1Atg==}
+    engines: {node: ^10 || ^12 || >=14}
+    hasBin: true
+    peerDependencies:
+      postcss: ^8.1.0
+    dependencies:
+      browserslist: 4.21.4
+      caniuse-lite: 1.0.30001445
+      fraction.js: 4.2.0
+      normalize-range: 0.1.2
+      picocolors: 1.0.0
+      postcss-value-parser: 4.2.0
+    dev: true
+
+  /autoprefixer/10.4.13_postcss@8.3.11:
+    resolution: {integrity: sha512-49vKpMqcZYsJjwotvt4+h/BCjJVnhGwcLpDt5xkcaOG3eLrG/HUYLagrihYsQ+qrIBgIzX1Rw7a6L8I/ZA1Atg==}
+    engines: {node: ^10 || ^12 || >=14}
+    hasBin: true
+    peerDependencies:
+      postcss: ^8.1.0
+    dependencies:
+      browserslist: 4.21.4
+      caniuse-lite: 1.0.30001445
+      fraction.js: 4.2.0
+      normalize-range: 0.1.2
+      picocolors: 1.0.0
+      postcss: 8.3.11
+      postcss-value-parser: 4.2.0
     dev: true
 
   /autoprefixer/10.4.13_postcss@8.4.21:
@@ -12879,6 +12955,15 @@ packages:
       source-map: 0.6.1
     dev: true
 
+  /postcss/8.3.11:
+    resolution: {integrity: sha512-hCmlUAIlUiav8Xdqw3Io4LcpA1DOt7h3LSTAC4G6JGHFFaWzI6qvFt9oilvl8BmkbBRX1IhM90ZAmpk68zccQA==}
+    engines: {node: ^10 || ^12 || >=14}
+    dependencies:
+      nanoid: 3.3.4
+      picocolors: 1.0.0
+      source-map-js: 0.6.2
+    dev: true
+
   /postcss/8.4.21:
     resolution: {integrity: sha512-tP7u/Sn/dVxK2NnruI4H9BG+x+Wxz6oeZ1cJ8P6G/PZY0IKk4k/63TDsQf2kQq3+qoJeLm2kIBUNlZe3zgb4Zg==}
     engines: {node: ^10 || ^12 || >=14}
@@ -13975,6 +14060,11 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       is-plain-obj: 2.1.0
+    dev: true
+
+  /source-map-js/0.6.2:
+    resolution: {integrity: sha512-/3GptzWzu0+0MBQFrDKzw/DvvMTUORvgY6k6jd/VS6iCR4RDTKWH6v6WPwQoUO8667uQEf9Oe38DxAYWY5F/Ug==}
+    engines: {node: '>=0.10.0'}
     dev: true
 
   /source-map-js/1.0.2:

@@ -8,6 +8,7 @@ Vue.config.ignoredElements = [/^glue-/];
 applyPolyfills().then(() => {
   defineCustomElements();
 });
+// defineCustomElements();
 new Vue({
   // store,
   router,

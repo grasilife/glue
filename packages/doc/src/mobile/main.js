@@ -8,7 +8,7 @@ import "../common/style/base.less";
 import "@glue/touch-emulator";
 import DemoBlock from "./components/DemoBlock.vue";
 import DemoSection from "./components/DemoSection.vue";
-import "glue-components/dist/glue-components/glue-components.css";
+// import "glue-components/dist/glue-components/glue-components.css";
 Vue.component("DemoBlock", DemoBlock);
 Vue.component("DemoSection", DemoSection);
 import { applyPolyfills, defineCustomElements } from "glue-components/loader";

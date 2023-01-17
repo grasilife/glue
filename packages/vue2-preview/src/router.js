@@ -30,17 +30,14 @@ function getRoutes() {
       path: "/",
       name: "home",
       component: () => import("@/components/DemoHome.vue"),
-      //   component: () => import("../docs/button/demo/index.vue"),
     },
   ];
   Object.keys(locales).forEach((lang) => {
-    // console.log(lang, locales[lang]);
     locales[lang].nav.forEach((element) => {
       if (element.items) {
         element.items.forEach((element2) => {
           console.log(element2, "element2");
           if (previewRouterExternals.includes(element2.path)) {
-            // console.log(`/${lang}/${element2.path}`, "../docs/" + element2.path + "/demo/index.vue", "移动端路径");
             types.forEach((type) => {
               routes.push({
                 name: `/${type.label}/${lang}/${element2.title}`,
@@ -50,18 +47,11 @@ function getRoutes() {
                   lang,
                   type: type.label,
                 },
-                //这个地方不能使用下面的方法
-                // component: () => import(imortPath),
                 component: () => import("@/components/DemoHome.vue"),
               });
             });
           } else {
             types.forEach((type) => {
-              //   console.log(
-              //     `/${type.label}/${lang}/${element2.path}`,
-              //     "../docs/" + element2.path + "/demo/index.vue",
-              //     "移动端路径"
-              //   );
               routes.push({
                 name: `/${type.label}/${lang}/${element2.title}`,
 
@@ -71,8 +61,6 @@ function getRoutes() {
                   lang,
                   type: type.label,
                 },
-                //这个地方不能使用下面的方法
-                // component: () => import(imortPath),
                 component: () =>
                   import("./pages/" + element2.path + "/demo/index.vue"),
               });
