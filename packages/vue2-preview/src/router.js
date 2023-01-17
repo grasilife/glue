@@ -29,7 +29,7 @@ function getRoutes() {
     {
       path: "/",
       name: "home",
-      component: () => import("./components/DemoHome.vue"),
+      component: () => import("@/components/DemoHome.vue"),
       //   component: () => import("../docs/button/demo/index.vue"),
     },
   ];
@@ -52,7 +52,7 @@ function getRoutes() {
                 },
                 //这个地方不能使用下面的方法
                 // component: () => import(imortPath),
-                component: () => import("./components/DemoHome.vue"),
+                component: () => import("@/components/DemoHome.vue"),
               });
             });
           } else {
@@ -84,7 +84,7 @@ function getRoutes() {
   });
   routes.push({
     path: "*",
-    component: () => import("./components/DemoHome.vue"),
+    component: () => import("@/components/DemoHome.vue"),
   });
   console.log(routes, "routes2");
   return routes;

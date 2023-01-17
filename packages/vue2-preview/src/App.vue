@@ -3,17 +3,17 @@
     <DemoNav />
     <router-view>
       <keep-alive>
-        <DemoSection>
-          <!-- <component :is="Component" /> -->
-        </DemoSection>
+        <DemoSection> </DemoSection>
       </keep-alive>
     </router-view>
+    <!-- <HelloWorld></HelloWorld> -->
   </div>
 </template>
 
 <script>
 import DemoNav from "./components/DemoNav.vue";
 import DemoSection from "./components/DemoSection.vue";
+import HelloWorld from "./components/HelloWorld.vue";
 export default {
   name: "App",
 
@@ -21,7 +21,7 @@ export default {
 
   mixins: [],
 
-  components: { DemoNav, DemoSection },
+  components: { DemoNav, DemoSection, HelloWorld },
 
   data() {
     return {};

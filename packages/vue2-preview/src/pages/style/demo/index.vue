@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
+import DemoBlock from "@/components/DemoBlock.vue";
+import DemoSection from "@/components/DemoSection.vue";
 import { anime } from "glue-components";
 export default {
   components: {
