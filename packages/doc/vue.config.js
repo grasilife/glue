@@ -2,7 +2,7 @@
 const path = require("path");
 module.exports = {
   publicPath: "/glue/",
-  outputDir: "../../dist",
+  // outputDir: "../../dist",
   lintOnSave: true,
   devServer: {
     host: "127.0.0.1",

@@ -16,11 +16,7 @@ export default defineConfig({
     }),
   ],
   server: {
-    cors: true,
     port: 3002,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
   },
   resolve: {
     alias: {
