@@ -19,6 +19,7 @@
     "vite": "^4.0.0"
   },
   "dependencies": {
+    "@glue/glue-cli": "workspace:^4.0.4",
     "glue-components": "workspace:0.0.2-alpha.0"
   }
 }
