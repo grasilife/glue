@@ -26,11 +26,12 @@ export default {
 
   data() {
     const path = location.pathname.replace(/\/index(\.html)?/, "/");
-    console.log(`${path}mobile.html${location.hash}`, "路由");
+    console.log(`${path}mobile.html${location.hash}`, "路由11");
     return {
       //   simulator: "/glue/mobile#/",
       //刷新页面时保持路由同步
-      simulator: `${path}mobile.html${location.hash}`
+      // simulator: `${path}mobile.html${location.hash}`
+      simulator: `http://127.0.0.1:3001/vue2-preview`
     };
   },
 

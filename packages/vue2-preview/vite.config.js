@@ -4,6 +4,7 @@ import vue from "@vitejs/plugin-vue2";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/vue2-preview",
   //dynamicImportVars为了支持vue2的路由懒加载
   plugins: [
     vue({
@@ -15,11 +16,19 @@ export default defineConfig({
     }),
   ],
   server: {
+    cors: true,
     port: 3002,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
   },
   resolve: {
     alias: {
       "@": "/src",
     },
   },
+  // build: {
+  //   outDir: "../../dist/vue2-preview",
+  //   file: "vue2.index",
+  // },
 });

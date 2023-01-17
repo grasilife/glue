@@ -2,24 +2,21 @@
 const path = require("path");
 module.exports = {
   publicPath: "/glue/",
-  outputDir: "dist",
+  outputDir: "../../dist",
   lintOnSave: true,
   devServer: {
     open: true,
-    host: "0.0.0.0",
     port: 3001,
     https: false,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+    },
     proxy: {
-      "/rest": {
-        target: "http://0.0.0.0",
-        changeOrigin: true,
-        pathRewrite: {
-          "^/rest": ""
-        }
-        // cookiePathRewrite: {
-        //   "/iov/subject": "/"
-        // },
-        // cookieDomainRewrite: {}
+      "^/vue2-preview": {
+        target: "http://127.0.0.1:3002",
+        changeOrigin: true
       }
     }
   },
@@ -37,12 +34,12 @@ module.exports = {
       entry: "src/desktop/main.js", // page 的入口
       template: "public/index.html", // 模板来源
       filename: "index.html" // 在 dist/index.html 的输出
-    },
-    mobile: {
-      entry: "src/mobile/main.js",
-      template: "public/index.html",
-      filename: "mobile.html"
     }
+    // mobile: {
+    //   entry: "src/mobile/main.js",
+    //   template: "public/index.html",
+    //   filename: "mobile.html"
+    // }
   },
   productionSourceMap: false
 };
