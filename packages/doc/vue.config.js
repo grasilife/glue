@@ -5,14 +5,10 @@ module.exports = {
   outputDir: "../../dist",
   lintOnSave: true,
   devServer: {
+    host: "127.0.0.1",
     open: true,
     port: 3001,
     https: false,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-    },
     proxy: {
       "^/vue2-preview": {
         target: "http://127.0.0.1:3002",
