@@ -1,16 +1,27 @@
 <template>
   <div class="root">
-    112121
+    <DemoNav />
+    <router-view>
+      <keep-alive>
+        <DemoSection>
+          <!-- <component :is="Component" /> -->
+        </DemoSection>
+      </keep-alive>
+    </router-view>
   </div>
 </template>
 
 <script>
+import DemoNav from "./components/DemoNav.vue";
+import DemoSection from "./components/DemoSection.vue";
 export default {
   name: "App",
 
   props: {},
 
   mixins: [],
+
+  components: { DemoNav, DemoSection },
 
   data() {
     return {};
@@ -28,7 +39,7 @@ export default {
 
   destroyed() {},
 
-  methods: {}
+  methods: {},
 };
 </script>
 <style lang="less" rel="stylesheet/less" scoped>
