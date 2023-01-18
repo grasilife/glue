@@ -83,6 +83,31 @@ importers:
       prettier: 1.19.1
       vue-template-compiler: 2.7.14
 
+  packages/docs:
+    specifiers:
+      '@glue/glue-cli': workspace:^4.0.4
+      '@vant/icons': ^2.0.1
+      '@vitejs/plugin-vue': ^4.0.0
+      glue-components: workspace:0.0.2-alpha.0
+      typescript: ^4.9.3
+      vant: ^2.12.6
+      vite: ^4.0.0
+      vue: ^3.2.45
+      vue-router: 4.1.6
+      vue-tsc: ^1.0.11
+    dependencies:
+      '@glue/glue-cli': link:../glue-cli
+      '@vant/icons': 2.0.1
+      glue-components: link:../glue-components
+      vant: 2.12.53_vue@3.2.45
+      vue: 3.2.45
+      vue-router: 4.1.6_vue@3.2.45
+    devDependencies:
+      '@vitejs/plugin-vue': 4.0.0_vite@4.0.4+vue@3.2.45
+      typescript: 4.9.4
+      vite: 4.0.4
+      vue-tsc: 1.0.24_typescript@4.9.4
+
   packages/glue-cli:
     specifiers:
       '@rollup/plugin-json': ^4.1.0
@@ -4953,6 +4978,10 @@ packages:
       - walrus
       - whiskers
     dev: true
+
+  /@vue/devtools-api/6.4.5:
+    resolution: {integrity: sha512-JD5fcdIuFxU4fQyXUu3w2KpAJHzTVdN+p4iOX2lMWSHMOoQdMAcpFLZzm9Z/2nmsoZ1a96QEhZ26e50xLBsgOQ==}
+    dev: false
 
   /@vue/eslint-config-prettier/6.0.0_7msrufr2aw245bx7tpiuo6isny:
     resolution: {integrity: sha512-wFQmv45c3ige5EA+ngijq40YpVcIkAy0Lihupnsnd1Dao5CBbPyfCzqtejFLZX1EwH/kCJdpz3t6s+5wd3+KxQ==}
@@ -15438,6 +15467,15 @@ packages:
 
   /vue-router/3.6.5:
     resolution: {integrity: sha512-VYXZQLtjuvKxxcshuRAwjHnciqZVoXAjTjcqBTz4rKc8qih9g9pI3hbDjmqXaHdgL3v8pV6P8Z335XvHzESxLQ==}
+    dev: false
+
+  /vue-router/4.1.6_vue@3.2.45:
+    resolution: {integrity: sha512-DYWYwsG6xNPmLq/FmZn8Ip+qrhFEzA14EI12MsMgVxvHFDYvlr4NXpVF5hrRH1wVcDP8fGi5F4rxuJSl8/r+EQ==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.4.5
+      vue: 3.2.45
     dev: false
 
   /vue-style-loader/4.1.3:
