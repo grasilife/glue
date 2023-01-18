@@ -16,7 +16,7 @@
 
 <script>
 import Doc from "./components/Doc";
-import config from "../common/config";
+import config from "./common/config";
 // import { setLang } from "../common/locales";
 console.log(config, "config2222");
 export default {
@@ -120,8 +120,8 @@ export default {
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-@import "../common/style/base";
-@import "../common/style/highlight";
+@import "./common/style/base";
+@import "./common/style/highlight";
 .app {
   height: 100%;
   width: 100%;

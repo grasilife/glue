@@ -176,7 +176,7 @@ export default {
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-@import "../../common/style/var";
+@import "../common/style/var";
 
 .van-doc-header {
   width: 100%;

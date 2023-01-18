@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { isMobile } from "../common";
-import config from "../common/config";
-import "../common/iframe-router";
+import { isMobile } from "~/common";
+import config from "~/common/config";
+import "~/common/iframe-router";
 const { locales, defaultLang, defaultType, types } = config.site;
 console.log(locales, defaultLang, defaultType, isMobile, config.site, types, "路由");
 if (isMobile) {

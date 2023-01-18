@@ -25,17 +25,5 @@ module.exports = {
       use: [{ loader: "vue-loader" }, { loader: "@glue/markdown-loader" }]
     });
   },
-  pages: {
-    desktop: {
-      entry: "src/desktop/main.js", // page 的入口
-      template: "public/index.html", // 模板来源
-      filename: "index.html" // 在 dist/index.html 的输出
-    }
-    // mobile: {
-    //   entry: "src/mobile/main.js",
-    //   template: "public/index.html",
-    //   filename: "mobile.html"
-    // }
-  },
   productionSourceMap: false
 };

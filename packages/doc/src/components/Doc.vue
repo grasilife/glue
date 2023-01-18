@@ -130,7 +130,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "../../common/style/var";
+@import "../common/style/var";
 .van-doc {
   width: 100%;
   height: 100%;

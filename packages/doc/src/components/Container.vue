@@ -14,7 +14,7 @@ export default {
 };
 </script>
 <style lang="less" rel="stylesheet/less" scoped>
-@import "../../common/style/var";
+@import "../common/style/var.less";
 
 .van-doc-container {
   width: calc(100% - 220px - @van-doc-simulator-width);
