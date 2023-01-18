@@ -14,20 +14,13 @@ function markdownHighlight(str: string, lang: string) {
   return "";
 }
 function markdownCardWrapper(htmlCode: string) {
-  const group = htmlCode
-    .replace(/<h3/g, ":::<h3")
-    .replace(/<h2/g, ":::<h2")
-    .split(":::");
-
-  return group
-    .map((fragment) => {
-      if (fragment.indexOf("<h3") !== -1) {
-        return `<div class="van-doc-card">${fragment}</div>`;
-      }
-
-      return fragment;
-    })
-    .join("");
+  console.log(htmlCode, "htmlCode");
+  let endString = htmlCode.replace(
+    /<h3>([\s\S]*?)<\/h3>/,
+    `<div class="van-doc-card"> <h3>$1</h3> </div>`
+  );
+  // console.log(endString, "endString");
+  return endString;
 }
 function markdownLinkOpen(md: MarkdownIt) {
   const defaultRender = md.renderer.rules.link_open;
@@ -65,18 +58,18 @@ export default defineConfig({
         typographer: false, // https://markdown-it.github.io/markdown-it/#MarkdownIt
         highlight: markdownHighlight,
       },
-      markdownItSetup(md: MarkdownIt) {
-        const require = createRequire(import.meta.url);
-        const { slugify } = require("transliteration");
-        const markdownItAnchor = require("markdown-it-anchor");
+      // markdownItSetup(md: MarkdownIt) {
+      //   const require = createRequire(import.meta.url);
+      //   const { slugify } = require("transliteration");
+      //   const markdownItAnchor = require("markdown-it-anchor");
 
-        markdownLinkOpen(md);
+      //   markdownLinkOpen(md);
 
-        md.use(markdownItAnchor, {
-          level: 2,
-          slugify,
-        });
-      },
+      //   md.use(markdownItAnchor, {
+      //     level: 2,
+      //     slugify,
+      //   });
+      // },
     }),
   ],
   resolve: {

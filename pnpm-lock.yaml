@@ -86,12 +86,15 @@ importers:
   packages/docs:
     specifiers:
       '@glue/glue-cli': workspace:^4.0.4
+      '@types/markdown-it': ^12.2.3
       '@vant/icons': ^2.0.1
       '@vitejs/plugin-vue': ^4.0.0
       glue-components: workspace:0.0.2-alpha.0
       highlight.js: ^10.7.3
       markdown-it: ^12.3.2
+      markdown-it-anchor: ^6.0.0
       module: ^1.2.5
+      transliteration: ^2.1.11
       typescript: ^4.9.3
       vant: ^2.12.6
       vite: ^4.0.0
@@ -108,10 +111,13 @@ importers:
       vue: 3.2.45
       vue-router: 4.1.6_vue@3.2.45
     devDependencies:
+      '@types/markdown-it': 12.2.3
       '@vitejs/plugin-vue': 4.0.0_vite@4.0.4+vue@3.2.45
       highlight.js: 10.7.3
       markdown-it: 12.3.2
+      markdown-it-anchor: 6.0.1_markdown-it@12.3.2
       module: 1.2.5
+      transliteration: 2.3.5
       typescript: 4.9.4
       vite: 4.0.4
       vite-plugin-html: 3.2.0_vite@4.0.4
@@ -11966,7 +11972,6 @@ packages:
       markdown-it: '*'
     dependencies:
       markdown-it: 12.3.2
-    dev: false
 
   /markdown-it/12.3.2:
     resolution: {integrity: sha512-TchMembfxfNVpHkbtriWltGWc+m3xszaRD0CZup7GFFhzIgQqxIfn3eGj1yZpfuflzPvfkt611B2Q/Bsk1YnGg==}
@@ -15929,7 +15934,6 @@ packages:
     hasBin: true
     dependencies:
       yargs: 17.6.2
-    dev: false
 
   /treeverse/2.0.0:
     resolution: {integrity: sha512-N5gJCkLu1aXccpOTtqV6ddSEi6ZmGkh3hjmbu1IjcavJK4qyOVQmi0myQKM7z5jVGmD68SJoliaVrMmVObhj6A==}
