@@ -1,4 +1,5 @@
 <template>
+  <!-- <div ref="el"></div> -->
   <router-link
     v-if="item.path"
     :class="{ active }"
@@ -10,7 +11,8 @@
 </template>
 <script setup lang="tsx" name="VanDocNavLink">
 import { useRoute } from "vue-router";
-import { watch, onMounted, computed } from "vue";
+import { watch, onMounted, computed, ref } from "vue";
+const el = ref();
 const route = useRoute();
 const props = defineProps({
   base: {
@@ -51,8 +53,8 @@ onMounted(() => {
   scrollIntoView();
 });
 function scrollIntoView() {
-  if (active.value && this.$el && this.$el.scrollIntoViewIfNeeded) {
-    this.$el.scrollIntoViewIfNeeded();
+  if (active.value && el.value && el.value.scrollIntoViewIfNeeded) {
+    el.value.scrollIntoViewIfNeeded();
   }
 }
 </script>

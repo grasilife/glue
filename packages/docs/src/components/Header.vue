@@ -123,7 +123,7 @@ const props = defineProps({
   },
 });
 const packageVersion = ref("1.0.0");
-const type = ref("Vue2");
+const type = ref("vue2");
 const showVersionPop = ref(false);
 const showTypePop = ref(false);
 const langLink = computed(() => {

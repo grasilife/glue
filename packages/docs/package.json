@@ -18,8 +18,13 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
+    "highlight.js": "^10.7.3",
+    "markdown-it": "^12.3.2",
+    "module": "^1.2.5",
     "typescript": "^4.9.3",
     "vite": "^4.0.0",
+    "vite-plugin-html": "^3.2.0",
+    "vite-plugin-md": "^0.21.5",
     "vue-tsc": "^1.0.11"
   }
 }

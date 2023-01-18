@@ -39,7 +39,7 @@ export default {
       const { type } = this.$route.meta;
       console.log(this.$route, "this.$routethis.$routethis.$route222");
       console.log(type, "type");
-      return type || "Vue2";
+      return type || "vue2";
     },
     glueConfig() {
       const { locales } = glueConfig.site;

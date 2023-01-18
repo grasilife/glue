@@ -28,7 +28,7 @@ const lang = computed(() => {
 const type = computed(() => {
   const { type }: any = route.meta;
   console.log(type, "type");
-  return type || "Vue2";
+  return type || "vue2";
 });
 const langConfigs = computed(() => {
   const { locales = {} } = glueConfig.site;

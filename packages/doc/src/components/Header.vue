@@ -88,7 +88,7 @@ export default {
   data() {
     return {
       packageVersion: "1.0.0",
-      type: "Vue2",
+      type: "vue2",
       showVersionPop: false,
       showTypePop: false
     };
