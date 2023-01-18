@@ -68,7 +68,7 @@ export default {
 </script>
 
 <style lang="less">
-@import "../../../common/style/var2.less";
+@import "~/common/style/var2.less";
 
 .demo-steps {
   .steps-success,

@@ -112,7 +112,7 @@ export default {
 </script>
 
 <style lang="less" rel="stylesheet/less">
-@import "../../../common/style/var2.less";
+@import "~/common/style/var2.less";
 
 .van-doc-demo-section {
   .van-button {

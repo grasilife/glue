@@ -16,6 +16,7 @@
   "dependencies": {
     "@glue/glue-cli": "workspace:^4.0.4",
     "glue-components": "workspace:^0.0.2-alpha.0",
+    "vant": "2.12.6",
     "vue": "~2.7.14",
     "vue-router": "^3.2.0"
   }

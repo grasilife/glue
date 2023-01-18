@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { RED } from "../../../common/constant";
+import { RED } from "~/common/constant";
 
 export default {
   data() {

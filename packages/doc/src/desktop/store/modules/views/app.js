@@ -1,4 +1,4 @@
-// import { Hash } from "@/utils/generateHash";
+// import { Hash } from "~/utils/generateHash";
 // import { message, notification } from "ant-design-vue";
 const state = {
   switchState: false,

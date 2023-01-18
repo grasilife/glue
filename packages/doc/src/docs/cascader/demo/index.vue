@@ -87,7 +87,7 @@
 
 <script>
 import zhCNOptions from "./area-zh-CN";
-import { deepClone } from "../../../common/utils/deep-clone";
+import { deepClone } from "~/common/utils/deep-clone";
 
 export default {
   data() {

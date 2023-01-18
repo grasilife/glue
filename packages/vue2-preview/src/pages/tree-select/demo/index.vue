@@ -1,11 +1,19 @@
 <template>
   <DemoSection>
     <DemoBlock :title="radioMode">
-      <glue-tree-select :items.prop="items" :active-id.prop="activeId" :main-active-index.prop="activeIndex" />
+      <glue-tree-select
+        :items.prop="items"
+        :active-id.prop="activeId"
+        :main-active-index.prop="activeIndex"
+      />
     </DemoBlock>
 
     <DemoBlock :title="multipleMode">
-      <glue-tree-select :items.prop="items" :active-id.prop="activeIds" :main-active-index.prop="activeIndex2" />
+      <glue-tree-select
+        :items.prop="items"
+        :active-id.prop="activeIds"
+        :main-active-index.prop="activeIndex2"
+      />
     </DemoBlock>
 
     <DemoBlock :title="customContent">
@@ -15,13 +23,21 @@
         :main-active-index.prop="activeIndex3"
         content="#slot"
         @glueClickNav="
-          e => {
+          (e) => {
             this.activeIndex3 = e.detail;
           }
         "
       >
-        <glue-image v-if="activeIndex3 === 0" :show-loading="false" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
-        <glue-image v-if="activeIndex3 === 1" :show-loading="false" src="https://img.yzcdn.cn/vant/apple-2.jpg" />
+        <glue-image
+          v-if="activeIndex3 === 0"
+          :show-loading="false"
+          src="https://img.yzcdn.cn/vant/apple-1.jpg"
+        />
+        <glue-image
+          v-if="activeIndex3 === 1"
+          :show-loading="false"
+          src="https://img.yzcdn.cn/vant/apple-2.jpg"
+        />
       </glue-tree-select>
     </DemoBlock>
 
@@ -38,7 +54,7 @@
 
 <script>
 import { zhCNData } from "./data-zh";
-import { deepClone } from "../../../common/utils/deep-clone";
+import { deepClone } from "~/common/utils/deep-clone";
 
 export default {
   data() {
@@ -56,7 +72,7 @@ export default {
       activeIndex: 0,
       activeIndex2: 0,
       activeIndex3: 0,
-      activeIndex4: 0
+      activeIndex4: 0,
     };
   },
 
@@ -76,7 +92,7 @@ export default {
       data[1].badge = 5;
 
       return data;
-    }
-  }
+    },
+  },
 };
 </script>

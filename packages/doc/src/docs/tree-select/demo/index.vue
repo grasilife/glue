@@ -38,7 +38,7 @@
 
 <script>
 import { zhCNData } from "./data-zh";
-import { deepClone } from "../../../common/utils/deep-clone";
+import { deepClone } from "~/common/utils/deep-clone";
 
 export default {
   data() {

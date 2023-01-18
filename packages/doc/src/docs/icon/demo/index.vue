@@ -82,7 +82,7 @@
 
 <script>
 import icons from "@vant/icons";
-import { RED } from "../../../common/constant";
+import { RED } from "~/common/constant";
 
 // from https://30secondsofcode.org
 function copyToClipboard(str) {
@@ -156,7 +156,7 @@ export default {
 </script>
 
 <style lang="less">
-@import "../../../common/style/var2.less";
+@import "~/common/style/var2.less";
 
 .demo-icon {
   font-size: 0;

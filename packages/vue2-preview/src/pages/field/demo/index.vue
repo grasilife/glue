@@ -75,8 +75,8 @@
 </template>
 
 <script>
-import DemoBlock from "@/components/DemoBlock";
-import DemoSection from "@/components/DemoSection";
+import DemoBlock from "~/components/DemoBlock";
+import DemoSection from "~/components/DemoSection";
 export default {
   components: {
     DemoBlock,

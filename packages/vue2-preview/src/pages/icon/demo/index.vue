@@ -97,7 +97,7 @@
 
 <script>
 import icons from "@vant/icons";
-import { RED } from "../../../common/constant";
+import { RED } from "~/common/constant";
 
 // from https://30secondsofcode.org
 function copyToClipboard(str) {

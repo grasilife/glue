@@ -211,12 +211,14 @@ importers:
       '@rollup/plugin-dynamic-import-vars': ^2.0.2
       '@vitejs/plugin-vue2': ^2.2.0
       glue-components: workspace:^0.0.2-alpha.0
+      vant: 2.12.6
       vite: ^4.0.0
       vue: ~2.7.14
       vue-router: ^3.2.0
     dependencies:
       '@glue/glue-cli': link:../glue-cli
       glue-components: link:../glue-components
+      vant: 2.12.6_vue@2.7.14
       vue: 2.7.14
       vue-router: 3.6.5
     devDependencies:
@@ -230,6 +232,7 @@ importers:
       '@vitejs/plugin-vue': ^4.0.0
       glue-components: workspace:0.0.2-alpha.0
       typescript: ^4.9.3
+      vant: ^2.12.6
       vite: ^4.0.0
       vue: ^3.2.45
       vue-router: ^3.2.0
@@ -237,6 +240,7 @@ importers:
     dependencies:
       '@glue/glue-cli': link:../glue-cli
       glue-components: link:../glue-components
+      vant: 2.12.53_vue@3.2.45
       vue: 3.2.45
       vue-router: 3.6.5
     devDependencies:
@@ -4319,6 +4323,10 @@ packages:
       chokidar: 3.5.3
       pino: 7.11.0
     dev: true
+
+  /@vant/icons/1.5.2:
+    resolution: {integrity: sha512-Gy2mFIgObvCh1azp6LklQYsNFrCjMLxf/mEzHD6WV0pZbMBNjsb7bWvAjPo3Wygo9IVtGqi/36wrtosv3PkyRg==}
+    dev: false
 
   /@vant/icons/1.8.0:
     resolution: {integrity: sha512-sKfEUo2/CkQFuERxvkuF6mGQZDKu3IQdj5rV9Fm0weJXtchDSSQ+zt8qPCNUEhh9Y8shy5PzxbvAfOOkCwlCXg==}
@@ -15218,6 +15226,32 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.7
       '@vant/icons': 1.8.0
+      '@vant/popperjs': 1.3.0
+      '@vue/babel-helper-vue-jsx-merge-props': 1.4.0
+      vue: 2.7.14
+      vue-lazyload: 1.2.3
+    dev: false
+
+  /vant/2.12.53_vue@3.2.45:
+    resolution: {integrity: sha512-f/wSWMCm/fd8bvm2QfPkpPqYUn8gwmBGw3DxAUPSTd/5prc1cRn23HEak8LDMJ5FmfW9mp7G5vdGlnEYCtww8Q==}
+    peerDependencies:
+      vue: '>= 2.6.0'
+    dependencies:
+      '@babel/runtime': 7.20.7
+      '@vant/icons': 1.8.0
+      '@vant/popperjs': 1.3.0
+      '@vue/babel-helper-vue-jsx-merge-props': 1.4.0
+      vue: 3.2.45
+      vue-lazyload: 1.2.3
+    dev: false
+
+  /vant/2.12.6_vue@2.7.14:
+    resolution: {integrity: sha512-mX5To5Z0w9lRuZi9SYQhP48DFk5bw6E/zgu0JEyk6RHdbbzjXEHp6+WqSa1Mb85vx9sdMMDWf/BJNXFwcCViyQ==}
+    peerDependencies:
+      vue: '>= 2.5.22'
+    dependencies:
+      '@babel/runtime': 7.20.7
+      '@vant/icons': 1.5.2
       '@vant/popperjs': 1.3.0
       '@vue/babel-helper-vue-jsx-merge-props': 1.4.0
       vue: 2.7.14

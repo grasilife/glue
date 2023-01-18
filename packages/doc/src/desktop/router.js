@@ -39,7 +39,7 @@ function getRoutes() {
           console.log(element2.path, "element2.path");
           types.forEach(type => {
             console.log(type.label, lang, element2.title, "element2.title");
-            // let comPath = `@/docs/${element2.path}/doc/${type.label}/README.${lang}.md`;
+            // let comPath = `~/docs/${element2.path}/doc/${type.label}/README.${lang}.md`;
             // let comPath = `../docs/${element2.path}/demo/index.vue`;
             // console.log(comPath, "comPath");
             routes.push({
@@ -47,7 +47,7 @@ function getRoutes() {
               path: `/${type.label}/${lang}/${element2.path}`,
               //这个地方不能使用下面的方法
               // component: () => import(imortPath),
-              component: () => import(`@/docs/${element2.path}/doc/${type.label}/README.${lang}.md`),
+              component: () => import(`~/docs/${element2.path}/doc/${type.label}/README.${lang}.md`),
               meta: {
                 path: element2.path,
                 lang,

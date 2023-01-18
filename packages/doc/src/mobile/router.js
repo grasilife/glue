@@ -81,7 +81,7 @@ function getRoutes() {
                 },
                 //这个地方不能使用下面的方法
                 // component: () => import(imortPath),
-                component: () => import("@/docs/" + element2.path + "/demo/index.vue")
+                component: () => import("~/docs/" + element2.path + "/demo/index.vue")
               });
             });
           }

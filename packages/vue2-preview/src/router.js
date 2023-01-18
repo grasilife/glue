@@ -29,7 +29,7 @@ function getRoutes() {
     {
       path: "/",
       name: "home",
-      component: () => import("@/components/DemoHome.vue"),
+      component: () => import("~/components/DemoHome.vue"),
     },
   ];
   Object.keys(locales).forEach((lang) => {
@@ -47,7 +47,7 @@ function getRoutes() {
                   lang,
                   type: type.label,
                 },
-                component: () => import("@/components/DemoHome.vue"),
+                component: () => import("~/components/DemoHome.vue"),
               });
             });
           } else {
@@ -72,7 +72,7 @@ function getRoutes() {
   });
   routes.push({
     path: "*",
-    component: () => import("@/components/DemoHome.vue"),
+    component: () => import("~/components/DemoHome.vue"),
   });
   console.log(routes, "routes2");
   return routes;

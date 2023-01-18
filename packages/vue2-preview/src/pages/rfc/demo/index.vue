@@ -75,8 +75,8 @@
 </template>
 
 <script>
-import DemoBlock from "@/components/DemoBlock.vue";
-import DemoSection from "@/components/DemoSection.vue";
+import DemoBlock from "~/components/DemoBlock.vue";
+import DemoSection from "~/components/DemoSection.vue";
 export default {
   components: {
     DemoBlock,
