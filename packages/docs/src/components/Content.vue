@@ -17,12 +17,13 @@ const currentPage = computed(() => {
 });
 </script>
 
-<style lang="less">
+<style lang="less" rel="stylesheet/less">
+@import "../common/style/var";
 .van-doc-card {
   margin-bottom: 24px;
   padding: 24px;
-  background-color: var(--van-doc-background-2);
-  border-radius: var(--van-doc-border-radius);
+  background-color: #fff;
+  border-radius: @van-doc-border-radius;
   overflow: auto;
 
   > pre code {

@@ -14,12 +14,68 @@ function markdownHighlight(str: string, lang: string) {
   return "";
 }
 function markdownCardWrapper(htmlCode: string) {
-  console.log(htmlCode, "htmlCode");
-  let endString = htmlCode.replace(
-    /<h3>([\s\S]*?)<\/h3>/,
-    `<div class="van-doc-card"> <h3>$1</h3> </div>`
+  // console.log(htmlCode, "htmlCode");
+  const noTempleteString = htmlCode.replace(
+    /<template>([\s\S]*)<\/template>/,
+    `$1`
+  );
+  // console.log(noTempleteString, "noTempleteString");
+  const group = noTempleteString
+    .replace(/<h3/g, ":::<h3")
+    .replace(/<h2/g, ":::<h2")
+    .split(":::");
+
+  let bodyString = group
+    .map((fragment) => {
+      if (fragment.indexOf("<h3") !== -1) {
+        return `<div class="van-doc-card">${fragment}</div>`;
+      }
+
+      return fragment;
+    })
+    .join("");
+  // console.log(bodyString, "bodyString");
+  const endString = bodyString.replace(
+    /<div class="van-doc-markdown-body">([\s\S]*)<\/div>/,
+    `<template><div class="van-doc-markdown-body">$1</div></template>`
   );
   // console.log(endString, "endString");
+  // const group = noTempleteString
+  //   .replace(/<h3/g, ":::<h3")
+  //   .replace(/<h2/g, ":::<h2")
+  //   .split(":::");
+  // return group
+  //   .map((fragment) => {
+  //     if (fragment.indexOf("<h3") !== -1) {
+  //       return `<div class="van-doc-card">${fragment}</div>`;
+  //     }
+
+  //     return fragment;
+  //   })
+  //   .join("");
+  // let endString = htmlCode.replace(
+  //   /(:::[\s\S]*?):::/,
+  //   `<div class="card"> <h3>$1</h3> </div>:::`
+  // );
+  // console.log(endString, "endString");
+  // console.log(group, "group");
+  // return group
+  //   .map((fragment) => {
+  //     if (fragment.indexOf("<h3") !== -1) {
+  //       console.log(fragment, "fragment");
+  //       let endString = fragment.replace(
+  //         /<h3>([\s\S]*?)<\/h3>/,
+  //         `<div class="card"> <h3>$1</h3> </div>`
+  //       );
+  //       console.log(endString, "endString");
+  //       return endString;
+  //     }
+
+  //     return fragment;
+  //   })
+  //   .join("");
+  // console.log(endString, "endString");
+  // return endString;
   return endString;
 }
 function markdownLinkOpen(md: MarkdownIt) {
@@ -58,18 +114,18 @@ export default defineConfig({
         typographer: false, // https://markdown-it.github.io/markdown-it/#MarkdownIt
         highlight: markdownHighlight,
       },
-      // markdownItSetup(md: MarkdownIt) {
-      //   const require = createRequire(import.meta.url);
-      //   const { slugify } = require("transliteration");
-      //   const markdownItAnchor = require("markdown-it-anchor");
+      markdownItSetup(md: MarkdownIt) {
+        const require = createRequire(import.meta.url);
+        const { slugify } = require("transliteration");
+        const markdownItAnchor = require("markdown-it-anchor");
 
-      //   markdownLinkOpen(md);
+        markdownLinkOpen(md);
 
-      //   md.use(markdownItAnchor, {
-      //     level: 2,
-      //     slugify,
-      //   });
-      // },
+        md.use(markdownItAnchor, {
+          level: 2,
+          slugify,
+        });
+      },
     }),
   ],
   resolve: {
