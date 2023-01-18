@@ -9,7 +9,7 @@
         :to="`${base}/${navItem.path}`"
       >
         {{ navItem.title }}
-        <arrow-right class="demo-home-nav__icon" />
+        <ArrowRight class="demo-home-nav__icon" />
       </router-link>
     </div>
   </div>

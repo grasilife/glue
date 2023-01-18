@@ -43,6 +43,7 @@ function getRoutes() {
                 name: `/${type.label}/${lang}/${element2.title}`,
                 path: `/${type.label}/${type.label}/${lang}/${element2.path}`,
                 meta: {
+                  name: `${element2.title}`,
                   path: element2.path,
                   lang,
                   type: type.label,
@@ -57,6 +58,7 @@ function getRoutes() {
 
                 path: `/${type.label}/${lang}/${element2.path}`,
                 meta: {
+                  name: `${element2.title}`,
                   path: element2.path,
                   lang,
                   type: type.label,
