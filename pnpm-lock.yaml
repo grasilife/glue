@@ -209,6 +209,7 @@ importers:
     specifiers:
       '@glue/glue-cli': workspace:^4.0.4
       '@rollup/plugin-dynamic-import-vars': ^2.0.2
+      '@vant/icons': ^2.0.1
       '@vitejs/plugin-vue2': ^2.2.0
       glue-components: workspace:^0.0.2-alpha.0
       vant: 2.12.6
@@ -217,6 +218,7 @@ importers:
       vue-router: ^3.2.0
     dependencies:
       '@glue/glue-cli': link:../glue-cli
+      '@vant/icons': 2.0.1
       glue-components: link:../glue-components
       vant: 2.12.6_vue@2.7.14
       vue: 2.7.14
@@ -229,6 +231,7 @@ importers:
   packages/vue3-preview:
     specifiers:
       '@glue/glue-cli': workspace:^4.0.4
+      '@vant/icons': ^2.0.1
       '@vitejs/plugin-vue': ^4.0.0
       glue-components: workspace:0.0.2-alpha.0
       typescript: ^4.9.3
@@ -239,6 +242,7 @@ importers:
       vue-tsc: ^1.0.11
     dependencies:
       '@glue/glue-cli': link:../glue-cli
+      '@vant/icons': 2.0.1
       glue-components: link:../glue-components
       vant: 2.12.53_vue@3.2.45
       vue: 3.2.45
