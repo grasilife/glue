@@ -6,7 +6,7 @@
     <slot />
   </div>
 </template>
-<script setup lang="tsx" name="VanDocContainer">
+<script setup lang="tsx" name="DocContainer">
 const props = defineProps({
   hasSimulator: {
     type: Boolean,

@@ -15,7 +15,7 @@
           <slot />
         </DocContent>
       </DocContainer>
-      <!-- <DocSimulator v-if="simulator" :src="simulator" /> -->
+      <DocSimulator v-if="simulator" :src="simulator" />
     </div>
   </div>
 </template>
@@ -23,10 +23,10 @@
 import { watch } from "vue";
 import { useRoute } from "vue-router";
 
-import DocNav from "./Nav.vue";
-import DocHeader from "./Header.vue";
-import DocContent from "./Content.vue";
-import DocContainer from "./Container.vue";
+import DocNav from "./DocNav.vue";
+import DocHeader from "./DocHeader.vue";
+import DocContent from "./DocContent.vue";
+import DocContainer from "./DocContainer.vue";
 import DocSimulator from "./Simulator.vue";
 const route = useRoute();
 console.log(route, "333232");

@@ -20,7 +20,7 @@
     </div>
   </div>
 </template>
-<script setup lang="tsx" name="VanDocNav">
+<script setup lang="tsx" name="DocNav">
 import { computed, ref, onMounted } from "vue";
 import type { PropType } from "vue";
 import NavLink from "./NavLink.vue";

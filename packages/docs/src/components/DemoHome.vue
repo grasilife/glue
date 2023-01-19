@@ -20,7 +20,7 @@
   </div>
 </template>
 <script setup lang="tsx" name="DemoHome">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { glueConfig } from "@glue/glue-cli";
 import DemoHomeNav from "./DemoHomeNav.vue";
 import { useRoute } from "vue-router";
@@ -36,7 +36,7 @@ const type = computed(() => {
   return type || "vue2";
 });
 const config = computed(() => {
-  const { locales } = glueConfig.site;
+  const { locales }: any = glueConfig.site;
   console.log(locales, "locales");
   if (locales) {
     return locales[lang.value];

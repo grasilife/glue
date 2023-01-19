@@ -80,7 +80,7 @@
     </div>
   </div>
 </template>
-<script setup lang="tsx" name="VanDocHeader">
+<script setup lang="tsx" name="DocHeader">
 import type { PropType } from "vue";
 import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";

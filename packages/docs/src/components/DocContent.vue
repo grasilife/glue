@@ -3,7 +3,7 @@
     <slot />
   </div>
 </template>
-<script setup lang="tsx" name="VanDocContent">
+<script setup lang="tsx" name="DocContent">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
