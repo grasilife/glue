@@ -15,7 +15,7 @@
           <slot />
         </DocContent>
       </DocContainer>
-      <!-- <DocSimulator v-if="simulator" :src="simulator" /> -->
+      <DocSimulator v-if="simulator" :src="simulator" />
     </div>
   </div>
 </template>
@@ -84,7 +84,10 @@ const props = defineProps({
 });
 function setNav() {
   const { nav } = props.config;
-  const items = nav.reduce((list, item) => list.concat(item.items), []);
+  const items = nav.reduce(
+    (list: string | any[], item: { items: any }) => list.concat(item.items),
+    []
+  );
   const currentPath = route.path.split("/").pop();
 
   let currentIndex;
