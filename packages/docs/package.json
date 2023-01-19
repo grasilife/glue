@@ -1,0 +1,33 @@
+{
+  "name": "@glue/docs",
+  "private": true,
+  "version": "0.0.2-alpha.0",
+  "type": "module",
+  "scripts": {
+    "doc": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@glue/glue-cli": "workspace:^4.0.4",
+    "@vant/icons": "^2.0.1",
+    "glue-components": "workspace:0.0.2-alpha.0",
+    "vant": "^2.12.6",
+    "vue": "^3.2.45",
+    "vue-router": "4.1.6"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^12.2.3",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "highlight.js": "^10.7.3",
+    "markdown-it": "^12.3.2",
+    "markdown-it-anchor": "^6.0.0",
+    "module": "^1.2.5",
+    "transliteration": "^2.1.11",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0",
+    "vite-plugin-html": "^3.2.0",
+    "vite-plugin-md": "^0.21.5",
+    "vue-tsc": "^1.0.11"
+  }
+}

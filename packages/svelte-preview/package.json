@@ -1,0 +1,25 @@
+{
+  "name": "@glue/svelte-preview",
+  "private": true,
+  "version": "0.0.2-alpha.0",
+  "type": "module",
+  "scripts": {
+    "doc": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.0.0",
+    "@tsconfig/svelte": "^3.0.0",
+    "svelte": "^3.54.0",
+    "svelte-check": "^2.10.0",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0"
+  },
+  "dependencies": {
+    "@glue/glue-cli": "workspace:^4.0.4",
+    "glue-components": "workspace:0.0.2-alpha.0"
+  }
+}

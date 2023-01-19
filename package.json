@@ -17,7 +17,8 @@
     "cz-conventional-changelog": "^3.3.0",
     "esno": "^0.14.1",
     "lerna": "^6.4.1",
-    "plop": "^2.7.4"
+    "plop": "^2.7.4",
+    "rimraf": "^4.0.7"
   },
   "config": {
     "commitizen": {
