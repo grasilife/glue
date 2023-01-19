@@ -8,7 +8,7 @@
         </a>
 
         <ul class="van-doc-header__top-nav">
-          <li ref="type" v-if="type" class="van-doc-header__top-nav-item">
+          <li ref="typeRef" v-if="type" class="van-doc-header__top-nav-item">
             <span
               class="van-doc-header__cube van-doc-header__version"
               @click="toggleTypePop"
@@ -29,7 +29,7 @@
             </span>
           </li>
           <li
-            ref="version"
+            ref="versionRef"
             v-if="versions"
             class="van-doc-header__top-nav-item"
           >
@@ -83,8 +83,9 @@
 <script setup lang="tsx" name="VanDocHeader">
 import type { PropType } from "vue";
 import { computed, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
+const router = useRouter();
 const props = defineProps({
   lang: {
     type: String,
@@ -124,8 +125,10 @@ const props = defineProps({
 });
 const packageVersion = ref("1.0.0");
 const type = ref("vue2");
+const typeRef = ref();
 const showVersionPop = ref(false);
 const showTypePop = ref(false);
+const versionRef = ref();
 const langLink = computed(() => {
   return `#${route.path.replace(props.lang, anotherLang.value.lang)}`;
 });
@@ -148,7 +151,7 @@ const searchConfig = computed(() => {
   return props.config.searchConfig;
 });
 function toggleTypePop() {
-  const val = !this.showTypePop;
+  const val = !showTypePop.value;
 
   //   const action = val ? "add" : "remove";
   //   document.body[`${action}EventListener`](
@@ -156,11 +159,11 @@ function toggleTypePop() {
   //     this.checkHideVersionPop
   //   );
 
-  this.showTypePop = val;
-  console.log(this.showTypePop, this.types, "this.showTypePop");
+  showTypePop.value = val;
+  console.log(showTypePop.value, props.types, "showTypePop.value");
 }
 function toggleVersionPop() {
-  const val = !this.showVersionPop;
+  const val = !showVersionPop.value;
 
   //   const action = val ? "add" : "remove";
   //   document.body[`${action}EventListener`](
@@ -168,26 +171,26 @@ function toggleVersionPop() {
   //     this.checkHideVersionPop
   //   );
 
-  this.showVersionPop = val;
+  showVersionPop.value = val;
 }
 
-function checkHideVersionPop(event) {
-  if (!this.$refs.version.contains(event.target)) {
-    this.showVersionPop = false;
+function checkHideVersionPop(event: { target: any }) {
+  if (!versionRef.value.contains(event.target)) {
+    showVersionPop.value = false;
   }
 }
 
-function onSwitchLang(lang) {
+function onSwitchLang(lang: any) {
   console.log(lang, "langlanglang");
-  const { type, path } = this.$route.meta;
-  this.$router.push(`/${type}/${lang}/${path}`);
+  const { type, path } = route.meta;
+  router.push(`/${type}/${lang}/${path}`);
 }
-function onSwitchType(item) {
-  this.type = item.label;
-  const { lang, path } = this.$route.meta;
-  this.$router.push(`/${item.label}/${lang}/${path}`);
+function onSwitchType(item: { label: any }) {
+  type.value = item.label;
+  const { lang, path } = route.meta;
+  router.push(`/${item.label}/${lang}/${path}`);
 }
-function onSwitchVersion(version) {
+function onSwitchVersion(version: { link: string }) {
   console.log(version, "versionversionversion");
   if (version.link) {
     location.href = version.link;

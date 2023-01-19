@@ -56,7 +56,7 @@ onMounted(() => {
   window.addEventListener("scroll", onScroll);
   function onScroll() {
     const { pageYOffset: offset } = window;
-    this.top = Math.max(0, 64 - offset);
+    top.value = Math.max(0, 64 - offset);
   }
 });
 </script>
