@@ -9,7 +9,13 @@
         :placeholder="selectArea"
         @click="base.show = true"
       />
-      <van-popup v-model="base.show" round position="bottom" get-container="body" safe-area-inset-bottom>
+      <van-popup
+        v-model="base.show"
+        round
+        position="bottom"
+        get-container="body"
+        safe-area-inset-bottom
+      >
         <van-cascader
           v-model="base.value"
           :title="selectArea"
@@ -29,7 +35,13 @@
         :placeholder="selectArea"
         @click="customColor.show = true"
       />
-      <van-popup v-model="customColor.show" round position="bottom" get-container="body" safe-area-inset-bottom>
+      <van-popup
+        v-model="customColor.show"
+        round
+        position="bottom"
+        get-container="body"
+        safe-area-inset-bottom
+      >
         <van-cascader
           v-model="customColor.value"
           :title="selectArea"
@@ -50,7 +62,13 @@
         :placeholder="selectArea"
         @click="async.show = true"
       />
-      <van-popup v-model="async.show" round position="bottom" get-container="body" safe-area-inset-bottom>
+      <van-popup
+        v-model="async.show"
+        round
+        position="bottom"
+        get-container="body"
+        safe-area-inset-bottom
+      >
         <van-cascader
           v-model="async.value"
           :title="selectArea"
@@ -71,7 +89,13 @@
         :placeholder="selectArea"
         @click="customFieldNames.show = true"
       />
-      <van-popup v-model="customFieldNames.show" round position="bottom" get-container="body" safe-area-inset-bottom>
+      <van-popup
+        v-model="customFieldNames.show"
+        round
+        position="bottom"
+        get-container="body"
+        safe-area-inset-bottom
+      >
         <van-cascader
           v-model="customFieldNames.value"
           :title="selectArea"
@@ -87,7 +111,6 @@
 
 <script>
 import zhCNOptions from "./area-zh-CN";
-import { deepClone } from "~/common/utils/deep-clone";
 
 export default {
   data() {
@@ -102,47 +125,47 @@ export default {
         {
           text: "浙江省",
           value: "330000",
-          children: []
-        }
+          children: [],
+        },
       ],
       asyncOptions2: [
         { text: "杭州市", value: "330100" },
-        { text: "宁波市", value: "330200" }
+        { text: "宁波市", value: "330200" },
       ],
       customFieldNamesTitle: "自定义字段名",
       base: {
         show: false,
         value: "",
-        result: ""
+        result: "",
       },
       customColor: {
         show: false,
         value: null,
-        result: ""
+        result: "",
       },
       async: {
         show: false,
         value: null,
         result: "",
-        options: []
+        options: [],
       },
       customFieldNames: {
         show: false,
         value: null,
-        result: ""
+        result: "",
       },
       fieldNames: {
         text: "name",
         value: "code",
-        children: "items"
-      }
+        children: "items",
+      },
     };
   },
 
   computed: {
     customFieldOptions() {
-      const options = deepClone(this.options);
-      const adjustFieldName = item => {
+      const options = JSON.parse(JSON.stringify(this.options));
+      const adjustFieldName = (item) => {
         if ("text" in item) {
           item.name = item.text;
           delete item.text;
@@ -160,7 +183,7 @@ export default {
 
       options.forEach(adjustFieldName);
       return options;
-    }
+    },
   },
 
   created() {
@@ -177,15 +200,17 @@ export default {
     },
 
     onFinish(type, { value, selectedOptions }) {
-      const result = selectedOptions.map(option => option.text || option.name).join("/");
+      const result = selectedOptions
+        .map((option) => option.text || option.name)
+        .join("/");
 
       this[type] = {
         ...this[type],
         show: false,
         value,
-        result
+        result,
       };
-    }
-  }
+    },
+  },
 };
 </script>

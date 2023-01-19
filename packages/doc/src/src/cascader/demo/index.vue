@@ -87,7 +87,6 @@
 
 <script>
 import zhCNOptions from "./area-zh-CN";
-import { deepClone } from "~/common/utils/deep-clone";
 
 export default {
   data() {
@@ -141,7 +140,7 @@ export default {
 
   computed: {
     customFieldOptions() {
-      const options = deepClone(this.options);
+      const options = JSON.parse(JSON.stringify(this.options));
       const adjustFieldName = item => {
         if ("text" in item) {
           item.name = item.text;

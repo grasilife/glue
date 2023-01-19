@@ -54,7 +54,6 @@
 
 <script>
 import { zhCNData } from "./data-zh";
-import { deepClone } from "~/common/utils/deep-clone";
 
 export default {
   data() {
@@ -86,7 +85,7 @@ export default {
     },
 
     badgeItems() {
-      const data = deepClone(this.data).slice(0, 2);
+      const data = JSON.parse(JSON.stringify(this.data)).slice(0, 2);
 
       data[0].dot = true;
       data[1].badge = 5;
