@@ -17,8 +17,8 @@
 ```
 
 ```js
-import { reactive } from 'vue';
-import { Toast } from 'vant';
+import { reactive } from "vue";
+import { Toast } from "vant";
 
 export default {
   setup() {
@@ -28,7 +28,7 @@ export default {
     });
     const onRefresh = () => {
       setTimeout(() => {
-        Toast('刷新成功');
+        Toast("刷新成功");
         state.loading = false;
         state.count++;
       }, 1000);
@@ -98,7 +98,7 @@ export default {
 ### Props
 
 | 参数               | 说明                     | 类型               | 默认值            |
-|--------------------|------------------------|--------------------|-------------------|
+| ------------------ | ------------------------ | ------------------ | ----------------- |
 | v-model            | 是否处于加载中状态       | _boolean_          | -                 |
 | pulling-text       | 下拉过程提示文案         | _string_           | `下拉即可刷新...` |
 | loosing-text       | 释放过程提示文案         | _string_           | `释放即可刷新...` |
@@ -112,13 +112,13 @@ export default {
 ### Events
 
 | 事件名  | 说明           | 回调参数 |
-|---------|--------------|----------|
+| ------- | -------------- | -------- |
 | refresh | 下拉刷新时触发 | -        |
 
 ### Slots
 
 | 名称    | 说明                 | 参数                       |
-|---------|--------------------|----------------------------|
+| ------- | -------------------- | -------------------------- |
 | default | 自定义内容           | -                          |
 | normal  | 非下拉状态时顶部内容 | -                          |
 | pulling | 下拉过程中顶部内容   | { distance: 当前下拉距离 } |
@@ -131,7 +131,7 @@ export default {
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
 | 名称                          | 默认值          | 描述 |
-|-------------------------------|-----------------|------|
+| ----------------------------- | --------------- | ---- |
 | @pull-refresh-head-height     | `50px`          | -    |
 | @pull-refresh-head-font-size  | `@font-size-md` | -    |
 | @pull-refresh-head-text-color | `@gray-6`       | -    |
