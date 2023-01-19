@@ -15,7 +15,7 @@
           <slot />
         </DocContent>
       </DocContainer>
-      <!-- <DocSimulator v-if="simulator" :src="simulator" /> -->
+      <DocSimulator v-if="simulator" :src="simulator" />
     </div>
   </div>
 </template>
