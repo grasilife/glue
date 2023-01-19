@@ -13,8 +13,18 @@
     </DemoBlock>
 
     <DemoBlock :title="title3">
-      <glue-progress color="#f2826a" :percentage="25" :pivot-text="orange" show-pivot />
-      <glue-progress color="#ee0a24" :percentage="50" :pivot-text="red" show-pivot />
+      <glue-progress
+        color="#f2826a"
+        :percentage="25"
+        :pivot-text="orange"
+        show-pivot
+      />
+      <glue-progress
+        color="#ee0a24"
+        :percentage="50"
+        :pivot-text="red"
+        show-pivot
+      />
       <glue-progress
         :percentage="75"
         :pivot-text="purple"
@@ -36,14 +46,14 @@ export default {
       basicUsage: "基础用法",
       title2: "置灰",
       title3: "样式定制",
-      strokeWidth: "线条粗细"
+      strokeWidth: "线条粗细",
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-progress {
   background: @white;

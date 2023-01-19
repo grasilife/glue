@@ -18,7 +18,13 @@
     <DemoBlock :title="round">
       <glue-row gutter="10">
         <glue-col v-for="fit in fits" span="8" :key="fit">
-          <glue-image round :fit="fit" width="100%" height="27vw" :src="image" />
+          <glue-image
+            round
+            :fit="fit"
+            width="100%"
+            height="27vw"
+            :src="image"
+          />
           <div class="text">{{ fit }}</div>
         </glue-col>
       </glue-row>
@@ -82,14 +88,14 @@ export default {
       customTip: "自定义提示",
       loadFail: "加载失败",
       image: "https://img.yzcdn.cn/vant/cat.jpeg",
-      fits: ["contain", "cover", "fill", "none", "scale-down"]
+      fits: ["contain", "cover", "fill", "none", "scale-down"],
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-image {
   overflow-x: hidden;

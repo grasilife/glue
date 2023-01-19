@@ -12,7 +12,12 @@
     </DemoBlock>
 
     <DemoBlock :title="useSlot">
-      <glue-nav-bar :title="title" :left-text="back" left-arrow right-text="#slot">
+      <glue-nav-bar
+        :title="title"
+        :left-text="back"
+        left-arrow
+        right-text="#slot"
+      >
         <div slot="right-text" class="icon">
           <glue-icon name="search" size="18" />
         </div>
@@ -29,17 +34,17 @@ export default {
       title: "标题",
       basicUsage: "基础用法",
       useSlot: "使用插槽",
-      back: "返回"
+      back: "返回",
     };
   },
   methods: {
     glueLeft() {},
-    glueRight() {}
-  }
+    glueRight() {},
+  },
 };
 </script>
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-nav-bar {
   .icon {

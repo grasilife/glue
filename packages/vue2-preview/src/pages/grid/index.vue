@@ -15,13 +15,22 @@
     <DemoBlock :title="customContent">
       <glue-grid :border="false" :column-num="3" center>
         <glue-grid-item custom="#slot">
-          <glue-image fit="contain" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+          <glue-image
+            fit="contain"
+            src="https://img.yzcdn.cn/vant/apple-1.jpg"
+          />
         </glue-grid-item>
         <glue-grid-item custom="#slot">
-          <glue-image fit="contain" src="https://img.yzcdn.cn/vant/apple-2.jpg" />
+          <glue-image
+            fit="contain"
+            src="https://img.yzcdn.cn/vant/apple-2.jpg"
+          />
         </glue-grid-item>
         <glue-grid-item custom="#slot">
-          <glue-image fit="contain" src="https://img.yzcdn.cn/vant/apple-3.jpg" />
+          <glue-image
+            fit="contain"
+            src="https://img.yzcdn.cn/vant/apple-3.jpg"
+          />
         </glue-grid-item>
       </glue-grid>
     </DemoBlock>
@@ -49,7 +58,11 @@
     <DemoBlock :title="route">
       <glue-grid clickable :column-num="2" center>
         <glue-grid-item icon="home-o" :text="vueRoute" to="/" />
-        <glue-grid-item icon="search" :text="urlRoute" url="/vant/mobile.html" />
+        <glue-grid-item
+          icon="search"
+          :text="urlRoute"
+          url="/vant/mobile.html"
+        />
       </glue-grid>
     </DemoBlock>
 
@@ -76,12 +89,12 @@ export default {
       urlRoute: "URL 跳转",
       vueRoute: "路由跳转",
       showBadge: "徽标提示",
-      horizontal: "内容横排"
+      horizontal: "内容横排",
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 </style>

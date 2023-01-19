@@ -5,15 +5,32 @@
     </DemoBlock>
 
     <DemoBlock :title="preview">
-      <glue-uploader :list.prop="fileList" multiple accept="*" show-upload preview-image />
+      <glue-uploader
+        :list.prop="fileList"
+        multiple
+        accept="*"
+        show-upload
+        preview-image
+      />
     </DemoBlock>
 
     <DemoBlock :title="status">
-      <glue-uploader :list.prop="statusFileList" :after-read="afterReadFailed" show-upload preview-image />
+      <glue-uploader
+        :list.prop="statusFileList"
+        :after-read="afterReadFailed"
+        show-upload
+        preview-image
+      />
     </DemoBlock>
 
     <DemoBlock :title="maxCount">
-      <glue-uploader :list.prop="fileList2" multiple :max-count="2" show-upload preview-image />
+      <glue-uploader
+        :list.prop="fileList2"
+        multiple
+        :max-count="2"
+        show-upload
+        preview-image
+      />
     </DemoBlock>
 
     <DemoBlock :title="maxSize">
@@ -44,15 +61,32 @@
     </DemoBlock>
 
     <DemoBlock :title="beforeReadTitle">
-      <glue-uploader :list.prop="fileList3" :before-read="beforeRead" show-upload preview-image />
+      <glue-uploader
+        :list.prop="fileList3"
+        :before-read="beforeRead"
+        show-upload
+        preview-image
+      />
     </DemoBlock>
 
     <DemoBlock :title="disabled">
-      <glue-uploader :after-read="afterRead" disabled show-upload preview-image />
+      <glue-uploader
+        :after-read="afterRead"
+        disabled
+        show-upload
+        preview-image
+      />
     </DemoBlock>
 
     <DemoBlock :title="customPreviewImage">
-      <glue-uploader :list.prop="fileList5" multiple accept="*" :deletable="false" show-upload preview-image />
+      <glue-uploader
+        :list.prop="fileList5"
+        multiple
+        accept="*"
+        :deletable="false"
+        show-upload
+        preview-image
+      />
     </DemoBlock>
   </DemoSection>
 </template>
@@ -78,7 +112,10 @@ export default {
       previewCover: "自定义预览样式",
       customPreviewImage: "自定义单个图片预览",
       deleteMessage: "删除前置处理",
-      fileList: [{ url: "https://img.yzcdn.cn/vant/leaf.jpg" }, { url: "https://img.yzcdn.cn/vant/tree.jpg" }],
+      fileList: [
+        { url: "https://img.yzcdn.cn/vant/leaf.jpg" },
+        { url: "https://img.yzcdn.cn/vant/tree.jpg" },
+      ],
       fileList2: [{ url: "https://img.yzcdn.cn/vant/sand.jpg" }],
       fileList3: [],
       fileList4: [{ url: "https://img.yzcdn.cn/vant/sand.jpg" }],
@@ -89,35 +126,35 @@ export default {
           deletable: true,
           beforeDelete: () => {
             this.$toast(this.deleteMessage);
-          }
+          },
         },
         {
           url: "https://img.yzcdn.cn/vant/tree.jpg",
           deletable: true,
           imageFit: "contain",
-          previewSize: 120
-        }
+          previewSize: 120,
+        },
       ],
       statusFileList: [
         {
           url: "https://img.yzcdn.cn/vant/leaf.jpg",
           status: "uploading",
-          message: this.uploading
+          message: this.uploading,
         },
         {
           url: "https://img.yzcdn.cn/vant/tree.jpg",
           status: "failed",
-          message: this.failed
-        }
+          message: this.failed,
+        },
       ],
       previewCoverFiles: [
         {
           url: "https://img.yzcdn.cn/vant/leaf.jpg",
           file: {
-            name: this.imageName
-          }
-        }
-      ]
+            name: this.imageName,
+          },
+        },
+      ],
     };
   },
 
@@ -148,13 +185,13 @@ export default {
     onOversize(file, detail) {
       console.log(file, detail);
       this.$toast(this.overSizeTip);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-uploader {
   background-color: @white;

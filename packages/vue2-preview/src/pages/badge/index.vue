@@ -61,10 +61,10 @@
     </DemoBlock>
 
     <DemoBlock :title="standalone">
-      <div style="display:inline-block">
+      <div style="display: inline-block">
         <glue-badge content="20" style="margin-left: 32px" />
       </div>
-      <div style="display:inline-block">
+      <div style="display: inline-block">
         <glue-badge content="200" max="99" style="margin-left: 32px" />
       </div>
     </DemoBlock>
@@ -79,14 +79,14 @@ export default {
       max: "最大值",
       standalone: "独立展示",
       customColor: "自定义颜色",
-      customContent: "自定义徽标内容"
+      customContent: "自定义徽标内容",
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-badge {
   background-color: @white;

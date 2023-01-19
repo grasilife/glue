@@ -9,7 +9,12 @@
     </DemoBlock>
 
     <DemoBlock :title="title3">
-      <glue-slider :value="value3" :min="-50" :max="50" @glueChange="onChange" />
+      <glue-slider
+        :value="value3"
+        :min="-50"
+        :max="50"
+        @glueChange="onChange"
+      />
     </DemoBlock>
 
     <DemoBlock :title="title4">
@@ -21,7 +26,12 @@
     </DemoBlock>
 
     <DemoBlock :title="customStyle">
-      <glue-slider :value="value6" bar-height="4px" active-color="#ee0a24" @glueChange="onChange" />
+      <glue-slider
+        :value="value6"
+        bar-height="4px"
+        active-color="#ee0a24"
+        @glueChange="onChange"
+      />
     </DemoBlock>
 
     <DemoBlock :title="customButton">
@@ -35,7 +45,13 @@
     <DemoBlock :title="vertical">
       <div :style="{ height: '150px', paddingLeft: '30px' }">
         <glue-slider :value="value8" vertical @glueChange="onChange" />
-        <glue-slider :value="value9" range vertical style="margin-left: 100px;" @glueChange="onChange" />
+        <glue-slider
+          :value="value9"
+          range
+          vertical
+          style="margin-left: 100px"
+          @glueChange="onChange"
+        />
       </div>
     </DemoBlock>
   </DemoSection>
@@ -62,20 +78,20 @@ export default {
       value6: 50,
       value7: 50,
       value8: 50,
-      value9: [20, 60]
+      value9: [20, 60],
     };
   },
   methods: {
     onChange(value) {
       console.log(value, "valuevaluevalue");
       this.$toast(this.text + value.detail);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-slider {
   background: @white;

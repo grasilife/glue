@@ -24,8 +24,10 @@
     </DemoBlock>
 
     <DemoBlock :title="textColor">
-      <glue-loading size="24px" vertical color="#0094ff" :text="loading"> </glue-loading>
-      <glue-loading size="24px" vertical text-color="#0094ff" :text="loading"> </glue-loading>
+      <glue-loading size="24px" vertical color="#0094ff" :text="loading">
+      </glue-loading>
+      <glue-loading size="24px" vertical text-color="#0094ff" :text="loading">
+      </glue-loading>
     </DemoBlock>
   </DemoSection>
 </template>
@@ -40,14 +42,14 @@ export default {
       size: "自定义大小",
       color: "自定义颜色",
       vertical: "垂直排列",
-      textColor: "自定义文本颜色"
+      textColor: "自定义文本颜色",
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-loading {
   background: @white;

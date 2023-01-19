@@ -27,7 +27,13 @@
     </DemoBlock>
 
     <DemoBlock :title="title4">
-      <glue-swipe vertical :autoplay="3000" indicator-color="white" style="height: 200px;" class="demo-swipe--vertical">
+      <glue-swipe
+        vertical
+        :autoplay="3000"
+        indicator-color="white"
+        style="height: 200px"
+        class="demo-swipe--vertical"
+      >
         <glue-swipe-item>1</glue-swipe-item>
         <glue-swipe-item>2</glue-swipe-item>
         <glue-swipe-item>3</glue-swipe-item>
@@ -75,8 +81,8 @@ export default {
         "https://img.yzcdn.cn/vant/apple-1.jpg",
         "https://img.yzcdn.cn/vant/apple-2.jpg",
         "https://img.yzcdn.cn/vant/apple-3.jpg",
-        "https://img.yzcdn.cn/vant/apple-4.jpg"
-      ]
+        "https://img.yzcdn.cn/vant/apple-4.jpg",
+      ],
     };
   },
 
@@ -87,13 +93,13 @@ export default {
 
     onChange2(index) {
       this.current = index;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-swipe {
   padding-bottom: 30px;

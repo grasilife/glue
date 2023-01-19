@@ -32,14 +32,14 @@ export default {
       showChildren: "显示子组件",
       title: "关于 Glue",
       desc: "Glue是一个基于web components的组件库，提供了丰富的基础组件和业务组件，帮助开发者快速搭建移动应用。",
-      show: false
+      show: false,
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-skeleton {
   background-color: @white;

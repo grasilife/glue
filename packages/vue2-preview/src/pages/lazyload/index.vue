@@ -5,7 +5,11 @@
     </DemoBlock>
 
     <DemoBlock :title="title2">
-      <div v-for="img in backgroundImageList" :key="img" v-lazy:background-image="img" />
+      <div
+        v-for="img in backgroundImageList"
+        :key="img"
+        v-lazy:background-image="img"
+      />
     </DemoBlock>
 
     <DemoBlock :title="title3">
@@ -27,17 +31,23 @@ export default {
         "https://img.yzcdn.cn/vant/apple-1.jpg",
         "https://img.yzcdn.cn/vant/apple-2.jpg",
         "https://img.yzcdn.cn/vant/apple-3.jpg",
-        "https://img.yzcdn.cn/vant/apple-4.jpg"
+        "https://img.yzcdn.cn/vant/apple-4.jpg",
       ],
-      backgroundImageList: ["https://img.yzcdn.cn/vant/apple-5.jpg", "https://img.yzcdn.cn/vant/apple-6.jpg"],
-      componentImageList: ["https://img.yzcdn.cn/vant/apple-8.jpg", "https://img.yzcdn.cn/vant/apple-7.jpg"]
+      backgroundImageList: [
+        "https://img.yzcdn.cn/vant/apple-5.jpg",
+        "https://img.yzcdn.cn/vant/apple-6.jpg",
+      ],
+      componentImageList: [
+        "https://img.yzcdn.cn/vant/apple-8.jpg",
+        "https://img.yzcdn.cn/vant/apple-7.jpg",
+      ],
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-lazyload {
   padding-right: @padding-md;

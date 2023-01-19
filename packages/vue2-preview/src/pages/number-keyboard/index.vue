@@ -1,11 +1,25 @@
 <template>
   <DemoSection>
-    <glue-cell is-link @click="keyboard = 'default'" gtitle="弹出默认键盘"> </glue-cell>
-    <glue-cell is-link @click="keyboard = 'custom'" gtitle="弹出带右侧栏的键盘"> </glue-cell>
-    <glue-cell is-link @click="keyboard = 'extraKey'" gtitle="弹出身份证号键盘"> </glue-cell>
-    <glue-cell is-link @click="keyboard = 'title'" gtitle="弹出带标题的键盘"> </glue-cell>
-    <glue-cell is-link @click="keyboard = 'multiExtraKey'" gtitle="弹出配置多个按键的键盘"> </glue-cell>
-    <glue-cell is-link @click="keyboard = 'randomKeyOrder'" gtitle="弹出配置随机数字的键盘"> </glue-cell>
+    <glue-cell is-link @click="keyboard = 'default'" gtitle="弹出默认键盘">
+    </glue-cell>
+    <glue-cell is-link @click="keyboard = 'custom'" gtitle="弹出带右侧栏的键盘">
+    </glue-cell>
+    <glue-cell is-link @click="keyboard = 'extraKey'" gtitle="弹出身份证号键盘">
+    </glue-cell>
+    <glue-cell is-link @click="keyboard = 'title'" gtitle="弹出带标题的键盘">
+    </glue-cell>
+    <glue-cell
+      is-link
+      @click="keyboard = 'multiExtraKey'"
+      gtitle="弹出配置多个按键的键盘"
+    >
+    </glue-cell>
+    <glue-cell
+      is-link
+      @click="keyboard = 'randomKeyOrder'"
+      gtitle="弹出配置随机数字的键盘"
+    >
+    </glue-cell>
     <glue-number-keyboard
       v-if="keyboard === 'default'"
       @glueBlur="keyboard = ''"
@@ -76,7 +90,7 @@ export default {
       multiExtraKey: "配置多个按键",
       randomKeyOrder: "随机数字键盘",
       value: "",
-      keyboard: "default"
+      keyboard: "default",
     };
   },
 
@@ -87,13 +101,13 @@ export default {
 
     onDelete() {
       this.$toast(this.delete);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-number-keyboard {
   padding-bottom: 300px;

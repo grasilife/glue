@@ -8,13 +8,21 @@
       </van-tab>
 
       <van-tab :title="successTip">
-        <van-pull-refresh v-model="isLoading" :success-text="success" @refresh="onRefresh(false)">
+        <van-pull-refresh
+          v-model="isLoading"
+          :success-text="success"
+          @refresh="onRefresh(false)"
+        >
           <p>{{ tips }}</p>
         </van-pull-refresh>
       </van-tab>
 
       <van-tab :title="customTips">
-        <van-pull-refresh v-model="isLoading" head-height="80" @refresh="onRefresh(true)">
+        <van-pull-refresh
+          v-model="isLoading"
+          head-height="80"
+          @refresh="onRefresh(true)"
+        >
           <template #pulling="{ distance }">
             <img
               class="doge"
@@ -46,7 +54,7 @@ export default {
       successTip: "成功提示",
       customTips: "自定义提示",
       count: 0,
-      isLoading: false
+      isLoading: false,
     };
   },
 
@@ -57,7 +65,7 @@ export default {
       }
 
       return this.try;
-    }
+    },
   },
 
   mounted() {
@@ -83,13 +91,13 @@ export default {
         this.isLoading = false;
         this.count++;
       }, 1000);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-pull-refresh {
   background-color: @white;

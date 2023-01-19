@@ -27,7 +27,10 @@
     </DemoBlock>
 
     <DemoBlock :title="customStyle">
-      <glue-divider :style="{ borderColor: '#1989fa', color: '#1989fa', padding: '0 16px' }" :text="text">
+      <glue-divider
+        :style="{ borderColor: '#1989fa', color: '#1989fa', padding: '0 16px' }"
+        :text="text"
+      >
         <!-- {{ text }} -->
       </glue-divider>
     </DemoBlock>
@@ -43,14 +46,14 @@ export default {
       dashed: "虚线",
       withText: "展示文本",
       contentPosition: "内容位置",
-      customStyle: "自定义样式"
+      customStyle: "自定义样式",
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-divider {
   background-color: @white;

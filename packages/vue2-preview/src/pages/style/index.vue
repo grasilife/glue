@@ -152,7 +152,7 @@ export default {
 </script>
 
 <style lang="less" rel="stylesheet/less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 .demo-style {
   .glue-ellipsis,
   .glue-multi-ellipsis--l2 {

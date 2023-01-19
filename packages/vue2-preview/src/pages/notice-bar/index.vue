@@ -19,7 +19,12 @@
     </DemoBlock>
 
     <DemoBlock :title="customStyle">
-      <glue-notice-bar :text="shortText" color="#1989fa" background="#ecf9ff" left-icon="info-o" />
+      <glue-notice-bar
+        :text="shortText"
+        color="#1989fa"
+        background="#ecf9ff"
+        left-icon="info-o"
+      />
     </DemoBlock>
 
     <!-- <DemoBlock :title="verticalScroll">
@@ -46,14 +51,14 @@ export default {
       shortText: "技术是开发它的人的共同灵魂。",
       scrollable: "滚动播放",
       customStyle: "自定义样式",
-      verticalScroll: "垂直滚动"
+      verticalScroll: "垂直滚动",
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-notice-bar {
   background: @white;

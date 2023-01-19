@@ -8,17 +8,29 @@
           </div>
           <glue-cell :border="false" :title="title" :value="content" />
           <div slot="right">
-            <glue-button square type="danger" :text="deleteTitle">{{ deleteTitle }}</glue-button>
-            <glue-button square type="primary" :text="collect">{{ collect }}</glue-button>
+            <glue-button square type="danger" :text="deleteTitle">{{
+              deleteTitle
+            }}</glue-button>
+            <glue-button square type="primary" :text="collect">{{
+              collect
+            }}</glue-button>
           </div>
         </glue-swipe-cell>
       </DemoBlock>
 
       <DemoBlock :title="customContent">
         <glue-swipe-cell left="#slot" right="#slot">
-          <van-card num="2" price="2.00" :desc="desc" :title="cardTitle" :thumb="imageURL" />
+          <van-card
+            num="2"
+            price="2.00"
+            :desc="desc"
+            :title="cardTitle"
+            :thumb="imageURL"
+          />
           <div slot="right" class="delete-button">
-            <glue-button square type="danger" class="delete-button">{{ deleteTitle }}</glue-button>
+            <glue-button square type="danger" class="delete-button">{{
+              deleteTitle
+            }}</glue-button>
           </div>
         </glue-swipe-cell>
       </DemoBlock>
@@ -40,16 +52,16 @@ export default {
       confirm: "确定删除吗？",
       cardTitle: "商品标题",
       customContent: "自定义内容",
-      imageURL: "https://img.yzcdn.cn/vant/ipad.jpeg"
+      imageURL: "https://img.yzcdn.cn/vant/ipad.jpeg",
     };
   },
 
-  methods: {}
+  methods: {},
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-swipe-cell {
   user-select: none;

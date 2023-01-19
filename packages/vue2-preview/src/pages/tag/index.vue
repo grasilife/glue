@@ -26,7 +26,13 @@
         <glue-tag mark type="primary">{{ tag }}</glue-tag>
       </glue-cell>
       <glue-cell :title="closeable">
-        <glue-tag v-if="show" size="medium" closeable type="primary" @glueIconClick="close">
+        <glue-tag
+          v-if="show"
+          size="medium"
+          closeable
+          type="primary"
+          @glueIconClick="close"
+        >
           {{ tag }}
         </glue-tag>
       </glue-cell>
@@ -78,20 +84,20 @@ export default {
       customBgColor: "背景颜色",
       customTextColor: "文字颜色",
       customPlainColor: "空心颜色",
-      show: true
+      show: true,
     };
   },
 
   methods: {
     close() {
       this.show = false;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-tag {
   glue-tag {

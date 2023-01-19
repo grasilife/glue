@@ -8,21 +8,73 @@
     </DemoBlock>
 
     <DemoBlock card :title="position">
-      <van-cell :title="buttonTop" is-link @click="showTop = true" @glueClose="showTop = false" />
-      <van-cell :title="buttonBottom" is-link @click="showBottom = true" @glueClose="showBottom = false" />
-      <van-cell :title="buttonLeft" is-link @click="showLeft = true" @glueClose="showLeft = false" />
-      <van-cell :title="buttonRight" is-link @click="showRight = true" @glueClose="showRight = false" />
+      <van-cell
+        :title="buttonTop"
+        is-link
+        @click="showTop = true"
+        @glueClose="showTop = false"
+      />
+      <van-cell
+        :title="buttonBottom"
+        is-link
+        @click="showBottom = true"
+        @glueClose="showBottom = false"
+      />
+      <van-cell
+        :title="buttonLeft"
+        is-link
+        @click="showLeft = true"
+        @glueClose="showLeft = false"
+      />
+      <van-cell
+        :title="buttonRight"
+        is-link
+        @click="showRight = true"
+        @glueClose="showRight = false"
+      />
 
-      <glue-popup :show="showTop" position="top" width="100%" height="30%" @glueClose="showTop = false" />
-      <glue-popup :show="showBottom" position="bottom" width="100%" height="30%" @glueClose="showBottom = false" />
-      <glue-popup :show="showLeft" position="left" width="30%" height="100%" @glueClose="showLeft = false" />
-      <glue-popup :show="showRight" position="right" width="30%" height="100%" @glueClose="showRight = false" />
+      <glue-popup
+        :show="showTop"
+        position="top"
+        width="100%"
+        height="30%"
+        @glueClose="showTop = false"
+      />
+      <glue-popup
+        :show="showBottom"
+        position="bottom"
+        width="100%"
+        height="30%"
+        @glueClose="showBottom = false"
+      />
+      <glue-popup
+        :show="showLeft"
+        position="left"
+        width="30%"
+        height="100%"
+        @glueClose="showLeft = false"
+      />
+      <glue-popup
+        :show="showRight"
+        position="right"
+        width="30%"
+        height="100%"
+        @glueClose="showRight = false"
+      />
     </DemoBlock>
 
     <DemoBlock card :title="closeIcon">
       <van-cell :title="closeIcon" is-link @click="showCloseIcon = true" />
-      <van-cell :title="customCloseIcon" is-link @click="showCustomCloseIcon = true" />
-      <van-cell :title="customIconPosition" is-link @click="showCustomIconPosition = true" />
+      <van-cell
+        :title="customCloseIcon"
+        is-link
+        @click="showCustomCloseIcon = true"
+      />
+      <van-cell
+        :title="customIconPosition"
+        is-link
+        @click="showCustomIconPosition = true"
+      />
 
       <glue-popup
         :show="showCloseIcon"
@@ -65,8 +117,16 @@
     </DemoBlock>
 
     <DemoBlock card :title="getContainer">
-      <van-cell :title="getContainer" is-link @click="showGetContainer = true" />
-      <glue-popup :show="showGetContainer" teleport="body" @glueClose="showGetContainer = false">
+      <van-cell
+        :title="getContainer"
+        is-link
+        @click="showGetContainer = true"
+      />
+      <glue-popup
+        :show="showGetContainer"
+        teleport="body"
+        @glueClose="showGetContainer = false"
+      >
         <div :style="{ padding: '30px 50px' }">{{ content }}</div>
       </glue-popup>
     </DemoBlock>
@@ -100,19 +160,19 @@ export default {
       showRoundCorner: false,
       showGetContainer: false,
       showCustomCloseIcon: false,
-      showCustomIconPosition: false
+      showCustomIconPosition: false,
     };
   },
   methods: {
     close(e) {
       console.log(e, "hauhauhuahu");
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-popup {
   .van-row {

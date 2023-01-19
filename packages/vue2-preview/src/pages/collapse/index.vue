@@ -73,14 +73,14 @@ export default {
       active1: [0],
       active2: 0,
       active3: [],
-      active4: []
+      active4: [],
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-collapse {
   .glue-icon-question-o {

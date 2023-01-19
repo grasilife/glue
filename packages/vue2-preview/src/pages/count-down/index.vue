@@ -9,7 +9,12 @@
     </DemoBlock>
 
     <DemoBlock :title="millisecond">
-      <glue-count-down millisecond :time="time" format="HH:mm:ss:SS" auto-start />
+      <glue-count-down
+        millisecond
+        :time="time"
+        format="HH:mm:ss:SS"
+        auto-start
+      />
     </DemoBlock>
 
     <DemoBlock :title="customStyle">
@@ -33,7 +38,11 @@
       />
       <van-grid clickable :column-num="3">
         <van-grid-item icon="play-circle-o" :text="startTitle" @click="start" />
-        <van-grid-item icon="pause-circle-o" :text="pauseTitle" @click="pause" />
+        <van-grid-item
+          icon="pause-circle-o"
+          :text="pauseTitle"
+          @click="pause"
+        />
         <van-grid-item icon="replay" :text="resetTitle" @click="reset" />
       </van-grid>
     </DemoBlock>
@@ -47,7 +56,7 @@ export default {
       currentTime: {
         hours: 0,
         minutes: 0,
-        seconds: 0
+        seconds: 0,
       },
       basicUsage: "基础用法",
       millisecond: "毫秒级渲染",
@@ -59,7 +68,7 @@ export default {
       pauseTitle: "暂停",
       startTitle: "开始",
       finished: "倒计时结束",
-      time: 30 * 60 * 60 * 1000
+      time: 30 * 60 * 60 * 1000,
     };
   },
 
@@ -77,13 +86,13 @@ export default {
 
     reset() {
       this.$refs.countDown.reset();
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-count-down {
   background-color: @white;

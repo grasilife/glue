@@ -3,7 +3,11 @@
     <DemoBlock card :title="basicUsage">
       <glue-cell is-link :gtitle="basicUsage" @click="show.basic = true" />
       <glue-cell is-link :gtitle="showCancel" @click="show.cancel = true" />
-      <glue-cell is-link :gtitle="showDescription" @click="show.description = true" />
+      <glue-cell
+        is-link
+        :gtitle="showDescription"
+        @click="show.description = true"
+      />
     </DemoBlock>
 
     <DemoBlock card :title="optionStatus">
@@ -14,7 +18,12 @@
       <glue-cell is-link :gtitle="customPanel" @click="show.title = true" />
     </DemoBlock>
 
-    <glue-action-sheet :show="show.basic" :actions.prop="simpleActions" @glueSelect="onSelect" @glueClose="glueClose" />
+    <glue-action-sheet
+      :show="show.basic"
+      :actions.prop="simpleActions"
+      @glueSelect="onSelect"
+      @glueClose="glueClose"
+    />
 
     <glue-action-sheet
       :show="show.cancel"
@@ -32,7 +41,12 @@
       :description="description"
     />
 
-    <glue-action-sheet :show="show.status" close-on-click-action :actions.prop="statusActions" :cancel-text="cancel" />
+    <glue-action-sheet
+      :show="show.status"
+      close-on-click-action
+      :actions.prop="statusActions"
+      :cancel-text="cancel"
+    />
 
     <glue-action-sheet :show="show.title" :gtitle="title">
       <div class="demo-action-sheet-content">{{ content }}</div>
@@ -60,20 +74,28 @@ export default {
       coloredOption: "着色选项",
       disabledOption: "禁用选项",
       showDescription: "展示描述信息",
-      simpleActions: [{ name: "选项一" }, { name: "选项二" }, { name: "选项三" }],
+      simpleActions: [
+        { name: "选项一" },
+        { name: "选项二" },
+        { name: "选项三" },
+      ],
       statusActions: [
         { name: "选项一", color: "#ee0a24" },
         { name: "选项二", disabled: true },
-        { name: "选项三", subname: "描述信息", loading: true }
+        { name: "选项三", subname: "描述信息", loading: true },
       ],
-      actionsWithDescription: [{ name: "选项一" }, { name: "选项二" }, { name: "选项三", subname: "描述信息" }],
+      actionsWithDescription: [
+        { name: "选项一" },
+        { name: "选项二" },
+        { name: "选项三", subname: "描述信息" },
+      ],
       show: {
         basic: false,
         cancel: false,
         title: false,
         status: false,
-        description: false
-      }
+        description: false,
+      },
     };
   },
 
@@ -86,13 +108,13 @@ export default {
       this.show.basic = false;
       console.log(this.show.basic, "this.show.basic");
       this.$toast(this.cancel);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less" rel="stylesheet/less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-action-sheet {
   &-content {

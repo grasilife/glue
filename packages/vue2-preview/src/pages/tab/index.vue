@@ -2,7 +2,9 @@
   <DemoSection>
     <DemoBlock :title="basicUsage">
       <van-tabs v-model="active">
-        <van-tab :title="tab + index" v-for="index in tabs" :key="index"> {{ content }} {{ index }} </van-tab>
+        <van-tab :title="tab + index" v-for="index in tabs" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
       </van-tabs>
     </DemoBlock>
 
@@ -16,13 +18,20 @@
 
     <DemoBlock :title="title2">
       <van-tabs>
-        <van-tab v-for="index in 8" :title="tab + index" :key="index"> {{ content }} {{ index }} </van-tab>
+        <van-tab v-for="index in 8" :title="tab + index" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
       </van-tabs>
     </DemoBlock>
 
     <DemoBlock :title="title3">
       <van-tabs @disabled="onClickDisabled">
-        <van-tab v-for="index in 3" :title="tab + index" :disabled="index === 2" :key="index">
+        <van-tab
+          v-for="index in 3"
+          :title="tab + index"
+          :disabled="index === 2"
+          :key="index"
+        >
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
@@ -30,19 +39,25 @@
 
     <DemoBlock :title="title4">
       <van-tabs type="card">
-        <van-tab v-for="index in 3" :title="tab + index" :key="index"> {{ content }} {{ index }} </van-tab>
+        <van-tab v-for="index in 3" :title="tab + index" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
       </van-tabs>
     </DemoBlock>
 
     <DemoBlock :title="title5">
       <van-tabs @click="onClick">
-        <van-tab v-for="index in 2" :title="tab + index" :key="index"> {{ content }} {{ index }} </van-tab>
+        <van-tab v-for="index in 2" :title="tab + index" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
       </van-tabs>
     </DemoBlock>
 
     <DemoBlock :title="title6">
       <van-tabs :active="active" sticky>
-        <van-tab :title="tab + index" v-for="index in tabs" :key="index"> {{ content }} {{ index }} </van-tab>
+        <van-tab :title="tab + index" v-for="index in tabs" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
       </van-tabs>
     </DemoBlock>
 
@@ -57,25 +72,33 @@
 
     <DemoBlock :title="title8">
       <van-tabs animated>
-        <van-tab :title="tab + index" v-for="index in tabs" :key="index"> {{ content }} {{ index }} </van-tab>
+        <van-tab :title="tab + index" v-for="index in tabs" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
       </van-tabs>
     </DemoBlock>
 
     <DemoBlock :title="title9">
       <van-tabs :active="active" swipeable>
-        <van-tab :title="tab + index" v-for="index in tabs" :key="index"> {{ content }} {{ index }} </van-tab>
+        <van-tab :title="tab + index" v-for="index in tabs" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
       </van-tabs>
     </DemoBlock>
 
     <DemoBlock :title="title10">
       <van-tabs scrollspy sticky>
-        <van-tab :title="tab + index" v-for="index in 8" :key="index"> {{ content }} {{ index }} </van-tab>
+        <van-tab :title="tab + index" v-for="index in 8" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
       </van-tabs>
     </DemoBlock>
 
     <DemoBlock :title="beforeChangeTitle">
       <van-tabs :before-change="beforeChange">
-        <van-tab :title="tab + index" v-for="index in 4" :key="index"> {{ content }} {{ index }} </van-tab>
+        <van-tab :title="tab + index" v-for="index in 4" :key="index">
+          {{ content }} {{ index }}
+        </van-tab>
       </van-tabs>
     </DemoBlock>
   </DemoSection>
@@ -102,7 +125,7 @@ export default {
       beforeChangeTitle: "异步切换",
       active: 2,
       activeName: "b",
-      tabs: [1, 2, 3, 4]
+      tabs: [1, 2, 3, 4],
     };
   },
 
@@ -120,16 +143,16 @@ export default {
         return false;
       }
 
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         resolve(name !== 3);
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-tab {
   margin-bottom: 80vh;

@@ -122,7 +122,7 @@ export default {
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 .glue-button {
   margin-right: @padding-md;
 }

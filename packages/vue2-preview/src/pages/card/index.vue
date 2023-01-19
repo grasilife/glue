@@ -1,23 +1,41 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-card num="2" price="2.00" :desc="desc" :title="title" :thumb="imageURL" />
+      <van-card
+        num="2"
+        price="2.00"
+        :desc="desc"
+        :title="title"
+        :thumb="imageURL"
+      />
     </DemoBlock>
 
     <DemoBlock :title="discountInfo">
-      <van-card num="2" price="2.00" origin-price="10.00" :tag="tag" :desc="desc" :title="title" :thumb="imageURL" />
+      <van-card
+        num="2"
+        price="2.00"
+        origin-price="10.00"
+        :tag="tag"
+        :desc="desc"
+        :title="title"
+        :thumb="imageURL"
+      />
     </DemoBlock>
 
     <DemoBlock :title="customContent">
-      <van-card num="2" price="2.00" :desc="desc" :title="title" :thumb="imageURL">
+      <van-card
+        num="2"
+        price="2.00"
+        :desc="desc"
+        :title="title"
+        :thumb="imageURL"
+      >
         <template #tags>
           <div>
-            <van-tag plain type="danger" style="margin-right: 5px;">
+            <van-tag plain type="danger" style="margin-right: 5px">
               标签
             </van-tag>
-            <van-tag plain type="danger">
-              标签
-            </van-tag>
+            <van-tag plain type="danger"> 标签 </van-tag>
           </div>
         </template>
 
@@ -47,14 +65,14 @@ export default {
       title: "商品名称",
       discountInfo: "营销信息",
       customContent: "自定义内容",
-      imageURL: "https://img.yzcdn.cn/vant/ipad.jpeg"
+      imageURL: "https://img.yzcdn.cn/vant/ipad.jpeg",
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-card {
   background-color: @white;

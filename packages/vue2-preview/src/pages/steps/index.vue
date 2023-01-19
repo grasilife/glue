@@ -12,7 +12,12 @@
     </DemoBlock>
 
     <DemoBlock :title="customStyle">
-      <glue-steps :active="active" active-icon="success" inactive-icon="arrow" active-color="#38f">
+      <glue-steps
+        :active="active"
+        active-icon="success"
+        inactive-icon="arrow"
+        active-color="#38f"
+      >
         <glue-step>{{ step1 }}</glue-step>
         <glue-step>{{ step2 }}</glue-step>
         <glue-step>{{ step3 }}</glue-step>
@@ -55,20 +60,20 @@ export default {
       status2: "【城市】物流状态",
       status3: "快件已发货",
       customStyle: "自定义样式",
-      active: 1
+      active: 1,
     };
   },
 
   methods: {
     nextStep() {
       this.active = ++this.active % 4;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-steps {
   .steps-success,

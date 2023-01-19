@@ -49,14 +49,14 @@ export default {
       description: "描述文字",
       customImage: "自定义图片",
       bottomContent: "底部内容",
-      active: "error"
+      active: "error",
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-empty {
   background: @white;

@@ -52,7 +52,12 @@
 
       <van-tab :title="basic">
         <glue-row>
-          <glue-col v-for="icon in icons.basic" :key="icon" span="6" @click="copy(icon)">
+          <glue-col
+            v-for="icon in icons.basic"
+            :key="icon"
+            span="6"
+            @click="copy(icon)"
+          >
             <glue-icon :name="icon" size="32" />
             <span>{{ icon }}</span>
           </glue-col>
@@ -61,7 +66,12 @@
 
       <van-tab :title="outline">
         <glue-row>
-          <glue-col v-for="icon in icons.outline" :key="icon" span="6" @click="copy(icon)">
+          <glue-col
+            v-for="icon in icons.outline"
+            :key="icon"
+            span="6"
+            @click="copy(icon)"
+          >
             <glue-icon :name="icon" size="32" />
             <span>{{ icon }}</span>
           </glue-col>
@@ -70,7 +80,12 @@
 
       <van-tab :title="filled">
         <glue-row>
-          <glue-col v-for="icon in icons.filled" :key="icon" span="6" @click="copy(icon)">
+          <glue-col
+            v-for="icon in icons.filled"
+            :key="icon"
+            span="6"
+            @click="copy(icon)"
+          >
             <glue-icon :name="icon" size="32" />
             <span>{{ icon }}</span>
           </glue-col>
@@ -93,7 +108,10 @@ function copyToClipboard(str) {
   el.style.left = "-9999px";
   document.body.appendChild(el);
 
-  const selected = document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false;
+  const selected =
+    document.getSelection().rangeCount > 0
+      ? document.getSelection().getRangeAt(0)
+      : false;
 
   el.select();
   document.execCommand("copy");
@@ -122,7 +140,7 @@ export default {
       size: "图标大小",
       tab: 0,
       demoIcon: "chat-o",
-      demoImage: "https://b.yzcdn.cn/vant/icon-demo-1126.png"
+      demoImage: "https://b.yzcdn.cn/vant/icon-demo-1126.png",
     };
   },
 
@@ -148,15 +166,15 @@ export default {
         type: "success",
         duration: 1500,
         className: "demo-icon-notify",
-        message: `${this.copied}：${tag}`
+        message: `${this.copied}：${tag}`,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-icon {
   font-size: 0;

@@ -33,7 +33,13 @@
     </DemoBlock>
 
     <DemoBlock :title="title4">
-      <glue-pagination :value="currentPage4" :total-items="125" :show-page-size="5" prev-text="#slot" next-text="#slot">
+      <glue-pagination
+        :value="currentPage4"
+        :total-items="125"
+        :show-page-size="5"
+        prev-text="#slot"
+        next-text="#slot"
+      >
         <div slot="prev-text">
           <glue-icon name="arrow-left" />
         </div>
@@ -58,14 +64,14 @@ export default {
       currentPage1: 1,
       currentPage2: 1,
       currentPage3: 1,
-      currentPage4: 1
+      currentPage4: 1,
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-pagination {
   .glue-pagination {

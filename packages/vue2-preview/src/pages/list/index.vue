@@ -32,7 +32,11 @@
             :finished-text="finishedText"
             @glueLoad="onLoad(2)"
           >
-            <glue-cell v-for="item in list[2].items" :key="item" :gtitle="item" />
+            <glue-cell
+              v-for="item in list[2].items"
+              :key="item"
+              :gtitle="item"
+            />
           </glue-list>
         </van-pull-refresh>
       </van-tab>
@@ -55,23 +59,23 @@ export default {
           refreshing: false,
           loading: false,
           error: false,
-          finished: false
+          finished: false,
         },
         {
           items: [],
           refreshing: false,
           loading: false,
           error: false,
-          finished: false
+          finished: false,
         },
         {
           items: [],
           refreshing: false,
           loading: false,
           error: false,
-          finished: false
-        }
-      ]
+          finished: false,
+        },
+      ],
     };
   },
 
@@ -111,13 +115,13 @@ export default {
     onRefresh(index) {
       this.list[index].finished = false;
       this.onLoad(index);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-list {
   glue-cell {

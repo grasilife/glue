@@ -53,7 +53,7 @@ export default {
       activeKey1: 0,
       activeKey2: 0,
       activeKey3: 0,
-      activeKey4: 0
+      activeKey4: 0,
     };
   },
 
@@ -62,15 +62,15 @@ export default {
       console.log(e, "jiajiaji");
       this.$notify({
         type: "primary",
-        message: `${this.selectTip} ${this.gtitle}${e.detail + 1}`
+        message: `${this.selectTip} ${this.gtitle}${e.detail + 1}`,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-sidebar {
   background-color: @white;

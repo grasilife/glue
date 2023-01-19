@@ -6,7 +6,7 @@
         trigger="click"
         :actions="actions"
         placement="bottom-start"
-        style="margin-left: 16px;"
+        style="margin-left: 16px"
         @select="onSelect"
       >
         <template #reference>
@@ -20,7 +20,7 @@
         theme="dark"
         trigger="click"
         :actions="actions"
-        style="margin-left: 16px;"
+        style="margin-left: 16px"
         @select="onSelect"
       >
         <template #reference>
@@ -32,9 +32,20 @@
     </DemoBlock>
 
     <DemoBlock :title="placement">
-      <van-field is-link readonly name="picker" :label="choosePlacement" @click="showPicker = true" />
+      <van-field
+        is-link
+        readonly
+        name="picker"
+        :label="choosePlacement"
+        @click="showPicker = true"
+      />
 
-      <van-popup v-model="showPicker" round position="bottom" get-container="body">
+      <van-popup
+        v-model="showPicker"
+        round
+        position="bottom"
+        get-container="body"
+      >
         <div class="demo-popover-box">
           <van-popover
             v-model="show.placement"
@@ -59,7 +70,7 @@
         trigger="click"
         :actions="actionsWithIcon"
         placement="bottom-start"
-        style="margin-left: 16px;"
+        style="margin-left: 16px"
         @select="onSelect"
       >
         <template #reference>
@@ -73,7 +84,7 @@
         v-model="show.disableAction"
         trigger="click"
         :actions="actionsDisabled"
-        style="margin-left: 16px;"
+        style="margin-left: 16px"
         @select="onSelect"
       >
         <template #reference>
@@ -89,11 +100,23 @@
         v-model="show.customContent"
         trigger="click"
         placement="top-start"
-        style="margin-left: 16px;"
+        style="margin-left: 16px"
         @select="onSelect"
       >
-        <van-grid square clickable :border="false" column-num="3" style="width: 240px;">
-          <van-grid-item v-for="i in 6" :key="i" icon="photo-o" :text="option" @click="show.customContent = false" />
+        <van-grid
+          square
+          clickable
+          :border="false"
+          column-num="3"
+          style="width: 240px"
+        >
+          <van-grid-item
+            v-for="i in 6"
+            :key="i"
+            icon="photo-o"
+            :text="option"
+            @click="show.customContent = false"
+          />
         </van-grid>
         <template #reference>
           <van-button type="primary">
@@ -116,9 +139,13 @@ export default {
       actionsWithIcon: [
         { text: "选项一", icon: "add-o" },
         { text: "选项二", icon: "music-o" },
-        { text: "选项三", icon: "more-o" }
+        { text: "选项三", icon: "more-o" },
       ],
-      actionsDisabled: [{ text: "选项一", disabled: true }, { text: "选项二", disabled: true }, { text: "选项三" }],
+      actionsDisabled: [
+        { text: "选项一", disabled: true },
+        { text: "选项二", disabled: true },
+        { text: "选项三" },
+      ],
       showIcon: "展示图标",
       placement: "弹出位置",
       darkTheme: "深色风格",
@@ -134,7 +161,7 @@ export default {
         darkTheme: false,
         lightTheme: false,
         customContent: false,
-        disableAction: false
+        disableAction: false,
       },
       showPicker: false,
       currentPlacement: "top",
@@ -150,8 +177,8 @@ export default {
         "right-end",
         "bottom",
         "bottom-start",
-        "bottom-end"
-      ]
+        "bottom-end",
+      ],
     };
   },
 
@@ -164,13 +191,13 @@ export default {
     },
     onSelect(action) {
       this.$toast(action.text);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-popover {
   &-refer {

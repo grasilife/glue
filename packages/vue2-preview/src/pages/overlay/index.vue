@@ -1,12 +1,21 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <glue-button type="primary" style="margin-left: 16px;" @click="show = true">{{ showOverlay }}</glue-button>
+      <glue-button
+        type="primary"
+        style="margin-left: 16px"
+        @click="show = true"
+        >{{ showOverlay }}</glue-button
+      >
       <glue-overlay :show="show" @click="show = false" />
     </DemoBlock>
 
     <DemoBlock :title="embeddedContent">
-      <glue-button type="primary" style="margin-left: 16px;" @click="showEmbedded = true">
+      <glue-button
+        type="primary"
+        style="margin-left: 16px"
+        @click="showEmbedded = true"
+      >
         {{ embeddedContent }}
       </glue-button>
       <glue-overlay :show="showEmbedded" @click="showEmbedded = false">
@@ -26,14 +35,14 @@ export default {
       showOverlay: "显示遮罩层",
       embeddedContent: "嵌入内容",
       show: false,
-      showEmbedded: false
+      showEmbedded: false,
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-overlay {
   background: @white;

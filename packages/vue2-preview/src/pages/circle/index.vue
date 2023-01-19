@@ -43,7 +43,7 @@
         :speed="100"
         :clockwise="true"
         :text="counterClockwise"
-        style="margin-top: 15px;"
+        style="margin-top: 15px"
       />
 
       <glue-circle
@@ -54,19 +54,23 @@
         size="120px"
         :clockwise="true"
         :text="customSize"
-        style="margin-top: 15px;"
+        style="margin-top: 15px"
       ></glue-circle>
     </DemoBlock>
 
-    <div style="margin-top: 15px;">
-      <glue-button type="primary" size="small" @click="add">{{ addText }}</glue-button>
-      <glue-button type="danger" size="small" @click="reduce">{{ decreaseText }}</glue-button>
+    <div style="margin-top: 15px">
+      <glue-button type="primary" size="small" @click="add">{{
+        addText
+      }}</glue-button>
+      <glue-button type="danger" size="small" @click="reduce">{{
+        decreaseText
+      }}</glue-button>
     </div>
   </DemoSection>
 </template>
 
 <script>
-const format = rate => Math.min(Math.max(rate, 0), 100);
+const format = (rate) => Math.min(Math.max(rate, 0), 100);
 
 export default {
   data() {
@@ -87,8 +91,8 @@ export default {
       currentRate4: 70,
       gradientColor: {
         "0%": "#3fecff",
-        "100%": "#6149f6"
-      }
+        "100%": "#6149f6",
+      },
     };
   },
 
@@ -102,13 +106,13 @@ export default {
     },
     reduce() {
       this.rate = format(this.rate - 20);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-circle {
   .glue-circle {

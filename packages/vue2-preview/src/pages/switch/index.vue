@@ -13,7 +13,11 @@
     </DemoBlock>
 
     <DemoBlock :title="customSize">
-      <glue-switch :value="checked2" size="24px" @glueChange="checked2 = !checked2" />
+      <glue-switch
+        :value="checked2"
+        size="24px"
+        @glueChange="checked2 = !checked2"
+      />
     </DemoBlock>
 
     <DemoBlock :title="customColor">
@@ -28,7 +32,11 @@
     <DemoBlock :title="withCell">
       <glue-cell center :title="title" right-icon="#slot">
         <div slot="rightIcon">
-          <glue-switch :value="checked5" size="24" @glueChange="checked5 = !checked5" />
+          <glue-switch
+            :value="checked5"
+            size="24"
+            @glueChange="checked5 = !checked5"
+          />
         </div>
       </glue-cell>
     </DemoBlock>
@@ -54,7 +62,7 @@ export default {
       checked3: true,
       checked4: true,
       checked5: true,
-      checked6: false
+      checked6: false,
     };
   },
 
@@ -63,18 +71,18 @@ export default {
       this.$dialog
         .confirm({
           title: this.title,
-          message: this.message
+          message: this.message,
         })
         .then(() => {
           this.checked4 = checked;
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-switch {
   .glue-switch {

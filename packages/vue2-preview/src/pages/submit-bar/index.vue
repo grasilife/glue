@@ -1,7 +1,11 @@
 <template>
   <DemoSection>
     <DemoBlock :title="basicUsage">
-      <van-submit-bar :price="3050" :button-text="submit" @submit="onClickButton" />
+      <van-submit-bar
+        :price="3050"
+        :button-text="submit"
+        @submit="onClickButton"
+      />
     </DemoBlock>
 
     <DemoBlock :title="disabled">
@@ -16,11 +20,20 @@
     </DemoBlock>
 
     <DemoBlock :title="loadingStatus">
-      <van-submit-bar loading :price="3050" :button-text="submit" @submit="onClickButton" />
+      <van-submit-bar
+        loading
+        :price="3050"
+        :button-text="submit"
+        @submit="onClickButton"
+      />
     </DemoBlock>
 
     <DemoBlock :title="advancedUsage">
-      <van-submit-bar :price="3050" :button-text="submit" @submit="onClickButton">
+      <van-submit-bar
+        :price="3050"
+        :button-text="submit"
+        @submit="onClickButton"
+      >
         <van-checkbox v-model="checked">{{ check }}</van-checkbox>
         <template #tip>
           {{ tip2 }}
@@ -48,7 +61,7 @@ export default {
       check: "全选",
       clickButton: "点击按钮",
       clickLink: "修改地址",
-      checked: true
+      checked: true,
     };
   },
 
@@ -58,13 +71,13 @@ export default {
     },
     onClickLink() {
       this.$toast(this.clickLink);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-submit-bar {
   .van-submit-bar {

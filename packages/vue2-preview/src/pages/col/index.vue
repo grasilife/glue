@@ -9,15 +9,11 @@
 
       <glue-row>
         <glue-col span="4">span: 4</glue-col>
-        <glue-col span="10" offset="4">
-          offset: 4, span: 10
-        </glue-col>
+        <glue-col span="10" offset="4"> offset: 4, span: 10 </glue-col>
       </glue-row>
 
       <glue-row>
-        <glue-col offset="12" span="12">
-          offset: 12, span: 12
-        </glue-col>
+        <glue-col offset="12" span="12"> offset: 12, span: 12 </glue-col>
       </glue-row>
     </DemoBlock>
 
@@ -69,14 +65,14 @@ export default {
     return {
       basicUsage: "基础用法",
       title2: "设置列元素间距",
-      title3: "对齐方式"
+      title3: "对齐方式",
     };
-  }
+  },
 };
 </script>
 
 <style lang="less">
-@import "~/common/style/var2.less";
+@import "@glue/glue-cli/src/common/style/var.less";
 
 .demo-col {
   background: @white;
