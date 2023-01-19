@@ -1,26 +1,34 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import { nextTick } from "vue";
+// import {
+//   glueConfig,
+//   previewRouterExternals,
+//   isMobile,
+//   initIframe,
+// } from "@glue/glue-cli";
 import {
   glueConfig,
   previewRouterExternals,
-  isMobile,
-  initIframe,
+  // isMobile,
+  // initIframe,
+  // listenToSyncPath,
+  // syncPathToChild,
 } from "@glue/glue-cli";
 console.log(glueConfig, previewRouterExternals, "previewRouterExternals");
-initIframe();
+// initIframe();
 const { locales, defaultLang, defaultType, types }: any = glueConfig.site;
-if (isMobile) {
-  location.replace("mobile.html" + location.hash);
-}
+// if (isMobile) {
+//   location.replace("mobile.html" + location.hash);
+// }
 
 const router = createRouter({
   // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
   history: createWebHashHistory(),
   routes: getRoutes(), // `routes: routes` 的缩写
 });
-router.afterEach(() => {
-  nextTick(() => window.syncPath());
-});
+// router.afterEach(() => {
+//   nextTick(() => window.syncPath());
+// });
 
 window.vueRouter = router;
 function getRoutes() {
@@ -67,4 +75,17 @@ function getRoutes() {
   });
   return routes;
 }
+// router.afterEach(() => {
+//   nextTick(() => {
+//     let path = router.currentRoute.value.path;
+//     console.log(path, "router21212");
+//     syncPathToChild(path);
+//   });
+// });
+
+// if (glueConfig.site.simulator?.syncPathFromSimulator !== false) {
+//   listenToSyncPath(router);
+// }
+
+window.parentVueRouter = router;
 export default router;

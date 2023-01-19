@@ -5,11 +5,14 @@
       :src="props.src"
       :style="simulatorStyle"
       frameborder="0"
+      @load="iframeLoad"
     />
   </div>
 </template>
 <script setup lang="tsx" name="VanDocSimulator">
-import { onMounted, computed, ref } from "vue";
+import { onMounted, computed, ref, watch, nextTick } from "vue";
+import { useRoute } from "vue-router";
+const route = useRoute();
 const props = defineProps({
   src: {
     type: String,
@@ -24,6 +27,7 @@ const simulatorStyle: any = computed(() => {
     height: height + "px",
   };
 });
+let loaded = ref(false);
 onMounted(() => {
   window.addEventListener("scroll", () => {
     scrollTop.value = window.scrollY;
@@ -32,6 +36,33 @@ onMounted(() => {
     windowHeight.value = window.innerHeight;
   });
 });
+function syncPathToChild(path: string) {
+  const iframe: any = document.querySelector("iframe");
+  console.log(iframe, "iframeiframeiframe");
+  if (iframe) {
+    iframe.contentWindow.postMessage(
+      {
+        type: "replacePath",
+        value: path,
+      },
+      "*"
+    );
+  }
+}
+function iframeLoad() {
+  console.log(route.path, "iframeLoad");
+  loaded.value = true;
+  syncPathToChild(route.path);
+}
+
+watch(
+  () => route.path,
+  () => {
+    if (loaded.value) {
+      syncPathToChild(route.path);
+    }
+  }
+);
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>

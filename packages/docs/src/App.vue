@@ -12,11 +12,13 @@
   </Doc>
 </template>
 <script setup lang="tsx" name="App">
-import { computed, ref, watch } from "vue";
+// import { listenParentPathChange } from "@glue/glue-cli";
+import { computed, ref, watch, onMounted } from "vue";
 import Doc from "./components/Doc.vue";
 import { glueConfig } from "@glue/glue-cli";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
+const router = useRouter();
 console.log(route, "route111");
 const simulator = ref("http://127.0.0.1:3001/vue2-preview");
 const lang = computed(() => {
@@ -91,6 +93,18 @@ function setTitle() {
 
   document.title = title;
 }
+onMounted(() => {
+  // listenParentPathChange(router);
+  window.addEventListener("message", (event) => {
+    console.log(event.data, "eventeventeventeventevent");
+    if (event.data?.type !== "replacePath") {
+      return;
+    }
+    const path = event.data?.value || "";
+    console.log(path, router, "path111112222");
+    router.push(path).catch(() => {});
+  });
+});
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>

@@ -256,14 +256,14 @@ importers:
       vant: 2.12.6
       vite: ^4.0.0
       vue: ~2.7.14
-      vue-router: ^3.2.0
+      vue-router: 2.8.1
     dependencies:
       '@glue/glue-cli': link:../glue-cli
       '@vant/icons': 2.0.1
       glue-components: link:../glue-components
       vant: 2.12.6_vue@2.7.14
       vue: 2.7.14
-      vue-router: 3.6.5
+      vue-router: 2.8.1
     devDependencies:
       '@rollup/plugin-dynamic-import-vars': 2.0.2
       '@vitejs/plugin-vue2': 2.2.0_vite@4.0.4+vue@2.7.14
@@ -16770,6 +16770,10 @@ packages:
       vue: 2.7.14
       webpack: 5.75.0
     dev: true
+
+  /vue-router/2.8.1:
+    resolution: {integrity: sha512-MC4jacHBhTPKtmcfzvaj2N7g6jgJ/Z/eIjZdt+yUaUOM1iKC0OUIlO/xCtz6OZFFTNUJs/1YNro2GN/lE+nOXA==}
+    dev: false
 
   /vue-router/3.6.5:
     resolution: {integrity: sha512-VYXZQLtjuvKxxcshuRAwjHnciqZVoXAjTjcqBTz4rKc8qih9g9pI3hbDjmqXaHdgL3v8pV6P8Z335XvHzESxLQ==}

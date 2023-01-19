@@ -2,6 +2,7 @@ declare interface Window {
   syncPath: any;
   vueRouter: any;
   replacePath: any;
+  parentVueRouter: any;
 }
 // declare module "vue-router" {
 //   interface RouteMeta {

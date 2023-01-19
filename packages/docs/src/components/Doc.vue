@@ -20,7 +20,7 @@
   </div>
 </template>
 <script setup lang="tsx" name="vanDoc">
-import { watch } from "vue";
+import { watch, onMounted } from "vue";
 import { useRoute } from "vue-router";
 
 import DocNav from "./DocNav.vue";

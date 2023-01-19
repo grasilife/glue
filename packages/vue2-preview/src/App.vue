@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { listenParentPathChange } from "@glue/glue-cli";
 import DemoNav from "./components/DemoNav.vue";
 import DemoSection from "./components/DemoSection.vue";
 import HelloWorld from "./components/HelloWorld.vue";
@@ -29,17 +30,37 @@ export default {
 
   computed: {},
 
-  watch: {},
+  watch: {
+    $route(to, from) {
+      // 对路由变化作出响应...
+      console.log("111112212211");
+      this.syncPathToParent();
+    },
+  },
 
   created() {},
 
   mounted() {
     console.log(this.$route, "huahuahu");
+    listenParentPathChange(this.$router);
   },
 
   destroyed() {},
 
-  methods: {},
+  methods: {
+    syncPathToParent() {
+      console.log(window.top, "window.top");
+      if (window) {
+        window.top.postMessage(
+          {
+            type: "replacePath",
+            value: this.$route.path,
+          },
+          "*"
+        );
+      }
+    },
+  },
 };
 </script>
 <style lang="less" rel="stylesheet/less" scoped>
