@@ -3,8 +3,8 @@ import VueRouter from "vue-router";
 import {
   glueConfig,
   previewRouterExternals,
-  isMobile,
-  listenParentPathChange,
+  // isMobile,
+  // listenParentPathChange,
   // initIframe,
   // listenToSyncPath,
   // syncPathToParent,

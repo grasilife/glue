@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { listenParentPathChange } from "@glue/glue-cli";
+// import { listenParentPathChange } from "@glue/glue-cli";
 import DemoNav from "./components/DemoNav.vue";
 import DemoSection from "./components/DemoSection.vue";
 import HelloWorld from "./components/HelloWorld.vue";
@@ -41,8 +41,14 @@ export default {
   created() {},
 
   mounted() {
-    console.log(this.$route, "huahuahu");
-    listenParentPathChange(this.$router);
+    window.addEventListener("message", (event) => {
+      if (event.data?.type !== "replacePath") {
+        return;
+      }
+      console.log(event.data, "event.data");
+      const path = event.data?.value || "";
+      this.$router.replace(path).catch(() => {});
+    });
   },
 
   destroyed() {},
