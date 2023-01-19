@@ -77,13 +77,8 @@
 </template>
 
 <script>
-import DemoBlock from "~/components/DemoBlock";
-import DemoSection from "~/components/DemoSection";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
+  components: {},
   data() {
     return {
       loadingStatus: "加载状态",

@@ -25,14 +25,9 @@
 </template>
 
 <script>
-import DemoBlock from "~/components/DemoBlock";
-import DemoSection from "~/components/DemoSection";
 import { anime } from "glue-components";
 export default {
-  components: {
-    DemoBlock,
-    DemoSection,
-  },
+  components: {},
   data() {
     return {
       fadeAnime: null,
