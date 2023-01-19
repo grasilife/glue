@@ -14,7 +14,7 @@
 <script setup lang="tsx" name="App">
 import { computed, ref, watch } from "vue";
 import Doc from "./components/Doc.vue";
-import glueConfig from "./common/config";
+import { glueConfig } from "@glue/glue-cli";
 import { useRoute } from "vue-router";
 const route = useRoute();
 console.log(route, "route111");
@@ -29,14 +29,14 @@ const type = computed(() => {
   return type || "vue2";
 });
 const langConfigs = computed(() => {
-  const { locales = {} } = glueConfig.site;
+  const { locales = {} }: any = glueConfig.site;
   return Object.keys(locales).map((key) => ({
     lang: key,
     label: locales[key].langLabel || "",
   }));
 });
-const config = computed(() => {
-  const { locales } = glueConfig.site;
+const config: any = computed(() => {
+  const { locales }: any = glueConfig.site;
   console.log(locales, "locales");
   if (locales) {
     console.log(locales[lang.value], "locales[lang.value]");
@@ -75,11 +75,11 @@ function setTitle() {
   let { title } = config.value;
 
   const navItems = config.value.nav.reduce(
-    (result, nav) => [...result, ...nav.items],
+    (result: any, nav: { items: any }) => [...result, ...nav.items],
     []
   );
 
-  const current = navItems.find((item) => {
+  const current = navItems.find((item: { path: unknown }) => {
     return item.path === route.meta.name;
   });
 
