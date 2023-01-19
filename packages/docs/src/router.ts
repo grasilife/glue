@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { nextTick } from "vue";
 // import {
 //   glueConfig,
 //   previewRouterExternals,
@@ -60,7 +59,7 @@ function getRoutes() {
               // component: () => import(imortPath),
               component: () =>
                 import(
-                  `./pages/${element2.path}/doc/${type.label}/README.${lang}.md`
+                  `./pages/${element2.path}/${type.label}/README.${lang}.md`
                 ),
               meta: {
                 path: element2.path,

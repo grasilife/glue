@@ -39,7 +39,12 @@
     <DemoBlock :title="icon">
       <van-button type="primary" icon="plus" />
       <van-button type="primary" icon="plus" :text="button" />
-      <van-button plain type="info" icon="https://img.yzcdn.cn/vant/user-active.png" :text="button" />
+      <van-button
+        plain
+        type="info"
+        icon="https://img.yzcdn.cn/vant/user-active.png"
+        :text="button"
+      />
     </DemoBlock>
 
     <DemoBlock :title="size">
@@ -61,18 +66,21 @@
     <DemoBlock :title="customColor">
       <van-button color="#7232dd" :text="pure" />
       <van-button plain color="#7232dd" :text="pure" />
-      <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" :text="gradient" />
+      <van-button
+        color="linear-gradient(to right, #ff6034, #ee0a24)"
+        :text="gradient"
+      />
     </DemoBlock>
   </DemoSection>
 </template>
 
 <script>
-import DemoBlock from "../../../mobile//components/DemoBlock";
-import DemoSection from "../../../mobile//components/DemoSection";
+import DemoBlock from "~/components/DemoBlock";
+import DemoSection from "~/components/DemoSection";
 export default {
   components: {
     DemoBlock,
-    DemoSection
+    DemoSection,
   },
   data() {
     return {
@@ -105,9 +113,9 @@ export default {
       customColor: "自定义颜色",
       pure: "单色按钮",
       gradient: "渐变色按钮",
-      blockElement: "块级元素"
+      blockElement: "块级元素",
     };
-  }
+  },
 };
 </script>
 

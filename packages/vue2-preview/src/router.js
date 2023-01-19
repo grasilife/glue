@@ -64,7 +64,7 @@ function getRoutes() {
                   type: type.label,
                 },
                 component: () =>
-                  import("./pages/" + element2.path + "/demo/index.vue"),
+                  import("./pages/" + element2.path + "/index.vue"),
               });
             });
           }
