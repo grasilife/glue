@@ -8,7 +8,6 @@
 </template>
 
 <script>
-/* eslint-disable max-len */
 export default {
   data() {
     return {
