@@ -1,13 +1,15 @@
 import typescript from "rollup-plugin-typescript2";
+import { createRequire } from "module";
 import dts from "rollup-plugin-dts";
-import pkg from "./package.json";
+const require = createRequire(import.meta.url);
+const pkg = require("./package.json");
 
 const mode = process.env.MODE;
 const isProd = mode === "prod";
 
 const external = [
-  ...Object.keys(pkg.dependencies),
-  ...Object.keys(pkg.devDependencies)
+  ...Object.keys(pkg.dependencies || {}),
+  ...Object.keys(pkg.peerDependencies || {}),
 ];
 
 export default [
@@ -19,29 +21,29 @@ export default [
         file: pkg.main,
         exports: "named",
         format: "cjs",
-        sourcemap: !isProd
+        sourcemap: !isProd,
       },
       {
         file: pkg.module,
         format: "es",
-        sourcemap: !isProd
-      }
+        sourcemap: !isProd,
+      },
     ],
     plugins: [
       typescript({
         useTsconfigDeclarationDir: true,
-        tsconfigOverride: { compilerOptions: { sourceMap: !isProd } }
-      })
-    ]
+        tsconfigOverride: { compilerOptions: { sourceMap: !isProd } },
+      }),
+    ],
   },
   {
     input: "dist/types/index.d.ts",
     output: [
       {
         file: "dist/index.d.ts",
-        format: "es"
-      }
+        format: "es",
+      },
     ],
-    plugins: [dts()]
-  }
+    plugins: [dts()],
+  },
 ];
