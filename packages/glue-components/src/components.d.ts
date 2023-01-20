@@ -462,6 +462,9 @@ export namespace Components {
     interface GlueDocBlockDemo {
         "first": string;
     }
+    interface GlueDocNav {
+        "gtitle": string;
+    }
     interface GlueDocSection {
     }
     interface GlueDropdownItem {
@@ -1334,6 +1337,10 @@ export interface GlueCountDownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLGlueCountDownElement;
 }
+export interface GlueDocNavCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGlueDocNavElement;
+}
 export interface GlueFormCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLGlueFormElement;
@@ -1740,6 +1747,12 @@ declare global {
     var HTMLGlueDocBlockDemoElement: {
         prototype: HTMLGlueDocBlockDemoElement;
         new (): HTMLGlueDocBlockDemoElement;
+    };
+    interface HTMLGlueDocNavElement extends Components.GlueDocNav, HTMLStencilElement {
+    }
+    var HTMLGlueDocNavElement: {
+        prototype: HTMLGlueDocNavElement;
+        new (): HTMLGlueDocNavElement;
     };
     interface HTMLGlueDocSectionElement extends Components.GlueDocSection, HTMLStencilElement {
     }
@@ -2265,6 +2278,7 @@ declare global {
         "glue-divider": HTMLGlueDividerElement;
         "glue-doc-block": HTMLGlueDocBlockElement;
         "glue-doc-block-demo": HTMLGlueDocBlockDemoElement;
+        "glue-doc-nav": HTMLGlueDocNavElement;
         "glue-doc-section": HTMLGlueDocSectionElement;
         "glue-dropdown-item": HTMLGlueDropdownItemElement;
         "glue-dropdown-menu": HTMLGlueDropdownMenuElement;
@@ -2815,6 +2829,10 @@ declare namespace LocalJSX {
     }
     interface GlueDocBlockDemo {
         "first"?: string;
+    }
+    interface GlueDocNav {
+        "gtitle"?: string;
+        "onGlueBack"?: (event: GlueDocNavCustomEvent<any>) => void;
     }
     interface GlueDocSection {
     }
@@ -3714,6 +3732,7 @@ declare namespace LocalJSX {
         "glue-divider": GlueDivider;
         "glue-doc-block": GlueDocBlock;
         "glue-doc-block-demo": GlueDocBlockDemo;
+        "glue-doc-nav": GlueDocNav;
         "glue-doc-section": GlueDocSection;
         "glue-dropdown-item": GlueDropdownItem;
         "glue-dropdown-menu": GlueDropdownMenu;
@@ -3843,6 +3862,7 @@ declare module "@stencil/core" {
             "glue-divider": LocalJSX.GlueDivider & JSXBase.HTMLAttributes<HTMLGlueDividerElement>;
             "glue-doc-block": LocalJSX.GlueDocBlock & JSXBase.HTMLAttributes<HTMLGlueDocBlockElement>;
             "glue-doc-block-demo": LocalJSX.GlueDocBlockDemo & JSXBase.HTMLAttributes<HTMLGlueDocBlockDemoElement>;
+            "glue-doc-nav": LocalJSX.GlueDocNav & JSXBase.HTMLAttributes<HTMLGlueDocNavElement>;
             "glue-doc-section": LocalJSX.GlueDocSection & JSXBase.HTMLAttributes<HTMLGlueDocSectionElement>;
             "glue-dropdown-item": LocalJSX.GlueDropdownItem & JSXBase.HTMLAttributes<HTMLGlueDropdownItemElement>;
             "glue-dropdown-menu": LocalJSX.GlueDropdownMenu & JSXBase.HTMLAttributes<HTMLGlueDropdownMenuElement>;

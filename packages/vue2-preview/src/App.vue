@@ -1,6 +1,6 @@
 <template>
   <div class="root">
-    <DemoNav />
+    <glue-doc-nav @glueBack="onBack" :gtitle="title"></glue-doc-nav>
     <router-view>
       <keep-alive>
         <glue-doc-section> </glue-doc-section>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import DemoNav from "./components/DemoNav.vue";
+// import DemoNav from "./components/DemoNav.vue";
 export default {
   name: "App",
 
@@ -18,13 +18,20 @@ export default {
 
   mixins: [],
 
-  components: { DemoNav },
+  components: {},
 
   data() {
     return {};
   },
 
-  computed: {},
+  computed: {
+    title() {
+      const { name } = this.$route.meta || {};
+      console.log(this.$route, "this.$route");
+      console.log(name, this.$route, "name11");
+      return name ? name.replace(/-/g, "") : "";
+    },
+  },
 
   watch: {
     $route(to, from) {
@@ -50,6 +57,13 @@ export default {
   destroyed() {},
 
   methods: {
+    onBack() {
+      if (history.length > 1) {
+        history.back();
+      } else {
+        this.$router.replace("/");
+      }
+    },
     syncPathToParent() {
       console.log(window.top, "window.top");
       if (window) {
