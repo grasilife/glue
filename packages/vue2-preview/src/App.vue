@@ -10,7 +10,6 @@
 </template>
 
 <script>
-// import DemoNav from "./components/DemoNav.vue";
 export default {
   name: "App",
 
