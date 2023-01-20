@@ -25,8 +25,8 @@ export class GlueDocNav {
         <svg
           class="glue-doc-nav__back"
           viewBox="0 0 1000 1000"
-          onClick={() => {
-            this.glueBack.emit();
+          onClick={(e) => {
+            this.glueBack.emit(e);
           }}
         >
           <path fill="#969799" fill-rule="evenodd" d={this.path} />

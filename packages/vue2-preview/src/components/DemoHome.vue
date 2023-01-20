@@ -10,13 +10,20 @@
     <h2 v-if="glueConfig.description" class="demo-home__desc">
       {{ glueConfig.description }}
     </h2>
-    <DemoHomeNav
+    <glue-doc-nav-list
+      v-for="(group, index) in glueConfig.nav"
+      :key="index"
+      :gtitle="group.title"
+      :group.prop="group.items"
+      @glueItemClick="glueItemClick"
+    ></glue-doc-nav-list>
+    <!-- <DemoHomeNav
       v-for="(group, index) in glueConfig.nav"
       :key="index"
       :lang="lang"
       :type="type"
       :group="group"
-    />
+    /> -->
   </div>
 </template>
 
@@ -41,6 +48,7 @@ export default {
       console.log(type, "type");
       return type || "vue2";
     },
+
     glueConfig() {
       const { locales } = glueConfig.site;
       console.log(locales, "locales");
@@ -48,11 +56,20 @@ export default {
         console.log(locales[this.lang], "locales[this.lang]");
         return locales[this.lang];
       }
+      console.log(glueConfig.site, "glueConfig.site");
       return glueConfig.site;
     },
 
     smallTitle() {
       return this.glueConfig.title.length >= 8;
+    },
+  },
+  methods: {
+    glueItemClick(event) {
+      console.log(event, "event");
+      let pathEnd = `/${this.type}/${this.lang}/${event.detail.path}`;
+      console.log(pathEnd, "pathEndpathEnd");
+      this.$router.push(pathEnd);
     },
   },
 };
