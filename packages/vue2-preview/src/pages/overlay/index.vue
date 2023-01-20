@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <glue-button
         type="primary"
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -37,6 +38,11 @@ export default {
       show: false,
       showEmbedded: false,
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
 };
 </script>

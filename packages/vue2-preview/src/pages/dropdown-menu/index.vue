@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <van-dropdown-menu>
         <van-dropdown-item v-model="value1" :options="option1" />
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 import { RED } from "@glue/glue-cli/src/common/constant";
 
 export default {
@@ -92,8 +93,11 @@ export default {
     };
   },
 
-  computed: {},
-
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
+  },
   methods: {
     onConfirm() {
       this.$refs.item.toggle();

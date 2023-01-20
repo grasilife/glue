@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section class="demo-action-sheet">
+  <glue-doc-section :class="demoName">
     <glue-doc-block card :gtitle="basicUsage">
       <glue-cell is-link :gtitle="basicUsage" @click="show.basic = true" />
       <glue-cell is-link :gtitle="showCancel" @click="show.cancel = true" />
@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -99,6 +100,11 @@ export default {
     };
   },
 
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
+  },
   methods: {
     onSelect(item) {
       this.show.basic = false;

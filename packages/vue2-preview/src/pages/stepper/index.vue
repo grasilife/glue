@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-cell center :title="basicUsage">
       <glue-stepper :model-value="stepper1" />
     </glue-cell>
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -79,6 +80,11 @@ export default {
     };
   },
 
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
+  },
   methods: {
     onChange(value) {
       this.$toast.loading({ forbidClick: true });

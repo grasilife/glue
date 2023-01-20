@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="addContact">
       <van-contact-card type="add" @click="onAdd" />
     </glue-doc-block>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -37,6 +38,9 @@ export default {
     };
   },
   computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
     currentContact() {
       return {
         name: this.name,

@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <van-popover
         v-model="show.lightTheme"
@@ -129,6 +129,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -182,6 +183,11 @@ export default {
     };
   },
 
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
+  },
   methods: {
     onPickerChange(picker, value) {
       setTimeout(() => {

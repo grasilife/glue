@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block card :gtitle="basicUsage">
       <glue-cell :title="`primary ${type}`">
         <glue-tag type="primary">{{ tag }}</glue-tag>
@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -88,6 +89,11 @@ export default {
     };
   },
 
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
+  },
   methods: {
     close() {
       this.show = false;

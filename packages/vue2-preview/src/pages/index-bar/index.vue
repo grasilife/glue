@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <van-tabs v-model="activeTab">
       <van-tab :title="basicUsage">
         <van-index-bar>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     const indexList = [];
@@ -47,6 +48,11 @@ export default {
       indexList,
       customIndexList: [1, 2, 3, 4, 5, 6, 8, 9, 10],
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
 };
 </script>

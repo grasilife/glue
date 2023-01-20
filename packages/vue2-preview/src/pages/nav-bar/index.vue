@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <glue-nav-bar
         :title="title"
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -36,6 +37,11 @@ export default {
       useSlot: "使用插槽",
       back: "返回",
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
   methods: {
     glueLeft() {},

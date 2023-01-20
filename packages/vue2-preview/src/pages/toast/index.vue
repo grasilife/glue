@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block card :gtitle="basicUsage">
       <van-cell is-link :title="title1" @click="$toast(text)" />
       <van-cell is-link :title="title2" @click="showLoadingToast()" />
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -50,6 +51,11 @@ export default {
       positionBottom: "底部展示",
       customPosition: "自定义位置",
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
   methods: {
     showLoadingToast(loadingType) {

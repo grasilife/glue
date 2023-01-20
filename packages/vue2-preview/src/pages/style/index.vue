@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="ellipsis">
       <div class="glue-ellipsis">{{ text1 }}</div>
       <div class="glue-multi-ellipsis--l2">{{ text2 }}</div>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 import { anime } from "glue-components";
 export default {
   components: {},
@@ -48,6 +49,11 @@ export default {
   },
   mounted() {
     console.log(anime, "anime");
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
   methods: {
     animate(transitionName) {

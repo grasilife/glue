@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <glue-swipe :autoplay="3000" indicator-color="white">
         <glue-swipe-item>1</glue-swipe-item>
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -86,6 +87,11 @@ export default {
     };
   },
 
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
+  },
   methods: {
     onChange1(index) {
       this.$toast(this.message + index);

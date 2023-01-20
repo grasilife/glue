@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section class="demo-icon">
+  <glue-doc-section :class="demoName">
     <van-tabs v-model="tab" sticky>
       <van-tab :title="demo">
         <glue-doc-block :gtitle="basicUsage">
@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import { decamelize } from "@glue/glue-cli";
+import { getDemoName } from "@glue/glue-cli";
 import icons from "@vant/icons";
 import { RED } from "@glue/glue-cli/src/common/constant";
 
@@ -146,12 +146,7 @@ export default {
   },
   computed: {
     demoName() {
-      const { meta } = this.$route || {};
-      if (meta && meta.path) {
-        return `demo-${decamelize(meta.path)}`;
-      }
-
-      return "";
+      return getDemoName(this.$route);
     },
   },
   methods: {

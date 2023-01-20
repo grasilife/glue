@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="type">
       <glue-loading />
       <glue-loading type="spinner" />
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -44,6 +45,11 @@ export default {
       vertical: "垂直排列",
       textColor: "自定义文本颜色",
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="title1">
       <glue-slider :value="value1" @glueChange="onChange" />
     </glue-doc-block>
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -80,6 +81,11 @@ export default {
       value8: 50,
       value9: [20, 60],
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
   methods: {
     onChange(value) {

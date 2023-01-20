@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <glue-row>
         <glue-image width="100" height="100" :src="image" />
@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -90,6 +91,11 @@ export default {
       image: "https://img.yzcdn.cn/vant/cat.jpeg",
       fits: ["contain", "cover", "fill", "none", "scale-down"],
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
 };
 </script>

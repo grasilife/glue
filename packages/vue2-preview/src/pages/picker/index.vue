@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block card :gtitle="basicUsage">
       <glue-picker
         show-toolbar
@@ -88,6 +88,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 import { dateColumns, cascadeColumns } from "./data";
 
 export default {
@@ -133,6 +134,9 @@ export default {
   },
 
   computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
     columns() {
       const column = this.column3;
       return [

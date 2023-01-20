@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block card :gtitle="basicUsage">
       <van-cell is-link @click="showImagePreview">
         {{ showImages }}
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 // import ImagePreview from "..";
 
 const images = [
@@ -63,6 +64,11 @@ export default {
     };
   },
 
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
+  },
   methods: {
     onClose() {
       this.$toast(this.closed);

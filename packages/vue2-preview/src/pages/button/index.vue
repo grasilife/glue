@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="type">
       <div class="demo-button-row">
         <glue-button type="primary">{{ primary }}</glue-button>
@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   components: {},
   data() {
@@ -112,6 +113,11 @@ export default {
       gradient: "渐变色按钮",
       blockElement: "块级元素",
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
 };
 </script>

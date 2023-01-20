@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <glue-circle
         :current-rate="currentRate1"
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 const format = (rate) => Math.min(Math.max(rate, 0), 100);
 
 export default {
@@ -96,6 +97,11 @@ export default {
     };
   },
 
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
+  },
   methods: {
     add() {
       this.rate = format(this.rate + 20);

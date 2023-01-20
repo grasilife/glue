@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section class="demo-address-edit">
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <van-address-edit
         :area-list="areaList"
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 import areaList from "./area";
 
 export default {
@@ -42,6 +43,11 @@ export default {
     };
   },
 
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
+  },
   methods: {
     onSave() {
       this.$toast(this.save);

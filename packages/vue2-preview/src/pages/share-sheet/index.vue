@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block card :gtitle="basicUsage">
       <glue-cell is-link :gtitle="showSheet" @click="show.basic = true" />
       <glue-share-sheet
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -72,6 +73,9 @@ export default {
   },
 
   computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
     options() {
       return [
         { name: this.wechat, icon: "wechat" },

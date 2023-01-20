@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <div class="demo-password-input-container">
       <glue-doc-block ref="basicUsage" title="基础用法">
         <glue-password-input
@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -83,6 +84,11 @@ export default {
     },
   },
 
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
+  },
   methods: {
     onInput(event) {
       let key = event.detail;

@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block card :gtitle="basicUsage">
       <van-cell :title="buttonBasic" is-link @click="showBasic = true" />
       <glue-popup :show="showBasic" @glueClose="showBasic = false">
@@ -134,6 +134,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 const myContainer = document.querySelector(".my-container");
 export default {
   data() {
@@ -162,6 +163,11 @@ export default {
       showCustomCloseIcon: false,
       showCustomIconPosition: false,
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
   methods: {
     close(e) {

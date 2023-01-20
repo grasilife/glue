@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <glue-radio-group :model-value.prop="radio1" class="demo-radio-group">
         <glue-radio name="1" :label="`${radio}1`"></glue-radio>
@@ -99,6 +99,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -128,6 +129,11 @@ export default {
         inactive: "https://img.yzcdn.cn/vant/user-inactive.png",
       },
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
 };
 </script>

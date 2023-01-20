@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -67,6 +68,11 @@ export default {
       title2: "设置列元素间距",
       title3: "对齐方式",
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
 };
 </script>

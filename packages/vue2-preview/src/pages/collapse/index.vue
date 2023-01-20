@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <glue-collapse lue-collapse :model-value.prop="active1">
         <glue-collapse-item :gtitle="gtitle + 1" :name="0">
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -75,6 +76,11 @@ export default {
       active3: [],
       active4: [],
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
 };
 </script>

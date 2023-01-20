@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <glue-skeleton title-state :row="3" loading animate-state></glue-skeleton>
     </glue-doc-block>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -34,6 +35,11 @@ export default {
       desc: "Glue是一个基于web components的组件库，提供了丰富的基础组件和业务组件，帮助开发者快速搭建移动应用。",
       show: false,
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
 };
 </script>

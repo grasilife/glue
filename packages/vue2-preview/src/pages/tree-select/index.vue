@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="radioMode">
       <glue-tree-select
         :items.prop="items"
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 import { zhCNData } from "./data-zh";
 
 export default {
@@ -76,6 +77,9 @@ export default {
   },
 
   computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
     items() {
       return this.data;
     },

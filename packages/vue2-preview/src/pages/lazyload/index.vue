@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <img v-for="img in imageList" :key="img" v-lazy="img" />
     </glue-doc-block>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -42,6 +43,11 @@ export default {
         "https://img.yzcdn.cn/vant/apple-7.jpg",
       ],
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
 };
 </script>

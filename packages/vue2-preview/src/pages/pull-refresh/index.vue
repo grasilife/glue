@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -59,6 +60,9 @@ export default {
   },
 
   computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
     tips() {
       if (this.count) {
         return `${this.text}: ${this.count}`;

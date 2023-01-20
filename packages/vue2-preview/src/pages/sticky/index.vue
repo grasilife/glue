@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <glue-sticky>
         <glue-button type="primary" style="margin-left: 15px">
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -54,6 +55,11 @@ export default {
 
   mounted() {
     this.container = this.$refs.container;
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
   methods: {
     glueScroll({ scrollTop, isFixed }) {

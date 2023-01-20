@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section>
+  <glue-doc-section :class="demoName">
     <glue-doc-block card :gtitle="basicUsage">
       <van-field
         v-model="base.result"
@@ -110,6 +110,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 import zhCNOptions from "./area-zh-CN";
 
 export default {
@@ -163,6 +164,9 @@ export default {
   },
 
   computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
     customFieldOptions() {
       const options = JSON.parse(JSON.stringify(this.options));
       const adjustFieldName = (item) => {

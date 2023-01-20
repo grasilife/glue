@@ -1,5 +1,5 @@
 <template>
-  <glue-doc-section class="demo-action-bar">
+  <glue-doc-section :class="demoName">
     <glue-doc-block :gtitle="basicUsage">
       <glue-action-bar>
         <glue-action-bar-icon
@@ -90,6 +90,7 @@
 </template>
 
 <script>
+import { getDemoName } from "@glue/glue-cli";
 export default {
   data() {
     return {
@@ -106,6 +107,11 @@ export default {
       customIconColor: "自定义图标颜色",
       customButtonColor: "自定义按钮颜色",
     };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
   },
   methods: {
     onClickIcon() {},
