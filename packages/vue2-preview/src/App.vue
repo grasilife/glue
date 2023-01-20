@@ -3,18 +3,14 @@
     <DemoNav />
     <router-view>
       <keep-alive>
-        <DemoSection> </DemoSection>
+        <glue-doc-section> </glue-doc-section>
       </keep-alive>
     </router-view>
-    <!-- <HelloWorld></HelloWorld> -->
   </div>
 </template>
 
 <script>
-// import { listenParentPathChange } from "@glue/glue-cli";
 import DemoNav from "./components/DemoNav.vue";
-import DemoSection from "./components/DemoSection.vue";
-import HelloWorld from "./components/HelloWorld.vue";
 export default {
   name: "App",
 
@@ -22,7 +18,7 @@ export default {
 
   mixins: [],
 
-  components: { DemoNav, DemoSection, HelloWorld },
+  components: { DemoNav },
 
   data() {
     return {};

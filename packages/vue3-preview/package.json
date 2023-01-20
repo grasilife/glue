@@ -12,7 +12,7 @@
     "@glue/glue-cli": "workspace:^4.0.4",
     "@vant/icons": "^2.0.1",
     "glue-components": "workspace:0.0.2-alpha.0",
-    "vant": "^2.12.6",
+    "vant": "^4.0.8",
     "vue": "^3.2.45",
     "vue-router": "^3.2.0"
   },

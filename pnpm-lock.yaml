@@ -211,7 +211,7 @@ importers:
       '@vitejs/plugin-vue': ^4.0.0
       glue-components: workspace:0.0.2-alpha.0
       typescript: ^4.9.3
-      vant: ^2.12.6
+      vant: ^4.0.8
       vite: ^4.0.0
       vue: ^3.2.45
       vue-router: ^3.2.0
@@ -220,7 +220,7 @@ importers:
       '@glue/glue-cli': link:../glue-cli
       '@vant/icons': 2.0.1
       glue-components: link:../glue-components
-      vant: 2.12.53_vue@3.2.45
+      vant: 4.0.8_vue@3.2.45
       vue: 3.2.45
       vue-router: 3.6.5
     devDependencies:
@@ -2466,6 +2466,10 @@ packages:
 
   /@vant/popperjs/1.3.0:
     resolution: {integrity: sha512-hB+czUG+aHtjhaEmCJDuXOep0YTZjdlRR+4MSmIFnkCQIxJaXLQdSsR90XWvAI2yvKUI7TCGqR8pQg2RtvkMHw==}
+    dev: false
+
+  /@vant/use/1.4.4:
+    resolution: {integrity: sha512-VFAU7oO3mAN/mA+xB0bRt36Ve2EVUyywmwH149qlRRrTBu1XwxoA8J7Kwpr1CoX9GTaoMsZle/+j3e2UtvsP3g==}
     dev: false
 
   /@vitejs/plugin-react-swc/3.0.1_vite@4.0.4:
@@ -10015,6 +10019,16 @@ packages:
       '@vue/babel-helper-vue-jsx-merge-props': 1.4.0
       vue: 2.7.14
       vue-lazyload: 1.2.3
+    dev: false
+
+  /vant/4.0.8_vue@3.2.45:
+    resolution: {integrity: sha512-NJl4ckOYvjuZtEpZX/tYt84tD7WJ3ItCpSGKsFCqiMnocv9nb/SWTbtcSvk/D9uqiQz6l5U7nDyUzvDW1FGkMA==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@vant/popperjs': 1.3.0
+      '@vant/use': 1.4.4
+      vue: 3.2.45
     dev: false
 
   /vinyl-fs/2.4.3:
