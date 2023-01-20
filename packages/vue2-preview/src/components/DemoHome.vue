@@ -17,24 +17,14 @@
       :group.prop="group.items"
       @glueItemClick="glueItemClick"
     ></glue-doc-nav-list>
-    <!-- <DemoHomeNav
-      v-for="(group, index) in glueConfig.nav"
-      :key="index"
-      :lang="lang"
-      :type="type"
-      :group="group"
-    /> -->
   </div>
 </template>
 
 <script>
 import { glueConfig } from "@glue/glue-cli";
-import DemoHomeNav from "./DemoHomeNav.vue";
 
 export default {
-  components: {
-    DemoHomeNav,
-  },
+  components: {},
 
   computed: {
     lang() {
