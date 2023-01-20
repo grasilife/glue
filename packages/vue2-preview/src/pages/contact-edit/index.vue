@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <van-contact-edit
         is-edit
         show-set-default
@@ -9,8 +9,8 @@
         @save="onSave"
         @delete="onDelete"
       />
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
       defaultLabel: "设为默认联系人",
       editingContact: {},
       save: "保存",
-      delete: "删除"
+      delete: "删除",
     };
   },
 
@@ -31,8 +31,8 @@ export default {
     },
     onDelete() {
       this.$toast(this.delete);
-    }
-  }
+    },
+  },
 };
 </script>
 

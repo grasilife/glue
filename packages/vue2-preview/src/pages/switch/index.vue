@@ -1,35 +1,35 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-switch :value="checked" @glueChange="checked = !checked" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="disabled">
+    <glue-doc-block :gtitle="disabled">
       <glue-switch :value="checked" disabled @glueChange="checked = !checked" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="loadingStatus">
+    <glue-doc-block :gtitle="loadingStatus">
       <glue-switch :value="checked" loading @glueChange="checked = !checked" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customSize">
+    <glue-doc-block :gtitle="customSize">
       <glue-switch
         :value="checked2"
         size="24px"
         @glueChange="checked2 = !checked2"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customColor">
+    <glue-doc-block :gtitle="customColor">
       <glue-switch
         :value="checked3"
         active-color="#ee0a24"
         inactive-color="#dcdee0"
         @glueChange="checked3 = !checked3"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="withCell">
+    <glue-doc-block :gtitle="withCell">
       <glue-cell center :title="title" right-icon="#slot">
         <div slot="rightIcon">
           <glue-switch
@@ -39,8 +39,8 @@
           />
         </div>
       </glue-cell>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

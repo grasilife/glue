@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-steps :active="active">
         <glue-step>{{ step1 }}</glue-step>
         <glue-step>{{ step2 }}</glue-step>
@@ -9,9 +9,9 @@
       </glue-steps>
 
       <glue-button @click="nextStep">{{ nextStepTitle }}</glue-button>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customStyle">
+    <glue-doc-block :gtitle="customStyle">
       <glue-steps
         :active="active"
         active-icon="success"
@@ -23,9 +23,9 @@
         <glue-step>{{ step3 }}</glue-step>
         <glue-step>{{ step4 }}</glue-step>
       </glue-steps>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title3">
+    <glue-doc-block :gtitle="title3">
       <glue-steps :active="0" direction="vertical">
         <glue-step>
           <h3>{{ status1 }}</h3>
@@ -40,8 +40,8 @@
           <p>2016-07-10 09:30</p>
         </glue-step>
       </glue-steps>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

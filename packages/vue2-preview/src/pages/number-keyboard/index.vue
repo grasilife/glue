@@ -1,5 +1,5 @@
 <template>
-  <DemoSection>
+  <glue-doc-section>
     <glue-cell is-link @click="keyboard = 'default'" gtitle="弹出默认键盘">
     </glue-cell>
     <glue-cell is-link @click="keyboard = 'custom'" gtitle="弹出带右侧栏的键盘">
@@ -73,7 +73,7 @@
       @glueInput="onInput"
       @glueDelete="onDelete"
     />
-  </DemoSection>
+  </glue-doc-section>
 </template>
 
 <script>

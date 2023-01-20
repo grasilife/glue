@@ -1,9 +1,18 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
-      <van-coupon-cell :coupons="coupons" :chosen-coupon="chosenCoupon" @click="showList = true" />
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
+      <van-coupon-cell
+        :coupons="coupons"
+        :chosen-coupon="chosenCoupon"
+        @click="showList = true"
+      />
 
-      <van-popup v-model="showList" round position="bottom" style="height: 90%; padding-top: 4px;">
+      <van-popup
+        v-model="showList"
+        round
+        position="bottom"
+        style="height: 90%; padding-top: 4px"
+      >
         <van-coupon-list
           :coupons="coupons"
           :chosen-coupon="chosenCoupon"
@@ -13,8 +22,8 @@
           @exchange="onExchange"
         />
       </van-popup>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -33,12 +42,12 @@ export default {
         startAt: 1489104000,
         endAt: 1514592000,
         valueDesc: "1.5",
-        unitDesc: "元"
+        unitDesc: "元",
       },
       exchange: "兑换成功",
       showList: false,
       chosenCoupon: -1,
-      exchangedCoupons: []
+      exchangedCoupons: [],
     };
   },
 
@@ -57,7 +66,7 @@ export default {
         id: 2,
         value: 12,
         valueDesc: "8.8",
-        unitDesc: "折"
+        unitDesc: "折",
       };
     },
 
@@ -65,7 +74,7 @@ export default {
       return {
         ...this.coupon,
         id: 3,
-        reason: this.coupon.reason
+        reason: this.coupon.reason,
       };
     },
 
@@ -75,9 +84,9 @@ export default {
         valueDesc: "1",
         unitDesc: "折",
         id: 4,
-        reason: this.coupon.reason
+        reason: this.coupon.reason,
       };
-    }
+    },
   },
 
   methods: {
@@ -89,12 +98,12 @@ export default {
       this.$toast(this.exchange);
       this.exchangedCoupons.push({
         ...this.coupon,
-        id: this.randomId()
+        id: this.randomId(),
       });
     },
     randomId(max = 999999) {
       return Math.floor(Math.random() * max) + 1;
-    }
-  }
+    },
+  },
 };
 </script>

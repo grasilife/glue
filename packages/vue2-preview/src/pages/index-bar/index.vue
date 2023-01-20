@@ -1,5 +1,5 @@
 <template>
-  <DemoSection>
+  <glue-doc-section>
     <van-tabs v-model="activeTab">
       <van-tab :title="basicUsage">
         <van-index-bar>
@@ -25,7 +25,7 @@
         </van-index-bar>
       </van-tab>
     </van-tabs>
-  </DemoSection>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -45,8 +45,8 @@ export default {
       customIndexListTitle: "自定义索引列表",
       activeTab: 0,
       indexList,
-      customIndexList: [1, 2, 3, 4, 5, 6, 8, 9, 10]
+      customIndexList: [1, 2, 3, 4, 5, 6, 8, 9, 10],
     };
-  }
+  },
 };
 </script>

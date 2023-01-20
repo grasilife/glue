@@ -1,23 +1,23 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <img v-for="img in imageList" :key="img" v-lazy="img" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title2">
+    <glue-doc-block :gtitle="title2">
       <div
         v-for="img in backgroundImageList"
         :key="img"
         v-lazy:background-image="img"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title3">
+    <glue-doc-block :gtitle="title3">
       <lazy-component>
         <img v-for="img in componentImageList" :key="img" v-lazy="img" />
       </lazy-component>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

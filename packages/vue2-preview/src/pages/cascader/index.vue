@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock card :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block card :gtitle="basicUsage">
       <van-field
         v-model="base.result"
         is-link
@@ -24,9 +24,9 @@
           @finish="onFinish('base', $event)"
         />
       </van-popup>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="customColorTitle">
+    <glue-doc-block card :gtitle="customColorTitle">
       <van-field
         v-model="customColor.result"
         is-link
@@ -51,9 +51,9 @@
           @finish="onFinish('customColor', $event)"
         />
       </van-popup>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="asyncOptions">
+    <glue-doc-block card :gtitle="asyncOptions">
       <van-field
         v-model="async.result"
         is-link
@@ -78,9 +78,9 @@
           @finish="onFinish('async', $event)"
         />
       </van-popup>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="customFieldNamesTitle">
+    <glue-doc-block card :gtitle="customFieldNamesTitle">
       <van-field
         v-model="customFieldNames.result"
         is-link
@@ -105,8 +105,8 @@
           @finish="onFinish('customFieldNames', $event)"
         />
       </van-popup>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

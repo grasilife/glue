@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-nav-bar
         :title="title"
         :left-text="back"
@@ -9,9 +9,9 @@
         @glueLeft="glueLeft"
         @glueRight="glueRight"
       ></glue-nav-bar>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="useSlot">
+    <glue-doc-block :gtitle="useSlot">
       <glue-nav-bar
         :title="title"
         :left-text="back"
@@ -22,8 +22,8 @@
           <glue-icon name="search" size="18" />
         </div>
       </glue-nav-bar>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

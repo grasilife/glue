@@ -1,30 +1,30 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <van-tabs v-model="active">
         <van-tab :title="tab + index" v-for="index in tabs" :key="index">
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="matchByName">
+    <glue-doc-block :gtitle="matchByName">
       <van-tabs v-model="activeName">
         <van-tab name="a" :title="tab + 1"> {{ content }} 1 </van-tab>
         <van-tab name="b" :title="tab + 2"> {{ content }} 2 </van-tab>
         <van-tab name="c" :title="tab + 3"> {{ content }} 3 </van-tab>
       </van-tabs>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title2">
+    <glue-doc-block :gtitle="title2">
       <van-tabs>
         <van-tab v-for="index in 8" :title="tab + index" :key="index">
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title3">
+    <glue-doc-block :gtitle="title3">
       <van-tabs @disabled="onClickDisabled">
         <van-tab
           v-for="index in 3"
@@ -35,73 +35,73 @@
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title4">
+    <glue-doc-block :gtitle="title4">
       <van-tabs type="card">
         <van-tab v-for="index in 3" :title="tab + index" :key="index">
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title5">
+    <glue-doc-block :gtitle="title5">
       <van-tabs @click="onClick">
         <van-tab v-for="index in 2" :title="tab + index" :key="index">
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title6">
+    <glue-doc-block :gtitle="title6">
       <van-tabs :active="active" sticky>
         <van-tab :title="tab + index" v-for="index in tabs" :key="index">
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title7">
+    <glue-doc-block :gtitle="title7">
       <van-tabs :active="active">
         <van-tab v-for="index in 2" :key="index">
           <template #title> <van-icon name="more-o" />{{ tab }} </template>
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title8">
+    <glue-doc-block :gtitle="title8">
       <van-tabs animated>
         <van-tab :title="tab + index" v-for="index in tabs" :key="index">
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title9">
+    <glue-doc-block :gtitle="title9">
       <van-tabs :active="active" swipeable>
         <van-tab :title="tab + index" v-for="index in tabs" :key="index">
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title10">
+    <glue-doc-block :gtitle="title10">
       <van-tabs scrollspy sticky>
         <van-tab :title="tab + index" v-for="index in 8" :key="index">
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="beforeChangeTitle">
+    <glue-doc-block :gtitle="beforeChangeTitle">
       <van-tabs :before-change="beforeChange">
         <van-tab :title="tab + index" v-for="index in 4" :key="index">
           {{ content }} {{ index }}
         </van-tab>
       </van-tabs>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

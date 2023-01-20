@@ -1,41 +1,46 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-cell-group>
         <glue-cell :title="cell" :value="content" />
         <glue-cell :title="cell" :value="content" :label="desc" />
       </glue-cell-group>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="largeSize">
+    <glue-doc-block :gtitle="largeSize">
       <glue-cell :title="cell" :value="content" size="large" />
       <glue-cell :title="cell" :value="content" size="large" :label="desc" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="showIcon">
+    <glue-doc-block :gtitle="showIcon">
       <glue-cell :title="cell" :value="content" icon="location-o" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="valueOnly">
+    <glue-doc-block :gtitle="valueOnly">
       <glue-cell :value="content" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="showArrow">
+    <glue-doc-block :gtitle="showArrow">
       <glue-cell :title="cell" is-link />
       <glue-cell :title="cell" is-link :value="content" />
-      <glue-cell :title="cell" is-link arrow-direction="down" :value="content" />
-    </DemoBlock>
+      <glue-cell
+        :title="cell"
+        is-link
+        arrow-direction="down"
+        :value="content"
+      />
+    </glue-doc-block>
 
-    <DemoBlock :title="groupTitle">
+    <glue-doc-block :gtitle="groupTitle">
       <glue-cell-group :title="`${group} 1`">
         <glue-cell :title="cell" :value="content" />
       </glue-cell-group>
       <glue-cell-group :title="`${group} 2`">
         <glue-cell :title="cell" :value="content" />
       </glue-cell-group>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="useSlots">
+    <glue-doc-block :gtitle="useSlots">
       <glue-cell :value="content" is-link title="#slot">
         <div slot="title">
           <span class="custom-title">{{ cell }}</span>
@@ -61,12 +66,12 @@
           <glue-icon name="search" class="search-icon" />
         </div>
       </glue-cell>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="verticalCenter">
+    <glue-doc-block :gtitle="verticalCenter">
       <glue-cell center :title="cell" :value="content" :label="desc" />
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -88,9 +93,9 @@ export default {
       urlRoute: "URL 跳转",
       vueRoute: "路由跳转",
       useSlots: "使用插槽",
-      verticalCenter: "垂直居中"
+      verticalCenter: "垂直居中",
     };
-  }
+  },
 };
 </script>
 

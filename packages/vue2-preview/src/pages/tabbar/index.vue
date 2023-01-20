@@ -1,33 +1,39 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-tabbar :model-value.prop="active">
         <glue-tabbar-item icon="home-o" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="search" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="friends-o" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="setting-o" :gtitle="tab"></glue-tabbar-item>
       </glue-tabbar>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="matchByName">
+    <glue-doc-block :gtitle="matchByName">
       <glue-tabbar :model-value.prop="activeName">
-        <glue-tabbar-item name="home" icon="home-o" :gtitle="tab"> </glue-tabbar-item>
-        <glue-tabbar-item name="search" icon="search" :gtitle="tab"> </glue-tabbar-item>
-        <glue-tabbar-item name="friends" icon="friends-o" :gtitle="tab"> </glue-tabbar-item>
-        <glue-tabbar-item name="setting" icon="setting-o" :gtitle="tab"> </glue-tabbar-item>
+        <glue-tabbar-item name="home" icon="home-o" :gtitle="tab">
+        </glue-tabbar-item>
+        <glue-tabbar-item name="search" icon="search" :gtitle="tab">
+        </glue-tabbar-item>
+        <glue-tabbar-item name="friends" icon="friends-o" :gtitle="tab">
+        </glue-tabbar-item>
+        <glue-tabbar-item name="setting" icon="setting-o" :gtitle="tab">
+        </glue-tabbar-item>
       </glue-tabbar>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="badge">
+    <glue-doc-block :gtitle="badge">
       <glue-tabbar :model-value.prop="active2">
         <glue-tabbar-item icon="home-o" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="search" dot :gtitle="tab"></glue-tabbar-item>
-        <glue-tabbar-item icon="friends-o" badge="5" :gtitle="tab"> </glue-tabbar-item>
-        <glue-tabbar-item icon="setting-o" badge="20" :gtitle="tab"> </glue-tabbar-item>
+        <glue-tabbar-item icon="friends-o" badge="5" :gtitle="tab">
+        </glue-tabbar-item>
+        <glue-tabbar-item icon="setting-o" badge="20" :gtitle="tab">
+        </glue-tabbar-item>
       </glue-tabbar>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <!-- <DemoBlock :title="customIcon">
+    <!-- <glue-doc-block :gtitle="customIcon">
       <glue-tabbar :model-value.prop="active3">
         <glue-tabbar-item badge="3">
           <span>{{ custom }}</span>
@@ -38,26 +44,30 @@
         <glue-tabbar-item icon="search" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="setting-o" :gtitle="tab"></glue-tabbar-item>
       </glue-tabbar>
-    </DemoBlock> -->
+    </glue-doc-block> -->
 
-    <DemoBlock :title="customColor">
-      <glue-tabbar :model-value.prop="active4" active-color="#ee0a24" inactive-color="#000">
+    <glue-doc-block :gtitle="customColor">
+      <glue-tabbar
+        :model-value.prop="active4"
+        active-color="#ee0a24"
+        inactive-color="#000"
+      >
         <glue-tabbar-item icon="home-o" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="search" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="friends-o" :gtitle="tab"></glue-tabbar-item>
         <glue-tabbar-item icon="setting-o" :gtitle="tab"></glue-tabbar-item>
       </glue-tabbar>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="switchEvent">
+    <glue-doc-block :gtitle="switchEvent">
       <glue-tabbar :model-value.prop="active5" @change="onChange">
         <glue-tabbar-item icon="home-o" :gtitle="tab + 1"></glue-tabbar-item>
         <glue-tabbar-item icon="search" :gtitle="tab + 2"></glue-tabbar-item>
         <glue-tabbar-item icon="friends-o" :gtitle="tab + 3"></glue-tabbar-item>
         <glue-tabbar-item icon="setting-o" :gtitle="tab + 4"></glue-tabbar-item>
       </glue-tabbar>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -81,8 +91,8 @@ export default {
       activeName: "home",
       icon: {
         active: "https://img.yzcdn.cn/vant/user-active.png",
-        inactive: "https://img.yzcdn.cn/vant/user-inactive.png"
-      }
+        inactive: "https://img.yzcdn.cn/vant/user-inactive.png",
+      },
     };
   },
 
@@ -90,10 +100,10 @@ export default {
     onChange(index) {
       this.$notify({
         type: "primary",
-        message: `${this.selectTip} ${this.tab}${index + 1}`
+        message: `${this.selectTip} ${this.tab}${index + 1}`,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

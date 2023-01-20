@@ -1,8 +1,8 @@
 <template>
-  <DemoSection>
+  <glue-doc-section class="demo-icon">
     <van-tabs v-model="tab" sticky>
       <van-tab :title="demo">
-        <DemoBlock :title="basicUsage">
+        <glue-doc-block :gtitle="basicUsage">
           <glue-row>
             <glue-col span="6" @click="copy(demoIcon)">
               <glue-icon :name="demoIcon" size="32" />
@@ -11,9 +11,9 @@
               <glue-icon :name="demoImage" size="32" />
             </glue-col>
           </glue-row>
-        </DemoBlock>
+        </glue-doc-block>
 
-        <DemoBlock :title="badge">
+        <glue-doc-block :gtitle="badge">
           <glue-row>
             <glue-col span="6" @click="copy(demoIcon, { dot: true })">
               <glue-icon :name="demoIcon" dot size="32" />
@@ -25,9 +25,9 @@
               <glue-icon :name="demoIcon" badge="99+" size="32" />
             </glue-col>
           </glue-row>
-        </DemoBlock>
+        </glue-doc-block>
 
-        <DemoBlock :title="color">
+        <glue-doc-block :gtitle="color">
           <glue-row>
             <glue-col span="6" @click="copy(demoIcon, { color: '#1989fa' })">
               <glue-icon name="cart-o" color="#1989fa" size="32" />
@@ -36,9 +36,9 @@
               <glue-icon name="fire-o" :color="RED" size="32" />
             </glue-col>
           </glue-row>
-        </DemoBlock>
+        </glue-doc-block>
 
-        <DemoBlock :title="size">
+        <glue-doc-block :gtitle="size">
           <glue-row>
             <glue-col span="6" @click="copy(demoIcon, { size: '40' })">
               <glue-icon :name="demoIcon" size="40" />
@@ -47,7 +47,7 @@
               <glue-icon :name="demoIcon" size="3rem" />
             </glue-col>
           </glue-row>
-        </DemoBlock>
+        </glue-doc-block>
       </van-tab>
 
       <van-tab :title="basic">
@@ -92,12 +92,13 @@
         </glue-row>
       </van-tab>
     </van-tabs>
-  </DemoSection>
+  </glue-doc-section>
 </template>
 
 <script>
+import { decamelize } from "@glue/glue-cli";
 import icons from "@vant/icons";
-import { RED } from "~/common/constant";
+import { RED } from "@glue/glue-cli/src/common/constant";
 
 // from https://30secondsofcode.org
 function copyToClipboard(str) {
@@ -143,7 +144,16 @@ export default {
       demoImage: "https://b.yzcdn.cn/vant/icon-demo-1126.png",
     };
   },
+  computed: {
+    demoName() {
+      const { meta } = this.$route || {};
+      if (meta && meta.path) {
+        return `demo-${decamelize(meta.path)}`;
+      }
 
+      return "";
+    },
+  },
   methods: {
     copy(icon, option = {}) {
       let tag = `<glue-icon name="${icon}"`;

@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock card :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block card :gtitle="basicUsage">
       <glue-cell is-link :gtitle="showSheet" @click="show.basic = true" />
       <glue-share-sheet
         :show="show.basic"
@@ -8,9 +8,9 @@
         :options.prop="options"
         @select="onSelect"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="multiLine">
+    <glue-doc-block card :gtitle="multiLine">
       <glue-cell is-link :gtitle="showSheet" @click="show.multiLine = true" />
       <glue-share-sheet
         :show="show.multiLine"
@@ -18,18 +18,18 @@
         :options.prop="multiLineOptions"
         @select="onSelect"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="customIcon">
+    <glue-doc-block card :gtitle="customIcon">
       <glue-cell is-link :gtitle="showSheet" @click="show.customIcon = true" />
       <glue-share-sheet
         :show="show.customIcon"
         :options.prop="customIconOptions"
         @select="onSelect"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="withDesc">
+    <glue-doc-block card :gtitle="withDesc">
       <glue-cell is-link :gtitle="showSheet" @click="show.withDesc = true" />
       <glue-share-sheet
         :show="show.withDesc"
@@ -38,8 +38,8 @@
         :description="description"
         @select="onSelect"
       />
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

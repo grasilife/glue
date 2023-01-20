@@ -1,32 +1,32 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-swipe :autoplay="3000" indicator-color="white">
         <glue-swipe-item>1</glue-swipe-item>
         <glue-swipe-item>2</glue-swipe-item>
         <glue-swipe-item>3</glue-swipe-item>
         <glue-swipe-item>4</glue-swipe-item>
       </glue-swipe>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title2">
+    <glue-doc-block :gtitle="title2">
       <glue-swipe :autoplay="3000">
         <glue-swipe-item v-for="(image, index) in images" :key="index">
           <img v-lazy="image" />
         </glue-swipe-item>
       </glue-swipe>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title3">
+    <glue-doc-block :gtitle="title3">
       <glue-swipe indicator-color="white" @change="onChange1">
         <glue-swipe-item>1</glue-swipe-item>
         <glue-swipe-item>2</glue-swipe-item>
         <glue-swipe-item>3</glue-swipe-item>
         <glue-swipe-item>4</glue-swipe-item>
       </glue-swipe>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title4">
+    <glue-doc-block :gtitle="title4">
       <glue-swipe
         vertical
         :autoplay="3000"
@@ -39,18 +39,18 @@
         <glue-swipe-item>3</glue-swipe-item>
         <glue-swipe-item>4</glue-swipe-item>
       </glue-swipe>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title5">
+    <glue-doc-block :gtitle="title5">
       <glue-swipe :width="300" :loop="false" indicator-color="white">
         <glue-swipe-item>1</glue-swipe-item>
         <glue-swipe-item>2</glue-swipe-item>
         <glue-swipe-item>3</glue-swipe-item>
         <glue-swipe-item>4</glue-swipe-item>
       </glue-swipe>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title6">
+    <glue-doc-block :gtitle="title6">
       <glue-swipe @change="onChange2">
         <glue-swipe-item>1</glue-swipe-item>
         <glue-swipe-item>2</glue-swipe-item>
@@ -61,8 +61,8 @@
           <div class="custom-indicator">{{ current + 1 }}/4</div>
         </template>
       </glue-swipe>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

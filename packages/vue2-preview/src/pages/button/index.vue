@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="type">
       <div class="demo-button-row">
         <glue-button type="primary">{{ primary }}</glue-button>
         <glue-button type="success">{{ success }}</glue-button>
@@ -9,39 +9,39 @@
 
       <glue-button type="warning">{{ warning }}</glue-button>
       <glue-button type="danger">{{ danger }}</glue-button>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="plain">
+    <glue-doc-block :gtitle="plain">
       <glue-button plain type="primary">{{ plain }}</glue-button>
       <glue-button plain type="success">{{ plain }}</glue-button>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="hairline">
+    <glue-doc-block :gtitle="hairline">
       <glue-button plain hairline type="primary">{{
         hairlineButton
       }}</glue-button>
       <glue-button plain hairline type="success">{{
         hairlineButton
       }}</glue-button>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="disabled">
+    <glue-doc-block :gtitle="disabled">
       <glue-button disabled type="primary">{{ disabled }}</glue-button>
       <glue-button disabled type="success">{{ disabled }}</glue-button>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="loadingStatus">
+    <glue-doc-block :gtitle="loadingStatus">
       <glue-button loading type="primary" />
       <glue-button loading type="primary" loading-type="spinner" />
       <glue-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="shape">
+    <glue-doc-block :gtitle="shape">
       <glue-button type="primary" square>{{ square }}</glue-button>
       <glue-button type="info" round :text="round">{{ round }}</glue-button>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="icon">
+    <glue-doc-block :gtitle="icon">
       <glue-button type="primary" icon="plus" />
       <glue-button type="primary" icon="plus">{{ button }}</glue-button>
       <glue-button
@@ -50,9 +50,9 @@
         icon="https://img.yzcdn.cn/vant/user-active.png"
         :text="button"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="size">
+    <glue-doc-block :gtitle="size">
       <div class="demo-button-row">
         <glue-button type="primary" size="large">{{ large }}</glue-button>
       </div>
@@ -60,20 +60,20 @@
       <glue-button type="primary" size="normal">{{ normal }}</glue-button>
       <glue-button type="primary" size="small">{{ small }}</glue-button>
       <glue-button type="primary" size="mini">{{ mini }}</glue-button>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="blockElement">
+    <glue-doc-block :gtitle="blockElement">
       <glue-button type="primary" block>{{ blockElement }}</glue-button>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customColor">
+    <glue-doc-block :gtitle="customColor">
       <glue-button color="#7232dd">{{ pure }}</glue-button>
       <glue-button plain color="#7232dd">{{ pure }}</glue-button>
       <glue-button color="linear-gradient(to right, #ff6034, #ee0a24)">{{
         gradient
       }}</glue-button>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

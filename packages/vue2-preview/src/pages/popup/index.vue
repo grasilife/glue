@@ -1,13 +1,13 @@
 <template>
-  <DemoSection>
-    <DemoBlock card :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block card :gtitle="basicUsage">
       <van-cell :title="buttonBasic" is-link @click="showBasic = true" />
       <glue-popup :show="showBasic" @glueClose="showBasic = false">
         <div :style="{ padding: '30px 50px' }">{{ content }}</div>
       </glue-popup>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="position">
+    <glue-doc-block card :gtitle="position">
       <van-cell
         :title="buttonTop"
         is-link
@@ -61,9 +61,9 @@
         height="100%"
         @glueClose="showRight = false"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="closeIcon">
+    <glue-doc-block card :gtitle="closeIcon">
       <van-cell :title="closeIcon" is-link @click="showCloseIcon = true" />
       <van-cell
         :title="customCloseIcon"
@@ -102,9 +102,9 @@
         height="30%"
         @glueClose="showCustomIconPosition = false"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="roundCorner">
+    <glue-doc-block card :gtitle="roundCorner">
       <van-cell :title="roundCorner" is-link @click="showRoundCorner = true" />
       <glue-popup
         :show="showRoundCorner"
@@ -114,9 +114,9 @@
         height="30%"
         @glueClose="showRoundCorner = false"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="getContainer">
+    <glue-doc-block card :gtitle="getContainer">
       <van-cell
         :title="getContainer"
         is-link
@@ -129,8 +129,8 @@
       >
         <div :style="{ padding: '30px 50px' }">{{ content }}</div>
       </glue-popup>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

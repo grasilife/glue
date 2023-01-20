@@ -1,10 +1,10 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-uploader show-upload preview-image :after-read="afterRead" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="preview">
+    <glue-doc-block :gtitle="preview">
       <glue-uploader
         :list.prop="fileList"
         multiple
@@ -12,18 +12,18 @@
         show-upload
         preview-image
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="status">
+    <glue-doc-block :gtitle="status">
       <glue-uploader
         :list.prop="statusFileList"
         :after-read="afterReadFailed"
         show-upload
         preview-image
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="maxCount">
+    <glue-doc-block :gtitle="maxCount">
       <glue-uploader
         :list.prop="fileList2"
         multiple
@@ -31,9 +31,9 @@
         show-upload
         preview-image
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="maxSize">
+    <glue-doc-block :gtitle="maxSize">
       <glue-uploader
         :list.prop="fileList4"
         multiple
@@ -42,43 +42,43 @@
         show-upload
         preview-image
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customUpload">
+    <glue-doc-block :gtitle="customUpload">
       <glue-uploader show-upload preview-image>
         <glue-button type="primary" icon="plus">
           {{ upload }}
         </glue-button>
       </glue-uploader>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="previewCover">
+    <glue-doc-block :gtitle="previewCover">
       <glue-uploader :list.prop="previewCoverFiles" show-upload preview-image>
         <template #preview-cover="{ file }">
           <div class="preview-cover glue-ellipsis">{{ file.name }}</div>
         </template>
       </glue-uploader>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="beforeReadTitle">
+    <glue-doc-block :gtitle="beforeReadTitle">
       <glue-uploader
         :list.prop="fileList3"
         :before-read="beforeRead"
         show-upload
         preview-image
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="disabled">
+    <glue-doc-block :gtitle="disabled">
       <glue-uploader
         :after-read="afterRead"
         disabled
         show-upload
         preview-image
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customPreviewImage">
+    <glue-doc-block :gtitle="customPreviewImage">
       <glue-uploader
         :list.prop="fileList5"
         multiple
@@ -87,8 +87,8 @@
         show-upload
         preview-image
       />
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

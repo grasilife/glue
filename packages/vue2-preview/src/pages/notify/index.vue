@@ -1,30 +1,30 @@
 <template>
-  <DemoSection>
-    <DemoBlock card :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block card :gtitle="basicUsage">
       <van-cell is-link :title="basicUsage" @click="showNotify" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="notifyType">
+    <glue-doc-block card :gtitle="notifyType">
       <van-cell is-link :title="primary" @click="showType('primary')" />
       <van-cell is-link :title="success" @click="showType('success')" />
       <van-cell is-link :title="danger" @click="showType('danger')" />
       <van-cell is-link :title="warning" @click="showType('warning')" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="customNotify">
+    <glue-doc-block card :gtitle="customNotify">
       <van-cell is-link :title="customColor" @click="showCustomColor" />
       <van-cell is-link :title="customDuration" @click="showCustomDuration" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="componentCall">
+    <glue-doc-block card :gtitle="componentCall">
       <van-cell is-link :title="componentCall" @click="showComponentCall" />
 
       <van-notify v-model="show" type="success">
-        <van-icon name="bell" style="margin-right: 4px;" />
+        <van-icon name="bell" style="margin-right: 4px" />
         <span>{{ content }}</span>
       </van-notify>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -42,7 +42,7 @@ export default {
       customNotify: "自定义配置",
       componentCall: "组件调用",
       customDuration: "自定义时长",
-      show: false
+      show: false,
     };
   },
 
@@ -55,21 +55,21 @@ export default {
       this.$notify({
         message: this.customColor,
         color: "#ad0000",
-        background: "#ffe1e1"
+        background: "#ffe1e1",
       });
     },
 
     showCustomDuration() {
       this.$notify({
         message: this.customDuration,
-        duration: 1000
+        duration: 1000,
       });
     },
 
     showType(type) {
       this.$notify({
         message: this.content,
-        type
+        type,
       });
     },
 
@@ -78,7 +78,7 @@ export default {
       setTimeout(() => {
         this.show = false;
       }, 2000);
-    }
-  }
+    },
+  },
 };
 </script>

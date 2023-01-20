@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-pagination
         :value="currentPage1"
         :total-items="24"
@@ -8,9 +8,9 @@
         :prev-text="prevText"
         :next-text="nextText"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title2">
+    <glue-doc-block :gtitle="title2">
       <glue-pagination
         :value="currentPage2"
         :page-count="12"
@@ -19,9 +19,9 @@
         mode="simple"
         size="small"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title3">
+    <glue-doc-block :gtitle="title3">
       <glue-pagination
         :value="currentPage3"
         force-ellipses
@@ -30,9 +30,9 @@
         :prev-text="prevText"
         :next-text="nextText"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title4">
+    <glue-doc-block :gtitle="title4">
       <glue-pagination
         :value="currentPage4"
         :total-items="125"
@@ -47,8 +47,8 @@
           <glue-icon name="arrow" />
         </div>
       </glue-pagination>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

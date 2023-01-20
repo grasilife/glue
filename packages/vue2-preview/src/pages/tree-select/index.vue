@@ -1,22 +1,22 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="radioMode">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="radioMode">
       <glue-tree-select
         :items.prop="items"
         :active-id.prop="activeId"
         :main-active-index.prop="activeIndex"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="multipleMode">
+    <glue-doc-block :gtitle="multipleMode">
       <glue-tree-select
         :items.prop="items"
         :active-id.prop="activeIds"
         :main-active-index.prop="activeIndex2"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customContent">
+    <glue-doc-block :gtitle="customContent">
       <glue-tree-select
         height="55vw"
         :items.prop="simpleItems"
@@ -39,17 +39,17 @@
           src="https://img.yzcdn.cn/vant/apple-2.jpg"
         />
       </glue-tree-select>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="showBadge">
+    <glue-doc-block :gtitle="showBadge">
       <glue-tree-select
         height="55vw"
         :items.prop="badgeItems"
         :active-id.prop="activeId2"
         :main-active-index.prop="activeIndex4"
       />
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

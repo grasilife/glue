@@ -1,18 +1,18 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-progress :percentage="50" show-pivot />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="strokeWidth">
+    <glue-doc-block :gtitle="strokeWidth">
       <glue-progress :percentage="50" :stroke-width="8" show-pivot />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title2">
+    <glue-doc-block :gtitle="title2">
       <glue-progress inactive :percentage="50" show-pivot />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title3">
+    <glue-doc-block :gtitle="title3">
       <glue-progress
         color="#f2826a"
         :percentage="25"
@@ -32,8 +32,8 @@
         show-pivot
         color="linear-gradient(to right, #be99ff, #7232dd)"
       />
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

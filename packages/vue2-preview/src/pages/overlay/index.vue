@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-button
         type="primary"
         style="margin-left: 16px"
@@ -8,9 +8,9 @@
         >{{ showOverlay }}</glue-button
       >
       <glue-overlay :show="show" @click="show = false" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="embeddedContent">
+    <glue-doc-block :gtitle="embeddedContent">
       <glue-button
         type="primary"
         style="margin-left: 16px"
@@ -23,8 +23,8 @@
           <div class="block" />
         </div>
       </glue-overlay>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

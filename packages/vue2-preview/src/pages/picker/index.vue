@@ -1,18 +1,35 @@
 <template>
-  <DemoSection>
-    <DemoBlock card :title="basicUsage">
-      <glue-picker show-toolbar :gtitle="title" :columns.prop="textColumns" @change="onChange1" />
-    </DemoBlock>
+  <glue-doc-section>
+    <glue-doc-block card :gtitle="basicUsage">
+      <glue-picker
+        show-toolbar
+        :gtitle="title"
+        :columns.prop="textColumns"
+        @change="onChange1"
+      />
+    </glue-doc-block>
 
-    <DemoBlock card :title="defaultIndex">
-      <glue-picker show-toolbar :gtitle="title" :columns.prop="textColumns" :default-index="2" @change="onChange1" />
-    </DemoBlock>
+    <glue-doc-block card :gtitle="defaultIndex">
+      <glue-picker
+        show-toolbar
+        :gtitle="title"
+        :columns.prop="textColumns"
+        :default-index="2"
+        @change="onChange1"
+      />
+    </glue-doc-block>
 
-    <DemoBlock card :title="multipleColumns">
-      <glue-picker show-toolbar :gtitle="title" :columns.prop="dateColumns" @cancel="onCancel" @confirm="onConfirm" />
-    </DemoBlock>
+    <glue-doc-block card :gtitle="multipleColumns">
+      <glue-picker
+        show-toolbar
+        :gtitle="title"
+        :columns.prop="dateColumns"
+        @cancel="onCancel"
+        @confirm="onConfirm"
+      />
+    </glue-doc-block>
 
-    <DemoBlock card :title="cascade">
+    <glue-doc-block card :gtitle="cascade">
       <glue-picker
         show-toolbar
         :gtitle="title"
@@ -20,21 +37,35 @@
         @cancel="onCancel"
         @confirm="onConfirm"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="disableOption">
-      <glue-picker show-toolbar :gtitle="title" :columns.prop="disabledColumns" />
-    </DemoBlock>
+    <glue-doc-block card :gtitle="disableOption">
+      <glue-picker
+        show-toolbar
+        :gtitle="title"
+        :columns.prop="disabledColumns"
+      />
+    </glue-doc-block>
 
-    <DemoBlock card :title="setColumnValues">
-      <glue-picker show-toolbar :gtitle="title" :columns.prop="columns" @change="onChange2" />
-    </DemoBlock>
+    <glue-doc-block card :gtitle="setColumnValues">
+      <glue-picker
+        show-toolbar
+        :gtitle="title"
+        :columns.prop="columns"
+        @change="onChange2"
+      />
+    </glue-doc-block>
 
-    <DemoBlock card :title="loadingStatus">
-      <glue-picker loading show-toolbar :gtitle="title" :columns.prop="columns" />
-    </DemoBlock>
+    <glue-doc-block card :gtitle="loadingStatus">
+      <glue-picker
+        loading
+        show-toolbar
+        :gtitle="title"
+        :columns.prop="columns"
+      />
+    </glue-doc-block>
 
-    <DemoBlock card :title="withPopup">
+    <glue-doc-block card :gtitle="withPopup">
       <glue-field
         readonly
         clickable
@@ -44,10 +75,16 @@
         @click="onClickField"
       />
       <glue-popup v-model="showPicker" round position="bottom">
-        <glue-picker show-toolbar :gtitle="title" :columns="textColumns" @cancel="onCancel2" @confirm="onConfirm2" />
+        <glue-picker
+          show-toolbar
+          :gtitle="title"
+          :columns="textColumns"
+          @cancel="onCancel2"
+          @confirm="onConfirm2"
+        />
       </glue-popup>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -70,15 +107,28 @@ export default {
       cascadeColumns: cascadeColumns["zh-CN"],
       multipleColumns: "多列选择",
       setColumnValues: "动态设置选项",
-      textColumns: ["杭州", "宁波", "温州", "绍兴", "湖州", "嘉兴", "金华", "衢州"],
-      disabledColumns: [{ text: "杭州", disabled: true }, { text: "宁波" }, { text: "温州" }],
+      textColumns: [
+        "杭州",
+        "宁波",
+        "温州",
+        "绍兴",
+        "湖州",
+        "嘉兴",
+        "金华",
+        "衢州",
+      ],
+      disabledColumns: [
+        { text: "杭州", disabled: true },
+        { text: "宁波" },
+        { text: "温州" },
+      ],
       column3: {
         浙江: ["杭州", "宁波", "温州", "嘉兴", "湖州"],
-        福建: ["福州", "厦门", "莆田", "三明", "泉州"]
+        福建: ["福州", "厦门", "莆田", "三明", "泉州"],
       },
       toastContent: (value, index) => `当前值：${value}, 当前索引：${index}`,
       showPicker: false,
-      fieldValue: ""
+      fieldValue: "",
     };
   },
 
@@ -88,15 +138,15 @@ export default {
       return [
         {
           values: Object.keys(column),
-          className: "column1"
+          className: "column1",
         },
         {
           values: column[Object.keys(column)[0]],
           className: "column2",
-          defaultIndex: 2
-        }
+          defaultIndex: 2,
+        },
       ];
-    }
+    },
   },
 
   methods: {
@@ -127,7 +177,7 @@ export default {
 
     onCancel2() {
       this.showPicker = false;
-    }
-  }
+    },
+  },
 };
 </script>

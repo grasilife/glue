@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-badge content="5" style="margin-left: 16px">
         <div class="child" />
       </glue-badge>
@@ -13,9 +13,9 @@
       <glue-badge dot>
         <div class="child" style="margin-left: 16px" />
       </glue-badge>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="max">
+    <glue-doc-block :gtitle="max">
       <glue-badge content="20" max="9" style="margin-left: 16px">
         <div class="child" />
       </glue-badge>
@@ -25,9 +25,9 @@
       <glue-badge content="200" max="99" style="margin-left: 16px">
         <div class="child" />
       </glue-badge>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customColor">
+    <glue-doc-block :gtitle="customColor">
       <glue-badge content="5" color="#1989fa" style="margin-left: 16px">
         <div class="child" />
       </glue-badge>
@@ -37,9 +37,9 @@
       <glue-badge dot color="#1989fa" style="margin-left: 16px">
         <div class="child" />
       </glue-badge>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customContent">
+    <glue-doc-block :gtitle="customContent">
       <glue-badge content="#slot" style="margin-left: 16px">
         <div class="child" />
         <div slot="content">
@@ -58,17 +58,17 @@
           <glue-icon name="down" class="badge-icon" size="12" />
         </div>
       </glue-badge>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="standalone">
+    <glue-doc-block :gtitle="standalone">
       <div style="display: inline-block">
         <glue-badge content="20" style="margin-left: 32px" />
       </div>
       <div style="display: inline-block">
         <glue-badge content="200" max="99" style="margin-left: 32px" />
       </div>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

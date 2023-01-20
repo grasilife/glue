@@ -1,14 +1,14 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-rate :vlaue="value1"></glue-rate>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customIcon">
+    <glue-doc-block :gtitle="customIcon">
       <glue-rate :vlaue="value2" icon="like" void-icon="like-o" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customStyle">
+    <glue-doc-block :gtitle="customStyle">
       <glue-rate
         :vlaue="value3"
         :size="25"
@@ -16,9 +16,9 @@
         void-icon="star"
         void-color="#eee"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="halfStar">
+    <glue-doc-block :gtitle="halfStar">
       <glue-rate
         :vlaue="value4"
         :size="25"
@@ -26,24 +26,24 @@
         void-icon="star"
         void-color="#eee"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customCount">
+    <glue-doc-block :gtitle="customCount">
       <glue-rate :vlaue="value5" :count="6" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="disabled">
+    <glue-doc-block :gtitle="disabled">
       <glue-rate :vlaue="value6" disabled />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="readonly">
+    <glue-doc-block :gtitle="readonly">
       <glue-rate :vlaue="value6" readonly />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="changeEvent">
+    <glue-doc-block :gtitle="changeEvent">
       <glue-rate :vlaue="value7" @glueChange="onChange" />
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

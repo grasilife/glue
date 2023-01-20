@@ -1,21 +1,21 @@
 <template>
-  <DemoSection>
-    <DemoBlock card :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block card :gtitle="basicUsage">
       <van-cell is-link :title="alert1" @click="onClickAlert" />
       <van-cell is-link :title="alert2" @click="onClickAlert2" />
       <van-cell is-link :title="confirm" @click="onClickConfirm" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="roundButton">
+    <glue-doc-block card :gtitle="roundButton">
       <van-cell is-link :title="alert1" @click="onClickRound" />
       <van-cell is-link :title="alert2" @click="onClickRound2" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="asyncClose">
+    <glue-doc-block card :gtitle="asyncClose">
       <van-cell is-link :title="asyncClose" @click="onClickAsyncClose" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="componentCall">
+    <glue-doc-block card :gtitle="componentCall">
       <van-cell is-link :title="componentCall" @click="show = true" />
       <van-dialog
         v-model="show"
@@ -25,8 +25,8 @@
       >
         <img :src="image" />
       </van-dialog>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

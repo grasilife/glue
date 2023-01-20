@@ -1,7 +1,7 @@
 <template>
   <div>
-    <DemoSection>
-      <DemoBlock :title="basicUsage">
+    <glue-doc-section>
+      <glue-doc-block :gtitle="basicUsage">
         <glue-swipe-cell left="#slot" right="#slot">
           <div slot="left">
             <glue-button square type="primary">{{ select }}</glue-button>
@@ -16,9 +16,9 @@
             }}</glue-button>
           </div>
         </glue-swipe-cell>
-      </DemoBlock>
+      </glue-doc-block>
 
-      <DemoBlock :title="customContent">
+      <glue-doc-block :gtitle="customContent">
         <glue-swipe-cell left="#slot" right="#slot">
           <van-card
             num="2"
@@ -33,8 +33,8 @@
             }}</glue-button>
           </div>
         </glue-swipe-cell>
-      </DemoBlock>
-    </DemoSection>
+      </glue-doc-block>
+    </glue-doc-section>
   </div>
 </template>
 

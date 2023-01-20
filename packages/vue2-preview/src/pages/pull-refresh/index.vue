@@ -1,5 +1,5 @@
 <template>
-  <DemoSection name="pull-refresh">
+  <glue-doc-section name="pull-refresh">
     <van-tabs>
       <van-tab :title="basicUsage">
         <van-pull-refresh v-model="isLoading" @refresh="onRefresh(true)">
@@ -40,7 +40,7 @@
         </van-pull-refresh>
       </van-tab>
     </van-tabs>
-  </DemoSection>
+  </glue-doc-section>
 </template>
 
 <script>

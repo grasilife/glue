@@ -1,27 +1,31 @@
 <template>
-  <DemoSection>
-    <DemoBlock card :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block card :gtitle="basicUsage">
       <van-cell is-link :title="title1" @click="$toast(text)" />
       <van-cell is-link :title="title2" @click="showLoadingToast()" />
       <van-cell is-link :title="success" @click="showSuccessToast" />
       <van-cell is-link :title="fail" @click="showFailToast" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="customIcon">
+    <glue-doc-block card :gtitle="customIcon">
       <van-cell is-link :title="customIcon" @click="showIconToast" />
       <van-cell is-link :title="customImage" @click="showImageToast" />
-      <van-cell is-link :title="loadingType" @click="showLoadingToast('spinner')" />
-    </DemoBlock>
+      <van-cell
+        is-link
+        :title="loadingType"
+        @click="showLoadingToast('spinner')"
+      />
+    </glue-doc-block>
 
-    <DemoBlock card :title="customPosition">
+    <glue-doc-block card :gtitle="customPosition">
       <van-cell is-link :title="positionTop" @click="showTopToast" />
       <van-cell is-link :title="positionBottom" @click="showBottomToast" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="updateMessage">
+    <glue-doc-block card :gtitle="updateMessage">
       <van-cell is-link :title="updateMessage" @click="showCustomizedToast" />
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -33,7 +37,7 @@ export default {
       text: "提示内容",
       text2: "成功文案",
       text3: "失败文案",
-      text4: second => `倒计时 ${second} 秒`,
+      text4: (second) => `倒计时 ${second} 秒`,
       title1: "文字提示",
       title2: "加载提示",
       title3: "成功/失败提示",
@@ -44,7 +48,7 @@ export default {
       positionTop: "顶部展示",
       updateMessage: "动态更新提示",
       positionBottom: "底部展示",
-      customPosition: "自定义位置"
+      customPosition: "自定义位置",
     };
   },
   methods: {
@@ -52,7 +56,7 @@ export default {
       this.$toast.loading({
         forbidClick: true,
         message: this.loading,
-        loadingType
+        loadingType,
       });
     },
 
@@ -67,28 +71,28 @@ export default {
     showTopToast() {
       this.$toast({
         message: this.positionTop,
-        position: "top"
+        position: "top",
       });
     },
 
     showBottomToast() {
       this.$toast({
         message: this.positionBottom,
-        position: "bottom"
+        position: "bottom",
       });
     },
 
     showIconToast() {
       this.$toast({
         message: this.customIcon,
-        icon: "like-o"
+        icon: "like-o",
       });
     },
 
     showImageToast() {
       this.$toast({
         message: this.customImage,
-        icon: "https://img.yzcdn.cn/vant/logo.png"
+        icon: "https://img.yzcdn.cn/vant/logo.png",
       });
     },
 
@@ -96,7 +100,7 @@ export default {
       const toast = this.$toast.loading({
         duration: 0,
         forbidClick: true,
-        message: this.text4(3)
+        message: this.text4(3),
       });
 
       let second = 3;
@@ -109,7 +113,7 @@ export default {
           this.$toast.clear();
         }
       }, 1000);
-    }
-  }
+    },
+  },
 };
 </script>

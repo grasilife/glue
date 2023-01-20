@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section class="demo-address-edit">
+    <glue-doc-block :gtitle="basicUsage">
       <van-address-edit
         :area-list="areaList"
         show-postal
@@ -13,8 +13,8 @@
         @delete="onDelete"
         @change-detail="onChangeDetail"
       />
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -28,17 +28,17 @@ export default {
       searchResult: [
         {
           name: "黄龙万科中心",
-          address: "杭州市西湖区"
+          address: "杭州市西湖区",
         },
         {
-          name: "黄龙万科中心G座"
+          name: "黄龙万科中心G座",
         },
         {
           name: "黄龙万科中心H座",
-          address: "杭州市西湖区"
-        }
+          address: "杭州市西湖区",
+        },
       ],
-      areaList
+      areaList,
     };
   },
 
@@ -53,14 +53,14 @@ export default {
 
     onChangeDetail(val) {
       this.searchResult = val ? this.searchResult : [];
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less">
 .demo-address-edit {
-  .van-doc-DemoBlock__title {
+  .van-doc-glue-doc-block__title {
     padding-bottom: 0;
   }
 }

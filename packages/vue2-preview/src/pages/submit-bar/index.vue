@@ -1,14 +1,14 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <van-submit-bar
         :price="3050"
         :button-text="submit"
         @submit="onClickButton"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="disabled">
+    <glue-doc-block :gtitle="disabled">
       <van-submit-bar
         disabled
         :price="3050"
@@ -17,18 +17,18 @@
         tip-icon="info-o"
         @submit="onClickButton"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="loadingStatus">
+    <glue-doc-block :gtitle="loadingStatus">
       <van-submit-bar
         loading
         :price="3050"
         :button-text="submit"
         @submit="onClickButton"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="advancedUsage">
+    <glue-doc-block :gtitle="advancedUsage">
       <van-submit-bar
         :price="3050"
         :button-text="submit"
@@ -42,8 +42,8 @@
           </span>
         </template>
       </van-submit-bar>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

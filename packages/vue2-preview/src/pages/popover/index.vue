@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <van-popover
         v-model="show.lightTheme"
         trigger="click"
@@ -29,9 +29,9 @@
           </van-button>
         </template>
       </van-popover>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="placement">
+    <glue-doc-block :gtitle="placement">
       <van-field
         is-link
         readonly
@@ -62,9 +62,9 @@
         </div>
         <van-picker :columns="placements" @change="onPickerChange" />
       </van-popup>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="actionOptions">
+    <glue-doc-block :gtitle="actionOptions">
       <van-popover
         v-model="show.showIcon"
         trigger="click"
@@ -93,9 +93,9 @@
           </van-button>
         </template>
       </van-popover>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customContent">
+    <glue-doc-block :gtitle="customContent">
       <van-popover
         v-model="show.customContent"
         trigger="click"
@@ -124,8 +124,8 @@
           </van-button>
         </template>
       </van-popover>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

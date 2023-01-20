@@ -1,48 +1,48 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="title1">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="title1">
       <glue-slider :value="value1" @glueChange="onChange" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title2">
+    <glue-doc-block :gtitle="title2">
       <glue-slider range :value="value2" @glueChange="onChange" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title3">
+    <glue-doc-block :gtitle="title3">
       <glue-slider
         :value="value3"
         :min="-50"
         :max="50"
         @glueChange="onChange"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title4">
+    <glue-doc-block :gtitle="title4">
       <glue-slider :value="value4" disabled />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title5">
+    <glue-doc-block :gtitle="title5">
       <glue-slider :value="value5" :step="10" @glueChange="onChange" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customStyle">
+    <glue-doc-block :gtitle="customStyle">
       <glue-slider
         :value="value6"
         bar-height="4px"
         active-color="#ee0a24"
         @glueChange="onChange"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customButton">
+    <glue-doc-block :gtitle="customButton">
       <glue-slider :value="value7" active-color="#ee0a24" button-block="#slot">
         <div slot="button-block">
           <div class="custom-button">{{ value7 }}</div>
         </div>
       </glue-slider>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="vertical">
+    <glue-doc-block :gtitle="vertical">
       <div :style="{ height: '150px', paddingLeft: '30px' }">
         <glue-slider :value="value8" vertical @glueChange="onChange" />
         <glue-slider
@@ -53,8 +53,8 @@
           @glueChange="onChange"
         />
       </div>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

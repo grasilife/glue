@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock card :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block card :gtitle="basicUsage">
       <glue-cell :title="`primary ${type}`">
         <glue-tag type="primary">{{ tag }}</glue-tag>
       </glue-cell>
@@ -13,9 +13,9 @@
       <glue-cell :title="`warning ${type}`">
         <glue-tag type="warning">{{ tag }}</glue-tag>
       </glue-cell>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="tagStyle">
+    <glue-doc-block card :gtitle="tagStyle">
       <glue-cell :title="plain">
         <glue-tag plain type="primary">{{ tag }}</glue-tag>
       </glue-cell>
@@ -36,9 +36,9 @@
           {{ tag }}
         </glue-tag>
       </glue-cell>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="customSize">
+    <glue-doc-block card :gtitle="customSize">
       <glue-cell :title="smallSize">
         <glue-tag type="primary">{{ tag }}</glue-tag>
       </glue-cell>
@@ -48,9 +48,9 @@
       <glue-cell :title="largeSize">
         <glue-tag type="primary" size="large">{{ tag }}</glue-tag>
       </glue-cell>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="customColor">
+    <glue-doc-block card :gtitle="customColor">
       <glue-cell :title="customBgColor">
         <glue-tag color="#7232dd">{{ tag }}</glue-tag>
       </glue-cell>
@@ -60,8 +60,8 @@
       <glue-cell :title="customPlainColor">
         <glue-tag color="#7232dd" plain>{{ tag }}</glue-tag>
       </glue-cell>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

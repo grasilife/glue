@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock card :title="basicUsage">
+  <glue-doc-section class="demo-action-sheet">
+    <glue-doc-block card :gtitle="basicUsage">
       <glue-cell is-link :gtitle="basicUsage" @click="show.basic = true" />
       <glue-cell is-link :gtitle="showCancel" @click="show.cancel = true" />
       <glue-cell
@@ -8,15 +8,15 @@
         :gtitle="showDescription"
         @click="show.description = true"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="optionStatus">
+    <glue-doc-block card :gtitle="optionStatus">
       <glue-cell is-link :gtitle="optionStatus" @click="show.status = true" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="customPanel">
+    <glue-doc-block card :gtitle="customPanel">
       <glue-cell is-link :gtitle="customPanel" @click="show.title = true" />
-    </DemoBlock>
+    </glue-doc-block>
 
     <glue-action-sheet
       :show="show.basic"
@@ -51,7 +51,7 @@
     <glue-action-sheet :show="show.title" :gtitle="title">
       <div class="demo-action-sheet-content">{{ content }}</div>
     </glue-action-sheet>
-  </DemoSection>
+  </glue-doc-section>
 </template>
 
 <script>

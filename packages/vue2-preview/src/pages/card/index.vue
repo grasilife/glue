@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <van-card
         num="2"
         price="2.00"
@@ -8,9 +8,9 @@
         :title="title"
         :thumb="imageURL"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="discountInfo">
+    <glue-doc-block :gtitle="discountInfo">
       <van-card
         num="2"
         price="2.00"
@@ -20,9 +20,9 @@
         :title="title"
         :thumb="imageURL"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customContent">
+    <glue-doc-block :gtitle="customContent">
       <van-card
         num="2"
         price="2.00"
@@ -50,8 +50,8 @@
           </div>
         </template>
       </van-card>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

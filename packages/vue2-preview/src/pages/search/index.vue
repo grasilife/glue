@@ -1,10 +1,10 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-search :modelValue="value1" :placeholder="placeholder" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="listenToEvents">
+    <glue-doc-block :gtitle="listenToEvents">
       <form action="/">
         <glue-search
           :modelValue="value5"
@@ -14,28 +14,43 @@
           @cancel="onCancel"
         />
       </form>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="inputAlign">
-      <glue-search :modelValue="value4" :placeholder="placeholder" input-align="center" />
-    </DemoBlock>
+    <glue-doc-block :gtitle="inputAlign">
+      <glue-search
+        :modelValue="value4"
+        :placeholder="placeholder"
+        input-align="center"
+      />
+    </glue-doc-block>
 
-    <DemoBlock :title="disabled">
+    <glue-doc-block :gtitle="disabled">
       <glue-search :modelValue="value3" :placeholder="placeholder" disabled />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="background">
-      <glue-search :modelValue="value2" :placeholder="placeholder" shape="round" background="#4fc08d" />
-    </DemoBlock>
+    <glue-doc-block :gtitle="background">
+      <glue-search
+        :modelValue="value2"
+        :placeholder="placeholder"
+        shape="round"
+        background="#4fc08d"
+      />
+    </glue-doc-block>
 
-    <DemoBlock :title="customButton">
-      <glue-search :modelValue="value6" show-action :label="label" :placeholder="placeholder" @search="onSearch">
+    <glue-doc-block :gtitle="customButton">
+      <glue-search
+        :modelValue="value6"
+        show-action
+        :label="label"
+        :placeholder="placeholder"
+        @search="onSearch"
+      >
         <template #action>
           <div @click="onSearch(value6)">{{ search }}</div>
         </template>
       </glue-search>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -57,7 +72,7 @@ export default {
       value3: "",
       value4: "",
       value5: "",
-      value6: ""
+      value6: "",
     };
   },
 
@@ -68,7 +83,7 @@ export default {
 
     onCancel() {
       this.$toast(this.cancel);
-    }
-  }
+    },
+  },
 };
 </script>

@@ -1,35 +1,35 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="type">
       <glue-loading />
       <glue-loading type="spinner" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="color">
+    <glue-doc-block :gtitle="color">
       <glue-loading color="#1989fa" />
       <glue-loading type="spinner" color="#1989fa" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="size">
+    <glue-doc-block :gtitle="size">
       <glue-loading size="24" />
       <glue-loading type="spinner" size="24" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="text">
+    <glue-doc-block :gtitle="text">
       <glue-loading size="24px" :text="loading"> </glue-loading>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="vertical">
+    <glue-doc-block :gtitle="vertical">
       <glue-loading size="24px" vertical :text="loading"> </glue-loading>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="textColor">
+    <glue-doc-block :gtitle="textColor">
       <glue-loading size="24px" vertical color="#0094ff" :text="loading">
       </glue-loading>
       <glue-loading size="24px" vertical text-color="#0094ff" :text="loading">
       </glue-loading>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

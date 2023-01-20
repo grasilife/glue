@@ -1,33 +1,33 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-notice-bar :text="text" scrollable left-icon="volume-o" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="scrollable">
+    <glue-doc-block :gtitle="scrollable">
       <glue-notice-bar scrollable :text="shortText" />
       <glue-notice-bar :scrollable="false" :text="text" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="wrapable">
+    <glue-doc-block :gtitle="wrapable">
       <glue-notice-bar wrapable :scrollable="false" :text="text" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="mode">
+    <glue-doc-block :gtitle="mode">
       <glue-notice-bar mode="closeable" :text="shortText" />
       <glue-notice-bar mode="link" :text="shortText" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customStyle">
+    <glue-doc-block :gtitle="customStyle">
       <glue-notice-bar
         :text="shortText"
         color="#1989fa"
         background="#ecf9ff"
         left-icon="info-o"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <!-- <DemoBlock :title="verticalScroll">
+    <!-- <glue-doc-block :gtitle="verticalScroll">
       <glue-notice-bar left-icon="volume-o" :scrollable="false">
         <van-swipe vertical class="notice-swipe" :autoplay="3000" :show-indicators="false">
           <van-swipe-item>{{ content }} 1</van-swipe-item>
@@ -35,8 +35,8 @@
           <van-swipe-item>{{ content }} 3</van-swipe-item>
         </van-swipe>
       </glue-notice-bar>
-    </DemoBlock> -->
-  </DemoSection>
+    </glue-doc-block> -->
+  </glue-doc-section>
 </template>
 
 <script>

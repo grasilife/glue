@@ -47,7 +47,7 @@ export default {
       }
       console.log(event.data, "event.data");
       const path = event.data?.value || "";
-      this.$router.replace(path).catch(() => {});
+      this.$router.replace(path);
     });
   },
 

@@ -1,42 +1,42 @@
 <template>
-  <DemoSection>
+  <glue-doc-section>
     <div class="demo-password-input-container">
-      <DemoBlock ref="basicUsage" title="基础用法">
+      <glue-doc-block ref="basicUsage" title="基础用法">
         <glue-password-input
           :value="value.basicUsage"
           :focused="current === 'basicUsage'"
           @glueFocus="current = 'basicUsage'"
         />
-      </DemoBlock>
+      </glue-doc-block>
 
-      <DemoBlock ref="customLength" title="自定义长度">
+      <glue-doc-block ref="customLength" title="自定义长度">
         <glue-password-input
           :value="value.customLength"
           :length="4"
           :focused="current === 'customLength'"
           @glueFocus="current = 'customLength'"
         />
-      </DemoBlock>
+      </glue-doc-block>
 
-      <DemoBlock ref="addGutter" title="格子间距">
+      <glue-doc-block ref="addGutter" title="格子间距">
         <glue-password-input
           :value="value.addGutter"
           :gutter="10"
           :focused="current === 'addGutter'"
           @glueFocus="current = 'addGutter'"
         />
-      </DemoBlock>
+      </glue-doc-block>
 
-      <DemoBlock ref="removeMask" title="明文展示">
+      <glue-doc-block ref="removeMask" title="明文展示">
         <glue-password-input
           :mask.prop="false"
           :value="value.removeMask"
           :focused="current === 'removeMask'"
           @glueFocus="current = 'removeMask'"
         />
-      </DemoBlock>
+      </glue-doc-block>
 
-      <DemoBlock ref="showInfo" title="提示信息">
+      <glue-doc-block ref="showInfo" title="提示信息">
         <glue-password-input
           :info="info"
           :value="value.showInfo"
@@ -44,11 +44,16 @@
           :focused="current === 'showInfo'"
           @glueFocus="current = 'showInfo'"
         />
-      </DemoBlock>
+      </glue-doc-block>
     </div>
 
-    <glue-number-keyboard :show="!!current" @glueBlur="current = ''" @glueInput="onInput" @glueDelete="onDelete" />
-  </DemoSection>
+    <glue-number-keyboard
+      :show="!!current"
+      @glueBlur="current = ''"
+      @glueInput="onInput"
+      @glueDelete="onDelete"
+    />
+  </glue-doc-section>
 </template>
 
 <script>
@@ -62,9 +67,9 @@ export default {
         addGutter: "123",
         basicUsage: "123",
         removeMask: "123",
-        customLength: "123"
+        customLength: "123",
       },
-      current: "basicUsage"
+      current: "basicUsage",
     };
   },
 
@@ -75,7 +80,7 @@ export default {
         const { top } = el.getBoundingClientRect();
         window.scrollTo(0, window.pageYOffset + top);
       }
-    }
+    },
   },
 
   methods: {
@@ -87,7 +92,11 @@ export default {
 
       value[current] = newValue;
 
-      if (current === "showInfo" && newValue.length === 6 && newValue !== "123456") {
+      if (
+        current === "showInfo" &&
+        newValue.length === 6 &&
+        newValue !== "123456"
+      ) {
         this.errorInfo = this.errorInfo;
       }
     },
@@ -98,8 +107,8 @@ export default {
       if (current === "showInfo") {
         this.errorInfo = "";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

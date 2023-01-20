@@ -1,10 +1,10 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-empty :description="description" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="imageType">
+    <glue-doc-block :gtitle="imageType">
       <van-tabs v-model="active">
         <van-tab name="error" :title="error">
           <glue-empty image="error" :description="description" />
@@ -16,24 +16,24 @@
           <glue-empty image="search" :description="description" />
         </van-tab>
       </van-tabs>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customImage">
+    <glue-doc-block :gtitle="customImage">
       <glue-empty
         class="custom-image"
         image="https://img.yzcdn.cn/vant/custom-empty-image.png"
         :description="description"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="bottomContent">
+    <glue-doc-block :gtitle="bottomContent">
       <glue-empty :description="description">
         <glue-button round type="danger" class="bottom-button">
           {{ button }}
         </glue-button>
       </glue-empty>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

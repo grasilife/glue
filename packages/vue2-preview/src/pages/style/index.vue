@@ -1,15 +1,15 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="ellipsis">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="ellipsis">
       <div class="glue-ellipsis">{{ text1 }}</div>
       <div class="glue-multi-ellipsis--l2">{{ text2 }}</div>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="hairline">
+    <glue-doc-block card :gtitle="hairline">
       <div class="glue-hairline--top" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="animation" card>
+    <glue-doc-block :gtitle="animation" card>
       <glue-cell is-link title="淡入" @click="animate('glue-fade')" />
       <glue-cell is-link title="上滑进入" @click="animate('glue-slide-up')" />
       <glue-cell is-link title="下滑进入" @click="animate('glue-slide-down')" />
@@ -19,9 +19,9 @@
         title="右滑进入"
         @click="animate('glue-slide-right')"
       />
-    </DemoBlock>
+    </glue-doc-block>
     <div ref="anime" v-show="show" class="demo-animate-block"></div>
-  </DemoSection>
+  </glue-doc-section>
 </template>
 
 <script>

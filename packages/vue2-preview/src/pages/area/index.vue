@@ -1,21 +1,25 @@
 <template>
-  <DemoSection>
-    <DemoBlock card :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block card :gtitle="basicUsage">
       <van-area :title="title" :area-list="areaList" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="title2">
+    <glue-doc-block card :gtitle="title2">
       <van-area :title="title" :area-list="areaList" :value="value" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="title3">
+    <glue-doc-block card :gtitle="title3">
       <van-area :title="title" :area-list="areaList" :columns-num="2" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="title4">
-      <van-area :title="title" :area-list="areaList" :columns-placeholder="columnsPlaceholder" />
-    </DemoBlock>
-  </DemoSection>
+    <glue-doc-block card :gtitle="title4">
+      <van-area
+        :title="title"
+        :area-list="areaList"
+        :columns-placeholder="columnsPlaceholder"
+      />
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -32,8 +36,8 @@ export default {
       title3: "配置显示列",
       title4: "配置列占位提示文字",
       columnsPlaceholder: ["请选择", "请选择", "请选择"],
-      areaList: AreaList
+      areaList: AreaList,
     };
-  }
+  },
 };
 </script>

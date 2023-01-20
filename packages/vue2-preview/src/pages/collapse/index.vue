@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-collapse lue-collapse :model-value.prop="active1">
         <glue-collapse-item :gtitle="gtitle + 1" :name="0">
           {{ text }}
@@ -12,9 +12,9 @@
           {{ text }}
         </glue-collapse-item>
       </glue-collapse>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="accordion">
+    <glue-doc-block :gtitle="accordion">
       <glue-collapse :model-value.prop="active2" accordion>
         <glue-collapse-item :gtitle="gtitle + 1" :name="0">
           {{ text }}
@@ -26,9 +26,9 @@
           {{ text }}
         </glue-collapse-item>
       </glue-collapse>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="disabled">
+    <glue-doc-block :gtitle="disabled">
       <glue-collapse :model-value.prop="active3">
         <glue-collapse-item :gtitle="gtitle + 1" :name="0">
           {{ text }}
@@ -40,9 +40,9 @@
           {{ text }}
         </glue-collapse-item>
       </glue-collapse>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <!-- <DemoBlock :title="titleSlot">
+    <!-- <glue-doc-block :gtitle="titleSlot">
       <glue-collapse :model-value.prop="active4">
         <glue-collapse-item :name="0">
           <template #gtitle>
@@ -55,8 +55,8 @@
           {{ text }}
         </glue-collapse-item>
       </glue-collapse>
-    </DemoBlock> -->
-  </DemoSection>
+    </glue-doc-block> -->
+  </glue-doc-section>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <DemoSection>
+  <glue-doc-section>
     <glue-cell center :title="basicUsage">
       <glue-stepper :model-value="stepper1" />
     </glue-cell>
@@ -29,7 +29,11 @@
     </glue-cell>
 
     <glue-cell center :title="customSize">
-      <glue-stepper :model-value="stepper7" button-size="32px" input-width="40px" />
+      <glue-stepper
+        :model-value="stepper7"
+        button-size="32px"
+        input-width="40px"
+      />
     </glue-cell>
 
     <glue-cell center :title="asyncChange">
@@ -37,9 +41,14 @@
     </glue-cell>
 
     <glue-cell center :title="roundTheme">
-      <glue-stepper :model-value="stepperRound" theme="round" button-size="22" disable-input />
+      <glue-stepper
+        :model-value="stepperRound"
+        theme="round"
+        button-size="22"
+        disable-input
+      />
     </glue-cell>
-  </DemoSection>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -66,7 +75,7 @@ export default {
       stepper7: 1,
       stepper8: 1,
       stepperRound: 1,
-      disabledInput: 1
+      disabledInput: 1,
     };
   },
 
@@ -78,7 +87,7 @@ export default {
         this.stepper6 = value;
         this.$toast.clear();
       }, 500);
-    }
-  }
+    },
+  },
 };
 </script>

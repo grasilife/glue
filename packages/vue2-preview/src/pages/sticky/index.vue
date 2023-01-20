@@ -1,22 +1,22 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-sticky>
         <glue-button type="primary" style="margin-left: 15px">
           {{ basicUsage }}
         </glue-button>
       </glue-sticky>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="offsetTop">
+    <glue-doc-block :gtitle="offsetTop">
       <glue-sticky :offset-top-value="50">
         <glue-button type="primary" style="margin-left: 115px">
           {{ offsetTop }}
         </glue-button>
       </glue-sticky>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="setContainer">
+    <glue-doc-block :gtitle="setContainer">
       <div ref="container" style="height: 150px; background-color: #fff">
         <glue-sticky :container="container">
           <glue-button type="warning" style="margin-left: 215px">
@@ -24,8 +24,8 @@
           </glue-button>
         </glue-sticky>
       </div>
-    </DemoBlock>
-    <DemoBlock :title="offsetBottom">
+    </glue-doc-block>
+    <glue-doc-block :gtitle="offsetBottom">
       <div style="height: 200px"></div>
       <glue-sticky
         :offset-bottom-value="50"
@@ -36,8 +36,8 @@
           {{ offsetBottom }}
         </glue-button>
       </glue-sticky>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

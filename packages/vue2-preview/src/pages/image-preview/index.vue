@@ -1,12 +1,12 @@
 <template>
-  <DemoSection>
-    <DemoBlock card :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block card :gtitle="basicUsage">
       <van-cell is-link @click="showImagePreview">
         {{ showImages }}
       </van-cell>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="customConfig">
+    <glue-doc-block card :gtitle="customConfig">
       <van-cell is-link @click="showImagePreview({ startPosition: 1 })">
         {{ startPosition }}
       </van-cell>
@@ -16,23 +16,23 @@
       <van-cell is-link @click="showImagePreview({ onClose })">
         {{ closeEvent }}
       </van-cell>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="asyncClose">
+    <glue-doc-block card :gtitle="asyncClose">
       <van-cell is-link @click="showImagePreview({ asyncClose: true })">
         {{ asyncClose }}
       </van-cell>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="componentCallTitle">
+    <glue-doc-block card :gtitle="componentCallTitle">
       <van-cell is-link @click="componentCall">
         {{ componentCallTitle }}
       </van-cell>
       <van-image-preview v-model="show" :images="images" @change="onChange">
         <template #index>{{ index }}</template>
       </van-image-preview>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -42,7 +42,7 @@ const images = [
   "https://img.yzcdn.cn/vant/apple-1.jpg",
   "https://img.yzcdn.cn/vant/apple-2.jpg",
   "https://img.yzcdn.cn/vant/apple-3.jpg",
-  "https://img.yzcdn.cn/vant/apple-4.jpg"
+  "https://img.yzcdn.cn/vant/apple-4.jpg",
 ];
 
 export default {
@@ -57,9 +57,9 @@ export default {
       customConfig: "传入配置项",
       startPosition: "指定初始位置",
       componentCallTitle: "组件调用",
-      index: index => `第${index + 1}页`,
+      index: (index) => `第${index + 1}页`,
       show: false,
-      images
+      images,
     };
   },
 
@@ -79,7 +79,7 @@ export default {
     showImagePreview(options) {
       const instance = ImagePreview({
         images,
-        ...options
+        ...options,
       });
 
       if (options.asyncClose) {
@@ -87,7 +87,7 @@ export default {
           instance.close();
         }, 2000);
       }
-    }
-  }
+    },
+  },
 };
 </script>

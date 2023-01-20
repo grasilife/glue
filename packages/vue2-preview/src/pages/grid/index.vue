@@ -1,18 +1,18 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-grid center>
         <glue-grid-item v-for="i in 4" :key="i" icon="photo-o" :text="text" />
       </glue-grid>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="columnNum">
+    <glue-doc-block :gtitle="columnNum">
       <glue-grid :column-num="3" center border>
         <glue-grid-item v-for="i in 6" :key="i" icon="photo-o" :text="text" />
       </glue-grid>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customContent">
+    <glue-doc-block :gtitle="customContent">
       <glue-grid :border="false" :column-num="3" center>
         <glue-grid-item custom="#slot">
           <glue-image
@@ -33,29 +33,29 @@
           />
         </glue-grid-item>
       </glue-grid>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="square">
+    <glue-doc-block :gtitle="square">
       <glue-grid square center>
         <glue-grid-item v-for="i in 8" :key="i" icon="photo-o" :text="text" />
       </glue-grid>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="gutter">
+    <glue-doc-block :gtitle="gutter">
       <glue-grid :gutter="10" center>
         <glue-grid-item v-for="i in 8" :key="i" icon="photo-o" :text="text" />
       </glue-grid>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="horizontal">
+    <glue-doc-block :gtitle="horizontal">
       <glue-grid direction="horizontal" :column-num="3" center>
         <glue-grid-item icon="photo-o" :text="text" />
         <glue-grid-item icon="photo-o" :text="text" />
         <glue-grid-item icon="photo-o" :text="text" />
       </glue-grid>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="route">
+    <glue-doc-block :gtitle="route">
       <glue-grid clickable :column-num="2" center>
         <glue-grid-item icon="home-o" :text="vueRoute" to="/" />
         <glue-grid-item
@@ -64,15 +64,15 @@
           url="/vant/mobile.html"
         />
       </glue-grid>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="showBadge">
+    <glue-doc-block :gtitle="showBadge">
       <glue-grid :column-num="2" center>
         <glue-grid-item icon="home-o" :text="text" dot />
         <glue-grid-item icon="search" :text="text" badge="99+" />
       </glue-grid>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

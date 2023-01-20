@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock card :title="dateType">
+  <glue-doc-section>
+    <glue-doc-block card :gtitle="dateType">
       <glue-datetime-picker
         :model-value="value.date"
         type="date"
@@ -9,9 +9,9 @@
         :min-date="minDate"
         :max-date="maxDate"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <!-- <DemoBlock card :title="yearMonthType">
+    <!-- <glue-doc-block card :gtitle="yearMonthType">
       <glue-datetime-picker
         :model-value="value.yearMonth"
         type="year-month"
@@ -20,9 +20,9 @@
         :max-date="maxDate"
         :formatter="formatter"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="monthDayType">
+    <glue-doc-block card :gtitle="monthDayType">
       <glue-datetime-picker
         :model-value="value.monthDayType"
         type="month-day"
@@ -31,13 +31,13 @@
         :max-date="maxDate"
         :formatter="formatter"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="timeType">
+    <glue-doc-block card :gtitle="timeType">
       <glue-datetime-picker :model-value="value.time" type="time" :title="timeType" :min-hour="10" :max-hour="20" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="datetimeType">
+    <glue-doc-block card :gtitle="datetimeType">
       <glue-datetime-picker
         :model-value="value.datetime"
         type="datetime"
@@ -45,9 +45,9 @@
         :min-date="minDate"
         :max-date="maxDate"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="datehourType">
+    <glue-doc-block card :gtitle="datehourType">
       <glue-datetime-picker
         :model-value="value.datehour"
         type="datehour"
@@ -55,13 +55,13 @@
         :min-date="minDate"
         :max-date="maxDate"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="optionFilter">
+    <glue-doc-block card :gtitle="optionFilter">
       <glue-datetime-picker :model-value="value.optionFilter" type="time" :title="optionFilter" :filter="filter" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="sortColumns">
+    <glue-doc-block card :gtitle="sortColumns">
       <glue-datetime-picker
         :model-value="value.sortColumnsDate"
         type="date"
@@ -71,8 +71,8 @@
         :max-date="maxDate"
         :formatter="formatter"
       />
-    </DemoBlock> -->
-  </DemoSection>
+    </glue-doc-block> -->
+  </glue-doc-section>
 </template>
 
 <script>
@@ -101,8 +101,8 @@ export default {
         monthDay: new Date(2020, 0, 1),
         yearMonth: new Date(2020, 0, 1),
         optionFilter: "12:00",
-        sortColumnsDate: new Date(2020, 0, 1)
-      }
+        sortColumnsDate: new Date(2020, 0, 1),
+      },
     };
   },
 
@@ -122,11 +122,11 @@ export default {
 
     filter(type, values) {
       if (type === "minute") {
-        return values.filter(value => value % 5 === 0);
+        return values.filter((value) => value % 5 === 0);
       }
 
       return values;
-    }
-  }
+    },
+  },
 };
 </script>

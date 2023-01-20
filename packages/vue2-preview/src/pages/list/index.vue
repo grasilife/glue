@@ -1,5 +1,5 @@
 <template>
-  <DemoSection>
+  <glue-doc-section>
     <van-tabs>
       <van-tab :title="basicUsage">
         <glue-list
@@ -41,7 +41,7 @@
         </van-pull-refresh>
       </van-tab>
     </van-tabs>
-  </DemoSection>
+  </glue-doc-section>
 </template>
 
 <script>

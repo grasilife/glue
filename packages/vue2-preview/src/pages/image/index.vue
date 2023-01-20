@@ -1,21 +1,21 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-row>
         <glue-image width="100" height="100" :src="image" />
       </glue-row>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="fitMode">
+    <glue-doc-block :gtitle="fitMode">
       <glue-row gutter="10">
         <glue-col v-for="fit in fits" span="8" :key="fit">
           <glue-image :fit="fit" width="100%" height="27vw" :src="image" />
           <div class="text">{{ fit }}</div>
         </glue-col>
       </glue-row>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="round">
+    <glue-doc-block :gtitle="round">
       <glue-row gutter="10">
         <glue-col v-for="fit in fits" span="8" :key="fit">
           <glue-image
@@ -28,17 +28,17 @@
           <div class="text">{{ fit }}</div>
         </glue-col>
       </glue-row>
-    </DemoBlock>
-    <DemoBlock :title="lazy">
+    </glue-doc-block>
+    <glue-doc-block :gtitle="lazy">
       <glue-row gutter="10">
         <glue-col v-for="fit in fits" span="8" :key="fit">
           <glue-image width="100" height="100" lazy-load :src="image" />
           <div class="text">{{ lazy }}</div>
         </glue-col>
       </glue-row>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="loading">
+    <glue-doc-block :gtitle="loading">
       <glue-row gutter="10">
         <glue-col span="8">
           <glue-image width="100%" height="27vw" />
@@ -54,9 +54,9 @@
           <div class="text">{{ customTip }}</div>
         </glue-col>
       </glue-row>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="error">
+    <glue-doc-block :gtitle="error">
       <glue-row gutter="10">
         <glue-col span="8">
           <glue-image width="100%" height="27vw" src="x" />
@@ -70,8 +70,8 @@
           <div class="text">{{ customTip }}</div>
         </glue-col>
       </glue-row>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

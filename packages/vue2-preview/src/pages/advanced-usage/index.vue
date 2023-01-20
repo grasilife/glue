@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="type">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="type">
       <div class="demo-button-row">
         <van-button type="primary">{{ primary }}</van-button>
         <van-button type="info">{{ info }}</van-button>
@@ -8,35 +8,35 @@
       </div>
       <van-button type="danger">{{ danger }}</van-button>
       <van-button type="warning">{{ warning }}</van-button>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="plain">
+    <glue-doc-block :gtitle="plain">
       <van-button plain type="primary" :text="plain" />
       <van-button plain type="info" :text="plain" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="hairline">
+    <glue-doc-block :gtitle="hairline">
       <van-button plain hairline type="primary" :text="hairlineButton" />
       <van-button plain hairline type="info" :text="hairlineButton" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="disabled">
+    <glue-doc-block :gtitle="disabled">
       <van-button disabled type="primary" :text="disabled" />
       <van-button disabled type="info" :text="disabled" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="loadingStatus">
+    <glue-doc-block :gtitle="loadingStatus">
       <van-button loading type="primary" />
       <van-button loading type="primary" loading-type="spinner" />
       <van-button loading :loading-text="loadingText" type="info" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="shape">
+    <glue-doc-block :gtitle="shape">
       <van-button type="primary" square :text="square" />
       <van-button type="info" round :text="round" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="icon">
+    <glue-doc-block :gtitle="icon">
       <van-button type="primary" icon="plus" />
       <van-button type="primary" icon="plus" :text="button" />
       <van-button
@@ -45,33 +45,33 @@
         icon="https://img.yzcdn.cn/vant/user-active.png"
         :text="button"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="size">
+    <glue-doc-block :gtitle="size">
       <van-button type="primary" size="large">{{ large }}</van-button>
       <van-button type="primary" size="normal">{{ normal }}</van-button>
       <van-button type="primary" size="small">{{ small }}</van-button>
       <van-button type="primary" size="mini">{{ mini }}</van-button>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="blockElement">
+    <glue-doc-block :gtitle="blockElement">
       <van-button type="primary" block>{{ blockElement }}</van-button>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="router">
+    <glue-doc-block :gtitle="router">
       <van-button :text="urlRoute" type="primary" url="/vant/mobile.html" />
       <van-button :text="vueRoute" type="primary" to="index" />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customColor">
+    <glue-doc-block :gtitle="customColor">
       <van-button color="#7232dd" :text="pure" />
       <van-button plain color="#7232dd" :text="pure" />
       <van-button
         color="linear-gradient(to right, #ff6034, #ee0a24)"
         :text="gradient"
       />
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -135,7 +135,7 @@ export default {
   .demo-button-row {
     margin-bottom: @padding-md;
   }
-  .van-doc-DemoBlock__title {
+  .van-doc-glue-doc-block__title {
     padding-left: 0;
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <DemoSection>
+  <glue-doc-section>
     <glue-grid :column-num="2" :border="false">
       <glue-grid-item custom="#slot">
         <h3 class="demo-sidebar-gtitle">{{ basicUsage }}</h3>
@@ -37,7 +37,7 @@
         </glue-sidebar>
       </glue-grid-item>
     </glue-grid>
-  </DemoSection>
+  </glue-doc-section>
 </template>
 
 <script>

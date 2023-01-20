@@ -1,14 +1,14 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-skeleton title-state :row="3" loading animate-state></glue-skeleton>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="showAvatar">
+    <glue-doc-block :gtitle="showAvatar">
       <glue-skeleton title-state avatar :row="3" loading animate-state />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="showChildren">
+    <glue-doc-block :gtitle="showChildren">
       <glue-switch :value="show" size="24px" @glueChange="show = !show" />
       <glue-skeleton title-state avatar :row="3" :loading="!show" animate-state>
         <div class="demo-preview">
@@ -19,8 +19,8 @@
           </div>
         </div>
       </glue-skeleton>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
-  <DemoSection class="demo-col">
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section class="demo-col">
+    <glue-doc-block :gtitle="basicUsage">
       <glue-row>
         <glue-col span="8">span: 8</glue-col>
         <glue-col span="8">span: 8</glue-col>
@@ -15,17 +15,17 @@
       <glue-row>
         <glue-col offset="12" span="12"> offset: 12, span: 12 </glue-col>
       </glue-row>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title2">
+    <glue-doc-block :gtitle="title2">
       <glue-row gutter="20">
         <glue-col span="8">span: 8</glue-col>
         <glue-col span="8">span: 8</glue-col>
         <glue-col span="8">span: 8</glue-col>
       </glue-row>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="title3">
+    <glue-doc-block :gtitle="title3">
       <glue-row type="flex">
         <glue-col span="6">span: 6</glue-col>
         <glue-col span="6">span: 6</glue-col>
@@ -55,8 +55,8 @@
         <glue-col span="6">span: 6</glue-col>
         <glue-col span="6">span: 6</glue-col>
       </glue-row>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>

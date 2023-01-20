@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock card :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block card :gtitle="basicUsage">
       <glue-cell
         is-link
         :title="selectSingle"
@@ -21,9 +21,9 @@
         :value="formatRange(date.selectRange)"
         @click="show('range', 'selectRange')"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="quickSelect">
+    <glue-doc-block card :gtitle="quickSelect">
       <glue-cell
         is-link
         :title="selectSingle"
@@ -37,9 +37,9 @@
         :value="formatRange(date.quickSelect2)"
         @click="show('range', 'quickSelect2')"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock card :title="customCalendar">
+    <glue-doc-block card :gtitle="customCalendar">
       <glue-cell
         is-link
         :title="customColor"
@@ -82,10 +82,14 @@
         @click="show('range', 'maxRange')"
       />
 
-      <glue-cell is-link :title="firstDayOfWeekTitle" @click="show('single', 'firstDayOfWeek')" />
-    </DemoBlock>
+      <glue-cell
+        is-link
+        :title="firstDayOfWeekTitle"
+        @click="show('single', 'firstDayOfWeek')"
+      />
+    </glue-doc-block>
 
-    <DemoBlock card :title="tiledDisplay">
+    <glue-doc-block card :gtitle="tiledDisplay">
       <glue-calendar
         :show="true"
         show-title
@@ -99,7 +103,7 @@
         max-range="3"
         first-day-of-week="1"
       />
-    </DemoBlock>
+    </glue-doc-block>
 
     <glue-calendar
       :poppable="true"
@@ -119,7 +123,7 @@
       @confirm="onConfirm"
       @glueClose="this.glueClose"
     />
-  </DemoSection>
+  </glue-doc-section>
 </template>
 
 <script>
@@ -134,7 +138,7 @@ export default {
       youthDay: "青年节",
       calendar: "日历",
       maxRangeaTitle: "日期区间最大范围",
-      selectCount: count => `选择了 ${count} 个日期`,
+      selectCount: (count) => `选择了 ${count} 个日期`,
       selectSingle: "选择单个日期",
       selectMultiple: "选择多个日期",
       selectRange: "选择日期区间",
@@ -160,7 +164,7 @@ export default {
         customConfirm: [],
         customRange: null,
         customDayText: [],
-        customPosition: null
+        customPosition: null,
       },
       type: "single",
       round: true,
@@ -174,7 +178,7 @@ export default {
       showCalendar: false,
       tiledMinDate: new Date(2012, 0, 10),
       tiledMaxDate: new Date(2012, 2, 20),
-      firstDayOfWeek: 0
+      firstDayOfWeek: 0,
     };
   },
 
@@ -287,7 +291,7 @@ export default {
     onConfirm(date) {
       this.showCalendar = false;
       this.date[this.id] = date;
-    }
-  }
+    },
+  },
 };
 </script>

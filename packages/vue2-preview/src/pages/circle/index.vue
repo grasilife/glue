@@ -1,6 +1,6 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-circle
         :current-rate="currentRate1"
         :rate="rate"
@@ -8,9 +8,9 @@
         @glueChange="change"
         :text="currentRate1.toFixed(0) + '%'"
       ></glue-circle>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customStyle">
+    <glue-doc-block :gtitle="customStyle">
       <glue-circle
         :current-rate="currentRate3"
         :rate="rate"
@@ -56,7 +56,7 @@
         :text="customSize"
         style="margin-top: 15px"
       ></glue-circle>
-    </DemoBlock>
+    </glue-doc-block>
 
     <div style="margin-top: 15px">
       <glue-button type="primary" size="small" @click="add">{{
@@ -66,7 +66,7 @@
         decreaseText
       }}</glue-button>
     </div>
-  </DemoSection>
+  </glue-doc-section>
 </template>
 
 <script>

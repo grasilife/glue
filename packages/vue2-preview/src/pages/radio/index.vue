@@ -1,13 +1,13 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-radio-group :model-value.prop="radio1" class="demo-radio-group">
         <glue-radio name="1" :label="`${radio}1`"></glue-radio>
         <glue-radio name="2" :label="`${radio}2`"></glue-radio>
       </glue-radio-group>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="horizontal">
+    <glue-doc-block :gtitle="horizontal">
       <glue-radio-group
         :model-value.prop="radioHorizontal"
         class="demo-radio-group"
@@ -16,9 +16,9 @@
         <glue-radio name="1" :label="`${radio}1`"></glue-radio>
         <glue-radio name="2" :label="`${radio}2`"></glue-radio>
       </glue-radio-group>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="disabled">
+    <glue-doc-block :gtitle="disabled">
       <glue-radio-group
         :model-value.prop="radio2"
         class="demo-radio-group"
@@ -27,25 +27,25 @@
         <glue-radio name="1" :label="`${radio}1`"></glue-radio>
         <glue-radio name="2" :label="`${radio}2`"></glue-radio>
       </glue-radio-group>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customShape">
+    <glue-doc-block :gtitle="customShape">
       <glue-radio-group :model-value.prop="radioShape" class="demo-radio-group">
         <glue-radio name="1" shape="square" :label="`${radio}1`"></glue-radio>
         <glue-radio name="2" shape="square" :label="`${radio}2`"></glue-radio>
       </glue-radio-group>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customColor">
+    <glue-doc-block :gtitle="customColor">
       <glue-radio-group :model-value.prop="radio3" class="demo-radio-group">
         <glue-radio name="1" checked-color="#ee0a24" :label="`${radio}1`">
         </glue-radio>
         <glue-radio name="2" checked-color="#ee0a24" :label="`${radio}2`">
         </glue-radio>
       </glue-radio-group>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customIconSize">
+    <glue-doc-block :gtitle="customIconSize">
       <glue-radio-group
         :model-value.prop="radioIconSize"
         class="demo-radio-group"
@@ -55,9 +55,9 @@
         <glue-radio name="2" icon-size="24px" :label="`${radio}2`">
         </glue-radio>
       </glue-radio-group>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customIcon">
+    <glue-doc-block :gtitle="customIcon">
       <glue-radio-group :model-value.prop="radio4" class="demo-radio-group">
         <glue-radio name="1" :label="`${radio}1`">
           <template #icon="{ checked }">
@@ -70,16 +70,16 @@
           </template>
         </glue-radio>
       </glue-radio-group>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="disableLabel">
+    <glue-doc-block :gtitle="disableLabel">
       <glue-radio-group :model-value.prop="radioLabel" class="demo-radio-group">
         <glue-radio name="1" label-disabled :label="`${radio}1`"></glue-radio>
         <glue-radio name="2" label-disabled :label="`${radio}2`"></glue-radio>
       </glue-radio-group>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <!-- <DemoBlock :title="withCell">
+    <!-- <glue-doc-block :gtitle="withCell">
       <glue-radio-group :model-value.prop="radio5">
         <glue-cell-group>
           <glue-cell clickable :title="radio + 1" @click="radio5 = '1'">
@@ -94,8 +94,8 @@
           </glue-cell>
         </glue-cell-group>
       </glue-radio-group>
-    </DemoBlock> -->
-  </DemoSection>
+    </glue-doc-block> -->
+  </glue-doc-section>
 </template>
 
 <script>

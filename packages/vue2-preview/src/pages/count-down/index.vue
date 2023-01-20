@@ -1,23 +1,23 @@
 <template>
-  <DemoSection>
-    <DemoBlock :title="basicUsage">
+  <glue-doc-section>
+    <glue-doc-block :gtitle="basicUsage">
       <glue-count-down :time="time" auto-start />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customFormat">
+    <glue-doc-block :gtitle="customFormat">
       <glue-count-down :time="time" :format="formatWithDay" auto-start />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="millisecond">
+    <glue-doc-block :gtitle="millisecond">
       <glue-count-down
         millisecond
         :time="time"
         format="HH:mm:ss:SS"
         auto-start
       />
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="customStyle">
+    <glue-doc-block :gtitle="customStyle">
       <glue-count-down :time="time" custom @glueChange="glueChange" auto-start>
         <span class="block">{{ currentTime.hours }}</span>
         <span class="colon">:</span>
@@ -25,9 +25,9 @@
         <span class="colon">:</span>
         <span class="block">{{ currentTime.seconds }}</span>
       </glue-count-down>
-    </DemoBlock>
+    </glue-doc-block>
 
-    <DemoBlock :title="manualControl">
+    <glue-doc-block :gtitle="manualControl">
       <glue-count-down
         ref="countDown"
         millisecond
@@ -45,8 +45,8 @@
         />
         <van-grid-item icon="replay" :text="resetTitle" @click="reset" />
       </van-grid>
-    </DemoBlock>
-  </DemoSection>
+    </glue-doc-block>
+  </glue-doc-section>
 </template>
 
 <script>
