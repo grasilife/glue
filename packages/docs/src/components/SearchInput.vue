@@ -21,7 +21,7 @@ watch(
   }
 );
 function initDocsearch() {
-  if (this.searchConfig) {
+  if (props.searchConfig) {
     // docsearch({
     //   ...this.searchConfig,
     //   container: "#docsearch",

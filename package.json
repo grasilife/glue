@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "clear-all": "lerna clean && rimraf node_modules",
-    "build": "lerna run --parallel --stream --sort build",
+    "build": "lerna run  --stream --sort build",
     "start": "lerna run --parallel --stream --sort start",
     "doc": "lerna run --parallel --stream --sort doc",
     "test": "lerna run --parallel --stream --sort test",

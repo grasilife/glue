@@ -14,7 +14,7 @@
 <script setup lang="tsx" name="App">
 // import { listenParentPathChange } from "@glue/glue-cli";
 import { computed, ref, watch, onMounted } from "vue";
-import Doc from "./components/Doc.vue";
+import Doc from "~/components/Doc.vue";
 import { glueConfig } from "@glue/glue-cli";
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
