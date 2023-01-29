@@ -1,12 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  Watch,
-  EventEmitter,
-  Event,
-} from '@stencil/core';
+import { Component, Prop, h, Host, Watch, EventEmitter, Event } from '@stencil/core';
 import { getSizeStyle } from '../../utils/format/unit';
 import { isObject } from '../../utils/base';
 import { raf, cancelRaf } from '../../utils/animation';
@@ -19,9 +11,7 @@ function format(rate: string | number) {
 function getPath(clockwise: boolean, viewBoxSize: number) {
   const sweepFlag = clockwise ? 1 : 0;
   console.log(sweepFlag, clockwise, 'sweepFlag');
-  return `M ${viewBoxSize / 2} ${
-    viewBoxSize / 2
-  } m 0, -500 a 500, 500 0 1, ${sweepFlag} 0, 1000 a 500, 500 0 1, ${sweepFlag} 0, -1000`;
+  return `M ${viewBoxSize / 2} ${viewBoxSize / 2} m 0, -500 a 500, 500 0 1, ${sweepFlag} 0, 1000 a 500, 500 0 1, ${sweepFlag} 0, -1000`;
 }
 import classNames from 'classnames';
 
@@ -43,7 +33,7 @@ export class GlueCircle {
   @Prop() strokeWidth = 40;
   @Prop() clockwise?: boolean = false;
   @Event() glueChange: EventEmitter;
-  changeHandle = (event) => {
+  changeHandle = event => {
     this.glueChange.emit(event);
   };
   @Watch('rate')
@@ -88,9 +78,7 @@ export class GlueCircle {
 
     const Stops = Object.keys(lineColor)
       .sort((a, b) => parseFloat(a) - parseFloat(b))
-      .map((key, index) => (
-        <stop key={index} offset={key} stop-color={lineColor[key]} />
-      ));
+      .map((key, index) => <stop key={index} offset={key} stop-color={lineColor[key]} />);
 
     return (
       <defs>
@@ -113,13 +101,7 @@ export class GlueCircle {
       strokeWidth: `${this.strokeWidth}px`,
     };
 
-    return (
-      <path
-        class={classNames('glue-circle__layer')}
-        style={style}
-        d={this.path()}
-      />
-    );
+    return <path class={classNames('glue-circle__layer')} style={style} d={this.path()} />;
   };
   renderHover = () => {
     const PERIMETER = 3140;
@@ -134,14 +116,7 @@ export class GlueCircle {
       strokeDasharray: `${offset}px ${PERIMETER}px`,
     };
 
-    return (
-      <path
-        d={this.path()}
-        style={style}
-        class={classNames('glue-circle__hover')}
-        stroke={color}
-      />
-    );
+    return <path d={this.path()} style={style} class={classNames('glue-circle__hover')} stroke={color} />;
   };
   render() {
     let ppp = this.viewBoxSize();

@@ -88,19 +88,17 @@ export class GlueListDemo {
               onGlueLoad={() => {
                 this.onLoad();
               }}
-              onGlueUpdateLoad={(e) => {
+              onGlueUpdateLoad={e => {
                 console.log(e, 'jijiiji');
                 this.glueUpdateLoad(e.detail);
               }}
-              onGlueUpdateError={(e) => {
+              onGlueUpdateError={e => {
                 console.log(e, 'jijiiji');
                 this.glueUpdateError(e.detail);
               }}
             >
               {this.listObj.items.map((_item, index) => {
-                return (
-                  <glue-cell gtitle={index.toString()} key={index}></glue-cell>
-                );
+                return <glue-cell gtitle={index.toString()} key={index}></glue-cell>;
               })}
             </glue-list>
           </glue-doc-block>

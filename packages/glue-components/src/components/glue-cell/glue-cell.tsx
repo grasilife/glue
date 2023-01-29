@@ -51,11 +51,7 @@ export class GlueCell {
           })}
           style={this.titleStyle}
         >
-          {this.gtitle == '#slot' ? (
-            <slot name="gtitle"></slot>
-          ) : (
-            <span>{this.gtitle}</span>
-          )}
+          {this.gtitle == '#slot' ? <slot name="gtitle"></slot> : <span>{this.gtitle}</span>}
           {this.renderLabel()}
         </div>
       );
@@ -74,11 +70,7 @@ export class GlueCell {
             'glue-cell__value--alone': !hasTitle,
           })}
         >
-          {this.value == '#slot' ? (
-            <slot name="value"></slot>
-          ) : (
-            <span>{this.value}</span>
-          )}
+          {this.value == '#slot' ? <slot name="value"></slot> : <span>{this.value}</span>}
         </div>
       );
     }
@@ -106,9 +98,7 @@ export class GlueCell {
       return <slot name="rightIcon"></slot>;
     }
     if (this.isLink) {
-      const name = this.arrowDirection
-        ? `arrow-${this.arrowDirection}`
-        : 'arrow';
+      const name = this.arrowDirection ? `arrow-${this.arrowDirection}` : 'arrow';
       return (
         <glue-icon
           name={name}

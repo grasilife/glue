@@ -1,15 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  Event,
-  EventEmitter,
-  State,
-  Element,
-  Method,
-  Watch,
-} from '@stencil/core';
+import { Component, Prop, h, Host, Event, EventEmitter, State, Element, Method, Watch } from '@stencil/core';
 import classNames from 'classnames';
 import { CellArrowDirection } from '../glue-cell/glue-cell-interface';
 import { getElementParent } from '../../utils/base';
@@ -71,7 +60,7 @@ export class GlueCollapseItem {
     let parentEl = getElementParent(this.el, 'GLUE-COLLAPSE');
     console.log(parentEl, 'parentEl');
 
-    parentEl.isExpanded(this.name).then((expanded) => {
+    parentEl.isExpanded(this.name).then(expanded => {
       parentEl.toggle(this.name, expanded);
       console.log(this.name, expanded, 'this.show33');
     });
@@ -104,7 +93,7 @@ export class GlueCollapseItem {
 
   renderContent = () => (
     <div
-      ref={(dom) => (this.wrapperRef = dom)}
+      ref={dom => (this.wrapperRef = dom)}
       class={classNames({
         'glue-collapse-item__wrapper': true,
       })}
@@ -112,7 +101,7 @@ export class GlueCollapseItem {
       style={{ display: this.show ? 'block' : 'none' }}
     >
       <div
-        ref={(dom) => (this.contentRef = dom)}
+        ref={dom => (this.contentRef = dom)}
         class={classNames({
           'glue-collapse-item__content': true,
         })}

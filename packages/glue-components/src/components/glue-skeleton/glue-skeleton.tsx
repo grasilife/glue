@@ -37,12 +37,7 @@ export class GlueSkeleton {
 
   renderTitle = () => {
     if (this.titleState) {
-      return (
-        <h3
-          class="glue-skeleton__title"
-          style={{ width: addUnit(this.titleWidth) }}
-        />
-      );
+      return <h3 class="glue-skeleton__title" style={{ width: addUnit(this.titleWidth) }} />;
     }
   };
 
@@ -64,12 +59,7 @@ export class GlueSkeleton {
     const Rows = [];
 
     for (let i = 0; i < this.row; i++) {
-      Rows.push(
-        <div
-          class="glue-skeleton__row"
-          style={{ width: addUnit(this.getRowWidth(i)) }}
-        />
-      );
+      Rows.push(<div class="glue-skeleton__row" style={{ width: addUnit(this.getRowWidth(i)) }} />);
     }
 
     return Rows;

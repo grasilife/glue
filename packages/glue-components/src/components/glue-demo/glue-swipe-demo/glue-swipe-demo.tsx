@@ -50,7 +50,7 @@ export class GlueSwipeDemo {
             <glue-swipe
               autoplay={3000}
               indicatorColor="white"
-              onGlueChange={(e) => {
+              onGlueChange={e => {
                 this.glueChange(e);
               }}
             >
@@ -69,7 +69,7 @@ export class GlueSwipeDemo {
                 height: '200px',
               }}
               class="demo-swipe--vertical"
-              onGlueChange={(e) => {
+              onGlueChange={e => {
                 this.glueChange(e);
               }}
             >

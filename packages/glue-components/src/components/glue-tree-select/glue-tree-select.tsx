@@ -1,14 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Event,
-  EventEmitter,
-  Host,
-  Watch,
-  State,
-  Element,
-} from '@stencil/core';
+import { Component, Prop, h, Event, EventEmitter, Host, Watch, State, Element } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-tree-select');
@@ -50,14 +40,12 @@ export class GlueTreeSelect {
       element.setValue('parentModelValue', this.mainActiveIndex);
     }
   }
-  isActiveItem = (id) => {
+  isActiveItem = id => {
     console.log(this.isMultiple(), this.activeId, id, 'agjhuahiu');
-    return this.isMultiple()
-      ? this.activeId.indexOf(id) != -1
-      : this.activeId == id;
+    return this.isMultiple() ? this.activeId.indexOf(id) != -1 : this.activeId == id;
   };
 
-  renderSubItem = (item) => {
+  renderSubItem = item => {
     const onClick = () => {
       if (item.disabled) {
         return;
@@ -81,11 +69,7 @@ export class GlueTreeSelect {
       this.activeId = activeSelect;
       this.glueClickItem.emit(item);
     };
-    console.log(
-      this.isActiveItem(item.id),
-      item.id,
-      'this.isActiveItem(item.id)'
-    );
+    console.log(this.isActiveItem(item.id), item.id, 'this.isActiveItem(item.id)');
     return (
       <div
         key={item.id}
@@ -96,17 +80,12 @@ export class GlueTreeSelect {
         onClick={onClick}
       >
         {item.text}
-        {this.isActiveItem(item.id) && (
-          <glue-icon
-            name={this.selectedIcon}
-            class="glue-tree-select__selected"
-          />
-        )}
+        {this.isActiveItem(item.id) && <glue-icon name={this.selectedIcon} class="glue-tree-select__selected" />}
       </div>
     );
   };
 
-  onSidebarChange = (event) => {
+  onSidebarChange = event => {
     let index = event.detail;
     console.log(index, event, 'indexindexindex');
     this.mainActiveIndex = index;
@@ -115,22 +94,12 @@ export class GlueTreeSelect {
 
   renderSidebar = () => {
     console.log(this.mainActiveIndex, 'this.mainActiveIndex');
-    const Items = this.items.map((item) => (
-      <glue-sidebar-item
-        dot={item.dot}
-        gtitle={item.text}
-        badge={item.badge}
-        class={classNames('glue-tree-select__nav-item', bem([item.className]))}
-        disabled={item.disabled}
-      />
+    const Items = this.items.map(item => (
+      <glue-sidebar-item dot={item.dot} gtitle={item.text} badge={item.badge} class={classNames('glue-tree-select__nav-item', bem([item.className]))} disabled={item.disabled} />
     ));
 
     return (
-      <glue-sidebar
-        class="glue-tree-select__nav"
-        modelValue={this.mainActiveIndex}
-        onGlueChange={this.onSidebarChange}
-      >
+      <glue-sidebar class="glue-tree-select__nav" modelValue={this.mainActiveIndex} onGlueChange={this.onSidebarChange}>
         {Items}
       </glue-sidebar>
     );
@@ -155,10 +124,7 @@ export class GlueTreeSelect {
   };
   render() {
     return (
-      <Host
-        class={classNames('glue-tree-select')}
-        style={{ height: addUnit(this.height) }}
-      >
+      <Host class={classNames('glue-tree-select')} style={{ height: addUnit(this.height) }}>
         {this.renderSidebar()}
         <div class="glue-tree-select__content">{this.renderContent()}</div>
       </Host>

@@ -1,14 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  EventEmitter,
-  Event,
-  Watch,
-  Element,
-  State,
-  Host,
-} from '@stencil/core';
+import { Component, Prop, h, EventEmitter, Event, Watch, Element, State, Host } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-steps');

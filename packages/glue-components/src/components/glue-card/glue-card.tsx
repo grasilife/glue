@@ -22,16 +22,12 @@ export class GlueCard {
   @Prop() currency = '¥';
   @Event()
   glueClick: EventEmitter;
-  clickThumb = (event) => {
+  clickThumb = event => {
     this.glueClick.emit(event);
   };
   renderTitle = () => {
     if (this.gtitle) {
-      return (
-        <div class={classNames('glue-card__title', 'glue-multi-ellipsis--l2')}>
-          {this.gtitle}
-        </div>
-      );
+      return <div class={classNames('glue-card__title', 'glue-multi-ellipsis--l2')}>{this.gtitle}</div>;
     }
   };
 
@@ -56,11 +52,7 @@ export class GlueCard {
   renderThumb = () => {
     if (this.thumb) {
       return (
-        <a
-          href={this.thumbLink}
-          class={classNames('glue-card__thumb')}
-          onClick={this.clickThumb}
-        >
+        <a href={this.thumbLink} class={classNames('glue-card__thumb')} onClick={this.clickThumb}>
           {this.renderThumbImage()}
           {this.renderThumbTag()}
         </a>
@@ -70,11 +62,7 @@ export class GlueCard {
 
   renderDesc = () => {
     if (this.desc) {
-      return (
-        <div class={classNames('glue-card__desc', 'glue-ellipsis')}>
-          {this.desc}
-        </div>
-      );
+      return <div class={classNames('glue-card__desc', 'glue-ellipsis')}>{this.desc}</div>;
     }
   };
 
@@ -82,16 +70,8 @@ export class GlueCard {
     const priceArr = this.price.toString().split('.');
     return (
       <div>
-        <span class={classNames('glue-card__price-currency')}>
-          {this.currency}
-        </span>
-        <span class={classNames('glue-card__price-integer')}>
-          {priceArr[0]}
-        </span>
-        .
-        <span class={classNames('glue-card__price-decimal')}>
-          {priceArr[1]}
-        </span>
+        <span class={classNames('glue-card__price-currency')}>{this.currency}</span>
+        <span class={classNames('glue-card__price-integer')}>{priceArr[0]}</span>.<span class={classNames('glue-card__price-decimal')}>{priceArr[1]}</span>
       </div>
     );
   };
@@ -100,19 +80,11 @@ export class GlueCard {
     const showPrice = isDef(this.price);
     const showOriginPrice = isDef(this.originPrice);
     const showBottom = showNum || showPrice || showOriginPrice;
-    const Price = showPrice && (
-      <div class={classNames('glue-card__price')}>{this.renderPriceText()}</div>
-    );
+    const Price = showPrice && <div class={classNames('glue-card__price')}>{this.renderPriceText()}</div>;
 
-    const OriginPrice = showOriginPrice && (
-      <div
-        class={classNames('glue-card__origin-price')}
-      >{`${this.currency} ${this.originPrice}`}</div>
-    );
+    const OriginPrice = showOriginPrice && <div class={classNames('glue-card__origin-price')}>{`${this.currency} ${this.originPrice}`}</div>;
 
-    const Num = showNum && (
-      <div class={classNames('glue-card__num')}>{`x${this.num}`}</div>
-    );
+    const Num = showNum && <div class={classNames('glue-card__num')}>{`x${this.num}`}</div>;
 
     const Footer = <div class={classNames('glue-card__footer')}>1111</div>;
     const Bottom = showBottom && (

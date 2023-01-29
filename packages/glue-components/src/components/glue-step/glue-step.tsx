@@ -1,14 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  Event,
-  EventEmitter,
-  Element,
-  Method,
-  State,
-} from '@stencil/core';
+import { Component, Prop, h, Host, Event, EventEmitter, Element, Method, State } from '@stencil/core';
 import { createNamespace } from '../../utils/create/index';
 import { BORDER } from '../../global/constant/constant';
 import classNames from 'classnames';
@@ -70,10 +60,7 @@ export class GlueStep {
   isActive = () => this.getStatus() === 'process';
 
   lineStyle = () => ({
-    background:
-      this.getStatus() === 'finish'
-        ? this.parentActiveColor
-        : this.parentInactiveColor,
+    background: this.getStatus() === 'finish' ? this.parentActiveColor : this.parentInactiveColor,
   });
 
   titleStyle = () => {
@@ -94,29 +81,15 @@ export class GlueStep {
   renderCircle = () => {
     if (this.isActive()) {
       console.log(this.parentActiveColor, 'this.parentActiveColor');
-      return (
-        <glue-icon
-          class="glue-step__icon"
-          name={this.parentActiveIcon}
-          color={this.parentActiveColor}
-        />
-      );
+      return <glue-icon class="glue-step__icon" name={this.parentActiveIcon} color={this.parentActiveColor} />;
     }
 
     if (this.getStatus() === 'finish' && this.parentFinishIcon) {
-      return (
-        <glue-icon
-          class="glue-step__icon glue-step__icon--finish"
-          name={this.parentFinishIcon}
-          color={this.parentActiveColor}
-        />
-      );
+      return <glue-icon class="glue-step__icon glue-step__icon--finish" name={this.parentFinishIcon} color={this.parentActiveColor} />;
     }
 
     if (this.parentInactiveIcon) {
-      return (
-        <glue-icon class="glue-step__icon" name={this.parentInactiveIcon} />
-      );
+      return <glue-icon class="glue-step__icon" name={this.parentInactiveIcon} />;
     }
 
     return <i class="glue-step__circle" style={this.lineStyle()} />;
@@ -126,14 +99,9 @@ export class GlueStep {
     const status = this.getStatus();
     return (
       <Host
-        class={classNames(
-          'glue-step',
-          BORDER,
-          bem([this.parentDirection, status]),
-          {
-            'glue-step__active': this.isActive(),
-          }
-        )}
+        class={classNames('glue-step', BORDER, bem([this.parentDirection, status]), {
+          'glue-step__active': this.isActive(),
+        })}
       >
         <div
           class={classNames('glue-step__title', {

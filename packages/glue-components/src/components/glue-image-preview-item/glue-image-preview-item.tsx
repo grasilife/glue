@@ -9,8 +9,6 @@ export class GlueImagePreviewItem {
   @Prop() first: string;
 
   render() {
-    return (
-      <div class={classNames('cunstom')}>Hello, World! I'm {this.first}</div>
-    );
+    return <div class={classNames('cunstom')}>Hello, World! I'm {this.first}</div>;
   }
 }

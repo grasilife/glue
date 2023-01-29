@@ -44,7 +44,7 @@ export class GlueProgress {
 
       return (
         <span
-          ref={(dom) => {
+          ref={dom => {
             this.pivotRef = dom;
           }}
           style={style}
@@ -80,7 +80,7 @@ export class GlueProgress {
     };
     return (
       <Host
-        ref={(dom) => {
+        ref={dom => {
           this.root = dom;
         }}
         class="glue-progress"

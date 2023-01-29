@@ -67,14 +67,7 @@ export class GlueLoading {
   };
   render() {
     // const TagType = 'button';
-    console.log(
-      this.el,
-      this.el.parentNode,
-      this.el.parentElement,
-      this.el.children,
-      this,
-      'this.circularIcon'
-    );
+    console.log(this.el, this.el.parentNode, this.el.parentElement, this.el.children, this, 'this.circularIcon');
     return (
       <Host
         class={classNames(
@@ -82,7 +75,7 @@ export class GlueLoading {
           {
             'glue-loading--vertical': this.vertical,
           },
-          bem([this.type])
+          bem([this.type]),
         )}
       >
         <span

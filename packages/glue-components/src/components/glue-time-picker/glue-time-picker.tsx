@@ -34,7 +34,7 @@ export class GlueTimePicker {
     this.currentDate = this.formatValue(this.modelValue);
   }
   picker;
-  formatValue = (value) => {
+  formatValue = value => {
     const { minHour, maxHour, maxMinute, minMinute } = this;
 
     if (!value) {
@@ -63,9 +63,7 @@ export class GlueTimePicker {
 
   originColumns = () => {
     return this.ranges().map(({ type, range: rangeArr }) => {
-      let values = times(rangeArr[1] - rangeArr[0] + 1, (index) =>
-        padZero(rangeArr[0] + index)
-      );
+      let values = times(rangeArr[1] - rangeArr[0] + 1, index => padZero(rangeArr[0] + index));
 
       if (this.filter) {
         values = this.filter(type, values);
@@ -79,17 +77,14 @@ export class GlueTimePicker {
   };
 
   columns = () => {
-    return this.originColumns().map((column) => ({
-      values: column.values.map((value) => this.formatter(column.type, value)),
+    return this.originColumns().map(column => ({
+      values: column.values.map(value => this.formatter(column.type, value)),
     }));
   };
 
   updateColumnValue = () => {
     const pair = this.currentDate.split(':');
-    const values = [
-      this.formatter('hour', pair[0]),
-      this.formatter('minute', pair[1]),
-    ];
+    const values = [this.formatter('hour', pair[0]), this.formatter('minute', pair[1])];
     console.log(values);
 
     // nextTick(() => {
@@ -129,7 +124,7 @@ export class GlueTimePicker {
     return (
       <Host class={classNames('cunstom')}>
         <glue-picker
-          ref={(dom) => {
+          ref={dom => {
             this.picker = dom;
           }}
           {...this}

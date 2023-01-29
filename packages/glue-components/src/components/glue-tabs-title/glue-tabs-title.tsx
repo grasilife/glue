@@ -24,8 +24,7 @@ export class GlueTabsTitle {
       backgroundColor: '',
       color: '',
     };
-    const { type, color, disabled, isActive, activeColor, inactiveColor } =
-      this;
+    const { type, color, disabled, isActive, activeColor, inactiveColor } = this;
 
     const isCard = type === 'card';
 

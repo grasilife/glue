@@ -34,14 +34,11 @@ export class GlueCalendarHeader {
   renderWeekDays = () => {
     const { firstDayOfWeek } = this;
     const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
-    const renderWeekDays = [
-      ...weekdays.slice(firstDayOfWeek, 7),
-      ...weekdays.slice(0, firstDayOfWeek),
-    ];
+    const renderWeekDays = [...weekdays.slice(firstDayOfWeek, 7), ...weekdays.slice(0, firstDayOfWeek)];
 
     return (
       <div class="glue-calendar-header__weekdays">
-        {renderWeekDays.map((text) => (
+        {renderWeekDays.map(text => (
           <span class="glue-calendar-header__weekday">{text}</span>
         ))}
       </div>

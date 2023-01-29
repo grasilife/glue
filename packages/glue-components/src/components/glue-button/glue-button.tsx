@@ -33,7 +33,7 @@ export class GlueButton {
 
   @Event()
   glueClick: EventEmitter;
-  handleClick = (event) => {
+  handleClick = event => {
     if (this.loading) {
       event.preventDefault();
     }
@@ -115,18 +115,7 @@ export class GlueButton {
     }
   };
   render() {
-    const {
-      type,
-      size,
-      block,
-      round,
-      plain,
-      square,
-      loading,
-      disabled,
-      hairline,
-      iconPosition,
-    } = this;
+    const { type, size, block, round, plain, square, loading, disabled, hairline, iconPosition } = this;
     console.log(bem([type, size]), type, block, 'ahuhauhauhu');
     const classes = [classNames(bem([type, size]))];
     return (

@@ -30,7 +30,7 @@ export class GlueDropdownItem {
     // emit('closed');
   };
 
-  onClickWrapper = (event) => {
+  onClickWrapper = event => {
     // prevent being identified as clicking outside and closed when using teleport
     if (this.teleport) {
       event.stopPropagation();
@@ -60,14 +60,12 @@ export class GlueDropdownItem {
       return this.gtitle;
     }
 
-    const match = this.options.filter(
-      (option) => option.value === this.modelValue
-    );
+    const match = this.options.filter(option => option.value === this.modelValue);
 
     return match.length ? match[0].text : '';
   };
 
-  renderOption = (option) => {
+  renderOption = option => {
     // const { activeColor } = parent.this;
     const active = option.value === this.modelValue;
 

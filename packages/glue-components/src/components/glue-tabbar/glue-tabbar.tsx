@@ -1,15 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  Event,
-  EventEmitter,
-  Element,
-  Watch,
-  State,
-  Method,
-} from '@stencil/core';
+import { Component, Prop, h, Host, Event, EventEmitter, Element, Watch, State, Method } from '@stencil/core';
 import classNames from 'classnames';
 import { BORDER_TOP_BOTTOM } from '../../global/constant/constant';
 import { isDef } from '../../utils/base';
@@ -85,7 +74,7 @@ export class GlueTabbar {
     console.log(fixed, unfit, border, BORDER_TOP_BOTTOM, 'fixed');
     return (
       <div
-        ref={(dom) => {
+        ref={dom => {
           this.root = dom;
         }}
         style={{ zIndex: zIndex }}
@@ -106,7 +95,7 @@ export class GlueTabbar {
     const unfit = this.isUnfit();
     return (
       <Host
-        ref={(dom) => {
+        ref={dom => {
           this.root = dom;
         }}
         style={{ zIndex: zIndex }}

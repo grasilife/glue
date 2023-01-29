@@ -1,12 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  Element,
-  Event,
-  EventEmitter,
-} from '@stencil/core';
+import { Component, Prop, h, Host, Element, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import { addUnit } from '../../utils/format/unit';
 import { getAttribute } from '../../utils/base';
@@ -38,7 +30,7 @@ export class GlueChecker {
   @Event() glueCilck: EventEmitter;
   componentDidLoad() {}
   iconRef;
-  getParentProp = (name) => {
+  getParentProp = name => {
     console.log(this.parent, name, 'this.parentthis.parent');
     if (this.parent) {
       let parentAttr = getAttribute(this.parent, name);
@@ -64,7 +56,7 @@ export class GlueChecker {
     }
     this.glueCilck.emit(this.name);
   };
-  renderGlueIcon = (iconSize) => {
+  renderGlueIcon = iconSize => {
     console.log(this.icon, 'this.icon');
     if (this.icon == '#slot') {
       return <slot name="icon"></slot>;
@@ -85,7 +77,7 @@ export class GlueChecker {
 
     return (
       <div
-        ref={(dom) => {
+        ref={dom => {
           this.iconRef = dom;
         }}
         class={classNames('glue-checker__icon', {

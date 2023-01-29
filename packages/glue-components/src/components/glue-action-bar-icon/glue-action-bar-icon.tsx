@@ -17,7 +17,7 @@ export class GlueActionBarIcon {
   @Prop() iconClass: null;
   @Event()
   gluClick: EventEmitter;
-  handleClick = (event) => {
+  handleClick = event => {
     this.gluClick.emit(event);
   };
   renderIcon = () => {
@@ -25,24 +25,11 @@ export class GlueActionBarIcon {
     console.log(iconClass);
     // return <glue-badge dot={dot} content={badge} class={classNames('glue-action-bar-icon__icon')}></glue-badge>;
 
-    return (
-      <glue-icon
-        tag="div"
-        dot={dot}
-        name={icon}
-        badge={badge}
-        color={color}
-        class={classNames('glue-action-bar-icon__icon')}
-      />
-    );
+    return <glue-icon tag="div" dot={dot} name={icon} badge={badge} color={color} class={classNames('glue-action-bar-icon__icon')} />;
   };
   render() {
     return (
-      <Host
-        class={classNames('glue-action-bar-icon')}
-        tabindex={0}
-        onClick={this.handleClick}
-      >
+      <Host class={classNames('glue-action-bar-icon')} tabindex={0} onClick={this.handleClick}>
         {this.renderIcon()}
         <slot></slot>
       </Host>

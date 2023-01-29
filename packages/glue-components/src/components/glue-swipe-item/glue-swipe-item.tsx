@@ -1,12 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  State,
-  Element,
-  Host,
-  Method,
-} from '@stencil/core';
+import { Component, Prop, h, State, Element, Host, Method } from '@stencil/core';
 // import classNames from 'classnames';
 import { getElementParent } from '../../utils/base';
 @Component({
@@ -84,9 +76,7 @@ export class GlueSwipeItem {
     }
 
     if (this.offset) {
-      style.transform = `translate${this.parentVertical ? 'Y' : 'X'}(${
-        this.offset
-      }px)`;
+      style.transform = `translate${this.parentVertical ? 'Y' : 'X'}(${this.offset}px)`;
     }
     return (
       <Host class="glue-swipe-item" style={style}>

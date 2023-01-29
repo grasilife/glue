@@ -1,12 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  State,
-  EventEmitter,
-  Event,
-  Element,
-} from '@stencil/core';
+import { Component, Prop, h, State, EventEmitter, Event, Element } from '@stencil/core';
 import { isDef } from '../../utils/base';
 import '@glue/touch-emulator';
 // import { getRootScrollTop, setRootScrollTop } from '../../utils/dom/scroll';
@@ -58,17 +50,14 @@ export class GlueIndexBar {
       },
       {
         passive: true,
-      }
+      },
     );
   }
   getMatchAnchor = (index: string) => {
-    return this.children.find((item) => String(item.index) === index);
+    return this.children.find(item => String(item.index) === index);
   };
 
-  getActiveAnchor = (
-    scrollTop: number,
-    rects: Array<{ top: number; height: number }>
-  ) => {
+  getActiveAnchor = (scrollTop: number, rects: Array<{ top: number; height: number }>) => {
     console.log(scrollTop, rects, this.children, '1121212');
     for (let i = this.children.length - 1; i >= 0; i--) {
       const prevHeight = i > 0 ? rects[i - 1].height : 0;
@@ -144,9 +133,7 @@ export class GlueIndexBar {
         if (index === active) {
           item.setValue('active', true);
 
-          let top =
-            Math.max(this.stickyOffsetTop, rects[index].top - scrollTop) +
-            scrollParentRect.top;
+          let top = Math.max(this.stickyOffsetTop, rects[index].top - scrollTop) + scrollParentRect.top;
           item.setValue('top', top);
         } else if (index === active - 1 && this.selectActiveIndex === '') {
           const activeItemTop = rects[active].top - scrollTop;
@@ -179,7 +166,7 @@ export class GlueIndexBar {
     //   // emit('select', match[0].index);
     // }
   };
-  scrollToElement = (element) => {
+  scrollToElement = element => {
     const { index } = element.dataset;
     if (index) {
       this.scrollTo(index);
@@ -204,7 +191,7 @@ export class GlueIndexBar {
     }
   };
   renderIndexes = () => {
-    return this.indexList.map((index) => {
+    return this.indexList.map(index => {
       const active = index === this.activeAnchor;
       return (
         <span
@@ -241,7 +228,7 @@ export class GlueIndexBar {
   render() {
     return (
       <div
-        ref={(dom) => {
+        ref={dom => {
           this.root = dom;
         }}
         class="glue-index-bar"

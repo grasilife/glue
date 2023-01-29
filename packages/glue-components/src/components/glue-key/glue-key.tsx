@@ -1,12 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  State,
-  Event,
-  EventEmitter,
-} from '@stencil/core';
+import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import '@glue/touch-emulator';
 import { createNamespace } from '../../utils/create/index';

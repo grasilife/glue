@@ -1,12 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  State,
-  Event,
-  EventEmitter,
-} from '@stencil/core';
+import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 @Component({
   tag: 'glue-doc-nav',
@@ -25,7 +17,7 @@ export class GlueDocNav {
         <svg
           class="glue-doc-nav__back"
           viewBox="0 0 1000 1000"
-          onClick={(e) => {
+          onClick={e => {
             this.glueBack.emit(e);
           }}
         >

@@ -1,15 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  Method,
-  Event,
-  EventEmitter,
-  Watch,
-  Element,
-  State,
-} from '@stencil/core';
+import { Component, Prop, h, Host, Method, Event, EventEmitter, Watch, Element, State } from '@stencil/core';
 import classNames from 'classnames';
 import { BORDER_TOP_BOTTOM } from '../../global/constant/constant';
 import { createNamespace } from '../../utils/create/index';
@@ -68,7 +57,7 @@ export class GlueCollapse {
       }
     } else {
       if (expanded) {
-        this.modelValue = this.modelValue.filter((activeName) => {
+        this.modelValue = this.modelValue.filter(activeName => {
           return activeName !== name;
         });
       } else {
@@ -84,24 +73,14 @@ export class GlueCollapse {
   async isExpanded(name) {
     console.log(name, this.accordion, 'namenamename');
     if (!this.accordion && !Array.isArray(this.modelValue)) {
-      console.error(
-        '[Vant] Collapse: type of prop "modelValue" should be Array'
-      );
+      console.error('[Vant] Collapse: type of prop "modelValue" should be Array');
       return;
     }
-    return this.accordion
-      ? this.modelValue === name
-      : this.modelValue.indexOf(name) !== -1;
+    return this.accordion ? this.modelValue === name : this.modelValue.indexOf(name) !== -1;
   }
   render() {
     return (
-      <Host
-        class={classNames(
-          'glue-collapse',
-          BORDER_TOP_BOTTOM,
-          bem([this.border])
-        )}
-      >
+      <Host class={classNames('glue-collapse', BORDER_TOP_BOTTOM, bem([this.border]))}>
         <slot></slot>
       </Host>
     );

@@ -14,7 +14,7 @@ export class GlueContactCard {
   @Prop() addText: string;
   @Prop() editable = true;
   @Prop() type = 'add';
-  onClick = (event) => {
+  onClick = event => {
     console.log(event);
     if (this.editable) {
       // emit('click', event);
@@ -26,10 +26,7 @@ export class GlueContactCard {
       return this.addText || '添加文本';
     }
 
-    return [
-      <div>{`名字：${this.name}`}</div>,
-      <div>{`电话：${this.tel}`}</div>,
-    ];
+    return [<div>{`名字：${this.name}`}</div>, <div>{`电话：${this.tel}`}</div>];
   };
   render() {
     return (

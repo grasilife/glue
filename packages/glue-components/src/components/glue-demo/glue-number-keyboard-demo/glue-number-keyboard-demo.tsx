@@ -8,23 +8,23 @@ export class GlueNumberKeyboardDemo {
   @Prop() first: string;
   @State() keyboard: string = 'default';
   @State() extraKey: any[] = ['00', '.'];
-  onGlueInput = (event) => {
+  onGlueInput = event => {
     console.log(event, 'onGlueInput');
   };
-  onGlueClose = (event) => {
+  onGlueClose = event => {
     console.log(event, 'onGlueClose');
   };
-  onGlueDelete = (event) => {
+  onGlueDelete = event => {
     console.log(event, 'onGlueDelete');
   };
-  onGlueChange = (event) => {
+  onGlueChange = event => {
     console.log(event, 'onGlueChange');
   };
-  onGlueBlur = (event) => {
+  onGlueBlur = event => {
     console.log(event, 'onGlueBlur');
     // this.show = false;
   };
-  onCellClick = (event) => {
+  onCellClick = event => {
     console.log(event, 'onCellClick');
     // this.show = true;
   };

@@ -25,45 +25,29 @@ export class GlueSearchDemo {
       <div class={classNames('cunstom')}>
         <glue-doc-section>
           <glue-doc-block card={true} gtitle={this.basicUsage}>
-            <glue-search
-              modelValue={this.value1}
-              placeholder={this.placeholder}
-            ></glue-search>
+            <glue-search modelValue={this.value1} placeholder={this.placeholder}></glue-search>
           </glue-doc-block>
           <glue-doc-block card={true} gtitle={this.listenToEvents}>
             <glue-search
               modelValue={this.value1}
               placeholder={this.placeholder}
               showAction={true}
-              onGlueSearch={(e) => {
+              onGlueSearch={e => {
                 this.glueSearch(e);
               }}
-              onGlueCancel={(e) => {
+              onGlueCancel={e => {
                 this.glueCancel(e);
               }}
             ></glue-search>
           </glue-doc-block>
           <glue-doc-block card={true} gtitle={this.inputAlign}>
-            <glue-search
-              modelValue={this.value1}
-              placeholder={this.placeholder}
-              inputAlign='center'
-            ></glue-search>
+            <glue-search modelValue={this.value1} placeholder={this.placeholder} inputAlign="center"></glue-search>
           </glue-doc-block>
           <glue-doc-block card={true} gtitle={this.disabled}>
-            <glue-search
-              modelValue={this.value1}
-              placeholder={this.placeholder}
-              disabled={true}
-            ></glue-search>
+            <glue-search modelValue={this.value1} placeholder={this.placeholder} disabled={true}></glue-search>
           </glue-doc-block>
           <glue-doc-block card={true} gtitle={this.background}>
-            <glue-search
-              modelValue={this.value1}
-              placeholder={this.placeholder}
-              shape='round'
-              background="#4fc08d"
-            ></glue-search>
+            <glue-search modelValue={this.value1} placeholder={this.placeholder} shape="round" background="#4fc08d"></glue-search>
           </glue-doc-block>
           {/* <glue-doc-block card={true} gtitle={this.customButton}>
             <glue-search

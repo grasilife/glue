@@ -4,11 +4,7 @@ const overflowScrollReg = /scroll|auto/i;
 
 function isElement(node: Element) {
   const ELEMENT_NODE_TYPE = 1;
-  return (
-    node.tagName !== 'HTML' &&
-    node.tagName !== 'BODY' &&
-    node.nodeType === ELEMENT_NODE_TYPE
-  );
+  return node.tagName !== 'HTML' && node.tagName !== 'BODY' && node.nodeType === ELEMENT_NODE_TYPE;
 }
 
 // https://github.com/youzan/vant/issues/3823

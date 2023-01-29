@@ -1,14 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  State,
-  Watch,
-  EventEmitter,
-  Event,
-  Method,
-} from '@stencil/core';
+import { Component, Prop, h, Host, State, Watch, EventEmitter, Event, Method } from '@stencil/core';
 import { parseFormat } from './utils';
 import { useCountDown } from '../../utils/useCountDown';
 // import classNames from 'classnames';
@@ -51,7 +41,7 @@ export class GlueCountDown {
       },
     });
   };
-  timeText = (currentTime) => {
+  timeText = currentTime => {
     return parseFormat(this.format, currentTime);
   };
 
@@ -74,7 +64,7 @@ export class GlueCountDown {
   }
   @Event() glueChange: EventEmitter;
   @Event() glueFinish: EventEmitter;
-  changeHandle = (data) => {
+  changeHandle = data => {
     this.glueChange.emit(data);
   };
   componentWillLoad() {

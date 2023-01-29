@@ -36,24 +36,15 @@ export class GlueSidebarDemo {
               <h3 class="demo-sidebar-title">{this.showBadge}</h3>
               <glue-sidebar modelValue={this.activeKey2}>
                 <glue-sidebar-item gtitle={this.title} dot></glue-sidebar-item>
-                <glue-sidebar-item
-                  gtitle={this.title}
-                  badge="5"
-                ></glue-sidebar-item>
-                <glue-sidebar-item
-                  gtitle={this.title}
-                  badge="99+"
-                ></glue-sidebar-item>
+                <glue-sidebar-item gtitle={this.title} badge="5"></glue-sidebar-item>
+                <glue-sidebar-item gtitle={this.title} badge="99+"></glue-sidebar-item>
               </glue-sidebar>
             </glue-grid-item>
             <glue-grid-item custom="#slot">
               <h3 class="demo-sidebar-title">{this.disabled}</h3>
               <glue-sidebar modelValue={this.activeKey3}>
                 <glue-sidebar-item gtitle={this.title}></glue-sidebar-item>
-                <glue-sidebar-item
-                  gtitle={this.title}
-                  disabled
-                ></glue-sidebar-item>
+                <glue-sidebar-item gtitle={this.title} disabled></glue-sidebar-item>
                 <glue-sidebar-item gtitle={this.title}></glue-sidebar-item>
               </glue-sidebar>
             </glue-grid-item>
@@ -61,7 +52,7 @@ export class GlueSidebarDemo {
               <h3 class="demo-sidebar-title">{this.changeEvent}</h3>
               <glue-sidebar
                 modelValue={this.activeKey3}
-                onGlueChange={(e) => {
+                onGlueChange={e => {
                   this.onChange(e);
                 }}
               >

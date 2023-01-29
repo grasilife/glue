@@ -76,7 +76,7 @@ export class GlueSearch {
     // }
   };
 
-  onKeypress = (event) => {
+  onKeypress = event => {
     const ENTER_CODE = 13;
     if (event.keyCode === ENTER_CODE) {
       preventDefault(event);
@@ -94,12 +94,7 @@ export class GlueSearch {
     if (this.showAction) {
       // const text = this.actionText || 'cancel';
       return (
-        <div
-          class="glue-search_-action"
-          role="button"
-          tabindex="0"
-          onClick={this.onCancel}
-        >
+        <div class="glue-search_-action" role="button" tabindex="0" onClick={this.onCancel}>
           {/* {slots.action ? slots.action() : text} */}
         </div>
       );
@@ -131,7 +126,7 @@ export class GlueSearch {
 
     return (
       <glue-field
-        ref={(dom) => {
+        ref={dom => {
           this.filedRef = dom;
         }}
         name={this.name}
@@ -149,7 +144,6 @@ export class GlueSearch {
         leftIcon={this.leftIcon}
         rightIcon={this.rightIcon}
         autocomplete={this.autocomplete}
-
         onKeyPress={this.onKeypress}
         modelValue={this.modelValue}
         type="search"

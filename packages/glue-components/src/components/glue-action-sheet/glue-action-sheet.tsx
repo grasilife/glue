@@ -1,12 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  Event,
-  EventEmitter,
-  State,
-} from '@stencil/core';
+import { Component, Prop, h, Host, Event, EventEmitter, State } from '@stencil/core';
 // import { pick } from '../../utils/base';
 import { getVisibleHeight } from '../../utils/dom/scroll';
 import classNames from 'classnames';
@@ -81,13 +73,7 @@ export class GlueActionSheet {
       return (
         <div class="glue-action-sheet__header">
           {this.gtitle}
-          {this.closeable && (
-            <glue-icon
-              name={this.closeIcon}
-              class="glue-action-sheet__close"
-              onClick={this.onCancelHandle}
-            />
-          )}
+          {this.closeable && <glue-icon name={this.closeIcon} class="glue-action-sheet__close" onClick={this.onCancelHandle} />}
         </div>
       );
     }
@@ -97,11 +83,7 @@ export class GlueActionSheet {
     if (this.cancelText) {
       return [
         <div class="glue-action-sheet__gap" />,
-        <button
-          type="button"
-          class="glue-action-sheet__cancel"
-          onClick={this.onCancelHandle}
-        >
+        <button type="button" class="glue-action-sheet__cancel" onClick={this.onCancelHandle}>
           {this.cancelText}
         </button>,
       ];
@@ -110,16 +92,12 @@ export class GlueActionSheet {
 
   renderOption = (item: ActionSheetAction, index: number) => {
     console.log(index);
-    const { name, color, subname, loading, callback, disabled, className } =
-      item;
+    const { name, color, subname, loading, callback, disabled, className } = item;
 
     const Content = loading ? (
       <glue-loading class="glue-action-sheet__loading-icon"></glue-loading>
     ) : (
-      [
-        <span class="glue-action-sheet__name">{name}</span>,
-        subname && <div class="glue-action-sheet__subname">{subname}</div>,
-      ]
+      [<span class="glue-action-sheet__name">{name}</span>, subname && <div class="glue-action-sheet__subname">{subname}</div>]
     );
 
     const onClick = () => {
@@ -173,17 +151,7 @@ export class GlueActionSheet {
     console.log(this.height, this.refContent.offsetHeight, 'this.height');
   }
   render() {
-    const {
-      show,
-      duration,
-      closeable,
-      closeIcon,
-      round,
-      overlay,
-      lockScroll,
-      lazyRender,
-      closeOnClickOverlay,
-    } = this;
+    const { show, duration, closeable, closeIcon, round, overlay, lockScroll, lazyRender, closeOnClickOverlay } = this;
     return (
       <Host class="glue-action-sheet">
         <glue-popup
@@ -206,7 +174,7 @@ export class GlueActionSheet {
         >
           <div
             class="glue-action-sheet__content"
-            ref={(dom) => {
+            ref={dom => {
               this.refContent = dom;
             }}
           >

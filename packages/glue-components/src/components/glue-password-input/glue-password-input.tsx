@@ -43,13 +43,9 @@ export class GluePasswordInput {
           })}
           style={style}
         >
-          {mask ? (
-            <i style={{ visibility: char ? 'visible' : 'hidden' }} />
-          ) : (
-            char
-          )}
+          {mask ? <i style={{ visibility: char ? 'visible' : 'hidden' }} /> : char}
           {showCursor && <div class="glue-password-input__cursor" />}
-        </li>
+        </li>,
       );
     }
     console.log(Points, 'Points');

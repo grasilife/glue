@@ -57,8 +57,7 @@ export class GlueAddressEdit {
   };
 
   areaRef: HTMLElement;
-  areaListLoaded = () =>
-    isObject(this.areaList) && Object.keys(this.areaList).length;
+  areaListLoaded = () => isObject(this.areaList) && Object.keys(this.areaList).length;
 
   areaText = () => {
     const { country, province, city, county, areaCode } = this.data;
@@ -67,7 +66,7 @@ export class GlueAddressEdit {
       if (province && province === city) {
         arr.splice(1, 1);
       }
-      return arr.filter((text) => text).join('/');
+      return arr.filter(text => text).join('/');
     }
     return '';
   };
@@ -87,13 +86,13 @@ export class GlueAddressEdit {
     // }
   };
 
-  onFocus = (key) => {
+  onFocus = key => {
     this.errorInfo[key] = '';
     this.detailFocused = key === 'addressDetail';
     // emit('focus', key);
   };
 
-  getErrorMessage = (key) => {
+  getErrorMessage = key => {
     const value = String(this.data[key] || '').trim();
 
     if (this.validator) {
@@ -132,7 +131,7 @@ export class GlueAddressEdit {
       items.push('postalCode');
     }
 
-    const isValid = items.every((item) => {
+    const isValid = items.every(item => {
       const msg = this.getErrorMessage(item);
       if (msg) {
         this.errorInfo[item] = msg;
@@ -145,15 +144,15 @@ export class GlueAddressEdit {
     }
   };
 
-  onChangeDetail = (val) => {
+  onChangeDetail = val => {
     this.data.addressDetail = val;
     // emit('change-detail', val);
   };
 
-  onAreaConfirm = (values) => {
-    values = values.filter((value) => !!value);
+  onAreaConfirm = values => {
+    values = values.filter(value => !!value);
 
-    if (values.some((value) => !value.code)) {
+    if (values.some(value => !value.code)) {
       // Toast(t('areaEmpty'));
       return;
     }
@@ -182,7 +181,7 @@ export class GlueAddressEdit {
   };
 
   // set area code to area component
-  setAreaCode = (code) => {
+  setAreaCode = code => {
     this.data.areaCode = code || '';
 
     if (code) {
@@ -197,7 +196,7 @@ export class GlueAddressEdit {
     });
   };
 
-  setAddressDetail = (value) => {
+  setAddressDetail = value => {
     this.data.addressDetail = value;
   };
 
@@ -207,7 +206,7 @@ export class GlueAddressEdit {
         'right-icon': () => (
           <glue-switch
             size="24"
-            onChange={(event) => {
+            onChange={event => {
               console.log(event);
               // emit('change-default', event);
             }}
@@ -215,15 +214,7 @@ export class GlueAddressEdit {
         ),
       };
 
-      return (
-        <glue-cell
-          v-slots={slots}
-          v-show={!this.hideBottomFields()}
-          center
-          title="默认地址"
-          class="glue-address-edit__default"
-        />
-      );
+      return <glue-cell v-slots={slots} v-show={!this.hideBottomFields()} center title="默认地址" class="glue-address-edit__default" />;
     }
 
     return null;
@@ -234,22 +225,8 @@ export class GlueAddressEdit {
     return (
       <Host class="glue-address-edit">
         <div class="glue-address-edit__fields">
-          <glue-field
-            clearable
-            label="名称"
-            placeholder="名称提示"
-            errorMessage={errorInfo.name}
-            onFocus={() => this.onFocus('name')}
-          />
-          <glue-field
-            clearable
-            type="tel"
-            label={'电话'}
-            maxlength={this.telMaxlength}
-            placeholder={'电话提示'}
-            errorMessage={errorInfo.tel}
-            onFocus={() => this.onFocus('tel')}
-          />
+          <glue-field clearable label="名称" placeholder="名称提示" errorMessage={errorInfo.name} onFocus={() => this.onFocus('name')} />
+          <glue-field clearable type="tel" label={'电话'} maxlength={this.telMaxlength} placeholder={'电话提示'} errorMessage={errorInfo.tel} onFocus={() => this.onFocus('tel')} />
           <glue-field
             v-show={this.showArea}
             readonly
@@ -295,27 +272,9 @@ export class GlueAddressEdit {
           <slot></slot>
         </div>
         {this.renderSetDefaultCell()}
-        <div
-          v-show={!this.hideBottomFields()}
-          class="glue-address-edit__buttons"
-        >
-          <glue-button
-            block
-            round
-            loading={this.isSaving}
-            type="danger"
-            text={this.saveButtonText || '保存'}
-            onClick={this.onSave}
-          />
-          {this.showDelete && (
-            <glue-button
-              block
-              round
-              loading={this.isDeleting}
-              text={this.deleteButtonText || '删除'}
-              onClick={this.onDelete}
-            />
-          )}
+        <div v-show={!this.hideBottomFields()} class="glue-address-edit__buttons">
+          <glue-button block round loading={this.isSaving} type="danger" text={this.saveButtonText || '保存'} onClick={this.onSave} />
+          {this.showDelete && <glue-button block round loading={this.isDeleting} text={this.deleteButtonText || '删除'} onClick={this.onDelete} />}
         </div>
         <glue-popup round teleport="body" position="bottom" lazyRender={false}>
           {/* <glue-area

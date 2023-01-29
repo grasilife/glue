@@ -17,59 +17,59 @@ export class GlueTabbarDemo {
   @State() activeName: string = 'home';
 
   render() {
-    return <div class={classNames('cunstom')}>
-      <glue-doc-section>
-        <glue-doc-block card={true} gtitle={this.basicUsage}>
-          <glue-tabbar modelValue={this.active}>
-            <glue-tabbar-item icon="home-o" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="search" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="friends-o" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="setting-o" gtitle={this.tab}></glue-tabbar-item>
-          </glue-tabbar>
-
-        </glue-doc-block>
-        <glue-doc-block card={true} gtitle={this.matchByName}>
-          <glue-tabbar modelValue={this.activeName}>
-            <glue-tabbar-item icon="home-o" name="home" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="search" name="search" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="friends-o" name="friends" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="setting-o" name="setting" gtitle={this.tab}></glue-tabbar-item>
-          </glue-tabbar>
-        </glue-doc-block>
-        <glue-doc-block card={true} gtitle={this.badge}>
-          <glue-tabbar modelValue={this.activeName}>
-            <glue-tabbar-item icon="home-o" name="home" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="search" name="search" gtitle={this.tab} dot></glue-tabbar-item>
-            <glue-tabbar-item icon="friends-o" name="friends" gtitle={this.tab} badge="5"></glue-tabbar-item>
-            <glue-tabbar-item icon="setting-o" name="setting" gtitle={this.tab} badge="20"></glue-tabbar-item>
-          </glue-tabbar>
-        </glue-doc-block>
-        <glue-doc-block card={true} gtitle={this.customIcon}>
-          <glue-tabbar modelValue={this.activeName}>
-            <glue-tabbar-item icon="home-o" name="home" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="search" name="search" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="friends-o" name="friends" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="setting-o" name="setting" gtitle={this.tab}></glue-tabbar-item>
-          </glue-tabbar>
-        </glue-doc-block>
-        <glue-doc-block card={true} gtitle={this.customColor}>
-          <glue-tabbar modelValue={this.activeName} activeColor="#ee0a24" inactiveColor="#000">
-            <glue-tabbar-item icon="home-o" name="home" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="search" name="search" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="friends-o" name="friends" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="setting-o" name="setting" gtitle={this.tab}></glue-tabbar-item>
-          </glue-tabbar>
-        </glue-doc-block>
-        <glue-doc-block card={true} gtitle={this.switchEvent}>
-          <glue-tabbar modelValue={this.activeName}>
-            <glue-tabbar-item icon="home-o" name="home" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="search" name="search" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="friends-o" name="friends" gtitle={this.tab}></glue-tabbar-item>
-            <glue-tabbar-item icon="setting-o" name="setting" gtitle={this.tab}></glue-tabbar-item>
-          </glue-tabbar>
-        </glue-doc-block>
-      </glue-doc-section>
-
-    </div>;
+    return (
+      <div class={classNames('cunstom')}>
+        <glue-doc-section>
+          <glue-doc-block card={true} gtitle={this.basicUsage}>
+            <glue-tabbar modelValue={this.active}>
+              <glue-tabbar-item icon="home-o" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="search" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="friends-o" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="setting-o" gtitle={this.tab}></glue-tabbar-item>
+            </glue-tabbar>
+          </glue-doc-block>
+          <glue-doc-block card={true} gtitle={this.matchByName}>
+            <glue-tabbar modelValue={this.activeName}>
+              <glue-tabbar-item icon="home-o" name="home" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="search" name="search" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="friends-o" name="friends" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="setting-o" name="setting" gtitle={this.tab}></glue-tabbar-item>
+            </glue-tabbar>
+          </glue-doc-block>
+          <glue-doc-block card={true} gtitle={this.badge}>
+            <glue-tabbar modelValue={this.activeName}>
+              <glue-tabbar-item icon="home-o" name="home" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="search" name="search" gtitle={this.tab} dot></glue-tabbar-item>
+              <glue-tabbar-item icon="friends-o" name="friends" gtitle={this.tab} badge="5"></glue-tabbar-item>
+              <glue-tabbar-item icon="setting-o" name="setting" gtitle={this.tab} badge="20"></glue-tabbar-item>
+            </glue-tabbar>
+          </glue-doc-block>
+          <glue-doc-block card={true} gtitle={this.customIcon}>
+            <glue-tabbar modelValue={this.activeName}>
+              <glue-tabbar-item icon="home-o" name="home" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="search" name="search" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="friends-o" name="friends" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="setting-o" name="setting" gtitle={this.tab}></glue-tabbar-item>
+            </glue-tabbar>
+          </glue-doc-block>
+          <glue-doc-block card={true} gtitle={this.customColor}>
+            <glue-tabbar modelValue={this.activeName} activeColor="#ee0a24" inactiveColor="#000">
+              <glue-tabbar-item icon="home-o" name="home" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="search" name="search" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="friends-o" name="friends" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="setting-o" name="setting" gtitle={this.tab}></glue-tabbar-item>
+            </glue-tabbar>
+          </glue-doc-block>
+          <glue-doc-block card={true} gtitle={this.switchEvent}>
+            <glue-tabbar modelValue={this.activeName}>
+              <glue-tabbar-item icon="home-o" name="home" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="search" name="search" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="friends-o" name="friends" gtitle={this.tab}></glue-tabbar-item>
+              <glue-tabbar-item icon="setting-o" name="setting" gtitle={this.tab}></glue-tabbar-item>
+            </glue-tabbar>
+          </glue-doc-block>
+        </glue-doc-section>
+      </div>
+    );
   }
 }

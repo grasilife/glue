@@ -21,22 +21,13 @@ export class GlueActionBarButton {
   @Prop() disabled: boolean;
   @Event()
   glueClick: EventEmitter;
-  handleClick = (event) => {
+  handleClick = event => {
     if (!this.loading && !this.disabled) {
       this.glueClick.emit(event);
     }
   };
   render() {
-    const {
-      type,
-      icon,
-      text,
-      color,
-      loading,
-      disabled,
-      leftRound,
-      rightRound,
-    } = this;
+    const { type, icon, text, color, loading, disabled, leftRound, rightRound } = this;
     console.log(text);
     return (
       <Host>
@@ -54,7 +45,7 @@ export class GlueActionBarButton {
               'glue-action-bar-button--first': leftRound,
               'glue-action-bar-button--last': rightRound,
             },
-            bem([type])
+            bem([type]),
           )}
         >
           <slot></slot>

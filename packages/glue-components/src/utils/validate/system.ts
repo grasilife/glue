@@ -5,7 +5,5 @@ export function isAndroid(): boolean {
 }
 
 export function isIOS(): boolean {
-  return inBrowser
-    ? /ios|iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase())
-    : false;
+  return inBrowser ? /ios|iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) : false;
 }

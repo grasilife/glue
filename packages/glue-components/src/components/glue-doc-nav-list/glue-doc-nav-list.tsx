@@ -14,7 +14,7 @@ export class GlueDocNavList {
       <Host class={classNames('glue-doc-nav-list')}>
         <div class="glue-doc-nav-list__title">{this.gtitle}</div>
         <div class="glue-doc-nav-list__group">
-          {this.group.map((navItem) => {
+          {this.group.map(navItem => {
             return (
               <div
                 class="glue-doc-nav-list__block"

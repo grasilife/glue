@@ -1,15 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Element,
-  State,
-  Host,
-  Event,
-  EventEmitter,
-  Method,
-  Watch,
-} from '@stencil/core';
+import { Component, Prop, h, Element, State, Host, Event, EventEmitter, Method, Watch } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-checkbox-group');
@@ -31,7 +20,7 @@ export class GlueCheckboxGroup {
   @State() children;
   @Event()
   glueChange: EventEmitter;
-  handleChange = (event) => {
+  handleChange = event => {
     console.log(event, 111);
     this.glueChange.emit(event);
   };

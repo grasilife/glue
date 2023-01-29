@@ -1,14 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  EventEmitter,
-  Event,
-  Watch,
-  Element,
-  State,
-} from '@stencil/core';
+import { Component, Prop, h, Host, EventEmitter, Event, Watch, Element, State } from '@stencil/core';
 import classNames from 'classnames';
 import { isDef } from '../../utils/base';
 import { createNamespace } from '../../utils/create/index';
@@ -103,7 +93,7 @@ export class GlueToast {
       },
       () => {
         this.openedHandle();
-      }
+      },
     );
   };
   hiddenAnimation = () => {
@@ -117,18 +107,15 @@ export class GlueToast {
       () => {
         this.el.style.display = 'none';
         this.closedHandle();
-      }
+      },
     );
   };
   renderIcon = () => {
     const { icon, type, iconPrefix, loadingType } = this;
-    const hasIcon =
-      icon || type === 'success' || type === 'fail' || type === 'icon';
+    const hasIcon = icon || type === 'success' || type === 'fail' || type === 'icon';
 
     if (hasIcon) {
-      return (
-        <glue-icon name={icon || type} classPrefix={iconPrefix} size="36" />
-      );
+      return <glue-icon name={icon || type} classPrefix={iconPrefix} size="36" />;
     }
 
     if (type === 'loading') {
@@ -145,15 +132,7 @@ export class GlueToast {
   };
   render() {
     return (
-      <Host
-        style={{ display: 'none' }}
-        class={classNames(
-          'glue-toast',
-          'glue-toast__popup',
-          bem([this.position, this.type])
-        )}
-        onClick={this.clickHandle}
-      >
+      <Host style={{ display: 'none' }} class={classNames('glue-toast', 'glue-toast__popup', bem([this.position, this.type]))} onClick={this.clickHandle}>
         {this.renderIcon()}
         {this.renderMessage()}
       </Host>

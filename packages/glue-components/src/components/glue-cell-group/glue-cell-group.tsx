@@ -18,9 +18,7 @@ export class GlueCellGroup {
   };
   renderTitle = () => {
     if (this.gtitle) {
-      return (
-        <div class={classNames('glue-cell-group__title')}>{this.gtitle}</div>
-      );
+      return <div class={classNames('glue-cell-group__title')}>{this.gtitle}</div>;
     }
   };
 

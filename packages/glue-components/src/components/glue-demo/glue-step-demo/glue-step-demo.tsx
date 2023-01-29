@@ -43,12 +43,7 @@ export class GlueStepDemo {
             </glue-button>
           </glue-doc-block>
           <glue-doc-block gtitle={this.customStyle}>
-            <glue-steps
-              active={this.active}
-              activeIcon="success"
-              inactiveIcon="arrow"
-              activeColor="#38f"
-            >
+            <glue-steps active={this.active} activeIcon="success" inactiveIcon="arrow" activeColor="#38f">
               <glue-step>{this.step1}</glue-step>
               <glue-step>{this.step2}</glue-step>
               <glue-step>{this.step3}</glue-step>

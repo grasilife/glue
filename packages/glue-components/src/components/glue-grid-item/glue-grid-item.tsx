@@ -76,16 +76,7 @@ export class GlueGridItem {
 
   renderIcon = () => {
     if (this.icon) {
-      return (
-        <glue-icon
-          dot={this.dot}
-          name={this.icon}
-          size={this.iconSize}
-          badge={this.badge}
-          class="glue-grid-item__icon"
-          classPrefix={this.iconPrefix}
-        />
-      );
+      return <glue-icon dot={this.dot} name={this.icon} size={this.iconSize} badge={this.badge} class="glue-grid-item__icon" classPrefix={this.iconPrefix} />;
     }
   };
 

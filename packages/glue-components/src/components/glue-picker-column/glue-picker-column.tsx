@@ -1,14 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  State,
-  Event,
-  EventEmitter,
-  Method,
-  Watch,
-} from '@stencil/core';
+import { Component, Prop, h, Host, State, Event, EventEmitter, Method, Watch } from '@stencil/core';
 import classNames from 'classnames';
 import { range } from '../../utils/format/number';
 import { getElementChildren } from '../../utils/base';
@@ -96,7 +86,7 @@ export class GluePickerColumn {
 
   baseOffset = () => (this.itemHeight * (this.visibleItemCount - 1)) / 2;
 
-  adjustIndex = (index) => {
+  adjustIndex = index => {
     index = range(index, 0, this.count());
 
     for (let i = index; i < this.count(); i++) {
@@ -140,7 +130,7 @@ export class GluePickerColumn {
     }
   }
 
-  onClickItem = (index) => {
+  onClickItem = index => {
     console.log(index, 'indexindex');
 
     if (this.moving || this.readonly) {
@@ -152,15 +142,14 @@ export class GluePickerColumn {
     this.setIndex(index, true);
   };
 
-  getOptionText = (option) => {
+  getOptionText = option => {
     if (isObject(option) && this.textKey in option) {
       return option[this.textKey];
     }
     return option;
   };
 
-  getIndexByOffset = (offset) =>
-    range(Math.round(-offset / this.itemHeight), 0, this.count() - 1);
+  getIndexByOffset = offset => range(Math.round(-offset / this.itemHeight), 0, this.count() - 1);
 
   momentum = (distance, duration) => {
     const speed = Math.abs(distance / duration);
@@ -184,7 +173,7 @@ export class GluePickerColumn {
     }
   }
 
-  onTouchStart = (event) => {
+  onTouchStart = event => {
     if (this.readonly) {
       return;
     }
@@ -205,7 +194,7 @@ export class GluePickerColumn {
     this.transitionEndTrigger = null;
   };
 
-  onTouchMove = (event) => {
+  onTouchMove = event => {
     if (this.readonly) {
       return;
     }
@@ -217,11 +206,7 @@ export class GluePickerColumn {
       preventDefault(event, true);
     }
 
-    this.offset = range(
-      this.startOffset + touch.deltaY,
-      -(this.count() * this.itemHeight),
-      this.itemHeight
-    );
+    this.offset = range(this.startOffset + touch.deltaY, -(this.count() * this.itemHeight), this.itemHeight);
 
     const now = Date.now();
     if (now - this.touchStartTime > MOMENTUM_LIMIT_TIME) {
@@ -237,9 +222,7 @@ export class GluePickerColumn {
 
     const distance = this.offset - this.momentumOffset;
     const duration = Date.now() - this.touchStartTime;
-    const allowMomentum =
-      duration < MOMENTUM_LIMIT_TIME &&
-      Math.abs(distance) > MOMENTUM_LIMIT_DISTANCE;
+    const allowMomentum = duration < MOMENTUM_LIMIT_TIME && Math.abs(distance) > MOMENTUM_LIMIT_DISTANCE;
 
     if (allowMomentum) {
       this.momentum(distance, duration);
@@ -291,7 +274,7 @@ export class GluePickerColumn {
     });
   };
 
-  setValue = (value) => {
+  setValue = value => {
     const { options } = this;
     for (let i = 0; i < options.length; i++) {
       if (this.getOptionText(options[i]) === value) {
@@ -315,7 +298,7 @@ export class GluePickerColumn {
         onTouchCancel={this.onTouchEnd}
       >
         <ul
-          ref={(dom) => {
+          ref={dom => {
             this.wrapper = dom;
           }}
           style={wrapperStyle}

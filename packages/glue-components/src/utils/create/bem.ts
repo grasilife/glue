@@ -44,7 +44,7 @@ export function createBEM(name: string) {
       return `${name}__${el}`;
     } else {
       let obj = {};
-      el.forEach((item) => {
+      el.forEach(item => {
         if (item) {
           let stringClass = `${name}--${item}`;
           obj[stringClass] = true;

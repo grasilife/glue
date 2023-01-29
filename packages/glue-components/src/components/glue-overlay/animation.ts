@@ -6,10 +6,10 @@ export const enterAnimation = (el, duration, easing, begin, complete) => {
     duration: duration,
     opacity: [0, 1],
     easing: easing,
-    begin: (anim) => {
+    begin: anim => {
       return begin(anim);
     },
-    complete: (anim) => {
+    complete: anim => {
       return complete(anim);
     },
   });
@@ -21,10 +21,10 @@ export const leaveAnimation = (el, duration, easing, begin, complete) => {
     duration: duration,
     opacity: [1, 0],
     easing: easing,
-    begin: (anim) => {
+    begin: anim => {
       return begin(anim);
     },
-    complete: (anim) => {
+    complete: anim => {
       return complete(anim);
     },
   });

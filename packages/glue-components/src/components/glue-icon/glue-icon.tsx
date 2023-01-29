@@ -19,8 +19,7 @@ export class GlueIcon {
     return name ? name.indexOf('/') !== -1 : false;
   }
   render() {
-    const { dot, name, size, badge, color, classPrefix, backgroundColor } =
-      this;
+    const { dot, name, size, badge, color, classPrefix, backgroundColor } = this;
     console.log(addUnit(size), 'jiahuahu');
     const isImageIcon = this.isImage(name);
     console.log(isImageIcon, 'isImageIcon');

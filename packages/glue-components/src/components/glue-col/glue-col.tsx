@@ -32,10 +32,7 @@ export class GlueCol {
     const { span, offset } = this;
     console.log(span, offset, 'offset');
     return (
-      <Host
-        style={this.style()}
-        class={classNames('glue-col', bem([span, [`offset-${offset}`]]))}
-      >
+      <Host style={this.style()} class={classNames('glue-col', bem([span, [`offset-${offset}`]]))}>
         <slot></slot>
       </Host>
     );

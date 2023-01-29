@@ -3,11 +3,7 @@ import { getScrollTop, setScrollTop } from '../../utils/dom/scroll';
 
 let rafId: number;
 
-export function scrollLeftTo(
-  scroller: HTMLElement,
-  to: number,
-  duration: number
-) {
+export function scrollLeftTo(scroller: HTMLElement, to: number, duration: number) {
   cancelRaf(rafId);
 
   let count = 0;
@@ -25,12 +21,7 @@ export function scrollLeftTo(
   animate();
 }
 
-export function scrollTopTo(
-  scroller: HTMLElement,
-  to: number,
-  duration: number,
-  callback: () => void
-) {
+export function scrollTopTo(scroller: HTMLElement, to: number, duration: number, callback: () => void) {
   let current = getScrollTop(scroller);
 
   const isDown = current < to;

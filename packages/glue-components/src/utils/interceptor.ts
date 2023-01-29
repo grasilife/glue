@@ -2,12 +2,7 @@ import { isPromise, noop } from './base';
 
 export type Interceptor = (...args: any[]) => Promise<boolean> | boolean;
 
-export function callInterceptor(options: {
-  interceptor?: Interceptor;
-  args?: any[];
-  done: () => void;
-  canceled?: () => void;
-}) {
+export function callInterceptor(options: { interceptor?: Interceptor; args?: any[]; done: () => void; canceled?: () => void }) {
   const { interceptor, args, done, canceled } = options;
 
   if (interceptor) {
@@ -16,7 +11,7 @@ export function callInterceptor(options: {
 
     if (isPromise(returnVal)) {
       returnVal
-        .then((value) => {
+        .then(value => {
           if (value) {
             done();
           } else if (canceled) {

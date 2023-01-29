@@ -1,14 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  State,
-  Element,
-  Event,
-  EventEmitter,
-  Method,
-} from '@stencil/core';
+import { Component, Prop, h, Host, State, Element, Event, EventEmitter, Method } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 import { getElementParent } from '../../utils/base';

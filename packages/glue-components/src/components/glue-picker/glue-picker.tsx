@@ -1,15 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  State,
-  Element,
-  Watch,
-  Event,
-  EventEmitter,
-  Method,
-} from '@stencil/core';
+import { Component, Prop, h, Host, State, Element, Watch, Event, EventEmitter, Method } from '@stencil/core';
 import classNames from 'classnames';
 import { createNamespace } from '../../utils/create/index';
 const [bem] = createNamespace('glue-picker');
@@ -146,7 +135,7 @@ export class GluePicker {
   // get indexes of all columns
   @Method()
   async getIndexes() {
-    this.pickerColumnRef.map((child) => {
+    this.pickerColumnRef.map(child => {
       console.log(child, 'childchild');
       return child;
     });
@@ -188,13 +177,10 @@ export class GluePicker {
   }
 
   // get column instance by index
-  getColumn = (index) => this.pickerColumnRef[index];
+  getColumn = index => this.pickerColumnRef[index];
 
-  getValue = (el) => {
-    console.log(
-      getElementChildren(el, 'GLUE-PICKER-COLUMN'),
-      'getElementChildren(el)'
-    );
+  getValue = el => {
+    console.log(getElementChildren(el, 'GLUE-PICKER-COLUMN'), 'getElementChildren(el)');
     let value = getElementChildren(el, 'GLUE-PICKER-COLUMN')[0].innerText;
     console.log(value, 'value');
     return value;
@@ -361,7 +347,7 @@ export class GluePicker {
   async confirm() {
     let values = await this.getValues();
     let indexs = await this.getIndexs();
-    this.pickerColumnRef.forEach((child) => child.stopMomentum());
+    this.pickerColumnRef.forEach(child => child.stopMomentum());
     this.glueConfirm.emit({
       columnValue: values,
       columnIndex: indexs,
@@ -444,7 +430,7 @@ export class GluePicker {
     console.log(this.formattedColumns, 'this.formattedColumns');
     return this.formattedColumns.map((item, columnIndex) => (
       <glue-picker-column
-        ref={(dom) => {
+        ref={dom => {
           this.pickerColumnRef[columnIndex] = dom;
           console.log(this.pickerColumnRef, 'this.pickerColumnRef');
         }}
@@ -473,17 +459,10 @@ export class GluePicker {
     };
 
     return (
-      <div
-        class={bem('columns')}
-        style={columnsStyle}
-        onTouchMove={preventDefault}
-      >
+      <div class={bem('columns')} style={columnsStyle} onTouchMove={preventDefault}>
         {this.renderColumnItems()}
         <div class={bem('mask')} style={maskStyle} />
-        <div
-          class={classNames(BORDER_UNSET_TOP_BOTTOM, 'glue-picker__frame')}
-          style={frameStyle}
-        />
+        <div class={classNames(BORDER_UNSET_TOP_BOTTOM, 'glue-picker__frame')} style={frameStyle} />
       </div>
     );
   };

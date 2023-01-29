@@ -21,7 +21,7 @@ export class GlueAddressListItem {
     <glue-icon
       name="edit"
       class="glue-address-list-item__edit"
-      onClick={(event) => {
+      onClick={event => {
         event.stopPropagation();
         // emit('edit');
         // emit('click');
@@ -71,7 +71,7 @@ export class GlueAddressListItem {
       >
         <glue-cell
           v-slots={{
-            default: this.renderContent,
+            'default': this.renderContent,
             'right-icon': this.renderRightIcon,
           }}
           border={false}

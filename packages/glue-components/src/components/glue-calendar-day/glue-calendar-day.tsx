@@ -14,7 +14,7 @@ export class GlueCalendarDay {
   @Prop() offset: number;
   @Prop() rowHeight: string;
   @Event() glueDayClick: EventEmitter;
-  clickHandle = (event) => {
+  clickHandle = event => {
     console.log(this.item.type, 'this.item.type');
     if (this.item.type !== 'disabled') {
       this.glueDayClick.emit(event);
@@ -61,13 +61,9 @@ export class GlueCalendarDay {
     const { item, color, rowHeight } = this;
     const { type, text, topInfo, bottomInfo } = item;
 
-    const TopInfo = topInfo && (
-      <div class="glue-calendar-day__top-info">{topInfo}</div>
-    );
+    const TopInfo = topInfo && <div class="glue-calendar-day__top-info">{topInfo}</div>;
 
-    const BottomInfo = bottomInfo && (
-      <div class="glue-calendar-day__bottom-info">{bottomInfo}</div>
-    );
+    const BottomInfo = bottomInfo && <div class="glue-calendar-day__bottom-info">{bottomInfo}</div>;
 
     const Nodes = [TopInfo, text, BottomInfo];
     // console.log(type, 'type');

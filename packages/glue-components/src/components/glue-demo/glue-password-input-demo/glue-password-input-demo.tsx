@@ -16,7 +16,7 @@ export class GluePasswordInputDemo {
     removeMask: '123',
     customLength: '123',
   };
-  onGlueInput = (event) => {
+  onGlueInput = event => {
     console.log(event, 'onGlueInput');
     let key = event.detail;
     const maxlegnth = this.current === 'customLength' ? 4 : 6;
@@ -24,37 +24,30 @@ export class GluePasswordInputDemo {
     this.value = { ...this.value, [this.current]: newValue };
     console.log(this.value, this.current, newValue, 'newValue');
 
-    if (
-      this.current === 'showInfo' &&
-      newValue.length === 6 &&
-      newValue !== '123456'
-    ) {
+    if (this.current === 'showInfo' && newValue.length === 6 && newValue !== '123456') {
       this.errorInfo = this.errorInfo;
     }
   };
-  onGlueClose = (event) => {
+  onGlueClose = event => {
     console.log(event, 'onGlueClose');
   };
-  onGlueDelete = (event) => {
+  onGlueDelete = event => {
     console.log(event, 'onGlueDelete');
-    const newValue = this.value[this.current].slice(
-      0,
-      this.value[this.current].length - 1
-    );
+    const newValue = this.value[this.current].slice(0, this.value[this.current].length - 1);
     this.value = { ...this.value, [this.current]: newValue };
     if (this.current === 'showInfo') {
       this.errorInfo = '';
     }
   };
-  onGlueChange = (event) => {
+  onGlueChange = event => {
     console.log(event, 'onGlueChange');
   };
-  onGlueBlur = (event) => {
+  onGlueBlur = event => {
     console.log(event, 'onGlueBlur');
     // this.show = false;
     this.current = '';
   };
-  onCellClick = (event) => {
+  onCellClick = event => {
     console.log(event, 'onCellClick');
     // this.show = true;
   };

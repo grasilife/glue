@@ -1,12 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  State,
-  Event,
-  EventEmitter,
-} from '@stencil/core';
+import { Component, Prop, h, Host, State, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import '@glue/touch-emulator';
 import { stopPropagation } from '../../utils/dom/event';
@@ -56,7 +48,7 @@ export class GlueSlider {
       [crossAxis]: addUnit(this.barHeight),
     };
   };
-  isRange = (val) => {
+  isRange = val => {
     return !!this.range && Array.isArray(val);
   };
 
@@ -96,8 +88,7 @@ export class GlueSlider {
     return Math.round(value / +step) * +step;
   };
 
-  isSameValue = (newValue, oldValue) =>
-    JSON.stringify(newValue) === JSON.stringify(oldValue);
+  isSameValue = (newValue, oldValue) => JSON.stringify(newValue) === JSON.stringify(oldValue);
 
   // 处理两个滑块重叠之后的情况
   handleOverlap = (value: number[]) => {
@@ -134,9 +125,7 @@ export class GlueSlider {
 
     const { min, vertical, value } = this;
     const rect = useRect(this.root);
-    const delta = vertical
-      ? event.clientY - rect.top
-      : event.clientX - rect.left;
+    const delta = vertical ? event.clientY - rect.top : event.clientX - rect.left;
     const total = vertical ? rect.height : rect.width;
     console.log(delta, total, min, this.scope(), 'ajghiahig');
     const value2 = Number(min) + (delta / total) * this.scope();
@@ -176,7 +165,7 @@ export class GlueSlider {
     this.dragStatus = 'start';
   };
 
-  onTouchMove = (event) => {
+  onTouchMove = event => {
     console.log(11111);
     if (this.disabled || this.readonly) {
       return;
@@ -196,17 +185,11 @@ export class GlueSlider {
     const diff = (delta / total) * this.scope();
 
     if (this.isRange(this.startValue)) {
-      this.currentValue[this.buttonIndex] =
-        this.startValue[this.buttonIndex] + diff;
+      this.currentValue[this.buttonIndex] = this.startValue[this.buttonIndex] + diff;
     } else {
       this.currentValue = this.startValue + diff;
     }
-    console.log(
-      this.buttonIndex,
-      this.currentValue,
-      this.startValue,
-      'ghihihgagi'
-    );
+    console.log(this.buttonIndex, this.currentValue, this.startValue, 'ghihihgagi');
     this.updateValue(this.currentValue);
   };
 
@@ -226,9 +209,7 @@ export class GlueSlider {
     if (this.buttonBlock == '#slot') {
       return <slot name="button-block"></slot>;
     }
-    return (
-      <div class="glue-slider__button" style={getSizeStyle(this.buttonSize)} />
-    );
+    return <div class="glue-slider__button" style={getSizeStyle(this.buttonSize)} />;
   };
   renderButton = (index?: number) => {
     const getClassName = () => {
@@ -239,8 +220,7 @@ export class GlueSlider {
       return `glue-slider__button-wrapper`;
     };
 
-    const currentValue =
-      typeof index === 'number' ? this.value[index] : (this.value as number);
+    const currentValue = typeof index === 'number' ? this.value[index] : (this.value as number);
 
     return (
       <div
@@ -251,7 +231,7 @@ export class GlueSlider {
         aria-valuenow={currentValue}
         aria-valuemax={+this.max}
         aria-orientation={this.vertical ? 'vertical' : 'horizontal'}
-        onTouchStart={(e) => this.onTouchStart(e, index)}
+        onTouchStart={e => this.onTouchStart(e, index)}
         onTouchMove={this.onTouchMove}
         onTouchEnd={this.onTouchEnd}
         onTouchCancel={this.onTouchEnd}
@@ -264,7 +244,7 @@ export class GlueSlider {
   render() {
     return (
       <Host
-        ref={(dom) => {
+        ref={dom => {
           this.root = dom;
         }}
         style={this.wrapperStyle()}
@@ -275,9 +255,7 @@ export class GlueSlider {
         onClick={this.onClick}
       >
         <div class="glue-slider__bar" style={this.barStyle()}>
-          {this.range
-            ? [this.renderButton(0), this.renderButton(1)]
-            : this.renderButton()}
+          {this.range ? [this.renderButton(0), this.renderButton(1)] : this.renderButton()}
         </div>
       </Host>
     );
