@@ -1,5 +1,5 @@
 import { Plugin } from "vue";
-import { applyPolyfills, defineCustomElements } from "@nps/nps-stencil/loader";
+import { applyPolyfills, defineCustomElements } from "glue-components/loader";
 
 export const ComponentLibrary: Plugin = {
   async install() {

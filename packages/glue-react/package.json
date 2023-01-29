@@ -9,7 +9,7 @@
     "url": "https://github.com/ionic-team/ionic.git"
   },
   "scripts": {
-    "build1": "pnpm run clean && pnpm run tsc",
+    "build": "pnpm run clean && pnpm run tsc",
     "clean": "rm -rf dist",
     "tsc": "tsc -p ."
   },

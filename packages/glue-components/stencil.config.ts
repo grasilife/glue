@@ -31,12 +31,12 @@ export const config: Config = {
       serviceWorker: null,
     },
     vueOutputTarget({
-      componentCorePackage: '@glue/glue-vue3',
+      componentCorePackage: 'glue-components',
       proxiesFile: '../glue-vue3/src/components.ts',
     }),
 
     react({
-      componentCorePackage: '@glue/glue-react',
+      componentCorePackage: 'glue-components',
       proxiesFile: '../glue-react/src/components.ts',
       includeDefineCustomElements: true,
     }),
