@@ -15,6 +15,16 @@ import { RowAlign, RowJustify } from "./components/glue-row/glue-row";
 import { ToastType } from "./components/glue-toast/glue-toast";
 import { ResultType } from "./components/glue-uploader/glue-uploader";
 import { ImageFit as ImageFit1 } from "./components/glue-uploader-preview-item/glue-uploader-preview-item";
+export { CellArrowDirection } from "./components/glue-cell/glue-cell-interface";
+export { CheckerDirection } from "./components/glue-checkbox-group/glue-checkbox-group";
+export { DividerContentPosition } from "./components/glue-divider/glue-divider";
+export { GridDirection } from "./components/glue-grid/glue-grid";
+export { ImageFit } from "./components/glue-image/glue-image";
+export { NoticeBarMode } from "./components/glue-notice-bar/glue-notice-bar";
+export { RowAlign, RowJustify } from "./components/glue-row/glue-row";
+export { ToastType } from "./components/glue-toast/glue-toast";
+export { ResultType } from "./components/glue-uploader/glue-uploader";
+export { ImageFit as ImageFit1 } from "./components/glue-uploader-preview-item/glue-uploader-preview-item";
 export namespace Components {
     interface GlueActionBar {
         "safeAreaInsetBottom": true;
@@ -1268,7 +1278,7 @@ export namespace Components {
     interface GlueUploaderPreviewItem {
         "beforeDelete": any;
         "deletable": boolean;
-        "imageFit": ImageFit;
+        "imageFit": ImageFit1;
         "index": number;
         "item": any;
         "lazyLoad": boolean;
@@ -3698,7 +3708,7 @@ declare namespace LocalJSX {
     interface GlueUploaderPreviewItem {
         "beforeDelete"?: any;
         "deletable"?: boolean;
-        "imageFit"?: ImageFit;
+        "imageFit"?: ImageFit1;
         "index"?: number;
         "item"?: any;
         "lazyLoad"?: boolean;

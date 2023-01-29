@@ -4,9 +4,9 @@ module.exports = {
       version: 'detect',
     },
   },
-  extends: ['plugin:@stencil/recommended', 'prettier'],
+  extends: ['plugin:@stencil/recommended', 'prettier', 'plugin:prettier/recommended'],
   rules: {
-    camelcase: ['error'],
+    'camelcase': ['error'],
     '@stencil/required-jsdoc': 0,
     '@stencil/dependency-suggestions': 0,
     '@stencil/decorators-style': 0,

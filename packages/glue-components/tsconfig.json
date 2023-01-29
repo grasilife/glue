@@ -3,7 +3,6 @@
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "declaration": false,
-
     "lib": ["dom", "es2017"],
     "moduleResolution": "node",
     "module": "esnext",
