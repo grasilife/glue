@@ -1,0 +1,35 @@
+{
+  "name": "@glue/glue-vue3",
+  "private": false,
+  "version": "2.1.11",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build1": "pnpm run clean  && pnpm run tsc",
+    "clean": "rm -rf dist",
+    "tsc": "tsc -p ."
+  },
+  "files": [
+    "dist/"
+  ],
+  "maintainers": [
+    "feci"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.36",
+    "typescript": "^4.7.2"
+  },
+  "keywords": [],
+  "author": "",
+  "peerDependencies": {
+    "vue": "^3.1.0"
+  },
+  "dependencies": {
+    "glue-components": "workspace:0.0.2-alpha.0",
+    "vue": "^3.1.0"
+  }
+}

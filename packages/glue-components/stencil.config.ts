@@ -14,6 +14,7 @@ export const config: Config = {
     }),
     less(),
   ],
+  buildEs5: true,
   outputTargets: [
     {
       type: 'dist',
@@ -30,14 +31,14 @@ export const config: Config = {
       serviceWorker: null,
     },
     vueOutputTarget({
-      componentCorePackage: '@nps/nps-stencil',
-      proxiesFile: '../nps-vue3/src/components.ts',
+      componentCorePackage: '@glue/glue-vue3',
+      proxiesFile: '../glue-vue3/src/components.ts',
     }),
 
     react({
-      componentCorePackage: '@nps/nps-stencil',
-      proxiesFile: '../nps-react/src/components.ts',
-      includeDefineCustomElements: false,
+      componentCorePackage: '@glue/glue-react',
+      proxiesFile: '../glue-react/src/components.ts',
+      includeDefineCustomElements: true,
     }),
   ],
 };

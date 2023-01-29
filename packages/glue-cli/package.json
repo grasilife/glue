@@ -1,6 +1,6 @@
 {
   "name": "@glue/glue-cli",
-  "version": "4.0.4",
+  "version": "0.0.2-alpha.0",
   "main": "dist/index.cjs.js",
   "module": "dist/idnex.es.js",
   "types": "dist/index.d.ts",
