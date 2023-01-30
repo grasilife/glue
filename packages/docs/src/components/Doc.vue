@@ -2,6 +2,7 @@
   <div class="van-doc">
     <DocHeader
       :lang="lang"
+      :type="type"
       :config="config"
       :versions="versions"
       :types="types"

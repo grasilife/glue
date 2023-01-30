@@ -13,13 +13,26 @@ import {
   // listenToSyncPath,
   // syncPathToChild,
 } from "@glue/glue-cli";
+
 console.log(glueConfig, previewRouterExternals, "previewRouterExternals");
 // initIframe();
 const { locales, defaultLang, defaultType, types }: any = glueConfig.site;
+console.log(locales, "locales");
 // if (isMobile) {
 //   location.replace("mobile.html" + location.hash);
 // }
-
+function searchValueFn(list: any[]) {
+  let current = "";
+  list.map((item: any) => {
+    console.log(location.href, item, "typetypetype");
+    if (location.href.includes(item.label)) {
+      current = item.label;
+    }
+  });
+  return current;
+}
+let currentType = searchValueFn(types);
+console.log(currentType, "currentType");
 const router = createRouter({
   // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
   history: createWebHashHistory(),
@@ -35,11 +48,11 @@ function getRoutes() {
     {
       path: "/",
       name: "home",
-      redirect: `/${defaultType}/${defaultLang}/home`,
+      redirect: `/${currentType ?? defaultType}/${defaultLang}/home`,
       meta: {
         path: "home",
         lang: defaultLang,
-        type: defaultType,
+        type: currentType ?? defaultType,
       },
     },
   ];

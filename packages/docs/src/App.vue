@@ -20,14 +20,14 @@ import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const router = useRouter();
 console.log(route, "route111");
-const simulator = ref("http://127.0.0.1:3001/vue2-preview");
+const simulator = ref("");
 const lang = computed(() => {
   const { lang }: any = route.meta;
   return lang || "zh-CN";
 });
 const type = computed(() => {
   const { type }: any = route.meta;
-  console.log(type, "type");
+  console.log(type, "type111");
   return type || "vue2";
 });
 const langConfigs = computed(() => {
@@ -68,19 +68,22 @@ watch(
   () => type.value,
   () => {
     console.log(type.value, "type.value");
-    if (type.value == "vue2") {
-      simulator.value = "http://127.0.0.1:3001/vue2-preview";
-    } else if (type.value == "vue3") {
-      simulator.value = "http://127.0.0.1:3001/vue3-preview";
-    } else if (type.value == "react") {
-      simulator.value = "http://127.0.0.1:3001/react-preview";
-    } else if (type.value == "angular") {
-      simulator.value = "http://127.0.0.1:3001/angular-preview";
-    } else if (type.value == "svelte") {
-      simulator.value = "http://127.0.0.1:3001/svelte-preview";
-    } else {
-      simulator.value = "http://127.0.0.1:3001/stencil-preview";
-    }
+    // if (type.value == "vue2") {
+    //   simulator.value = "http://127.0.0.1:3001/vue2-preview";
+    // } else if (type.value == "vue3") {
+    //   simulator.value = "http://127.0.0.1:3001/vue3-preview";
+    // } else if (type.value == "react") {
+    //   simulator.value = "http://127.0.0.1:3001/react-preview";
+    // } else if (type.value == "angular") {
+    //   simulator.value = "http://127.0.0.1:3001/angular-preview";
+    // } else if (type.value == "svelte") {
+    //   simulator.value = "http://127.0.0.1:3001/svelte-preview";
+    // } else {
+    //   simulator.value = "http://127.0.0.1:3001/stencil-preview";
+    // }
+  },
+  {
+    immediate: true,
   }
 );
 watch(

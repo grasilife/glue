@@ -91,6 +91,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
   config: {
     type: Object,
     required: false,
@@ -124,7 +128,6 @@ const props = defineProps({
   },
 });
 const packageVersion = ref("1.0.0");
-const type = ref("vue2");
 const typeRef = ref();
 const showVersionPop = ref(false);
 const showTypePop = ref(false);
@@ -186,7 +189,7 @@ function onSwitchLang(lang: any) {
   router.push(`/${type}/${lang}/${path}`);
 }
 function onSwitchType(item: { label: any }) {
-  type.value = item.label;
+  // type.value = item.label;
   const { lang, path } = route.meta;
   router.push(`/${item.label}/${lang}/${path}`);
 }
