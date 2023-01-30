@@ -116,17 +116,16 @@ function setTitle() {
   document.title = title;
 }
 onMounted(() => {
-  //可能会陷入死循环
   // listenParentPathChange(router);
-  // window.addEventListener("message", (event) => {
-  //   console.log(event.data, "eventeventeventeventevent");
-  //   if (event.data?.type !== "replacePath") {
-  //     return;
-  //   }
-  //   const path = event.data?.value || "";
-  //   console.log(path, router, "path111112222");
-  //   router.push(path).catch(() => {});
-  // });
+  window.addEventListener("message", (event) => {
+    console.log(event.data, "eventeventeventeventevent");
+    if (event.data?.type !== "replacePath") {
+      return;
+    }
+    const path = event.data?.value || "";
+    console.log(path, router, "path111112222");
+    router.push(path).catch(() => {});
+  });
 });
 </script>
 
