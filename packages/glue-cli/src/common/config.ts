@@ -18,9 +18,10 @@ let config: any = {
     versions: [{ label: "1.0.0", link: "/glue/" }],
     types: [
       { label: "vue2", link: "/glue/" },
-      { label: "react", link: "/glue/react" },
       { label: "vue3", link: "/glue/vue3" },
+      { label: "react", link: "/glue/react" },
       { label: "angular", link: "/glue/angular" },
+      { label: "svelte", link: "/glue/svelte" },
       { label: "stencil", link: "/glue/stencil" },
     ],
     baiduAnalytics: {
