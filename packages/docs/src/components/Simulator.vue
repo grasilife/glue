@@ -10,7 +10,7 @@
   </div>
 </template>
 <script setup lang="tsx" name="VanDocSimulator">
-import { onMounted, computed, ref, watch, nextTick } from "vue";
+import { onMounted, computed, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
 const props = defineProps({

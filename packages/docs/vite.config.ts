@@ -140,6 +140,18 @@ export default defineConfig({
         target: "http://127.0.0.1:3002",
         changeOrigin: true,
       },
+      "^/vue3-preview": {
+        target: "http://127.0.0.1:3003",
+        changeOrigin: true,
+      },
+      "^/react-preview": {
+        target: "http://127.0.0.1:3004",
+        changeOrigin: true,
+      },
+      "^/svelte-preview": {
+        target: "http://127.0.0.1:3005",
+        changeOrigin: true,
+      },
     },
   },
 });
