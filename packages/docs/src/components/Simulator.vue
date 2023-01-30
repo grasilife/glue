@@ -5,6 +5,7 @@
       :src="props.src"
       :style="simulatorStyle"
       frameborder="0"
+      :key="props.src"
       @load="iframeLoad"
     />
   </div>
