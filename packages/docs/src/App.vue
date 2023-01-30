@@ -68,19 +68,19 @@ watch(
   () => type.value,
   () => {
     console.log(type.value, "type.value");
-    // if (type.value == "vue2") {
-    //   simulator.value = "http://127.0.0.1:3001/vue2-preview";
-    // } else if (type.value == "vue3") {
-    //   simulator.value = "http://127.0.0.1:3001/vue3-preview";
-    // } else if (type.value == "react") {
-    //   simulator.value = "http://127.0.0.1:3001/react-preview";
-    // } else if (type.value == "angular") {
-    //   simulator.value = "http://127.0.0.1:3001/angular-preview";
-    // } else if (type.value == "svelte") {
-    //   simulator.value = "http://127.0.0.1:3001/svelte-preview";
-    // } else {
-    //   simulator.value = "http://127.0.0.1:3001/stencil-preview";
-    // }
+    if (type.value == "vue2") {
+      simulator.value = "http://127.0.0.1:3001/vue2-preview";
+    } else if (type.value == "vue3") {
+      simulator.value = "http://127.0.0.1:3001/vue3-preview";
+    } else if (type.value == "react") {
+      simulator.value = "http://127.0.0.1:3001/react-preview";
+    } else if (type.value == "angular") {
+      simulator.value = "http://127.0.0.1:3001/angular-preview";
+    } else if (type.value == "svelte") {
+      simulator.value = "http://127.0.0.1:3001/svelte-preview";
+    } else {
+      simulator.value = "http://127.0.0.1:3001/stencil-preview";
+    }
   },
   {
     immediate: true,
@@ -116,16 +116,17 @@ function setTitle() {
   document.title = title;
 }
 onMounted(() => {
+  //可能会陷入死循环
   // listenParentPathChange(router);
-  window.addEventListener("message", (event) => {
-    console.log(event.data, "eventeventeventeventevent");
-    if (event.data?.type !== "replacePath") {
-      return;
-    }
-    const path = event.data?.value || "";
-    console.log(path, router, "path111112222");
-    router.push(path).catch(() => {});
-  });
+  // window.addEventListener("message", (event) => {
+  //   console.log(event.data, "eventeventeventeventevent");
+  //   if (event.data?.type !== "replacePath") {
+  //     return;
+  //   }
+  //   const path = event.data?.value || "";
+  //   console.log(path, router, "path111112222");
+  //   router.push(path).catch(() => {});
+  // });
 });
 </script>
 
