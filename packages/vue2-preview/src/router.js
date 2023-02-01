@@ -29,7 +29,7 @@ function getRoutes() {
     {
       path: "/",
       name: "home",
-      component: () => import("~/components/DemoHome.vue"),
+      component: () => import("~/components/demo-home/index.vue"),
     },
   ];
   Object.keys(locales).forEach((lang) => {
@@ -38,34 +38,30 @@ function getRoutes() {
         element.items.forEach((element2) => {
           console.log(element2, "element2");
           if (previewRouterExternals.includes(element2.path)) {
-            types.forEach((type) => {
-              routes.push({
-                name: `/${type.label}/${lang}/${element2.title}`,
-                path: `/${type.label}/${lang}/${element2.path}`,
-                meta: {
-                  name: `${element2.title}`,
-                  path: element2.path,
-                  lang,
-                  type: type.label,
-                },
-                component: () => import("~/components/DemoHome.vue"),
-              });
+            routes.push({
+              name: `/vue2/${lang}/${element2.title}`,
+              path: `/vue2/${lang}/${element2.path}`,
+              meta: {
+                name: `${element2.title}`,
+                path: element2.path,
+                lang,
+                type: "vue2",
+              },
+              component: () => import("~/components/demo-home/index.vue"),
             });
           } else {
-            types.forEach((type) => {
-              routes.push({
-                name: `/${type.label}/${lang}/${element2.title}`,
+            routes.push({
+              name: `/vue2/${lang}/${element2.title}`,
 
-                path: `/${type.label}/${lang}/${element2.path}`,
-                meta: {
-                  name: `${element2.title}`,
-                  path: element2.path,
-                  lang,
-                  type: type.label,
-                },
-                component: () =>
-                  import("./pages/" + element2.path + "/index.vue"),
-              });
+              path: `/vue2/${lang}/${element2.path}`,
+              meta: {
+                name: `${element2.title}`,
+                path: element2.path,
+                lang,
+                type: "vue2",
+              },
+              component: () =>
+                import("./pages/" + element2.path + "/index.vue"),
             });
           }
         });

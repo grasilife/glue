@@ -1,34 +1,98 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import DemoHome from "~/components/demo-home/index";
+import NoMatch from "~/components/no-match/index";
+import { lazy, Suspense } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import type { RouteObject } from "react-router-dom";
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router-dom";
+import {
+  Await,
+  createBrowserRouter,
+  createRoutesFromElements,
+  defer,
+  Form,
+  Route,
+  RouterProvider,
+  useAsyncError,
+  useAsyncValue,
+  useFetcher,
+  useFetchers,
+  useLoaderData,
+  useNavigation,
+  useRevalidator,
+  useRouteError,
+  Outlet,
+  Link,
+  useRoutes,
+  useParams,
+} from "react-router-dom";
+import {
+  glueConfig,
+  previewRouterExternals,
+  // isMobile,
+  // listenParentPathChange,
+  // initIframe,
+  // listenToSyncPath,
+  // syncPathToParent,
+} from "@glue/glue-cli";
+function getRoutes() {
+  const { locales, defaultLang, types } = glueConfig.site;
+  let routes: RouteObject[] = [];
+  Object.keys(locales).forEach((lang) => {
+    locales[lang].nav.forEach((element: { items: any[] }) => {
+      if (element.items) {
+        element.items.forEach((element2) => {
+          console.log(element2, "element2");
+          if (previewRouterExternals.includes(element2.path)) {
+            routes.push({
+              path: `/react/${lang}/${element2.path}`,
+              // meta: {
+              //   name: `${element2.title}`,
+              //   path: element2.path,
+              //   lang,
+              //   type: type.label,
+              // },
+              element: <DemoHome />,
+            });
+          } else {
+            const LazyCom = lazy(
+              () => import(`./pages/${element2.path}/index`)
+            );
+            routes.push({
+              path: `/react/${lang}/${element2.path}`,
+              // meta: {
+              //   name: `${element2.title}`,
+              //   path: element2.path,
+              //   lang,
+              //   type: type.label,
+              // },
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+              element: (
+                <Suspense fallback={<>...</>}>
+                  <LazyCom />
+                </Suspense>
+              ),
+            });
+          }
+        });
+      }
+    });
+  });
+  console.log(routes, "routesroutes");
+  return routes;
 }
 
-export default App
+export default function App() {
+  let routes: RouteObject[] = [
+    {
+      path: "/",
+      element: <DemoHome />,
+      children: getRoutes(),
+    },
+    { path: "*", element: <NoMatch /> },
+  ];
+
+  let element = useRoutes(routes);
+
+  return <>{element}</>;
+}
