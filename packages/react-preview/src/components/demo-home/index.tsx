@@ -5,7 +5,7 @@ import { GlueDocNavList } from "@glue/glue-react";
 import classnames from "classnames";
 import { Key } from "react";
 import { GlueDocNavListCustomEvent } from "glue-components/dist/types/components";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import "./index.less";
 interface IMeta {
   name: string;
@@ -14,6 +14,7 @@ interface IMeta {
   type: string;
 }
 export default function DemoHome() {
+  const navigate = useNavigate();
   const { lang, type } = useLoaderData() as IMeta;
   console.log(lang, type, "data");
   console.log(glueConfig, "glueConfig");
@@ -33,9 +34,9 @@ export default function DemoHome() {
   console.log(config, smallTitle, "config");
   function glueItemClick(event: GlueDocNavListCustomEvent<any>) {
     console.log(event, "event");
-    // let pathEnd = `/${this.type}/${this.lang}/${event.detail.path}`;
-    // console.log(pathEnd, "pathEndpathEnd");
-    // this.$router.push(pathEnd);
+    let pathEnd = `/${type}/${lang}/${event.detail.path}`;
+    console.log(pathEnd, "pathEndpathEnd");
+    navigate(pathEnd);
   }
   return (
     <div className="demo-home">
