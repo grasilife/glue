@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/react-preview",
+  base: "/preview-react",
   plugins: [react()],
   server: {
     port: 3004,

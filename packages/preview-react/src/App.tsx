@@ -82,7 +82,7 @@ export default function App() {
       ...getRoutes(),
       { path: "*", element: <NoMatch /> },
     ],
-    { basename: "/react-preview" }
+    { basename: "/preview-react" }
   );
 
   return <RouterProvider router={router} />;

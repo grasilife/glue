@@ -73,7 +73,7 @@ watch(
     } else if (type.value == "vue3") {
       simulator.value = "http://127.0.0.1:3001/vue3-preview";
     } else if (type.value == "react") {
-      simulator.value = "http://127.0.0.1:3001/react-preview";
+      simulator.value = "http://127.0.0.1:3001/preview-react";
     } else if (type.value == "angular") {
       simulator.value = "http://127.0.0.1:3001/angular-preview";
     } else if (type.value == "svelte") {

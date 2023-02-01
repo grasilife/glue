@@ -144,7 +144,7 @@ export default defineConfig({
         target: "http://127.0.0.1:3003",
         changeOrigin: true,
       },
-      "^/react-preview": {
+      "^/preview-react": {
         target: "http://127.0.0.1:3004",
         changeOrigin: true,
       },

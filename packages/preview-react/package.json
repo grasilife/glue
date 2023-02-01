@@ -1,5 +1,5 @@
 {
-  "name": "@glue/react-preview",
+  "name": "@glue/preview-react",
   "private": true,
   "version": "0.0.2-alpha.0",
   "type": "module",
