@@ -35,8 +35,8 @@ import {
   // listenToSyncPath,
   // syncPathToParent,
 } from "@glue/glue-cli";
+const type = "react";
 function getRoutes() {
-  const type = "react";
   const { locales, defaultLang, types } = glueConfig.site;
   let routes: any[] = [];
   Object.keys(locales).forEach((lang) => {
@@ -47,25 +47,29 @@ function getRoutes() {
           if (previewRouterExternals.includes(element2.path)) {
             routes.push({
               path: `/${type}/${lang}/${element2.path}`,
-              meta: {
-                name: `${element2.title}`,
-                path: element2.path,
-                lang,
-                type: `${type}`,
+              loader: () => {
+                return {
+                  name: `${element2.title}`,
+                  path: element2.path,
+                  lang,
+                  type: `${type}`,
+                };
               },
               element: <DemoHome />,
             });
           } else {
             const LazyCom = lazy(
-              () => /* @vite-ignore */ import(`./pages/${element2.path}/index`)
+              () => import(`./pages/${element2.path}/index`)
             );
             routes.push({
               path: `/${type}/${lang}/${element2.path}`,
-              meta: {
-                name: `${element2.title}`,
-                path: element2.path,
-                lang,
-                type: `${type}`,
+              loader: () => {
+                return {
+                  name: `${element2.title}`,
+                  path: element2.path,
+                  lang,
+                  type: `${type}`,
+                };
               },
 
               element: (
@@ -84,16 +88,25 @@ function getRoutes() {
 }
 
 export default function App() {
-  let routes: RouteObject[] = [
-    {
-      path: "/",
-      element: <DemoHome />,
-      children: getRoutes(),
-    },
-    { path: "*", element: <NoMatch /> },
-  ];
+  let router = createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: <DemoHome />,
+        children: getRoutes(),
+        loader: () => {
+          return {
+            name: `home`,
+            path: "/",
+            lang: "",
+            type: `${type}`,
+          };
+        },
+      },
+      { path: "*", element: <NoMatch /> },
+    ],
+    { basename: "/react-preview" }
+  );
 
-  let element = useRoutes(routes);
-
-  return <>{element}</>;
+  return <RouterProvider router={router} />;
 }

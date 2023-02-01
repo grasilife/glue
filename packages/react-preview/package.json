@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@glue/glue-cli": "workspace:0.0.2-alpha.0",
+    "@glue/glue-react": "workspace:0.0.2-alpha.0",
+    "classnames": "^2.2.6",
     "glue-components": "workspace:0.0.2-alpha.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
