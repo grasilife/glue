@@ -4,14 +4,14 @@
       class="demo-home__title"
       :class="{ 'demo-home__title--small': smallTitle }"
     >
-      <img :src="glueConfig.logo" />
-      <span>{{ glueConfig.title }}</span>
+      <img :src="config.logo" />
+      <span>{{ config.title }}</span>
     </h1>
-    <h2 v-if="glueConfig.description" class="demo-home__desc">
-      {{ glueConfig.description }}
+    <h2 v-if="config.description" class="demo-home__desc">
+      {{ config.description }}
     </h2>
     <glue-doc-nav-list
-      v-for="(group, index) in glueConfig.nav"
+      v-for="(group, index) in config.nav"
       :key="index"
       :gtitle="group.title"
       :group.prop="group.items"
@@ -39,7 +39,7 @@ export default {
       return type || "vue2";
     },
 
-    glueConfig() {
+    config() {
       const { locales } = glueConfig.site;
       console.log(locales, "locales");
       if (locales) {

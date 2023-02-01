@@ -6,20 +6,31 @@ import classnames from "classnames";
 import { Key } from "react";
 import { GlueDocNavListCustomEvent } from "glue-components/dist/types/components";
 import { useLoaderData } from "react-router-dom";
+import "./index.less";
+interface IMeta {
+  name: string;
+  path: string;
+  lang: string;
+  type: string;
+}
 export default function DemoHome() {
-  const data = useLoaderData();
-  console.log(data, "data");
-  // const [smallTitle, setSmallTitle] = useState(glueConfig.title.length >= 8);
-  // const msg = useMemo(() => {
-  //   const { locales } = glueConfig.site;
-  //   console.log(locales, "locales");
-  //   if (locales) {
-  //     console.log(locales[this.lang], "locales[this.lang]");
-  //     return locales[this.lang];
-  //   }
-  //   console.log(glueConfig.site, "glueConfig.site");
-  //   return glueConfig.site;
-  // }, [name, food]);
+  const { lang, type } = useLoaderData() as IMeta;
+  console.log(lang, type, "data");
+  console.log(glueConfig, "glueConfig");
+  const config = useMemo(() => {
+    const { locales } = glueConfig.site;
+    console.log(locales, "locales");
+    if (locales) {
+      console.log(locales[lang], "locales[this.lang]");
+      return locales[lang];
+    }
+    console.log(glueConfig.site, "glueConfig.site");
+    return glueConfig.site;
+  }, []);
+  const smallTitle = useMemo(() => {
+    return config.length >= 8;
+  }, [config]);
+  console.log(config, smallTitle, "config");
   function glueItemClick(event: GlueDocNavListCustomEvent<any>) {
     console.log(event, "event");
     // let pathEnd = `/${this.type}/${this.lang}/${event.detail.path}`;
@@ -27,23 +38,19 @@ export default function DemoHome() {
     // this.$router.push(pathEnd);
   }
   return (
-    <div
-      className={classnames("demo-home", {
-        // "demo-home__title--small": smallTitle,
-      })}
-    >
-      11
+    <div className="demo-home">
       <h1
-        className="demo-home__title"
-        // :class="{ 'demo-home__title--small': smallTitle }"
+        className={classnames("demo-home__title", {
+          "demo-home__title--small": smallTitle,
+        })}
       >
-        <img src={glueConfig.logo} />
-        <span>{glueConfig.title}</span>
+        <img src={config.logo} />
+        <span>{config.title}</span>
       </h1>
       <h2 v-if="glueConfig.description" className="demo-home__desc">
-        {glueConfig.description}
+        {config.description}
       </h2>
-      {/* {glueConfig.nav.map((group: { title: any; items: any }, index: Key) => {
+      {config.nav.map((group: { title: any; items: any }, index: Key) => {
         return (
           <GlueDocNavList
             key={index}
@@ -54,7 +61,7 @@ export default function DemoHome() {
             }}
           ></GlueDocNavList>
         );
-      })} */}
+      })}
     </div>
   );
 }
