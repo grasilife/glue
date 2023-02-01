@@ -69,7 +69,7 @@ watch(
   () => {
     console.log(type.value, "type.value");
     if (type.value == "vue2") {
-      simulator.value = "http://127.0.0.1:3001/vue2-preview";
+      simulator.value = "http://127.0.0.1:3001/preview-vue2";
     } else if (type.value == "vue3") {
       simulator.value = "http://127.0.0.1:3001/vue3-preview";
     } else if (type.value == "react") {
