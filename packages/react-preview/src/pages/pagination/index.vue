@@ -1,0 +1,96 @@
+<template>
+  <glue-doc-section :class="demoName">
+    <glue-doc-block :gtitle="basicUsage">
+      <glue-pagination
+        :value="currentPage1"
+        :total-items="24"
+        :items-per-page="5"
+        :prev-text="prevText"
+        :next-text="nextText"
+      />
+    </glue-doc-block>
+
+    <glue-doc-block :gtitle="title2">
+      <glue-pagination
+        :value="currentPage2"
+        :page-count="12"
+        :prev-text="prevText"
+        :next-text="nextText"
+        mode="simple"
+        size="small"
+      />
+    </glue-doc-block>
+
+    <glue-doc-block :gtitle="title3">
+      <glue-pagination
+        :value="currentPage3"
+        force-ellipses
+        :total-items="125"
+        :show-page-size="3"
+        :prev-text="prevText"
+        :next-text="nextText"
+      />
+    </glue-doc-block>
+
+    <glue-doc-block :gtitle="title4">
+      <glue-pagination
+        :value="currentPage4"
+        :total-items="125"
+        :show-page-size="5"
+        prev-text="#slot"
+        next-text="#slot"
+      >
+        <div slot="prev-text">
+          <glue-icon name="arrow-left" />
+        </div>
+        <div slot="next-text">
+          <glue-icon name="arrow" />
+        </div>
+      </glue-pagination>
+    </glue-doc-block>
+  </glue-doc-section>
+</template>
+
+<script>
+import { getDemoName } from "@glue/glue-cli";
+export default {
+  data() {
+    return {
+      basicUsage: "基础用法",
+      title2: "简单模式",
+      title3: "显示省略号",
+      title4: "自定义按钮",
+      prevText: "上一页",
+      nextText: "下一页",
+      currentPage1: 1,
+      currentPage2: 1,
+      currentPage3: 1,
+      currentPage4: 1,
+    };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
+  },
+};
+</script>
+
+<style lang="less">
+@import "@glue/glue-cli/src/common/style/var.less";
+
+.demo-pagination {
+  .glue-pagination {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .glue-doc-demo-block {
+    padding: 0 @padding-md;
+  }
+
+  .glue-doc-demo-block__title {
+    padding-left: 0;
+  }
+}
+</style>

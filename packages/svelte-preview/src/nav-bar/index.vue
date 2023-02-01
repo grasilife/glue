@@ -1,0 +1,67 @@
+<template>
+  <glue-doc-section :class="demoName">
+    <glue-doc-block :gtitle="basicUsage">
+      <glue-nav-bar
+        :title="title"
+        :left-text="back"
+        :right-text="button"
+        left-arrow
+        @glueLeft="glueLeft"
+        @glueRight="glueRight"
+      ></glue-nav-bar>
+    </glue-doc-block>
+
+    <glue-doc-block :gtitle="useSlot">
+      <glue-nav-bar
+        :title="title"
+        :left-text="back"
+        left-arrow
+        right-text="#slot"
+      >
+        <div slot="right-text" class="icon">
+          <glue-icon name="search" size="18" />
+        </div>
+      </glue-nav-bar>
+    </glue-doc-block>
+  </glue-doc-section>
+</template>
+
+<script>
+import { getDemoName } from "@glue/glue-cli";
+export default {
+  data() {
+    return {
+      button: "按钮",
+      title: "标题",
+      basicUsage: "基础用法",
+      useSlot: "使用插槽",
+      back: "返回",
+    };
+  },
+  computed: {
+    demoName() {
+      return getDemoName(this.$route);
+    },
+  },
+  methods: {
+    glueLeft() {},
+    glueRight() {},
+  },
+};
+</script>
+<style lang="less">
+@import "@glue/glue-cli/src/common/style/var.less";
+
+.demo-nav-bar {
+  .icon {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+}
+</style>
