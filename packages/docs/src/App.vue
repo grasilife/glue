@@ -71,7 +71,7 @@ watch(
     if (type.value == "vue2") {
       simulator.value = "http://127.0.0.1:3001/preview-vue2";
     } else if (type.value == "vue3") {
-      simulator.value = "http://127.0.0.1:3001/vue3-preview";
+      simulator.value = "http://127.0.0.1:3001/preview-vue3";
     } else if (type.value == "react") {
       simulator.value = "http://127.0.0.1:3001/preview-react";
     } else if (type.value == "angular") {

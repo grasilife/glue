@@ -140,7 +140,7 @@ export default defineConfig({
         target: "http://127.0.0.1:3002",
         changeOrigin: true,
       },
-      "^/vue3-preview": {
+      "^/preview-vue3": {
         target: "http://127.0.0.1:3003",
         changeOrigin: true,
       },

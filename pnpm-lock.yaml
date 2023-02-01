@@ -302,7 +302,7 @@ importers:
       "@vitejs/plugin-vue2": 2.2.0_vite@4.0.4+vue@2.7.14
       vite: 4.0.4
 
-  packages/vue3-preview:
+  packages/preview-vue3:
     specifiers:
       "@glue/glue-cli": workspace:0.0.2-alpha.0
       "@vant/icons": ^2.0.1

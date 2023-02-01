@@ -1,5 +1,5 @@
 {
-  "name": "@glue/vue3-preview",
+  "name": "@glue/preview-vue3",
   "private": true,
   "version": "0.0.2-alpha.0",
   "type": "module",
