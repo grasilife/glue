@@ -51,7 +51,7 @@ export default {
     },
 
     smallTitle() {
-      return this.glueConfig.title.length >= 8;
+      return this.config.title.length >= 8;
     },
   },
   methods: {
