@@ -2,41 +2,10 @@ import { useState } from "react";
 import DemoHome from "~/components/demo-home/index";
 import NoMatch from "~/components/no-match/index";
 import { lazy, Suspense } from "react";
-
-import type { RouteObject } from "react-router-dom";
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router-dom";
-import {
-  Await,
-  createBrowserRouter,
-  createRoutesFromElements,
-  defer,
-  Form,
-  Route,
-  RouterProvider,
-  useAsyncError,
-  useAsyncValue,
-  useFetcher,
-  useFetchers,
-  useLoaderData,
-  useNavigation,
-  useRevalidator,
-  useRouteError,
-  Outlet,
-  Link,
-  useRoutes,
-  useParams,
-} from "react-router-dom";
-import {
-  glueConfig,
-  previewRouterExternals,
-  // isMobile,
-  // listenParentPathChange,
-  // initIframe,
-  // listenToSyncPath,
-  // syncPathToParent,
-} from "@glue/glue-cli";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { glueConfig, previewRouterExternals } from "@glue/glue-cli";
 const type = "react";
-const { locales, defaultLang, types } = glueConfig.site;
+const { locales } = glueConfig.site;
 function searchCurrentLang() {
   let current = "";
   Object.keys(locales).map((item: any) => {
@@ -101,7 +70,6 @@ export default function App() {
       {
         path: "/",
         element: <DemoHome />,
-        children: getRoutes(),
         loader: () => {
           return {
             name: `home`,
@@ -111,6 +79,7 @@ export default function App() {
           };
         },
       },
+      ...getRoutes(),
       { path: "*", element: <NoMatch /> },
     ],
     { basename: "/react-preview" }
