@@ -1,6 +1,6 @@
 {
   "name": "angular-preview",
-  "version": "0.0.0",
+  "version": "0.0.2-alpha.0",
   "scripts": {
     "ng": "ng",
     "doc": "ng serve",

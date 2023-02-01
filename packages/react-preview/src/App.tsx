@@ -57,7 +57,7 @@ function getRoutes() {
             });
           } else {
             const LazyCom = lazy(
-              () => import(`./pages/${element2.path}/index`)
+              () => /* @vite-ignore */ import(`./pages/${element2.path}/index`)
             );
             routes.push({
               path: `/${type}/${lang}/${element2.path}`,
