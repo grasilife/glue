@@ -256,7 +256,7 @@ importers:
       typescript: 4.9.4
       vite: 4.0.4
 
-  packages/svelte-preview:
+  packages/preview-svelte:
     specifiers:
       "@glue/glue-cli": workspace:0.0.2-alpha.0
       "@sveltejs/vite-plugin-svelte": ^2.0.0

@@ -148,7 +148,7 @@ export default defineConfig({
         target: "http://127.0.0.1:3004",
         changeOrigin: true,
       },
-      "^/svelte-preview": {
+      "^/preview-svelte": {
         target: "http://127.0.0.1:3005",
         changeOrigin: true,
       },

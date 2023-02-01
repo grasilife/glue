@@ -1,5 +1,5 @@
 {
-  "name": "@glue/svelte-preview",
+  "name": "@glue/preview-svelte",
   "private": true,
   "version": "0.0.2-alpha.0",
   "type": "module",
