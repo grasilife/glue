@@ -36,8 +36,9 @@ import {
   // syncPathToParent,
 } from "@glue/glue-cli";
 function getRoutes() {
+  const type = "react";
   const { locales, defaultLang, types } = glueConfig.site;
-  let routes: RouteObject[] = [];
+  let routes: any[] = [];
   Object.keys(locales).forEach((lang) => {
     locales[lang].nav.forEach((element: { items: any[] }) => {
       if (element.items) {
@@ -45,13 +46,13 @@ function getRoutes() {
           console.log(element2, "element2");
           if (previewRouterExternals.includes(element2.path)) {
             routes.push({
-              path: `/react/${lang}/${element2.path}`,
-              // meta: {
-              //   name: `${element2.title}`,
-              //   path: element2.path,
-              //   lang,
-              //   type: type.label,
-              // },
+              path: `/${type}/${lang}/${element2.path}`,
+              meta: {
+                name: `${element2.title}`,
+                path: element2.path,
+                lang,
+                type: `${type}`,
+              },
               element: <DemoHome />,
             });
           } else {
@@ -59,13 +60,13 @@ function getRoutes() {
               () => import(`./pages/${element2.path}/index`)
             );
             routes.push({
-              path: `/react/${lang}/${element2.path}`,
-              // meta: {
-              //   name: `${element2.title}`,
-              //   path: element2.path,
-              //   lang,
-              //   type: type.label,
-              // },
+              path: `/${type}/${lang}/${element2.path}`,
+              meta: {
+                name: `${element2.title}`,
+                path: element2.path,
+                lang,
+                type: `${type}`,
+              },
 
               element: (
                 <Suspense fallback={<>...</>}>

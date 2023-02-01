@@ -16,7 +16,7 @@ const { locales, defaultLang, types } = glueConfig.site;
 //   location.replace("mobile.html" + location.hash);
 // }
 Vue.use(VueRouter);
-
+const type = "vue2";
 const router = new VueRouter({
   mode: "hash",
   base: "/",
@@ -39,26 +39,26 @@ function getRoutes() {
           console.log(element2, "element2");
           if (previewRouterExternals.includes(element2.path)) {
             routes.push({
-              name: `/vue2/${lang}/${element2.title}`,
-              path: `/vue2/${lang}/${element2.path}`,
+              name: `/${type}]/${lang}/${element2.title}`,
+              path: `/${type}/${lang}/${element2.path}`,
               meta: {
                 name: `${element2.title}`,
                 path: element2.path,
                 lang,
-                type: "vue2",
+                type: `${type}`,
               },
               component: () => import("~/components/demo-home/index.vue"),
             });
           } else {
             routes.push({
-              name: `/vue2/${lang}/${element2.title}`,
+              name: `/${type}/${lang}/${element2.title}`,
 
-              path: `/vue2/${lang}/${element2.path}`,
+              path: `/${type}/${lang}/${element2.path}`,
               meta: {
                 name: `${element2.title}`,
                 path: element2.path,
                 lang,
-                type: "vue2",
+                type: `${type}`,
               },
               component: () =>
                 import("./pages/" + element2.path + "/index.vue"),
