@@ -17,7 +17,7 @@ importers:
       plop: 2.7.6
       rimraf: 4.1.2
 
-  packages/angular-preview:
+  packages/preview-angular:
     specifiers:
       "@angular-devkit/build-angular": ^14.0.3
       "@angular/animations": ^14.0.0

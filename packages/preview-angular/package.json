@@ -1,9 +1,9 @@
 {
-  "name": "angular-preview",
+  "name": "preview-angular",
   "version": "0.0.2-alpha.0",
   "scripts": {
     "ng": "ng",
-    "doc": "ng serve",
+    "doc": "ng serve --port 3006",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

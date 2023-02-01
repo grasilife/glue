@@ -152,7 +152,7 @@ export default defineConfig({
         target: "http://127.0.0.1:3005",
         changeOrigin: true,
       },
-      "^/angular-preview": {
+      "^/preview-angular": {
         target: "http://127.0.0.1:3006",
         changeOrigin: true,
       },

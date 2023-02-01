@@ -75,7 +75,7 @@ watch(
     } else if (type.value == "react") {
       simulator.value = "http://127.0.0.1:3001/preview-react";
     } else if (type.value == "angular") {
-      simulator.value = "http://127.0.0.1:3001/angular-preview";
+      simulator.value = "http://127.0.0.1:3001/preview-angular";
     } else if (type.value == "svelte") {
       simulator.value = "http://127.0.0.1:3001/preview-svelte";
     } else {
