@@ -1,9 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import {
-  glueConfig,
-  previewRouterExternals,
-} from "@glue/glue-cli";
+import { glueConfig, previewRouterExternals } from "@glue/glue-cli";
 const { locales, defaultLang, types } = glueConfig.site;
 Vue.use(VueRouter);
 const type = "vue2";
@@ -57,28 +54,9 @@ function getRoutes() {
       }
     });
   });
-  // routes.push({
-  //   path: "*",
-  //   component: () => import("~/components/DemoHome.vue"),
-  // });
+
   console.log(routes, "routes2");
   return routes;
 }
 
-// /vue2/zh-CN/icon
-// router.push("/vue2/zh-CN/icon");
-// router.afterEach(() => {
-//   // router.push("/vue2/zh-CN/icon");
-// });
-// console.log(Vue.$router, "router1111");
-// Vue.$router.push("/vue2/zh-CN/button");
-// const originalPush = Router.prototype.push;
-// Router.prototype.push = function push(location) {
-//   return originalPush.call(this, location).catch((err) => err);
-// };
-// Vue.nextTick(() => {
-//   listenParentPathChange(router);
-// });
-
-// window.vueRouter = router;
 export default router;

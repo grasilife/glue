@@ -1,15 +1,16 @@
 <template>
   <div class="root">
-    <glue-doc-nav @glueBack="onBack" :gtitle="title"></glue-doc-nav>
-    <router-view>
-      <keep-alive>
-        <glue-doc-section> </glue-doc-section>
-      </keep-alive>
-    </router-view>
+    <glue-doc-nav
+      @glueBack="onBack"
+      :gtitle="title"
+      v-if="showDocNav"
+    ></glue-doc-nav>
+    <router-view> </router-view>
   </div>
 </template>
 
 <script>
+import { previewRouterExternals } from "@glue/glue-cli";
 export default {
   name: "App",
 
@@ -25,17 +26,19 @@ export default {
 
   computed: {
     title() {
-      const { name } = this.$route.meta || {};
+      const { name } = this.$route.meta;
       console.log(this.$route, "this.$route");
       console.log(name, this.$route, "name11");
       return name ? name.replace(/-/g, "") : "";
+    },
+    showDocNav() {
+      const { path } = this.$route.meta;
+      return !previewRouterExternals.includes(path);
     },
   },
 
   watch: {
     $route(to, from) {
-      // 对路由变化作出响应...
-      console.log("111112212211");
       this.syncPathToParent();
     },
   },
