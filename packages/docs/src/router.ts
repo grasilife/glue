@@ -16,7 +16,6 @@ const router = createRouter({
   history: createWebHistory(),
   routes: getRoutes(),
 });
-window.vueRouter = router;
 function getRoutes() {
   const routes: any = [
     {
@@ -24,6 +23,7 @@ function getRoutes() {
       name: "home",
       redirect: `/${currentType}/${currentLang}/home`,
       meta: {
+        name: "home",
         path: "home",
         lang: currentLang,
         type: currentType,

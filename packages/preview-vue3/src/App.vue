@@ -1,29 +1,69 @@
+<template>
+  <div class="root">
+    <glue-doc-nav
+      @glueBack="onBack"
+      :gtitle="title"
+      v-if="showDocNav"
+    ></glue-doc-nav>
+    <router-view> </router-view>
+  </div>
+</template>
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { computed, onMounted, watch } from "vue";
+import { previewRouterExternals } from "@glue/glue-cli";
+import { useRoute, useRouter } from "vue-router";
+const route = useRoute();
+const router = useRouter();
+
+const title = computed(() => {
+  const { name, lang } = route.meta as any;
+  console.log(name, lang, route.path, route.meta, "namenamenamename11");
+  return name ? name.replace(/-/g, "") : "";
+});
+const showDocNav = computed(() => {
+  const { path } = route.meta as any;
+  return !previewRouterExternals.includes(path);
+});
+function onBack() {
+  if (history.length > 1) {
+    history.back();
+  } else {
+    router.replace("/");
+  }
+}
+watch(
+  () => route,
+  () => {
+    syncPathToParent();
+  }
+);
+onMounted(() => {
+  window.addEventListener("message", (event) => {
+    if (event.data?.type !== "replacePath") {
+      return;
+    }
+    console.log(event.data, "event.data");
+    const path = event.data?.value || "";
+    router.replace(path);
+  });
+});
+function syncPathToParent() {
+  console.log(window.top, "window.top");
+  if (window.top) {
+    window.top.postMessage(
+      {
+        type: "replacePath",
+        value: route.path,
+      },
+      "*"
+    );
+  }
+}
 </script>
 
-<template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
-</template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<style lang="less" rel="stylesheet/less" scoped>
+.root {
+  width: 100%;
+  height: 100%;
 }
 </style>

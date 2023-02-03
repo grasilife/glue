@@ -14,7 +14,7 @@
     "glue-components": "workspace:0.0.2-alpha.0",
     "vant": "^4.0.8",
     "vue": "^3.2.45",
-    "vue-router": "^3.2.0"
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
