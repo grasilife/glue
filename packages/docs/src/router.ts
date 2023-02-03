@@ -1,4 +1,8 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  createWebHashHistory,
+} from "vue-router";
 import {
   glueConfig,
   previewRouterExternals,
@@ -13,7 +17,7 @@ let currentType = searchType(types, defaultType);
 let currentLang = searchLang(locales, defaultLang);
 console.log(currentType, currentLang, "current");
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: getRoutes(),
 });
 function getRoutes() {

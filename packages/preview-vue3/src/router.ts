@@ -1,5 +1,5 @@
 import Vue from "vue";
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import {
   glueConfig,
   previewRouterExternals,
@@ -12,7 +12,7 @@ let currentLang = searchLang(locales, defaultLang);
 console.log(currentType, currentLang, "current3");
 const type = "vue3";
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [
     {
       path: "/",

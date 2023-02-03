@@ -32,8 +32,9 @@ function onBack() {
   }
 }
 watch(
-  () => route,
+  () => router.currentRoute.value,
   () => {
+    console.log(route, "route111");
     syncPathToParent();
   }
 );

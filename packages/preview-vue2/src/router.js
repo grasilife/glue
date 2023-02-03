@@ -12,7 +12,7 @@ let currentLang = searchLang(locales, defaultLang);
 Vue.use(VueRouter);
 const type = "vue2";
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   base: "/",
   routes: [
     {
