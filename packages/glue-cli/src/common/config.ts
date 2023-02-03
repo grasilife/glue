@@ -67,6 +67,7 @@ let config: any = {
         nav: [
           {
             title: "开发指南",
+            previewHidden:true,
             items: [
               {
                 path: "home",

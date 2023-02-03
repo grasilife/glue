@@ -3,18 +3,8 @@ import VueRouter from "vue-router";
 import {
   glueConfig,
   previewRouterExternals,
-  // isMobile,
-  // listenParentPathChange,
-  // initIframe,
-  // listenToSyncPath,
-  // syncPathToParent,
 } from "@glue/glue-cli";
-// console.log(glueConfig, previewRouterExternals, "previewRouterExternals");
-// initIframe();
 const { locales, defaultLang, types } = glueConfig.site;
-// if (isMobile) {
-//   location.replace("mobile.html" + location.hash);
-// }
 Vue.use(VueRouter);
 const type = "vue2";
 const router = new VueRouter({
@@ -23,7 +13,6 @@ const router = new VueRouter({
   routes: getRoutes(),
 });
 
-// window.vueRouter = router;
 function getRoutes() {
   const routes = [
     {

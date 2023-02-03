@@ -11,7 +11,7 @@
       {{ config.description }}
     </h2>
     <glue-doc-nav-list
-      v-for="(group, index) in config.nav"
+      v-for="(group, index) in nav"
       :key="index"
       :gtitle="group.title"
       :group.prop="group.items"
@@ -41,14 +41,16 @@ export default {
 
     config() {
       const { locales } = glueConfig.site;
-      console.log(locales, "locales");
+      console.log(locales,glueConfig, "locales222");
       if (locales) {
         console.log(locales[this.lang], "locales[this.lang]");
-        return locales[this.lang];
+        return locales[this.lang]
       }
-      console.log(glueConfig.site, "glueConfig.site");
-      return glueConfig.site;
     },
+    nav() {
+      return this.config.nav.filter((item)=>item.previewHidden!==true)
+    },
+
 
     smallTitle() {
       return this.config.title.length >= 8;
