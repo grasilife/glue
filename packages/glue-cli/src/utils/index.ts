@@ -15,3 +15,21 @@ export function getDemoName(route: { meta: any; path: string }) {
 
   return "";
 }
+export function searchType(types: any[], defaultType: string) {
+  let current = "";
+  types.map((item: any) => {
+    if (location.href.includes(item.label)) {
+      current = item.label;
+    }
+  });
+  return current ? current : defaultType;
+}
+export function searchLang(locales: {}, defaultLang: any) {
+  let current = "";
+  Object.keys(locales).map((lang: any) => {
+    if (location.href.includes(lang)) {
+      current = lang;
+    }
+  });
+  return current ? current : defaultLang;
+}
