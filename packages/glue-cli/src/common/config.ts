@@ -15,7 +15,10 @@ let config: any = {
   site: {
     defaultLang: "zh-CN",
     defaultType: "vue2",
-    versions: [{ label: "1.0.0", link: "/glue/" }],
+    versions: [
+      { label: "1.0.0", link: "/vue2/zh-CN/quickstart" },
+      { label: "2.0.0", link: "/vue2/zh-CN/quickstart" },
+    ],
     types: [
       { label: "vue2", link: "/glue/" },
       { label: "vue3", link: "/glue/vue3" },
@@ -67,7 +70,7 @@ let config: any = {
         nav: [
           {
             title: "开发指南",
-            previewHidden:true,
+            previewHidden: true,
             items: [
               {
                 path: "home",

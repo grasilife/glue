@@ -53,10 +53,10 @@
             </span>
           </li>
 
-          <li v-if="langLabel && langLink" class="van-doc-header__top-nav-item">
-            <a class="van-doc-header__cube" :href="langLink">
+          <li class="van-doc-header__top-nav-item">
+            <div class="van-doc-header__cube" @click="onSwitchLang">
               {{ langLabel }}
-            </a>
+            </div>
           </li>
           <li
             v-for="(item, index) in config.links"
@@ -70,11 +70,6 @@
               </span>
             </a>
           </li>
-          <!-- <search-input
-            v-if="searchConfig"
-            :lang="lang"
-            :search-config="searchConfig"
-          /> -->
         </ul>
       </div>
     </div>
@@ -139,7 +134,6 @@ const langLabel: any = computed(() => {
   return anotherLang.value.label;
 });
 const anotherLang: any = computed(() => {
-  //筛选默认语言配置文件
   const items = props.langConfigs.filter(
     (item: any) => item.lang == props.lang
   );
@@ -156,40 +150,19 @@ const searchConfig = computed(() => {
 function toggleTypePop() {
   const val = !showTypePop.value;
 
-  //   const action = val ? "add" : "remove";
-  //   document.body[`${action}EventListener`](
-  //     "click",
-  //     this.checkHideVersionPop
-  //   );
-
   showTypePop.value = val;
   console.log(showTypePop.value, props.types, "showTypePop.value");
 }
 function toggleVersionPop() {
   const val = !showVersionPop.value;
-
-  //   const action = val ? "add" : "remove";
-  //   document.body[`${action}EventListener`](
-  //     "click",
-  //     this.checkHideVersionPop
-  //   );
-
   showVersionPop.value = val;
 }
 
-function checkHideVersionPop(event: { target: any }) {
-  if (!versionRef.value.contains(event.target)) {
-    showVersionPop.value = false;
-  }
-}
-
-function onSwitchLang(lang: any) {
-  console.log(lang, "langlanglang");
-  const { type, path } = route.meta;
+function onSwitchLang() {
+  const { type, path, lang } = route.meta;
   router.push(`/${type}/${lang}/${path}`);
 }
 function onSwitchType(item: { label: any }) {
-  // type.value = item.label;
   const { lang, path } = route.meta;
   router.push(`/${item.label}/${lang}/${path}`);
 }
