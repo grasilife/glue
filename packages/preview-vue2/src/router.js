@@ -18,7 +18,7 @@ const { locales, defaultLang, types } = glueConfig.site;
 Vue.use(VueRouter);
 const type = "vue2";
 const router = new VueRouter({
-  mode: "hash",
+  mode: "history",
   base: "/",
   routes: getRoutes(),
 });

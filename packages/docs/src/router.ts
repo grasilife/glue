@@ -1,4 +1,5 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+
+import { createRouter, createWebHashHistory,createWebHistory } from "vue-router";
 // import {
 //   glueConfig,
 //   previewRouterExternals,
@@ -31,24 +32,20 @@ function searchValueFn(list: any[]) {
   });
   return current;
 }
-let currentType = searchValueFn(types);
+let currentType = searchValueFn(types)?searchValueFn(types):defaultType;
 console.log(currentType, "currentType");
 const router = createRouter({
   // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: getRoutes(), // `routes: routes` 的缩写
 });
-// router.afterEach(() => {
-//   nextTick(() => window.syncPath());
-// });
-
 window.vueRouter = router;
 function getRoutes() {
   const routes: any = [
     {
       path: "/",
       name: "home",
-      redirect: `/${currentType ?? defaultType}/${defaultLang}/home`,
+      redirect: `/${currentType}/${defaultLang}/home`,
       meta: {
         path: "home",
         lang: defaultLang,
