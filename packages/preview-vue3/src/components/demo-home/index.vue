@@ -27,17 +27,15 @@ const route = useRoute();
 const router = useRouter();
 const lang = computed(() => {
   const lang = "zh-CN";
-  console.log(lang, "lang");
-  return lang || "";
+  return lang || "zh-CN";
 });
 const type = computed(() => {
-  const { type } = route.meta;
-  console.log(type, "type");
-  return type || "vue3";
+  const { lang } = route.meta;
+  return lang || "vue3";
 });
 const config = computed(() => {
   const { locales } = glueConfig.site;
-  console.log(locales, glueConfig, "locales222");
+  console.log(locales, glueConfig, route.meta.lang, "locales222");
   if (locales) {
     console.log(locales[lang.value], "locales[lang.value]");
     return locales[lang.value];

@@ -28,6 +28,11 @@ export default function DemoHome() {
     console.log(glueConfig.site, "glueConfig.site");
     return glueConfig.site;
   }, []);
+  const nav = useMemo(() => {
+    return config.nav.filter(
+      (item: { previewHidden: boolean }) => item.previewHidden !== true
+    );
+  }, [config.nav]);
   const smallTitle = useMemo(() => {
     return config.length >= 8;
   }, [config]);
@@ -51,7 +56,7 @@ export default function DemoHome() {
       <h2 v-if="glueConfig.description" className="demo-home__desc">
         {config.description}
       </h2>
-      {config.nav.map((group: { title: any; items: any }, index: Key) => {
+      {nav.map((group: { title: any; items: any }, index: Key) => {
         return (
           <GlueDocNavList
             key={index}

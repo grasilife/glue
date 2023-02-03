@@ -28,7 +28,7 @@ export default {
 
   computed: {
     lang() {
-      const lang = "zh-CN";
+      const { lang } = this.$route.meta;
       console.log(lang, "lang");
       return lang || "";
     },
@@ -41,16 +41,15 @@ export default {
 
     config() {
       const { locales } = glueConfig.site;
-      console.log(locales,glueConfig, "locales222");
+      console.log(locales, glueConfig, "locales222");
       if (locales) {
         console.log(locales[this.lang], "locales[this.lang]");
-        return locales[this.lang]
+        return locales[this.lang];
       }
     },
     nav() {
-      return this.config.nav.filter((item)=>item.previewHidden!==true)
+      return this.config.nav.filter((item) => item.previewHidden !== true);
     },
-
 
     smallTitle() {
       return this.config.title.length >= 8;

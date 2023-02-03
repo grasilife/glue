@@ -1,89 +1,82 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import DemoHome from "~/components/demo-home/index";
 import NoMatch from "~/components/no-match/index";
 import { lazy, Suspense } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { glueConfig, previewRouterExternals } from "@glue/glue-cli";
-const type = "react";
-const { locales } = glueConfig.site;
-function searchCurrentLang() {
-  let current = "";
-  Object.keys(locales).map((item: any) => {
-    if (location.href.includes(item)) {
-      current = item;
-    }
-  });
-  return current;
-}
-let currentLang = searchCurrentLang();
-console.log(currentLang, "currentLang");
-function getRoutes() {
-  let routes: any[] = [];
-  console.log(Object.keys(locales), "locales");
-  locales[currentLang].nav.forEach((element: { items: any[] }) => {
-    if (element.items) {
-      element.items.forEach((element2) => {
-        console.log(element2, "element2");
-        if (previewRouterExternals.includes(element2.path)) {
-          routes.push({
-            path: `/${type}/${currentLang}/${element2.path}`,
-            loader: () => {
-              return {
-                name: `${element2.title}`,
-                path: element2.path,
-                lang: currentLang,
-                type: `${type}`,
-              };
-            },
-            element: <DemoHome />,
-          });
-        } else {
-          const LazyCom = lazy(() => import(`./pages/${element2.path}/index`));
-          routes.push({
-            path: `/${type}/${currentLang}/${element2.path}`,
-            loader: () => {
-              return {
-                name: `${element2.title}`,
-                path: element2.path,
-                lang: currentLang,
-                type: `${type}`,
-              };
-            },
-
-            element: (
-              <Suspense fallback={<>...</>}>
-                <LazyCom />
-              </Suspense>
-            ),
-          });
-        }
-      });
-    }
-  });
-  console.log(routes, "routesroutes");
-  return routes;
-}
+import { GlueDocNav } from "@glue/glue-react";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useLoaderData,
+  useNavigate,
+  useLocation,
+  Outlet,
+} from "react-router-dom";
+import {
+  glueConfig,
+  previewRouterExternals,
+  searchType,
+  searchLang,
+} from "@glue/glue-cli";
 
 export default function App() {
-  let router = createBrowserRouter(
-    [
-      {
-        path: "/",
-        element: <DemoHome />,
-        loader: () => {
-          return {
-            name: `home`,
-            path: "/",
-            lang: currentLang,
-            type: `${type}`,
-          };
+  interface IMeta {
+    name: string;
+    path: string;
+    lang: string;
+    type: string;
+  }
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { path, lang, name } = useLoaderData() as IMeta;
+  const title = useMemo(() => {
+    return name ? name.replace(/-/g, "") : "";
+  }, [name]);
+  const showDocNav = useMemo(() => {
+    return !previewRouterExternals.includes(path);
+  }, [path]);
+  useEffect(() => {
+    console.log(location, "location");
+    syncPathToParent();
+  }, [location]);
+  window.addEventListener("message", (event) => {
+    if (event.data?.type !== "replacePath") {
+      return;
+    }
+    console.log(event.data, "event.data");
+    const path = event.data?.value || "";
+    navigate(path);
+  });
+  function onBack() {
+    if (history.length > 1) {
+      history.back();
+    } else {
+      navigate("/");
+    }
+  }
+  function syncPathToParent() {
+    console.log(window.top, "window.top");
+    if (window.top) {
+      window.top.postMessage(
+        {
+          type: "replacePath",
+          value: path,
         },
-      },
-      ...getRoutes(),
-      { path: "*", element: <NoMatch /> },
-    ],
-    { basename: "/preview-react" }
-  );
+        "*"
+      );
+    }
+  }
 
-  return <RouterProvider router={router} />;
+  return (
+    <div className="root">
+      {showDocNav ? (
+        <GlueDocNav
+          gtitle={title}
+          onGlueBack={() => {
+            onBack();
+          }}
+        ></GlueDocNav>
+      ) : null}
+      <Outlet />
+    </div>
+  );
 }
