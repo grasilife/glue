@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import DemoHome from "~/components/demo-home/index";
 import NoMatch from "~/components/no-match/index";
 import { lazy, Suspense } from "react";
@@ -35,8 +35,9 @@ export default function App() {
     return !previewRouterExternals.includes(path);
   }, [path]);
   useEffect(() => {
-    console.log(location, "location");
-    syncPathToParent();
+    //为啥会触发多次,很奇怪
+    console.log(location, "1111111111");
+    // syncPathToParent();
   }, [location]);
   window.addEventListener("message", (event) => {
     if (event.data?.type !== "replacePath") {
@@ -46,13 +47,13 @@ export default function App() {
     const path = event.data?.value || "";
     navigate(path);
   });
-  function onBack() {
+  const onBack = useCallback(() => {
     if (history.length > 1) {
       history.back();
     } else {
       navigate("/");
     }
-  }
+  }, []);
   function syncPathToParent() {
     console.log(window.top, "window.top");
     if (window.top) {
@@ -69,12 +70,7 @@ export default function App() {
   return (
     <div className="root">
       {showDocNav ? (
-        <GlueDocNav
-          gtitle={title}
-          onGlueBack={() => {
-            onBack();
-          }}
-        ></GlueDocNav>
+        <GlueDocNav gtitle={title} onGlueBack={onBack}></GlueDocNav>
       ) : null}
       <Outlet />
     </div>
