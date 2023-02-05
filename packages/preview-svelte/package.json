@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@glue/glue-cli": "workspace:0.0.2-alpha.0",
-    "glue-components": "workspace:0.0.2-alpha.0"
+    "glue-components": "workspace:0.0.2-alpha.0",
+    "svelte-spa-router": "^3.3.0"
   }
 }

@@ -26,12 +26,12 @@ import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const router = useRouter();
 const lang = computed(() => {
-  const lang = "zh-CN";
-  return lang || "zh-CN";
+  const { lang } = route.meta as any;
+  return lang;
 });
 const type = computed(() => {
-  const { lang } = route.meta;
-  return lang || "vue3";
+  const { type } = route.meta;
+  return type || "vue3";
 });
 const config = computed(() => {
   const { locales } = glueConfig.site;
