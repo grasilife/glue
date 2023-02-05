@@ -1,4 +1,3 @@
-import "./app.css";
 import App from "./App.svelte";
 import { applyPolyfills, defineCustomElements } from "glue-components/loader";
 applyPolyfills().then(() => {
