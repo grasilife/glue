@@ -1,6 +1,7 @@
 // Components
 
 import Home from "./components/home/index.svelte";
+import DemoHome from "./components/demo-home/index.svelte";
 import {
   glueConfig,
   previewRouterExternals,
@@ -13,8 +14,9 @@ const { locales, defaultLang, defaultType, types } = glueConfig.site;
 let currentType = searchType(types, defaultType);
 let currentLang = searchLang(locales, defaultLang);
 export default {
+  // Exact path
   "/": wrap({
-    component: Home,
+    asyncComponent: () => import("./components/home/index.svelte") as any,
     props: {
       name: `home`,
       path: "home",

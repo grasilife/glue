@@ -15,7 +15,9 @@
   $: {
     title = name ? name.replace(/-/g, "") : "";
     showDocNav = !previewRouterExternals.includes(path);
+    console.log(title, "titletitletitle");
   }
+
   function onBack() {
     if (history.length > 1) {
       history.back();
@@ -47,8 +49,8 @@
     }
   }
   const routes = {
-    "/svelte/zh-CN/home": wrap({
-      component: DemoHome,
+    "/svelte": wrap({
+      asyncComponent: () => import("../demo-home/index.svelte") as any,
       props: {
         name: `home`,
         path: "home",
@@ -59,7 +61,9 @@
   };
 </script>
 
-{#if showDocNav}
+<!-- {#if showDocNav}
   <glue-doc-nav gtitle={title} />
-{/if}
-<Router {routes} />
+{/if} -->
+<div>
+  <Router {routes} />
+</div>

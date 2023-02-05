@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import "./App.less";
   import Router from "svelte-spa-router";
   import routes from "./router";
