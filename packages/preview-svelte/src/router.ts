@@ -16,7 +16,7 @@ let currentLang = searchLang(locales, defaultLang);
 export default {
   // Exact path
   "/": wrap({
-    asyncComponent: () => import("./components/home/index.svelte") as any,
+    asyncComponent: () => import("./components/demo-home/index.svelte") as any,
     props: {
       name: `home`,
       path: "home",
