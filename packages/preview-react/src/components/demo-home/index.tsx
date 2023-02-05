@@ -36,7 +36,6 @@ export default function DemoHome() {
   const smallTitle = useMemo(() => {
     return config.length >= 8;
   }, [config]);
-  console.log(config, smallTitle, "config");
   function glueItemClick(event: GlueDocNavListCustomEvent<any>) {
     console.log(event, "event");
     let pathEnd = `/${type}/${lang}/${event.detail.path}`;

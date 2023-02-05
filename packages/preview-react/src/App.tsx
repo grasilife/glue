@@ -32,21 +32,26 @@ export default function App() {
     return name ? name.replace(/-/g, "") : "";
   }, [name]);
   const showDocNav = useMemo(() => {
-    return !previewRouterExternals.includes(path);
-  }, [path]);
+    console.log(name, "pathpathpath");
+    return !previewRouterExternals.includes(name);
+  }, [name]);
+  useEffect(() => {
+    window.addEventListener("message", (event) => {
+      if (event.data?.type !== "replacePath") {
+        return;
+      }
+
+      const path = event.data?.value || "";
+      console.log(event.data, path, "event.data");
+      navigate(path);
+    });
+  }, []);
   useEffect(() => {
     //为啥会触发多次,很奇怪
     console.log(location, "1111111111");
     // syncPathToParent();
   }, [location]);
-  window.addEventListener("message", (event) => {
-    if (event.data?.type !== "replacePath") {
-      return;
-    }
-    console.log(event.data, "event.data");
-    const path = event.data?.value || "";
-    navigate(path);
-  });
+
   const onBack = useCallback(() => {
     if (history.length > 1) {
       history.back();
