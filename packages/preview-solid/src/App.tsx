@@ -7,14 +7,9 @@ import {
   Outlet,
 } from "@solidjs/router";
 import routes from "./router";
-import styles from "./App.module.css";
 
 const App: Component = () => {
   const Routes = useRoutes(routes);
-  return (
-    <div class={styles.App}>
-      <Routes />
-    </div>
-  );
+  return <Routes />;
 };
 export default App;

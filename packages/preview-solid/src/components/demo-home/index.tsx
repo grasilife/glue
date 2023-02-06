@@ -4,6 +4,7 @@ import { GlueDocNavListCustomEvent } from "glue-components/dist/types/components
 import { useRouteData, useNavigate } from "@solidjs/router";
 import { clearDelegatedEvents } from "solid-js/web";
 // import "./index.less";
+import styles from "./index.module.less";
 
 interface IMeta {
   name: string;
@@ -20,7 +21,7 @@ export default function DemoHome() {
   const nav = config.nav.filter(
     (item: { previewHidden: boolean }) => item.previewHidden !== true
   );
-  console.log(nav, "navnav");
+  console.log(nav, config, "navnav");
   const smallTitle = config.length >= 8;
   // const navigate = useNavigate();
   // const { lang, type } = useLoaderData() as IMeta;
@@ -51,18 +52,20 @@ export default function DemoHome() {
     navigate(pathEnd);
   }
   return (
-    <div class="demo-home">
+    <div class={styles.demoHome}>
       <h1
-        class={classnames("demo-home__title", {
-          "demo-home__title--small": smallTitle,
-        })}
+        class={classnames(
+          styles.demoHome__title,
+          smallTitle && styles.demoHome__title__small
+        )}
       >
         <img src={config.logo} />
         <span>{config.title}</span>
       </h1>
-      <h2 v-if="glueConfig.description" class="demo-home__desc">
-        {config.description}
-      </h2>
+      {config.description ? (
+        <h2 class={styles.demoHome__desc}>{config.description}</h2>
+      ) : null}
+
       {nav.map((group: any) => {
         return (
           <glue-doc-nav-list

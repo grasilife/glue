@@ -58,17 +58,22 @@ function getRoutes() {
 }
 const routes: any = [
   {
-    path: "",
-    data: () => {
-      return {
-        name: `home`,
-        path: "home",
-        lang: currentLang,
-        type: currentType,
-      };
-    },
-    component: lazy(() => import("./components/home/index")),
-    children: getRoutes(),
+    path: "/",
+    children: [
+      {
+        path: "/",
+        data: () => {
+          return {
+            name: `home`,
+            path: "home",
+            lang: currentLang,
+            type: currentType,
+          };
+        },
+        component: lazy(() => import("./components/home/index")),
+      },
+      ...getRoutes(),
+    ],
   },
 ];
 console.log(routes, "routes");
