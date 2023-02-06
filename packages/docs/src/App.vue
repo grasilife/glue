@@ -78,8 +78,10 @@ watch(
       simulator.value = "http://127.0.0.1:3001/preview-angular";
     } else if (type.value == "svelte") {
       simulator.value = "http://127.0.0.1:3001/preview-svelte";
+    } else if (type.value == "stencil") {
+      simulator.value = "http://127.0.0.1:3001/preview-stencil";
     } else {
-      simulator.value = "http://127.0.0.1:3001/stencil-preview";
+      simulator.value = "http://127.0.0.1:3001/preview-solid";
     }
   },
   {
