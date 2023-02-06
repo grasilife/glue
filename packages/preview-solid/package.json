@@ -15,7 +15,10 @@
     "vite-plugin-solid": "^2.5.0"
   },
   "dependencies": {
+    "@glue/glue-cli": "workspace:0.0.2-alpha.0",
     "@solidjs/router": "^0.7.0",
+    "classnames": "^2.2.6",
+    "glue-components": "workspace:0.0.2-alpha.0",
     "solid-js": "^1.6.10"
   }
 }
