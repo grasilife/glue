@@ -23,28 +23,7 @@ export default function DemoHome() {
   );
   console.log(nav, config, "navnav");
   const smallTitle = config.length >= 8;
-  // const navigate = useNavigate();
-  // const { lang, type } = useLoaderData() as IMeta;
-  // console.log(lang, type, "data");
-  // console.log(glueConfig, "glueConfig");
-  // const config = useMemo(() => {
-  //   const { locales } = glueConfig.site;
-  //   console.log(locales, "locales");
-  //   if (locales) {
-  //     console.log(locales[lang], "locales[this.lang]");
-  //     return locales[lang];
-  //   }
-  //   console.log(glueConfig.site, "glueConfig.site");
-  //   return glueConfig.site;
-  // }, []);
-  // const nav = useMemo(() => {
-  //   return config.nav.filter(
-  //     (item: { previewHidden: boolean }) => item.previewHidden !== true
-  //   );
-  // }, [config.nav]);
-  // const smallTitle = useMemo(() => {
-  //   return config.length >= 8;
-  // }, [config]);
+
   function glueItemClick(event: GlueDocNavListCustomEvent<any>) {
     console.log(event, "event");
     let pathEnd = `/${type}/${lang}/${event.detail.path}`;
