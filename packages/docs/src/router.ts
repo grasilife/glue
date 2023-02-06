@@ -18,10 +18,7 @@ let currentLang = searchLang(locales, defaultLang);
 console.log(currentType, currentLang, "current");
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: getRoutes(),
-});
-function getRoutes() {
-  const routes: any = [
+  routes: [
     {
       path: "/",
       name: "home",
@@ -33,7 +30,11 @@ function getRoutes() {
         type: currentType,
       },
     },
-  ];
+    ...getRoutes(),
+  ],
+});
+function getRoutes() {
+  const routes: any = [];
   Object.keys(locales).forEach((lang) => {
     locales[lang].nav.forEach((element: { items: any[] }) => {
       if (element.items) {
@@ -57,6 +58,7 @@ function getRoutes() {
       }
     });
   });
+  console.log(routes, "routesDoc");
   return routes;
 }
 export default router;
