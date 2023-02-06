@@ -5,7 +5,7 @@
       :src="props.src"
       :style="simulatorStyle"
       frameborder="0"
-      :key="props.src"
+      :key="`${props.src}${new Date()}`"
       @load="iframeLoad"
     />
   </div>
