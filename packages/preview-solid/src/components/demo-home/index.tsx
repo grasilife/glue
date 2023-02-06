@@ -4,6 +4,7 @@ import { GlueDocNavListCustomEvent } from "glue-components/dist/types/components
 import { useRouteData, useNavigate } from "@solidjs/router";
 import { clearDelegatedEvents } from "solid-js/web";
 // import "./index.less";
+
 interface IMeta {
   name: string;
   path: string;
@@ -64,13 +65,13 @@ export default function DemoHome() {
       </h2>
       {nav.map((group: any) => {
         return (
-          <glue-doc-nav-List
+          <glue-doc-nav-list
             gtitle={group.title}
             group={group.items}
             onGlueItemClick={(event: GlueDocNavListCustomEvent<any>) => {
               glueItemClick(event);
             }}
-          ></glue-doc-nav-List>
+          ></glue-doc-nav-list>
         );
       })}
     </div>
