@@ -26,6 +26,7 @@ let config: any = {
       { label: "angular", link: "/glue/angular" },
       { label: "svelte", link: "/glue/svelte" },
       { label: "stencil", link: "/glue/stencil" },
+      { label: "solid", link: "/glue/solid" },
     ],
     baiduAnalytics: {
       seed: "ad6b5732c36321f2dafed737ac2da92f",

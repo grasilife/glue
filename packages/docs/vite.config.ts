@@ -156,6 +156,10 @@ export default defineConfig({
         target: "http://127.0.0.1:3006",
         changeOrigin: true,
       },
+      "^/preview-solid": {
+        target: "http://127.0.0.1:3007",
+        changeOrigin: true,
+      },
     },
   },
 });
