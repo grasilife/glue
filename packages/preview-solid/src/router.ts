@@ -57,30 +57,8 @@ function getRoutes() {
   return routes;
 }
 const routes: any = [
-  // {
-  //   path: "/users",
-  //   component: lazy(() => import("/pages/users.js")),
-  // },
-  // {
-  //   path: "/users/:id",
-  //   component: lazy(() => import("/pages/users/[id].js")),
-  //   children: [
-  //     {
-  //       path: "/",
-  //       component: lazy(() => import("/pages/users/[id]/index.js")),
-  //     },
-  //     {
-  //       path: "/settings",
-  //       component: lazy(() => import("/pages/users/[id]/settings.js")),
-  //     },
-  //     {
-  //       path: "/*all",
-  //       component: lazy(() => import("/pages/users/[id]/[...all].js")),
-  //     },
-  //   ],
-  // },
   {
-    path: "/",
+    path: "",
     data: () => {
       return {
         name: `home`,
@@ -90,17 +68,8 @@ const routes: any = [
       };
     },
     component: lazy(() => import("./components/home/index")),
-    children: [
-      {
-        path: "/settings",
-        component: lazy(() => import("~/components/demo-home/index")),
-      },
-    ],
+    children: getRoutes(),
   },
-  // {
-  //   path: "/*all",
-  //   component: lazy(() => import("/pages/[...all].js")),
-  // },
 ];
 console.log(routes, "routes");
 export default routes;

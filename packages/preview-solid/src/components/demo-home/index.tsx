@@ -1,6 +1,8 @@
 import { glueConfig } from "@glue/glue-cli";
 import classnames from "classnames";
 import { GlueDocNavListCustomEvent } from "glue-components/dist/types/components";
+import { useRouteData, useNavigate } from "@solidjs/router";
+import { clearDelegatedEvents } from "solid-js/web";
 // import "./index.less";
 interface IMeta {
   name: string;
@@ -9,6 +11,16 @@ interface IMeta {
   type: string;
 }
 export default function DemoHome() {
+  const { path, lang, name, type }: IMeta = useRouteData();
+  const { locales } = glueConfig.site;
+  const navigate = useNavigate();
+
+  const config = locales[lang];
+  const nav = config.nav.filter(
+    (item: { previewHidden: boolean }) => item.previewHidden !== true
+  );
+  console.log(nav, "navnav");
+  const smallTitle = config.length >= 8;
   // const navigate = useNavigate();
   // const { lang, type } = useLoaderData() as IMeta;
   // console.log(lang, type, "data");
@@ -31,16 +43,15 @@ export default function DemoHome() {
   // const smallTitle = useMemo(() => {
   //   return config.length >= 8;
   // }, [config]);
-  // function glueItemClick(event: GlueDocNavListCustomEvent<any>) {
-  //   console.log(event, "event");
-  //   let pathEnd = `/${type}/${lang}/${event.detail.path}`;
-  //   console.log(pathEnd, "pathEndpathEnd");
-  //   navigate(pathEnd);
-  // }
+  function glueItemClick(event: GlueDocNavListCustomEvent<any>) {
+    console.log(event, "event");
+    let pathEnd = `/${type}/${lang}/${event.detail.path}`;
+    console.log(pathEnd, "pathEndpathEnd");
+    navigate(pathEnd);
+  }
   return (
     <div class="demo-home">
-      333
-      {/* <h1
+      <h1
         class={classnames("demo-home__title", {
           "demo-home__title--small": smallTitle,
         })}
@@ -50,19 +61,18 @@ export default function DemoHome() {
       </h1>
       <h2 v-if="glueConfig.description" class="demo-home__desc">
         {config.description}
-      </h2> */}
-      {/* {nav.map((group: { title: any; items: any }, index: Key) => {
+      </h2>
+      {nav.map((group: any) => {
         return (
-          <GlueDocNavList
-            key={index}
+          <glue-doc-nav-List
             gtitle={group.title}
             group={group.items}
             onGlueItemClick={(event: GlueDocNavListCustomEvent<any>) => {
               glueItemClick(event);
             }}
-          ></GlueDocNavList>
+          ></glue-doc-nav-List>
         );
-      })} */}
+      })}
     </div>
   );
 }

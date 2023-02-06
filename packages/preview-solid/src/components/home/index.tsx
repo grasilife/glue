@@ -19,7 +19,7 @@ const Home: Component = () => {
   const navigate = useNavigate();
   const title = name ? name.replace(/-/g, "") : "";
   const showDocNav = !previewRouterExternals.includes(name);
-  console.log(showDocNav, title, "showDocNav");
+  console.log(showDocNav, title, name, "showDocNav");
   window.addEventListener("message", (event) => {
     if (event.data?.type !== "replacePath") {
       return;
@@ -58,9 +58,8 @@ const Home: Component = () => {
     <div>
       <div>11111</div>
       {showDocNav ? (
-        <div>11111</div>
-      ) : // <glue-doc-nav gtitle={title} onGlueBack={onBack}></glue-doc-nav>
-      null}
+        <glue-doc-nav gtitle={title} onGlueBack={onBack}></glue-doc-nav>
+      ) : null}
       <Outlet></Outlet>
     </div>
   );
