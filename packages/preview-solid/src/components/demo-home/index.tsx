@@ -1,7 +1,7 @@
 import { glueConfig } from "@glue/glue-cli";
 import classnames from "classnames";
 import { GlueDocNavListCustomEvent } from "glue-components/dist/types/components";
-import "./index.less";
+// import "./index.less";
 interface IMeta {
   name: string;
   path: string;
@@ -39,6 +39,7 @@ export default function DemoHome() {
   // }
   return (
     <div class="demo-home">
+      333
       {/* <h1
         class={classnames("demo-home__title", {
           "demo-home__title--small": smallTitle,
